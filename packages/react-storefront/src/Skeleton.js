@@ -40,8 +40,7 @@ export const styles = theme => ({
     animationName: 'shimmer',
     animationTimingFunction: 'linear',
     background: `linear-gradient(to right, #eee 8%, #e6e6e6 18%, #eee 33%)`,
-    backgroundSize: '800px 104px',
-    zIndex: 1
+    backgroundSize: '800px 104px'
   },
 
   fullscreen: {
@@ -99,11 +98,11 @@ export const Space = withStyles(styles)(
 /**
  * A placeholder for content with a gray background that shimmers
  */
-export const Content = withStyles(styles)(({ children, classes, ...style }) => {
+export const Content = withStyles(styles)(({ children, className, classes, ...style }) => {
   if (children) {
-    return <div className={classes.filledContent} style={{ ...style }}>{children}</div>
+    return <div className={classnames(className, classes.filledContent)} style={{ ...style }}>{children}</div>
   } else {
-    return <div style={{ ...style }}/>
+    return <div className={className} style={{ ...style }}/>
   }
 })
 
@@ -124,7 +123,7 @@ export const BlankRow = withStyles(styles)(({ classes, ...others }) => (
   root: {
     borderStyle: 'solid',
     borderColor: theme.palette.background.paper,
-    borderWidth: `${spacing/2}px`
+    borderWidth: `0 ${spacing/2}px`
   },
   tile: {
     borderStyle: 'solid',
@@ -171,27 +170,29 @@ Tiles.defaultProps = {
     width: '100%'
   }
 }))
-@inject('app')
 @observer
 export class ImageSwitcher extends Component {
 
   static propTypes = {
-    thumbnails: PropTypes.bool
+    product: PropTypes.object,
+    thumbnails: PropTypes.bool,
+    loadingThumbnailProps: PropTypes.object
   }
 
   static defaultProps = {
-    thumbnails: true
+    thumbnails: true,
+    loadingThumbnailProps: {}
   }
 
   render() {
-    const { app, classes, thumbnails } = this.props
+    const { classes, thumbnails, product, loadingThumbnailProps } = this.props
 
     return (
       <Fragment>
-        { app.productThumbnail ? (
+        { product && product.thumbnail ? (
           <Row>
             <Content flex="1">
-              <Image src={app.productThumbnail} className={classes.image} fill/>
+              <Image src={product.thumbnail} className={classes.image} {...loadingThumbnailProps} fill/>
             </Content>      
           </Row>
         ) : (

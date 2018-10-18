@@ -14,7 +14,6 @@ exports[`PromoBanner renders 1`] = `
       alt="promo"
       className=""
       layout={null}
-      quality={null}
     />
   </div>
 </a>

@@ -16,6 +16,7 @@ import Highlight from 'react-highlighter'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Link from './Link'
 import { PropTypes as MobxPropTypes, inject, observer } from 'mobx-react'
+import Image from 'moov-pwa/Image'
 
 /**
  * A search popup with suggestions of search texts, categories, products.
@@ -82,6 +83,12 @@ export const styles = theme => ({
       color: theme.palette.text.primary
     }
   },
+  productImage: {
+    height: '120px',
+    width: '120px',
+    display: 'block',
+    marginBottom: '15px'
+  },
   productsSuggestions: {
     display: 'flex',
     listStyle: 'none',
@@ -90,9 +97,6 @@ export const styles = theme => ({
     overflowX: 'auto',
     '& > li': {
       margin: '5px'
-    },
-    '& img': {
-      height: '120px'
     }
   },
   searchResultsWrapper: {
@@ -310,9 +314,10 @@ export const ProductSuggestions = (props) => (<React.Fragment>
   <Typography component="h2" className={props.classes.suggestionHeader}>Product suggestions</Typography>
   <ul className={props.classes.productsSuggestions}>
     {props.products.map((item) => (<li key={item.id}>
-      <Link to={item.url} onClick={props.hidePopup}>
-        <img
-          src={item.image}
+      <Link to={item.url} onClick={props.hidePopup} className={props.classes.productImage}>
+        <Image
+          fill
+          src={item.thumbnail}
           alt={item.name} />
       </Link>
       <Link to={item.url} onClick={props.hidePopup}>{item.name}</Link>
@@ -326,7 +331,7 @@ ProductSuggestions.propTypes = {
     id: PropTypes.string,
     url: PropTypes.string,
     name: PropTypes.string,
-    image: PropTypes.string
+    thumbnail: PropTypes.string
   }))
 }
 

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ResponsiveTiles should render 1`] = `
-<ResponsiveTiles cols={{...}} spacing={16}>
+<ResponsiveTiles cols={{...}} spacing={15}>
   <WithStyles(ResponsiveTilesInner)>
     <ResponsiveTilesInner classes={{...}}>
       <ul className="RSFResponsiveTiles-root-1">
@@ -60,7 +60,7 @@ exports[`ResponsiveTiles should render 1`] = `
 `;
 
 exports[`ResponsiveTiles should skip invalid elements 1`] = `
-<ResponsiveTiles cols={{...}} spacing={16}>
+<ResponsiveTiles cols={{...}} spacing={15}>
   <WithStyles(ResponsiveTilesInner)>
     <ResponsiveTilesInner classes={{...}}>
       <ul className="RSFResponsiveTiles-root-7">

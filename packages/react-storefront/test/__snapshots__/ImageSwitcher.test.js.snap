@@ -5,7 +5,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
   <Provider app={{...}}>
     <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
       <inject-ImageSwitcher-with-app classes={{...}} images={{...}}>
-        <ImageSwitcher classes={{...}} images={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={false} indicators={false} reactPinchZoomPanOptions={{...}}>
+        <ImageSwitcher classes={{...}} images={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={false} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
           <div className="RSFImageSwitcher-root-1" style={[undefined]}>
             <div className="RSFImageSwitcher-swipeWrap-2">
               <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
@@ -13,7 +13,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
                   <div style={{...}} className="react-swipeable-view-container">
                     <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
                       <div className="RSFImageSwitcher-imageWrap-3">
-                        <img src="/a.jpg" alt="product" onLoad={[Function: res]} />
+                        <img src="/a.jpg" alt="product" onLoad={[Function]} />
                       </div>
                     </div>
                     <div style={{...}} className={[undefined]} aria-hidden={true} data-swipeable="true">
@@ -73,7 +73,7 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
           </amp-state>
           <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
             <inject-ImageSwitcher-with-app classes={{...}} images={{...}}>
-              <ImageSwitcher classes={{...}} images={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={false} indicators={false} reactPinchZoomPanOptions={{...}}>
+              <ImageSwitcher classes={{...}} images={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={false} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
                 <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId) images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={false} indicators={false}>
                   <inject-AmpImageSwitcher-with-nextId-ampStateId classes={{...}} images={{...}} thumbnails={{...}} className={[undefined]} arrows={false} indicators={false}>
                     <AmpImageSwitcher classes={{...}} images={{...}} thumbnails={{...}} className={[undefined]} arrows={false} indicators={false} nextId={[Function: nextId]} ampStateId="moovAmpState" type="slides" ampStateProperty="selectedImage" controls={false}>
@@ -110,7 +110,7 @@ exports[`ImageSwitcher should render arrows 1`] = `
   <Provider app={{...}}>
     <WithStyles(inject-ImageSwitcher-with-app) images={{...}} arrows={true}>
       <inject-ImageSwitcher-with-app classes={{...}} images={{...}} arrows={true}>
-        <ImageSwitcher classes={{...}} images={{...}} arrows={true} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} indicators={false} reactPinchZoomPanOptions={{...}}>
+        <ImageSwitcher classes={{...}} images={{...}} arrows={true} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
           <div className="RSFImageSwitcher-root-96" style={[undefined]}>
             <div className="RSFImageSwitcher-swipeWrap-97">
               <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
@@ -118,7 +118,7 @@ exports[`ImageSwitcher should render arrows 1`] = `
                   <div style={{...}} className="react-swipeable-view-container">
                     <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
                       <div className="RSFImageSwitcher-imageWrap-98">
-                        <img src="/a.jpg" alt="product" onLoad={[Function: res]} />
+                        <img src="/a.jpg" alt="product" onLoad={[Function]} />
                       </div>
                     </div>
                     <div style={{...}} className={[undefined]} aria-hidden={true} data-swipeable="true">
@@ -201,7 +201,7 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
   <Provider app={{...}}>
     <WithStyles(inject-ImageSwitcher-with-app) images={{...}} showIndicators={true}>
       <inject-ImageSwitcher-with-app classes={{...}} images={{...}} showIndicators={true}>
-        <ImageSwitcher classes={{...}} images={{...}} showIndicators={true} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={false} indicators={false} reactPinchZoomPanOptions={{...}}>
+        <ImageSwitcher classes={{...}} images={{...}} showIndicators={true} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={false} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
           <div className="RSFImageSwitcher-root-142" style={[undefined]}>
             <div className="RSFImageSwitcher-swipeWrap-143">
               <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
@@ -209,7 +209,7 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
                   <div style={{...}} className="react-swipeable-view-container">
                     <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
                       <div className="RSFImageSwitcher-imageWrap-144">
-                        <img src="/a.jpg" alt="product" onLoad={[Function: res]} />
+                        <img src="/a.jpg" alt="product" onLoad={[Function]} />
                       </div>
                     </div>
                     <div style={{...}} className={[undefined]} aria-hidden={true} data-swipeable="true">
@@ -258,7 +258,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
   <Provider app={{...}}>
     <WithStyles(inject-ImageSwitcher-with-app) images={{...}} thumbnails={{...}}>
       <inject-ImageSwitcher-with-app classes={{...}} images={{...}} thumbnails={{...}}>
-        <ImageSwitcher classes={{...}} images={{...}} thumbnails={{...}} app={{...}} viewerThumbnailsOnly={false} arrows={false} indicators={false} reactPinchZoomPanOptions={{...}}>
+        <ImageSwitcher classes={{...}} images={{...}} thumbnails={{...}} app={{...}} viewerThumbnailsOnly={false} arrows={false} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
           <div className="RSFImageSwitcher-root-25" style={[undefined]}>
             <div className="RSFImageSwitcher-swipeWrap-26">
               <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
@@ -266,7 +266,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                   <div style={{...}} className="react-swipeable-view-container">
                     <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
                       <div className="RSFImageSwitcher-imageWrap-27">
-                        <img src="/a.jpg" alt="product" onLoad={[Function: res]} />
+                        <img src="/a.jpg" alt="product" onLoad={[Function]} />
                       </div>
                     </div>
                     <div style={{...}} className={[undefined]} aria-hidden={true} data-swipeable="true">
@@ -337,7 +337,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                               <inject-Image classes={{...}} src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-31" fill={true}>
                                                 <Image classes={{...}} src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-31" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
                                                   <div className="RSFImageSwitcher-thumbnail-31 RSFImage-root-82 RSFImage-fill-85">
-                                                    <img src="/at.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" quality={{...}} />
+                                                    <img src="/at.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" />
                                                   </div>
                                                 </Image>
                                               </inject-Image>
@@ -365,7 +365,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                               <inject-Image classes={{...}} src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-31" fill={true}>
                                                 <Image classes={{...}} src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-31" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
                                                   <div className="RSFImageSwitcher-thumbnail-31 RSFImage-root-82 RSFImage-fill-85">
-                                                    <img src="/bt.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" quality={{...}} />
+                                                    <img src="/bt.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" />
                                                   </div>
                                                 </Image>
                                               </inject-Image>
@@ -393,7 +393,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                               <inject-Image classes={{...}} src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-31" fill={true}>
                                                 <Image classes={{...}} src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-31" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
                                                   <div className="RSFImageSwitcher-thumbnail-31 RSFImage-root-82 RSFImage-fill-85">
-                                                    <img src="/ct.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" quality={{...}} />
+                                                    <img src="/ct.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" />
                                                   </div>
                                                 </Image>
                                               </inject-Image>

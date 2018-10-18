@@ -50,7 +50,7 @@ export default class ResponsiveTiles extends Component {
       lg: 5,
       xl: 5
     },
-    spacing: 16
+    spacing: 15
   }
 
   render() {

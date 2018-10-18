@@ -250,6 +250,12 @@ export default class ImageSwitcher extends Component {
     viewerThumbnailsOnly: PropTypes.bool,
 
     /**
+     * Props to apply to the Image component used to display the product thumbnail while
+     * the product data is loading
+     */
+    loadingThumbnailProps: PropTypes.object,
+
+    /**
      * Config options for the image viewer
      */
     reactPinchZoomPanOptions: PropTypes.shape({
@@ -266,6 +272,7 @@ export default class ImageSwitcher extends Component {
     viewerThumbnailsOnly: false,
     arrows: false,
     indicators: false,
+    loadingThumbnailProps: {},
     reactPinchZoomPanOptions: {
       maxScale: 3
     }
@@ -364,7 +371,7 @@ export default class ImageSwitcher extends Component {
   }
 
   render() {
-    let { app, product, classes, className, arrows, indicators, style, reactPinchZoomPanOptions, thumbnailsTitle, viewerThumbnailsOnly } = this.props
+    let { app, product, classes, className, arrows, indicators, style, reactPinchZoomPanOptions, loadingThumbnailProps, viewerThumbnailsOnly } = this.props
     const { images, thumbnails } = this
 
     if (app.amp) return (
@@ -389,7 +396,7 @@ export default class ImageSwitcher extends Component {
           <SwipeableViews index={selectedIndex} onChangeIndex={i => this.setState({ selectedIndex: i })}>
             {images.map(({ src, alt }, i) => (
               <div key={i} className={classes.imageWrap}>
-                { app.amp ? <amp-img src={src} alt="product" layout="fill"/> : <img key={src} src={src} alt={alt || "product"} onLoad={i === 0 ? app.clearProductThumbnail : null} /> }
+                { app.amp ? <amp-img src={src} alt="product" layout="fill"/> : <img key={src} src={src} alt={alt || "product"} onLoad={i === 0 ? this.clearLoadingProduct : null} /> }
               </div>
             ))}
           </SwipeableViews>
@@ -419,8 +426,8 @@ export default class ImageSwitcher extends Component {
             <LoadMask show={product.loadingImages} className={classes.mask}/>
           )}
 
-          {product && app.productThumbnail && (
-            <Image src={app.productThumbnail} className={classes.productThumb} fill/>
+          {product && app.loadingProduct && app.loadingProduct.thumbnail && (
+            <Image src={app.loadingProduct.thumbnail} className={classes.productThumb} {...loadingThumbnailProps} fill/>
           )}
 
           <Portal>
@@ -462,6 +469,10 @@ export default class ImageSwitcher extends Component {
       </div>
     )
 
+  }
+
+  clearLoadingProduct = () => {
+    this.props.app.applyState({ loadingProduct: null })
   }
 
 }

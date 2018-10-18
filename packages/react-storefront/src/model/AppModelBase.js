@@ -52,7 +52,9 @@ const AppModelBase = types
     category: types.maybe(CategoryModelBase),
     subcategory: types.maybe(SubcategoryModelBase),
     product: types.maybe(ProductModelBase),
-    productThumbnail: types.maybe(types.string), // there should be some kind of ui/utility model here for front-end optimizations like this
+    loadingProduct: types.maybe(ProductModelBase),
+    loadingSubcategory: types.maybe(SubcategoryModelBase),
+    loadingCategory: types.maybe(CategoryModelBase),
     user: types.maybe(UserModelBase),
     location: types.maybe(LocationModel),
     search: types.optional(SearchModelBase, {}), 

@@ -3,33 +3,15 @@
 exports[`Skeleton ImageSwitcher should include hide thumbnails when thumbnails=false 1`] = `
 <MuiThemeProvider theme={{...}}>
   <Provider app={{...}}>
-    <WithStyles(inject-ImageSwitcher-with-app) thumbnails={false}>
-      <inject-ImageSwitcher-with-app classes={{...}} thumbnails={false}>
-        <ImageSwitcher classes={{...}} thumbnails={false} app={{...}}>
-          <WithStyles(Component)>
-            <Component classes={{...}}>
-              <div className="Component-row-31" style={{...}}>
-                <WithStyles(Component) flex="1">
-                  <Component classes={{...}} flex="1">
-                    <div className="Component-filledContent-42" style={{...}}>
-                      <WithStyles(inject-Image) src="/foo/bar.png" className="inject-ImageSwitcher-with-app-image-30" fill={true}>
-                        <inject-Image classes={{...}} src="/foo/bar.png" className="inject-ImageSwitcher-with-app-image-30" fill={true}>
-                          <Image classes={{...}} src="/foo/bar.png" className="inject-ImageSwitcher-with-app-image-30" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
-                            <div className="inject-ImageSwitcher-with-app-image-30 RSFImage-root-43 RSFImage-fill-46">
-                              <img src="/foo/bar.png" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
-                            </div>
-                          </Image>
-                        </inject-Image>
-                      </WithStyles(inject-Image)>
-                    </div>
-                  </Component>
-                </WithStyles(Component)>
-              </div>
-            </Component>
-          </WithStyles(Component)>
-        </ImageSwitcher>
-      </inject-ImageSwitcher-with-app>
-    </WithStyles(inject-ImageSwitcher-with-app)>
+    <WithStyles(ImageSwitcher) thumbnails={false}>
+      <ImageSwitcher classes={{...}} thumbnails={false} loadingThumbnailProps={{...}}>
+        <WithStyles(Component) className="ImageSwitcher-image-26">
+          <Component classes={{...}} className="ImageSwitcher-image-26">
+            <div className="Component-row-27 ImageSwitcher-image-26" style={{...}} />
+          </Component>
+        </WithStyles(Component)>
+      </ImageSwitcher>
+    </WithStyles(ImageSwitcher)>
   </Provider>
 </MuiThemeProvider>
 `;
@@ -37,69 +19,51 @@ exports[`Skeleton ImageSwitcher should include hide thumbnails when thumbnails=f
 exports[`Skeleton ImageSwitcher should include thumbnails by default 1`] = `
 <MuiThemeProvider theme={{...}}>
   <Provider app={{...}}>
-    <WithStyles(inject-ImageSwitcher-with-app)>
-      <inject-ImageSwitcher-with-app classes={{...}}>
-        <ImageSwitcher classes={{...}} app={{...}} thumbnails={true}>
-          <WithStyles(Component)>
-            <Component classes={{...}}>
-              <div className="Component-row-2" style={{...}}>
-                <WithStyles(Component) flex="1">
-                  <Component classes={{...}} flex="1">
-                    <div className="Component-filledContent-13" style={{...}}>
-                      <WithStyles(inject-Image) src="/foo/bar.png" className="inject-ImageSwitcher-with-app-image-1" fill={true}>
-                        <inject-Image classes={{...}} src="/foo/bar.png" className="inject-ImageSwitcher-with-app-image-1" fill={true}>
-                          <Image classes={{...}} src="/foo/bar.png" className="inject-ImageSwitcher-with-app-image-1" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
-                            <div className="inject-ImageSwitcher-with-app-image-1 RSFImage-root-14 RSFImage-fill-17">
-                              <img src="/foo/bar.png" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
-                            </div>
-                          </Image>
-                        </inject-Image>
-                      </WithStyles(inject-Image)>
-                    </div>
-                  </Component>
-                </WithStyles(Component)>
-              </div>
-            </Component>
-          </WithStyles(Component)>
-          <WithStyles(Component)>
-            <Component classes={{...}}>
-              <WithStyles(Component) className="Component-blankRow-19">
-                <Component classes={{...}} className="Component-blankRow-19">
-                  <div className="Component-row-2 Component-blankRow-19" style={{...}}>
-                    <WithStyles(Component) flex={1}>
-                      <Component classes={{...}} flex={1}>
-                        <div className="Component-space-26" style={{...}} />
-                      </Component>
-                    </WithStyles(Component)>
-                  </div>
+    <WithStyles(ImageSwitcher)>
+      <ImageSwitcher classes={{...}} thumbnails={true} loadingThumbnailProps={{...}}>
+        <WithStyles(Component) className="ImageSwitcher-image-1">
+          <Component classes={{...}} className="ImageSwitcher-image-1">
+            <div className="Component-row-2 ImageSwitcher-image-1" style={{...}} />
+          </Component>
+        </WithStyles(Component)>
+        <WithStyles(Component)>
+          <Component classes={{...}}>
+            <WithStyles(Component) className="Component-blankRow-9">
+              <Component classes={{...}} className="Component-blankRow-9">
+                <div className="Component-row-2 Component-blankRow-9" style={{...}}>
+                  <WithStyles(Component) flex={1}>
+                    <Component classes={{...}} flex={1}>
+                      <div className="Component-space-16" style={{...}} />
+                    </Component>
+                  </WithStyles(Component)>
+                </div>
+              </Component>
+            </WithStyles(Component)>
+          </Component>
+        </WithStyles(Component)>
+        <WithStyles(Component) height="58px">
+          <Component classes={{...}} height="58px">
+            <div className="Component-row-2" style={{...}}>
+              <WithStyles(Component)>
+                <Component classes={{...}}>
+                  <div className="Component-space-16" style={{...}} />
                 </Component>
               </WithStyles(Component)>
-            </Component>
-          </WithStyles(Component)>
-          <WithStyles(Component) height="58px">
-            <Component classes={{...}} height="58px">
-              <div className="Component-row-2" style={{...}}>
-                <WithStyles(Component)>
-                  <Component classes={{...}}>
-                    <div className="Component-space-26" style={{...}} />
-                  </Component>
-                </WithStyles(Component)>
-                <WithStyles(Component) flex="1">
-                  <Component classes={{...}} flex="1">
-                    <div style={{...}} />
-                  </Component>
-                </WithStyles(Component)>
-                <WithStyles(Component)>
-                  <Component classes={{...}}>
-                    <div className="Component-space-26" style={{...}} />
-                  </Component>
-                </WithStyles(Component)>
-              </div>
-            </Component>
-          </WithStyles(Component)>
-        </ImageSwitcher>
-      </inject-ImageSwitcher-with-app>
-    </WithStyles(inject-ImageSwitcher-with-app)>
+              <WithStyles(Component) flex="1">
+                <Component classes={{...}} flex="1">
+                  <div className={[undefined]} style={{...}} />
+                </Component>
+              </WithStyles(Component)>
+              <WithStyles(Component)>
+                <Component classes={{...}}>
+                  <div className="Component-space-16" style={{...}} />
+                </Component>
+              </WithStyles(Component)>
+            </div>
+          </Component>
+        </WithStyles(Component)>
+      </ImageSwitcher>
+    </WithStyles(ImageSwitcher)>
   </Provider>
 </MuiThemeProvider>
 `;

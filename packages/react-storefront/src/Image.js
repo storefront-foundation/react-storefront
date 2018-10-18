@@ -14,7 +14,8 @@ export const styles = theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#eee'
   },
   fit: {
     position: 'absolute',
@@ -111,7 +112,7 @@ export default class Image extends Component {
   }
 
   render() {
-    let { lazy, lazyOffset, height, width, amp, fill, contain, classes, className, aspectRatio, alt, src, ...imgAttributes } = this.props
+    let { lazy, lazyOffset, height, width, quality, amp, fill, contain, classes, className, aspectRatio, alt, src, ...imgAttributes } = this.props
     const { loaded } = this.state
 
     contain = contain || aspectRatio
@@ -174,7 +175,7 @@ export default class Image extends Component {
     const { src, quality } = this.props
 
     if (quality) {
-      return `https://opt.moovweb.net/?quality=${encodeURIComponent(quality)}&src=${encodeURIComponent(src)}`
+      return `https://opt.moovweb.net/?quality=${encodeURIComponent(quality)}&img=${encodeURIComponent(src)}`
     } else {
       return src
     }

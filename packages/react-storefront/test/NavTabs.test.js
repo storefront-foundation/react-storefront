@@ -27,8 +27,8 @@ describe('NavTabs', () => {
       location,
       tabs: {
         items: [
-          { text: 'Tab 1', url: '/1', state: { page: 'product' } },
-          { text: 'Tab 1', url: '/2', state: { page: 'product' } }
+          { text: 'Tab 1', url: '/1', state: JSON.stringify({ page: 'product' }) },
+          { text: 'Tab 1', url: '/2', state: JSON.stringify({ page: 'product' }) }
         ]
       }
     })
@@ -50,8 +50,8 @@ describe('NavTabs', () => {
       location,
       tabs: {
         items: [
-          { text: 'Tab 1', url: '/1', state: { page: 'product' }, prefetch: 'always' },
-          { text: 'Tab 1', url: '/2', state: { page: 'product' }, prefetch: 'visible' }
+          { text: 'Tab 1', url: '/1', state: JSON.stringify({ page: 'product' }), prefetch: 'always' },
+          { text: 'Tab 1', url: '/2', state: JSON.stringify({ page: 'product' }), prefetch: 'visible' }
         ]
       }
     })

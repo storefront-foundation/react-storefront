@@ -31,7 +31,7 @@ export default class Link extends Component {
     /**
      * Data to assign to the history state
      */
-    state: PropTypes.object,
+    state: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 
     /**
      * Set to true to force server side navigation.  Defaults to false
@@ -131,10 +131,14 @@ export default class Link extends Component {
   }
 
   onClick = e => {
-    const { server, onClick, to, state } = this.props
+    let { server, onClick, to, state } = this.props
     
     if (onClick) {
       onClick(e)
+    }
+
+    if (typeof state === 'function') {
+      state = state()
     }
 
     const url = relativeURL(to)

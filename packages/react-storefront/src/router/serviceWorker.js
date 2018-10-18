@@ -27,6 +27,9 @@ export async function cache(path, cacheData) {
  * @param {String} path A URL path for a page (without .json)
  */
 export async function prefetchJsonFor(path, includeSSR) {
+  if (!path) {
+    return
+  }
   if (path.startsWith('http')) {
     const url = new URL(path);
     cache(`${url.origin}${url.pathname}.json${url.search}`);
@@ -54,7 +57,10 @@ export function prefetch(path) {
  */
 export async function abortPrefetches() {
   await waitForServiceWorkerController()
-  navigator.serviceWorker.controller.postMessage({ action: 'abort-prefetches' })
+  
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.controller.postMessage({ action: 'abort-prefetches' })
+  }
 }
 
 /**
@@ -84,6 +90,8 @@ export async function configureCache(options) {
  * Resolves when the service worker has been installed
  */
 async function waitForServiceWorkerController() {
+  if (!navigator.serviceWorker) return Promise.resolve()
+
   return new Promise(resolve => {
     navigator.serviceWorker.ready.then(() => {
       if (navigator.serviceWorker.controller) {

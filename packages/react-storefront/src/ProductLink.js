@@ -3,33 +3,26 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React, { Component } from 'react'
-import Link from './Link'
-import { PropTypes } from 'mobx-react'
+import PropTypes from 'prop-types'
+import PageLink from './PageLink'
 
 /**
- * A link to a product that automatically pushes the product's thumbnail into the product skeleton
- * via AppModelBase.productThumbnail and sets AppModelBase.product when the link is clicked.
- * 
- * This components wraps react-storefront/Link and supports all of its props.
+ * A link to the PDP which reuses the thumbnail image from the Subcategory page.  
+ * The product prop accepts an instance of ProductModelBase or any model that implements createLinkState().
+ * This component wraps moov-pwa/Link and supports all of its props.
  */
 export default class ProductLink extends Component {
 
   static propTypes = {
     /**
-     * An instance of ProductModelBase to link to
+     * An instance of ProductModelBase or a model that implements createLinkState()
      */
-    product: PropTypes.observableObject
+    product: PropTypes.object.isRequired
   }
 
   render() {
-    let { product, ...others } = this.props
-    
-    const state = {
-      product: product.toJSON(),
-      productThumbnail: product.thumbnail
-    }
-    
-    return <Link to={product.url} state={state} {...others} />
+    const { product, ...others } = this.props
+    return <PageLink page="Product" model={product} {...others}/> 
   }
 
 }

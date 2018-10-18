@@ -120,7 +120,7 @@ export default class NavTabs extends Component {
         <Track event="topNavClicked" item={item}>
           <div className={classes.clickEl} data-th="topNavClicked"></div>
         </Track>
-        <Link state={item.state} className={classes.link} to={item.url} prefetch={item.prefetch} onClick={this.onLinkClick}>{item.text}</Link>
+        <Link state={() => item.state && JSON.parse(item.state)} className={classes.link} to={item.url} prefetch={item.prefetch} onClick={this.onLinkClick}>{item.text}</Link>
       </Fragment>
     )
   }
@@ -131,7 +131,7 @@ export default class NavTabs extends Component {
     const url = relativeURL(item.url)
 
     if (history) {
-      history.push(url, item.state && item.state.toJSON())
+      history.push(url, item.state && JSON.parse(item.state))
     } else {
       window.location.href = url
     }

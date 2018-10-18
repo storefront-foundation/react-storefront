@@ -26,7 +26,7 @@ export const MenuItemModel = types
   .model("MenuItemModel", {
     text: types.optional(types.string, ''),
     url: types.maybe(types.string),
-    state: types.maybe(types.map(types.string)),
+    state: types.maybe(types.string),
     image: types.maybe(types.string),
     items: types.maybe(types.array(types.late(() => MenuItemModel))),
     root: types.optional(types.boolean, false),
@@ -460,7 +460,7 @@ export default class Menu extends Component {
     const { classes, app: { location } } = this.props    
 
     return (
-      <Link key={key} to={item.url} className={classes.link} server={item.server} state={item.state}>
+      <Link key={key} to={item.url} className={classes.link} server={item.server} state={item.state ? () => JSON.parse(item.state) : null}>
         <MenuItem
           button
           divider

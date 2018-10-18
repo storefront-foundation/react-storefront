@@ -18,7 +18,7 @@ exports[`ButtonSelector should render buttons with images 1`] = `
                             <inject-Image classes={{...}} src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true}>
                               <Image classes={{...}} src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
                                 <div className="RSFButtonSelector-image-7 RSFImage-root-36 RSFImage-fill-39">
-                                  <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+                                  <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} />
                                 </div>
                               </Image>
                             </inject-Image>
@@ -48,7 +48,7 @@ exports[`ButtonSelector should render buttons with images 1`] = `
                             <inject-Image classes={{...}} src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true}>
                               <Image classes={{...}} src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
                                 <div className="RSFButtonSelector-image-7 RSFImage-root-36 RSFImage-fill-39">
-                                  <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+                                  <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} />
                                 </div>
                               </Image>
                             </inject-Image>
@@ -177,7 +177,7 @@ exports[`ButtonSelector should render links for options with urls 1`] = `
                                   <inject-Image classes={{...}} src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true}>
                                     <Image classes={{...}} src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
                                       <div className="RSFButtonSelector-image-7 RSFImage-root-36 RSFImage-fill-39">
-                                        <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+                                        <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} />
                                       </div>
                                     </Image>
                                   </inject-Image>
@@ -207,7 +207,7 @@ exports[`ButtonSelector should render links for options with urls 1`] = `
                                   <inject-Image classes={{...}} src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true}>
                                     <Image classes={{...}} src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
                                       <div className="RSFButtonSelector-image-7 RSFImage-root-36 RSFImage-fill-39">
-                                        <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+                                        <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} />
                                       </div>
                                     </Image>
                                   </inject-Image>

@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import { inject, observer } from 'mobx-react'
 import Track from './Track'
 import Container from './Container'
+import PropTypes from 'prop-types'
 
 export const styles = theme => ({
   breadcrumbs: {
@@ -44,8 +45,15 @@ export const styles = theme => ({
 @inject('app')
 @observer
 export default class Breadcrumbs extends Component {
+
+  static propTypes = {
+    items: PropTypes.arrayOf(PropTypes.objectOf)
+  }
+
   render() {
-    const { app: { breadcrumbs }, classes } = this.props
+    let { app: { breadcrumbs }, items, classes } = this.props
+
+    breadcrumbs = items || breadcrumbs
 
     if (!breadcrumbs || !breadcrumbs.length) return null
 

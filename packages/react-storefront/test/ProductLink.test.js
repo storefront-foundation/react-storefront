@@ -36,8 +36,8 @@ describe('ProductLink', () => {
       .simulate('click')
 
     expect(history.location.state).toEqual({ 
-      product: product.toJSON(), 
-      productThumbnail: product.thumbnail 
+      page: 'Product',
+      loadingProduct: product.toJSON()
     })
 
     expect(history.location.pathname).toBe('/p/1')
@@ -55,8 +55,8 @@ describe('ProductLink', () => {
       .simulate('click')
 
     expect(history.location.state).toEqual({ 
-      product: product.toJSON(), 
-      productThumbnail: product.thumbnail 
+      page: 'Product',
+      loadingProduct: product.toJSON()
     })
 
     expect(history.location.pathname).toBe('/foo/bar')
