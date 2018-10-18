@@ -19,6 +19,7 @@ export const styles = theme => ({
     margin: '-4px',
   },
   button: {
+    position: 'relative',
     '& button': {
       border: `1px solid ${theme.palette.divider}`,
       padding: 0,
@@ -61,10 +62,10 @@ export const styles = theme => ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
+    padding: '5px'
   },
   image: {
-    margin: '5px',
     height: '100%',
     width: '100%'
   },
@@ -77,6 +78,17 @@ export const styles = theme => ({
   },
   selectedName: {
     marginTop: '10px'
+  },
+  strikeThrough: {
+    height: '7px',
+    borderWidth: '2px 0',
+    borderStyle: 'solid',
+    borderColor: '#f2f2f2',
+    backgroundColor: '#666',
+    position: 'absolute',
+    width: '100%',
+    top: 'calc(50% - 3px)',
+    borderRadius: '10px'
   }
 })
 
@@ -127,13 +139,25 @@ export default class ButtonSelector extends Component {
      * The name of property in amp state to bind to
      */
     name: PropTypes.string,
+
+    /**
+     * Set to `true` to show a slash through the item when disabled.  Defaults to `false`
+     */
+    strikeThroughDisabled: PropTypes.string,
+
+    /**
+     * The angle in degress for the disabled indicator.  Defaults to `45`.
+     */
+    strikeThroughAngle: PropTypes.number
   }
 
   static defaultProps = {
     items: [],
     buttonProps: {},
     imageProps: {},
-    showSelectedText: false
+    showSelectedText: false,
+    strikeThroughDisabled: false,
+    strikeThroughAngle: 45
   }
 
   render() {
@@ -168,32 +192,35 @@ export default class ButtonSelector extends Component {
     )
   }
 
-  createButtonClass = (isSelected, image) => {
+  createButtonClass = (isSelected, { image, color }) => {
     const { button, buttonWithImage, selectedImage, selected } = this.props.classes
+    const swatch = (image || color) != null
 
     return classnames({
       [button]: true,
-      [buttonWithImage]: image != null,
-      [selectedImage]: isSelected && image != null,
-      [selected]: isSelected && image == null
+      [buttonWithImage]: swatch,
+      [selectedImage]: isSelected && swatch,
+      [selected]: isSelected && !swatch
     })
   }
 
   renderButton = (option, i) => {
-    const { classes, imageProps, buttonProps, model, ampStateId, name } = this.props
+    const { classes, strikeThroughDisabled, strikeThroughAngle, imageProps, buttonProps, model, ampStateId, name } = this.props
     const selected = model.selected && model.selected.id === option.id
 
     let children = option.text
 
     if (option.image) {
       children = <Image src={option.image} className={classes.image} fill { ...imageProps } />
+    } else if (option.color) {
+      children = <div className={classes.image} style={{ backgroundColor: option.color }}/>
     }
 
     return (
       <div 
         key={option.id}
-        className={this.createButtonClass(selected, option.image)}
-        amp-bind={`class=>${ampStateId}.${name}.selected.id=="${option.id}" ? "${this.createButtonClass(true, option.image)}" : "${this.createButtonClass(false, option.image)}"`}
+        className={this.createButtonClass(selected, option)}
+        amp-bind={`class=>${ampStateId}.${name}.selected.id=="${option.id}" ? "${this.createButtonClass(true, option)}" : "${this.createButtonClass(false, option)}"`}
       >
         <Button
           onClick={(e) => this.handleClick(e, option, i)}
@@ -201,12 +228,16 @@ export default class ButtonSelector extends Component {
           disabled={option.disabled}
           on={`tap:AMP.setState({ ${ampStateId}: { ${name}: { selected: ${JSON.stringify(option.toJSON())} }}})`}
           classes={{
-            label: option.image ? classes.imageLabel : null
+            label: option.image || option.color ? classes.imageLabel : null,
+            disabled: classes.disabled
           }}
           { ...buttonProps }
         >
           {children}
         </Button>
+        { option.disabled && strikeThroughDisabled && (
+          <div className={classes.strikeThrough} style={{ transform: `rotate(${strikeThroughAngle}deg)` }}/>
+        )}
       </div>
     )
   }
