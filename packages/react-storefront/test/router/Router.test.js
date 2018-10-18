@@ -276,6 +276,8 @@ describe('Router:Node', function() {
       const state = await runAll('get', '/test');
       expect(state.error).toEqual('This is an error on the server')
       expect(state.stack).toBeDefined()
+      expect(state.loading).toBe(false)
+      expect(state.page).toBe('Error')
     })
 
     it('should handle errors on the server side with custom error handler', async function() {

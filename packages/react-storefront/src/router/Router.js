@@ -78,7 +78,7 @@ export default class Router {
         response.status(500)
       }
 
-      return { page: 'Error', error: e.message, stack: e.stack }
+      return { page: 'Error', error: e.message, stack: e.stack, loading: false }
     }
   }
 

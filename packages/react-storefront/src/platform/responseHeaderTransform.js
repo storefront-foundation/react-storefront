@@ -99,7 +99,10 @@ export default function responseHeaderTransform() {
 
     if (response) {
       headers.statusCode = response.statusCode
-      headers.statusText = response.statusText
+      
+      if (response.statusText) {
+        headers.statusText = response.statusText
+      }
 
       // send headers
       for (let name in response.headers) {
