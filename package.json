@@ -31,6 +31,7 @@
     "publish": "lerna publish --force-publish=* --yes",
     "docs": "pushd packages/react-storefront; yarn docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
+    "test": "pushd packages/react-storefront; yarn test; popd;",
     "add-license": "node ./tasks/addLicense"
   },
   "workspaces": {
