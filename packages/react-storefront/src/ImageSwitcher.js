@@ -396,7 +396,20 @@ export default class ImageSwitcher extends Component {
           <SwipeableViews index={selectedIndex} onChangeIndex={i => this.setState({ selectedIndex: i })}>
             {images.map(({ src, alt }, i) => (
               <div key={i} className={classes.imageWrap}>
-                { app.amp ? <amp-img src={src} alt="product" layout="fill"/> : <img key={src} src={src} alt={alt || "product"} onLoad={i === 0 ? this.clearLoadingProduct : null} /> }
+                { app.amp ? (
+                  <amp-img 
+                    src={src} 
+                    alt="product" 
+                    layout="fill"
+                  />
+                ) : (
+                  <img 
+                    key={src} 
+                    src={i===0 && app.loading ? null : src} // need to clear src when app.loading is true so that the onLoad event will fire and the loading thumbnail will be removed
+                    alt={alt || "product"} 
+                    onLoad={i === 0 ? this.clearLoadingProduct : null} 
+                  /> 
+                )}
               </div>
             ))}
           </SwipeableViews>

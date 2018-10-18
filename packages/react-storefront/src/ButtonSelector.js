@@ -143,7 +143,7 @@ export default class ButtonSelector extends Component {
     /**
      * Set to `true` to show a slash through the item when disabled.  Defaults to `false`
      */
-    strikeThroughDisabled: PropTypes.string,
+    strikeThroughDisabled: PropTypes.bool,
 
     /**
      * The angle in degress for the disabled indicator.  Defaults to `45`.
