@@ -167,7 +167,7 @@ function createAliases(root) {
     "react-helmet": path.join(root, 'node_modules', 'react-helmet'),
     "@material-ui/core": path.join(root, 'node_modules', '@material-ui/core'),
     "react-storefront": path.join(root, 'node_modules', 'react-storefront', 'src'),
-    "moov-pwa-analytics": path.join(root, 'node_modules', 'moov-pwa-analytics', 'src'),
+    "react-storefront-extensions": path.join(root, 'node_modules', 'react-storefront-extensions', 'src'),
     "react-universal-component": path.join(root, 'node_modules', 'react-universal-component')
   }
 }
