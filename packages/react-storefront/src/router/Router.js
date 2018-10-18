@@ -1,0 +1,563 @@
+/**
+ * @license
+ * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
+ */
+import Route from 'route-parser'
+import isFunction from 'lodash.isfunction'
+import qs from 'qs'
+import { merge, cloneDeep } from 'lodash'
+import { configureCache, cache } from './serviceWorker'
+import parseMultipartRequest from './parseMultipartRequest'
+import Response from './Response'
+
+/**
+ * Provides routing for MUR-based applications and PWAs.  This class is innspired by express and uses https://github.com/rcs/route-parser,
+ * which supports sophisticated pattern matching including optional paths, params, and splatting.
+ *
+ * Example:
+ *
+ *  const router = new Router()
+ *
+ *  router.get('/products/:id', ({ id }) => {
+ *    // fetch product from upstream API (you'll need to write this function)
+ *    return fetchProduct(id).then(result => {
+ *      return result.product // this will be the result of router.run()
+ *    })
+ *  })
+ *
+ *  // assuming env.path = /products/1 and env.method = 'GET'
+ *  router.run() // => the details for product 1
+ *
+ * Routes can be divided into multiple files to increase maintainability using the "use()" method.  For example:
+ *
+ *  // /scripts/api/router.js
+ *
+ *  const appShell = require('/build/index.html.js)
+ *
+ *  module.exports = new Router()
+ *    .fallback(() => appShell) // render the PWA's app shell for all unmatched routes
+ *    .use('/products', require('/api/products.js'))
+ *
+ *
+ *  // /scripts/api/products.js
+ *
+ *  module.exports = new Router()
+ *    .get('/:id', ({ id }) => new Promise((resolve, reject) => {
+ *      // fetch product from upstream API...
+ *     }))
+ *
+ *
+ *  // /scripts/index.js
+ *
+ *  const router = require('/api/router')
+ *
+ *  module.exports = function() {
+ *    // ...
+ *    router.run().then((result) => {
+ *      const body = typeof result === 'string' ? result : JSON.stringify(result)
+ *      sendResponse({ body, htmlparsed: true })
+ *    })
+ *  }
+ */
+export default class Router {
+
+  constructor() {
+    this.routes = []
+    this.afterHandlers = []
+    this.isBrowser = process.env.MOOV_RUNTIME === 'client'
+
+    this.fallbackHandlers = [{
+      runOn: { client: true, server: true },
+      fn: () => ({ page: '404' })
+    }]
+
+    this.errorHandler = (e, params, request, response) => {
+      console.error('Error caught with params', params, ' and with message:', e.message)
+
+      if (!this.isBrowser) {
+        response.status(500)
+      }
+
+      return { page: 'Error', error: e.message, stack: e.stack }
+    }
+  }
+
+  pushRoute(method, path, handlers) {
+    this.routes.push({ path: new Route(path + '.:format'), method, handlers })
+    this.routes.push({ path: new Route(path), method, handlers })
+    return this
+  }
+
+  /**
+   * Registers a GET route
+   * @param {String} path A path pattern
+   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @return {Router} this
+   */
+  get(path, ...handlers) {
+    return this.pushRoute('GET', path, handlers)
+  }
+
+  /**
+   * Registers a POST route
+   * @param {String} path A path pattern
+   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @return {Router} this
+   */
+  post(path, ...handlers) {
+    return this.pushRoute('POST', path, handlers)
+  }
+
+  /**
+   * Registers a PATCH route
+   * @param {String} path A path pattern
+   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @return {Router} this
+   */
+  patch(path, ...handlers) {
+    return this.pushRoute('PATCH', path, handlers)
+  }
+
+  /**
+   * Registers a PUT route
+   * @param {String} path A path pattern
+   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @return {Router} this
+   */
+  put(path, ...handlers) {
+    return this.pushRoute('PUT', path, handlers)
+  }
+
+  /**
+   * Registers a DELETE route
+   * @param {String} path A path pattern
+   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @return {Router} this
+   */
+  delete(path, ...handlers) {
+    return this.pushRoute('DELETE', path, handlers)
+  }
+
+  /**
+   * Registers an OPTIONS route
+   * @param {String} path A path pattern
+   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @return {Router} this
+   */
+  options(path, ...handlers) {
+    return this.pushRoute('OPTIONS', path, handlers)
+  }
+
+  /**
+   * Designates the handlers for unmatched routes
+   * @param {Function} callback A function that returns a promise that resolves to the content to return
+   * @return {Router} this
+   */
+  fallback(...handlers) {
+    this.fallbackHandlers = handlers
+    return this
+  }
+
+  /**
+   * Sets the handler for errors thrown during route handling
+   * @param {Function} handler A function that returns a promise that resolves to the content to return
+   * @return {Router} this
+   */
+  error(handler) {
+    this.errorHandler = handler
+    return this
+  }
+
+  /**
+   * Registers a function to run after each route
+   * @param {Function} handler 
+   * @return {Router} this
+   */
+  after(handler) {
+    this.afterHandlers.push(handler)
+    return this
+  }
+
+  /**
+   * Registers a set of nested routes.
+   *
+   * Example:
+   *
+   *  Router root = new Router()
+   *
+   *  Router products = new Router()
+   *  products.get('/:id', ({ id }) => {
+   *    return Promise.resolve(id)
+   *  })
+   *
+   *  root.use('/products', products)
+   *
+   *  // url: /products/1
+   *  root.run().then(result => console.log(result)) // => 1
+   *
+   * @param {String} path The parent path
+   * @param {Router} router A router to handle the nested routes
+   * @return {Router} this
+   */
+  use(path, router) {
+    for (let route of router.routes) {
+      const { path: routePath, ...rest } = route
+      this.routes.push({ path: new Route(path + routePath.spec), ...rest })
+    }
+    return this
+  }
+
+  /**
+   * @private
+   * Caches the initialState (json) and HTML using the service worker.
+   * @param {Object} request
+   */
+  cacheInitialState(request) {
+    const { pathname, search } = request
+    cache(pathname + search, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+    cache(pathname + '.json' + search, window.initialState)
+  }
+
+  /**
+   * Configures service worker runtime caching options
+   * @param {Object} options
+   * @param {Object} options.cacheName The name of the runtime cache
+   * @param {Object} options.maxEntries The max number of entries to store in the cache
+   * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
+   * @return {Router} this
+   */
+  configureClientCache(options) {
+    configureCache(options)
+    return this
+  }
+
+  /**
+   * Gets the server cache key for the matching route.
+   * @param {Object} request
+   * @param {Object} defaults The default values used for the cache key
+   * @return {Object} An object populate with keys and values that when hashed, make up the cache key
+   */
+  getCacheKey(request, defaults) {
+    const { match } = this.findMatchingRoute(request)
+    const handlers = match ? match.handlers : this.fallbackHandlers
+    if (!handlers) return defaults
+    const cacheHandler = handlers.find(handler => handler.type === 'cache')
+    if (!cacheHandler || !cacheHandler.server || !cacheHandler.server.key) return defaults
+    return cacheHandler.server.key(request, defaults)
+  }
+
+  /**
+   * Runs the current url (from env) and generates a result from each the matching route's handlers.
+   * @param {Object} request The request being served
+   * @param {String} request.path The url path
+   * @param {String} request.method The http method
+   * @param {Response} response The response object
+   * @param {Object} options
+   * @param {Boolean} [options.initialLoad=false] Set to true if this is the initial load of the application.  This will cause the HTML to be cached for the current path
+   * @return {Object} Generates state objects
+   */
+  async * run(request, response, { initialLoad=false, historyState={} } = {}) {
+    const { match, params } = this.findMatchingRoute(request)
+
+    request.params = params
+
+    const handlers = match ? match.handlers : this.fallbackHandlers
+    const willFetchFromServer = !initialLoad && handlers.some(h => h.type === 'fromServer')
+
+    // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
+    // and that the app state's location information is updated.
+
+    if (this.isBrowser) {
+      yield {
+        loading: willFetchFromServer,
+        location: {
+          protocol: location.protocol.replace(/:/, ''),
+          pathname: location.pathname,
+          search: location.search,
+          hostname: location.hostname,
+          port: location.port
+        },
+        ...historyState
+      }
+    } else {
+      this.parseBody(request)
+    }
+
+    try {
+      for (let handler of handlers) {
+        if (typeof handler === 'function') {
+          handler = {
+            runOn: { server: true, client: true },
+            fn: handler
+          }
+        }
+
+        // skip state handlers on initial hydration - we just need to run cache and track
+        if (initialLoad && handler.type !== 'cache') {
+          continue;
+        }
+
+        // skip server handlers when runnning in the browser
+        if (!handler.runOn.client && this.isBrowser) {
+          continue;
+        }
+
+        // skip client handlers when running on server
+        if (!handler.runOn.server && !this.isBrowser) {
+          continue;
+        }
+
+        // skip client handlers when serving an AJAX request on the server
+        if (request.pathname.endsWith('.json') && (handler.runOn.server !== true || this.isBrowser)) {
+          continue;
+        }
+
+        const result = await this.toPromise(handler.fn, params, request, response)
+
+        if (result) {
+          yield result
+        }
+      }
+
+      if (initialLoad && response.clientCache === 'force-cache') {
+        this.cacheInitialState(request, response)
+      }
+    } catch(err) {
+      yield this.errorHandler(err, params, request, response)
+    }
+  }
+
+  /**
+   * Runs all client and server handlers for the specified path and method
+   * @param {Object} request The request being served
+   * @param {String} request.path The url path
+   * @param {String} request.method The http method
+   * @param {Response} response The response object
+   * @param {Object} options
+   * @param {Object} [state={}] The accumulated state from other handlers
+   * @return {Object} The merged result of all handlers
+   */
+  async runAll(request, response, options, state={}) {
+    state = cloneDeep(state) // prevent initial state from being mutated
+
+    for await (let result of this.run(request, response, options)) {
+      if (typeof result === 'string') {
+        state = result
+      } else {
+        merge(state, result)
+      }
+    }
+
+    this.doAfter(request, response)
+
+    return state
+  }
+
+  /**
+   * Parses JSON and form body content
+   * @private
+   * @param {String} body The request body
+   * @param {String} contentType The content-type header
+   * @return {Object}
+   */
+  parseBody(request) {
+    if (!request.headers || !request.body) return
+
+    const contentType = (request.headers['content-type'] || '').toLowerCase()
+    const { body } = request
+
+    if (contentType === 'application/json') {
+      try {
+        request.body = JSON.parse(body)
+      } catch (e) {
+        throw new Error('could not parse request body as application/json: ' + e.message)
+      }
+    } else if (contentType === 'application/x-www-form-urlencoded') {
+      try {
+        request.body = qs.parse(body)
+      } catch (e) {
+        throw new Error('could not parse request body as x-www-form-urlencoded: ' + e.message)
+      }
+    } else if (contentType.startsWith('multipart/form-data')) {
+      try {
+        request.body = parseMultipartRequest(request)
+      } catch (e) {
+        throw new Error('could not parse request body as multipart/form-data: ' + e.message)
+      }
+    }
+  }
+
+  /**
+   * Converts specified callback to a promise
+   * @param {Function/Object} callback A function that returns a Promise that
+   *  resolves to the new state, a function that returns the new state, or the new state itself.
+   * @param {Object} params The request parameters
+   * @param {Object} request The request object with body and headers
+   * @param {Response} response The response object
+   */
+  toPromise(callback, params, request, response) {
+    if (isFunction(callback)) {
+      const result = callback(params, request, response)
+
+      if (result && result.then) {
+        // callback returned a promise
+        return result
+      } else {
+        // callback returned the new state
+        return Promise.resolve(result)
+      }
+    } else {
+      // callback is the new state
+      return Promise.resolve(callback)
+    }
+  }
+
+  /**
+   * Returns the matching route and parsed params for the specified path and method
+   * @param {Object} request The http request
+   * @return {Object} an object with match and params
+   */
+  findMatchingRoute(request) {
+    let params
+    let { pathname, search, method='GET' } = request
+    const path = pathname + search
+
+    method = method.toUpperCase()
+
+    const match = this.routes
+      .filter(route => method === route.method)
+      .find(route => params = route.path.match(path))
+
+    return { match, params: {...params, ...qs.parse(search, { ignoreQueryPrefix: true })} }
+  }
+
+  /**
+   * Returns true if the route will result in the server connecting to the
+   * upstream site due to the presence of a `proxyUpstream` handler, otherwise
+   * false.
+   * @private
+   * @param {Object} request
+   * @return {Boolean}
+   */
+  willFetchFromUpstream(request) {
+    const { match } = this.findMatchingRoute(request)
+    let handlers = match ? match.handlers : this.fallbackHandlers
+    return handlers.some(handler => handler.type === 'proxyUpstream')
+  }
+
+  /**
+   * Called when the location is changed on the client
+   * @param {Function} callback A callback to pass the new state to
+   * @param {Object} location The new location
+   */
+  onLocationChange = async (callback, location, action) => {
+    window.moov.timing.routeStart = new Date().getTime()
+
+    if (action === 'REPLACE') return
+
+    // no need to run the route if the location hasn't changed
+    if (
+      location.pathname === this.prevLocation.pathname &&
+      location.search === this.prevLocation.search
+    ) {
+      return
+    }
+
+    this.prevLocation = location // this needs to come before handlers are called or going back while async handlers are running will lead to a broken state
+
+    const { pathname, search } = location
+    const request = { pathname, search, method: 'GET' }
+    const response = new Response(request)
+    const { state } = location
+
+    if (state) {
+      callback(state, action) // called when restoring history state and applying state from Link components
+    }
+
+    if (action === 'PUSH' || !state) {
+      /*
+       * Why limit action to PUSH here? POP indicates that the user is going back or forward
+       * In those cases, if we have location.state, we can assume it's the full state.  We don't need to
+       * do anything for replace.
+       */
+      for await (let state of this.run(request, response, { historyState: state })) {
+        callback(state, action)
+      }
+
+      window.moov.timing.routeEnd = new Date().getTime()
+    } else if (state) {
+      callback(state, action) // called when restoring history state and applying state from Link components
+    }
+
+    this.doAfter(request, response)
+  }
+
+  /**
+   * Run all after handlers
+   * @private
+   */
+  doAfter(request, response) {
+    for (let handler of this.afterHandlers) {
+      handler(request, response)
+    }
+  }
+
+  /**
+   * Call this function when client-side navigation to a non-PWA route has occurred.  This
+   * will revert window.history to the previous url and reload the original destination URL
+   * from the server.
+   * @private
+   */
+  reloadFromServer() {
+    const { href } = window.location
+    this.history.goBack()
+    self.location.href = href
+  }
+
+  /**
+   * Calls the specified callback whenever the current URL changes
+   * @param {History} history
+   * @param {Function} callback
+   * @return {Router} this
+   */
+  watch(history, callback) {
+    this.history = history
+    this.prevLocation = history.location
+
+    history.listen(this.onLocationChange.bind(this, callback))
+
+    const { pathname, search } = history.location
+    const request = { pathname, search, method: 'GET' }
+    const response = new Response(request)
+
+    this.runAll(request, response, { initialLoad: true }, window.initialState)
+
+    return this
+  }
+
+  /**
+   * Provides an easy way to navigate by changing some but not all of the query params.  Any keys
+   * included in the params object are applied as new query param values.  All other query params are preserved.
+   * @param {Object} params Key/value pairs to apply to the query string.  Specifying a value of undefined or null will remove that parameter from the query string
+   */
+  applySearch(params) {
+    const { history } = this
+
+    const nextParams = qs.stringify({
+      ...qs.parse(history.location.search, { ignoreQueryPrefix: true }),
+      ...params
+    })
+
+    history.push(`${history.location.pathname}?${nextParams}`)
+  }
+
+  /**
+   * Gets the query string parameters for the current url as an object of key/value pairs
+   * @return {Object}
+   */
+  getQueryParams() {
+    const { history } = this
+    return qs.parse(history.location.search, { ignoreQueryPrefix: true })
+  }
+
+}

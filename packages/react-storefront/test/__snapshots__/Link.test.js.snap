@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link renders 1`] = `
+<Provider history={{...}} app={{...}}>
+  <WithStyles(inject-Link) to="/p/1/" className="link" style={{...}}>
+    <inject-Link classes={{...}} to="/p/1/" className="link" style={{...}}>
+      <Link classes={{...}} to="/p/1/" className="link" style={{...}} history={{...}} router={[undefined]} location={{...}}>
+        <a data-moov-link="on" className="RSFLink-root-1 link" style={{...}} onClick={[Function]} href="https://example.com/p/1/">
+          Red Shirt
+        </a>
+      </Link>
+    </inject-Link>
+  </WithStyles(inject-Link)>
+</Provider>
+`;

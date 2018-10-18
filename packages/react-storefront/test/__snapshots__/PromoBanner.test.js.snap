@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromoBanner renders 1`] = `
+<a
+  className="RSFLink-root-3 RSFPromoBanner-root-1"
+  data-moov-link="on"
+  href={null}
+  onClick={[Function]}
+>
+  <div
+    className="RSFPromoBanner-img-2 RSFImage-root-4 RSFImage-fill-7"
+  >
+    <img
+      alt="promo"
+      className=""
+      layout={null}
+      quality={null}
+    />
+  </div>
+</a>
+`;

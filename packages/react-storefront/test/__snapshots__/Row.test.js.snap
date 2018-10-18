@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Row accepts a className prop 1`] = `
+<WithStyles(Row) className="myClassName">
+  <Row classes={{...}} className="myClassName">
+    <div className="RSFRow-root-1 myClassName" />
+  </Row>
+</WithStyles(Row)>
+`;
+
+exports[`Row accepts a root class 1`] = `
+<WithStyles(Row) classes={{...}}>
+  <Row classes={{...}}>
+    <div className="RSFRow-root-1 myRootClass" />
+  </Row>
+</WithStyles(Row)>
+`;
+
+exports[`Row renders with no props 1`] = `
+<WithStyles(Row)>
+  <Row classes={{...}}>
+    <div className="RSFRow-root-1" />
+  </Row>
+</WithStyles(Row)>
+`;
+
+exports[`Row spreads props to the underlying div 1`] = `
+<WithStyles(Row) style={{...}}>
+  <Row classes={{...}} style={{...}}>
+    <div className="RSFRow-root-1" style={{...}} />
+  </Row>
+</WithStyles(Row)>
+`;

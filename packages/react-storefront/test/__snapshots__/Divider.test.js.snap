@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider accepts a className 1`] = `
+<div
+  className="myClass RSFDivider-root-1 RSFDivider-horizontal-3"
+/>
+`;
+
+exports[`Divider defaults to horizontal 1`] = `
+<div
+  className="RSFDivider-root-1 RSFDivider-horizontal-3"
+/>
+`;
+
+exports[`Divider passes styles to the underlying div 1`] = `
+<div
+  className="RSFDivider-root-1 RSFDivider-horizontal-3"
+  style={
+    Object {
+      "color": "red",
+    }
+  }
+/>
+`;
+
+exports[`Divider renders a horizontal divider 1`] = `
+<div
+  className="RSFDivider-root-1 RSFDivider-horizontal-3"
+/>
+`;
+
+exports[`Divider renders a vertial divider 1`] = `
+<div
+  className="RSFDivider-root-1 RSFDivider-vertical-2"
+/>
+`;

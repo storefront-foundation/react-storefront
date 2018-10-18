@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withAmp should add the link rel="amphtml" to the document head 1`] = `
+<Provider app={{...}} history={{...}}>
+  <inject-WithAmp-with-app-history>
+    <WithAmp app={{...}} history={{...}}>
+      <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+        <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} link={{...}}>
+          <NullComponent defer={true} encodeSpecialCharacters={true} link={{...}} />
+        </SideEffect(NullComponent)>
+      </HelmetWrapper>
+      <Component app={{...}} history={{...}}>
+        <div />
+      </Component>
+    </WithAmp>
+  </inject-WithAmp-with-app-history>
+</Provider>
+`;

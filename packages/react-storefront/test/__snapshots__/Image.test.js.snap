@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image should lazy load the image when lazy==true 1`] = `
+<Provider app={{...}}>
+  <WithStyles(inject-Image) lazy={true} src="/foo.png" aspectRatio={50}>
+    <inject-Image classes={{...}} lazy={true} src="/foo.png" aspectRatio={50}>
+      <Image classes={{...}} lazy={true} src="/foo.png" aspectRatio={50} amp={false} quality={{...}} contain={false} fill={false} lazyOffset={100}>
+        <VisibilitySensor active={false} onChange={[Function]} partialVisibility={true} offset={{...}} minTopValue={0} scrollCheck={false} scrollDelay={250} scrollThrottle={-1} resizeCheck={false} resizeDelay={250} resizeThrottle={-1} intervalCheck={true} intervalDelay={100} delayedCall={false} containment={{...}}>
+          <div className="RSFImage-root-1 RSFImage-contain-3">
+            <div style={{...}} />
+            <img src="/foo.png" className="RSFImage-fit-2" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+          </div>
+        </VisibilitySensor>
+      </Image>
+    </inject-Image>
+  </WithStyles(inject-Image)>
+</Provider>
+`;
+
+exports[`Image should render 1`] = `
+<Provider app={{...}}>
+  <WithStyles(inject-Image) src="/foo.png">
+    <inject-Image classes={{...}} src="/foo.png">
+      <Image classes={{...}} src="/foo.png" amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
+        <div className="RSFImage-root-1">
+          <img src="/foo.png" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+        </div>
+      </Image>
+    </inject-Image>
+  </WithStyles(inject-Image)>
+</Provider>
+`;
+
+exports[`Image should use amp-img when rendering with amp: true 1`] = `
+<Provider app={{...}}>
+  <WithStyles(inject-Image) src="/foo.png">
+    <inject-Image classes={{...}} src="/foo.png">
+      <Image classes={{...}} src="/foo.png" amp={true} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
+        <div className="RSFImage-root-1">
+          <amp-img src="/foo.png" class="" layout="intrinsic" height={[undefined]} width={[undefined]} alt={[undefined]} />
+        </div>
+      </Image>
+    </inject-Image>
+  </WithStyles(inject-Image)>
+</Provider>
+`;

@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuantitySelector renders 1`] = `
+<Provider app={[Function: res]}>
+  <inject-WithStyles(QuantitySelector)>
+    <WithStyles(QuantitySelector) app={[Function: res]} ampStateId={[undefined]}>
+      <QuantitySelector classes={{...}} app={[Function: res]} ampStateId={[undefined]} onChange={[Function]} minValue={1} maxValue={100} value={1}>
+        <WithStyles(Input) startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={1} classes={{...}} inputProps={{...}} disabled={true}>
+          <Input classes={{...}} startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={1} inputProps={{...}} disabled={true} disableUnderline={false} fullWidth={false} multiline={false} type="text">
+            <div className="MuiInput-root-7 RSFQuantitySelector-root-1 MuiInput-disabled-10 MuiInput-underline-11 RSFQuantitySelector-underline-6">
+              <WithStyles(IconButton) size="small" classes={{...}} onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 1) - 1) } })">
+                <IconButton classes={{...}} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 1) - 1) } })" color="default" disabled={false}>
+                  <WithStyles(ButtonBase) className="MuiIconButton-root-20 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 1) - 1) } })">
+                    <ButtonBase classes={{...}} className="MuiIconButton-root-20 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 1) - 1) } })" disableRipple={false} tabIndex="0" type="button">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiIconButton-root-20 RSFQuantitySelector-button-3" type="button" disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 1) - 1) } })">
+                        <span className="MuiIconButton-label-25">
+                          <pure(Remove) classes={{...}}>
+                            <Remove classes={{...}}>
+                              <WithStyles(SvgIcon) classes={{...}}>
+                                <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
+                                  <svg className="MuiSvgIcon-root-29 RSFQuantitySelector-icon-2" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                    <g>
+                                      <path d="M19 13H5v-2h14v2z" />
+                                    </g>
+                                  </svg>
+                                </SvgIcon>
+                              </WithStyles(SvgIcon)>
+                            </Remove>
+                          </pure(Remove)>
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={true}>
+                          <TouchRipple classes={{...}} center={true}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-35" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-35" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </IconButton>
+              </WithStyles(IconButton)>
+              <input aria-invalid={[undefined]} aria-required={[undefined]} autoComplete={[undefined]} autoFocus={[undefined]} className="MuiInput-input-15 RSFQuantitySelector-input-4 MuiInput-disabled-10" defaultValue={[undefined]} disabled={true} id={[undefined]} name={[undefined]} onBlur={[Function: value]} onChange={[Function: value]} onFocus={[Function: value]} onKeyDown={[undefined]} onKeyUp={[undefined]} placeholder={[undefined]} readOnly={[undefined]} required={[undefined]} rows={[undefined]} type="text" value={1} amp-bind="value=>undefined.quantity" />
+              <WithStyles(IconButton) size="small" classes={{...}} onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 1) + 1) } })">
+                <IconButton classes={{...}} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 1) + 1) } })" color="default" disabled={false}>
+                  <WithStyles(ButtonBase) className="MuiIconButton-root-20 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 1) + 1) } })">
+                    <ButtonBase classes={{...}} className="MuiIconButton-root-20 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 1) + 1) } })" disableRipple={false} tabIndex="0" type="button">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiIconButton-root-20 RSFQuantitySelector-button-3" type="button" disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 1) + 1) } })">
+                        <span className="MuiIconButton-label-25">
+                          <pure(Add) classes={{...}}>
+                            <Add classes={{...}}>
+                              <WithStyles(SvgIcon) classes={{...}}>
+                                <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
+                                  <svg className="MuiSvgIcon-root-29 RSFQuantitySelector-icon-2" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                    <g>
+                                      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                    </g>
+                                  </svg>
+                                </SvgIcon>
+                              </WithStyles(SvgIcon)>
+                            </Add>
+                          </pure(Add)>
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={true}>
+                          <TouchRipple classes={{...}} center={true}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-35" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-35" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </IconButton>
+              </WithStyles(IconButton)>
+            </div>
+          </Input>
+        </WithStyles(Input)>
+      </QuantitySelector>
+    </WithStyles(QuantitySelector)>
+  </inject-WithStyles(QuantitySelector)>
+</Provider>
+`;
+
+exports[`QuantitySelector should accept a value 1`] = `
+<Provider app={[Function: res]}>
+  <inject-WithStyles(QuantitySelector) value={2}>
+    <WithStyles(QuantitySelector) value={2} app={[Function: res]} ampStateId={[undefined]}>
+      <QuantitySelector classes={{...}} value={2} app={[Function: res]} ampStateId={[undefined]} onChange={[Function]} minValue={1} maxValue={100}>
+        <WithStyles(Input) startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={2} classes={{...}} inputProps={{...}} disabled={true}>
+          <Input classes={{...}} startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={2} inputProps={{...}} disabled={true} disableUnderline={false} fullWidth={false} multiline={false} type="text">
+            <div className="MuiInput-root-7 RSFQuantitySelector-root-1 MuiInput-disabled-10 MuiInput-underline-11 RSFQuantitySelector-underline-6">
+              <WithStyles(IconButton) size="small" classes={{...}} onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 2) - 1) } })">
+                <IconButton classes={{...}} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 2) - 1) } })" color="default" disabled={false}>
+                  <WithStyles(ButtonBase) className="MuiIconButton-root-20 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 2) - 1) } })">
+                    <ButtonBase classes={{...}} className="MuiIconButton-root-20 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 2) - 1) } })" disableRipple={false} tabIndex="0" type="button">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiIconButton-root-20 RSFQuantitySelector-button-3" type="button" disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: max(1, (undefined.quantity || 2) - 1) } })">
+                        <span className="MuiIconButton-label-25">
+                          <pure(Remove) classes={{...}}>
+                            <Remove classes={{...}}>
+                              <WithStyles(SvgIcon) classes={{...}}>
+                                <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
+                                  <svg className="MuiSvgIcon-root-29 RSFQuantitySelector-icon-2" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                    <g>
+                                      <path d="M19 13H5v-2h14v2z" />
+                                    </g>
+                                  </svg>
+                                </SvgIcon>
+                              </WithStyles(SvgIcon)>
+                            </Remove>
+                          </pure(Remove)>
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={true}>
+                          <TouchRipple classes={{...}} center={true}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-35" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-35" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </IconButton>
+              </WithStyles(IconButton)>
+              <input aria-invalid={[undefined]} aria-required={[undefined]} autoComplete={[undefined]} autoFocus={[undefined]} className="MuiInput-input-15 RSFQuantitySelector-input-4 MuiInput-disabled-10" defaultValue={[undefined]} disabled={true} id={[undefined]} name={[undefined]} onBlur={[Function: value]} onChange={[Function: value]} onFocus={[Function: value]} onKeyDown={[undefined]} onKeyUp={[undefined]} placeholder={[undefined]} readOnly={[undefined]} required={[undefined]} rows={[undefined]} type="text" value={2} amp-bind="value=>undefined.quantity" />
+              <WithStyles(IconButton) size="small" classes={{...}} onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 2) + 1) } })">
+                <IconButton classes={{...}} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 2) + 1) } })" color="default" disabled={false}>
+                  <WithStyles(ButtonBase) className="MuiIconButton-root-20 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 2) + 1) } })">
+                    <ButtonBase classes={{...}} className="MuiIconButton-root-20 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 2) + 1) } })" disableRipple={false} tabIndex="0" type="button">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiIconButton-root-20 RSFQuantitySelector-button-3" type="button" disabled={false} size="small" onClick={[Function: onClick]} on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 2) + 1) } })">
+                        <span className="MuiIconButton-label-25">
+                          <pure(Add) classes={{...}}>
+                            <Add classes={{...}}>
+                              <WithStyles(SvgIcon) classes={{...}}>
+                                <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
+                                  <svg className="MuiSvgIcon-root-29 RSFQuantitySelector-icon-2" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                    <g>
+                                      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                    </g>
+                                  </svg>
+                                </SvgIcon>
+                              </WithStyles(SvgIcon)>
+                            </Add>
+                          </pure(Add)>
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={true}>
+                          <TouchRipple classes={{...}} center={true}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-35" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-35" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </IconButton>
+              </WithStyles(IconButton)>
+            </div>
+          </Input>
+        </WithStyles(Input)>
+      </QuantitySelector>
+    </WithStyles(QuantitySelector)>
+  </inject-WithStyles(QuantitySelector)>
+</Provider>
+`;

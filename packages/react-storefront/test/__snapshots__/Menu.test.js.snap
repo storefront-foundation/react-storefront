@@ -1,0 +1,1191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu should be able to render leaf as a top level item 1`] = `
+<Provider app={{...}} history={{...}}>
+  <WithTheme(WithStyles(inject-Menu-with-app)) simple={true}>
+    <WithStyles(inject-Menu-with-app) theme={{...}} simple={true}>
+      <inject-Menu-with-app classes={{...}} theme={{...}} simple={true}>
+        <Menu classes={{...}} theme={{...}} simple={true} app={{...}} drawerWidth={330} expandFirstItem={false}>
+          <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+            <Drawer theme={{...}} classes={{...}} variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+              <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true}>
+                <Modal classes={{...}} BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}} BackdropComponent={[Function: WithStyles]}>
+                  <Portal container={[undefined]} onRendered={[Function: value]}>
+                    <div className="MuiModal-root-26 MuiDrawer-modal-25 MuiModal-hidden-27">
+                      <WithStyles(Backdrop) open={false} onClick={[Function: value]} transitionDuration={{...}}>
+                        <Backdrop classes={{...}} open={false} onClick={[Function: value]} transitionDuration={{...}} invisible={false}>
+                          <WithTheme(Fade) appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                            <Fade theme={{...}} appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                              <Transition appear={true} onEnter={[Function: value]} onExit={[Function: value]} in={false} timeout={{...}} onClick={[Function: value]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                <div className="MuiBackdrop-root-28" aria-hidden="true" style={{...}} onClick={[Function: value]} />
+                              </Transition>
+                            </Fade>
+                          </WithTheme(Fade)>
+                        </Backdrop>
+                      </WithStyles(Backdrop)>
+                      <RootRef rootRef={[Function: rootRef]}>
+                        <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                          <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                            <EventListener target="window" onResize={[Function: debounced]}>
+                              <Transition onEnter={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExited={[Function: value]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                  <Paper classes={{...}} elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1" component="div">
+                                    <div className="MuiPaper-root-30 MuiPaper-elevation16-48 MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                      <MenuList classes={{...}}>
+                                        <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} classes={{...}}>
+                                          <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="ul" dense={false} disablePadding={false}>
+                                            <ul className="MuiList-root-57 MuiList-padding-58 RSFMenu-list-2" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]}>
+                                              <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                  <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                    <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                      <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                        <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                          <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" role="menuitem" onClick={[Function: bound ]}>
+                                                            <WithStyles(ListItemText) primary="Group 1" disableTypography={true}>
+                                                              <ListItemText classes={{...}} primary="Group 1" disableTypography={true} inset={false}>
+                                                                <div className="MuiListItemText-root-76">
+                                                                  Group 1
+                                                                </div>
+                                                              </ListItemText>
+                                                            </WithStyles(ListItemText)>
+                                                            <WithStyles(ListItemIcon)>
+                                                              <ListItemIcon classes={{...}}>
+                                                                <pure(ExpandMore) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                  <ExpandMore className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                    <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                      <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                        <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                          <g>
+                                                                            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                                                          </g>
+                                                                        </svg>
+                                                                      </SvgIcon>
+                                                                    </WithStyles(SvgIcon)>
+                                                                  </ExpandMore>
+                                                                </pure(ExpandMore)>
+                                                              </ListItemIcon>
+                                                            </WithStyles(ListItemIcon)>
+                                                            <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                              <TouchRipple classes={{...}} center={false}>
+                                                                <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                  <span className="MuiTouchRipple-root-89" />
+                                                                </TransitionGroup>
+                                                              </TouchRipple>
+                                                            </WithStyles(TouchRipple)>
+                                                          </li>
+                                                        </ButtonBase>
+                                                      </WithStyles(ButtonBase)>
+                                                    </ListItem>
+                                                  </WithStyles(ListItem)>
+                                                </MenuItem>
+                                              </WithStyles(MenuItem)>
+                                              <WithStyles(Collapse) in={false} timeout="auto" tabIndex={-1} onFocus={[Function: value]}>
+                                                <Collapse theme={{...}} classes={{...}} in={false} timeout="auto" tabIndex={-1} onFocus={[Function: value]} collapsedHeight="0px" component="div">
+                                                  <Transition onEnter={[Function: value]} onEntered={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExiting={[Function: value]} addEndListener={[Function: value]} timeout={{...}} in={false} tabIndex={-1} onFocus={[Function: value]} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                    <div className="MuiCollapse-container-96" style={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                      <div className="MuiCollapse-wrapper-98">
+                                                        <div className="MuiCollapse-wrapperInner-99">
+                                                          <MenuList component="div" classes={{...}}>
+                                                            <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="div" classes={{...}}>
+                                                              <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="div" dense={false} disablePadding={false}>
+                                                                <div className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]}>
+                                                                  <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={0} onFocus={[Function: value]}>
+                                                                    <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={0} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                                      <WithStyles(ListItem) button={true} role="menuitem" tabIndex={0} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                                        <ListItem classes={{...}} button={true} role="menuitem" tabIndex={0} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                                          <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" disabled={false} role="menuitem" tabIndex={0} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                                            <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" disabled={false} role="menuitem" tabIndex={0} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                                              <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={0} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" role="menuitem" onClick={[Function: bound ]}>
+                                                                                <WithStyles(ListItemText) primary="Item 1" disableTypography={true}>
+                                                                                  <ListItemText classes={{...}} primary="Item 1" disableTypography={true} inset={false}>
+                                                                                    <div className="MuiListItemText-root-76">
+                                                                                      Item 1
+                                                                                    </div>
+                                                                                  </ListItemText>
+                                                                                </WithStyles(ListItemText)>
+                                                                                <WithStyles(ListItemIcon)>
+                                                                                  <ListItemIcon classes={{...}}>
+                                                                                    <pure(ExpandMore) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                                      <ExpandMore className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                                        <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                                          <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                                            <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                                              <g>
+                                                                                                <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                                                                              </g>
+                                                                                            </svg>
+                                                                                          </SvgIcon>
+                                                                                        </WithStyles(SvgIcon)>
+                                                                                      </ExpandMore>
+                                                                                    </pure(ExpandMore)>
+                                                                                  </ListItemIcon>
+                                                                                </WithStyles(ListItemIcon)>
+                                                                                <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                                  <TouchRipple classes={{...}} center={false}>
+                                                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                                      <span className="MuiTouchRipple-root-89" />
+                                                                                    </TransitionGroup>
+                                                                                  </TouchRipple>
+                                                                                </WithStyles(TouchRipple)>
+                                                                              </li>
+                                                                            </ButtonBase>
+                                                                          </WithStyles(ButtonBase)>
+                                                                        </ListItem>
+                                                                      </WithStyles(ListItem)>
+                                                                    </MenuItem>
+                                                                  </WithStyles(MenuItem)>
+                                                                  <WithStyles(Collapse) in={false} timeout="auto" tabIndex={-1} onFocus={[Function: value]}>
+                                                                    <Collapse theme={{...}} classes={{...}} in={false} timeout="auto" tabIndex={-1} onFocus={[Function: value]} collapsedHeight="0px" component="div">
+                                                                      <Transition onEnter={[Function: value]} onEntered={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExiting={[Function: value]} addEndListener={[Function: value]} timeout={{...}} in={false} tabIndex={-1} onFocus={[Function: value]} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                                        <div className="MuiCollapse-container-96" style={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                                          <div className="MuiCollapse-wrapper-98">
+                                                                            <div className="MuiCollapse-wrapperInner-99">
+                                                                              <MenuList component="div" classes={{...}}>
+                                                                                <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="div" classes={{...}}>
+                                                                                  <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="div" dense={false} disablePadding={false}>
+                                                                                    <div className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]}>
+                                                                                      <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={0} onFocus={[Function: value]}>
+                                                                                        <inject-Link classes={{...}} to="/item1/child1" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={0} onFocus={[Function: value]}>
+                                                                                          <Link classes={{...}} to="/item1/child1" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={0} onFocus={[Function: value]} history={{...}} router={[undefined]} location={{...}}>
+                                                                                            <a data-moov-link="on" className="RSFLink-root-100 RSFMenu-link-9" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                                                              <WithStyles(MenuItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                                                                <MenuItem classes={{...}} button={true} divider={true} selected={false} component="li" role="menuitem">
+                                                                                                  <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" component="li" divider={true}>
+                                                                                                    <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" component="li" divider={true} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                                                                      <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                                                                        <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                                                                          <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" role="menuitem">
+                                                                                                            <WithStyles(ListItemText) primary="Child 1" disableTypography={true}>
+                                                                                                              <ListItemText classes={{...}} primary="Child 1" disableTypography={true} inset={false}>
+                                                                                                                <div className="MuiListItemText-root-76">
+                                                                                                                  Child 1
+                                                                                                                </div>
+                                                                                                              </ListItemText>
+                                                                                                            </WithStyles(ListItemText)>
+                                                                                                            <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                                                              <TouchRipple classes={{...}} center={false}>
+                                                                                                                <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                                                                  <span className="MuiTouchRipple-root-89" />
+                                                                                                                </TransitionGroup>
+                                                                                                              </TouchRipple>
+                                                                                                            </WithStyles(TouchRipple)>
+                                                                                                          </li>
+                                                                                                        </ButtonBase>
+                                                                                                      </WithStyles(ButtonBase)>
+                                                                                                    </ListItem>
+                                                                                                  </WithStyles(ListItem)>
+                                                                                                </MenuItem>
+                                                                                              </WithStyles(MenuItem)>
+                                                                                            </a>
+                                                                                          </Link>
+                                                                                        </inject-Link>
+                                                                                      </WithStyles(inject-Link)>
+                                                                                    </div>
+                                                                                  </List>
+                                                                                </WithStyles(List)>
+                                                                              </MenuList>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                      </Transition>
+                                                                    </Collapse>
+                                                                  </WithStyles(Collapse)>
+                                                                </div>
+                                                              </List>
+                                                            </WithStyles(List)>
+                                                          </MenuList>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </Transition>
+                                                </Collapse>
+                                              </WithStyles(Collapse)>
+                                              <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                <inject-Link classes={{...}} to="/leaf" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                  <Link classes={{...}} to="/leaf" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={-1} onFocus={[Function: value]} history={{...}} router={[undefined]} location={{...}}>
+                                                    <a data-moov-link="on" className="RSFLink-root-100 RSFMenu-link-9" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                                      <WithStyles(MenuItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                        <MenuItem classes={{...}} button={true} divider={true} selected={false} component="li" role="menuitem">
+                                                          <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" component="li" divider={true}>
+                                                            <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" component="li" divider={true} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                              <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                                <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                                  <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" role="menuitem">
+                                                                    <WithStyles(ListItemText) primary="Leaf" disableTypography={true}>
+                                                                      <ListItemText classes={{...}} primary="Leaf" disableTypography={true} inset={false}>
+                                                                        <div className="MuiListItemText-root-76">
+                                                                          Leaf
+                                                                        </div>
+                                                                      </ListItemText>
+                                                                    </WithStyles(ListItemText)>
+                                                                    <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                      <TouchRipple classes={{...}} center={false}>
+                                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                          <span className="MuiTouchRipple-root-89" />
+                                                                        </TransitionGroup>
+                                                                      </TouchRipple>
+                                                                    </WithStyles(TouchRipple)>
+                                                                  </li>
+                                                                </ButtonBase>
+                                                              </WithStyles(ButtonBase)>
+                                                            </ListItem>
+                                                          </WithStyles(ListItem)>
+                                                        </MenuItem>
+                                                      </WithStyles(MenuItem)>
+                                                    </a>
+                                                  </Link>
+                                                </inject-Link>
+                                              </WithStyles(inject-Link)>
+                                            </ul>
+                                          </List>
+                                        </WithStyles(List)>
+                                      </MenuList>
+                                      <noscript>
+                                        <ul>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1">
+                                              <inject-Link classes={{...}} to="/item1">
+                                                <Link classes={{...}} to="/item1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                                    Item 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1/child1">
+                                              <inject-Link classes={{...}} to="/item1/child1">
+                                                <Link classes={{...}} to="/item1/child1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                    Child 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/leaf">
+                                              <inject-Link classes={{...}} to="/leaf">
+                                                <Link classes={{...}} to="/leaf" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                                    Leaf
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                        </ul>
+                                      </noscript>
+                                    </div>
+                                  </Paper>
+                                </WithStyles(Paper)>
+                              </Transition>
+                            </EventListener>
+                          </Slide>
+                        </WithTheme(Slide)>
+                      </RootRef>
+                    </div>
+                  </Portal>
+                </Modal>
+              </WithStyles(Modal)>
+            </Drawer>
+          </WithStyles(Drawer)>
+        </Menu>
+      </inject-Menu-with-app>
+    </WithStyles(inject-Menu-with-app)>
+  </WithTheme(WithStyles(inject-Menu-with-app))>
+</Provider>
+`;
+
+exports[`Menu should render in complex mode by default 1`] = `
+<Provider app={{...}} history={{...}}>
+  <WithTheme(WithStyles(inject-Menu-with-app))>
+    <WithStyles(inject-Menu-with-app) theme={{...}}>
+      <inject-Menu-with-app classes={{...}} theme={{...}}>
+        <Menu classes={{...}} theme={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false}>
+          <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+            <Drawer theme={{...}} classes={{...}} variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+              <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true}>
+                <Modal classes={{...}} BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}} BackdropComponent={[Function: WithStyles]}>
+                  <Portal container={[undefined]} onRendered={[Function: value]}>
+                    <div className="MuiModal-root-26 MuiDrawer-modal-25 MuiModal-hidden-27">
+                      <WithStyles(Backdrop) open={false} onClick={[Function: value]} transitionDuration={{...}}>
+                        <Backdrop classes={{...}} open={false} onClick={[Function: value]} transitionDuration={{...}} invisible={false}>
+                          <WithTheme(Fade) appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                            <Fade theme={{...}} appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                              <Transition appear={true} onEnter={[Function: value]} onExit={[Function: value]} in={false} timeout={{...}} onClick={[Function: value]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                <div className="MuiBackdrop-root-28" aria-hidden="true" style={{...}} onClick={[Function: value]} />
+                              </Transition>
+                            </Fade>
+                          </WithTheme(Fade)>
+                        </Backdrop>
+                      </WithStyles(Backdrop)>
+                      <RootRef rootRef={[Function: rootRef]}>
+                        <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                          <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                            <EventListener target="window" onResize={[Function: debounced]}>
+                              <Transition onEnter={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExited={[Function: value]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                  <Paper classes={{...}} elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1" component="div">
+                                    <div className="MuiPaper-root-30 MuiPaper-elevation16-48 MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                      <div className="RSFMenu-hbox-7" style={{...}}>
+                                        <MenuList style={{...}} classes={{...}}>
+                                          <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} classes={{...}}>
+                                            <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} component="ul" dense={false} disablePadding={false}>
+                                              <ul className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}}>
+                                                <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                  <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                    <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                      <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                        <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                          <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                            <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" role="menuitem" onClick={[Function: bound ]}>
+                                                              <WithStyles(ListItemText) primary="Group 1" disableTypography={true}>
+                                                                <ListItemText classes={{...}} primary="Group 1" disableTypography={true} inset={false}>
+                                                                  <div className="MuiListItemText-root-76">
+                                                                    Group 1
+                                                                  </div>
+                                                                </ListItemText>
+                                                              </WithStyles(ListItemText)>
+                                                              <WithStyles(ListItemIcon)>
+                                                                <ListItemIcon classes={{...}}>
+                                                                  <pure(ChevronRight) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                    <ChevronRight className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                      <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                        <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                          <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                            <g>
+                                                                              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                            </g>
+                                                                          </svg>
+                                                                        </SvgIcon>
+                                                                      </WithStyles(SvgIcon)>
+                                                                    </ChevronRight>
+                                                                  </pure(ChevronRight)>
+                                                                </ListItemIcon>
+                                                              </WithStyles(ListItemIcon)>
+                                                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                <TouchRipple classes={{...}} center={false}>
+                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                    <span className="MuiTouchRipple-root-89" />
+                                                                  </TransitionGroup>
+                                                                </TouchRipple>
+                                                              </WithStyles(TouchRipple)>
+                                                            </li>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </ListItem>
+                                                    </WithStyles(ListItem)>
+                                                  </MenuItem>
+                                                </WithStyles(MenuItem)>
+                                              </ul>
+                                            </List>
+                                          </WithStyles(List)>
+                                        </MenuList>
+                                      </div>
+                                      <noscript>
+                                        <ul>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1">
+                                              <inject-Link classes={{...}} to="/item1">
+                                                <Link classes={{...}} to="/item1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                                    Item 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1/child1">
+                                              <inject-Link classes={{...}} to="/item1/child1">
+                                                <Link classes={{...}} to="/item1/child1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                    Child 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                        </ul>
+                                      </noscript>
+                                    </div>
+                                  </Paper>
+                                </WithStyles(Paper)>
+                              </Transition>
+                            </EventListener>
+                          </Slide>
+                        </WithTheme(Slide)>
+                      </RootRef>
+                    </div>
+                  </Portal>
+                </Modal>
+              </WithStyles(Modal)>
+            </Drawer>
+          </WithStyles(Drawer)>
+        </Menu>
+      </inject-Menu-with-app>
+    </WithStyles(inject-Menu-with-app)>
+  </WithTheme(WithStyles(inject-Menu-with-app))>
+</Provider>
+`;
+
+exports[`Menu should render in complex mode by default 2`] = `
+<Provider app={{...}} history={{...}}>
+  <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true}>
+    <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true}>
+      <inject-Menu-with-app classes={{...}} theme={{...}} useexpanders={true}>
+        <Menu classes={{...}} theme={{...}} useexpanders={true} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false}>
+          <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+            <Drawer theme={{...}} classes={{...}} variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+              <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true}>
+                <Modal classes={{...}} BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}} BackdropComponent={[Function: WithStyles]}>
+                  <Portal container={[undefined]} onRendered={[Function: value]}>
+                    <div className="MuiModal-root-26 MuiDrawer-modal-25 MuiModal-hidden-27">
+                      <WithStyles(Backdrop) open={false} onClick={[Function: value]} transitionDuration={{...}}>
+                        <Backdrop classes={{...}} open={false} onClick={[Function: value]} transitionDuration={{...}} invisible={false}>
+                          <WithTheme(Fade) appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                            <Fade theme={{...}} appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                              <Transition appear={true} onEnter={[Function: value]} onExit={[Function: value]} in={false} timeout={{...}} onClick={[Function: value]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                <div className="MuiBackdrop-root-28" aria-hidden="true" style={{...}} onClick={[Function: value]} />
+                              </Transition>
+                            </Fade>
+                          </WithTheme(Fade)>
+                        </Backdrop>
+                      </WithStyles(Backdrop)>
+                      <RootRef rootRef={[Function: rootRef]}>
+                        <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                          <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                            <EventListener target="window" onResize={[Function: debounced]}>
+                              <Transition onEnter={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExited={[Function: value]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                  <Paper classes={{...}} elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1" component="div">
+                                    <div className="MuiPaper-root-30 MuiPaper-elevation16-48 MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                      <div className="RSFMenu-hbox-7" style={{...}}>
+                                        <MenuList style={{...}} classes={{...}}>
+                                          <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} classes={{...}}>
+                                            <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} component="ul" dense={false} disablePadding={false}>
+                                              <ul className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}}>
+                                                <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                  <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                    <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                      <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                        <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                          <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                            <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" role="menuitem" onClick={[Function: bound ]}>
+                                                              <WithStyles(ListItemText) primary="Group 1" disableTypography={true}>
+                                                                <ListItemText classes={{...}} primary="Group 1" disableTypography={true} inset={false}>
+                                                                  <div className="MuiListItemText-root-76">
+                                                                    Group 1
+                                                                  </div>
+                                                                </ListItemText>
+                                                              </WithStyles(ListItemText)>
+                                                              <WithStyles(ListItemIcon)>
+                                                                <ListItemIcon classes={{...}}>
+                                                                  <pure(ChevronRight) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                    <ChevronRight className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                      <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                        <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                          <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                            <g>
+                                                                              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                            </g>
+                                                                          </svg>
+                                                                        </SvgIcon>
+                                                                      </WithStyles(SvgIcon)>
+                                                                    </ChevronRight>
+                                                                  </pure(ChevronRight)>
+                                                                </ListItemIcon>
+                                                              </WithStyles(ListItemIcon)>
+                                                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                <TouchRipple classes={{...}} center={false}>
+                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                    <span className="MuiTouchRipple-root-89" />
+                                                                  </TransitionGroup>
+                                                                </TouchRipple>
+                                                              </WithStyles(TouchRipple)>
+                                                            </li>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </ListItem>
+                                                    </WithStyles(ListItem)>
+                                                  </MenuItem>
+                                                </WithStyles(MenuItem)>
+                                              </ul>
+                                            </List>
+                                          </WithStyles(List)>
+                                        </MenuList>
+                                      </div>
+                                      <noscript>
+                                        <ul>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1">
+                                              <inject-Link classes={{...}} to="/item1">
+                                                <Link classes={{...}} to="/item1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                                    Item 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1/child1">
+                                              <inject-Link classes={{...}} to="/item1/child1">
+                                                <Link classes={{...}} to="/item1/child1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                    Child 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                        </ul>
+                                      </noscript>
+                                    </div>
+                                  </Paper>
+                                </WithStyles(Paper)>
+                              </Transition>
+                            </EventListener>
+                          </Slide>
+                        </WithTheme(Slide)>
+                      </RootRef>
+                    </div>
+                  </Portal>
+                </Modal>
+              </WithStyles(Modal)>
+            </Drawer>
+          </WithStyles(Drawer)>
+        </Menu>
+      </inject-Menu-with-app>
+    </WithStyles(inject-Menu-with-app)>
+  </WithTheme(WithStyles(inject-Menu-with-app))>
+</Provider>
+`;
+
+exports[`Menu should render in simple mode 1`] = `
+<Provider app={{...}} history={{...}}>
+  <WithTheme(WithStyles(inject-Menu-with-app)) simple={true}>
+    <WithStyles(inject-Menu-with-app) theme={{...}} simple={true}>
+      <inject-Menu-with-app classes={{...}} theme={{...}} simple={true}>
+        <Menu classes={{...}} theme={{...}} simple={true} app={{...}} drawerWidth={330} expandFirstItem={false}>
+          <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+            <Drawer theme={{...}} classes={{...}} variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+              <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true}>
+                <Modal classes={{...}} BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}} BackdropComponent={[Function: WithStyles]}>
+                  <Portal container={[undefined]} onRendered={[Function: value]}>
+                    <div className="MuiModal-root-26 MuiDrawer-modal-25 MuiModal-hidden-27">
+                      <WithStyles(Backdrop) open={false} onClick={[Function: value]} transitionDuration={{...}}>
+                        <Backdrop classes={{...}} open={false} onClick={[Function: value]} transitionDuration={{...}} invisible={false}>
+                          <WithTheme(Fade) appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                            <Fade theme={{...}} appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                              <Transition appear={true} onEnter={[Function: value]} onExit={[Function: value]} in={false} timeout={{...}} onClick={[Function: value]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                <div className="MuiBackdrop-root-28" aria-hidden="true" style={{...}} onClick={[Function: value]} />
+                              </Transition>
+                            </Fade>
+                          </WithTheme(Fade)>
+                        </Backdrop>
+                      </WithStyles(Backdrop)>
+                      <RootRef rootRef={[Function: rootRef]}>
+                        <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                          <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                            <EventListener target="window" onResize={[Function: debounced]}>
+                              <Transition onEnter={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExited={[Function: value]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                  <Paper classes={{...}} elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1" component="div">
+                                    <div className="MuiPaper-root-30 MuiPaper-elevation16-48 MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                      <MenuList classes={{...}}>
+                                        <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} classes={{...}}>
+                                          <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="ul" dense={false} disablePadding={false}>
+                                            <ul className="MuiList-root-57 MuiList-padding-58 RSFMenu-list-2" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]}>
+                                              <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                  <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                    <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                      <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                        <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                          <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" role="menuitem" onClick={[Function: bound ]}>
+                                                            <WithStyles(ListItemText) primary="Group 1" disableTypography={true}>
+                                                              <ListItemText classes={{...}} primary="Group 1" disableTypography={true} inset={false}>
+                                                                <div className="MuiListItemText-root-76">
+                                                                  Group 1
+                                                                </div>
+                                                              </ListItemText>
+                                                            </WithStyles(ListItemText)>
+                                                            <WithStyles(ListItemIcon)>
+                                                              <ListItemIcon classes={{...}}>
+                                                                <pure(ExpandMore) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                  <ExpandMore className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                    <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                      <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                        <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                          <g>
+                                                                            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                                                          </g>
+                                                                        </svg>
+                                                                      </SvgIcon>
+                                                                    </WithStyles(SvgIcon)>
+                                                                  </ExpandMore>
+                                                                </pure(ExpandMore)>
+                                                              </ListItemIcon>
+                                                            </WithStyles(ListItemIcon)>
+                                                            <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                              <TouchRipple classes={{...}} center={false}>
+                                                                <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                  <span className="MuiTouchRipple-root-89" />
+                                                                </TransitionGroup>
+                                                              </TouchRipple>
+                                                            </WithStyles(TouchRipple)>
+                                                          </li>
+                                                        </ButtonBase>
+                                                      </WithStyles(ButtonBase)>
+                                                    </ListItem>
+                                                  </WithStyles(ListItem)>
+                                                </MenuItem>
+                                              </WithStyles(MenuItem)>
+                                              <WithStyles(Collapse) in={false} timeout="auto" tabIndex={-1} onFocus={[Function: value]}>
+                                                <Collapse theme={{...}} classes={{...}} in={false} timeout="auto" tabIndex={-1} onFocus={[Function: value]} collapsedHeight="0px" component="div">
+                                                  <Transition onEnter={[Function: value]} onEntered={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExiting={[Function: value]} addEndListener={[Function: value]} timeout={{...}} in={false} tabIndex={-1} onFocus={[Function: value]} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                    <div className="MuiCollapse-container-96" style={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                      <div className="MuiCollapse-wrapper-98">
+                                                        <div className="MuiCollapse-wrapperInner-99">
+                                                          <MenuList component="div" classes={{...}}>
+                                                            <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="div" classes={{...}}>
+                                                              <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="div" dense={false} disablePadding={false}>
+                                                                <div className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]}>
+                                                                  <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={0} onFocus={[Function: value]}>
+                                                                    <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={0} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                                      <WithStyles(ListItem) button={true} role="menuitem" tabIndex={0} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                                        <ListItem classes={{...}} button={true} role="menuitem" tabIndex={0} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                                          <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" disabled={false} role="menuitem" tabIndex={0} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                                            <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" disabled={false} role="menuitem" tabIndex={0} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                                              <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={0} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-expander-11" role="menuitem" onClick={[Function: bound ]}>
+                                                                                <WithStyles(ListItemText) primary="Item 1" disableTypography={true}>
+                                                                                  <ListItemText classes={{...}} primary="Item 1" disableTypography={true} inset={false}>
+                                                                                    <div className="MuiListItemText-root-76">
+                                                                                      Item 1
+                                                                                    </div>
+                                                                                  </ListItemText>
+                                                                                </WithStyles(ListItemText)>
+                                                                                <WithStyles(ListItemIcon)>
+                                                                                  <ListItemIcon classes={{...}}>
+                                                                                    <pure(ExpandMore) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                                      <ExpandMore className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                                        <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                                          <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                                            <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                                              <g>
+                                                                                                <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                                                                              </g>
+                                                                                            </svg>
+                                                                                          </SvgIcon>
+                                                                                        </WithStyles(SvgIcon)>
+                                                                                      </ExpandMore>
+                                                                                    </pure(ExpandMore)>
+                                                                                  </ListItemIcon>
+                                                                                </WithStyles(ListItemIcon)>
+                                                                                <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                                  <TouchRipple classes={{...}} center={false}>
+                                                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                                      <span className="MuiTouchRipple-root-89" />
+                                                                                    </TransitionGroup>
+                                                                                  </TouchRipple>
+                                                                                </WithStyles(TouchRipple)>
+                                                                              </li>
+                                                                            </ButtonBase>
+                                                                          </WithStyles(ButtonBase)>
+                                                                        </ListItem>
+                                                                      </WithStyles(ListItem)>
+                                                                    </MenuItem>
+                                                                  </WithStyles(MenuItem)>
+                                                                  <WithStyles(Collapse) in={false} timeout="auto" tabIndex={-1} onFocus={[Function: value]}>
+                                                                    <Collapse theme={{...}} classes={{...}} in={false} timeout="auto" tabIndex={-1} onFocus={[Function: value]} collapsedHeight="0px" component="div">
+                                                                      <Transition onEnter={[Function: value]} onEntered={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExiting={[Function: value]} addEndListener={[Function: value]} timeout={{...}} in={false} tabIndex={-1} onFocus={[Function: value]} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                                        <div className="MuiCollapse-container-96" style={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                                          <div className="MuiCollapse-wrapper-98">
+                                                                            <div className="MuiCollapse-wrapperInner-99">
+                                                                              <MenuList component="div" classes={{...}}>
+                                                                                <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="div" classes={{...}}>
+                                                                                  <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} component="div" dense={false} disablePadding={false}>
+                                                                                    <div className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]}>
+                                                                                      <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={0} onFocus={[Function: value]}>
+                                                                                        <inject-Link classes={{...}} to="/item1/child1" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={0} onFocus={[Function: value]}>
+                                                                                          <Link classes={{...}} to="/item1/child1" className="RSFMenu-link-9" server={false} state={{...}} tabIndex={0} onFocus={[Function: value]} history={{...}} router={[undefined]} location={{...}}>
+                                                                                            <a data-moov-link="on" className="RSFLink-root-100 RSFMenu-link-9" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                                                              <WithStyles(MenuItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                                                                <MenuItem classes={{...}} button={true} divider={true} selected={false} component="li" role="menuitem">
+                                                                                                  <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" component="li" divider={true}>
+                                                                                                    <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" component="li" divider={true} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                                                                      <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                                                                        <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                                                                          <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8 RSFMenu-leaf-12" role="menuitem">
+                                                                                                            <WithStyles(ListItemText) primary="Child 1" disableTypography={true}>
+                                                                                                              <ListItemText classes={{...}} primary="Child 1" disableTypography={true} inset={false}>
+                                                                                                                <div className="MuiListItemText-root-76">
+                                                                                                                  Child 1
+                                                                                                                </div>
+                                                                                                              </ListItemText>
+                                                                                                            </WithStyles(ListItemText)>
+                                                                                                            <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                                                              <TouchRipple classes={{...}} center={false}>
+                                                                                                                <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                                                                  <span className="MuiTouchRipple-root-89" />
+                                                                                                                </TransitionGroup>
+                                                                                                              </TouchRipple>
+                                                                                                            </WithStyles(TouchRipple)>
+                                                                                                          </li>
+                                                                                                        </ButtonBase>
+                                                                                                      </WithStyles(ButtonBase)>
+                                                                                                    </ListItem>
+                                                                                                  </WithStyles(ListItem)>
+                                                                                                </MenuItem>
+                                                                                              </WithStyles(MenuItem)>
+                                                                                            </a>
+                                                                                          </Link>
+                                                                                        </inject-Link>
+                                                                                      </WithStyles(inject-Link)>
+                                                                                    </div>
+                                                                                  </List>
+                                                                                </WithStyles(List)>
+                                                                              </MenuList>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                      </Transition>
+                                                                    </Collapse>
+                                                                  </WithStyles(Collapse)>
+                                                                </div>
+                                                              </List>
+                                                            </WithStyles(List)>
+                                                          </MenuList>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </Transition>
+                                                </Collapse>
+                                              </WithStyles(Collapse)>
+                                            </ul>
+                                          </List>
+                                        </WithStyles(List)>
+                                      </MenuList>
+                                      <noscript>
+                                        <ul>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1">
+                                              <inject-Link classes={{...}} to="/item1">
+                                                <Link classes={{...}} to="/item1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                                    Item 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1/child1">
+                                              <inject-Link classes={{...}} to="/item1/child1">
+                                                <Link classes={{...}} to="/item1/child1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                    Child 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                        </ul>
+                                      </noscript>
+                                    </div>
+                                  </Paper>
+                                </WithStyles(Paper)>
+                              </Transition>
+                            </EventListener>
+                          </Slide>
+                        </WithTheme(Slide)>
+                      </RootRef>
+                    </div>
+                  </Portal>
+                </Modal>
+              </WithStyles(Modal)>
+            </Drawer>
+          </WithStyles(Drawer)>
+        </Menu>
+      </inject-Menu-with-app>
+    </WithStyles(inject-Menu-with-app)>
+  </WithTheme(WithStyles(inject-Menu-with-app))>
+</Provider>
+`;
+
+exports[`Menu should render without expand first not root item by default 1`] = `
+<Provider app={{...}} history={{...}}>
+  <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true}>
+    <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true}>
+      <inject-Menu-with-app classes={{...}} theme={{...}} useexpanders={true}>
+        <Menu classes={{...}} theme={{...}} useexpanders={true} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false}>
+          <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+            <Drawer theme={{...}} classes={{...}} variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+              <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true}>
+                <Modal classes={{...}} BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}} BackdropComponent={[Function: WithStyles]}>
+                  <Portal container={[undefined]} onRendered={[Function: value]}>
+                    <div className="MuiModal-root-26 MuiDrawer-modal-25 MuiModal-hidden-27">
+                      <WithStyles(Backdrop) open={false} onClick={[Function: value]} transitionDuration={{...}}>
+                        <Backdrop classes={{...}} open={false} onClick={[Function: value]} transitionDuration={{...}} invisible={false}>
+                          <WithTheme(Fade) appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                            <Fade theme={{...}} appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                              <Transition appear={true} onEnter={[Function: value]} onExit={[Function: value]} in={false} timeout={{...}} onClick={[Function: value]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                <div className="MuiBackdrop-root-28" aria-hidden="true" style={{...}} onClick={[Function: value]} />
+                              </Transition>
+                            </Fade>
+                          </WithTheme(Fade)>
+                        </Backdrop>
+                      </WithStyles(Backdrop)>
+                      <RootRef rootRef={[Function: rootRef]}>
+                        <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={true} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                          <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={true} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                            <EventListener target="window" onResize={[Function: debounced]}>
+                              <Transition onEnter={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExited={[Function: value]} appear={true} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                  <Paper classes={{...}} elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1" component="div">
+                                    <div className="MuiPaper-root-30 MuiPaper-elevation16-48 MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                      <div className="RSFMenu-hbox-7" style={{...}}>
+                                        <MenuList style={{...}} classes={{...}}>
+                                          <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} classes={{...}}>
+                                            <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} component="ul" dense={false} disablePadding={false}>
+                                              <ul className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}}>
+                                                <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                  <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                    <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                      <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                        <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                          <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                            <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" role="menuitem" onClick={[Function: bound ]}>
+                                                              <WithStyles(ListItemText) primary="Group 1" disableTypography={true}>
+                                                                <ListItemText classes={{...}} primary="Group 1" disableTypography={true} inset={false}>
+                                                                  <div className="MuiListItemText-root-76">
+                                                                    Group 1
+                                                                  </div>
+                                                                </ListItemText>
+                                                              </WithStyles(ListItemText)>
+                                                              <WithStyles(ListItemIcon)>
+                                                                <ListItemIcon classes={{...}}>
+                                                                  <pure(ChevronRight) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                    <ChevronRight className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                      <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                        <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                          <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                            <g>
+                                                                              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                            </g>
+                                                                          </svg>
+                                                                        </SvgIcon>
+                                                                      </WithStyles(SvgIcon)>
+                                                                    </ChevronRight>
+                                                                  </pure(ChevronRight)>
+                                                                </ListItemIcon>
+                                                              </WithStyles(ListItemIcon)>
+                                                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                <TouchRipple classes={{...}} center={false}>
+                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                    <span className="MuiTouchRipple-root-89" />
+                                                                  </TransitionGroup>
+                                                                </TouchRipple>
+                                                              </WithStyles(TouchRipple)>
+                                                            </li>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </ListItem>
+                                                    </WithStyles(ListItem)>
+                                                  </MenuItem>
+                                                </WithStyles(MenuItem)>
+                                              </ul>
+                                            </List>
+                                          </WithStyles(List)>
+                                        </MenuList>
+                                        <MenuList style={{...}} classes={{...}}>
+                                          <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} classes={{...}}>
+                                            <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} component="ul" dense={false} disablePadding={false}>
+                                              <ul className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}}>
+                                                <WithStyles(MenuItem) divider={true} button={true} onClick={[Function]} tabIndex={-1} onFocus={[Function: value]}>
+                                                  <MenuItem classes={{...}} divider={true} button={true} onClick={[Function]} tabIndex={-1} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                    <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61" component="li" divider={true} onClick={[Function]} onFocus={[Function: value]}>
+                                                      <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61" component="li" divider={true} onClick={[Function]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                        <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                          <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                            <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61" role="menuitem" onClick={[Function]}>
+                                                              <WithStyles(ListItemIcon) classes={{...}}>
+                                                                <ListItemIcon classes={{...}}>
+                                                                  <pure(ChevronLeft) className="MuiListItemIcon-root-82 RSFMenu-header-4 RSFMenu-icon-5">
+                                                                    <ChevronLeft className="MuiListItemIcon-root-82 RSFMenu-header-4 RSFMenu-icon-5">
+                                                                      <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-header-4 RSFMenu-icon-5">
+                                                                        <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-header-4 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                          <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-header-4 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                            <g>
+                                                                              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                                                                            </g>
+                                                                          </svg>
+                                                                        </SvgIcon>
+                                                                      </WithStyles(SvgIcon)>
+                                                                    </ChevronLeft>
+                                                                  </pure(ChevronLeft)>
+                                                                </ListItemIcon>
+                                                              </WithStyles(ListItemIcon)>
+                                                              <WithStyles(ListItemText) classes={{...}} primary={{...}}>
+                                                                <ListItemText classes={{...}} primary={{...}} disableTypography={false} inset={false}>
+                                                                  <div className="MuiListItemText-root-76 RSFMenu-headerText-6">
+                                                                    <WithStyles(Typography) variant="subheading" className="MuiListItemText-primary-79">
+                                                                      <Typography classes={{...}} variant="subheading" className="MuiListItemText-primary-79" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                        <h3 className="MuiTypography-root-101 MuiTypography-subheading-108 MuiListItemText-primary-79">
+                                                                          <div className="RSFMenu-headerText-6">
+                                                                            Group 1
+                                                                             
+                                                                          </div>
+                                                                        </h3>
+                                                                      </Typography>
+                                                                    </WithStyles(Typography)>
+                                                                  </div>
+                                                                </ListItemText>
+                                                              </WithStyles(ListItemText)>
+                                                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                <TouchRipple classes={{...}} center={false}>
+                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                    <span className="MuiTouchRipple-root-89" />
+                                                                  </TransitionGroup>
+                                                                </TouchRipple>
+                                                              </WithStyles(TouchRipple)>
+                                                            </li>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </ListItem>
+                                                    </WithStyles(ListItem)>
+                                                  </MenuItem>
+                                                </WithStyles(MenuItem)>
+                                                <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                  <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                    <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                      <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                        <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                          <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                            <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" role="menuitem" onClick={[Function: bound ]}>
+                                                              <WithStyles(ListItemText) primary="Item 1" disableTypography={true}>
+                                                                <ListItemText classes={{...}} primary="Item 1" disableTypography={true} inset={false}>
+                                                                  <div className="MuiListItemText-root-76">
+                                                                    Item 1
+                                                                  </div>
+                                                                </ListItemText>
+                                                              </WithStyles(ListItemText)>
+                                                              <WithStyles(ListItemIcon)>
+                                                                <ListItemIcon classes={{...}}>
+                                                                  <pure(ChevronRight) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                    <ChevronRight className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                      <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                        <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                          <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                            <g>
+                                                                              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                            </g>
+                                                                          </svg>
+                                                                        </SvgIcon>
+                                                                      </WithStyles(SvgIcon)>
+                                                                    </ChevronRight>
+                                                                  </pure(ChevronRight)>
+                                                                </ListItemIcon>
+                                                              </WithStyles(ListItemIcon)>
+                                                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                <TouchRipple classes={{...}} center={false}>
+                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                    <span className="MuiTouchRipple-root-89" />
+                                                                  </TransitionGroup>
+                                                                </TouchRipple>
+                                                              </WithStyles(TouchRipple)>
+                                                            </li>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </ListItem>
+                                                    </WithStyles(ListItem)>
+                                                  </MenuItem>
+                                                </WithStyles(MenuItem)>
+                                              </ul>
+                                            </List>
+                                          </WithStyles(List)>
+                                        </MenuList>
+                                      </div>
+                                      <noscript>
+                                        <ul>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1">
+                                              <inject-Link classes={{...}} to="/item1">
+                                                <Link classes={{...}} to="/item1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                                    Item 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1/child1">
+                                              <inject-Link classes={{...}} to="/item1/child1">
+                                                <Link classes={{...}} to="/item1/child1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                    Child 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                        </ul>
+                                      </noscript>
+                                    </div>
+                                  </Paper>
+                                </WithStyles(Paper)>
+                              </Transition>
+                            </EventListener>
+                          </Slide>
+                        </WithTheme(Slide)>
+                      </RootRef>
+                    </div>
+                  </Portal>
+                </Modal>
+              </WithStyles(Modal)>
+            </Drawer>
+          </WithStyles(Drawer)>
+        </Menu>
+      </inject-Menu-with-app>
+    </WithStyles(inject-Menu-with-app)>
+  </WithTheme(WithStyles(inject-Menu-with-app))>
+</Provider>
+`;
+
+exports[`Menu should use custom icons 1`] = `
+<Provider app={{...}} history={{...}}>
+  <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
+    <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
+      <inject-Menu-with-app classes={{...}} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
+        <Menu classes={{...}} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false}>
+          <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+            <Drawer theme={{...}} classes={{...}} variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+              <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true}>
+                <Modal classes={{...}} BackdropProps={{...}} className="MuiDrawer-modal-25" open={false} onClose={[Function: res]} keepMounted={true} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}} BackdropComponent={[Function: WithStyles]}>
+                  <Portal container={[undefined]} onRendered={[Function: value]}>
+                    <div className="MuiModal-root-26 MuiDrawer-modal-25 MuiModal-hidden-27">
+                      <WithStyles(Backdrop) open={false} onClick={[Function: value]} transitionDuration={{...}}>
+                        <Backdrop classes={{...}} open={false} onClick={[Function: value]} transitionDuration={{...}} invisible={false}>
+                          <WithTheme(Fade) appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                            <Fade theme={{...}} appear={true} in={false} timeout={{...}} onClick={[Function: value]}>
+                              <Transition appear={true} onEnter={[Function: value]} onExit={[Function: value]} in={false} timeout={{...}} onClick={[Function: value]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                <div className="MuiBackdrop-root-28" aria-hidden="true" style={{...}} onClick={[Function: value]} />
+                              </Transition>
+                            </Fade>
+                          </WithTheme(Fade)>
+                        </Backdrop>
+                      </WithStyles(Backdrop)>
+                      <RootRef rootRef={[Function: rootRef]}>
+                        <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                          <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                            <EventListener target="window" onResize={[Function: debounced]}>
+                              <Transition onEnter={[Function: value]} onEntering={[Function: value]} onExit={[Function: value]} onExited={[Function: value]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                  <Paper classes={{...}} elevation={16} square={true} className="MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1" component="div">
+                                    <div className="MuiPaper-root-30 MuiPaper-elevation16-48 MuiDrawer-paper-16 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-17" style={{...}} direction="right" role="document" tabIndex="-1">
+                                      <div className="RSFMenu-hbox-7" style={{...}}>
+                                        <MenuList style={{...}} classes={{...}}>
+                                          <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} classes={{...}}>
+                                            <List classes={{...}} role="menu" className={[undefined]} onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}} component="ul" dense={false} disablePadding={false}>
+                                              <ul className="MuiList-root-57 RSFMenu-list-2 MuiList-padding-58" role="menu" onKeyDown={[Function: value]} onBlur={[Function: value]} style={{...}}>
+                                                <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function: value]}>
+                                                  <MenuItem classes={{...}} button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function: value]} component="li" role="menuitem" selected={false}>
+                                                    <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]}>
+                                                      <ListItem classes={{...}} button={true} role="menuitem" tabIndex={-1} className="MuiMenuItem-root-61 RSFMenu-listItem-8" component="li" divider={true} onClick={[Function: bound ]} onFocus={[Function: value]} ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                        <WithStyles(ButtonBase) className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65">
+                                                          <ButtonBase classes={{...}} className="MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function: value]} component="li" focusVisibleClassName="MuiListItem-focusVisible-65" centerRipple={false} disableRipple={false} focusRipple={false} type="button">
+                                                            <li onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex={-1} className="MuiButtonBase-root-73 MuiListItem-root-63 MuiListItem-default-66 MuiListItem-gutters-70 MuiListItem-divider-69 MuiListItem-button-71 MuiMenuItem-root-61 RSFMenu-listItem-8" role="menuitem" onClick={[Function: bound ]}>
+                                                              <WithStyles(ListItemText) primary="Group 1" disableTypography={true}>
+                                                                <ListItemText classes={{...}} primary="Group 1" disableTypography={true} inset={false}>
+                                                                  <div className="MuiListItemText-root-76">
+                                                                    Group 1
+                                                                  </div>
+                                                                </ListItemText>
+                                                              </WithStyles(ListItemText)>
+                                                              <WithStyles(ListItemIcon)>
+                                                                <ListItemIcon classes={{...}}>
+                                                                  <pure(ChevronRight) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                    <ChevronRight className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                      <WithStyles(SvgIcon) className="MuiListItemIcon-root-82 RSFMenu-icon-5">
+                                                                        <SvgIcon classes={{...}} className="MuiListItemIcon-root-82 RSFMenu-icon-5" color="inherit" viewBox="0 0 24 24">
+                                                                          <svg className="MuiSvgIcon-root-83 MuiListItemIcon-root-82 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                                                            <g>
+                                                                              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                            </g>
+                                                                          </svg>
+                                                                        </SvgIcon>
+                                                                      </WithStyles(SvgIcon)>
+                                                                    </ChevronRight>
+                                                                  </pure(ChevronRight)>
+                                                                </ListItemIcon>
+                                                              </WithStyles(ListItemIcon)>
+                                                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                                                <TouchRipple classes={{...}} center={false}>
+                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-89" childFactory={[Function: childFactory]}>
+                                                                    <span className="MuiTouchRipple-root-89" />
+                                                                  </TransitionGroup>
+                                                                </TouchRipple>
+                                                              </WithStyles(TouchRipple)>
+                                                            </li>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </ListItem>
+                                                    </WithStyles(ListItem)>
+                                                  </MenuItem>
+                                                </WithStyles(MenuItem)>
+                                              </ul>
+                                            </List>
+                                          </WithStyles(List)>
+                                        </MenuList>
+                                      </div>
+                                      <noscript>
+                                        <ul>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1">
+                                              <inject-Link classes={{...}} to="/item1">
+                                                <Link classes={{...}} to="/item1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                                    Item 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                          <li>
+                                            <WithStyles(inject-Link) to="/item1/child1">
+                                              <inject-Link classes={{...}} to="/item1/child1">
+                                                <Link classes={{...}} to="/item1/child1" history={{...}} router={[undefined]} location={{...}}>
+                                                  <a data-moov-link="on" className="RSFLink-root-100" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                    Child 1
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </li>
+                                        </ul>
+                                      </noscript>
+                                    </div>
+                                  </Paper>
+                                </WithStyles(Paper)>
+                              </Transition>
+                            </EventListener>
+                          </Slide>
+                        </WithTheme(Slide)>
+                      </RootRef>
+                    </div>
+                  </Portal>
+                </Modal>
+              </WithStyles(Modal)>
+            </Drawer>
+          </WithStyles(Drawer)>
+        </Menu>
+      </inject-Menu-with-app>
+    </WithStyles(inject-Menu-with-app)>
+  </WithTheme(WithStyles(inject-Menu-with-app))>
+</Provider>
+`;

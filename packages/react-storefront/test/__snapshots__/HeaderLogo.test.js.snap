@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderLogo renders 1`] = `
+<a
+  className="RSFLink-root-3 RSFHeaderLogo-logoWrap-1"
+  data-moov-link="on"
+  href="/"
+  onClick={[Function]}
+>
+  <span
+    className="RSFHeaderLogo-altText-2"
+  >
+    brand logo
+  </span>
+</a>
+`;

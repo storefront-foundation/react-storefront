@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PWA should render amp-install-service worker when amp==true 1`] = `
+<Provider history={{...}} app={{...}}>
+  <WithStyles(inject-PWA)>
+    <inject-PWA classes={{...}}>
+      <PWA classes={{...}} menu={{...}} app={{...}} history={{...}} amp={true}>
+        <Provider nextId={[Function]}>
+          <WithStyles(CssBaseline)>
+            <CssBaseline classes={{...}} />
+          </WithStyles(CssBaseline)>
+          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} title={{...}} titleAttributes={{...}} htmlAttributes={{...}} meta={{...}}>
+              <NullComponent defer={true} encodeSpecialCharacters={true} title={{...}} titleAttributes={{...}} htmlAttributes={{...}} meta={{...}} />
+            </SideEffect(NullComponent)>
+          </HelmetWrapper>
+          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+              <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+            </SideEffect(NullComponent)>
+          </HelmetWrapper>
+          <amp-install-serviceworker src="https://localhost/service-worker.js" data-iframe-src="https://localhost/pwa/install-service-worker.html" layout="nodisplay" />
+          <div>
+            Foo
+          </div>
+        </Provider>
+      </PWA>
+    </inject-PWA>
+  </WithStyles(inject-PWA)>
+</Provider>
+`;
+
+exports[`PWA should render children 1`] = `
+<Provider history={{...}} app={{...}}>
+  <WithStyles(inject-PWA)>
+    <inject-PWA classes={{...}}>
+      <PWA classes={{...}} menu={{...}} app={{...}} history={{...}} amp={false}>
+        <Provider nextId={[Function]}>
+          <WithStyles(CssBaseline)>
+            <CssBaseline classes={{...}} />
+          </WithStyles(CssBaseline)>
+          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} title={{...}} titleAttributes={{...}} htmlAttributes={{...}} meta={{...}}>
+              <NullComponent defer={true} encodeSpecialCharacters={true} title={{...}} titleAttributes={{...}} htmlAttributes={{...}} meta={{...}} />
+            </SideEffect(NullComponent)>
+          </HelmetWrapper>
+          <div>
+            foo
+          </div>
+        </Provider>
+      </PWA>
+    </inject-PWA>
+  </WithStyles(inject-PWA)>
+</Provider>
+`;

@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackNav renders 1`] = `
+<Provider history={{...}} app={{...}}>
+  <WithStyles(inject-BackNav-with-history) text="Rugs" url="/s/1">
+    <inject-BackNav-with-history classes={{...}} text="Rugs" url="/s/1">
+      <BackNav classes={{...}} text="Rugs" url="/s/1" history={{...}}>
+        <WithStyles(Paper) className="RSFBackNav-root-1">
+          <Paper classes={{...}} className="RSFBackNav-root-1" component="div" elevation={2} square={false}>
+            <div className="MuiPaper-root-7 MuiPaper-elevation2-11 MuiPaper-rounded-8 RSFBackNav-root-1">
+              <WithStyles(Typography) variant="caption">
+                <Typography classes={{...}} variant="caption" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                  <span className="MuiTypography-root-34 MuiTypography-caption-44">
+                    <span onClick={[Function: onClick]} className="RSFBackNav-backButtonWrapper-3">
+                      <pure(KeyboardArrowLeft)>
+                        <KeyboardArrowLeft>
+                          <WithStyles(SvgIcon)>
+                            <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
+                              <svg className="MuiSvgIcon-root-58" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                <g>
+                                  <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+                                </g>
+                              </svg>
+                            </SvgIcon>
+                          </WithStyles(SvgIcon)>
+                        </KeyboardArrowLeft>
+                      </pure(KeyboardArrowLeft)>
+                    </span>
+                    <span className="RSFBackNav-label-2">
+                      Rugs
+                    </span>
+                  </span>
+                </Typography>
+              </WithStyles(Typography)>
+            </div>
+          </Paper>
+        </WithStyles(Paper)>
+      </BackNav>
+    </inject-BackNav-with-history>
+  </WithStyles(inject-BackNav-with-history)>
+</Provider>
+`;
+
+exports[`BackNav renders the view type switcher 1`] = `
+<Provider history={{...}}>
+  <WithStyles(inject-BackNav-with-history) text="Furniture" url="/c/1" searchResults={{...}}>
+    <inject-BackNav-with-history classes={{...}} text="Furniture" url="/c/1" searchResults={{...}}>
+      <BackNav classes={{...}} text="Furniture" url="/c/1" searchResults={{...}} history={{...}}>
+        <WithStyles(Paper) className="RSFBackNav-root-1">
+          <Paper classes={{...}} className="RSFBackNav-root-1" component="div" elevation={2} square={false}>
+            <div className="MuiPaper-root-7 MuiPaper-elevation2-11 MuiPaper-rounded-8 RSFBackNav-root-1">
+              <WithStyles(Typography) variant="caption">
+                <Typography classes={{...}} variant="caption" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                  <span className="MuiTypography-root-34 MuiTypography-caption-44">
+                    <span onClick={[Function: onClick]} className="RSFBackNav-backButtonWrapper-3">
+                      <pure(KeyboardArrowLeft)>
+                        <KeyboardArrowLeft>
+                          <WithStyles(SvgIcon)>
+                            <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
+                              <svg className="MuiSvgIcon-root-58" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                <g>
+                                  <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+                                </g>
+                              </svg>
+                            </SvgIcon>
+                          </WithStyles(SvgIcon)>
+                        </KeyboardArrowLeft>
+                      </pure(KeyboardArrowLeft)>
+                    </span>
+                    <span className="RSFBackNav-label-2">
+                      Furniture
+                    </span>
+                    <span className="RSFBackNav-switchButtonsWrapper-4">
+                      <span className="RSFBackNav-switchButton-5 RSFBackNav-selectedSwitchButton-6">
+                        <pure(BorderAll) color="secondary" onClick={[Function: onClick]}>
+                          <BorderAll color="secondary" onClick={[Function: onClick]}>
+                            <WithStyles(SvgIcon) color="secondary" onClick={[Function: onClick]}>
+                              <SvgIcon classes={{...}} color="secondary" onClick={[Function: onClick]} viewBox="0 0 24 24">
+                                <svg className="MuiSvgIcon-root-58 MuiSvgIcon-colorSecondary-60" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" onClick={[Function: onClick]}>
+                                  <g>
+                                    <path d="M3 3v18h18V3H3zm8 16H5v-6h6v6zm0-8H5V5h6v6zm8 8h-6v-6h6v6zm0-8h-6V5h6v6z" />
+                                  </g>
+                                </svg>
+                              </SvgIcon>
+                            </WithStyles(SvgIcon)>
+                          </BorderAll>
+                        </pure(BorderAll)>
+                      </span>
+                      <span className="RSFBackNav-switchButton-5">
+                        <pure(ViewAgenda) color="primary" onClick={[Function: onClick]}>
+                          <ViewAgenda color="primary" onClick={[Function: onClick]}>
+                            <WithStyles(SvgIcon) color="primary" onClick={[Function: onClick]}>
+                              <SvgIcon classes={{...}} color="primary" onClick={[Function: onClick]} viewBox="0 0 24 24">
+                                <svg className="MuiSvgIcon-root-58 MuiSvgIcon-colorPrimary-59" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" onClick={[Function: onClick]}>
+                                  <g>
+                                    <path d="M20 13H3c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h17c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zm0-10H3c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h17c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1z" />
+                                  </g>
+                                </svg>
+                              </SvgIcon>
+                            </WithStyles(SvgIcon)>
+                          </ViewAgenda>
+                        </pure(ViewAgenda)>
+                      </span>
+                    </span>
+                  </span>
+                </Typography>
+              </WithStyles(Typography)>
+            </div>
+          </Paper>
+        </WithStyles(Paper)>
+      </BackNav>
+    </inject-BackNav-with-history>
+  </WithStyles(inject-BackNav-with-history)>
+</Provider>
+`;

@@ -1,0 +1,422 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonSelector should render buttons with images 1`] = `
+<Provider app={{...}}>
+  <inject-WithStyles(ButtonSelector) model={{...}}>
+    <WithStyles(ButtonSelector) model={{...}} amp={false} ampStateId={[undefined]}>
+      <ButtonSelector classes={{...}} model={{...}} amp={false} ampStateId={[undefined]} items={{...}} buttonProps={{...}} imageProps={{...}} showSelectedText={false}>
+        <div className={[undefined]}>
+          <div className="RSFButtonSelector-buttons-1">
+            <div className="RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3" amp-bind="class=>undefined.undefined.selected.id=="1" ? "RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3 RSFButtonSelector-selectedImage-4" : "RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3"">
+              <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})" classes={{...}}>
+                <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                  <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})" type="button">
+                    <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})">
+                        <span className="MuiButton-label-11 RSFButtonSelector-imageLabel-6">
+                          <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true}>
+                            <inject-Image classes={{...}} src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true}>
+                              <Image classes={{...}} src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                <div className="RSFButtonSelector-image-7 RSFImage-root-36 RSFImage-fill-39">
+                                  <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+                                </div>
+                              </Image>
+                            </inject-Image>
+                          </WithStyles(inject-Image)>
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                          <TouchRipple classes={{...}} center={false}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-29" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </Button>
+              </WithStyles(Button)>
+            </div>
+            <div className="RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3 RSFButtonSelector-selectedImage-4" amp-bind="class=>undefined.undefined.selected.id=="2" ? "RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3 RSFButtonSelector-selectedImage-4" : "RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3"">
+              <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})" classes={{...}}>
+                <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                  <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})" type="button">
+                    <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})">
+                        <span className="MuiButton-label-11 RSFButtonSelector-imageLabel-6">
+                          <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true}>
+                            <inject-Image classes={{...}} src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true}>
+                              <Image classes={{...}} src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                <div className="RSFButtonSelector-image-7 RSFImage-root-36 RSFImage-fill-39">
+                                  <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+                                </div>
+                              </Image>
+                            </inject-Image>
+                          </WithStyles(inject-Image)>
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                          <TouchRipple classes={{...}} center={false}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-29" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </Button>
+              </WithStyles(Button)>
+            </div>
+          </div>
+        </div>
+      </ButtonSelector>
+    </WithStyles(ButtonSelector)>
+  </inject-WithStyles(ButtonSelector)>
+</Provider>
+`;
+
+exports[`ButtonSelector should render buttons with text 1`] = `
+<Provider app={{...}}>
+  <inject-WithStyles(ButtonSelector) model={{...}}>
+    <WithStyles(ButtonSelector) model={{...}} amp={false} ampStateId={[undefined]}>
+      <ButtonSelector classes={{...}} model={{...}} amp={false} ampStateId={[undefined]} items={{...}} buttonProps={{...}} imageProps={{...}} showSelectedText={false}>
+        <div className={[undefined]}>
+          <div className="RSFButtonSelector-buttons-1">
+            <div className="RSFButtonSelector-button-2" amp-bind="class=>undefined.undefined.selected.id=="1" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+              <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" classes={{...}}>
+                <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                  <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" type="button">
+                    <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})">
+                        <span className="MuiButton-label-11">
+                          One
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                          <TouchRipple classes={{...}} center={false}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-29" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </Button>
+              </WithStyles(Button)>
+            </div>
+            <div className="RSFButtonSelector-button-2 RSFButtonSelector-selected-5" amp-bind="class=>undefined.undefined.selected.id=="2" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+              <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" classes={{...}}>
+                <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                  <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" type="button">
+                    <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})">
+                        <span className="MuiButton-label-11">
+                          Two
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                          <TouchRipple classes={{...}} center={false}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-29" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </Button>
+              </WithStyles(Button)>
+            </div>
+            <div className="RSFButtonSelector-button-2" amp-bind="class=>undefined.undefined.selected.id=="3" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+              <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" classes={{...}}>
+                <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                  <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" type="button">
+                    <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})">
+                        <span className="MuiButton-label-11">
+                          Three
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                          <TouchRipple classes={{...}} center={false}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-29" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </Button>
+              </WithStyles(Button)>
+            </div>
+          </div>
+        </div>
+      </ButtonSelector>
+    </WithStyles(ButtonSelector)>
+  </inject-WithStyles(ButtonSelector)>
+</Provider>
+`;
+
+exports[`ButtonSelector should render links for options with urls 1`] = `
+<Provider app={{...}}>
+  <inject-AmpState>
+    <AmpState amp={false} initialState={{...}} id="moovAmpState">
+      <Provider ampStateId="moovAmpState">
+        <inject-WithStyles(ButtonSelector) model={{...}}>
+          <WithStyles(ButtonSelector) model={{...}} amp={false} ampStateId="moovAmpState">
+            <ButtonSelector classes={{...}} model={{...}} amp={false} ampStateId="moovAmpState" items={{...}} buttonProps={{...}} imageProps={{...}} showSelectedText={false}>
+              <div className={[undefined]}>
+                <div className="RSFButtonSelector-buttons-1">
+                  <div className="RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3" amp-bind="class=>moovAmpState.undefined.selected.id=="1" ? "RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3 RSFButtonSelector-selectedImage-4" : "RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3"">
+                    <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})" classes={{...}}>
+                      <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                        <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})" type="button">
+                          <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                            <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/ffffff"} }}})">
+                              <span className="MuiButton-label-11 RSFButtonSelector-imageLabel-6">
+                                <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true}>
+                                  <inject-Image classes={{...}} src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true}>
+                                    <Image classes={{...}} src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                      <div className="RSFButtonSelector-image-7 RSFImage-root-36 RSFImage-fill-39">
+                                        <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+                                      </div>
+                                    </Image>
+                                  </inject-Image>
+                                </WithStyles(inject-Image)>
+                              </span>
+                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                <TouchRipple classes={{...}} center={false}>
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-29" />
+                                  </TransitionGroup>
+                                </TouchRipple>
+                              </WithStyles(TouchRipple)>
+                            </button>
+                          </ButtonBase>
+                        </WithStyles(ButtonBase)>
+                      </Button>
+                    </WithStyles(Button)>
+                  </div>
+                  <div className="RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3 RSFButtonSelector-selectedImage-4" amp-bind="class=>moovAmpState.undefined.selected.id=="2" ? "RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3 RSFButtonSelector-selectedImage-4" : "RSFButtonSelector-button-2 RSFButtonSelector-buttonWithImage-3"">
+                    <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})" classes={{...}}>
+                      <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                        <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})" type="button">
+                          <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                            <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":null,"disabled":false,"image":"http://via.placeholder.com/128x128/000000"} }}})">
+                              <span className="MuiButton-label-11 RSFButtonSelector-imageLabel-6">
+                                <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true}>
+                                  <inject-Image classes={{...}} src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true}>
+                                    <Image classes={{...}} src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                      <div className="RSFButtonSelector-image-7 RSFImage-root-36 RSFImage-fill-39">
+                                        <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} quality={{...}} />
+                                      </div>
+                                    </Image>
+                                  </inject-Image>
+                                </WithStyles(inject-Image)>
+                              </span>
+                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                <TouchRipple classes={{...}} center={false}>
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-29" />
+                                  </TransitionGroup>
+                                </TouchRipple>
+                              </WithStyles(TouchRipple)>
+                            </button>
+                          </ButtonBase>
+                        </WithStyles(ButtonBase)>
+                      </Button>
+                    </WithStyles(Button)>
+                  </div>
+                </div>
+              </div>
+            </ButtonSelector>
+          </WithStyles(ButtonSelector)>
+        </inject-WithStyles(ButtonSelector)>
+      </Provider>
+    </AmpState>
+  </inject-AmpState>
+</Provider>
+`;
+
+exports[`ButtonSelector should show the text of the selected option 1`] = `
+<Provider app={{...}}>
+  <inject-WithStyles(ButtonSelector) model={{...}} showSelectedText={true}>
+    <WithStyles(ButtonSelector) model={{...}} showSelectedText={true} amp={false} ampStateId={[undefined]}>
+      <ButtonSelector classes={{...}} model={{...}} showSelectedText={true} amp={false} ampStateId={[undefined]} items={{...}} buttonProps={{...}} imageProps={{...}}>
+        <div className={[undefined]}>
+          <div className="RSFButtonSelector-buttons-1">
+            <div className="RSFButtonSelector-button-2" amp-bind="class=>undefined.undefined.selected.id=="1" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+              <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" classes={{...}}>
+                <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                  <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" type="button">
+                    <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})">
+                        <span className="MuiButton-label-11">
+                          One
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                          <TouchRipple classes={{...}} center={false}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-29" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </Button>
+              </WithStyles(Button)>
+            </div>
+            <div className="RSFButtonSelector-button-2 RSFButtonSelector-selected-5" amp-bind="class=>undefined.undefined.selected.id=="2" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+              <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" classes={{...}}>
+                <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                  <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" type="button">
+                    <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})">
+                        <span className="MuiButton-label-11">
+                          Two
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                          <TouchRipple classes={{...}} center={false}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-29" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </Button>
+              </WithStyles(Button)>
+            </div>
+            <div className="RSFButtonSelector-button-2" amp-bind="class=>undefined.undefined.selected.id=="3" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+              <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" classes={{...}}>
+                <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                  <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" type="button">
+                    <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                      <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ undefined: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})">
+                        <span className="MuiButton-label-11">
+                          Three
+                        </span>
+                        <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                          <TouchRipple classes={{...}} center={false}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-29" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </button>
+                    </ButtonBase>
+                  </WithStyles(ButtonBase)>
+                </Button>
+              </WithStyles(Button)>
+            </div>
+          </div>
+          <WithStyles(Typography) variant="caption" component="div" className="RSFButtonSelector-selectedName-9" amp-bind="text=>undefined.undefined.selected.text">
+            <Typography classes={{...}} variant="caption" component="div" className="RSFButtonSelector-selectedName-9" amp-bind="text=>undefined.undefined.selected.text" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+              <div className="MuiTypography-root-40 MuiTypography-caption-50 RSFButtonSelector-selectedName-9" amp-bind="text=>undefined.undefined.selected.text">
+                Two
+              </div>
+            </Typography>
+          </WithStyles(Typography)>
+        </div>
+      </ButtonSelector>
+    </WithStyles(ButtonSelector)>
+  </inject-WithStyles(ButtonSelector)>
+</Provider>
+`;
+
+exports[`ButtonSelector should support amp 1`] = `
+<Provider app={{...}}>
+  <inject-AmpState>
+    <AmpState amp={true} initialState={{...}} id="moovAmpState">
+      <Provider ampStateId="moovAmpState">
+        <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+          <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+            <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+          </SideEffect(NullComponent)>
+        </HelmetWrapper>
+        <amp-state id="moovAmpState">
+          <script type="application/json" dangerouslySetInnerHTML={{...}} />
+        </amp-state>
+        <inject-WithStyles(ButtonSelector) model={{...}}>
+          <WithStyles(ButtonSelector) model={{...}} amp={true} ampStateId="moovAmpState">
+            <ButtonSelector classes={{...}} model={{...}} amp={true} ampStateId="moovAmpState" items={{...}} buttonProps={{...}} imageProps={{...}} showSelectedText={false}>
+              <div className={[undefined]}>
+                <input type="hidden" name={[undefined]} value="2" amp-bind="value=>moovAmpState.undefined.selected.id" />
+                <div className="RSFButtonSelector-buttons-1">
+                  <div className="RSFButtonSelector-button-2" amp-bind="class=>moovAmpState.undefined.selected.id=="1" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+                    <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" classes={{...}}>
+                      <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                        <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" type="button">
+                          <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                            <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"1","text":"One","disabled":false,"image":null} }}})">
+                              <span className="MuiButton-label-11">
+                                One
+                              </span>
+                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                <TouchRipple classes={{...}} center={false}>
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-29" />
+                                  </TransitionGroup>
+                                </TouchRipple>
+                              </WithStyles(TouchRipple)>
+                            </button>
+                          </ButtonBase>
+                        </WithStyles(ButtonBase)>
+                      </Button>
+                    </WithStyles(Button)>
+                  </div>
+                  <div className="RSFButtonSelector-button-2 RSFButtonSelector-selected-5" amp-bind="class=>moovAmpState.undefined.selected.id=="2" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+                    <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" classes={{...}}>
+                      <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                        <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" type="button">
+                          <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                            <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"2","text":"Two","disabled":false,"image":null} }}})">
+                              <span className="MuiButton-label-11">
+                                Two
+                              </span>
+                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                <TouchRipple classes={{...}} center={false}>
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-29" />
+                                  </TransitionGroup>
+                                </TouchRipple>
+                              </WithStyles(TouchRipple)>
+                            </button>
+                          </ButtonBase>
+                        </WithStyles(ButtonBase)>
+                      </Button>
+                    </WithStyles(Button)>
+                  </div>
+                  <div className="RSFButtonSelector-button-2" amp-bind="class=>moovAmpState.undefined.selected.id=="3" ? "RSFButtonSelector-button-2 RSFButtonSelector-selected-5" : "RSFButtonSelector-button-2"">
+                    <WithStyles(Button) onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" classes={{...}}>
+                      <Button classes={{...}} onClick={[Function: onClick]} href={[undefined]} disabled={false} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" color="default" disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button" variant="flat">
+                        <WithStyles(ButtonBase) className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" type="button">
+                          <ButtonBase classes={{...}} className="MuiButton-root-10" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-19" onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})" type="button" centerRipple={false} disableRipple={false} tabIndex="0">
+                            <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-26 MuiButton-root-10" type="button" disabled={false} onClick={[Function: onClick]} href={[undefined]} on="tap:AMP.setState({ moovAmpState: { undefined: { selected: {"id":"3","text":"Three","disabled":false,"image":null} }}})">
+                              <span className="MuiButton-label-11">
+                                Three
+                              </span>
+                              <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
+                                <TouchRipple classes={{...}} center={false}>
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-29" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-29" />
+                                  </TransitionGroup>
+                                </TouchRipple>
+                              </WithStyles(TouchRipple)>
+                            </button>
+                          </ButtonBase>
+                        </WithStyles(ButtonBase)>
+                      </Button>
+                    </WithStyles(Button)>
+                  </div>
+                </div>
+              </div>
+            </ButtonSelector>
+          </WithStyles(ButtonSelector)>
+        </inject-WithStyles(ButtonSelector)>
+      </Provider>
+    </AmpState>
+  </inject-AmpState>
+</Provider>
+`;

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container accepts a className prop 1`] = `
+<div
+  className="RSFContainer-root-1 myClassName RSFContainer-inset-2"
+/>
+`;
+
+exports[`Container accepts a root class 1`] = `
+<div
+  className="RSFContainer-root-1 myRootClass RSFContainer-inset-2"
+/>
+`;
+
+exports[`Container renders with no props 1`] = `
+<div
+  className="RSFContainer-root-1 RSFContainer-inset-2"
+/>
+`;
+
+exports[`Container spreads props to the underlying div 1`] = `
+<div
+  className="RSFContainer-root-1 RSFContainer-inset-2"
+  style={
+    Object {
+      "backgroundColor": "red",
+    }
+  }
+/>
+`;

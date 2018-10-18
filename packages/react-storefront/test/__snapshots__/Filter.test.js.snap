@@ -1,0 +1,869 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filter renders with filters selected 1`] = `
+<div
+  className="RSFFilter-root-1"
+>
+  <div
+    className="MuiPaper-root-17 MuiPaper-elevation1-20 MuiExpansionPanel-root-14 RSFExpandableSection-root-5"
+  >
+    <div
+      aria-expanded={false}
+      className="MuiButtonBase-root-50 MuiExpansionPanelSummary-root-44"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex="0"
+    >
+      <div
+        className="MuiExpansionPanelSummary-content-48 RSFExpandableSection-summary-10"
+      >
+        <h3
+          className="MuiTypography-root-53 MuiTypography-subheading-60"
+        >
+          Price
+        </h3>
+        <span
+          className="MuiTypography-root-53 MuiTypography-caption-63 RSFExpandableSection-caption-6"
+        >
+          Up to $100
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiExpansionPanelSummary-expandIcon-49"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <span
+          className="MuiIconButton-label-82"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-83 RSFExpandableSection-expandIcon-12"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          className="MuiTouchRipple-root-89"
+        />
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      className="MuiCollapse-container-96"
+      style={
+        Object {
+          "minHeight": "0px",
+        }
+      }
+    >
+      <div
+        className="MuiCollapse-wrapper-98"
+      >
+        <div
+          className="MuiCollapse-wrapperInner-99"
+        >
+          <div
+            className="MuiExpansionPanelDetails-root-100 RSFExpandableSection-details-9"
+          >
+            <div
+              className="MuiFormGroup-root-101"
+            >
+              <label
+                className="MuiFormControlLabel-root-103"
+              >
+                <span
+                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109 MuiSwitchBase-checked-112 MuiCheckbox-checked-107"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={null}
+                >
+                  <span
+                    className="MuiIconButton-label-82"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="MuiSvgIcon-root-83"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                      />
+                    </svg>
+                    <input
+                      checked={true}
+                      className="MuiSwitchBase-input-114"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                  </span>
+                  <span
+                    className="MuiTouchRipple-root-89"
+                  />
+                </span>
+                <span
+                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                >
+                  <span>
+                    <span>
+                      Up to $100
+                    </span>
+                    <span
+                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      variable="caption"
+                    >
+                      (
+                      20
+                      )
+                    </span>
+                  </span>
+                </span>
+              </label>
+              <label
+                className="MuiFormControlLabel-root-103"
+              >
+                <span
+                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={null}
+                >
+                  <span
+                    className="MuiIconButton-label-82"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="MuiSvgIcon-root-83"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                    <input
+                      checked={false}
+                      className="MuiSwitchBase-input-114"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                  </span>
+                  <span
+                    className="MuiTouchRipple-root-89"
+                  />
+                </span>
+                <span
+                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                >
+                  <span>
+                    <span>
+                      $100 - $200
+                    </span>
+                    <span
+                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      variable="caption"
+                    >
+                      (
+                      10
+                      )
+                    </span>
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="MuiPaper-root-17 MuiPaper-elevation1-20 MuiExpansionPanel-root-14 RSFExpandableSection-root-5"
+  >
+    <div
+      aria-expanded={false}
+      className="MuiButtonBase-root-50 MuiExpansionPanelSummary-root-44"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex="0"
+    >
+      <div
+        className="MuiExpansionPanelSummary-content-48 RSFExpandableSection-summary-10"
+      >
+        <h3
+          className="MuiTypography-root-53 MuiTypography-subheading-60"
+        >
+          Color
+        </h3>
+        <span
+          className="MuiTypography-root-53 MuiTypography-caption-63 RSFExpandableSection-caption-6"
+        >
+          Sunburst
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiExpansionPanelSummary-expandIcon-49"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <span
+          className="MuiIconButton-label-82"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-83 RSFExpandableSection-expandIcon-12"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          className="MuiTouchRipple-root-89"
+        />
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      className="MuiCollapse-container-96"
+      style={
+        Object {
+          "minHeight": "0px",
+        }
+      }
+    >
+      <div
+        className="MuiCollapse-wrapper-98"
+      >
+        <div
+          className="MuiCollapse-wrapperInner-99"
+        >
+          <div
+            className="MuiExpansionPanelDetails-root-100 RSFExpandableSection-details-9"
+          >
+            <div
+              className="MuiFormGroup-root-101"
+            >
+              <label
+                className="MuiFormControlLabel-root-103"
+              >
+                <span
+                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={null}
+                >
+                  <span
+                    className="MuiIconButton-label-82"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="MuiSvgIcon-root-83"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                    <input
+                      checked={false}
+                      className="MuiSwitchBase-input-114"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                  </span>
+                  <span
+                    className="MuiTouchRipple-root-89"
+                  />
+                </span>
+                <span
+                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                >
+                  <span>
+                    <span>
+                      Red
+                    </span>
+                    <span
+                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      variable="caption"
+                    >
+                      (
+                      2
+                      )
+                    </span>
+                  </span>
+                </span>
+              </label>
+              <label
+                className="MuiFormControlLabel-root-103"
+              >
+                <span
+                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109 MuiSwitchBase-checked-112 MuiCheckbox-checked-107"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={null}
+                >
+                  <span
+                    className="MuiIconButton-label-82"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="MuiSvgIcon-root-83"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                      />
+                    </svg>
+                    <input
+                      checked={true}
+                      className="MuiSwitchBase-input-114"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                  </span>
+                  <span
+                    className="MuiTouchRipple-root-89"
+                  />
+                </span>
+                <span
+                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                >
+                  <span>
+                    <span>
+                      Sunburst
+                    </span>
+                    <span
+                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      variable="caption"
+                    >
+                      (
+                      10
+                      )
+                    </span>
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Filter renders with no filters selected 1`] = `
+<div
+  className="RSFFilter-root-1"
+>
+  <div
+    className="MuiPaper-root-17 MuiPaper-elevation1-20 MuiExpansionPanel-root-14 RSFExpandableSection-root-5"
+  >
+    <div
+      aria-expanded={false}
+      className="MuiButtonBase-root-50 MuiExpansionPanelSummary-root-44"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex="0"
+    >
+      <div
+        className="MuiExpansionPanelSummary-content-48 RSFExpandableSection-summary-10"
+      >
+        <h3
+          className="MuiTypography-root-53 MuiTypography-subheading-60"
+        >
+          Price
+        </h3>
+      </div>
+      <div
+        aria-hidden="true"
+        className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiExpansionPanelSummary-expandIcon-49"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <span
+          className="MuiIconButton-label-82"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-83 RSFExpandableSection-expandIcon-12"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          className="MuiTouchRipple-root-89"
+        />
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      className="MuiCollapse-container-96"
+      style={
+        Object {
+          "minHeight": "0px",
+        }
+      }
+    >
+      <div
+        className="MuiCollapse-wrapper-98"
+      >
+        <div
+          className="MuiCollapse-wrapperInner-99"
+        >
+          <div
+            className="MuiExpansionPanelDetails-root-100 RSFExpandableSection-details-9"
+          >
+            <div
+              className="MuiFormGroup-root-101"
+            >
+              <label
+                className="MuiFormControlLabel-root-103"
+              >
+                <span
+                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={null}
+                >
+                  <span
+                    className="MuiIconButton-label-82"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="MuiSvgIcon-root-83"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                    <input
+                      checked={false}
+                      className="MuiSwitchBase-input-114"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                  </span>
+                  <span
+                    className="MuiTouchRipple-root-89"
+                  />
+                </span>
+                <span
+                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                >
+                  <span>
+                    <span>
+                      Up to $100
+                    </span>
+                    <span
+                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      variable="caption"
+                    >
+                      (
+                      20
+                      )
+                    </span>
+                  </span>
+                </span>
+              </label>
+              <label
+                className="MuiFormControlLabel-root-103"
+              >
+                <span
+                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={null}
+                >
+                  <span
+                    className="MuiIconButton-label-82"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="MuiSvgIcon-root-83"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                    <input
+                      checked={false}
+                      className="MuiSwitchBase-input-114"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                  </span>
+                  <span
+                    className="MuiTouchRipple-root-89"
+                  />
+                </span>
+                <span
+                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                >
+                  <span>
+                    <span>
+                      $100 - $200
+                    </span>
+                    <span
+                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      variable="caption"
+                    >
+                      (
+                      10
+                      )
+                    </span>
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="MuiPaper-root-17 MuiPaper-elevation1-20 MuiExpansionPanel-root-14 RSFExpandableSection-root-5"
+  >
+    <div
+      aria-expanded={false}
+      className="MuiButtonBase-root-50 MuiExpansionPanelSummary-root-44"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex="0"
+    >
+      <div
+        className="MuiExpansionPanelSummary-content-48 RSFExpandableSection-summary-10"
+      >
+        <h3
+          className="MuiTypography-root-53 MuiTypography-subheading-60"
+        >
+          Color
+        </h3>
+      </div>
+      <div
+        aria-hidden="true"
+        className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiExpansionPanelSummary-expandIcon-49"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <span
+          className="MuiIconButton-label-82"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-83 RSFExpandableSection-expandIcon-12"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          className="MuiTouchRipple-root-89"
+        />
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      className="MuiCollapse-container-96"
+      style={
+        Object {
+          "minHeight": "0px",
+        }
+      }
+    >
+      <div
+        className="MuiCollapse-wrapper-98"
+      >
+        <div
+          className="MuiCollapse-wrapperInner-99"
+        >
+          <div
+            className="MuiExpansionPanelDetails-root-100 RSFExpandableSection-details-9"
+          >
+            <div
+              className="MuiFormGroup-root-101"
+            >
+              <label
+                className="MuiFormControlLabel-root-103"
+              >
+                <span
+                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={null}
+                >
+                  <span
+                    className="MuiIconButton-label-82"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="MuiSvgIcon-root-83"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                    <input
+                      checked={false}
+                      className="MuiSwitchBase-input-114"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                  </span>
+                  <span
+                    className="MuiTouchRipple-root-89"
+                  />
+                </span>
+                <span
+                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                >
+                  <span>
+                    <span>
+                      Red
+                    </span>
+                    <span
+                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      variable="caption"
+                    >
+                      (
+                      2
+                      )
+                    </span>
+                  </span>
+                </span>
+              </label>
+              <label
+                className="MuiFormControlLabel-root-103"
+              >
+                <span
+                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={null}
+                >
+                  <span
+                    className="MuiIconButton-label-82"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="MuiSvgIcon-root-83"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                    <input
+                      checked={false}
+                      className="MuiSwitchBase-input-114"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                  </span>
+                  <span
+                    className="MuiTouchRipple-root-89"
+                  />
+                </span>
+                <span
+                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                >
+                  <span>
+                    <span>
+                      Sunburst
+                    </span>
+                    <span
+                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      variable="caption"
+                    >
+                      (
+                      10
+                      )
+                    </span>
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

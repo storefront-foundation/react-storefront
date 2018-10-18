@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AmpMenu should render 1`] = `
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <WithTheme(WithStyles(inject-AmpMenu))>
+      <WithStyles(inject-AmpMenu) theme={{...}}>
+        <inject-AmpMenu classes={{...}} theme={{...}}>
+          <AmpMenu classes={{...}} theme={{...}} menu={{...}} id="moov_menu">
+            <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+              <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}} style={{...}}>
+                <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} style={{...}} />
+              </SideEffect(NullComponent)>
+            </HelmetWrapper>
+            <amp-sidebar id="moov_menu" class="RSFAmpMenu-root-1" layout="nodisplay">
+              <section>
+                <div>
+                  <amp-accordion disable-session-states={true}>
+                    <section>
+                      <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpMenu-item-2 RSFAmpMenu-group-3">
+                        <Typography classes={{...}} variant="body1" component="h3" className="RSFAmpMenu-item-2 RSFAmpMenu-group-3" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                          <h3 className="MuiTypography-root-7 MuiTypography-body1-16 RSFAmpMenu-item-2 RSFAmpMenu-group-3">
+                            Category 1
+                            <pure(ExpandLess) className="RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6">
+                              <ExpandLess className="RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6">
+                                <WithStyles(SvgIcon) className="RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6">
+                                  <SvgIcon classes={{...}} className="RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6" color="inherit" viewBox="0 0 24 24">
+                                    <svg className="MuiSvgIcon-root-31 RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                      <g>
+                                        <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+                                      </g>
+                                    </svg>
+                                  </SvgIcon>
+                                </WithStyles(SvgIcon)>
+                              </ExpandLess>
+                            </pure(ExpandLess)>
+                            <pure(ExpandMore) className="RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5">
+                              <ExpandMore className="RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5">
+                                <WithStyles(SvgIcon) className="RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5">
+                                  <SvgIcon classes={{...}} className="RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5" color="inherit" viewBox="0 0 24 24">
+                                    <svg className="MuiSvgIcon-root-31 RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                      <g>
+                                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                      </g>
+                                    </svg>
+                                  </SvgIcon>
+                                </WithStyles(SvgIcon)>
+                              </ExpandMore>
+                            </pure(ExpandMore)>
+                          </h3>
+                        </Typography>
+                      </WithStyles(Typography)>
+                      <div>
+                        <WithStyles(inject-Link) className="RSFAmpMenu-item-2" to="/s/1">
+                          <inject-Link classes={{...}} className="RSFAmpMenu-item-2" to="/s/1">
+                            <Link classes={{...}} className="RSFAmpMenu-item-2" to="/s/1" history={{...}} router={{...}} location={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-37 RSFAmpMenu-item-2" style={[undefined]} onClick={[Function]} href="https://localhost/s/1">
+                                Subcategory 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) className="RSFAmpMenu-item-2" to="/s/2">
+                          <inject-Link classes={{...}} className="RSFAmpMenu-item-2" to="/s/2">
+                            <Link classes={{...}} className="RSFAmpMenu-item-2" to="/s/2" history={{...}} router={{...}} location={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-37 RSFAmpMenu-item-2" style={[undefined]} onClick={[Function]} href="https://localhost/s/2">
+                                Subcategory 2
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </div>
+                    </section>
+                  </amp-accordion>
+                  <amp-accordion disable-session-states={true}>
+                    <section>
+                      <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpMenu-item-2 RSFAmpMenu-group-3">
+                        <Typography classes={{...}} variant="body1" component="h3" className="RSFAmpMenu-item-2 RSFAmpMenu-group-3" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                          <h3 className="MuiTypography-root-7 MuiTypography-body1-16 RSFAmpMenu-item-2 RSFAmpMenu-group-3">
+                            Category 2
+                            <pure(ExpandLess) className="RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6">
+                              <ExpandLess className="RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6">
+                                <WithStyles(SvgIcon) className="RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6">
+                                  <SvgIcon classes={{...}} className="RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6" color="inherit" viewBox="0 0 24 24">
+                                    <svg className="MuiSvgIcon-root-31 RSFAmpMenu-toggle-4 RSFAmpMenu-collapse-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                      <g>
+                                        <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+                                      </g>
+                                    </svg>
+                                  </SvgIcon>
+                                </WithStyles(SvgIcon)>
+                              </ExpandLess>
+                            </pure(ExpandLess)>
+                            <pure(ExpandMore) className="RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5">
+                              <ExpandMore className="RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5">
+                                <WithStyles(SvgIcon) className="RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5">
+                                  <SvgIcon classes={{...}} className="RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5" color="inherit" viewBox="0 0 24 24">
+                                    <svg className="MuiSvgIcon-root-31 RSFAmpMenu-toggle-4 RSFAmpMenu-expand-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                      <g>
+                                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                      </g>
+                                    </svg>
+                                  </SvgIcon>
+                                </WithStyles(SvgIcon)>
+                              </ExpandMore>
+                            </pure(ExpandMore)>
+                          </h3>
+                        </Typography>
+                      </WithStyles(Typography)>
+                      <div>
+                        <WithStyles(inject-Link) className="RSFAmpMenu-item-2" to="/s/1">
+                          <inject-Link classes={{...}} className="RSFAmpMenu-item-2" to="/s/1">
+                            <Link classes={{...}} className="RSFAmpMenu-item-2" to="/s/1" history={{...}} router={{...}} location={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-37 RSFAmpMenu-item-2" style={[undefined]} onClick={[Function]} href="https://localhost/s/1">
+                                Subcategory 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) className="RSFAmpMenu-item-2" to="/s/2">
+                          <inject-Link classes={{...}} className="RSFAmpMenu-item-2" to="/s/2">
+                            <Link classes={{...}} className="RSFAmpMenu-item-2" to="/s/2" history={{...}} router={{...}} location={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-37 RSFAmpMenu-item-2" style={[undefined]} onClick={[Function]} href="https://localhost/s/2">
+                                Subcategory 2
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </div>
+                    </section>
+                  </amp-accordion>
+                </div>
+              </section>
+            </amp-sidebar>
+          </AmpMenu>
+        </inject-AmpMenu>
+      </WithStyles(inject-AmpMenu)>
+    </WithTheme(WithStyles(inject-AmpMenu))>
+  </Provider>
+</TestProvider>
+`;

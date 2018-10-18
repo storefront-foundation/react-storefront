@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumbs renders 1`] = `
+<Provider app={{...}}>
+  <WithStyles(inject-Breadcrumbs-with-app)>
+    <inject-Breadcrumbs-with-app classes={{...}}>
+      <Breadcrumbs classes={{...}} app={{...}}>
+        <WithStyles(Typography) className="RSFBreadcrumbs-breadcrumbs-1" variant="caption">
+          <Typography classes={{...}} className="RSFBreadcrumbs-breadcrumbs-1" variant="caption" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+            <span className="MuiTypography-root-4 MuiTypography-caption-14 RSFBreadcrumbs-breadcrumbs-1">
+              <WithStyles(Container)>
+                <Container classes={{...}} inset={true}>
+                  <div className="RSFContainer-root-28 RSFContainer-inset-29">
+                    <span>
+                      <inject-Track-with-app event="breadcrumbClicked" breadcrumb={{...}}>
+                        <Track event="breadcrumbClicked" breadcrumb={{...}} app={{...}} trigger="onClick">
+                          <WithStyles(inject-Link) to="/" onClick={[Function]}>
+                            <inject-Link classes={{...}} to="/" onClick={[Function]}>
+                              <Link classes={{...}} to="/" onClick={[Function]} history={[undefined]} router={[undefined]} location={{...}}>
+                                <a data-moov-link="on" className="RSFLink-root-30" style={[undefined]} onClick={[Function]} href="/">
+                                  Home
+                                </a>
+                              </Link>
+                            </inject-Link>
+                          </WithStyles(inject-Link)>
+                        </Track>
+                      </inject-Track-with-app>
+                      <pure(KeyboardArrowRight) className="RSFBreadcrumbs-separator-2">
+                        <KeyboardArrowRight className="RSFBreadcrumbs-separator-2">
+                          <WithStyles(SvgIcon) className="RSFBreadcrumbs-separator-2">
+                            <SvgIcon classes={{...}} className="RSFBreadcrumbs-separator-2" color="inherit" viewBox="0 0 24 24">
+                              <svg className="MuiSvgIcon-root-31 RSFBreadcrumbs-separator-2" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                <g>
+                                  <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+                                </g>
+                              </svg>
+                            </SvgIcon>
+                          </WithStyles(SvgIcon)>
+                        </KeyboardArrowRight>
+                      </pure(KeyboardArrowRight)>
+                    </span>
+                    <span>
+                      <inject-Track-with-app event="breadcrumbClicked" breadcrumb={{...}}>
+                        <Track event="breadcrumbClicked" breadcrumb={{...}} app={{...}} trigger="onClick">
+                          <WithStyles(inject-Link) to="/c/1" onClick={[Function]}>
+                            <inject-Link classes={{...}} to="/c/1" onClick={[Function]}>
+                              <Link classes={{...}} to="/c/1" onClick={[Function]} history={[undefined]} router={[undefined]} location={{...}}>
+                                <a data-moov-link="on" className="RSFLink-root-30" style={[undefined]} onClick={[Function]} href="/c/1">
+                                  Category 1
+                                </a>
+                              </Link>
+                            </inject-Link>
+                          </WithStyles(inject-Link)>
+                        </Track>
+                      </inject-Track-with-app>
+                      <pure(KeyboardArrowRight) className="RSFBreadcrumbs-separator-2">
+                        <KeyboardArrowRight className="RSFBreadcrumbs-separator-2">
+                          <WithStyles(SvgIcon) className="RSFBreadcrumbs-separator-2">
+                            <SvgIcon classes={{...}} className="RSFBreadcrumbs-separator-2" color="inherit" viewBox="0 0 24 24">
+                              <svg className="MuiSvgIcon-root-31 RSFBreadcrumbs-separator-2" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
+                                <g>
+                                  <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+                                </g>
+                              </svg>
+                            </SvgIcon>
+                          </WithStyles(SvgIcon)>
+                        </KeyboardArrowRight>
+                      </pure(KeyboardArrowRight)>
+                    </span>
+                    <span className="RSFBreadcrumbs-current-3">
+                      Subcategory 1
+                    </span>
+                  </div>
+                </Container>
+              </WithStyles(Container)>
+            </span>
+          </Typography>
+        </WithStyles(Typography)>
+      </Breadcrumbs>
+    </inject-Breadcrumbs-with-app>
+  </WithStyles(inject-Breadcrumbs-with-app)>
+</Provider>
+`;
+
+exports[`Breadcrumbs renders blank when an empty array of breadcrumbs is provided 1`] = `
+<Provider app={{...}}>
+  <WithStyles(inject-Breadcrumbs-with-app)>
+    <inject-Breadcrumbs-with-app classes={{...}}>
+      <Breadcrumbs classes={{...}} app={{...}} />
+    </inject-Breadcrumbs-with-app>
+  </WithStyles(inject-Breadcrumbs-with-app)>
+</Provider>
+`;
+
+exports[`Breadcrumbs renders blank when no breadcrumbs are provided 1`] = `
+<Provider app={{...}}>
+  <WithStyles(inject-Breadcrumbs-with-app)>
+    <inject-Breadcrumbs-with-app classes={{...}}>
+      <Breadcrumbs classes={{...}} app={{...}} />
+    </inject-Breadcrumbs-with-app>
+  </WithStyles(inject-Breadcrumbs-with-app)>
+</Provider>
+`;

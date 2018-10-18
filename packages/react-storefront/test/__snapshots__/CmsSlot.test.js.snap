@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CmsSlot renders nothing when no children are provided 1`] = `null`;
+
+exports[`CmsSlot renders verbatim html 1`] = `
+<span
+  className="slot1 CmsSlot-block-2"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "<p>Content Here</p>",
+    }
+  }
+/>
+`;

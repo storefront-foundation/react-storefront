@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResponsiveTiles should render 1`] = `
+<ResponsiveTiles cols={{...}} spacing={16}>
+  <WithStyles(ResponsiveTilesInner)>
+    <ResponsiveTilesInner classes={{...}}>
+      <ul className="RSFResponsiveTiles-root-1">
+        <WithStyles(GridListTile) classes={{...}}>
+          <GridListTile classes={{...}} cols={1} component="li" rows={1}>
+            <li className="MuiGridListTile-root-3 RSFResponsiveTiles-tile-2">
+              <EventListener target="window" onResize={[Function: debounced]} />
+              <div className="MuiGridListTile-tile-4">
+                <div>
+                  Tile 1
+                </div>
+              </div>
+            </li>
+          </GridListTile>
+        </WithStyles(GridListTile)>
+        <WithStyles(GridListTile) classes={{...}}>
+          <GridListTile classes={{...}} cols={1} component="li" rows={1}>
+            <li className="MuiGridListTile-root-3 RSFResponsiveTiles-tile-2">
+              <EventListener target="window" onResize={[Function: debounced]} />
+              <div className="MuiGridListTile-tile-4">
+                <div>
+                  Tile 2
+                </div>
+              </div>
+            </li>
+          </GridListTile>
+        </WithStyles(GridListTile)>
+        <WithStyles(GridListTile) classes={{...}}>
+          <GridListTile classes={{...}} cols={1} component="li" rows={1}>
+            <li className="MuiGridListTile-root-3 RSFResponsiveTiles-tile-2">
+              <EventListener target="window" onResize={[Function: debounced]} />
+              <div className="MuiGridListTile-tile-4">
+                <div>
+                  Tile 3
+                </div>
+              </div>
+            </li>
+          </GridListTile>
+        </WithStyles(GridListTile)>
+        <WithStyles(GridListTile) classes={{...}}>
+          <GridListTile classes={{...}} cols={1} component="li" rows={1}>
+            <li className="MuiGridListTile-root-3 RSFResponsiveTiles-tile-2">
+              <EventListener target="window" onResize={[Function: debounced]} />
+              <div className="MuiGridListTile-tile-4">
+                <div>
+                  Tile 4
+                </div>
+              </div>
+            </li>
+          </GridListTile>
+        </WithStyles(GridListTile)>
+      </ul>
+    </ResponsiveTilesInner>
+  </WithStyles(ResponsiveTilesInner)>
+</ResponsiveTiles>
+`;
+
+exports[`ResponsiveTiles should skip invalid elements 1`] = `
+<ResponsiveTiles cols={{...}} spacing={16}>
+  <WithStyles(ResponsiveTilesInner)>
+    <ResponsiveTilesInner classes={{...}}>
+      <ul className="RSFResponsiveTiles-root-7">
+        <WithStyles(GridListTile) classes={{...}}>
+          <GridListTile classes={{...}} cols={1} component="li" rows={1}>
+            <li className="MuiGridListTile-root-3 RSFResponsiveTiles-tile-8">
+              <EventListener target="window" onResize={[Function: debounced]} />
+              <div className="MuiGridListTile-tile-4">
+                <div>
+                  Tile 1
+                </div>
+              </div>
+            </li>
+          </GridListTile>
+        </WithStyles(GridListTile)>
+        <WithStyles(GridListTile) classes={{...}}>
+          <GridListTile classes={{...}} cols={1} component="li" rows={1}>
+            <li className="MuiGridListTile-root-3 RSFResponsiveTiles-tile-8">
+              <EventListener target="window" onResize={[Function: debounced]} />
+              <div className="MuiGridListTile-tile-4">
+                <div>
+                  Tile 3
+                </div>
+              </div>
+            </li>
+          </GridListTile>
+        </WithStyles(GridListTile)>
+        <WithStyles(GridListTile) classes={{...}}>
+          <GridListTile classes={{...}} cols={1} component="li" rows={1}>
+            <li className="MuiGridListTile-root-3 RSFResponsiveTiles-tile-8">
+              <EventListener target="window" onResize={[Function: debounced]} />
+              <div className="MuiGridListTile-tile-4">
+                <div>
+                  Tile 4
+                </div>
+              </div>
+            </li>
+          </GridListTile>
+        </WithStyles(GridListTile)>
+      </ul>
+    </ResponsiveTilesInner>
+  </WithStyles(ResponsiveTilesInner)>
+</ResponsiveTiles>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AmpHidden should render hidden initially when hidden=true 1`] = `
+<WithStyles(AmpHidden) bind="myState.hidden" hidden={true}>
+  <AmpHidden classes={{...}} bind="myState.hidden" hidden={true} component="div">
+    <div amp-bind="class=>myState.hidden ? \\'RSFAmpHidden-hidden-1\\' : null" className="RSFAmpHidden-hidden-1" />
+  </AmpHidden>
+</WithStyles(AmpHidden)>
+`;
+
+exports[`AmpHidden should render visible by default 1`] = `
+<WithStyles(AmpHidden) bind="myState.hidden">
+  <AmpHidden classes={{...}} bind="myState.hidden" component="div" hidden={false}>
+    <div amp-bind="class=>myState.hidden ? \\'RSFAmpHidden-hidden-1\\' : null" className={{...}} />
+  </AmpHidden>
+</WithStyles(AmpHidden)>
+`;

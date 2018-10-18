@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Box accepts css 1`] = `
+<div
+  className="RSFBox-root-1 rootClass myClass"
+  style={Object {}}
+/>
+`;
+
+exports[`Box fowards props to style 1`] = `
+<div
+  className="RSFBox-root-1"
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`Box renders with no props 1`] = `
+<div
+  className="RSFBox-root-1"
+  style={Object {}}
+/>
+`;
+
+exports[`Hbox renders 1`] = `
+<div
+  className="RSFBox-root-1"
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+/>
+`;
+
+exports[`Vbox renders 1`] = `
+<div
+  className="RSFBox-root-1"
+  style={
+    Object {
+      "flexDirection": "column",
+    }
+  }
+/>
+`;

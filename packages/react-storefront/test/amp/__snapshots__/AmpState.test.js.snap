@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AmpState should render an amp-state when amp is true 1`] = `
+<Provider app={{...}}>
+  <inject-AmpState initialState={{...}}>
+    <AmpState initialState={{...}} amp={true} id="moovAmpState">
+      <Provider ampStateId="moovAmpState">
+        <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+          <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+            <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+          </SideEffect(NullComponent)>
+        </HelmetWrapper>
+        <amp-state id="moovAmpState">
+          <script type="application/json" dangerouslySetInnerHTML={{...}} />
+        </amp-state>
+        <div>
+          inner
+        </div>
+      </Provider>
+    </AmpState>
+  </inject-AmpState>
+</Provider>
+`;
+
+exports[`AmpState should render only children when amp is false 1`] = `
+<Provider app={{...}}>
+  <inject-AmpState>
+    <AmpState amp={false} initialState={{...}} id="moovAmpState">
+      <Provider ampStateId="moovAmpState">
+        <div>
+          inner
+        </div>
+      </Provider>
+    </AmpState>
+  </inject-AmpState>
+</Provider>
+`;
