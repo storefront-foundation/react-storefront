@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "author": "Moovweb",
@@ -92,8 +92,8 @@
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "isomorphic-unfetch": "^2.0.0",
-    "jss": "^9.8.7",
     "js-cookie": "^2.2.0",
+    "jss": "^9.8.7",
     "lodash.isfunction": "^3.0.9",
     "md5-file": "^4.0.0",
     "mst-middlewares": "^2.0.5",
