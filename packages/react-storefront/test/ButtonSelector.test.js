@@ -165,4 +165,20 @@ describe('ButtonSelector', () => {
       </Provider>
     )).toMatchSnapshot()
   })
+
+  it('should allow you to set a custom angle for the strikethrough', () => {
+    selection = SelectionModelBase.create({
+      options: [
+        { id: '1', disabled: true, image: 'http://via.placeholder.com/128x128/ffffff' },
+        { id: '2', image: 'http://via.placeholder.com/128x128/000000' }
+      ],
+      selected: { id: '2', image: 'http://via.placeholder.com/128x128/000000' }
+    })
+
+    expect(mount(
+      <Provider app={app}>
+        <ButtonSelector model={selection} strikeThroughAngle={35} strikeThroughDisabled/>
+      </Provider>
+    )).toMatchSnapshot()
+  })
 })
