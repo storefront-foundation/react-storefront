@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
+ */
 import React, { Component } from 'react'
 import Link from './Link'
 import PropTypes from 'prop-types'
