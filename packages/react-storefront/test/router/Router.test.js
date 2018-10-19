@@ -660,17 +660,44 @@ bar\r
   })
 
   describe('after', function() {
-    it('should be called after all routes', async () => {
-      const after = jest.fn()
-      const router = new Router()
-        .get('/', fromClient({}))
-        .after(after)
+    it('should be called after all routes', async (done) => {
+      const history = createMemoryHistory()
 
-      const request = { pathname: '/', method: 'GET', search: '' }
-      const response = new Response()
-      await router.runAll(request, response)
-      expect(after).toHaveBeenCalledWith(request, response)
+      const router = new Router()
+        .get('/foo', fromClient({}))
+        .watch(history, Function.prototype)
+
+      const onAfter = jest.fn()
+      const onBefore = jest.fn()
+
+      router.on('after', onAfter)
+      router.on('before', onBefore)
+
+      history.push('/foo')
+      
+      setTimeout(() => {
+        expect(onAfter).toHaveBeenCalled()
+        expect(onBefore).toHaveBeenCalled()
+        done()
+      }, 500)
     })    
+
+    it('should fire an after event with initialLoad: true', () => {
+      const history = createMemoryHistory()
+      const onAfter = jest.fn()
+      const router = new Router().get('/foo', fromClient({}))
+      router.on('after', onAfter)
+      router.watch(history, Function.prototype)
+      expect(onAfter).toHaveBeenCalled()
+    })
+  })
+
+  describe('getQueryParams', () => {
+    it('should parse the query string of the current url', () => {
+      const history = createMemoryHistory({ initialEntries: ['/?foo=bar']})
+      const router = new Router().watch(history, Function.prototype)
+      expect(router.getQueryParams()).toEqual({foo: 'bar'})
+    })
   })
 
   afterAll(() => {
