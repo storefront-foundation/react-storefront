@@ -9,6 +9,7 @@ import { merge, cloneDeep } from 'lodash'
 import { configureCache, cache } from './serviceWorker'
 import parseMultipartRequest from './parseMultipartRequest'
 import Response from './Response'
+import EventEmitter from 'eventemitter3'
 
 /**
  * Provides routing for MUR-based applications and PWAs.  This class is innspired by express and uses https://github.com/rcs/route-parser,
@@ -59,9 +60,10 @@ import Response from './Response'
  *    })
  *  }
  */
-export default class Router {
+export default class Router extends EventEmitter {
 
   constructor() {
+    super()
     this.routes = []
     this.afterHandlers = []
     this.isBrowser = process.env.MOOV_RUNTIME === 'client'
@@ -474,7 +476,10 @@ export default class Router {
       callback(state, action) // called when restoring history state and applying state from Link components
     }
 
+    this.emit('before', { request, response })
+
     if (action === 'PUSH' || !state) {
+
       /*
        * Why limit action to PUSH here? POP indicates that the user is going back or forward
        * In those cases, if we have location.state, we can assume it's the full state.  We don't need to
@@ -489,7 +494,7 @@ export default class Router {
       callback(state, action) // called when restoring history state and applying state from Link components
     }
 
-    this.doAfter(request, response)
+    this.emit('after', { request, response })
   }
 
   /**
@@ -531,6 +536,7 @@ export default class Router {
     const response = new Response(request)
 
     this.runAll(request, response, { initialLoad: true }, window.initialState)
+    this.emit('after', { request, response, initialLoad: true })
 
     return this
   }
