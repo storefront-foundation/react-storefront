@@ -211,6 +211,24 @@ const selectionModelWithText = SelectionModelBase.create({
   selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
 })
 
+const selectionModelWithColors = SelectionModelBase.create({
+  options: [
+    OptionModelBase.create({ id: 'large', color: '#ff0000' }),
+    OptionModelBase.create({ id: 'medium', color: '#00ff00' }),
+    OptionModelBase.create({ id: 'small', color: 'rgb(0, 0, 255)' })
+  ],
+  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
+})
+
+const selectionModelWithDisabled = SelectionModelBase.create({
+  options: [
+    OptionModelBase.create({ id: 'large', color: '#ff0000' }),
+    OptionModelBase.create({ id: 'medium', color: '#00ff00' }),
+    OptionModelBase.create({ id: 'small', disabled: true, color: 'rgb(0, 0, 255)' })
+  ],
+  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
+})
+
 storiesOf('ButtonSelector', module)
   .addDecorator(wrapWithProvider())
   .addWithJSX('with text options', () => <ButtonSelector
@@ -220,6 +238,14 @@ storiesOf('ButtonSelector', module)
   .addWithJSX('with image options', () => <ButtonSelector
     model={selectionModelWithImages}
     onSelectionChange={(_, item) => selectionModelWithImages.setSelected(item)}
+  />)
+  .addWithJSX('with color options', () => <ButtonSelector
+    model={selectionModelWithColors}
+    onSelectionChange={(_, item) => selectionModelWithColors.setSelected(item)}
+  />)
+  .addWithJSX('with disabled options', () => <ButtonSelector
+    model={selectionModelWithDisabled}
+    onSelectionChange={(_, item) => selectionModelWithDisabled.setSelected(item)}
   />)
 
 storiesOf('CartButton', module)
