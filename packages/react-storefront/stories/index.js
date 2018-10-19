@@ -42,6 +42,7 @@ import TabPanel from '../src/TabPanel'
 import TabsRow from '../src/TabsRow'
 import ToolbarButton from '../src/ToolbarButton'
 import BackNav from '../src/BackNav'
+import createTheme from '../src/createTheme'
 
 // Models
 import { LocationModel } from '../src/model/AppModelBase'
@@ -63,6 +64,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles'
 import PhotoCamera from '@material-ui/icons/PhotoCamera'
 
 import PaginationContainer from './PaginationContainer'
+import Helmet from 'react-helmet'
 
 setAddon(JSXAddon);
 
@@ -115,13 +117,16 @@ const wrapWithProvider = extraState => story => {
     search: SearchModelBase.create()
   }
 
-  const theme = createMuiTheme();
+  const theme = createTheme();
   theme.margins = {};
 
   return (
     <Provider app={Object.assign(state, extraState)} history={history} router={null}>
       <JssProvider jss={jss} generateClassName={generateClassName}>
         <MuiThemeProvider theme={theme}>
+          <Helmet>
+            <style>{`* { box-sizing: border-box }`}</style>
+          </Helmet>
           {story()}
         </MuiThemeProvider>
       </JssProvider>
@@ -195,11 +200,11 @@ storiesOf('Breadcrumbs', module)
 
 const selectionModelWithImages = SelectionModelBase.create({
   options: [
-    OptionModelBase.create({ id: 'big', image: 'https://placehold.it/100?text=L' }),
-    OptionModelBase.create({ id: 'medium', image: 'https://placehold.it/100?text=M' }),
-    OptionModelBase.create({ id: 'small', image: 'https://placehold.it/100?text=S' })
+    OptionModelBase.create({ id: 'big', image: 'http://via.placeholder.com/35/d32f2f/d32f2f' }),
+    OptionModelBase.create({ id: 'medium', image: 'http://via.placeholder.com/35/388E3C/388E3C' }),
+    OptionModelBase.create({ id: 'small', image: 'http://via.placeholder.com/35/1565c0/1565c0' })
   ],
-  selected: OptionModelBase.create({ id: 'medium', image: 'https://placehold.it/100?text=M' })
+  selected: OptionModelBase.create({ id: 'medium', image: 'http://via.placeholder.com/35/388E3C/388E3C' })
 })
 
 const selectionModelWithText = SelectionModelBase.create({
@@ -207,6 +212,24 @@ const selectionModelWithText = SelectionModelBase.create({
     OptionModelBase.create({ id: 'large', text: 'Large' }),
     OptionModelBase.create({ id: 'medium', text: 'Medium' }),
     OptionModelBase.create({ id: 'small', text: 'Small' })
+  ],
+  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
+})
+
+const selectionModelWithColors = SelectionModelBase.create({
+  options: [
+    OptionModelBase.create({ id: 'large', color: '#ff0000' }),
+    OptionModelBase.create({ id: 'medium', color: '#00ff00' }),
+    OptionModelBase.create({ id: 'small', color: 'rgb(0, 0, 255)' })
+  ],
+  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
+})
+
+const selectionModelWithDisabled = SelectionModelBase.create({
+  options: [
+    OptionModelBase.create({ id: 'large', color: '#ff0000' }),
+    OptionModelBase.create({ id: 'medium', color: '#00ff00' }),
+    OptionModelBase.create({ id: 'small', disabled: true, color: 'rgb(0, 0, 255)' })
   ],
   selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
 })
@@ -220,6 +243,16 @@ storiesOf('ButtonSelector', module)
   .addWithJSX('with image options', () => <ButtonSelector
     model={selectionModelWithImages}
     onSelectionChange={(_, item) => selectionModelWithImages.setSelected(item)}
+  />)
+  .addWithJSX('with color options', () => <ButtonSelector
+    model={selectionModelWithColors}
+    onSelectionChange={(_, item) => selectionModelWithColors.setSelected(item)}
+  />)
+  .addWithJSX('with disabled options', () => <ButtonSelector
+    model={selectionModelWithDisabled}
+    strikeThroughDisabled
+    strikeTroughAngle={45}
+    onSelectionChange={(_, item) => selectionModelWithDisabled.setSelected(item)}
   />)
 
 storiesOf('CartButton', module)

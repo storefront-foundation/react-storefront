@@ -9,6 +9,7 @@ import { merge, cloneDeep } from 'lodash'
 import { configureCache, cache } from './serviceWorker'
 import parseMultipartRequest from './parseMultipartRequest'
 import Response from './Response'
+import EventEmitter from 'eventemitter3'
 
 /**
  * Provides routing for MUR-based applications and PWAs.  This class is innspired by express and uses https://github.com/rcs/route-parser,
@@ -59,11 +60,11 @@ import Response from './Response'
  *    })
  *  }
  */
-export default class Router {
+export default class Router extends EventEmitter {
 
   constructor() {
+    super()
     this.routes = []
-    this.afterHandlers = []
     this.isBrowser = process.env.MOOV_RUNTIME === 'client'
 
     this.fallbackHandlers = [{
@@ -165,16 +166,6 @@ export default class Router {
    */
   error(handler) {
     this.errorHandler = handler
-    return this
-  }
-
-  /**
-   * Registers a function to run after each route
-   * @param {Function} handler 
-   * @return {Router} this
-   */
-  after(handler) {
-    this.afterHandlers.push(handler)
     return this
   }
 
@@ -348,8 +339,6 @@ export default class Router {
       }
     }
 
-    this.doAfter(request, response)
-
     return state
   }
 
@@ -451,8 +440,6 @@ export default class Router {
    * @param {Object} location The new location
    */
   onLocationChange = async (callback, location, action) => {
-    window.moov.timing.routeStart = new Date().getTime()
-
     if (action === 'REPLACE') return
 
     // no need to run the route if the location hasn't changed
@@ -474,6 +461,8 @@ export default class Router {
       callback(state, action) // called when restoring history state and applying state from Link components
     }
 
+    this.emit('before', { request, response })
+
     if (action === 'PUSH' || !state) {
       /*
        * Why limit action to PUSH here? POP indicates that the user is going back or forward
@@ -483,23 +472,11 @@ export default class Router {
       for await (let state of this.run(request, response, { historyState: state })) {
         callback(state, action)
       }
-
-      window.moov.timing.routeEnd = new Date().getTime()
     } else if (state) {
       callback(state, action) // called when restoring history state and applying state from Link components
     }
 
-    this.doAfter(request, response)
-  }
-
-  /**
-   * Run all after handlers
-   * @private
-   */
-  doAfter(request, response) {
-    for (let handler of this.afterHandlers) {
-      handler(request, response)
-    }
+    this.emit('after', { request, response })
   }
 
   /**
@@ -531,6 +508,7 @@ export default class Router {
     const response = new Response(request)
 
     this.runAll(request, response, { initialLoad: true }, window.initialState)
+    this.emit('after', { request, response, initialLoad: true })
 
     return this
   }

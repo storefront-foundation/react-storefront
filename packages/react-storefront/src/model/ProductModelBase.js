@@ -16,7 +16,7 @@ const ProductModelBase = types
     quantity: types.optional(types.number, 1),
     rating: types.maybe(types.number),
     reviewCount: types.maybe(types.number),
-    price: types.maybe(types.number),
+    basePrice: types.maybe(types.number),
     brand: types.maybe(types.string),
     images: types.optional(types.array(types.string), []),
     thumbnails: types.optional(types.array(types.string), []),
@@ -26,6 +26,15 @@ const ProductModelBase = types
   .views(self => ({
     shouldApplyPatchOnPop(patch) {
       return patch.page === 'Product'
+    },
+    get price() {
+      const size = self.size && self.size.selected
+
+      if (size && size.price) {
+        return size.price
+      } else {
+        return self.basePrice
+      }
     }
   }))
   .actions(self => ({

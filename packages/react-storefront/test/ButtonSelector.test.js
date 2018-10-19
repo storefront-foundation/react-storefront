@@ -61,6 +61,24 @@ describe('ButtonSelector', () => {
     )).toMatchSnapshot()
   })
 
+  it('should render css color codes', () => {
+    selection = SelectionModelBase.create({
+      options: [
+        { id: '1', color: '#ffffff', url: '/foo' },
+        { id: '2', color: 'rgb(255, 0, 0)', url: '/bar' }
+      ],
+      selected: { id: '2', image: 'http://via.placeholder.com/128x128/000000', url: '/bar' }
+    })
+
+    expect(mount(
+      <Provider app={app}>
+        <AmpState>
+          <ButtonSelector model={selection}/>
+        </AmpState>
+      </Provider>
+    )).toMatchSnapshot()
+  })
+
   it('should render links for options with urls', () => {
     selection = SelectionModelBase.create({
       options: [
@@ -144,6 +162,22 @@ describe('ButtonSelector', () => {
     expect(mount(
       <Provider app={app}>
         <ButtonSelector model={selection} showSelectedText/>
+      </Provider>
+    )).toMatchSnapshot()
+  })
+
+  it('should allow you to set a custom angle for the strikethrough', () => {
+    selection = SelectionModelBase.create({
+      options: [
+        { id: '1', disabled: true, image: 'http://via.placeholder.com/128x128/ffffff' },
+        { id: '2', image: 'http://via.placeholder.com/128x128/000000' }
+      ],
+      selected: { id: '2', image: 'http://via.placeholder.com/128x128/000000' }
+    })
+
+    expect(mount(
+      <Provider app={app}>
+        <ButtonSelector model={selection} strikeThroughAngle={35} strikeThroughDisabled/>
       </Provider>
     )).toMatchSnapshot()
   })

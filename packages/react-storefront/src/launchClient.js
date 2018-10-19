@@ -9,7 +9,6 @@ import { connectReduxDevtools } from "mst-middlewares"
 import createBrowserHistory from 'history/createBrowserHistory'
 import registerServiceWorker from './registerServiceWorker'
 import PWA from './PWA'
-import analytics from './analytics'
 import { onSnapshot } from 'mobx-state-tree'
 import { debounce } from 'lodash'
 
@@ -23,7 +22,6 @@ import { debounce } from 'lodash'
  */
 export default function launchClient({ App, theme, model, router, target = document.getElementById('root') }) {
   const history = createBrowserHistory()
-  analytics.setHistory(history)
 
   const state = hydrate({
     component: <PWA><App/></PWA>,
@@ -54,9 +52,7 @@ export default function launchClient({ App, theme, model, router, target = docum
   window.addEventListener('load', () => {
     // we only start watching after the window.onload event so that
     // timing metrics are fully collected and be reported correctly to analytics
-    router
-      .after(() => analytics.pageView(state))
-      .watch(history, state.applyState)
+    router.watch(history, state.applyState)
   })
   
   registerServiceWorker()

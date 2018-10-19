@@ -10,6 +10,13 @@ All rights reserved.
 
 ## Changelog
 
+### 4.1.0
+
+ * Added `ProductModelBase.basePrice`
+ * `ProductModelBase.price` is now a view that returns the `price` of the selected size or, if not present, the `basePrice`.
+ * `ButtonSelector` can now display a CSS color code instead of an image via the new `color` field on `OptionModelBase`
+ * `ButtonSelector` can now be configured to display a strike through when disabled by setting `strikeThroughDisabled`.  The angle can be controlled via `strikeThroughAngle`.
+
 ### 4.0.0
 
 * Renamed to react-storefront and published on npmjs.org

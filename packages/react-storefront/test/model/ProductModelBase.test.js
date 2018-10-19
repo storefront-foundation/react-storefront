@@ -85,4 +85,26 @@ describe('ProductModelBase', () => {
     expect(product.images).toEqual([ '/foo.jpeg' ])
   })
 
+  it('should calculate price based on basePrice', () => {
+    const product = createTestProduct({
+      basePrice: 99.99
+    })
+
+    expect(product.price).toEqual(99.99)
+  })
+
+  it('should calculate price based on the selected size', () => {
+    const product = createTestProduct({
+      basePrice: 99.99,
+      size: {
+        selected: {
+          id: '1',
+          price: 109.99
+        }
+      }
+    })
+
+    expect(product.price).toEqual(109.99)
+  })
+
 })

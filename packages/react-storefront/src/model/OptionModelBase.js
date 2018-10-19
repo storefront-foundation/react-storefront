@@ -21,7 +21,15 @@ const OptionModelBase = types
     /**
      * A URL for an image to display
      */
-    image: types.maybe(types.string)
+    image: types.maybe(types.string),
+    /**
+     * A CSS color value to display when an image is not available
+     */
+    color: types.maybe(types.string),
+    /**
+     * The item price for the option.
+     */
+    price: types.maybe(types.number)
   })
 
 export default OptionModelBase 
