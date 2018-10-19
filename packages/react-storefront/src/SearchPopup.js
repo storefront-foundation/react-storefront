@@ -16,7 +16,7 @@ import Highlight from 'react-highlighter'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Link from './Link'
 import { PropTypes as MobxPropTypes, inject, observer } from 'mobx-react'
-import Image from 'moov-pwa/Image'
+import Image from './Image'
 
 /**
  * A search popup with suggestions of search texts, categories, products.
