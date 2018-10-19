@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
+ */
 import React, { Component } from 'react'
 import PageLink from './PageLink'
 import PropTypes from 'prop-types'
