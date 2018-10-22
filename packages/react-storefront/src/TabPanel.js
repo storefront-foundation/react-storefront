@@ -71,21 +71,32 @@ export const styles = theme => ({
 @inject('app', 'ampStateId')
 export default class TabPanel extends Component {
   
-  state = {
-    selected: 0
+  constructor(props) {
+    super(props)
+    this.state = {
+      selected: props.selected || 0
+    }
   }
 
   static propTypes = {
     /**
      * Set to false to prevent the tabs from scrolling
      */
-    scrollable: PropTypes.bool
+    scrollable: PropTypes.bool,
+    /**
+     * Selected tab index
+     */
+    selected: PropTypes.number,
   }
 
   static defaultProps = {
     ampStateId: 'moovAmpState',
     ampStateProperty: 'selectedTab',
     scrollable: true
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ selected: nextProps.selected });
   }
 
   render() {
