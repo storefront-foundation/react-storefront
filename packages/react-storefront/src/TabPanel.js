@@ -74,7 +74,7 @@ export default class TabPanel extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selected: props.selected || 0
+      selected: props.selected
     }
   }
 
@@ -92,7 +92,8 @@ export default class TabPanel extends Component {
   static defaultProps = {
     ampStateId: 'moovAmpState',
     ampStateProperty: 'selectedTab',
-    scrollable: true
+    scrollable: true,
+    selected: 0
   }
 
   componentWillReceiveProps(nextProps) {
