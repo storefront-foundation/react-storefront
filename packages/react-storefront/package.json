@@ -6,6 +6,7 @@
   "author": "Moovweb",
   "license": "UNLICENSED",
   "scripts": {
+    "test:unit": "jest",
     "test": "jest test.js && yarn test:browser",
     "test:browser": "webpack --config=config/webpack.config.js && karma start config/karma.conf.js --single-run",
     "storybook": "start-storybook -p 6006",

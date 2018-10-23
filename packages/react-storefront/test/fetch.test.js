@@ -151,6 +151,7 @@ describe('fetchWithCookies', () => {
 
   afterEach(() => {
     delete env.cookie
+    delete process.env.shouldSendCookies
   })
 
   it('should add env.cookie as headers.cookie', async () => {
@@ -161,6 +162,12 @@ describe('fetchWithCookies', () => {
     })
 
     expect(options.credentials).toBe('include')
+  })
+
+  it('should not add cookies if "shouldSendCookies" is false', async () => {
+    process.env.shouldSendCookies = false
+    await fetchWithCookies('https://jsonplaceholder.typicode.com/posts/1')
+    expect(options.headers).toEqual({ })
   })
 
   it('should not add a cookie if env.cookie is undefined', async () => {

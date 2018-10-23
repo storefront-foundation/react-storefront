@@ -60,7 +60,7 @@ function createRequestOptions(url, fetchOptions = {}, qsOptions) {
 export function fetchWithCookies(url, options = {}, qsOptions) {
   const headers = {}
 
-  if (env.cookie) {
+  if (env.cookie && process.env.shouldSendCookies !== 'false') {
     headers.cookie = env.cookie
   }
 

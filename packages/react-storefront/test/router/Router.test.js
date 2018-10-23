@@ -699,6 +699,21 @@ bar\r
     })
   })
 
+  describe('Fetching within cacheable route', () => {
+    it('should set send cookie ENV variable for fetch', async () => {
+      router.get('/new',
+        cache({ 
+          server: { maxAgeSeconds: 300 }
+        }),
+        fromServer(() => {
+          return Promise.resolve('NEW PRODUCTS')
+        })          
+      )
+      await runAll('get', '/new')
+      expect(process.env.shouldSendCookies).toBe('false');
+    })
+  })
+
   afterAll(() => {
     jest.unmock('../../src/router/serviceWorker')
   })
