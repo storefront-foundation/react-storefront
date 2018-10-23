@@ -9,16 +9,14 @@
  * @param {String} cacheData The data to cache
  */
 export async function cache(path, cacheData) {
-  // Do not run if service worker is not supported
-  if (!navigator.serviceWorker) return
+  if (await waitForServiceWorkerController()) {
+    const { apiVersion } = window.moov
 
-  await waitForServiceWorkerController()
-  const { apiVersion } = window.moov
-
-  if (cacheData) {
-    navigator.serviceWorker.controller.postMessage({ action: 'cache-state', path, apiVersion, cacheData })
-  } else {
-    navigator.serviceWorker.controller.postMessage({ action: 'cache-path', path, apiVersion })
+    if (cacheData) {
+      navigator.serviceWorker.controller.postMessage({ action: 'cache-state', path, apiVersion, cacheData })
+    } else {
+      navigator.serviceWorker.controller.postMessage({ action: 'cache-path', path, apiVersion })
+    }
   }
 }
 
@@ -56,9 +54,7 @@ export function prefetch(path) {
  * more important requests, like page navigation.
  */
 export async function abortPrefetches() {
-  await waitForServiceWorkerController()
-  
-  if (navigator.serviceWorker) {
+  if (await waitForServiceWorkerController()) {
     navigator.serviceWorker.controller.postMessage({ action: 'abort-prefetches' })
   }
 }
@@ -67,8 +63,9 @@ export async function abortPrefetches() {
  * Resume queued prefetch requests which were cancelled to allow for more important requests
  */
 export async function resumePrefetches() {
-  await waitForServiceWorkerController()
-  navigator.serviceWorker.controller.postMessage({ action: 'resume-prefetches' })
+  if (await waitForServiceWorkerController()) {
+    navigator.serviceWorker.controller.postMessage({ action: 'resume-prefetches' })
+  }
 }
 
 /**
@@ -79,26 +76,24 @@ export async function resumePrefetches() {
  * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
  */
 export async function configureCache(options) {
-  // Do not run if service worker is not supported
-  if (!navigator.serviceWorker) return
-
-  await waitForServiceWorkerController()
-  navigator.serviceWorker.controller.postMessage({ action: 'configure-runtime-caching', options })
+  if (await waitForServiceWorkerController()) {
+    navigator.serviceWorker.controller.postMessage({ action: 'configure-runtime-caching', options })
+  }
 }
 
 /**
  * Resolves when the service worker has been installed
  */
 async function waitForServiceWorkerController() {
-  if (!navigator.serviceWorker) return Promise.resolve()
+  if (!navigator.serviceWorker || !navigator.serviceWorker.controller) return false
 
   return new Promise(resolve => {
     navigator.serviceWorker.ready.then(() => {
       if (navigator.serviceWorker.controller) {
-        return resolve(navigator.serviceWorker.controller)
+        return resolve(true)
       }
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        return resolve(navigator.serviceWorker.controller) 
+        return resolve(true) 
       })
     })
   })
@@ -109,6 +104,7 @@ async function waitForServiceWorkerController() {
  * are appropriate for the current version of the UI.
  */
 export async function removeOldCaches() {
-  await waitForServiceWorkerController()
-  navigator.serviceWorker.controller.postMessage({ action: 'remove-old-caches', apiVersion: window.moov.apiVersion })
+  if (await waitForServiceWorkerController()) {
+    navigator.serviceWorker.controller.postMessage({ action: 'remove-old-caches', apiVersion: window.moov.apiVersion })
+  }
 }
