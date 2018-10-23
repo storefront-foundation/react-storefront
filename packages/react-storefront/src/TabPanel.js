@@ -97,7 +97,9 @@ export default class TabPanel extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ selected: nextProps.selected });
+    if (typeof nextProps.selected === 'number') {
+      this.setState({ selected: nextProps.selected });
+    }
   }
 
   render() {
