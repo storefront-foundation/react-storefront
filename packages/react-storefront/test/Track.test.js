@@ -34,6 +34,28 @@ describe('Track', () => {
       expect(testEvent).toHaveBeenCalledWith({ foo: 'bar' })
     })
   })
+
+  it('should call the onSuccess prop after the event has been sent', (done) => {
+    const testEvent = jest.fn()
+    const onSuccess = jest.fn()
+
+    configureAnalytics({ testEvent })
+
+    mount(
+      <TestProvider>
+        <Track event="testEvent" foo="bar" onSuccess={onSuccess}>
+          <button>Click Me</button>
+        </Track>
+      </TestProvider>
+    )
+      .find('button')
+      .simulate('click')
+
+    setTimeout(() => {
+      expect(onSuccess).toHaveBeenCalled()
+      done()
+    }, 200)
+  })
   
   it('calls the original handler prop', () => {
     const testEvent = jest.fn(), onClick = jest.fn()

@@ -10,6 +10,11 @@ All rights reserved.
 
 ## Changelog
 
+### 4.2.0
+
+* Added onSuccess prop to `Track`
+* Prefetching now automatically resumes once page navigation is complete.
+
 ### 4.1.0
 
  * Added `ProductModelBase.basePrice`

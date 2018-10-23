@@ -194,6 +194,8 @@ export default class TabsRow extends Component {
   }
 
   tabRenderer = item => {
+    const { classes } = this.props
+    
     return item.url ? (
       <Link className={classes.link} to={item.url} prefetch={item.prefetch} onClick={this.onLinkClick}>{item.text}</Link>
     ) : (

@@ -19,9 +19,9 @@ export function resetId() {
 }
 
 /**
- * Fires an analytic event when the user interacts with the child component.  By default this fires when the user
+ * Fires an analytics event when the user interacts with the child component.  By default this fires when the user
  * clicks on the child component, but this can be overriden using the `trigger` prop.  The value of trigger should
- * be the name of the prop on
+ * be the name of the event prop to bind to. All additional props will be passed as options along with the event.
  * 
  * Example:
  * 
@@ -47,11 +47,17 @@ export default class Track extends Component {
     /**
      * The name of the handler prop on child component to intercept.  Defaults to "onClick"
      */
-    trigger: PropTypes.string
+    trigger: PropTypes.string,
+
+    /**
+     * A function to call once the event has been successfully sent by all analytics targets.
+     */
+    onSuccess: PropTypes.func
   }
 
   static defaultProps = {
-    trigger: 'onClick'
+    trigger: 'onClick',
+    onSuccess: Function.prototype
   }
 
   componentWillMount() {
@@ -70,8 +76,12 @@ export default class Track extends Component {
    * block the render loop.
    */
   fireEvent() {
-    const { event, trigger, app, children, ...data } = this.props
-    setImmediate(() => analytics[event](data))
+    const { event, trigger, app, children, onSuccess, ...data } = this.props
+
+    setImmediate(async () => {
+      await analytics[event](data)
+      onSuccess()
+    })
   }
 
   /**
