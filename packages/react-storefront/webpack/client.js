@@ -42,10 +42,9 @@ module.exports = {
    */
   dev(root, { workboxConfig, entries } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
-    const url = 'http://localhost:8080'
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
-    return () => Object.assign(createClientConfig(root, { entries }), {
+    return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries }), {
       devtool: 'inline-cheap-module-source-map',
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })

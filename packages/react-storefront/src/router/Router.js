@@ -206,7 +206,6 @@ export default class Router extends EventEmitter {
   cacheInitialState(request) {
     const { pathname, search } = request
     cache(pathname + search, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
-    cache(pathname + '.json' + search, window.initialState)
   }
 
   /**

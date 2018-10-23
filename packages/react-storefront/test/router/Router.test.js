@@ -192,7 +192,6 @@ describe('Router:Node', function() {
         window.initialState = { view: 'home', foo: 'bar' }
         await router.runAll({ pathname: '/', search: '', method: 'get' }, new Response(), { initialLoad: true, afterOnly: true })
         expect(serviceWorker.cache.mock.calls[0]).toEqual(['/', '<!DOCTYPE html>\n<html><head></head><body></body></html>'])
-        expect(serviceWorker.cache.mock.calls[1]).toEqual(['/.json', { view: 'home', foo: 'bar' }])
       })
     })
   })
