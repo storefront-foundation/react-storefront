@@ -47,43 +47,43 @@ function createServerConfig(root, alias) {
   })
 }
 
-const babelLoader = {
-  loader: 'babel-loader',
-  options: {
-    cacheDirectory: true,
-    presets: [
-      ["env", {
-        targets: {
-          browsers: "> 1%",
-          uglify: true
-        },
-        useBuiltIns: true,
-        modules
-      }],
-      "react"
-    ],
-    env: {
-      "production": {
-        "presets": ["minify"]
-      }
-    },
-    plugins: [
-      ...plugins,
-      ["transform-runtime", {
-        "polyfill": false,
-        "regenerator": true
-      }],
-      "transform-async-to-generator",
-      "transform-decorators-legacy",
-      "syntax-dynamic-import",
-      "transform-object-rest-spread",
-      "transform-class-properties",
-      "universal-import"
-    ]
-  }
-}
-
 function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', eslintConfig }) {
+  const babelLoader = {
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
+      presets: [
+        ["env", {
+          targets: {
+            browsers: "> 1%",
+            uglify: true
+          },
+          useBuiltIns: true,
+          modules
+        }],
+        "react"
+      ],
+      env: {
+        "production": {
+          "presets": ["minify"]
+        }
+      },
+      plugins: [
+        ...plugins,
+        ["transform-runtime", {
+          "polyfill": false,
+          "regenerator": true
+        }],
+        "transform-async-to-generator",
+        "transform-decorators-legacy",
+        "syntax-dynamic-import",
+        "transform-object-rest-spread",
+        "transform-class-properties",
+        "universal-import"
+      ]
+    }
+  }
+
   return [
     {
       test: /\.js$/,
@@ -102,8 +102,8 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
     },
     {
       test: /\.js$/,
-      include: /(src|node_modules\/react-storefront\/src|node_modules\/moov-pwa-analytics\/src)/,
-      use: [ babelLoader ]
+      include: /(src|node_modules\/react-storefront\/src|node_modules\/react-storefront-extensions\/src)/,
+      use: [babelLoader]
     },
     {
       test: /\.(png|jpg|gif|otf|woff)$/,
@@ -141,7 +141,10 @@ function createPlugins(root) {
     new CleanWebpackPlugin([
       path.join(root, 'build', 'assets'),
       path.join(root, 'scripts', 'build')
-    ], { allowExternal: true }),
+    ], { 
+      allowExternal: true,
+      verbose: false
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
       filename: '[name].[hash].js',
