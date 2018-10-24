@@ -49,7 +49,7 @@ export default function cache({ server, client }) {
       } else if (server) {
         if (server.maxAgeSeconds) {
           // For fetch to read
-          process.env.shouldSendCookies = false
+          env.shouldSendCookies = false
           response.relayUpstreamCookies(false)
           response.cacheOnServer(server.maxAgeSeconds)
         }

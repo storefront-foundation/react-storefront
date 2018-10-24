@@ -22,7 +22,7 @@ describe('Router:Node', function() {
     global.headers = {
       header: Function.prototype
     }
-
+    global.env = {}
     runAll = function(method, path) {
       const [ pathname, search ] = path.split(/\?/)
       const request = { pathname, search: search ? `?${search}` : '', method }
@@ -710,7 +710,7 @@ bar\r
         })          
       )
       await runAll('get', '/new')
-      expect(process.env.shouldSendCookies).toBe('false');
+      expect(env.shouldSendCookies).toBe(false);
     })
   })
 
