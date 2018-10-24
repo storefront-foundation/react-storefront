@@ -115,7 +115,6 @@ const AppModelBase = types
       delete patch.user
       delete patch.menu
       delete patch.tabs
-      delete patch.user
       return patch
     },
 
