@@ -2,6 +2,8 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+import 'proxy-polyfill' // needed for IE9-11
+
 let _targets = []
 
 /**
@@ -56,20 +58,25 @@ export function getTargets() {
  *  )
  * 
  */
-export default new Proxy({}, {
-  get: function (o, method) {
-    return function(...args) {
-      for (let target of _targets) {
-        const fn = target[method]
+export default new Proxy(
+  { 
+    setHistory: () => {} // polyfill for IE11 requires defined fields in Target argument
+  }, 
+  {
+    get: function (o, method) {
+      return function(...args) {
+        for (let target of _targets) {
+          const fn = target[method]
 
-        if (fn) {
-          fn.apply(target, args)
-        } else {
-          if (typeof method === 'string') {
-            console.warn(`${target.constructor.name} does not support ${method}`)
+          if (fn) {
+            fn.apply(target, args)
+          } else {
+            if (typeof method === 'string') {
+              console.warn(`${target.constructor.name} does not support ${method}`)
+            }
           }
         }
       }
     }
   }
-})
+)
