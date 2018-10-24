@@ -52,7 +52,16 @@ export default class Link extends Component {
     /**
      * A function to call when the link is clicked.
      */
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+
+    /**
+     * Props to apply to the underlying html anchor element
+     */
+    anchorProps: PropTypes.object
+  }
+
+  static defaultProps = {
+    anchorProps: {}
   }
 
   constructor() {
@@ -87,9 +96,10 @@ export default class Link extends Component {
   }
 
   render() {
-    const { className, style, children, prefetch, to, location, ...others } = this.props
+    const { anchorProps, className, style, children, prefetch, to, location, ...others } = this.props
 
     const props = {
+      ...anchorProps,
       ...dataProps(others),
       'data-moov-link': 'on',
       className: classnames(this.props.classes.root, className),

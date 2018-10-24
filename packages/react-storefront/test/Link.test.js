@@ -169,6 +169,16 @@ describe('Link', () => {
     ).toBe(1)
   })
 
+  it('should assign anchorProps to the a tag', () => {
+    expect(
+      mount(
+        <Provider history={history} app={app}>
+          <Link to="/p/1" anchorProps={{ target: '_blank' }}>Red Shirt</Link>
+        </Provider>
+      ).find('a[target="_blank"]').length
+    ).toBe(1)
+  })
+
   afterAll(() => {
     jest.unmock('../src/router/serviceWorker')
   })
