@@ -34,7 +34,7 @@ exports[`TabsRow render should render in amp 1`] = `
                                     <span className="MuiTab-label-29">
                                       <WithStyles(inject-Link) className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]}>
                                         <inject-Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]}>
-                                          <Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]} history={{...}} router={{...}} location={{...}}>
+                                          <Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
                                             <a data-moov-link="on" className="RSFLink-root-48 RSFTabsRow-link-7" style={[undefined]} onClick={[Function]} href="https://www.example.com">
                                               Tab 1
                                             </a>
@@ -66,7 +66,7 @@ exports[`TabsRow render should render in amp 1`] = `
                                     <span className="MuiTab-label-29">
                                       <WithStyles(inject-Link) className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]}>
                                         <inject-Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]}>
-                                          <Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]} history={{...}} router={{...}} location={{...}}>
+                                          <Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
                                             <a data-moov-link="on" className="RSFLink-root-48 RSFTabsRow-link-7" style={[undefined]} onClick={[Function]} href="https://www.example.com">
                                               Tab 2
                                             </a>
@@ -343,7 +343,7 @@ exports[`TabsRow render should render tabs with urls 1`] = `
                                     <span className="MuiTab-label-29">
                                       <WithStyles(inject-Link) className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]}>
                                         <inject-Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]}>
-                                          <Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]} history={{...}} router={{...}} location={{...}}>
+                                          <Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
                                             <a data-moov-link="on" className="RSFLink-root-48 RSFTabsRow-link-7" style={[undefined]} onClick={[Function]} href="https://www.example.com">
                                               Tab 1
                                             </a>
@@ -375,7 +375,7 @@ exports[`TabsRow render should render tabs with urls 1`] = `
                                     <span className="MuiTab-label-29">
                                       <WithStyles(inject-Link) className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]}>
                                         <inject-Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]}>
-                                          <Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]} history={{...}} router={{...}} location={{...}}>
+                                          <Link classes={{...}} className="RSFTabsRow-link-7" to="https://www.example.com" prefetch={[undefined]} onClick={[Function]} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
                                             <a data-moov-link="on" className="RSFLink-root-48 RSFTabsRow-link-7" style={[undefined]} onClick={[Function]} href="https://www.example.com">
                                               Tab 2
                                             </a>

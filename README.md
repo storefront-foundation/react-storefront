@@ -10,6 +10,11 @@ All rights reserved.
 
 ## Changelog
 
+### 4.3.0
+
+* Added `anchorProps` to Link
+* Added analytics support for IE9+ via the addition of proxy-polyfill
+
 ### 4.2.0
 
 * Added onSuccess prop to `Track`

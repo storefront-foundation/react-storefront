@@ -44,7 +44,7 @@ exports[`NavTabs does not require history 1`] = `
                                                 </inject-Track-with-app>
                                                 <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]}>
                                                   <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}}>
+                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
                                                       <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/1">
                                                         Tab 1
                                                       </a>
@@ -81,7 +81,7 @@ exports[`NavTabs does not require history 1`] = `
                                                 </inject-Track-with-app>
                                                 <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]}>
                                                   <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}}>
+                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
                                                       <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/2">
                                                         Tab 1
                                                       </a>
@@ -175,7 +175,7 @@ exports[`NavTabs renders 1`] = `
                                                 </inject-Track-with-app>
                                                 <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]}>
                                                   <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}}>
+                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
                                                       <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/1">
                                                         Tab 1
                                                       </a>
@@ -212,7 +212,7 @@ exports[`NavTabs renders 1`] = `
                                                 </inject-Track-with-app>
                                                 <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]}>
                                                   <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}}>
+                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
                                                       <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/2">
                                                         Tab 1
                                                       </a>
@@ -306,7 +306,7 @@ exports[`NavTabs uses prefetch 1`] = `
                                                 </inject-Track-with-app>
                                                 <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch="always" onClick={[undefined]}>
                                                   <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch="always" onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch="always" onClick={[undefined]} history={{...}} router={[undefined]} location={{...}}>
+                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch="always" onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
                                                       <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/1" data-moov-rel="prefetch">
                                                         Tab 1
                                                       </a>
@@ -343,7 +343,7 @@ exports[`NavTabs uses prefetch 1`] = `
                                                 </inject-Track-with-app>
                                                 <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch="visible" onClick={[undefined]}>
                                                   <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch="visible" onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch="visible" onClick={[undefined]} history={{...}} router={[undefined]} location={{...}}>
+                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch="visible" onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
                                                       <VisibilitySensor onChange={[Function]} partialVisibility={true} active={true} minTopValue={0} scrollCheck={false} scrollDelay={250} scrollThrottle={-1} resizeCheck={false} resizeDelay={250} resizeThrottle={-1} intervalCheck={true} intervalDelay={100} delayedCall={false} offset={{...}} containment={{...}}>
                                                         <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/2" data-moov-rel="prefetch">
                                                           Tab 1
