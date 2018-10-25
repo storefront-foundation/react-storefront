@@ -58,4 +58,14 @@ describe("Image", () => {
 
     expect(wrapper).toMatchSnapshot()
   })
+
+  it('should use the image optimizer when quality is set', () => {
+    const wrapper = mount(
+      <Provider app={AppModelBase.create({ amp: false })}>
+        <Image quality={50} src="/foo.png" aspectRatio={50}/>
+      </Provider>
+    )
+
+    expect(wrapper).toMatchSnapshot()
+  })
 })

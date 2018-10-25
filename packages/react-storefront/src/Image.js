@@ -14,8 +14,7 @@ export const styles = theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#eee'
+    justifyContent: 'center'
   },
   fit: {
     position: 'absolute',
