@@ -2,6 +2,12 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+
+/**
+ * The standard cache-control header value sent for all resources that are not to be cached.
+ */
+export const NO_CACHE_HEADER = 'no-store, no-cache, maxage=0'
+
 /**
  * Represents the response sent back from fromServer handlers.  Use this class to set headers, status,
  * and other response metadata.
@@ -25,7 +31,7 @@ export default class Response {
 
   headers = {
     // Send no-cache by default.  This can be overridden by adding a cache handler to any route.
-    'cache-control': 'no-cache'
+    'cache-control': NO_CACHE_HEADER
   }
 
   cookies = []
@@ -140,7 +146,7 @@ export default class Response {
    */
   cacheOnServer(maxAgeSeconds) {
     if (maxAgeSeconds == null) throw new Error('maxAgeSeconds cannot be null in call to response.cacheOnServer')
-    this.set('cache-control', `no-cache, s-maxage=${maxAgeSeconds}`)
+    this.set('cache-control', `${NO_CACHE_HEADER}, s-maxage=${maxAgeSeconds}`)
     return this
   }
 

@@ -2,6 +2,9 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+
+import { NO_CACHE_HEADER } from '../router/Response'
+
 /**
  * Removes headers that can interfere with varnish properly caching the response as directed
  */
@@ -19,7 +22,7 @@ function cache(header) {
   if (env.sa)
   removeCacheHeadersForVarnish()
   headers.header("Cache-Control", header)
-  headers.header("X-Moov-Cache", header === 'no-cache' ? 'false' : 'true')
+  headers.header("X-Moov-Cache", header === NO_CACHE_HEADER ? 'false' : 'true')
 }
 
 /**
@@ -56,7 +59,7 @@ function redirectTo(url, statusCode=301) {
     headers.statusCode = statusCode.toString()
   }
 
-  headers.header("Cache-Control", "no-cache")
+  headers.header("Cache-Control", noCacheHeader)
 }
 
 function redirectToHttps() {
@@ -72,7 +75,7 @@ export default function responseHeaderTransform() {
     // It is important that the client never caches the servce-worker so that it always goes to the network
     // to check for a new one.
     if (env.path.startsWith('/service-worker.js')) {
-      cache('no-cache, s-maxage=290304000')
+      cache(`${NO_CACHE_HEADER}, s-maxage=290304000`)
     } else {
       cache('maxage=290304000')
     }
