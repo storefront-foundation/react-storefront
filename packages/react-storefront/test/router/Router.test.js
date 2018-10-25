@@ -355,7 +355,7 @@ describe('Router:Node', function() {
       )
 
       expect(await runAll('get', '/foo')).toEqual({ view: 'Foo', foo: 'bar' })
-      expect(response.headers).toEqual({ "cache-control": "no-cache, s-maxage=300" })
+      expect(response.headers).toEqual({ "cache-control": "no-store, no-cache, maxage=0, s-maxage=300" })
     })
   })
 

@@ -42,7 +42,7 @@ describe('cache', () => {
       cache({ server: { maxAgeSeconds: 1000 } })
         .fn({}, {}, response)
       
-      expect(response.headers['cache-control']).toEqual('no-cache, s-maxage=1000')
+      expect(response.headers['cache-control']).toEqual('no-store, no-cache, maxage=0, s-maxage=1000')
     })
   })
 })

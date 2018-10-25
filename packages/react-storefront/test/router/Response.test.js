@@ -32,7 +32,7 @@ describe('Response', () => {
         redirectTo: null,
         cookies: [],
         headers: {
-          'cache-control': 'no-cache',
+          'cache-control': 'no-store, no-cache, maxage=0',
           'x-moov-test': 'test'
         }
       })
@@ -56,7 +56,7 @@ describe('Response', () => {
           'JSESSIONID=EB9FC0F82486EF5F36C7851A56BB3CB2; Path=/; HttpOnly;'
         ],
         headers: {
-          'cache-control': 'no-cache'
+          'cache-control': 'no-store, no-cache, maxage=0'
         }
       })
     })
@@ -78,7 +78,7 @@ describe('Response', () => {
         redirectTo: null,
         cookies: [],
         headers: {
-          'cache-control': 'no-cache'
+          'cache-control': 'no-store, no-cache, maxage=0'
         }
       })
     })
@@ -123,11 +123,11 @@ describe('Response', () => {
   describe('cacheOnServer', () => {
     it('should set the cache-control header', () => {
       response.cacheOnServer(100)
-      expect(response.headers['cache-control']).toBe('no-cache, s-maxage=100')
+      expect(response.headers['cache-control']).toBe('no-store, no-cache, maxage=0, s-maxage=100')
     })
 
-    it('should set the cache-control header to no-cache by default', () => {
-      expect(response.headers['cache-control']).toBe('no-cache')
+    it('should set the cache-control header to no-store, no-cache, maxage=0 by default', () => {
+      expect(response.headers['cache-control']).toBe('no-store, no-cache, maxage=0')
     })
 
     it('should return the response', () => {
