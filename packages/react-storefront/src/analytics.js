@@ -2,9 +2,6 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import ProxyPolyfill from 'proxy-polyfill/src/proxy' // needed for IE9-11
-
-const ProxyImpl = typeof Proxy === 'undefined' ? ProxyPolyfill : Proxy
 
 let _targets = []
 
@@ -60,7 +57,7 @@ export function getTargets() {
  *  )
  * 
  */
-export default new ProxyImpl(
+export default new Proxy(
   { 
     setHistory: () => {} // polyfill for IE11 requires defined fields in Target argument
   }, 
