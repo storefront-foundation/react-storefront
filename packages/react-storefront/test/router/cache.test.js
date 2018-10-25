@@ -7,6 +7,7 @@ describe('cache', () => {
     let cache, serviceWorker, Response
 
     beforeEach(() => {
+      global.env = {}
       process.env.MOOV_RUNTIME = 'client'
       jest.mock('../../src/router/serviceWorker')
       serviceWorker = require('../../src/router/serviceWorker')

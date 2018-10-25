@@ -22,7 +22,7 @@ describe('Router:Node', function() {
     global.headers = {
       header: Function.prototype
     }
-
+    global.env = {}
     runAll = function(method, path) {
       const [ pathname, search ] = path.split(/\?/)
       const request = { pathname, search: search ? `?${search}` : '', method }
@@ -696,6 +696,21 @@ bar\r
       const history = createMemoryHistory({ initialEntries: ['/?foo=bar']})
       const router = new Router().watch(history, Function.prototype)
       expect(router.getQueryParams()).toEqual({foo: 'bar'})
+    })
+  })
+
+  describe('Fetching within cacheable route', () => {
+    it('should set send cookie ENV variable for fetch', async () => {
+      router.get('/new',
+        cache({ 
+          server: { maxAgeSeconds: 300 }
+        }),
+        fromServer(() => {
+          return Promise.resolve('NEW PRODUCTS')
+        })          
+      )
+      await runAll('get', '/new')
+      expect(env.shouldSendCookies).toBe(false);
     })
   })
 
