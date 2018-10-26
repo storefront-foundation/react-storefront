@@ -10,6 +10,11 @@ All rights reserved.
 
 ## Changelog
 
+### 4.4.0
+
+* Static assets are now cached at the network edge.
+* s-maxage is now only removed when there is no outer edge cache.
+
 ### 4.3.0
 
 * Added `anchorProps` to Link
