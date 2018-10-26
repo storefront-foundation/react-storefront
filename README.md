@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.4.1
+
+* Moved proxy-polyfill to dependencies.
+
 ### 4.4.0
 
 * Static assets are now cached at the network edge.
