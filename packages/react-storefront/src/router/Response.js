@@ -6,7 +6,7 @@
 /**
  * The standard cache-control header value sent for all resources that are not to be cached.
  */
-export const NO_CACHE_HEADER = 'no-store, no-cache, maxage=0'
+export const NO_CACHE_HEADER = 'no-cache'
 
 /**
  * Represents the response sent back from fromServer handlers.  Use this class to set headers, status,
@@ -14,9 +14,25 @@ export const NO_CACHE_HEADER = 'no-store, no-cache, maxage=0'
  */
 export default class Response {
 
+  /**
+   * When set, this determines the value of the location header
+   */
   redirectTo = null
+
+  /**
+   * The setting for service-worker caching
+   */
   clientCache = 'default'
+
+  /**
+   * Set to false to prevent set-cookie headers returned from the upstream (proxied) site from
+   * being relayed to the browser
+   */
   shouldRelayUpstreamCookies = true
+
+  /**
+   * This will be flipped to `true` when send is called.
+   */
   sent = false
 
   /**
@@ -29,16 +45,27 @@ export default class Response {
    */
   HTML = 'text/html'
 
-  headers = {
-    // Send no-cache by default.  This can be overridden by adding a cache handler to any route.
-    'cache-control': NO_CACHE_HEADER
+  /**
+   * Response headers to send
+   */
+  headers = {}
+
+  /**
+   * The default cache settings for browser and server cache.  Override this by calling cacheOnServer
+   */
+  cache = {
+    browserMaxAge: 0,
+    serverMaxAge: 0
   }
 
+  /**
+   * Cookies to set
+   */
   cookies = []
 
   constructor(request) {
     this.request = request
-    let headers = global.headers || { statusCode: 200, statusText: 'OK'}
+    let headers = global.headers || { statusCode: 200, statusText: 'OK' }
     this.statusCode = headers.statusCode
     this.statusText = headers.statusText
   }
@@ -56,7 +83,8 @@ export default class Response {
       statusText: this.statusText,
       redirectTo: this.redirectTo,
       headers: this.headers, 
-      cookies: this.cookies
+      cookies: this.cookies,
+      cache: this.cache
     })
 
     this.request.sendResponse({ body, htmlparsed: body != null })
@@ -146,7 +174,12 @@ export default class Response {
    */
   cacheOnServer(maxAgeSeconds) {
     if (maxAgeSeconds == null) throw new Error('maxAgeSeconds cannot be null in call to response.cacheOnServer')
-    this.set('cache-control', `${NO_CACHE_HEADER}, s-maxage=${maxAgeSeconds}`)
+    
+    this.cache = {
+      serverMaxAge: maxAgeSeconds,
+      browserMaxAge: 0
+    }
+
     return this
   }
 

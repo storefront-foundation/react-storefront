@@ -343,7 +343,7 @@ describe('Router:Node', function() {
   })
 
   describe('cache', function() {
-    it('should set the cache-control header', async function () {
+    it('should set response.cache', async function () {
       router.get('/foo',
         fromClient({ view: 'Foo' }),
         fromServer(() => ({ foo: 'bar' })),
@@ -355,7 +355,7 @@ describe('Router:Node', function() {
       )
 
       expect(await runAll('get', '/foo')).toEqual({ view: 'Foo', foo: 'bar' })
-      expect(response.headers).toEqual({ "cache-control": "no-store, no-cache, maxage=0, s-maxage=300" })
+      expect(response.cache).toEqual({ browserMaxAge: 0, serverMaxAge: 300 })
     })
   })
 

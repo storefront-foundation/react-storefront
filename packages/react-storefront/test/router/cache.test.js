@@ -35,14 +35,14 @@ describe('cache', () => {
       Response = require('../../src/router/Response').default
     })
 
-    it('should set the cache-control header', () => {
+    it('should set response.cache', () => {
       const cache = require('../../src/router').cache
       const response = new Response()
       
       cache({ server: { maxAgeSeconds: 1000 } })
         .fn({}, {}, response)
       
-      expect(response.headers['cache-control']).toEqual('no-store, no-cache, maxage=0, s-maxage=1000')
+      expect(response.cache).toEqual({ browserMaxAge: 0, serverMaxAge: 1000 })
     })
   })
 })
