@@ -2,66 +2,8 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-/**
- * Removes headers that can interfere with varnish properly caching the response as directed
- */
-function removeCacheHeadersForVarnish() {
-  headers.removeAllHeaders("Age")
-  headers.removeAllHeaders("Via")
-  headers.removeAllHeaders("Expires")
-}
-
-/**
- * Instructs varnish to cache the response.
- * @param {String} header The value for the cache-control header
- */
-function cache(header) {
-  if (env.sa)
-  removeCacheHeadersForVarnish()
-  headers.header("Cache-Control", header)
-  headers.header("X-Moov-Cache", header === 'no-cache' ? 'false' : 'true')
-}
-
-/**
- * Returns true if the request is a post from an amp page, otherwise false
- * @return {Boolean}
- */
-function isAmpPost() {
-  const referer = JSON.parse(env.headers).referer
-
-  return (
-    referer && 
-    referer.split('?')[0].endsWith('.amp') &&
-    env.method === 'post'
-  )
-}
-
-/**
- * Sends an http redirect.
- * @param {String} url The destination url.  Can be relative or absolute.
- * @param {Number} statusCode The status code to send.  Defaults to 301
- */
-function redirectTo(url, statusCode=301) {
-  if (!url.match(/https?:\/\//)) {
-    url = `https://${env.host}${url}`
-  }
-
-  if (isAmpPost()) {
-    headers.addHeader("amp-redirect-to", url)
-    headers.addHeader("access-control-expose-headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To")
-    headers.addHeader("amp-access-control-allow-source-origin", "https://" + env.host)
-  } else {
-    headers.removeAllHeaders("Location")
-    headers.addHeader("Location", url)
-    headers.statusCode = statusCode.toString()
-  }
-
-  headers.header("Cache-Control", "no-cache")
-}
-
-function redirectToHttps() {
-  redirectTo(`https://${env.host}${env.path}`)
-}
+import { cache, FAR_FUTURE } from './cache'
+import { redirectTo, redirectToHttps } from './redirect'
 
 /**
  * Run this in moov_response_header_transform.js
@@ -72,9 +14,12 @@ export default function responseHeaderTransform() {
     // It is important that the client never caches the servce-worker so that it always goes to the network
     // to check for a new one.
     if (env.path.startsWith('/service-worker.js')) {
-      cache('no-cache, s-maxage=290304000')
+      // far future cache the service worker on the server
+      cache({ browserMaxAge: 0, serverMaxAge: FAR_FUTURE })
+    } else if (env.path.startsWith('/pwa')) {
+      cache({ browserMaxAge: FAR_FUTURE, serverMaxAge: FAR_FUTURE })
     } else {
-      cache('maxage=290304000')
+      cache({ serverMaxAge: FAR_FUTURE })
     }
   } else {
     // Always redirect on non-secure requests.
@@ -89,8 +34,6 @@ export default function responseHeaderTransform() {
       headers.addHeader("set-cookie", env.SET_COOKIE)
     }
 
-    // far future cache the service worker on the server
-
     headers.addHeader('x-moov-api-version', __webpack_hash__)
 
     // set headers and status from Response object
@@ -104,15 +47,14 @@ export default function responseHeaderTransform() {
         headers.statusText = response.statusText
       }
 
+      // set by cache route handlers
+      if (response.cache) {
+        cache(response.cache)
+      }
+
       // send headers
       for (let name in response.headers) {
-        const value = response.headers[name]
-
-        if (name.toLowerCase() === 'cache-control') {
-          cache(value)
-        } else {
-          headers.addHeader(name, value)
-        }
+        headers.addHeader(name, response.headers[name])
       }
 
       // set cookies

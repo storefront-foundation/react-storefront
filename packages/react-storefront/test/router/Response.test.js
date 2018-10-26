@@ -31,8 +31,11 @@ describe('Response', () => {
         statusText: 'error',
         redirectTo: null,
         cookies: [],
+        cache: {
+          browserMaxAge: 0,
+          serverMaxAge: 0
+        },
         headers: {
-          'cache-control': 'no-cache',
           'x-moov-test': 'test'
         }
       })
@@ -51,12 +54,14 @@ describe('Response', () => {
         statusCode: 200,
         statusText: 'OK',
         redirectTo: null,
+        headers: {},
         cookies: [
           'JSESSIONID=EB9FC0F82486EF5F36C7851A56BB3CB2; Domain=www.example.com; Path=/; HttpOnly;',
           'JSESSIONID=EB9FC0F82486EF5F36C7851A56BB3CB2; Path=/; HttpOnly;'
         ],
-        headers: {
-          'cache-control': 'no-cache'
+        cache: {
+          browserMaxAge: 0,
+          serverMaxAge: 0
         }
       })
     })
@@ -77,8 +82,10 @@ describe('Response', () => {
         statusText: 'OK',
         redirectTo: null,
         cookies: [],
-        headers: {
-          'cache-control': 'no-cache'
+        headers: {},
+        cache: {
+          browserMaxAge: 0,
+          serverMaxAge: 0
         }
       })
     })
@@ -123,11 +130,11 @@ describe('Response', () => {
   describe('cacheOnServer', () => {
     it('should set the cache-control header', () => {
       response.cacheOnServer(100)
-      expect(response.headers['cache-control']).toBe('no-cache, s-maxage=100')
+      expect(response.cache).toEqual({ browserMaxAge: 0, serverMaxAge: 100 })
     })
 
-    it('should set the cache-control header to no-cache by default', () => {
-      expect(response.headers['cache-control']).toBe('no-cache')
+    it('should set the cache-control header to no-store, no-cache, maxage=0 by default', () => {
+      expect(response.cache).toEqual({ browserMaxAge: 0, serverMaxAge: 0 })
     })
 
     it('should return the response', () => {
@@ -175,6 +182,14 @@ describe('Response', () => {
   describe('set', () => {
     it('should throw an error if no key is specified', () => {
       expect(() => response.set()).toThrow()
+    })
+  })
+
+  describe('get', () => {
+    it('should return the header value', () => {
+      response.set('x-foo', 'bar')
+      expect(response.get('x-foo')).toBe('bar')
+      expect(response.get('X-Foo')).toBe('bar')
     })
   })
 })
