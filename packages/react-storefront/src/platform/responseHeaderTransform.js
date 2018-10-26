@@ -34,7 +34,6 @@ export default function responseHeaderTransform() {
       headers.addHeader("set-cookie", env.SET_COOKIE)
     }
 
-
     headers.addHeader('x-moov-api-version', __webpack_hash__)
 
     // set headers and status from Response object
