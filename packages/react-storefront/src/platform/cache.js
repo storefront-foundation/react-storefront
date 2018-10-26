@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
+ */
 
 /**
  * Sets the correct response headers to configure browser and server caching
