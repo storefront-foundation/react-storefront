@@ -7,7 +7,9 @@
  * Helper for moov_edge_response_transform.js
  */
 export default function edgeResponseTransform() {
-  removeSMaxAge()
+  if (env.behindOuterEdge === 'false') { // this is set in requestHeaderTransform.js
+    removeSMaxAge()
+  } 
 }
 
 /**

@@ -14,6 +14,7 @@ import createRequest from './createRequest'
 export default function requestHeaderTransform({ router, hostDomains=[] }) {
   const request = createRequest()
   fns.export('headers', JSON.stringify(request.headers))
+  fns.export('behindOuterEdge', process.env.MOOV_ENV === 'development' || request.headers['x-moov-xdn-version'] == null ? 'false' : 'true') // needed in edgeResponseTransform.js
 
   if (env.__static_origin_path__) {
     // always go upstream for static paths
