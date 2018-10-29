@@ -58,6 +58,13 @@ describe('Server', () => {
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('text/html')
     })
 
+    it('should prevent XSS attacks via malicious URL parameters injected into link rel="canonical"', async () => {
+      global.env.path = `/'"/>--></title></style></script%20dt=fy><dtfy>`
+      await new Server({ theme, model, router, blob, globals, App }).serve()
+      const body = global.sendResponse.mock.calls[0][0].body
+      expect(body).not.toContain(`"/>--></title></style></script%20dt=fy><dtfy>`)
+    })
+
     it('should send a json response', async () => {
       global.env.path = '/test.json'
       await new Server({ theme, model, router, blob, globals, App }).serve()

@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.4.2
+
+* Fixed XXS vulnerability where code could be injected via the URL into the canonical link tag.
+
 ### 4.4.1
 
 * Moved proxy-polyfill to dependencies.
