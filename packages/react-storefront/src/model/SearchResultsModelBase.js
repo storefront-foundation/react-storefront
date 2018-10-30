@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types, isAlive } from "mobx-state-tree"
+import { types, isAlive, flow } from "mobx-state-tree"
 import fetch from 'fetch'
 import ProductModelBase from './ProductModelBase'
 
@@ -154,6 +154,14 @@ export default types
       self.filtersChanged = changed
     },
     /**
+     * Refreshes the search based on the current filters and sort and resets the page to 0.
+     */
+    refresh() {
+      self.filtersChanged = false
+      self.items = []
+      self.showPage(0)
+    },
+    /**
      * Toggles a facet on or off.
      * @param {FacetModelBase} facet 
      */
@@ -169,12 +177,9 @@ export default types
       
       self.filtersChanged = true
     },
-    /**
-     * Fetches the next page from the server.
-     */
-    async showMore() {
+    showPage: async function(page) {
+      self.page = page
       let { pathname, search } = window.location
-      self.page++
       search += search.length ? '&': '?'
       search += `page=${self.page}`
       
@@ -190,6 +195,12 @@ export default types
         }
         throw e
       }
+    },
+    /**
+     * Fetches the next page from the server.
+     */
+    showMore() {
+      self.showPage(self.page + 1)
     },
     getShowMoreURL(defaultURL) {
       return defaultURL

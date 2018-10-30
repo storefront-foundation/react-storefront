@@ -525,7 +525,7 @@ export default class Router extends EventEmitter {
       ...params
     })
 
-    history.push(`${history.location.pathname}?${nextParams}`)
+    history.replace(`${history.location.pathname}?${nextParams}`)
   }
 
   /**

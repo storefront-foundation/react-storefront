@@ -13,7 +13,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
-import { types } from "mobx-state-tree"
 import { Hbox } from './Box'
 
 /**
@@ -22,9 +21,12 @@ import { Hbox } from './Box'
  */
 export const styles = theme => ({
   root: {
-    height: '50vh',
     overflowY: 'auto',
+    overflowX: 'hidden',
     paddingBottom: '64px'
+  },
+  section: {
+    marginBottom: `${theme.margins.container}px`
   },
   matches: {
     marginLeft: '5px',
@@ -44,6 +46,13 @@ export const styles = theme => ({
   },
   itemsFound: {
     color: theme.palette.secondary.contrastText
+  },
+  title: {
+    ...theme.typography.subheading,
+    marginBottom: `12px`
+  },
+  noMargins: {
+    margin: 0
   }
 });
 
@@ -73,23 +82,44 @@ export default class Filter extends Component {
      * The query string parameter that should be updated when filters are changed.  The value will be an array
      * of codes for each selected facet.  Defaults to "filters"
      */
-    queryParam: PropTypes.string
+    queryParam: PropTypes.string,
+
+    /**
+     * An optional title to display at the top of the component.
+     */
+    title: PropTypes.string,
+
+    /**
+     * Set to false to remove the default left and right margins. Defaults to `true`.
+     */
+    margins: PropTypes.bool,
+
+    /**
+     * Set to `true` to expand all groups on initial render
+     */
+    expandAll: PropTypes.bool
   }
 
   static defaultProps = {
     onViewResultsClick: Function.prototype,
-    queryParam: 'filters'
+    queryParam: 'filters',
+    margins: true
   }
 
-  state = {
-    expanded: {}
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      expanded: props.expandAll ? this.createExpandAllState() : {}
+    }
   }
 
   render() {
-    const { model, classes } = this.props
+    const { model, classes, title } = this.props
 
     return (
       <div className={classes.root}>
+       { title ? <div className={classes.title}>{title}</div> : null }
        { get(model, 'facetGroups', []).map((facetGroup, i) => this.renderFacetGroup(facetGroup, i)) }
        { model.filtersChanged && (
         <Hbox className={classes.footer} split>
@@ -102,7 +132,7 @@ export default class Filter extends Component {
   }
 
   renderFacetGroup(group, key) {
-    const { app, model, classes } = this.props
+    const { model, classes, margins } = this.props
     const { expanded } = this.state
     const selection = []
 
@@ -152,7 +182,9 @@ export default class Filter extends Component {
         title={group.name} 
         caption={caption}
         expanded={expanded[group.name]}
-        onChange={(e, expanded) => this.setState({ expanded: { ...expanded, [group.name]: expanded }})}
+        onChange={(e, expanded) => this.setState({ expanded: { ...this.state.expanded, [group.name]: expanded }})}
+        classes={{ root: classes.section }}
+        margins={margins}
       >
         {formGroup}
       </ExpandableSection>
@@ -161,19 +193,39 @@ export default class Filter extends Component {
 
   onToggleFilter = (facet) => {
     this.props.model.toggleFilter(facet)
+    
+    if(this.props.refreshOnChange) {
+      this.refresh()
+    }
   }
 
   onViewResultsClick = (e) => {
-    const { router, model } = this.props
-
     this.props.onViewResultsClick(e)
 
     if (!e.isDefaultPrevented()) {
-      this.props.model.setFiltersChanged(false)
-      router.applySearch({
-        [this.props.queryParam]: model.filters.toJSON()
-      }) 
+      this.refresh()
     }
+  }
+
+  refresh() {
+    const { router, model } = this.props
+    router.applySearch({
+      [this.props.queryParam]: model.filters.toJSON()
+    })
+    model.refresh()
+  }
+
+  createExpandAllState = () => {
+    const state = {}
+    const { model } = this.props
+
+    if (model) {
+      for (let group of model.facetGroups) {
+        state[group.name] = true
+      }
+    }
+
+    return state
   }
 
 }
