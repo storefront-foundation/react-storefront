@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.5.1
+
+* Added `X-Frame-Options: SAMEORIGIN` response header by default.
+
 ### 4.5.0
 
 * `response.redirect(url, status)` no longer requires you to call response.send() afterwards. 
