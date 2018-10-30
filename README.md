@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.6.0
+
+* Added `response.json()` helper method for sending JSON data
+
 ### 4.5.1
 
 * Added `X-Frame-Options: SAMEORIGIN` response header by default.
