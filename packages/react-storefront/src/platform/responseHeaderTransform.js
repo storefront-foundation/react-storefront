@@ -28,6 +28,8 @@ export default function responseHeaderTransform() {
       return redirectToHttps()   
     }
 
+    addSecureHeaders()
+
     // This gives us a mechanism to set cookies on adapt pages
 
     if (env.SET_COOKIE) {
@@ -73,4 +75,9 @@ export default function responseHeaderTransform() {
   if (headers.statusCode >= 400 || headers.statusCode === 302) {
     headers.removeHeader('cache-control')
   }
+}
+
+function addSecureHeaders() {
+  // prevents clickjacking, also known as a "UI redress attack"
+  headers.header('X-Frame-Options', 'SAMEORIGIN')
 }
