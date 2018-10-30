@@ -10,6 +10,11 @@ All rights reserved.
 
 ## Changelog
 
+### 4.5.0
+
+* `response.redirect(url, status)` no longer requires you to call response.send() afterwards. 
+* Fixed bug where `<Image lazy/>` and `<Link prefetch="visible"/>` elements would eager fetch when hidden by upgrading react-visibility-sensor.
+
 ### 4.4.2
 
 * Fixed XXS vulnerability where code could be injected via the URL into the canonical link tag.

@@ -2,9 +2,9 @@
 
 exports[`Image should lazy load the image when lazy==true 1`] = `
 <Provider app={{...}}>
-  <WithStyles(inject-Image) lazy={true} src="/foo.png" aspectRatio={50}>
-    <inject-Image classes={{...}} lazy={true} src="/foo.png" aspectRatio={50}>
-      <Image classes={{...}} lazy={true} src="/foo.png" aspectRatio={50} amp={false} quality={{...}} contain={false} fill={false} lazyOffset={100}>
+  <WithStyles(inject-Image) lazy={true} src="/foo.png" aspectRatio={50} lazyOffset={-10000}>
+    <inject-Image classes={{...}} lazy={true} src="/foo.png" aspectRatio={50} lazyOffset={-10000}>
+      <Image classes={{...}} lazy={true} src="/foo.png" aspectRatio={50} lazyOffset={-10000} amp={false} quality={{...}} contain={false} fill={false}>
         <VisibilitySensor active={true} onChange={[Function]} partialVisibility={true} offset={{...}} minTopValue={0} scrollCheck={false} scrollDelay={250} scrollThrottle={-1} resizeCheck={false} resizeDelay={250} resizeThrottle={-1} intervalCheck={true} intervalDelay={100} delayedCall={false} containment={{...}}>
           <div className="RSFImage-root-1 RSFImage-contain-3">
             <div style={{...}} />

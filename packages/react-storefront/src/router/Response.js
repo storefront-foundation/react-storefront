@@ -193,6 +193,7 @@ export default class Response {
     if (url == null) throw new Error('url cannot be null in call to response.redirect')
     this.redirectTo = url
     this.statusCode = status
+    this.send()
     return this
   }
 

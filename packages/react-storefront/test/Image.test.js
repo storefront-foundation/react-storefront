@@ -52,7 +52,7 @@ describe("Image", () => {
   it('should lazy load the image when lazy==true', () => {
     const wrapper = mount(
       <Provider app={AppModelBase.create({ amp: false })}>
-        <Image lazy src="/foo.png" aspectRatio={50}/>
+        <Image lazy src="/foo.png" aspectRatio={50} lazyOffset={-10000} />
       </Provider>
     )
 

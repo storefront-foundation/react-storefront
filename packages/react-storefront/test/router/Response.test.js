@@ -177,6 +177,12 @@ describe('Response', () => {
     it('should throw an error if no url is specified', () => {
       expect(() => response.redirect()).toThrow()
     })
+
+    it('should call send', () => {
+      response.send = jest.fn()
+      response.redirect('/')
+      expect(response.send).toHaveBeenCalled()
+    })
   })
 
   describe('set', () => {
