@@ -80,4 +80,5 @@ export default function responseHeaderTransform() {
 function addSecureHeaders() {
   // prevents clickjacking, also known as a "UI redress attack"
   headers.header('X-Frame-Options', 'SAMEORIGIN')
+  headers.header('Referrer Policy', 'no-referrer-when-downgrade')
 }

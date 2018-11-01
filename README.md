@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.6.1
+
+* Added Referrer Policy: no-referrer-when-downgrade response header
+
 ### 4.6.0
 
 * Added `response.json()` helper method for sending JSON data
