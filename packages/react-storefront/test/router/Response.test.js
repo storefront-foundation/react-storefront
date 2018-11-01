@@ -97,6 +97,12 @@ describe('Response', () => {
       expect(request.sendResponse).toBeCalledWith({ body: 'foo', htmlparsed: true })
     })
 
+    it('should be able to use response.json shortcut and get same response', () => {
+      response.json({ foo: { bar: 'Hello World!' }, x: 123, y: false })
+      expect(request.sendResponse).toBeCalledWith({ body: '{"foo":{"bar":"Hello World!"},"x":123,"y":false}', htmlparsed: true })
+      expect(response.headers['content-type']).toEqual('application/json')
+    })
+
     it('should send htmlparsed:false when no arguments are provided', () => {
       response.send()
       expect(request.sendResponse).toBeCalledWith({ htmlparsed: false })

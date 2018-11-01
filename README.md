@@ -10,8 +10,9 @@ All rights reserved.
 
 ## Changelog
 
-### 4.5.2
+### 4.6.0
 
+* Added `response.json()` helper method for sending JSON data
 * Fixed ShowMore infinity scrolling bug
 
 ### 4.5.1
