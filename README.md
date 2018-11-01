@@ -10,6 +10,23 @@ All rights reserved.
 
 ## Changelog
 
+### 4.6.2
+
+* Fixed bug with Referrer-Policy header.
+
+### 4.6.1
+
+* Added Referrer-Policy: no-referrer-when-downgrade response header
+
+### 4.6.0
+
+* Added `response.json()` helper method for sending JSON data
+* Fixed ShowMore infinity scrolling bug
+
+### 4.5.1
+
+* Added `X-Frame-Options: SAMEORIGIN` response header by default.
+
 ### 4.5.0
 
 * `response.redirect(url, status)` no longer requires you to call response.send() afterwards. 

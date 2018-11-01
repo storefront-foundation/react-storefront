@@ -93,6 +93,17 @@ export default class Response {
   }
 
   /**
+   * Sends JSON data
+   * @param {Object} body Data
+   * @return {Response} this
+   */
+  json(body) {
+    return this
+      .set('content-type', this.JSON)
+      .send(JSON.stringify(body))
+  }
+
+  /**
    * Configure whether or not set-cookie headers from upstream should be sent down to the browser
    * @param {Boolean} shouldRelay True to relay upstream set-cookie headers to the browser, false to not
    */
