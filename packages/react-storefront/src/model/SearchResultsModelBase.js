@@ -227,5 +227,11 @@ export default types
      */
     switchLayout(layout) {
       self.layout = layout
+    },
+    /**
+     * Sets the selected sort option
+     */
+    setSort(option) {
+      self.sort = option.code
     }
   }))

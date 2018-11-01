@@ -2,12 +2,13 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core/'
+import React, { Component, Fragment } from 'react'
+import withStyles from '@material-ui/core/styles/withStyles'
 import { inject, observer } from 'mobx-react'
-import classnames from 'classnames'
 import Button from '@material-ui/core/Button'
+import MenuItem from '@material-ui/core/MenuItem'
 import PropTypes from 'prop-types'
+import Hidden from '@material-ui/core/Hidden'
 
 /**
  * UI for sorting an instance of SearchResultModelBase.  This component can be used on its own, or you can use
@@ -45,15 +46,35 @@ export default class Sort extends Component {
      * The query string parameter that should be updated when the sort is changed.  The value will the
      * code corresponding to the selected sortOption.  Defaults to "sort".
      */
-    queryParam: PropTypes.string
+    queryParam: PropTypes.string,
+
+    /**
+     * Controls how sort options are displayed.  Can be "menu-items" or "buttons".  Defaults to "buttons"
+     */
+    variant: PropTypes.oneOf(['menu-items', 'buttons'])
   }
 
   static defaultProps = {
     onSelect: Function.prototype,
-    queryParam: 'sort'
+    queryParam: 'sort',
+    variant: 'buttons'
   }
 
   render() {
+    const { variant } = this.props
+
+    Hidden
+
+    if (variant === 'buttons') {
+      return this.renderButtons()
+    } else if (variant === 'menu-items') {
+      return this.renderMenu()
+    } else {
+      return null
+    }
+  }
+
+  renderButtons() {
     const { model, classes } = this.props
     const options = model.sortOptions
 
@@ -74,13 +95,29 @@ export default class Sort extends Component {
     )
   }
 
+  renderMenu() {
+    const { model } = this.props
+    const options = model.sortOptions
+
+    return (
+      <Fragment>
+        { options && options.map((option, i) => ( 
+          <MenuItem key={i} onClick={this.onClick.bind(this, option)}>
+            {option.name}
+          </MenuItem>
+        ))}
+      </Fragment>
+    )
+  }
+
   onClick = (option, e) => {
-    this.props.onSelect(option, e)
+    const { onSelect, model, queryParam, router } = this.props
+    onSelect(option, e)
 
     if (!e.isDefaultPrevented()) {
-      this.props.router.applySearch({
-        [this.props.queryParam]: option.code
-      })
+      router.applySearch({ [queryParam]: option.code })
+      model.setSort(option)
+      model.refresh()
     }
   }
 
