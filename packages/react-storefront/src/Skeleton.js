@@ -51,7 +51,9 @@ export const styles = theme => ({
   },
 
   filledContent: {
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.default,
+    display: 'flex',
+    alignItems: 'center'
   }
 })
 
@@ -91,7 +93,7 @@ export const Row = withStyles(styles)(
  * White space between content
  */
 export const Space = withStyles(styles)(
-  ({ classes, ...style }) => <div className={classes.space} style={style}/>
+  ({ classes, ...style }) => <div data-rel="space" className={classes.space} style={style}/>
 )
 
 /**
@@ -165,8 +167,13 @@ Tiles.defaultProps = {
 }
 
 @withStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
   image: {
-    width: '100%'
+    width: '100%',
+    flex: 1,
   }
 }))
 @observer
@@ -187,7 +194,7 @@ export class ImageSwitcher extends Component {
     const { classes, thumbnails, product, loadingThumbnailProps } = this.props
 
     return (
-      <Fragment>
+      <div className={classes.root}>
         { product && product.thumbnail ? (
           <Row>
             <Content flex="1">
@@ -207,7 +214,7 @@ export class ImageSwitcher extends Component {
             </Row>
           </Fragment>
         ) : null}
-      </Fragment>
+      </div>
     )
   }
 }

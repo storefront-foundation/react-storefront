@@ -17,7 +17,8 @@ export const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    zIndex: theme.zIndex.appBar - 1
+    zIndex: theme.zIndex.appBar - 1,
+    cursor: 'pointer'
   },
   img: {
     width: '100%',

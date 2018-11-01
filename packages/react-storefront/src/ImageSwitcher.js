@@ -52,7 +52,7 @@ export const styles = theme => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     '& img': {
       maxHeight: '100%',
       maxWidth: '100%',
