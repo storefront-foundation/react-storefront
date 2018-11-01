@@ -10,9 +10,13 @@ All rights reserved.
 
 ## Changelog
 
+### 4.6.2
+
+* Fixed bug with Referrer-Policy header.
+
 ### 4.6.1
 
-* Added Referrer Policy: no-referrer-when-downgrade response header
+* Added Referrer-Policy: no-referrer-when-downgrade response header
 
 ### 4.6.0
 
