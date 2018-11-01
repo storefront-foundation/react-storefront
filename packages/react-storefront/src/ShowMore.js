@@ -87,7 +87,9 @@ export default class ShowMore extends Component {
           <VisibilitySensor
             offset={{ bottom: -offset }}
             onChange={this.onVisibilityChange}
-          />
+          >
+            <div style={{ width: 1, height: 1 }} />
+          </VisibilitySensor>
         );
       }
       return (

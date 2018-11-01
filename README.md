@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.5.2
+
+* Fixed ShowMore infinity scrolling bug
+
 ### 4.5.1
 
 * Added `X-Frame-Options: SAMEORIGIN` response header by default.
