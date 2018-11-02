@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.7.0
+
+* ExpandableSection's expanded state can now be controlled via an expanded prop
+
 ### 4.6.2
 
 * Fixed bug with Referrer-Policy header.

@@ -91,10 +91,23 @@ export default class ExpandableSection extends Component {
     /**
      * The icon to use for expanded groups
      */
-    CollapseIcon: PropTypes.func
+    CollapseIcon: PropTypes.func,
+
+    /**
+     * Controls the expanded state.  Defaults to false
+     */
+    expanded: PropTypes.bool
   }
 
-  constructor({ expanded=false, ExpandIcon, CollapseIcon, theme }) {
+  static getDerivedStateFromProps({ expanded }) {
+    if (typeof expanded !== 'undefined') {
+      return { expanded }
+    } else {
+      return {}
+    }
+  }
+
+  constructor({ expanded, ExpandIcon, CollapseIcon, theme }) {
     super()
 
     this.ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMoreIcon
@@ -139,13 +152,6 @@ export default class ExpandableSection extends Component {
       )
     }
 
-  }
-
-  componentDidUpdate(prevProps) {
-    const { expanded } = this.props
-    if (prevProps.expanded !== expanded) {
-      this.setState({ expanded })
-    }
   }
 
   /**

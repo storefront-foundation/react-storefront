@@ -45,4 +45,18 @@ describe('ExpandableSection', () => {
       )
     ).toMatchSnapshot()
   })
+
+  it('should render expanded when expanded=true', () => {
+    const app = AppModelBase.create({ amp: true })
+
+    expect(
+      mount(
+        <Provider app={app}>
+          <MuiThemeProvider theme={theme}>
+            <ExpandableSection title="Title" expanded>Foo</ExpandableSection>
+          </MuiThemeProvider>
+        </Provider>
+      )
+    ).toMatchSnapshot()
+  })
 })
