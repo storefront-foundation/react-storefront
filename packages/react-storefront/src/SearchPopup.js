@@ -218,7 +218,7 @@ export default class SearchPopup extends Component {
         {searchPopup.opened && <div className={classes.searchPopup}>
           <Button
             className={classes.closeButton}
-            variant="raised"
+            variant="contained"
             onClick={this.hidePopup}>Cancel</Button>
           <div className={classes.searchForm}>
             <Input
@@ -228,7 +228,7 @@ export default class SearchPopup extends Component {
               onChange={e => { this.onChangeSearchText(e.target.value) }}
             />
             <IconButton
-              variant="raised"
+              variant="contained"
               type="submit"
               className={classes.searchButton}
             >

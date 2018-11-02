@@ -180,6 +180,10 @@ export const styles = (theme) => ({
     marginRight: 0
   },
 
+  listItemIcon: {
+    marginRight: 0
+  },
+
   expander: {
     backgroundColor: `${theme.palette.primary.paper} !important`,
   },
@@ -433,7 +437,7 @@ export default class Menu extends Component {
           primary={item.text}
           disableTypography
         />
-        <ListItemIcon>
+        <ListItemIcon className={classes.listItemIcon}>
           {showExpander ? (
             item.expanded ? <CollapseIcon className={classes.icon} /> : <ExpandIcon className={classes.icon} />
           ) : (

@@ -84,7 +84,7 @@ export default class Sort extends Component {
           <Button
             className={classes.option}
             color={model.sort === option.code ? 'primary' : 'default'}
-            variant="raised"
+            variant="contained"
             onClick={this.onClick.bind(this, option)}
             key={i}
           >

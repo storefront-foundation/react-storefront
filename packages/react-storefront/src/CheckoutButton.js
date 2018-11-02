@@ -57,7 +57,7 @@ export default class CheckoutButton extends Component {
         size="large" 
         color="secondary"
         onClick={this.onClick}
-        variant="raised"
+        variant="contained"
         {...others}
         classes={{ root: classes.root }}
         className={classnames(className, { [classes.docked]: docked })} 

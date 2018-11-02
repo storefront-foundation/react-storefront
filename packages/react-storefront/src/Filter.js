@@ -124,7 +124,7 @@ export default class Filter extends Component {
        { model.filtersChanged && (
         <Hbox className={classes.footer} split>
           <Typography variant="subheading" className={classes.itemsFound}>{model.filters.length || 'No'} filter{model.filters.length === 1 ? '' : 's'} selected</Typography>
-          <Button variant="raised" size="large" color="default" onClick={this.onViewResultsClick}>View Results</Button>
+          <Button variant="contained" size="large" color="default" onClick={this.onViewResultsClick}>View Results</Button>
         </Hbox>
        )}
       </div>

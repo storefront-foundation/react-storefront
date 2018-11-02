@@ -7,8 +7,8 @@ exports[`SortButton passes drawerProps to the underlying Sort component 1`] = `
       <SortButton title="Sort By" model={{...}} drawerProps={{...}} app={{...}}>
         <WithStyles(ActionButton) href={{...}} label="Sort By" value="Price - Low to High" onClick={[Function]}>
           <ActionButton classes={{...}} href={{...}} label="Sort By" value="Price - Low to High" onClick={[Function]}>
-            <WithStyles(Button) variant="raised" classes={{...}} href={{...}} onClick={[Function]}>
-              <Button classes={{...}} variant="raised" href={{...}} onClick={[Function]} color="default" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+            <WithStyles(Button) variant="contained" classes={{...}} href={{...}} onClick={[Function]}>
+              <Button classes={{...}} variant="contained" href={{...}} onClick={[Function]} color="default" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
                 <WithStyles(ButtonBase) className="MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-14" href={{...}} onClick={[Function]} type="button">
                   <ButtonBase classes={{...}} className="MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-14" href={{...}} onClick={[Function]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
                     <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-21 MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" type="button" disabled={false} href={{...}} onClick={[Function]}>
@@ -143,8 +143,8 @@ exports[`SortButton renders with a sort selected 1`] = `
       <SortButton model={{...}} app={{...}} title="Sort" drawerProps={{...}}>
         <WithStyles(ActionButton) href={{...}} label="Sort" value="Price - Low to High" onClick={[Function]}>
           <ActionButton classes={{...}} href={{...}} label="Sort" value="Price - Low to High" onClick={[Function]}>
-            <WithStyles(Button) variant="raised" classes={{...}} href={{...}} onClick={[Function]}>
-              <Button classes={{...}} variant="raised" href={{...}} onClick={[Function]} color="default" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+            <WithStyles(Button) variant="contained" classes={{...}} href={{...}} onClick={[Function]}>
+              <Button classes={{...}} variant="contained" href={{...}} onClick={[Function]} color="default" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
                 <WithStyles(ButtonBase) className="MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-14" href={{...}} onClick={[Function]} type="button">
                   <ButtonBase classes={{...}} className="MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-14" href={{...}} onClick={[Function]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
                     <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-21 MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" type="button" disabled={false} href={{...}} onClick={[Function]}>
@@ -279,8 +279,8 @@ exports[`SortButton renders with no sort selected 1`] = `
       <SortButton model={{...}} app={{...}} title="Sort" drawerProps={{...}}>
         <WithStyles(ActionButton) href={{...}} label="Sort" value={[undefined]} onClick={[Function]}>
           <ActionButton classes={{...}} href={{...}} label="Sort" value={[undefined]} onClick={[Function]}>
-            <WithStyles(Button) variant="raised" classes={{...}} href={{...}} onClick={[Function]}>
-              <Button classes={{...}} variant="raised" href={{...}} onClick={[Function]} color="default" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+            <WithStyles(Button) variant="contained" classes={{...}} href={{...}} onClick={[Function]}>
+              <Button classes={{...}} variant="contained" href={{...}} onClick={[Function]} color="default" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
                 <WithStyles(ButtonBase) className="MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-14" href={{...}} onClick={[Function]} type="button">
                   <ButtonBase classes={{...}} className="MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-14" href={{...}} onClick={[Function]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
                     <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-21 MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" type="button" disabled={false} href={{...}} onClick={[Function]}>
@@ -413,8 +413,8 @@ exports[`SortButton uses the title prop as the label and drawer header 1`] = `
       <SortButton title="Sort By" model={{...}} app={{...}} drawerProps={{...}}>
         <WithStyles(ActionButton) href={{...}} label="Sort By" value="Price - Low to High" onClick={[Function]}>
           <ActionButton classes={{...}} href={{...}} label="Sort By" value="Price - Low to High" onClick={[Function]}>
-            <WithStyles(Button) variant="raised" classes={{...}} href={{...}} onClick={[Function]}>
-              <Button classes={{...}} variant="raised" href={{...}} onClick={[Function]} color="default" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+            <WithStyles(Button) variant="contained" classes={{...}} href={{...}} onClick={[Function]}>
+              <Button classes={{...}} variant="contained" href={{...}} onClick={[Function]} color="default" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
                 <WithStyles(ButtonBase) className="MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-14" href={{...}} onClick={[Function]} type="button">
                   <ButtonBase classes={{...}} className="MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-14" href={{...}} onClick={[Function]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
                     <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-21 MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1" type="button" disabled={false} href={{...}} onClick={[Function]}>

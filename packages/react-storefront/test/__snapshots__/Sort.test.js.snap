@@ -6,8 +6,8 @@ exports[`Sort renders with a sort selected 1`] = `
     <inject-Sort-with-router classes={{...}} model={{...}}>
       <Sort classes={{...}} model={{...}} router={{...}} onSelect={[Function]} queryParam="sort">
         <div className="RSFSort-container-1" onClick={[undefined]}>
-          <WithStyles(Button) className="RSFSort-option-2" color="primary" variant="raised" onClick={[Function: bound ]}>
-            <Button classes={{...}} className="RSFSort-option-2" color="primary" variant="raised" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+          <WithStyles(Button) className="RSFSort-option-2" color="primary" variant="contained" onClick={[Function: bound ]}>
+            <Button classes={{...}} className="RSFSort-option-2" color="primary" variant="contained" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
               <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button">
                 <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
                   <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFSort-option-2" type="button" disabled={false} onClick={[Function: bound ]}>
@@ -26,8 +26,8 @@ exports[`Sort renders with a sort selected 1`] = `
               </WithStyles(ButtonBase)>
             </Button>
           </WithStyles(Button)>
-          <WithStyles(Button) className="RSFSort-option-2" color="default" variant="raised" onClick={[Function: bound ]}>
-            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="raised" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+          <WithStyles(Button) className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]}>
+            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
               <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button">
                 <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
                   <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" type="button" disabled={false} onClick={[Function: bound ]}>
@@ -59,8 +59,8 @@ exports[`Sort renders with no sort selected 1`] = `
     <inject-Sort-with-router classes={{...}} model={{...}}>
       <Sort classes={{...}} model={{...}} router={{...}} onSelect={[Function]} queryParam="sort">
         <div className="RSFSort-container-1" onClick={[undefined]}>
-          <WithStyles(Button) className="RSFSort-option-2" color="default" variant="raised" onClick={[Function: bound ]}>
-            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="raised" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+          <WithStyles(Button) className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]}>
+            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
               <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button">
                 <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
                   <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" type="button" disabled={false} onClick={[Function: bound ]}>
@@ -79,8 +79,8 @@ exports[`Sort renders with no sort selected 1`] = `
               </WithStyles(ButtonBase)>
             </Button>
           </WithStyles(Button)>
-          <WithStyles(Button) className="RSFSort-option-2" color="default" variant="raised" onClick={[Function: bound ]}>
-            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="raised" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+          <WithStyles(Button) className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]}>
+            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
               <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button">
                 <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
                   <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" type="button" disabled={false} onClick={[Function: bound ]}>
