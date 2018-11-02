@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
+ */
 import React, { Component } from 'react'
 import { InputAdornment, TextField, withStyles } from '@material-ui/core'
 import Search from '@material-ui/icons/Search'

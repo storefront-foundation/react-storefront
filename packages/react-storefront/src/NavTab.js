@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
+ */
 import React, { Component, Fragment } from 'react'
 import Track from './Track'
 import Link from './Link'
