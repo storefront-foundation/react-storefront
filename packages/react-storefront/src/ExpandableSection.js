@@ -99,9 +99,9 @@ export default class ExpandableSection extends Component {
 
     this.ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMoreIcon
     this.CollapseIcon = CollapseIcon || theme.CollapseIcon || this.ExpandIcon
-
-    this.state = {
-      expanded
+  
+    this.state = {	
+      expanded	
     }
   }
 
@@ -116,9 +116,8 @@ export default class ExpandableSection extends Component {
       return (
         <ExpansionPanel classes={{ root: classes.root }} expanded={expanded} {...others} onChange={this.onChange}>
           <ExpansionPanelSummary 
-            expandIcon={
-              this.state.expanded ? <CollapseIcon className={classes.collapseIcon}/> : <ExpandIcon className={classes.expandIcon}/>} 
-              classes={this.getSummaryClasses()}
+            expandIcon={this.state.expanded ? <CollapseIcon className={classes.collapseIcon}/> : <ExpandIcon className={classes.expandIcon}/>} 
+            classes={this.getSummaryClasses()}
             >
             <Typography variant="subheading">{title}</Typography>
             { caption && (
@@ -140,6 +139,13 @@ export default class ExpandableSection extends Component {
       )
     }
 
+  }
+
+  componentDidUpdate(prevProps) {
+    const { expanded } = this.props
+    if (prevProps.expanded !== expanded) {
+      this.setState({ expanded })
+    }
   }
 
   /**
