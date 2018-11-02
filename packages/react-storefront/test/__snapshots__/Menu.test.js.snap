@@ -933,8 +933,8 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                                               <WithStyles(ListItemText) classes={{...}} primary={{...}}>
                                                                 <ListItemText classes={{...}} primary={{...}} disableTypography={false} inset={false}>
                                                                   <div className="MuiListItemText-root-76 RSFMenu-headerText-6">
-                                                                    <WithStyles(Typography) variant="subheading" className="MuiListItemText-primary-79">
-                                                                      <Typography classes={{...}} variant="subheading" className="MuiListItemText-primary-79" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <WithStyles(Typography) variant="subtitle1" className="MuiListItemText-primary-79">
+                                                                      <Typography classes={{...}} variant="subtitle1" className="MuiListItemText-primary-79" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                                         <h3 className="MuiTypography-root-101 MuiTypography-subheading-108 MuiListItemText-primary-79">
                                                                           <div className="RSFMenu-headerText-6">
                                                                             Group 1

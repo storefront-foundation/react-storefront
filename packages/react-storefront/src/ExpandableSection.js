@@ -152,7 +152,7 @@ export default class ExpandableSection extends Component {
             } 
             classes={this.getSummaryClasses()}
           >
-            <Typography variant="subheading">{title}</Typography>
+            <Typography variant="subtitle1">{title}</Typography>
             { caption && (
               <Typography 
                 variant="caption" 

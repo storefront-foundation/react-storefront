@@ -18,8 +18,8 @@ exports[`ExpandableSection should render 1`] = `
                             <ButtonBase classes={{...}} focusRipple={false} disableRipple={true} disabled={false} component="div" aria-expanded={false} className="MuiExpansionPanelSummary-root-40" onFocusVisible={[Function: value]} onBlur={[Function: value]} onClick={[Function: value]} centerRipple={false} tabIndex="0" type="button">
                               <div onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-46 MuiExpansionPanelSummary-root-40" role="button" aria-expanded={false} onClick={[Function: value]}>
                                 <div className="MuiExpansionPanelSummary-content-44 RSFExpandableSection-summary-6">
-                                  <WithStyles(Typography) variant="subheading">
-                                    <Typography classes={{...}} variant="subheading" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                  <WithStyles(Typography) variant="subtitle1">
+                                    <Typography classes={{...}} variant="subtitle1" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                       <h3 className="MuiTypography-root-49 MuiTypography-subheading-56">
                                         Title
                                       </h3>
@@ -111,8 +111,8 @@ exports[`ExpandableSection should render AmpExpandableSection when amp == true 1
                 </HelmetWrapper>
                 <amp-accordion disable-session-states={true} class="MoovAmpExpandableSection-accordion-106">
                   <section className="MoovAmpExpandableSection-section-108">
-                    <WithStyles(Typography) variant="subheading" component="h3" className="MoovAmpExpandableSection-title-107">
-                      <Typography classes={{...}} variant="subheading" component="h3" className="MoovAmpExpandableSection-title-107" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                    <WithStyles(Typography) variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-107">
+                      <Typography classes={{...}} variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-107" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                         <h3 className="MuiTypography-root-113 MuiTypography-subheading-120 MoovAmpExpandableSection-title-107">
                           Title
                           <pure(ExpandMore) className="MoovAmpExpandableSection-toggle-109 MoovAmpExpandableSection-collapse-111">

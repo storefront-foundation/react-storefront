@@ -97,8 +97,8 @@ exports[`Drawer uses a div for title 1`] = `
                                 <div className="MuiPaper-root-20 MuiPaper-elevation16-38 MuiDrawer-paper-6 RSFDrawer-paper-2 MuiDrawer-paperAnchorBottom-10" style={{...}} direction="up" role="document" tabIndex="-1">
                                   <div>
                                     <div className="RSFDrawer-title-3">
-                                      <WithStyles(Typography) variant="title" component="div">
-                                        <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                      <WithStyles(Typography) variant="h6" component="div">
+                                        <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                           <div className="MuiTypography-root-47 MuiTypography-title-53">
                                             Title
                                           </div>

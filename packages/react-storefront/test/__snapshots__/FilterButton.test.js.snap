@@ -71,8 +71,8 @@ exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
                                           <div className="MuiPaper-root-75 MuiPaper-elevation16-93 MuiDrawer-paper-61 RSFDrawer-paper-57 MuiDrawer-paperAnchorBottom-65" style={{...}} direction="up" role="document" tabIndex="-1">
                                             <div>
                                               <div className="RSFDrawer-title-58">
-                                                <WithStyles(Typography) variant="title" component="div">
-                                                  <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                <WithStyles(Typography) variant="h6" component="div">
+                                                  <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                     <div className="MuiTypography-root-25 MuiTypography-title-31">
                                                       <Hbox justifyContent="center">
                                                         <WithStyles(Box) alignItems="center" justifyContent="center" flexDirection="row">
@@ -219,8 +219,8 @@ exports[`FilterButton renders with filters selected 1`] = `
                                           <div className="MuiPaper-root-75 MuiPaper-elevation16-93 MuiDrawer-paper-61 RSFDrawer-paper-57 MuiDrawer-paperAnchorBottom-65" style={{...}} direction="up" role="document" tabIndex="-1">
                                             <div>
                                               <div className="RSFDrawer-title-58">
-                                                <WithStyles(Typography) variant="title" component="div">
-                                                  <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                <WithStyles(Typography) variant="h6" component="div">
+                                                  <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                     <div className="MuiTypography-root-25 MuiTypography-title-31">
                                                       <Hbox justifyContent="center">
                                                         <WithStyles(Box) alignItems="center" justifyContent="center" flexDirection="row">
@@ -368,8 +368,8 @@ exports[`FilterButton renders with no filters selected 1`] = `
                                           <div className="MuiPaper-root-75 MuiPaper-elevation16-93 MuiDrawer-paper-61 RSFDrawer-paper-57 MuiDrawer-paperAnchorBottom-65" style={{...}} direction="up" role="document" tabIndex="-1">
                                             <div>
                                               <div className="RSFDrawer-title-58">
-                                                <WithStyles(Typography) variant="title" component="div">
-                                                  <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                <WithStyles(Typography) variant="h6" component="div">
+                                                  <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                     <div className="MuiTypography-root-25 MuiTypography-title-31">
                                                       <Hbox justifyContent="center">
                                                         <WithStyles(Box) alignItems="center" justifyContent="center" flexDirection="row">
@@ -514,8 +514,8 @@ exports[`FilterButton uses the title prop as the label and drawer header 1`] = `
                                           <div className="MuiPaper-root-75 MuiPaper-elevation16-93 MuiDrawer-paper-61 RSFDrawer-paper-57 MuiDrawer-paperAnchorBottom-65" style={{...}} direction="up" role="document" tabIndex="-1">
                                             <div>
                                               <div className="RSFDrawer-title-58">
-                                                <WithStyles(Typography) variant="title" component="div">
-                                                  <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                <WithStyles(Typography) variant="h6" component="div">
+                                                  <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                     <div className="MuiTypography-root-25 MuiTypography-title-31">
                                                       <Hbox justifyContent="center">
                                                         <WithStyles(Box) alignItems="center" justifyContent="center" flexDirection="row">

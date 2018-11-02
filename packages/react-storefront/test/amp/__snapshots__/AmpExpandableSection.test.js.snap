@@ -11,8 +11,8 @@ exports[`AmpExpandableSection should render 1`] = `
       </HelmetWrapper>
       <amp-accordion disable-session-states={true} class="MoovAmpExpandableSection-accordion-1">
         <section className="MoovAmpExpandableSection-section-3">
-          <WithStyles(Typography) variant="subheading" component="h3" className="MoovAmpExpandableSection-title-2">
-            <Typography classes={{...}} variant="subheading" component="h3" className="MoovAmpExpandableSection-title-2" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+          <WithStyles(Typography) variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-2">
+            <Typography classes={{...}} variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-2" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
               <h3 className="MuiTypography-root-8 MuiTypography-subheading-15 MoovAmpExpandableSection-title-2">
                 Title
                 <pure(ExpandMore) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6">
@@ -65,8 +65,8 @@ exports[`AmpExpandableSection should render expanded 1`] = `
       </HelmetWrapper>
       <amp-accordion disable-session-states={true} class="MoovAmpExpandableSection-accordion-38">
         <section className="MoovAmpExpandableSection-section-40" expanded="">
-          <WithStyles(Typography) variant="subheading" component="h3" className="MoovAmpExpandableSection-title-39">
-            <Typography classes={{...}} variant="subheading" component="h3" className="MoovAmpExpandableSection-title-39" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+          <WithStyles(Typography) variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-39">
+            <Typography classes={{...}} variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-39" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
               <h3 className="MuiTypography-root-45 MuiTypography-subheading-52 MoovAmpExpandableSection-title-39">
                 Title
                 <pure(ExpandMore) className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-collapse-43">

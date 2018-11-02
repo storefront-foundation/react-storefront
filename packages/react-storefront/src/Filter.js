@@ -123,7 +123,7 @@ export default class Filter extends Component {
        { get(model, 'facetGroups', []).map((facetGroup, i) => this.renderFacetGroup(facetGroup, i)) }
        { model.filtersChanged && (
         <Hbox className={classes.footer} split>
-          <Typography variant="subheading" className={classes.itemsFound}>{model.filters.length || 'No'} filter{model.filters.length === 1 ? '' : 's'} selected</Typography>
+          <Typography variant="subtitle1" className={classes.itemsFound}>{model.filters.length || 'No'} filter{model.filters.length === 1 ? '' : 's'} selected</Typography>
           <Button variant="contained" size="large" color="default" onClick={this.onViewResultsClick}>View Results</Button>
         </Hbox>
        )}

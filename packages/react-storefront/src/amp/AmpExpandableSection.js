@@ -93,7 +93,7 @@ export default class AmpExpandableSection extends Component {
         </Helmet>
         <amp-accordion disable-session-states class={classes.accordion}>
           <section className={classes.section} {...sectionAttributes}>
-            <Typography variant="subheading" component="h3" className={classes.title}>
+            <Typography variant="subtitle1" component="h3" className={classes.title}>
               {title}
               <ExpandIcon className={classnames(classes.toggle, classes.collapse)}/>
               <CollapseIcon className={classnames(classes.toggle, classes.expand)}/>

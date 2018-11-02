@@ -109,7 +109,7 @@ export default class Drawer extends Component {
         <div ref={this.drawer}>
           { title && (
             <div className={classes.title}>
-              <Typography variant="title" component="div">{title}</Typography>
+              <Typography variant="h6" component="div">{title}</Typography>
             </div>
           )}
 

@@ -72,8 +72,8 @@ exports[`SortButton passes drawerProps to the underlying Sort component 1`] = `
                                         <div className="MuiPaper-root-74 MuiPaper-elevation16-92 MuiDrawer-paper-60 RSFDrawer-paper-56 MuiDrawer-paperAnchorBottom-64" style={{...}} direction="up" role="document" tabIndex="-1">
                                           <div>
                                             <div className="RSFDrawer-title-57">
-                                              <WithStyles(Typography) variant="title" component="div">
-                                                <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                              <WithStyles(Typography) variant="h6" component="div">
+                                                <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                   <div className="MuiTypography-root-24 MuiTypography-title-30">
                                                     Sort By
                                                   </div>
@@ -208,8 +208,8 @@ exports[`SortButton renders with a sort selected 1`] = `
                                         <div className="MuiPaper-root-74 MuiPaper-elevation16-92 MuiDrawer-paper-60 RSFDrawer-paper-56 MuiDrawer-paperAnchorBottom-64" style={{...}} direction="up" role="document" tabIndex="-1">
                                           <div>
                                             <div className="RSFDrawer-title-57">
-                                              <WithStyles(Typography) variant="title" component="div">
-                                                <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                              <WithStyles(Typography) variant="h6" component="div">
+                                                <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                   <div className="MuiTypography-root-24 MuiTypography-title-30">
                                                     Sort
                                                   </div>
@@ -342,8 +342,8 @@ exports[`SortButton renders with no sort selected 1`] = `
                                         <div className="MuiPaper-root-74 MuiPaper-elevation16-92 MuiDrawer-paper-60 RSFDrawer-paper-56 MuiDrawer-paperAnchorBottom-64" style={{...}} direction="up" role="document" tabIndex="-1">
                                           <div>
                                             <div className="RSFDrawer-title-57">
-                                              <WithStyles(Typography) variant="title" component="div">
-                                                <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                              <WithStyles(Typography) variant="h6" component="div">
+                                                <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                   <div className="MuiTypography-root-24 MuiTypography-title-30">
                                                     Sort
                                                   </div>
@@ -478,8 +478,8 @@ exports[`SortButton uses the title prop as the label and drawer header 1`] = `
                                         <div className="MuiPaper-root-74 MuiPaper-elevation16-92 MuiDrawer-paper-60 RSFDrawer-paper-56 MuiDrawer-paperAnchorBottom-64" style={{...}} direction="up" role="document" tabIndex="-1">
                                           <div>
                                             <div className="RSFDrawer-title-57">
-                                              <WithStyles(Typography) variant="title" component="div">
-                                                <Typography classes={{...}} variant="title" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                              <WithStyles(Typography) variant="h6" component="div">
+                                                <Typography classes={{...}} variant="h6" component="div" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                                                   <div className="MuiTypography-root-24 MuiTypography-title-30">
                                                     Sort By
                                                   </div>
