@@ -288,10 +288,11 @@ export default class ImageSwitcher extends Component {
     viewerActive: false
   }
 
-  componentWillReceiveProps(nextProps){
-    if (nextProps.selectedIndex !== 'undefined') {
-      this.setState({ selectedIndex: nextProps.selectedIndex });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof nextProps.selectedIndex !== 'undefined' && nextProps.selectedIndex !== null && nextProps.selectedIndex !== prevState.selectedIndex) {
+      return { selectedIndex: nextProps.selectedIndex }
     }
+    return {}
   }
 
   renderViewerToggle(withClose) {
