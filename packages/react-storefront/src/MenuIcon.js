@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
+ */
 import React, { PureComponent } from 'react'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Open from './assets/menu.svg'
