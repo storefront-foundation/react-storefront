@@ -73,8 +73,15 @@ export default function responseHeaderTransform() {
 
   // never cache responses with an error status or temporary redirect
   if (headers.statusCode >= 400 || headers.statusCode === 302) {
-    headers.removeHeader('cache-control')
+    headers.removeAllHeaders('cache-control')
   }
+
+  // Never send a set-cookie header when x-moov-cache is set to true.  
+  // Doing so would prevent caching as varnish will not cache a response with a set-cookie header.
+  if (headers.header('x-moov-cache')) {
+    headers.removeAllHeaders('set-cookie')
+  }
+
 }
 
 function addSecureHeaders() {

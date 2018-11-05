@@ -35,7 +35,7 @@ export function redirectTo(url, statusCode=301) {
   } else {
     headers.removeAllHeaders("Location")
     headers.addHeader("Location", url)
-    headers.statusCode = statusCode.toString()
+    headers.statusCode = statusCode
   }
 
   cache({ serverMaxAge: 0, browserMaxAge: 0 })
