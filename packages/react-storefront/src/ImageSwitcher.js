@@ -94,6 +94,12 @@ export const styles = theme => ({
     borderColor: '#D0D0D0'
   },
 
+  arrows: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
+  },
+
   arrow: {
     position: 'absolute',
     top: '50%',
@@ -270,7 +276,7 @@ export default class ImageSwitcher extends Component {
     images: [],
     thumbnails: [],
     viewerThumbnailsOnly: false,
-    arrows: false,
+    arrows: true,
     indicators: false,
     loadingThumbnailProps: {},
     reactPinchZoomPanOptions: {

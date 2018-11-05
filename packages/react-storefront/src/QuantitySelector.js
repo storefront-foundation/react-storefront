@@ -19,11 +19,12 @@ export const styles = theme => ({
     padding: 0
   },
   icon: {
-    fontSize: theme.typography.title.fontSize
+    fontSize: theme.typography.title.fontSize,
+    top: '-4px',
+    position: 'relative'
   },
   button: {
-    height: 'auto',
-    minHeight: '36px',
+    height: '36px',
     width: '36px'
   },
   input: {

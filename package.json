@@ -46,5 +46,8 @@
     "hooks": {
       "pre-commit": "yarn add-license"
     }
+  },
+  "dependencies": {
+    "react-transition-group": "^2.5.0"
   }
 }
