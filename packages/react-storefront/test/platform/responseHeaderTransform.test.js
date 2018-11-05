@@ -157,6 +157,42 @@ describe('responseHeaderTransform', () => {
     expect(headers.header('cache-control')).not.toBeDefined()
   })
 
+  it('should cache proxied images automatically', () => {
+    [
+      '/images/foo.jpeg',
+      '/images/foo.jpg',
+      '/images/foo.png',
+      '/images/foo.gif',
+      '/images/foo.svg',
+      '/images/foo.woff2',
+      '/images/foo.ttf',
+      '/images/foo.otf'
+    ].map(path => {
+      reset()
+      global.env.path = path
+      responseHeaderTransform()
+      expect(headers.header('cache-control')).toBe('s-maxage=86400')
+    })
+  })
+
+  it('should cache proxied images based on a configurable time', () => {
+    [
+      '/images/foo.jpeg',
+      '/images/foo.jpg',
+      '/images/foo.png',
+      '/images/foo.gif',
+      '/images/foo.svg',
+      '/images/foo.woff2',
+      '/images/foo.ttf',
+      '/images/foo.otf'
+    ].map(path => {
+      reset()
+      global.env.path = path
+      responseHeaderTransform({ cacheProxiedAssets: { serverMaxAge: 60 }})
+      expect(headers.header('cache-control')).toBe('s-maxage=60')
+    })
+  })
+
   afterAll(() => {
     delete global.headers
     delete global.env
