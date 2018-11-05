@@ -289,10 +289,10 @@ export default class ImageSwitcher extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof nextProps.selectedIndex !== 'undefined' && nextProps.selectedIndex !== null && nextProps.selectedIndex !== prevState.selectedIndex) {
+    if (typeof nextProps.selectedIndex === 'number' && nextProps.selectedIndex !== prevState.selectedIndex) {
       return { selectedIndex: nextProps.selectedIndex }
     }
-    return {}
+    return null
   }
 
   renderViewerToggle(withClose) {
