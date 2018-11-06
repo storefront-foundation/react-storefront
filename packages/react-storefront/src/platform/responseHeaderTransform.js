@@ -2,13 +2,15 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { cache, FAR_FUTURE } from './cache'
+import { cache, cacheProxiedAssets as doCacheProxiedAssets, FAR_FUTURE, ONE_DAY } from './cache'
 import { redirectTo, redirectToHttps } from './redirect'
 
 /**
  * Run this in moov_response_header_transform.js
  */
-export default function responseHeaderTransform() {
+export default function responseHeaderTransform({ 
+  cacheProxiedAssets={ serverMaxAge: ONE_DAY } 
+} = {}) {
 
   if (env.__static_origin_path__) {
     // It is important that the client never caches the servce-worker so that it always goes to the network
@@ -22,6 +24,10 @@ export default function responseHeaderTransform() {
       cache({ serverMaxAge: FAR_FUTURE })
     }
   } else {
+    const [pathname] = env.path.split(/\?/)
+
+    doCacheProxiedAssets(pathname, cacheProxiedAssets)
+
     // Always redirect on non-secure requests.
 
     if (env.secure !== 'true') {
@@ -73,8 +79,15 @@ export default function responseHeaderTransform() {
 
   // never cache responses with an error status or temporary redirect
   if (headers.statusCode >= 400 || headers.statusCode === 302) {
-    headers.removeHeader('cache-control')
+    headers.removeAllHeaders('cache-control')
   }
+
+  // Never send a set-cookie header when x-moov-cache is set to true.  
+  // Doing so would prevent caching as varnish will not cache a response with a set-cookie header.
+  if (headers.header('x-moov-cache')) {
+    headers.removeAllHeaders('set-cookie')
+  }
+
 }
 
 function addSecureHeaders() {

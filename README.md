@@ -10,6 +10,14 @@ All rights reserved.
 
 ## Changelog
 
+### 4.7.1
+
+* Now throws an error in development when a cache handler runs during non-GET request
+
+* Removes set-cookie headers when route has a cache handler with server maxAgeSeconds > 0.
+
+* Automatically caches all proxied images and fonts for a day
+
 ### 4.7.0
 
 * ExpandableSection's expanded state can now be controlled via an expanded prop
