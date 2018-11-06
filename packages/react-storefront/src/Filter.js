@@ -25,9 +25,6 @@ export const styles = theme => ({
     overflowX: 'hidden',
     paddingBottom: '64px'
   },
-  section: {
-    marginBottom: `${theme.margins.container}px`
-  },
   matches: {
     marginLeft: '5px',
     display: 'inline'
@@ -183,7 +180,6 @@ export default class Filter extends Component {
         caption={caption}
         expanded={expanded[group.name]}
         onChange={(e, expanded) => this.setState({ expanded: { ...this.state.expanded, [group.name]: expanded }})}
-        classes={{ root: classes.section }}
         margins={margins}
       >
         {formGroup}
