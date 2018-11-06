@@ -76,6 +76,7 @@
     "watch:rsf": "pushd packages/react-storefront; yarn watch; popd;",
     "watch:rsf-moov-xdn": "pushd packages/react-storefront-moov-xdn; yarn watch; popd;",
     "add-license": "node ./tasks/addLicense",
+    "upgrade-docs": "rm -Rf docs && git clone https://github.com/moovweb/moov-pwa-docs.git docs && node ./tasks/upgradeDocsVersion && cd docs && git add package.json && git commit -m \"RSF Upgrade\"",
     "link:all": "yarn build; cd packages/react-storefront/dist; npm link; yarn link; cd ../../../; cd packages/babel-plugin-react-storefront; npm link; yarn link; cd ../../; cd packages/react-storefront-moov-xdn/dist; npm link; yarn link; cd ../../../;"
   },
   "workspaces": {
