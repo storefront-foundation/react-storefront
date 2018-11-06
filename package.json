@@ -28,6 +28,7 @@
   },
   "scripts": {
     "precommit": "gulp addLicense",
+    "postinstall": "lerna bootstrap",
     "publish": "lerna publish --force-publish=* --yes",
     "docs": "pushd packages/react-storefront; yarn docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
