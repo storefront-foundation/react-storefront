@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn add-license"
+      "pre-commit": "yarn add-license && yarn docs"
     }
   }
 }

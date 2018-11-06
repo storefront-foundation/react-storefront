@@ -120,13 +120,15 @@ function getProps({ props } = {}) {
     });
 }
 
+console.log('\x1b[36m%s\x1b[0m', 'Building component docs...');
+
 const data = globby.sync(['**/*.js'], { cwd: COMPONENTS_PATH })
   .map(readFileContent)
   .map(maybeParseReactComponent)
   .filter(isComponentParsed)
   .filter(ignoreInternalComponents)
   .reduce((result, componentObject) => {
-    console.log(componentObject.filename)
+    // console.log(componentObject.filename)
     componentObject.styles = getStyles(componentObject);
     componentObject.inheritance = getInheritance(componentObject);
     componentObject.props = getProps(componentObject);

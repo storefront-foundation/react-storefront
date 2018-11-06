@@ -12,7 +12,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
-    "docs": "npm run build-storybook && npm run deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
+    "docs": "mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
     "@material-ui/core": "^3.0.0",
