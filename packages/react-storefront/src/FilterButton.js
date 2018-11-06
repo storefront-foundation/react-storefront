@@ -82,7 +82,7 @@ export default class FilterButton extends Component {
   render() {
     const { classes, app, model, title, drawerProps, hideClearLink, clearLinkText, ...props } = this.props
     const { open, mountDrawer } = this.state
-    const { clear, ...buttonClasses } = classes
+    const { clear, drawer, ...buttonClasses } = classes
 
     return (
       <Fragment>

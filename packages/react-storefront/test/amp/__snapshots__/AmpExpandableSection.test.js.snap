@@ -1,109 +1,113 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AmpExpandableSection should render 1`] = `
-<MuiThemeProvider theme={{...}}>
-  <WithStyles(AmpExpandableSection) title="Title">
-    <AmpExpandableSection classes={{...}} title="Title" expanded={false} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
-      <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-        <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
-          <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
-        </SideEffect(NullComponent)>
-      </HelmetWrapper>
-      <amp-accordion disable-session-states={true} class="MoovAmpExpandableSection-accordion-1">
-        <section className="MoovAmpExpandableSection-section-3">
-          <WithStyles(Typography) variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-2">
-            <Typography classes={{...}} variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-2" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-              <h3 className="MuiTypography-root-8 MuiTypography-subheading-15 MoovAmpExpandableSection-title-2">
-                Title
-                <pure(ExpandMore) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6">
-                  <ExpandMore className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6">
-                    <WithStyles(SvgIcon) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6">
-                      <SvgIcon classes={{...}} className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6" color="inherit" viewBox="0 0 24 24">
-                        <svg className="MuiSvgIcon-root-32 MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                          <g>
-                            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-                          </g>
-                        </svg>
-                      </SvgIcon>
-                    </WithStyles(SvgIcon)>
-                  </ExpandMore>
-                </pure(ExpandMore)>
-                <pure(ExpandLess) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5">
-                  <ExpandLess className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5">
-                    <WithStyles(SvgIcon) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5">
-                      <SvgIcon classes={{...}} className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5" color="inherit" viewBox="0 0 24 24">
-                        <svg className="MuiSvgIcon-root-32 MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                          <g>
-                            <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
-                          </g>
-                        </svg>
-                      </SvgIcon>
-                    </WithStyles(SvgIcon)>
-                  </ExpandLess>
-                </pure(ExpandLess)>
-              </h3>
-            </Typography>
-          </WithStyles(Typography)>
-          <div className="MoovAmpExpandableSection-body-7">
-            Foo
-          </div>
-        </section>
-      </amp-accordion>
-    </AmpExpandableSection>
-  </WithStyles(AmpExpandableSection)>
-</MuiThemeProvider>
+<TestProvider>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(AmpExpandableSection) title="Title">
+        <AmpExpandableSection title="Title" classes={{...}} expanded={false} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
+          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+              <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+            </SideEffect(NullComponent)>
+          </HelmetWrapper>
+          <amp-accordion disable-session-states={true} class="MoovAmpExpandableSection-accordion-1">
+            <section className="MoovAmpExpandableSection-section-3">
+              <WithStyles(Typography) variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-2">
+                <Typography variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-2" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                  <h3 className="MuiTypography-root-8 MuiTypography-subtitle1-26 MoovAmpExpandableSection-title-2">
+                    Title
+                    <pure(ExpandMoreIcon) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6">
+                      <ExpandMoreIcon className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6">
+                        <WithStyles(SvgIcon) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6">
+                          <SvgIcon className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                            <svg className="MuiSvgIcon-root-43 MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-collapse-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                              <path fill="none" d="M0 0h24v24H0z" />
+                            </svg>
+                          </SvgIcon>
+                        </WithStyles(SvgIcon)>
+                      </ExpandMoreIcon>
+                    </pure(ExpandMoreIcon)>
+                    <pure(ExpandLessIcon) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5">
+                      <ExpandLessIcon className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5">
+                        <WithStyles(SvgIcon) className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5">
+                          <SvgIcon className="MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                            <svg className="MuiSvgIcon-root-43 MoovAmpExpandableSection-toggle-4 MoovAmpExpandableSection-expand-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                              <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+                              <path fill="none" d="M0 0h24v24H0z" />
+                            </svg>
+                          </SvgIcon>
+                        </WithStyles(SvgIcon)>
+                      </ExpandLessIcon>
+                    </pure(ExpandLessIcon)>
+                  </h3>
+                </Typography>
+              </WithStyles(Typography)>
+              <div className="MoovAmpExpandableSection-body-7">
+                Foo
+              </div>
+            </section>
+          </amp-accordion>
+        </AmpExpandableSection>
+      </WithStyles(AmpExpandableSection)>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
 `;
 
 exports[`AmpExpandableSection should render expanded 1`] = `
-<MuiThemeProvider theme={{...}}>
-  <WithStyles(AmpExpandableSection) title="Title" expanded={true}>
-    <AmpExpandableSection classes={{...}} title="Title" expanded={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
-      <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-        <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
-          <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
-        </SideEffect(NullComponent)>
-      </HelmetWrapper>
-      <amp-accordion disable-session-states={true} class="MoovAmpExpandableSection-accordion-38">
-        <section className="MoovAmpExpandableSection-section-40" expanded="">
-          <WithStyles(Typography) variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-39">
-            <Typography classes={{...}} variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-39" align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-              <h3 className="MuiTypography-root-45 MuiTypography-subheading-52 MoovAmpExpandableSection-title-39">
-                Title
-                <pure(ExpandMore) className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-collapse-43">
-                  <ExpandMore className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-collapse-43">
-                    <WithStyles(SvgIcon) className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-collapse-43">
-                      <SvgIcon classes={{...}} className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-collapse-43" color="inherit" viewBox="0 0 24 24">
-                        <svg className="MuiSvgIcon-root-69 MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-collapse-43" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                          <g>
-                            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-                          </g>
-                        </svg>
-                      </SvgIcon>
-                    </WithStyles(SvgIcon)>
-                  </ExpandMore>
-                </pure(ExpandMore)>
-                <pure(ExpandLess) className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-expand-42">
-                  <ExpandLess className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-expand-42">
-                    <WithStyles(SvgIcon) className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-expand-42">
-                      <SvgIcon classes={{...}} className="MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-expand-42" color="inherit" viewBox="0 0 24 24">
-                        <svg className="MuiSvgIcon-root-69 MoovAmpExpandableSection-toggle-41 MoovAmpExpandableSection-expand-42" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                          <g>
-                            <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
-                          </g>
-                        </svg>
-                      </SvgIcon>
-                    </WithStyles(SvgIcon)>
-                  </ExpandLess>
-                </pure(ExpandLess)>
-              </h3>
-            </Typography>
-          </WithStyles(Typography)>
-          <div className="MoovAmpExpandableSection-body-44">
-            Foo
-          </div>
-        </section>
-      </amp-accordion>
-    </AmpExpandableSection>
-  </WithStyles(AmpExpandableSection)>
-</MuiThemeProvider>
+<TestProvider>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(AmpExpandableSection) title="Title" expanded={true}>
+        <AmpExpandableSection title="Title" expanded={true} classes={{...}} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
+          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+              <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+            </SideEffect(NullComponent)>
+          </HelmetWrapper>
+          <amp-accordion disable-session-states={true} class="MoovAmpExpandableSection-accordion-52">
+            <section className="MoovAmpExpandableSection-section-54" expanded="">
+              <WithStyles(Typography) variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-53">
+                <Typography variant="subtitle1" component="h3" className="MoovAmpExpandableSection-title-53" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                  <h3 className="MuiTypography-root-59 MuiTypography-subtitle1-77 MoovAmpExpandableSection-title-53">
+                    Title
+                    <pure(ExpandMoreIcon) className="MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-collapse-57">
+                      <ExpandMoreIcon className="MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-collapse-57">
+                        <WithStyles(SvgIcon) className="MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-collapse-57">
+                          <SvgIcon className="MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-collapse-57" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                            <svg className="MuiSvgIcon-root-94 MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-collapse-57" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                              <path fill="none" d="M0 0h24v24H0z" />
+                            </svg>
+                          </SvgIcon>
+                        </WithStyles(SvgIcon)>
+                      </ExpandMoreIcon>
+                    </pure(ExpandMoreIcon)>
+                    <pure(ExpandLessIcon) className="MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-expand-56">
+                      <ExpandLessIcon className="MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-expand-56">
+                        <WithStyles(SvgIcon) className="MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-expand-56">
+                          <SvgIcon className="MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-expand-56" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                            <svg className="MuiSvgIcon-root-94 MoovAmpExpandableSection-toggle-55 MoovAmpExpandableSection-expand-56" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                              <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+                              <path fill="none" d="M0 0h24v24H0z" />
+                            </svg>
+                          </SvgIcon>
+                        </WithStyles(SvgIcon)>
+                      </ExpandLessIcon>
+                    </pure(ExpandLessIcon)>
+                  </h3>
+                </Typography>
+              </WithStyles(Typography)>
+              <div className="MoovAmpExpandableSection-body-58">
+                Foo
+              </div>
+            </section>
+          </amp-accordion>
+        </AmpExpandableSection>
+      </WithStyles(AmpExpandableSection)>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
 `;

@@ -15,10 +15,10 @@ exports[`LoadMask should render without children 1`] = `
   <LoadMask classes={{...}} show={false} fullscreen={false}>
     <div style={[undefined]} className="RSFLoadMask-root-1">
       <WithStyles(CircularProgress) className={[undefined]} color="secondary">
-        <CircularProgress classes={{...}} className={[undefined]} color="secondary" size={40} thickness={3.6} value={0} variant="indeterminate">
+        <CircularProgress className={[undefined]} color="secondary" classes={{...}} disableShrink={false} size={40} thickness={3.6} value={0} variant="indeterminate">
           <div className="MuiCircularProgress-root-4 MuiCircularProgress-colorSecondary-8 MuiCircularProgress-indeterminate-6" style={{...}} role="progressbar">
-            <svg className="MuiCircularProgress-svg-9" viewBox="0 0 50 50">
-              <circle className="MuiCircularProgress-circle-10 MuiCircularProgress-circleIndeterminate-12" style={{...}} cx={25} cy={25} r={20} fill="none" strokeWidth={3.6} />
+            <svg className="MuiCircularProgress-svg-9" viewBox="22 22 44 44">
+              <circle className="MuiCircularProgress-circle-10 MuiCircularProgress-circleIndeterminate-12" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
             </svg>
           </div>
         </CircularProgress>

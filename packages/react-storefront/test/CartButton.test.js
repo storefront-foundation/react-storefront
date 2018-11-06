@@ -37,7 +37,7 @@ describe('CartButton', () => {
 
     mount(
       <Provider app={app} history={history}>
-        <CartButton onClick={() => console.log('clicked')}/>
+        <CartButton/>
       </Provider>
     )
       .find('a').at(0)

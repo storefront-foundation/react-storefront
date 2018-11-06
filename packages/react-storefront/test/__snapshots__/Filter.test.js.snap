@@ -2,14 +2,14 @@
 
 exports[`Filter renders with filters selected 1`] = `
 <div
-  className="RSFFilter-root-1"
+  className="RSFFilter-root-139"
 >
   <div
-    className="MuiPaper-root-17 MuiPaper-elevation1-20 MuiExpansionPanel-root-14 RSFExpandableSection-root-5"
+    className="MuiPaper-root-161 MuiPaper-elevation1-164 MuiExpansionPanel-root-158 RSFExpandableSection-root-146 RSFFilter-section-140 RSFExpandableSection-margins-147 RSFExpandableSection-expandedPanel-155"
   >
     <div
       aria-expanded={false}
-      className="MuiButtonBase-root-50 MuiExpansionPanelSummary-root-44"
+      className="MuiButtonBase-root-194 MuiExpansionPanelSummary-root-188"
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -25,22 +25,22 @@ exports[`Filter renders with filters selected 1`] = `
       tabIndex="0"
     >
       <div
-        className="MuiExpansionPanelSummary-content-48 RSFExpandableSection-summary-10"
+        className="MuiExpansionPanelSummary-content-192 RSFExpandableSection-summary-152"
       >
-        <h3
-          className="MuiTypography-root-53 MuiTypography-subheading-60"
+        <h6
+          className="MuiTypography-root-197 MuiTypography-subtitle1-215"
         >
           Price
-        </h3>
+        </h6>
         <span
-          className="MuiTypography-root-53 MuiTypography-caption-63 RSFExpandableSection-caption-6"
+          className="MuiTypography-root-197 MuiTypography-caption-207 RSFExpandableSection-caption-148"
         >
           Up to $100
         </span>
       </div>
       <div
         aria-hidden="true"
-        className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiExpansionPanelSummary-expandIcon-49"
+        className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiExpansionPanelSummary-expandIcon-193 RSFExpandableSection-summaryIconWrap-154"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -55,29 +55,32 @@ exports[`Filter renders with filters selected 1`] = `
         tabIndex={-1}
       >
         <span
-          className="MuiIconButton-label-82"
+          className="MuiIconButton-label-237"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-83 RSFExpandableSection-expandIcon-12"
+            className="MuiSvgIcon-root-238 RSFExpandableSection-expandIcon-156"
             focusable="false"
+            role="presentation"
             viewBox="0 0 24 24"
           >
-            <g>
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </g>
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-89"
+          className="MuiTouchRipple-root-270"
         />
       </div>
     </div>
     <div
       aria-hidden="true"
-      className="MuiCollapse-container-96"
+      className="MuiCollapse-container-247"
       style={
         Object {
           "minHeight": "0px",
@@ -85,22 +88,22 @@ exports[`Filter renders with filters selected 1`] = `
       }
     >
       <div
-        className="MuiCollapse-wrapper-98"
+        className="MuiCollapse-wrapper-249"
       >
         <div
-          className="MuiCollapse-wrapperInner-99"
+          className="MuiCollapse-wrapperInner-250"
         >
           <div
-            className="MuiExpansionPanelDetails-root-100 RSFExpandableSection-details-9"
+            className="MuiExpansionPanelDetails-root-251 RSFExpandableSection-details-151"
           >
             <div
-              className="MuiFormGroup-root-101"
+              className="MuiFormGroup-root-252"
             >
               <label
-                className="MuiFormControlLabel-root-103"
+                className="MuiFormControlLabel-root-254"
               >
                 <span
-                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109 MuiSwitchBase-checked-112 MuiCheckbox-checked-107"
+                  className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onKeyDown={[Function]}
@@ -114,12 +117,13 @@ exports[`Filter renders with filters selected 1`] = `
                   tabIndex={null}
                 >
                   <span
-                    className="MuiIconButton-label-82"
+                    className="MuiIconButton-label-237"
                   >
                     <svg
                       aria-hidden="true"
-                      className="MuiSvgIcon-root-83"
+                      className="MuiSvgIcon-root-238"
                       focusable="false"
+                      role="presentation"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -128,24 +132,25 @@ exports[`Filter renders with filters selected 1`] = `
                     </svg>
                     <input
                       checked={true}
-                      className="MuiSwitchBase-input-114"
+                      className="MuiPrivateSwitchBase-input-269"
+                      data-indeterminate={false}
                       onChange={[Function]}
                       type="checkbox"
                     />
                   </span>
                   <span
-                    className="MuiTouchRipple-root-89"
+                    className="MuiTouchRipple-root-270"
                   />
                 </span>
                 <span
-                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                  className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259"
                 >
                   <span>
                     <span>
                       Up to $100
                     </span>
                     <span
-                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      className="MuiTypography-root-197 MuiTypography-body2-205 RSFFilter-matches-141"
                       variable="caption"
                     >
                       (
@@ -156,10 +161,10 @@ exports[`Filter renders with filters selected 1`] = `
                 </span>
               </label>
               <label
-                className="MuiFormControlLabel-root-103"
+                className="MuiFormControlLabel-root-254"
               >
                 <span
-                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onKeyDown={[Function]}
@@ -173,12 +178,13 @@ exports[`Filter renders with filters selected 1`] = `
                   tabIndex={null}
                 >
                   <span
-                    className="MuiIconButton-label-82"
+                    className="MuiIconButton-label-237"
                   >
                     <svg
                       aria-hidden="true"
-                      className="MuiSvgIcon-root-83"
+                      className="MuiSvgIcon-root-238"
                       focusable="false"
+                      role="presentation"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -187,24 +193,25 @@ exports[`Filter renders with filters selected 1`] = `
                     </svg>
                     <input
                       checked={false}
-                      className="MuiSwitchBase-input-114"
+                      className="MuiPrivateSwitchBase-input-269"
+                      data-indeterminate={false}
                       onChange={[Function]}
                       type="checkbox"
                     />
                   </span>
                   <span
-                    className="MuiTouchRipple-root-89"
+                    className="MuiTouchRipple-root-270"
                   />
                 </span>
                 <span
-                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                  className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259"
                 >
                   <span>
                     <span>
                       $100 - $200
                     </span>
                     <span
-                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      className="MuiTypography-root-197 MuiTypography-body2-205 RSFFilter-matches-141"
                       variable="caption"
                     >
                       (
@@ -221,11 +228,11 @@ exports[`Filter renders with filters selected 1`] = `
     </div>
   </div>
   <div
-    className="MuiPaper-root-17 MuiPaper-elevation1-20 MuiExpansionPanel-root-14 RSFExpandableSection-root-5"
+    className="MuiPaper-root-161 MuiPaper-elevation1-164 MuiExpansionPanel-root-158 RSFExpandableSection-root-146 RSFFilter-section-140 RSFExpandableSection-margins-147 RSFExpandableSection-expandedPanel-155"
   >
     <div
       aria-expanded={false}
-      className="MuiButtonBase-root-50 MuiExpansionPanelSummary-root-44"
+      className="MuiButtonBase-root-194 MuiExpansionPanelSummary-root-188"
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -241,22 +248,22 @@ exports[`Filter renders with filters selected 1`] = `
       tabIndex="0"
     >
       <div
-        className="MuiExpansionPanelSummary-content-48 RSFExpandableSection-summary-10"
+        className="MuiExpansionPanelSummary-content-192 RSFExpandableSection-summary-152"
       >
-        <h3
-          className="MuiTypography-root-53 MuiTypography-subheading-60"
+        <h6
+          className="MuiTypography-root-197 MuiTypography-subtitle1-215"
         >
           Color
-        </h3>
+        </h6>
         <span
-          className="MuiTypography-root-53 MuiTypography-caption-63 RSFExpandableSection-caption-6"
+          className="MuiTypography-root-197 MuiTypography-caption-207 RSFExpandableSection-caption-148"
         >
           Sunburst
         </span>
       </div>
       <div
         aria-hidden="true"
-        className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiExpansionPanelSummary-expandIcon-49"
+        className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiExpansionPanelSummary-expandIcon-193 RSFExpandableSection-summaryIconWrap-154"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -271,29 +278,32 @@ exports[`Filter renders with filters selected 1`] = `
         tabIndex={-1}
       >
         <span
-          className="MuiIconButton-label-82"
+          className="MuiIconButton-label-237"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-83 RSFExpandableSection-expandIcon-12"
+            className="MuiSvgIcon-root-238 RSFExpandableSection-expandIcon-156"
             focusable="false"
+            role="presentation"
             viewBox="0 0 24 24"
           >
-            <g>
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </g>
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-89"
+          className="MuiTouchRipple-root-270"
         />
       </div>
     </div>
     <div
       aria-hidden="true"
-      className="MuiCollapse-container-96"
+      className="MuiCollapse-container-247"
       style={
         Object {
           "minHeight": "0px",
@@ -301,22 +311,22 @@ exports[`Filter renders with filters selected 1`] = `
       }
     >
       <div
-        className="MuiCollapse-wrapper-98"
+        className="MuiCollapse-wrapper-249"
       >
         <div
-          className="MuiCollapse-wrapperInner-99"
+          className="MuiCollapse-wrapperInner-250"
         >
           <div
-            className="MuiExpansionPanelDetails-root-100 RSFExpandableSection-details-9"
+            className="MuiExpansionPanelDetails-root-251 RSFExpandableSection-details-151"
           >
             <div
-              className="MuiFormGroup-root-101"
+              className="MuiFormGroup-root-252"
             >
               <label
-                className="MuiFormControlLabel-root-103"
+                className="MuiFormControlLabel-root-254"
               >
                 <span
-                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onKeyDown={[Function]}
@@ -330,12 +340,13 @@ exports[`Filter renders with filters selected 1`] = `
                   tabIndex={null}
                 >
                   <span
-                    className="MuiIconButton-label-82"
+                    className="MuiIconButton-label-237"
                   >
                     <svg
                       aria-hidden="true"
-                      className="MuiSvgIcon-root-83"
+                      className="MuiSvgIcon-root-238"
                       focusable="false"
+                      role="presentation"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -344,24 +355,25 @@ exports[`Filter renders with filters selected 1`] = `
                     </svg>
                     <input
                       checked={false}
-                      className="MuiSwitchBase-input-114"
+                      className="MuiPrivateSwitchBase-input-269"
+                      data-indeterminate={false}
                       onChange={[Function]}
                       type="checkbox"
                     />
                   </span>
                   <span
-                    className="MuiTouchRipple-root-89"
+                    className="MuiTouchRipple-root-270"
                   />
                 </span>
                 <span
-                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                  className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259"
                 >
                   <span>
                     <span>
                       Red
                     </span>
                     <span
-                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      className="MuiTypography-root-197 MuiTypography-body2-205 RSFFilter-matches-141"
                       variable="caption"
                     >
                       (
@@ -372,10 +384,10 @@ exports[`Filter renders with filters selected 1`] = `
                 </span>
               </label>
               <label
-                className="MuiFormControlLabel-root-103"
+                className="MuiFormControlLabel-root-254"
               >
                 <span
-                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109 MuiSwitchBase-checked-112 MuiCheckbox-checked-107"
+                  className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onKeyDown={[Function]}
@@ -389,12 +401,13 @@ exports[`Filter renders with filters selected 1`] = `
                   tabIndex={null}
                 >
                   <span
-                    className="MuiIconButton-label-82"
+                    className="MuiIconButton-label-237"
                   >
                     <svg
                       aria-hidden="true"
-                      className="MuiSvgIcon-root-83"
+                      className="MuiSvgIcon-root-238"
                       focusable="false"
+                      role="presentation"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -403,24 +416,25 @@ exports[`Filter renders with filters selected 1`] = `
                     </svg>
                     <input
                       checked={true}
-                      className="MuiSwitchBase-input-114"
+                      className="MuiPrivateSwitchBase-input-269"
+                      data-indeterminate={false}
                       onChange={[Function]}
                       type="checkbox"
                     />
                   </span>
                   <span
-                    className="MuiTouchRipple-root-89"
+                    className="MuiTouchRipple-root-270"
                   />
                 </span>
                 <span
-                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                  className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259"
                 >
                   <span>
                     <span>
                       Sunburst
                     </span>
                     <span
-                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      className="MuiTypography-root-197 MuiTypography-body2-205 RSFFilter-matches-141"
                       variable="caption"
                     >
                       (
@@ -444,11 +458,11 @@ exports[`Filter renders with no filters selected 1`] = `
   className="RSFFilter-root-1"
 >
   <div
-    className="MuiPaper-root-17 MuiPaper-elevation1-20 MuiExpansionPanel-root-14 RSFExpandableSection-root-5"
+    className="MuiPaper-root-23 MuiPaper-elevation1-26 MuiExpansionPanel-root-20 RSFExpandableSection-root-8 RSFFilter-section-2 RSFExpandableSection-margins-9 RSFExpandableSection-expandedPanel-17"
   >
     <div
       aria-expanded={false}
-      className="MuiButtonBase-root-50 MuiExpansionPanelSummary-root-44"
+      className="MuiButtonBase-root-56 MuiExpansionPanelSummary-root-50"
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -464,17 +478,17 @@ exports[`Filter renders with no filters selected 1`] = `
       tabIndex="0"
     >
       <div
-        className="MuiExpansionPanelSummary-content-48 RSFExpandableSection-summary-10"
+        className="MuiExpansionPanelSummary-content-54 RSFExpandableSection-summary-14"
       >
-        <h3
-          className="MuiTypography-root-53 MuiTypography-subheading-60"
+        <h6
+          className="MuiTypography-root-59 MuiTypography-subtitle1-77"
         >
           Price
-        </h3>
+        </h6>
       </div>
       <div
         aria-hidden="true"
-        className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiExpansionPanelSummary-expandIcon-49"
+        className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiExpansionPanelSummary-expandIcon-55 RSFExpandableSection-summaryIconWrap-16"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -489,29 +503,32 @@ exports[`Filter renders with no filters selected 1`] = `
         tabIndex={-1}
       >
         <span
-          className="MuiIconButton-label-82"
+          className="MuiIconButton-label-99"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-83 RSFExpandableSection-expandIcon-12"
+            className="MuiSvgIcon-root-100 RSFExpandableSection-expandIcon-18"
             focusable="false"
+            role="presentation"
             viewBox="0 0 24 24"
           >
-            <g>
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </g>
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-89"
+          className="MuiTouchRipple-root-132"
         />
       </div>
     </div>
     <div
       aria-hidden="true"
-      className="MuiCollapse-container-96"
+      className="MuiCollapse-container-109"
       style={
         Object {
           "minHeight": "0px",
@@ -519,22 +536,22 @@ exports[`Filter renders with no filters selected 1`] = `
       }
     >
       <div
-        className="MuiCollapse-wrapper-98"
+        className="MuiCollapse-wrapper-111"
       >
         <div
-          className="MuiCollapse-wrapperInner-99"
+          className="MuiCollapse-wrapperInner-112"
         >
           <div
-            className="MuiExpansionPanelDetails-root-100 RSFExpandableSection-details-9"
+            className="MuiExpansionPanelDetails-root-113 RSFExpandableSection-details-13"
           >
             <div
-              className="MuiFormGroup-root-101"
+              className="MuiFormGroup-root-114"
             >
               <label
-                className="MuiFormControlLabel-root-103"
+                className="MuiFormControlLabel-root-116"
               >
                 <span
-                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onKeyDown={[Function]}
@@ -548,12 +565,13 @@ exports[`Filter renders with no filters selected 1`] = `
                   tabIndex={null}
                 >
                   <span
-                    className="MuiIconButton-label-82"
+                    className="MuiIconButton-label-99"
                   >
                     <svg
                       aria-hidden="true"
-                      className="MuiSvgIcon-root-83"
+                      className="MuiSvgIcon-root-100"
                       focusable="false"
+                      role="presentation"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -562,24 +580,25 @@ exports[`Filter renders with no filters selected 1`] = `
                     </svg>
                     <input
                       checked={false}
-                      className="MuiSwitchBase-input-114"
+                      className="MuiPrivateSwitchBase-input-131"
+                      data-indeterminate={false}
                       onChange={[Function]}
                       type="checkbox"
                     />
                   </span>
                   <span
-                    className="MuiTouchRipple-root-89"
+                    className="MuiTouchRipple-root-132"
                   />
                 </span>
                 <span
-                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                  className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121"
                 >
                   <span>
                     <span>
                       Up to $100
                     </span>
                     <span
-                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      className="MuiTypography-root-59 MuiTypography-body2-67 RSFFilter-matches-3"
                       variable="caption"
                     >
                       (
@@ -590,10 +609,10 @@ exports[`Filter renders with no filters selected 1`] = `
                 </span>
               </label>
               <label
-                className="MuiFormControlLabel-root-103"
+                className="MuiFormControlLabel-root-116"
               >
                 <span
-                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onKeyDown={[Function]}
@@ -607,12 +626,13 @@ exports[`Filter renders with no filters selected 1`] = `
                   tabIndex={null}
                 >
                   <span
-                    className="MuiIconButton-label-82"
+                    className="MuiIconButton-label-99"
                   >
                     <svg
                       aria-hidden="true"
-                      className="MuiSvgIcon-root-83"
+                      className="MuiSvgIcon-root-100"
                       focusable="false"
+                      role="presentation"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -621,24 +641,25 @@ exports[`Filter renders with no filters selected 1`] = `
                     </svg>
                     <input
                       checked={false}
-                      className="MuiSwitchBase-input-114"
+                      className="MuiPrivateSwitchBase-input-131"
+                      data-indeterminate={false}
                       onChange={[Function]}
                       type="checkbox"
                     />
                   </span>
                   <span
-                    className="MuiTouchRipple-root-89"
+                    className="MuiTouchRipple-root-132"
                   />
                 </span>
                 <span
-                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                  className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121"
                 >
                   <span>
                     <span>
                       $100 - $200
                     </span>
                     <span
-                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      className="MuiTypography-root-59 MuiTypography-body2-67 RSFFilter-matches-3"
                       variable="caption"
                     >
                       (
@@ -655,11 +676,11 @@ exports[`Filter renders with no filters selected 1`] = `
     </div>
   </div>
   <div
-    className="MuiPaper-root-17 MuiPaper-elevation1-20 MuiExpansionPanel-root-14 RSFExpandableSection-root-5"
+    className="MuiPaper-root-23 MuiPaper-elevation1-26 MuiExpansionPanel-root-20 RSFExpandableSection-root-8 RSFFilter-section-2 RSFExpandableSection-margins-9 RSFExpandableSection-expandedPanel-17"
   >
     <div
       aria-expanded={false}
-      className="MuiButtonBase-root-50 MuiExpansionPanelSummary-root-44"
+      className="MuiButtonBase-root-56 MuiExpansionPanelSummary-root-50"
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -675,17 +696,17 @@ exports[`Filter renders with no filters selected 1`] = `
       tabIndex="0"
     >
       <div
-        className="MuiExpansionPanelSummary-content-48 RSFExpandableSection-summary-10"
+        className="MuiExpansionPanelSummary-content-54 RSFExpandableSection-summary-14"
       >
-        <h3
-          className="MuiTypography-root-53 MuiTypography-subheading-60"
+        <h6
+          className="MuiTypography-root-59 MuiTypography-subtitle1-77"
         >
           Color
-        </h3>
+        </h6>
       </div>
       <div
         aria-hidden="true"
-        className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiExpansionPanelSummary-expandIcon-49"
+        className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiExpansionPanelSummary-expandIcon-55 RSFExpandableSection-summaryIconWrap-16"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -700,29 +721,32 @@ exports[`Filter renders with no filters selected 1`] = `
         tabIndex={-1}
       >
         <span
-          className="MuiIconButton-label-82"
+          className="MuiIconButton-label-99"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-83 RSFExpandableSection-expandIcon-12"
+            className="MuiSvgIcon-root-100 RSFExpandableSection-expandIcon-18"
             focusable="false"
+            role="presentation"
             viewBox="0 0 24 24"
           >
-            <g>
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </g>
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-89"
+          className="MuiTouchRipple-root-132"
         />
       </div>
     </div>
     <div
       aria-hidden="true"
-      className="MuiCollapse-container-96"
+      className="MuiCollapse-container-109"
       style={
         Object {
           "minHeight": "0px",
@@ -730,22 +754,22 @@ exports[`Filter renders with no filters selected 1`] = `
       }
     >
       <div
-        className="MuiCollapse-wrapper-98"
+        className="MuiCollapse-wrapper-111"
       >
         <div
-          className="MuiCollapse-wrapperInner-99"
+          className="MuiCollapse-wrapperInner-112"
         >
           <div
-            className="MuiExpansionPanelDetails-root-100 RSFExpandableSection-details-9"
+            className="MuiExpansionPanelDetails-root-113 RSFExpandableSection-details-13"
           >
             <div
-              className="MuiFormGroup-root-101"
+              className="MuiFormGroup-root-114"
             >
               <label
-                className="MuiFormControlLabel-root-103"
+                className="MuiFormControlLabel-root-116"
               >
                 <span
-                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onKeyDown={[Function]}
@@ -759,12 +783,13 @@ exports[`Filter renders with no filters selected 1`] = `
                   tabIndex={null}
                 >
                   <span
-                    className="MuiIconButton-label-82"
+                    className="MuiIconButton-label-99"
                   >
                     <svg
                       aria-hidden="true"
-                      className="MuiSvgIcon-root-83"
+                      className="MuiSvgIcon-root-100"
                       focusable="false"
+                      role="presentation"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -773,24 +798,25 @@ exports[`Filter renders with no filters selected 1`] = `
                     </svg>
                     <input
                       checked={false}
-                      className="MuiSwitchBase-input-114"
+                      className="MuiPrivateSwitchBase-input-131"
+                      data-indeterminate={false}
                       onChange={[Function]}
                       type="checkbox"
                     />
                   </span>
                   <span
-                    className="MuiTouchRipple-root-89"
+                    className="MuiTouchRipple-root-132"
                   />
                 </span>
                 <span
-                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                  className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121"
                 >
                   <span>
                     <span>
                       Red
                     </span>
                     <span
-                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      className="MuiTypography-root-59 MuiTypography-body2-67 RSFFilter-matches-3"
                       variable="caption"
                     >
                       (
@@ -801,10 +827,10 @@ exports[`Filter renders with no filters selected 1`] = `
                 </span>
               </label>
               <label
-                className="MuiFormControlLabel-root-103"
+                className="MuiFormControlLabel-root-116"
               >
                 <span
-                  className="MuiButtonBase-root-50 MuiIconButton-root-77 MuiSwitchBase-root-111 MuiCheckbox-root-106 MuiCheckbox-colorPrimary-109"
+                  className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126"
                   onBlur={[Function]}
                   onFocus={[Function]}
                   onKeyDown={[Function]}
@@ -818,12 +844,13 @@ exports[`Filter renders with no filters selected 1`] = `
                   tabIndex={null}
                 >
                   <span
-                    className="MuiIconButton-label-82"
+                    className="MuiIconButton-label-99"
                   >
                     <svg
                       aria-hidden="true"
-                      className="MuiSvgIcon-root-83"
+                      className="MuiSvgIcon-root-100"
                       focusable="false"
+                      role="presentation"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -832,24 +859,25 @@ exports[`Filter renders with no filters selected 1`] = `
                     </svg>
                     <input
                       checked={false}
-                      className="MuiSwitchBase-input-114"
+                      className="MuiPrivateSwitchBase-input-131"
+                      data-indeterminate={false}
                       onChange={[Function]}
                       type="checkbox"
                     />
                   </span>
                   <span
-                    className="MuiTouchRipple-root-89"
+                    className="MuiTouchRipple-root-132"
                   />
                 </span>
                 <span
-                  className="MuiTypography-root-53 MuiTypography-body1-62 MuiFormControlLabel-label-105"
+                  className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121"
                 >
                   <span>
                     <span>
                       Sunburst
                     </span>
                     <span
-                      className="MuiTypography-root-53 MuiTypography-body1-62 RSFFilter-matches-2"
+                      className="MuiTypography-root-59 MuiTypography-body2-67 RSFFilter-matches-3"
                       variable="caption"
                     >
                       (

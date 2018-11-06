@@ -1,69 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Skeleton ImageSwitcher should include hide thumbnails when thumbnails=false 1`] = `
-<MuiThemeProvider theme={{...}}>
-  <Provider app={{...}}>
-    <WithStyles(ImageSwitcher) thumbnails={false}>
-      <ImageSwitcher classes={{...}} thumbnails={false} loadingThumbnailProps={{...}}>
-        <WithStyles(Component) className="ImageSwitcher-image-26">
-          <Component classes={{...}} className="ImageSwitcher-image-26">
-            <div className="Component-row-27 ImageSwitcher-image-26" style={{...}} />
-          </Component>
-        </WithStyles(Component)>
-      </ImageSwitcher>
-    </WithStyles(ImageSwitcher)>
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(ImageSwitcher) thumbnails={false}>
+        <ImageSwitcher thumbnails={false} classes={{...}} loadingThumbnailProps={{...}}>
+          <div className="ImageSwitcher-root-27">
+            <WithStyles(Component) className="ImageSwitcher-image-28">
+              <Component className="ImageSwitcher-image-28" classes={{...}}>
+                <div className="Component-row-29 ImageSwitcher-image-28" style={{...}} />
+              </Component>
+            </WithStyles(Component)>
+          </div>
+        </ImageSwitcher>
+      </WithStyles(ImageSwitcher)>
+    </MuiThemeProvider>
   </Provider>
-</MuiThemeProvider>
+</TestProvider>
 `;
 
 exports[`Skeleton ImageSwitcher should include thumbnails by default 1`] = `
-<MuiThemeProvider theme={{...}}>
-  <Provider app={{...}}>
-    <WithStyles(ImageSwitcher)>
-      <ImageSwitcher classes={{...}} thumbnails={true} loadingThumbnailProps={{...}}>
-        <WithStyles(Component) className="ImageSwitcher-image-1">
-          <Component classes={{...}} className="ImageSwitcher-image-1">
-            <div className="Component-row-2 ImageSwitcher-image-1" style={{...}} />
-          </Component>
-        </WithStyles(Component)>
-        <WithStyles(Component)>
-          <Component classes={{...}}>
-            <WithStyles(Component) className="Component-blankRow-9">
-              <Component classes={{...}} className="Component-blankRow-9">
-                <div className="Component-row-2 Component-blankRow-9" style={{...}}>
-                  <WithStyles(Component) flex={1}>
-                    <Component classes={{...}} flex={1}>
-                      <div className="Component-space-16" style={{...}} />
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(ImageSwitcher)>
+        <ImageSwitcher classes={{...}} thumbnails={true} loadingThumbnailProps={{...}}>
+          <div className="ImageSwitcher-root-1">
+            <WithStyles(Component) className="ImageSwitcher-image-2">
+              <Component className="ImageSwitcher-image-2" classes={{...}}>
+                <div className="Component-row-3 ImageSwitcher-image-2" style={{...}} />
+              </Component>
+            </WithStyles(Component)>
+            <WithStyles(Component)>
+              <Component classes={{...}}>
+                <WithStyles(Component) className="Component-blankRow-10">
+                  <Component className="Component-blankRow-10" classes={{...}}>
+                    <div className="Component-row-3 Component-blankRow-10" style={{...}}>
+                      <WithStyles(Component) flex={1}>
+                        <Component flex={1} classes={{...}}>
+                          <div data-rel="space" className="Component-space-17" style={{...}} />
+                        </Component>
+                      </WithStyles(Component)>
+                    </div>
+                  </Component>
+                </WithStyles(Component)>
+              </Component>
+            </WithStyles(Component)>
+            <WithStyles(Component) height="58px">
+              <Component height="58px" classes={{...}}>
+                <div className="Component-row-3" style={{...}}>
+                  <WithStyles(Component)>
+                    <Component classes={{...}}>
+                      <div data-rel="space" className="Component-space-17" style={{...}} />
+                    </Component>
+                  </WithStyles(Component)>
+                  <WithStyles(Component) flex="1">
+                    <Component flex="1" classes={{...}}>
+                      <div className={[undefined]} style={{...}} />
+                    </Component>
+                  </WithStyles(Component)>
+                  <WithStyles(Component)>
+                    <Component classes={{...}}>
+                      <div data-rel="space" className="Component-space-17" style={{...}} />
                     </Component>
                   </WithStyles(Component)>
                 </div>
               </Component>
             </WithStyles(Component)>
-          </Component>
-        </WithStyles(Component)>
-        <WithStyles(Component) height="58px">
-          <Component classes={{...}} height="58px">
-            <div className="Component-row-2" style={{...}}>
-              <WithStyles(Component)>
-                <Component classes={{...}}>
-                  <div className="Component-space-16" style={{...}} />
-                </Component>
-              </WithStyles(Component)>
-              <WithStyles(Component) flex="1">
-                <Component classes={{...}} flex="1">
-                  <div className={[undefined]} style={{...}} />
-                </Component>
-              </WithStyles(Component)>
-              <WithStyles(Component)>
-                <Component classes={{...}}>
-                  <div className="Component-space-16" style={{...}} />
-                </Component>
-              </WithStyles(Component)>
-            </div>
-          </Component>
-        </WithStyles(Component)>
-      </ImageSwitcher>
-    </WithStyles(ImageSwitcher)>
+          </div>
+        </ImageSwitcher>
+      </WithStyles(ImageSwitcher)>
+    </MuiThemeProvider>
   </Provider>
-</MuiThemeProvider>
+</TestProvider>
 `;

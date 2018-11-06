@@ -6,16 +6,13 @@ import React from 'react'
 import { ImageSwitcher } from '../src/Skeleton'
 import AppModelBase from '../src/model/AppModelBase'
 import { mount } from 'enzyme'
-import { Provider } from 'mobx-react'
-import createTheme from '../src/createTheme'
-import { MuiThemeProvider } from '@material-ui/core/styles'
+import Provider from './TestProvider'
 
 describe('Skeleton', () => {
   describe('ImageSwitcher', () => {
-    let app, theme
+    let app
 
     beforeEach(() => {
-      theme = createTheme()
       app = AppModelBase.create({
         product: {
           id: "1",
@@ -28,11 +25,9 @@ describe('Skeleton', () => {
     it('should include thumbnails by default', () => {
       expect(
         mount(
-          <MuiThemeProvider theme={theme}>
-            <Provider app={app}>
-              <ImageSwitcher/>
-            </Provider>
-          </MuiThemeProvider>
+          <Provider app={app}>
+            <ImageSwitcher/>
+          </Provider>
         )
       ).toMatchSnapshot()
     })
@@ -40,11 +35,9 @@ describe('Skeleton', () => {
     it('should include hide thumbnails when thumbnails=false', () => {
       expect(
         mount(
-          <MuiThemeProvider theme={theme}>
-            <Provider app={app}>
-              <ImageSwitcher thumbnails={false}/>
-            </Provider>
-          </MuiThemeProvider>
+          <Provider app={app}>
+            <ImageSwitcher thumbnails={false}/>
+          </Provider>
         )
       ).toMatchSnapshot()
     })

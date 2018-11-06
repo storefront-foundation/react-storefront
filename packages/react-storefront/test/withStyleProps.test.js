@@ -25,14 +25,8 @@ describe('withStyleProps', () => {
       <Test height={50}/>
     )
 
-    expect(document.documentElement.innerHTML.replace(/\s/g, '').includes(`
-      <style type="text/css" data-jss="" data-meta="Test">
-        .Test-root-1 {
-          height: 50px;
-        }
-      </style>
-    `.replace(/\s/g, ''))).toBe(true)
-
+    const html = document.documentElement.innerHTML.replace(/\s/g, '')
+    expect(html.replace(/\s/g, '')).toBe(`<head><styledata-jss=""data-meta="Test">.Test-root-1{height:50px;}</style></head><body></body>`)
     expect(wrapper).toMatchSnapshot()
   })
 

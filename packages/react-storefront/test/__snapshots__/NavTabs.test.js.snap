@@ -1,396 +1,474 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavTabs does not require history 1`] = `
-<Provider app={{...}} history={{...}}>
-  <WithStyles(inject-NavTabs)>
-    <inject-NavTabs classes={{...}}>
-      <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
-        <WithStyles(Paper) className="inject-NavTabs-root-5" elevation={2}>
-          <Paper classes={{...}} className="inject-NavTabs-root-5" elevation={2} component="div" square={false}>
-            <div className="MuiPaper-root-6 MuiPaper-elevation2-10 MuiPaper-rounded-7 inject-NavTabs-root-5">
-              <WithStyles(inject-TabsRow-with-app) initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
-                <inject-TabsRow-with-app classes={{...}} initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true}>
-                  <TabsRow classes={{...}} initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} app={{...}} scrollable={true}>
-                    <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-35 inject-NavTabs-tabs-2" classes={{...}}>
-                      <Tabs theme={{...}} classes={{...}} value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-35 inject-NavTabs-tabs-2" centered={false} fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
-                        <div className="MuiTabs-root-41 RSFTabsRow-root-35 inject-NavTabs-tabs-2 RSFTabsRow-root-35 inject-NavTabs-tabs-2">
-                          <EventListener target="window" onResize={[Function: debounced]} />
-                          <ScrollbarSize onLoad={[Function: value]} onChange={[Function: value]}>
-                            <div>
-                              <EventListener target="window" onResize={[Function: wrapper]} />
-                              <div style={{...}} />
-                            </div>
-                          </ScrollbarSize>
-                          <div className="MuiTabs-flexContainer-42 RSFTabsRow-centered-40">
-                            <WithStyles(TabScrollButton) direction="left" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                              <TabScrollButton classes={{...}} direction="left" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                                <div className="MuiTabScrollButton-root-50 MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48" />
-                              </TabScrollButton>
-                            </WithStyles(TabScrollButton)>
-                            <div className="MuiTabs-scroller-43 RSFTabsRow-scroller-38 MuiTabs-scrollable-45" style={{...}} role="tablist" onScroll={[Function: debounced]}>
-                              <div className="MuiTabs-flexContainer-42 RSFTabsRow-centered-40">
-                                <WithStyles(Tab) label={{...}} icon={[undefined]} classes={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0}>
-                                  <Tab classes={{...}} label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} disabled={false}>
-                                    <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]}>
-                                      <ButtonBase classes={{...}} focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]} centerRipple={false} disableRipple={false} tabIndex="0" type="button">
-                                        <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-63 MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function: value]}>
-                                          <span className="MuiTab-wrapper-59">
-                                            <span className="MuiTab-labelContainer-60">
-                                              <span className="MuiTab-label-61">
-                                                <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
-                                                    <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
-                                                  </Track>
-                                                </inject-Track-with-app>
-                                                <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]}>
-                                                  <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-                                                      <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/1">
-                                                        Tab 1
-                                                      </a>
-                                                    </Link>
-                                                  </inject-Link>
-                                                </WithStyles(inject-Link)>
-                                              </span>
-                                            </span>
-                                          </span>
-                                          <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                                            <TouchRipple classes={{...}} center={false}>
-                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-67" childFactory={[Function: childFactory]}>
-                                                <span className="MuiTouchRipple-root-67" />
-                                              </TransitionGroup>
-                                            </TouchRipple>
-                                          </WithStyles(TouchRipple)>
-                                        </button>
-                                      </ButtonBase>
-                                    </WithStyles(ButtonBase)>
-                                  </Tab>
-                                </WithStyles(Tab)>
-                                <WithStyles(Tab) label={{...}} icon={[undefined]} classes={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1}>
-                                  <Tab classes={{...}} label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} disabled={false}>
-                                    <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]}>
-                                      <ButtonBase classes={{...}} focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]} centerRipple={false} disableRipple={false} tabIndex="0" type="button">
-                                        <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-63 MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function: value]}>
-                                          <span className="MuiTab-wrapper-59">
-                                            <span className="MuiTab-labelContainer-60">
-                                              <span className="MuiTab-label-61">
-                                                <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
-                                                    <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
-                                                  </Track>
-                                                </inject-Track-with-app>
-                                                <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]}>
-                                                  <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-                                                      <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/2">
-                                                        Tab 1
-                                                      </a>
-                                                    </Link>
-                                                  </inject-Link>
-                                                </WithStyles(inject-Link)>
-                                              </span>
-                                            </span>
-                                          </span>
-                                          <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                                            <TouchRipple classes={{...}} center={false}>
-                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-67" childFactory={[Function: childFactory]}>
-                                                <span className="MuiTouchRipple-root-67" />
-                                              </TransitionGroup>
-                                            </TouchRipple>
-                                          </WithStyles(TouchRipple)>
-                                        </button>
-                                      </ButtonBase>
-                                    </WithStyles(ButtonBase)>
-                                  </Tab>
-                                </WithStyles(Tab)>
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(inject-NavTabs)>
+        <inject-NavTabs classes={{...}}>
+          <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
+            <WithStyles(Paper) className="inject-NavTabs-root-407" elevation={2}>
+              <Paper className="inject-NavTabs-root-407" elevation={2} classes={{...}} component="div" square={false}>
+                <div className="MuiPaper-root-410 MuiPaper-elevation2-414 MuiPaper-rounded-411 inject-NavTabs-root-407">
+                  <WithStyles(inject-TabsRow-with-app) initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
+                    <inject-TabsRow-with-app initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
+                      <TabsRow initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}} app={{...}} scrollable={true}>
+                        <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-439 inject-NavTabs-tabs-406" classes={{...}}>
+                          <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-439 inject-NavTabs-tabs-406" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
+                            <div className="MuiTabs-root-445 RSFTabsRow-root-439 inject-NavTabs-tabs-406 RSFTabsRow-root-439 inject-NavTabs-tabs-406">
+                              <EventListener target="window" onResize={[Function: debounced]} />
+                              <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
+                                <div>
+                                  <EventListener target="window" onResize={[Function: debounced]} />
+                                  <div style={{...}} />
+                                </div>
+                              </ScrollbarSize>
+                              <div className="MuiTabs-flexContainer-446 RSFTabsRow-centered-444">
+                                <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-451 MuiTabs-scrollButtonsAuto-452">
+                                  <TabScrollButton direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-451 MuiTabs-scrollButtonsAuto-452" classes={{...}}>
+                                    <div className="MuiPrivateTabScrollButton-root-454 MuiTabs-scrollButtons-451 MuiTabs-scrollButtonsAuto-452" />
+                                  </TabScrollButton>
+                                </WithStyles(TabScrollButton)>
+                                <div className="MuiTabs-scroller-448 RSFTabsRow-scroller-442 MuiTabs-scrollable-450" style={{...}} role="tablist" onScroll={[Function: debounced]}>
+                                  <div className="MuiTabs-flexContainer-446 RSFTabsRow-centered-444">
+                                    <WithStyles(NavTab) text="Tab 1" url="/1" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch={{...}} expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0}>
+                                      <NavTab text="Tab 1" url="/1" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch={{...}} expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} classes={{...}}>
+                                        <inject-Track-with-app event="topNavClicked" item={{...}}>
+                                          <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                            <WithStyles(inject-Link) state={[Function: state]} className="RSFNavTab-link-458" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}}>
+                                              <inject-Link state={[Function: state]} className="RSFNavTab-link-458" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}}>
+                                                <Link state={[Function: state]} className="RSFNavTab-link-458" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                  <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="topNavClicked" data-moov-link="on" className="RSFLink-root-461 RSFNavTab-link-458" style={[undefined]} onClick={[Function]} href="https://example.com/1">
+                                                    <WithStyles(Tab) className="RSFNavTab-root-455" label="Tab 1" classes={{...}}>
+                                                      <Tab className="RSFNavTab-root-455" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
+                                                        <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-462 MuiTab-textColorInherit-464 RSFNavTab-root-455" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]}>
+                                                          <ButtonBase focusRipple={true} className="MuiTab-root-462 MuiTab-textColorInherit-464 RSFNavTab-root-455" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                            <button className="MuiButtonBase-root-474 MuiTab-root-462 MuiTab-textColorInherit-464 RSFNavTab-root-455" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={[undefined]} onClick={[Function]}>
+                                                              <span className="MuiTab-wrapper-470">
+                                                                <span className="MuiTab-labelContainer-471">
+                                                                  <span className="MuiTab-label-472 RSFNavTab-label-457">
+                                                                    Tab 1
+                                                                  </span>
+                                                                </span>
+                                                              </span>
+                                                              <NoSsr defer={false} fallback={{...}}>
+                                                                <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                  <TouchRipple center={false} classes={{...}}>
+                                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-477" childFactory={[Function: childFactory]}>
+                                                                      <span className="MuiTouchRipple-root-477" />
+                                                                    </TransitionGroup>
+                                                                  </TouchRipple>
+                                                                </WithStyles(TouchRipple)>
+                                                              </NoSsr>
+                                                            </button>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </Tab>
+                                                    </WithStyles(Tab)>
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </Track>
+                                        </inject-Track-with-app>
+                                      </NavTab>
+                                    </WithStyles(NavTab)>
+                                    <WithStyles(NavTab) text="Tab 1" url="/2" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch={{...}} expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1}>
+                                      <NavTab text="Tab 1" url="/2" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch={{...}} expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} classes={{...}}>
+                                        <inject-Track-with-app event="topNavClicked" item={{...}}>
+                                          <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                            <WithStyles(inject-Link) state={[Function: state]} className="RSFNavTab-link-458" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}}>
+                                              <inject-Link state={[Function: state]} className="RSFNavTab-link-458" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}}>
+                                                <Link state={[Function: state]} className="RSFNavTab-link-458" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                  <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="topNavClicked" data-moov-link="on" className="RSFLink-root-461 RSFNavTab-link-458" style={[undefined]} onClick={[Function]} href="https://example.com/2">
+                                                    <WithStyles(Tab) className="RSFNavTab-root-455" label="Tab 1" classes={{...}}>
+                                                      <Tab className="RSFNavTab-root-455" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
+                                                        <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-462 MuiTab-textColorInherit-464 RSFNavTab-root-455" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]}>
+                                                          <ButtonBase focusRipple={true} className="MuiTab-root-462 MuiTab-textColorInherit-464 RSFNavTab-root-455" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                            <button className="MuiButtonBase-root-474 MuiTab-root-462 MuiTab-textColorInherit-464 RSFNavTab-root-455" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={[undefined]} onClick={[Function]}>
+                                                              <span className="MuiTab-wrapper-470">
+                                                                <span className="MuiTab-labelContainer-471">
+                                                                  <span className="MuiTab-label-472 RSFNavTab-label-457">
+                                                                    Tab 1
+                                                                  </span>
+                                                                </span>
+                                                              </span>
+                                                              <NoSsr defer={false} fallback={{...}}>
+                                                                <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                  <TouchRipple center={false} classes={{...}}>
+                                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-477" childFactory={[Function: childFactory]}>
+                                                                      <span className="MuiTouchRipple-root-477" />
+                                                                    </TransitionGroup>
+                                                                  </TouchRipple>
+                                                                </WithStyles(TouchRipple)>
+                                                              </NoSsr>
+                                                            </button>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </Tab>
+                                                    </WithStyles(Tab)>
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </Track>
+                                        </inject-Track-with-app>
+                                      </NavTab>
+                                    </WithStyles(NavTab)>
+                                  </div>
+                                  <WithStyles(TabIndicator) className="MuiTabs-indicator-453 RSFTabsRow-indicator-437 RSFTabsRow-noSelection-438" color="secondary" style={{...}}>
+                                    <TabIndicator className="MuiTabs-indicator-453 RSFTabsRow-indicator-437 RSFTabsRow-noSelection-438" color="secondary" style={{...}} classes={{...}}>
+                                      <span className="MuiPrivateTabIndicator-root-484 MuiPrivateTabIndicator-colorSecondary-486 MuiTabs-indicator-453 RSFTabsRow-indicator-437 RSFTabsRow-noSelection-438" style={{...}} />
+                                    </TabIndicator>
+                                  </WithStyles(TabIndicator)>
+                                </div>
+                                <WithStyles(TabScrollButton) direction="right" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-451 MuiTabs-scrollButtonsAuto-452">
+                                  <TabScrollButton direction="right" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-451 MuiTabs-scrollButtonsAuto-452" classes={{...}}>
+                                    <div className="MuiPrivateTabScrollButton-root-454 MuiTabs-scrollButtons-451 MuiTabs-scrollButtonsAuto-452" />
+                                  </TabScrollButton>
+                                </WithStyles(TabScrollButton)>
                               </div>
-                              <WithStyles(TabIndicator) style={{...}} className="MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" color="secondary">
-                                <TabIndicator classes={{...}} style={{...}} className="MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" color="secondary">
-                                  <span className="TabIndicator-root-74 TabIndicator-colorSecondary-76 MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" style={{...}} />
-                                </TabIndicator>
-                              </WithStyles(TabIndicator)>
                             </div>
-                            <WithStyles(TabScrollButton) direction="right" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                              <TabScrollButton classes={{...}} direction="right" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                                <div className="MuiTabScrollButton-root-50 MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48" />
-                              </TabScrollButton>
-                            </WithStyles(TabScrollButton)>
-                          </div>
-                        </div>
-                      </Tabs>
-                    </WithStyles(Tabs)>
-                  </TabsRow>
-                </inject-TabsRow-with-app>
-              </WithStyles(inject-TabsRow-with-app)>
-            </div>
-          </Paper>
-        </WithStyles(Paper)>
-      </NavTabs>
-    </inject-NavTabs>
-  </WithStyles(inject-NavTabs)>
-</Provider>
+                          </Tabs>
+                        </WithStyles(Tabs)>
+                      </TabsRow>
+                    </inject-TabsRow-with-app>
+                  </WithStyles(inject-TabsRow-with-app)>
+                </div>
+              </Paper>
+            </WithStyles(Paper)>
+            <Hidden xsDown={true} implementation="js" lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+              <WithTheme(WithWidth(HiddenJs)) xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                <WithWidth(HiddenJs) theme={{...}} xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                  <HiddenJs width="md" xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                    <WithTheme(Popper) className="inject-NavTabs-menu-408" open={false} anchorEl={{...}} transition={true}>
+                      <Popper theme={{...}} className="inject-NavTabs-menu-408" open={false} anchorEl={{...}} transition={true} disablePortal={false} placement="bottom" />
+                    </WithTheme(Popper)>
+                  </HiddenJs>
+                  <EventListener target="window" onResize={[Function: debounced]} />
+                </WithWidth(HiddenJs)>
+              </WithTheme(WithWidth(HiddenJs))>
+            </Hidden>
+          </NavTabs>
+        </inject-NavTabs>
+      </WithStyles(inject-NavTabs)>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
 `;
 
 exports[`NavTabs renders 1`] = `
-<Provider app={{...}} history={{...}}>
-  <WithStyles(inject-NavTabs)>
-    <inject-NavTabs classes={{...}}>
-      <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
-        <WithStyles(Paper) className="inject-NavTabs-root-5" elevation={2}>
-          <Paper classes={{...}} className="inject-NavTabs-root-5" elevation={2} component="div" square={false}>
-            <div className="MuiPaper-root-6 MuiPaper-elevation2-10 MuiPaper-rounded-7 inject-NavTabs-root-5">
-              <WithStyles(inject-TabsRow-with-app) initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
-                <inject-TabsRow-with-app classes={{...}} initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true}>
-                  <TabsRow classes={{...}} initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} app={{...}} scrollable={true}>
-                    <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-35 inject-NavTabs-tabs-2" classes={{...}}>
-                      <Tabs theme={{...}} classes={{...}} value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-35 inject-NavTabs-tabs-2" centered={false} fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
-                        <div className="MuiTabs-root-41 RSFTabsRow-root-35 inject-NavTabs-tabs-2 RSFTabsRow-root-35 inject-NavTabs-tabs-2">
-                          <EventListener target="window" onResize={[Function: debounced]} />
-                          <ScrollbarSize onLoad={[Function: value]} onChange={[Function: value]}>
-                            <div>
-                              <EventListener target="window" onResize={[Function: wrapper]} />
-                              <div style={{...}} />
-                            </div>
-                          </ScrollbarSize>
-                          <div className="MuiTabs-flexContainer-42 RSFTabsRow-centered-40">
-                            <WithStyles(TabScrollButton) direction="left" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                              <TabScrollButton classes={{...}} direction="left" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                                <div className="MuiTabScrollButton-root-50 MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48" />
-                              </TabScrollButton>
-                            </WithStyles(TabScrollButton)>
-                            <div className="MuiTabs-scroller-43 RSFTabsRow-scroller-38 MuiTabs-scrollable-45" style={{...}} role="tablist" onScroll={[Function: debounced]}>
-                              <div className="MuiTabs-flexContainer-42 RSFTabsRow-centered-40">
-                                <WithStyles(Tab) label={{...}} icon={[undefined]} classes={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0}>
-                                  <Tab classes={{...}} label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} disabled={false}>
-                                    <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]}>
-                                      <ButtonBase classes={{...}} focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]} centerRipple={false} disableRipple={false} tabIndex="0" type="button">
-                                        <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-63 MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function: value]}>
-                                          <span className="MuiTab-wrapper-59">
-                                            <span className="MuiTab-labelContainer-60">
-                                              <span className="MuiTab-label-61">
-                                                <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
-                                                    <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
-                                                  </Track>
-                                                </inject-Track-with-app>
-                                                <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]}>
-                                                  <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-                                                      <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/1">
-                                                        Tab 1
-                                                      </a>
-                                                    </Link>
-                                                  </inject-Link>
-                                                </WithStyles(inject-Link)>
-                                              </span>
-                                            </span>
-                                          </span>
-                                          <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                                            <TouchRipple classes={{...}} center={false}>
-                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-67" childFactory={[Function: childFactory]}>
-                                                <span className="MuiTouchRipple-root-67" />
-                                              </TransitionGroup>
-                                            </TouchRipple>
-                                          </WithStyles(TouchRipple)>
-                                        </button>
-                                      </ButtonBase>
-                                    </WithStyles(ButtonBase)>
-                                  </Tab>
-                                </WithStyles(Tab)>
-                                <WithStyles(Tab) label={{...}} icon={[undefined]} classes={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1}>
-                                  <Tab classes={{...}} label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} disabled={false}>
-                                    <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]}>
-                                      <ButtonBase classes={{...}} focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]} centerRipple={false} disableRipple={false} tabIndex="0" type="button">
-                                        <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-63 MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function: value]}>
-                                          <span className="MuiTab-wrapper-59">
-                                            <span className="MuiTab-labelContainer-60">
-                                              <span className="MuiTab-label-61">
-                                                <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
-                                                    <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
-                                                  </Track>
-                                                </inject-Track-with-app>
-                                                <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]}>
-                                                  <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch={{...}} onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-                                                      <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/2">
-                                                        Tab 1
-                                                      </a>
-                                                    </Link>
-                                                  </inject-Link>
-                                                </WithStyles(inject-Link)>
-                                              </span>
-                                            </span>
-                                          </span>
-                                          <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                                            <TouchRipple classes={{...}} center={false}>
-                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-67" childFactory={[Function: childFactory]}>
-                                                <span className="MuiTouchRipple-root-67" />
-                                              </TransitionGroup>
-                                            </TouchRipple>
-                                          </WithStyles(TouchRipple)>
-                                        </button>
-                                      </ButtonBase>
-                                    </WithStyles(ButtonBase)>
-                                  </Tab>
-                                </WithStyles(Tab)>
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(inject-NavTabs)>
+        <inject-NavTabs classes={{...}}>
+          <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
+            <WithStyles(Paper) className="inject-NavTabs-root-2" elevation={2}>
+              <Paper className="inject-NavTabs-root-2" elevation={2} classes={{...}} component="div" square={false}>
+                <div className="MuiPaper-root-5 MuiPaper-elevation2-9 MuiPaper-rounded-6 inject-NavTabs-root-2">
+                  <WithStyles(inject-TabsRow-with-app) initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
+                    <inject-TabsRow-with-app initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
+                      <TabsRow initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}} app={{...}} scrollable={true}>
+                        <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-34 inject-NavTabs-tabs-1" classes={{...}}>
+                          <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-34 inject-NavTabs-tabs-1" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
+                            <div className="MuiTabs-root-40 RSFTabsRow-root-34 inject-NavTabs-tabs-1 RSFTabsRow-root-34 inject-NavTabs-tabs-1">
+                              <EventListener target="window" onResize={[Function: debounced]} />
+                              <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
+                                <div>
+                                  <EventListener target="window" onResize={[Function: debounced]} />
+                                  <div style={{...}} />
+                                </div>
+                              </ScrollbarSize>
+                              <div className="MuiTabs-flexContainer-41 RSFTabsRow-centered-39">
+                                <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-46 MuiTabs-scrollButtonsAuto-47">
+                                  <TabScrollButton direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-46 MuiTabs-scrollButtonsAuto-47" classes={{...}}>
+                                    <div className="MuiPrivateTabScrollButton-root-49 MuiTabs-scrollButtons-46 MuiTabs-scrollButtonsAuto-47" />
+                                  </TabScrollButton>
+                                </WithStyles(TabScrollButton)>
+                                <div className="MuiTabs-scroller-43 RSFTabsRow-scroller-37 MuiTabs-scrollable-45" style={{...}} role="tablist" onScroll={[Function: debounced]}>
+                                  <div className="MuiTabs-flexContainer-41 RSFTabsRow-centered-39">
+                                    <WithStyles(NavTab) text="Tab 1" url="/1" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch={{...}} expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0}>
+                                      <NavTab text="Tab 1" url="/1" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch={{...}} expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} classes={{...}}>
+                                        <inject-Track-with-app event="topNavClicked" item={{...}}>
+                                          <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                            <WithStyles(inject-Link) state={[Function: state]} className="RSFNavTab-link-53" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}}>
+                                              <inject-Link state={[Function: state]} className="RSFNavTab-link-53" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}}>
+                                                <Link state={[Function: state]} className="RSFNavTab-link-53" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                  <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="topNavClicked" data-moov-link="on" className="RSFLink-root-56 RSFNavTab-link-53" style={[undefined]} onClick={[Function]} href="https://example.com/1">
+                                                    <WithStyles(Tab) className="RSFNavTab-root-50" label="Tab 1" classes={{...}}>
+                                                      <Tab className="RSFNavTab-root-50" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
+                                                        <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-57 MuiTab-textColorInherit-59 RSFNavTab-root-50" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]}>
+                                                          <ButtonBase focusRipple={true} className="MuiTab-root-57 MuiTab-textColorInherit-59 RSFNavTab-root-50" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                            <button className="MuiButtonBase-root-69 MuiTab-root-57 MuiTab-textColorInherit-59 RSFNavTab-root-50" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={[undefined]} onClick={[Function]}>
+                                                              <span className="MuiTab-wrapper-65">
+                                                                <span className="MuiTab-labelContainer-66">
+                                                                  <span className="MuiTab-label-67 RSFNavTab-label-52">
+                                                                    Tab 1
+                                                                  </span>
+                                                                </span>
+                                                              </span>
+                                                              <NoSsr defer={false} fallback={{...}}>
+                                                                <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                  <TouchRipple center={false} classes={{...}}>
+                                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-72" childFactory={[Function: childFactory]}>
+                                                                      <span className="MuiTouchRipple-root-72" />
+                                                                    </TransitionGroup>
+                                                                  </TouchRipple>
+                                                                </WithStyles(TouchRipple)>
+                                                              </NoSsr>
+                                                            </button>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </Tab>
+                                                    </WithStyles(Tab)>
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </Track>
+                                        </inject-Track-with-app>
+                                      </NavTab>
+                                    </WithStyles(NavTab)>
+                                    <WithStyles(NavTab) text="Tab 1" url="/2" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch={{...}} expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1}>
+                                      <NavTab text="Tab 1" url="/2" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch={{...}} expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} classes={{...}}>
+                                        <inject-Track-with-app event="topNavClicked" item={{...}}>
+                                          <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                            <WithStyles(inject-Link) state={[Function: state]} className="RSFNavTab-link-53" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}}>
+                                              <inject-Link state={[Function: state]} className="RSFNavTab-link-53" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}}>
+                                                <Link state={[Function: state]} className="RSFNavTab-link-53" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                  <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="topNavClicked" data-moov-link="on" className="RSFLink-root-56 RSFNavTab-link-53" style={[undefined]} onClick={[Function]} href="https://example.com/2">
+                                                    <WithStyles(Tab) className="RSFNavTab-root-50" label="Tab 1" classes={{...}}>
+                                                      <Tab className="RSFNavTab-root-50" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
+                                                        <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-57 MuiTab-textColorInherit-59 RSFNavTab-root-50" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]}>
+                                                          <ButtonBase focusRipple={true} className="MuiTab-root-57 MuiTab-textColorInherit-59 RSFNavTab-root-50" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                            <button className="MuiButtonBase-root-69 MuiTab-root-57 MuiTab-textColorInherit-59 RSFNavTab-root-50" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={[undefined]} onClick={[Function]}>
+                                                              <span className="MuiTab-wrapper-65">
+                                                                <span className="MuiTab-labelContainer-66">
+                                                                  <span className="MuiTab-label-67 RSFNavTab-label-52">
+                                                                    Tab 1
+                                                                  </span>
+                                                                </span>
+                                                              </span>
+                                                              <NoSsr defer={false} fallback={{...}}>
+                                                                <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                  <TouchRipple center={false} classes={{...}}>
+                                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-72" childFactory={[Function: childFactory]}>
+                                                                      <span className="MuiTouchRipple-root-72" />
+                                                                    </TransitionGroup>
+                                                                  </TouchRipple>
+                                                                </WithStyles(TouchRipple)>
+                                                              </NoSsr>
+                                                            </button>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </Tab>
+                                                    </WithStyles(Tab)>
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </Track>
+                                        </inject-Track-with-app>
+                                      </NavTab>
+                                    </WithStyles(NavTab)>
+                                  </div>
+                                  <WithStyles(TabIndicator) className="MuiTabs-indicator-48 RSFTabsRow-indicator-32 RSFTabsRow-noSelection-33" color="secondary" style={{...}}>
+                                    <TabIndicator className="MuiTabs-indicator-48 RSFTabsRow-indicator-32 RSFTabsRow-noSelection-33" color="secondary" style={{...}} classes={{...}}>
+                                      <span className="MuiPrivateTabIndicator-root-79 MuiPrivateTabIndicator-colorSecondary-81 MuiTabs-indicator-48 RSFTabsRow-indicator-32 RSFTabsRow-noSelection-33" style={{...}} />
+                                    </TabIndicator>
+                                  </WithStyles(TabIndicator)>
+                                </div>
+                                <WithStyles(TabScrollButton) direction="right" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-46 MuiTabs-scrollButtonsAuto-47">
+                                  <TabScrollButton direction="right" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-46 MuiTabs-scrollButtonsAuto-47" classes={{...}}>
+                                    <div className="MuiPrivateTabScrollButton-root-49 MuiTabs-scrollButtons-46 MuiTabs-scrollButtonsAuto-47" />
+                                  </TabScrollButton>
+                                </WithStyles(TabScrollButton)>
                               </div>
-                              <WithStyles(TabIndicator) style={{...}} className="MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" color="secondary">
-                                <TabIndicator classes={{...}} style={{...}} className="MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" color="secondary">
-                                  <span className="TabIndicator-root-74 TabIndicator-colorSecondary-76 MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" style={{...}} />
-                                </TabIndicator>
-                              </WithStyles(TabIndicator)>
                             </div>
-                            <WithStyles(TabScrollButton) direction="right" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                              <TabScrollButton classes={{...}} direction="right" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                                <div className="MuiTabScrollButton-root-50 MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48" />
-                              </TabScrollButton>
-                            </WithStyles(TabScrollButton)>
-                          </div>
-                        </div>
-                      </Tabs>
-                    </WithStyles(Tabs)>
-                  </TabsRow>
-                </inject-TabsRow-with-app>
-              </WithStyles(inject-TabsRow-with-app)>
-            </div>
-          </Paper>
-        </WithStyles(Paper)>
-      </NavTabs>
-    </inject-NavTabs>
-  </WithStyles(inject-NavTabs)>
-</Provider>
+                          </Tabs>
+                        </WithStyles(Tabs)>
+                      </TabsRow>
+                    </inject-TabsRow-with-app>
+                  </WithStyles(inject-TabsRow-with-app)>
+                </div>
+              </Paper>
+            </WithStyles(Paper)>
+            <Hidden xsDown={true} implementation="js" lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+              <WithTheme(WithWidth(HiddenJs)) xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                <WithWidth(HiddenJs) theme={{...}} xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                  <HiddenJs width="md" xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                    <WithTheme(Popper) className="inject-NavTabs-menu-3" open={false} anchorEl={{...}} transition={true}>
+                      <Popper theme={{...}} className="inject-NavTabs-menu-3" open={false} anchorEl={{...}} transition={true} disablePortal={false} placement="bottom" />
+                    </WithTheme(Popper)>
+                  </HiddenJs>
+                  <EventListener target="window" onResize={[Function: debounced]} />
+                </WithWidth(HiddenJs)>
+              </WithTheme(WithWidth(HiddenJs))>
+            </Hidden>
+          </NavTabs>
+        </inject-NavTabs>
+      </WithStyles(inject-NavTabs)>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
 `;
 
 exports[`NavTabs uses prefetch 1`] = `
-<Provider app={{...}} history={{...}}>
-  <WithStyles(inject-NavTabs)>
-    <inject-NavTabs classes={{...}}>
-      <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
-        <WithStyles(Paper) className="inject-NavTabs-root-5" elevation={2}>
-          <Paper classes={{...}} className="inject-NavTabs-root-5" elevation={2} component="div" square={false}>
-            <div className="MuiPaper-root-6 MuiPaper-elevation2-10 MuiPaper-rounded-7 inject-NavTabs-root-5">
-              <WithStyles(inject-TabsRow-with-app) initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
-                <inject-TabsRow-with-app classes={{...}} initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true}>
-                  <TabsRow classes={{...}} initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} app={{...}} scrollable={true}>
-                    <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-35 inject-NavTabs-tabs-2" classes={{...}}>
-                      <Tabs theme={{...}} classes={{...}} value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-35 inject-NavTabs-tabs-2" centered={false} fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
-                        <div className="MuiTabs-root-41 RSFTabsRow-root-35 inject-NavTabs-tabs-2 RSFTabsRow-root-35 inject-NavTabs-tabs-2">
-                          <EventListener target="window" onResize={[Function: debounced]} />
-                          <ScrollbarSize onLoad={[Function: value]} onChange={[Function: value]}>
-                            <div>
-                              <EventListener target="window" onResize={[Function: wrapper]} />
-                              <div style={{...}} />
-                            </div>
-                          </ScrollbarSize>
-                          <div className="MuiTabs-flexContainer-42 RSFTabsRow-centered-40">
-                            <WithStyles(TabScrollButton) direction="left" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                              <TabScrollButton classes={{...}} direction="left" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                                <div className="MuiTabScrollButton-root-50 MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48" />
-                              </TabScrollButton>
-                            </WithStyles(TabScrollButton)>
-                            <div className="MuiTabs-scroller-43 RSFTabsRow-scroller-38 MuiTabs-scrollable-45" style={{...}} role="tablist" onScroll={[Function: debounced]}>
-                              <div className="MuiTabs-flexContainer-42 RSFTabsRow-centered-40">
-                                <WithStyles(Tab) label={{...}} icon={[undefined]} classes={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0}>
-                                  <Tab classes={{...}} label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} disabled={false}>
-                                    <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]}>
-                                      <ButtonBase classes={{...}} focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]} centerRipple={false} disableRipple={false} tabIndex="0" type="button">
-                                        <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-63 MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function: value]}>
-                                          <span className="MuiTab-wrapper-59">
-                                            <span className="MuiTab-labelContainer-60">
-                                              <span className="MuiTab-label-61">
-                                                <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
-                                                    <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
-                                                  </Track>
-                                                </inject-Track-with-app>
-                                                <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch="always" onClick={[undefined]}>
-                                                  <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch="always" onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/1" prefetch="always" onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-                                                      <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/1" data-moov-rel="prefetch">
-                                                        Tab 1
-                                                      </a>
-                                                    </Link>
-                                                  </inject-Link>
-                                                </WithStyles(inject-Link)>
-                                              </span>
-                                            </span>
-                                          </span>
-                                          <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                                            <TouchRipple classes={{...}} center={false}>
-                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-67" childFactory={[Function: childFactory]}>
-                                                <span className="MuiTouchRipple-root-67" />
-                                              </TransitionGroup>
-                                            </TouchRipple>
-                                          </WithStyles(TouchRipple)>
-                                        </button>
-                                      </ButtonBase>
-                                    </WithStyles(ButtonBase)>
-                                  </Tab>
-                                </WithStyles(Tab)>
-                                <WithStyles(Tab) label={{...}} icon={[undefined]} classes={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1}>
-                                  <Tab classes={{...}} label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} disabled={false}>
-                                    <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]}>
-                                      <ButtonBase classes={{...}} focusRipple={true} className="MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" role="tab" aria-selected={false} disabled={false} onClick={[Function: value]} centerRipple={false} disableRipple={false} tabIndex="0" type="button">
-                                        <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-63 MuiTab-root-51 RSFTabsRow-tab-36 inject-NavTabs-tab-1 MuiTab-textColorInherit-53" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function: value]}>
-                                          <span className="MuiTab-wrapper-59">
-                                            <span className="MuiTab-labelContainer-60">
-                                              <span className="MuiTab-label-61">
-                                                <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
-                                                    <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
-                                                  </Track>
-                                                </inject-Track-with-app>
-                                                <WithStyles(inject-Link) state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch="visible" onClick={[undefined]}>
-                                                  <inject-Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch="visible" onClick={[undefined]}>
-                                                    <Link classes={{...}} state={[Function: state]} className="inject-NavTabs-link-3" to="/2" prefetch="visible" onClick={[undefined]} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-                                                      <VisibilitySensor onChange={[Function]} partialVisibility={true} active={true} minTopValue={0} scrollCheck={false} scrollDelay={250} scrollThrottle={-1} resizeCheck={false} resizeDelay={250} resizeThrottle={-1} intervalCheck={true} intervalDelay={100} delayedCall={false} offset={{...}} containment={{...}}>
-                                                        <a data-moov-link="on" className="RSFLink-root-66 inject-NavTabs-link-3" style={[undefined]} onClick={[Function]} href="https://example.com/2" data-moov-rel="prefetch">
-                                                          Tab 1
-                                                        </a>
-                                                      </VisibilitySensor>
-                                                    </Link>
-                                                  </inject-Link>
-                                                </WithStyles(inject-Link)>
-                                              </span>
-                                            </span>
-                                          </span>
-                                          <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                                            <TouchRipple classes={{...}} center={false}>
-                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-67" childFactory={[Function: childFactory]}>
-                                                <span className="MuiTouchRipple-root-67" />
-                                              </TransitionGroup>
-                                            </TouchRipple>
-                                          </WithStyles(TouchRipple)>
-                                        </button>
-                                      </ButtonBase>
-                                    </WithStyles(ButtonBase)>
-                                  </Tab>
-                                </WithStyles(Tab)>
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(inject-NavTabs)>
+        <inject-NavTabs classes={{...}}>
+          <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
+            <WithStyles(Paper) className="inject-NavTabs-root-83" elevation={2}>
+              <Paper className="inject-NavTabs-root-83" elevation={2} classes={{...}} component="div" square={false}>
+                <div className="MuiPaper-root-86 MuiPaper-elevation2-90 MuiPaper-rounded-87 inject-NavTabs-root-83">
+                  <WithStyles(inject-TabsRow-with-app) initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
+                    <inject-TabsRow-with-app initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}}>
+                      <TabsRow initialSelectedIdx={{...}} onTabChange={[Function]} items={{...}} tabRenderer={[Function]} centered={true} classes={{...}} app={{...}} scrollable={true}>
+                        <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-115 inject-NavTabs-tabs-82" classes={{...}}>
+                          <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-115 inject-NavTabs-tabs-82" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
+                            <div className="MuiTabs-root-121 RSFTabsRow-root-115 inject-NavTabs-tabs-82 RSFTabsRow-root-115 inject-NavTabs-tabs-82">
+                              <EventListener target="window" onResize={[Function: debounced]} />
+                              <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
+                                <div>
+                                  <EventListener target="window" onResize={[Function: debounced]} />
+                                  <div style={{...}} />
+                                </div>
+                              </ScrollbarSize>
+                              <div className="MuiTabs-flexContainer-122 RSFTabsRow-centered-120">
+                                <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-127 MuiTabs-scrollButtonsAuto-128">
+                                  <TabScrollButton direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-127 MuiTabs-scrollButtonsAuto-128" classes={{...}}>
+                                    <div className="MuiPrivateTabScrollButton-root-130 MuiTabs-scrollButtons-127 MuiTabs-scrollButtonsAuto-128" />
+                                  </TabScrollButton>
+                                </WithStyles(TabScrollButton)>
+                                <div className="MuiTabs-scroller-124 RSFTabsRow-scroller-118 MuiTabs-scrollable-126" style={{...}} role="tablist" onScroll={[Function: debounced]}>
+                                  <div className="MuiTabs-flexContainer-122 RSFTabsRow-centered-120">
+                                    <WithStyles(NavTab) text="Tab 1" url="/1" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch="always" expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0}>
+                                      <NavTab text="Tab 1" url="/1" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch="always" expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} classes={{...}}>
+                                        <inject-Track-with-app event="topNavClicked" item={{...}}>
+                                          <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                            <WithStyles(inject-Link) state={[Function: state]} className="RSFNavTab-link-134" to="/1" prefetch="always" onClick={[Function]} anchorProps={{...}}>
+                                              <inject-Link state={[Function: state]} className="RSFNavTab-link-134" to="/1" prefetch="always" onClick={[Function]} anchorProps={{...}} classes={{...}}>
+                                                <Link state={[Function: state]} className="RSFNavTab-link-134" to="/1" prefetch="always" onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                  <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="topNavClicked" data-moov-link="on" className="RSFLink-root-137 RSFNavTab-link-134" style={[undefined]} onClick={[Function]} href="https://example.com/1" data-moov-rel="prefetch">
+                                                    <WithStyles(Tab) className="RSFNavTab-root-131" label="Tab 1" classes={{...}}>
+                                                      <Tab className="RSFNavTab-root-131" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
+                                                        <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-138 MuiTab-textColorInherit-140 RSFNavTab-root-131" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]}>
+                                                          <ButtonBase focusRipple={true} className="MuiTab-root-138 MuiTab-textColorInherit-140 RSFNavTab-root-131" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                            <button className="MuiButtonBase-root-150 MuiTab-root-138 MuiTab-textColorInherit-140 RSFNavTab-root-131" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={[undefined]} onClick={[Function]}>
+                                                              <span className="MuiTab-wrapper-146">
+                                                                <span className="MuiTab-labelContainer-147">
+                                                                  <span className="MuiTab-label-148 RSFNavTab-label-133">
+                                                                    Tab 1
+                                                                  </span>
+                                                                </span>
+                                                              </span>
+                                                              <NoSsr defer={false} fallback={{...}}>
+                                                                <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                  <TouchRipple center={false} classes={{...}}>
+                                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-153" childFactory={[Function: childFactory]}>
+                                                                      <span className="MuiTouchRipple-root-153" />
+                                                                    </TransitionGroup>
+                                                                  </TouchRipple>
+                                                                </WithStyles(TouchRipple)>
+                                                              </NoSsr>
+                                                            </button>
+                                                          </ButtonBase>
+                                                        </WithStyles(ButtonBase)>
+                                                      </Tab>
+                                                    </WithStyles(Tab)>
+                                                  </a>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </Track>
+                                        </inject-Track-with-app>
+                                      </NavTab>
+                                    </WithStyles(NavTab)>
+                                    <WithStyles(NavTab) text="Tab 1" url="/2" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch="visible" expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1}>
+                                      <NavTab text="Tab 1" url="/2" state="{"page":"product"}" image={{...}} items={{...}} root={false} server={false} prefetch="visible" expanded={false} item={{...}} onMouseEnter={[Function]} onMouseLeave={[Function]} onItemClick={[Function]} onClick={[Function]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} classes={{...}}>
+                                        <inject-Track-with-app event="topNavClicked" item={{...}}>
+                                          <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                            <WithStyles(inject-Link) state={[Function: state]} className="RSFNavTab-link-134" to="/2" prefetch="visible" onClick={[Function]} anchorProps={{...}}>
+                                              <inject-Link state={[Function: state]} className="RSFNavTab-link-134" to="/2" prefetch="visible" onClick={[Function]} anchorProps={{...}} classes={{...}}>
+                                                <Link state={[Function: state]} className="RSFNavTab-link-134" to="/2" prefetch="visible" onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                  <VisibilitySensor onChange={[Function]} partialVisibility={true} active={true} minTopValue={0} scrollCheck={false} scrollDelay={250} scrollThrottle={-1} resizeCheck={false} resizeDelay={250} resizeThrottle={-1} intervalCheck={true} intervalDelay={100} delayedCall={false} offset={{...}} containment={{...}}>
+                                                    <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="topNavClicked" data-moov-link="on" className="RSFLink-root-137 RSFNavTab-link-134" style={[undefined]} onClick={[Function]} href="https://example.com/2" data-moov-rel="prefetch">
+                                                      <WithStyles(Tab) className="RSFNavTab-root-131" label="Tab 1" classes={{...}}>
+                                                        <Tab className="RSFNavTab-root-131" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
+                                                          <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-138 MuiTab-textColorInherit-140 RSFNavTab-root-131" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]}>
+                                                            <ButtonBase focusRipple={true} className="MuiTab-root-138 MuiTab-textColorInherit-140 RSFNavTab-root-131" role="tab" aria-selected={[undefined]} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                              <button className="MuiButtonBase-root-150 MuiTab-root-138 MuiTab-textColorInherit-140 RSFNavTab-root-131" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={[undefined]} onClick={[Function]}>
+                                                                <span className="MuiTab-wrapper-146">
+                                                                  <span className="MuiTab-labelContainer-147">
+                                                                    <span className="MuiTab-label-148 RSFNavTab-label-133">
+                                                                      Tab 1
+                                                                    </span>
+                                                                  </span>
+                                                                </span>
+                                                                <NoSsr defer={false} fallback={{...}}>
+                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                    <TouchRipple center={false} classes={{...}}>
+                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-153" childFactory={[Function: childFactory]}>
+                                                                        <span className="MuiTouchRipple-root-153" />
+                                                                      </TransitionGroup>
+                                                                    </TouchRipple>
+                                                                  </WithStyles(TouchRipple)>
+                                                                </NoSsr>
+                                                              </button>
+                                                            </ButtonBase>
+                                                          </WithStyles(ButtonBase)>
+                                                        </Tab>
+                                                      </WithStyles(Tab)>
+                                                    </a>
+                                                  </VisibilitySensor>
+                                                </Link>
+                                              </inject-Link>
+                                            </WithStyles(inject-Link)>
+                                          </Track>
+                                        </inject-Track-with-app>
+                                      </NavTab>
+                                    </WithStyles(NavTab)>
+                                  </div>
+                                  <WithStyles(TabIndicator) className="MuiTabs-indicator-129 RSFTabsRow-indicator-113 RSFTabsRow-noSelection-114" color="secondary" style={{...}}>
+                                    <TabIndicator className="MuiTabs-indicator-129 RSFTabsRow-indicator-113 RSFTabsRow-noSelection-114" color="secondary" style={{...}} classes={{...}}>
+                                      <span className="MuiPrivateTabIndicator-root-160 MuiPrivateTabIndicator-colorSecondary-162 MuiTabs-indicator-129 RSFTabsRow-indicator-113 RSFTabsRow-noSelection-114" style={{...}} />
+                                    </TabIndicator>
+                                  </WithStyles(TabIndicator)>
+                                </div>
+                                <WithStyles(TabScrollButton) direction="right" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-127 MuiTabs-scrollButtonsAuto-128">
+                                  <TabScrollButton direction="right" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-127 MuiTabs-scrollButtonsAuto-128" classes={{...}}>
+                                    <div className="MuiPrivateTabScrollButton-root-130 MuiTabs-scrollButtons-127 MuiTabs-scrollButtonsAuto-128" />
+                                  </TabScrollButton>
+                                </WithStyles(TabScrollButton)>
                               </div>
-                              <WithStyles(TabIndicator) style={{...}} className="MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" color="secondary">
-                                <TabIndicator classes={{...}} style={{...}} className="MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" color="secondary">
-                                  <span className="TabIndicator-root-74 TabIndicator-colorSecondary-76 MuiTabs-indicator-49 RSFTabsRow-indicator-33 RSFTabsRow-noSelection-34" style={{...}} />
-                                </TabIndicator>
-                              </WithStyles(TabIndicator)>
                             </div>
-                            <WithStyles(TabScrollButton) direction="right" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                              <TabScrollButton classes={{...}} direction="right" onClick={[Function: value]} visible={false} className="MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48">
-                                <div className="MuiTabScrollButton-root-50 MuiTabs-scrollButtons-47 MuiTabs-scrollButtonsAuto-48" />
-                              </TabScrollButton>
-                            </WithStyles(TabScrollButton)>
-                          </div>
-                        </div>
-                      </Tabs>
-                    </WithStyles(Tabs)>
-                  </TabsRow>
-                </inject-TabsRow-with-app>
-              </WithStyles(inject-TabsRow-with-app)>
-            </div>
-          </Paper>
-        </WithStyles(Paper)>
-      </NavTabs>
-    </inject-NavTabs>
-  </WithStyles(inject-NavTabs)>
-</Provider>
+                          </Tabs>
+                        </WithStyles(Tabs)>
+                      </TabsRow>
+                    </inject-TabsRow-with-app>
+                  </WithStyles(inject-TabsRow-with-app)>
+                </div>
+              </Paper>
+            </WithStyles(Paper)>
+            <Hidden xsDown={true} implementation="js" lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+              <WithTheme(WithWidth(HiddenJs)) xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                <WithWidth(HiddenJs) theme={{...}} xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                  <HiddenJs width="md" xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
+                    <WithTheme(Popper) className="inject-NavTabs-menu-84" open={false} anchorEl={{...}} transition={true}>
+                      <Popper theme={{...}} className="inject-NavTabs-menu-84" open={false} anchorEl={{...}} transition={true} disablePortal={false} placement="bottom" />
+                    </WithTheme(Popper)>
+                  </HiddenJs>
+                  <EventListener target="window" onResize={[Function: debounced]} />
+                </WithWidth(HiddenJs)>
+              </WithTheme(WithWidth(HiddenJs))>
+            </Hidden>
+          </NavTabs>
+        </inject-NavTabs>
+      </WithStyles(inject-NavTabs)>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
 `;

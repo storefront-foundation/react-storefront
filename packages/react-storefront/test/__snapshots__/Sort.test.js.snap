@@ -3,44 +3,48 @@
 exports[`Sort renders with a sort selected 1`] = `
 <Provider router={{...}}>
   <WithStyles(inject-Sort-with-router) model={{...}}>
-    <inject-Sort-with-router classes={{...}} model={{...}}>
-      <Sort classes={{...}} model={{...}} router={{...}} onSelect={[Function]} queryParam="sort">
+    <inject-Sort-with-router model={{...}} classes={{...}}>
+      <Sort model={{...}} classes={{...}} router={{...}} onSelect={[Function]} queryParam="sort" variant="buttons">
         <div className="RSFSort-container-1" onClick={[undefined]}>
           <WithStyles(Button) className="RSFSort-option-2" color="primary" variant="contained" onClick={[Function: bound ]}>
-            <Button classes={{...}} className="RSFSort-option-2" color="primary" variant="contained" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
-              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button">
-                <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
-                  <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFSort-option-2" type="button" disabled={false} onClick={[Function: bound ]}>
+            <Button className="RSFSort-option-2" color="primary" variant="contained" onClick={[Function: bound ]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function: bound ]} component="button" type="button">
+                <ButtonBase className="MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function: bound ]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                  <button className="MuiButtonBase-root-29 MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFSort-option-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: bound ]}>
                     <span className="MuiButton-label-4">
                       Price - Low to High
                     </span>
-                    <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                      <TouchRipple classes={{...}} center={false}>
-                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-22" childFactory={[Function: childFactory]}>
-                          <span className="MuiTouchRipple-root-22" />
-                        </TransitionGroup>
-                      </TouchRipple>
-                    </WithStyles(TouchRipple)>
+                    <NoSsr defer={false} fallback={{...}}>
+                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                        <TouchRipple center={false} classes={{...}}>
+                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-32" childFactory={[Function: childFactory]}>
+                            <span className="MuiTouchRipple-root-32" />
+                          </TransitionGroup>
+                        </TouchRipple>
+                      </WithStyles(TouchRipple)>
+                    </NoSsr>
                   </button>
                 </ButtonBase>
               </WithStyles(ButtonBase)>
             </Button>
           </WithStyles(Button)>
           <WithStyles(Button) className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]}>
-            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
-              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button">
-                <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
-                  <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" type="button" disabled={false} onClick={[Function: bound ]}>
+            <Button className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function: bound ]} component="button" type="button">
+                <ButtonBase className="MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function: bound ]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                  <button className="MuiButtonBase-root-29 MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: bound ]}>
                     <span className="MuiButton-label-4">
                       Price - High to Low
                     </span>
-                    <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                      <TouchRipple classes={{...}} center={false}>
-                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-22" childFactory={[Function: childFactory]}>
-                          <span className="MuiTouchRipple-root-22" />
-                        </TransitionGroup>
-                      </TouchRipple>
-                    </WithStyles(TouchRipple)>
+                    <NoSsr defer={false} fallback={{...}}>
+                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                        <TouchRipple center={false} classes={{...}}>
+                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-32" childFactory={[Function: childFactory]}>
+                            <span className="MuiTouchRipple-root-32" />
+                          </TransitionGroup>
+                        </TouchRipple>
+                      </WithStyles(TouchRipple)>
+                    </NoSsr>
                   </button>
                 </ButtonBase>
               </WithStyles(ButtonBase)>
@@ -56,44 +60,48 @@ exports[`Sort renders with a sort selected 1`] = `
 exports[`Sort renders with no sort selected 1`] = `
 <Provider router={{...}}>
   <WithStyles(inject-Sort-with-router) model={{...}}>
-    <inject-Sort-with-router classes={{...}} model={{...}}>
-      <Sort classes={{...}} model={{...}} router={{...}} onSelect={[Function]} queryParam="sort">
+    <inject-Sort-with-router model={{...}} classes={{...}}>
+      <Sort model={{...}} classes={{...}} router={{...}} onSelect={[Function]} queryParam="sort" variant="buttons">
         <div className="RSFSort-container-1" onClick={[undefined]}>
           <WithStyles(Button) className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]}>
-            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
-              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button">
-                <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
-                  <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" type="button" disabled={false} onClick={[Function: bound ]}>
+            <Button className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function: bound ]} component="button" type="button">
+                <ButtonBase className="MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function: bound ]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                  <button className="MuiButtonBase-root-29 MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: bound ]}>
                     <span className="MuiButton-label-4">
                       Price - Low to High
                     </span>
-                    <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                      <TouchRipple classes={{...}} center={false}>
-                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-22" childFactory={[Function: childFactory]}>
-                          <span className="MuiTouchRipple-root-22" />
-                        </TransitionGroup>
-                      </TouchRipple>
-                    </WithStyles(TouchRipple)>
+                    <NoSsr defer={false} fallback={{...}}>
+                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                        <TouchRipple center={false} classes={{...}}>
+                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-32" childFactory={[Function: childFactory]}>
+                            <span className="MuiTouchRipple-root-32" />
+                          </TransitionGroup>
+                        </TouchRipple>
+                      </WithStyles(TouchRipple)>
+                    </NoSsr>
                   </button>
                 </ButtonBase>
               </WithStyles(ButtonBase)>
             </Button>
           </WithStyles(Button)>
           <WithStyles(Button) className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]}>
-            <Button classes={{...}} className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
-              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button">
-                <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" onClick={[Function: bound ]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
-                  <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 RSFSort-option-2" type="button" disabled={false} onClick={[Function: bound ]}>
+            <Button className="RSFSort-option-2" color="default" variant="contained" onClick={[Function: bound ]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function: bound ]} component="button" type="button">
+                <ButtonBase className="MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function: bound ]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                  <button className="MuiButtonBase-root-29 MuiButton-root-3 MuiButton-contained-14 MuiButton-raised-17 RSFSort-option-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: bound ]}>
                     <span className="MuiButton-label-4">
                       Price - High to Low
                     </span>
-                    <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                      <TouchRipple classes={{...}} center={false}>
-                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-22" childFactory={[Function: childFactory]}>
-                          <span className="MuiTouchRipple-root-22" />
-                        </TransitionGroup>
-                      </TouchRipple>
-                    </WithStyles(TouchRipple)>
+                    <NoSsr defer={false} fallback={{...}}>
+                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                        <TouchRipple center={false} classes={{...}}>
+                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-32" childFactory={[Function: childFactory]}>
+                            <span className="MuiTouchRipple-root-32" />
+                          </TransitionGroup>
+                        </TouchRipple>
+                      </WithStyles(TouchRipple)>
+                    </NoSsr>
                   </button>
                 </ButtonBase>
               </WithStyles(ButtonBase)>

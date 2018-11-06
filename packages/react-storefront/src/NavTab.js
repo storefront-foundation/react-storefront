@@ -5,7 +5,8 @@
 import React, { Component, Fragment } from 'react'
 import Track from './Track'
 import Link from './Link'
-import { withStyles, Tab } from '@material-ui/core'
+import Tab from '@material-ui/core/Tab'
+import withStyles from '@material-ui/core/styles/withStyles'
 import { observer } from 'mobx-react'
 
 export const styles = theme => ({
@@ -56,7 +57,8 @@ export default class NavTab extends Component {
           onClick={this.props.onClick}
           anchorProps={{
             onMouseEnter: this.onMouseEnter,
-            onMouseLeave: this.props.onMouseLeave
+            onMouseLeave: this.props.onMouseLeave,
+            "data-th": "topNavClicked"
           }}
         >
           <Tab

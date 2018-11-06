@@ -2,7 +2,7 @@
 
 exports[`Row accepts a className prop 1`] = `
 <WithStyles(Row) className="myClassName">
-  <Row classes={{...}} className="myClassName">
+  <Row className="myClassName" classes={{...}}>
     <div className="RSFRow-root-1 myClassName" />
   </Row>
 </WithStyles(Row)>
@@ -26,7 +26,7 @@ exports[`Row renders with no props 1`] = `
 
 exports[`Row spreads props to the underlying div 1`] = `
 <WithStyles(Row) style={{...}}>
-  <Row classes={{...}} style={{...}}>
+  <Row style={{...}} classes={{...}}>
     <div className="RSFRow-root-1" style={{...}} />
   </Row>
 </WithStyles(Row)>

@@ -2,7 +2,7 @@
 
 exports[`ActionButton renders label and value 1`] = `
 <button
-  className="MuiButtonBase-root-21 MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1"
+  className="MuiButtonBase-root-31 MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 ActionButton-raised-1"
   disabled={false}
   onBlur={[Function]}
   onFocus={[Function]}
@@ -21,25 +21,25 @@ exports[`ActionButton renders label and value 1`] = `
     className="MuiButton-label-6 ActionButton-label-2"
   >
     <span
-      className="MuiTypography-root-24 MuiTypography-button-35 ActionButton-caption-3"
+      className="MuiTypography-root-34 MuiTypography-button-45 ActionButton-caption-3"
     >
       Label
     </span>
     <span
-      className="MuiTypography-root-24 MuiTypography-caption-34 ActionButton-value-4"
+      className="MuiTypography-root-34 MuiTypography-caption-44 ActionButton-value-4"
     >
       Value
     </span>
   </span>
   <span
-    className="MuiTouchRipple-root-48"
+    className="MuiTouchRipple-root-69"
   />
 </button>
 `;
 
 exports[`ActionButton renders with no props 1`] = `
 <button
-  className="MuiButtonBase-root-21 MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1"
+  className="MuiButtonBase-root-31 MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 ActionButton-raised-1"
   disabled={false}
   onBlur={[Function]}
   onFocus={[Function]}
@@ -58,14 +58,14 @@ exports[`ActionButton renders with no props 1`] = `
     className="MuiButton-label-6 ActionButton-label-2"
   >
     <span
-      className="MuiTypography-root-24 MuiTypography-button-35 ActionButton-caption-3"
+      className="MuiTypography-root-34 MuiTypography-button-45 ActionButton-caption-3"
     />
     <span
-      className="MuiTypography-root-24 MuiTypography-caption-34 ActionButton-value-4"
+      className="MuiTypography-root-34 MuiTypography-caption-44 ActionButton-value-4"
     />
   </span>
   <span
-    className="MuiTouchRipple-root-48"
+    className="MuiTouchRipple-root-69"
   />
 </button>
 `;

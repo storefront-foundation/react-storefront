@@ -10,6 +10,10 @@ export default function createTheme(values = {}) {
   let config = {}
 
   merge(config, {
+    typography: {
+      useNextVariants: true,
+    },
+
     palette: {
       // The colors for the Add to Cart and Checkout buttons
       addToCart: {

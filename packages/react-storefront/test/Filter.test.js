@@ -6,7 +6,7 @@ import React from 'react'
 import { create } from 'react-test-renderer'
 import SubcategoryModelBase from '../src/model/SubcategoryModelBase'
 import Filter from '../src/Filter'
-import { Provider } from 'mobx-react'
+import Provider from './TestProvider'
 
 function createModel(filters) {
   return SubcategoryModelBase.create({

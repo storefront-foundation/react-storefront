@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types, isAlive, flow } from "mobx-state-tree"
+import { types, isAlive } from "mobx-state-tree"
 import fetch from 'fetch'
 import ProductModelBase from './ProductModelBase'
 
@@ -199,8 +199,8 @@ export default types
     /**
      * Fetches the next page from the server.
      */
-    showMore() {
-      self.showPage(self.page + 1)
+    showMore: async function () {
+      await self.showPage(self.page + 1)
     },
     getShowMoreURL(defaultURL) {
       return defaultURL
