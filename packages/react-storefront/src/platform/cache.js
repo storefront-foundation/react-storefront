@@ -33,6 +33,21 @@ export function cache({ serverMaxAge, browserMaxAge }) {
 }
 
 /**
+ * Sets a cache time of one day for all image and font assets which are proxied from upstream.
+ * @param {String} pathname 
+ */
+export function cacheProxiedAssets(pathname, { serverMaxAge }) {
+  if (pathname.match(/(jpeg|jpg|png|gif|svg|woff2?|ttf|otf)$/)) {
+    cache({ serverMaxAge })
+  }
+}
+
+/**
  * The TTL for far-future cached assets
  */
 export const FAR_FUTURE = 290304000
+
+/**
+ * The number of seconds in a day
+ */
+export const ONE_DAY = 86400
