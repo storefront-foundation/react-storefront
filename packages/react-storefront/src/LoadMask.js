@@ -31,6 +31,13 @@ export const styles = theme => ({
       opacity: 0.8
     }
   },
+  transparent: {
+    backgroundColor: 'rgba(255,255,255,0.5)'
+  },
+  alignTop: {
+    alignItems: 'flex-start',
+    paddingTop: '200px'
+  },
   show: {
     display: 'flex'
   }
@@ -53,12 +60,23 @@ export default class LoadMask extends Component {
      * Set to true to toggle the overflow style on the body when showing.
      * Defaults to false
      */
-    fullscreen: PropTypes.bool
+    fullscreen: PropTypes.bool,
+
+    /**
+     * Set to true to show the partially show the background through the load mask
+     */
+    transparent: PropTypes.bool,
+
+    /**
+     * Set to top to show the spinner near the top. Defaults to 'center'
+     */
+    align: PropTypes.oneOf(['center', 'top'])
   }
 
   static defaultProps = {
     show: false, 
-    fullscreen: false
+    fullscreen: false,
+    align: 'center'
   }
 
   componentDidUpdate() {
@@ -80,7 +98,7 @@ export default class LoadMask extends Component {
   }
 
   render() {
-    const { classes, show, style, className, children, fullscreen } = this.props
+    const { classes, show, style, className, children, fullscreen, transparent, align } = this.props
 
     return (
       <div style={style} 
@@ -90,7 +108,9 @@ export default class LoadMask extends Component {
             className,
             { 
               [classes.show]: show,
-              [classes.fullscreen]: fullscreen
+              [classes.fullscreen]: fullscreen,
+              [classes.transparent]: transparent,
+              [classes.alignTop]: align === 'top'
             }
           )
         }>

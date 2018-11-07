@@ -45,11 +45,15 @@ export const styles = theme => ({
     color: theme.palette.secondary.contrastText
   },
   title: {
-    ...theme.typography.subheading,
+    ...theme.typography.subtitle1,
     marginBottom: `12px`
   },
   noMargins: {
     margin: 0
+  },
+  groupLabel: {
+    display: 'flex',
+    alignItems: 'center'
   }
 });
 
@@ -147,10 +151,10 @@ export default class Filter extends Component {
             <FormControlLabel
               key={i}
               label={
-                <span>
+                <div className={classes.groupLabel}>
                   <span>{facet.name}</span>
-                  <Typography variable="caption" className={classes.matches} component="span">({facet.matches})</Typography>
-                </span>
+                  <Typography variant="caption" className={classes.matches} component="span">({facet.matches})</Typography>
+                </div>
               }
               control={
                 <Checkbox

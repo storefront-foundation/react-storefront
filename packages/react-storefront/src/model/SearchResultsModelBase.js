@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types, isAlive } from "mobx-state-tree"
+import { types, isAlive, flow } from "mobx-state-tree"
 import fetch from 'fetch'
 import ProductModelBase from './ProductModelBase'
 
@@ -108,6 +108,11 @@ export default types
     items: types.optional(types.array(ProductModelBase), []),
 
     /**
+     * Set to true when fetching data from the server in response to a filter or sort change.
+     */
+    loading: false,
+
+    /**
      * Set to true when loading more items from the server is in progress.
      */
     loadingMore: false,
@@ -156,11 +161,12 @@ export default types
     /**
      * Refreshes the search based on the current filters and sort and resets the page to 0.
      */
-    refresh() {
+    refresh: flow(function*() {
       self.filtersChanged = false
-      self.items = []
-      self.showPage(0)
-    },
+      self.loading = true
+      yield self.showPage(0)
+      self.loading = false
+    }),
     /**
      * Toggles a facet on or off.
      * @param {FacetModelBase} facet 
@@ -184,7 +190,7 @@ export default types
       search += `page=${self.page}`
       
       try {
-        self.loadingMore = true
+        self.loadingMore = page > 0
         const results = await fetch(self.getShowMoreURL(`${pathname}.json${search}`)).then(res => res.json())
         if (isAlive(self)) {
           self.addItems(results.items)
@@ -200,7 +206,9 @@ export default types
      * Fetches the next page from the server.
      */
     showMore: async function () {
-      await self.showPage(self.page + 1)
+      if (!self.loading) {
+        await self.showPage(self.page + 1)
+      }
     },
     getShowMoreURL(defaultURL) {
       return defaultURL
@@ -216,6 +224,9 @@ export default types
      * @param {Array} items 
      */
     addItems(items) {
+      if (self.page === 0) {
+        self.items = []
+      }
       if (Array.isArray(items)) {
         self.items = [...self.items, ...items]
       }
