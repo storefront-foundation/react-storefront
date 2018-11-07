@@ -3,6 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import Helmet from 'react-helmet'
+import PWA from '../src/PWA'
 import Server from '../src/Server'
 import createTheme from '../src/createTheme'
 import AppModelBase from '../src/model/AppModelBase'
@@ -120,6 +121,22 @@ describe('Server', () => {
       await new Server({ theme, model, router, blob, globals, App }).serve()
       expect(global.sendResponse).toBeCalledWith({ body: JSON.stringify({ foo: "bar" }), htmlparsed: true })
       expect(global.sendResponse.mock.calls.length).toBe(1)
+    })
+
+    it('should allow the user to override the viewport', async () => {
+      const viewport = 'width=device-width, initial-scale=.5, maximum-scale=12.0, minimum-scale=.25, user-scalable=yes'
+
+      const App = () => (
+        <PWA>
+          <Helmet>
+            <meta name="viewport" content={viewport}/>
+          </Helmet>
+        </PWA>
+      )
+  
+      await new Server({ theme, model, router, blob, globals, App }).serve()
+      const data = global.sendResponse.mock.calls[0][0]
+      expect($.load(data.body)('meta[name=viewport]').attr('content')).toBe(viewport)
     })
   })
 })

@@ -10,7 +10,9 @@ All rights reserved.
 
 ## Changelog
 
-### 4.7.1
+### 4.8.0
+
+* You can now override `<meta>` tags using `react-helmet`.
 
 * Now throws an error in development when a cache handler runs during non-GET request
 
