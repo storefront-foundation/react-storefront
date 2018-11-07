@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.8.0
+
+* You can now override `<meta>` tags using `react-helmet`.
+
 ### 4.7.0
 
 * ExpandableSection's expanded state can now be controlled via an expanded prop
