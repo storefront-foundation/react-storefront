@@ -47,10 +47,30 @@ describe('SearchResultsModelBase', () => {
   })
 
   describe('addItems', () => {
+    it('should replace items when page=0', () => {
+      const results = SubcategoryModelBase.create({ 
+        id: '1',
+        loadingMore: true,
+        page: 0,
+        items: [
+          { id: '1' }
+        ]
+      })
+  
+      results.addItems([
+        { id: '2' },
+        { id: '3' }
+      ])
+  
+      expect(results.loadingMore).toBe(false)
+      expect(results.items.map(i => i.id)).toEqual(['2', '3'])
+    })
+
     it('should append to existing items and set loadingMore to false', () => {
       const results = SubcategoryModelBase.create({ 
         id: '1',
         loadingMore: true,
+        page: 1,
         items: [
           { id: '1' }
         ]

@@ -5,7 +5,7 @@ exports[`Filter renders with filters selected 1`] = `
   className="RSFFilter-root-139"
 >
   <div
-    className="MuiPaper-root-161 MuiPaper-elevation1-164 MuiExpansionPanel-root-158 RSFExpandableSection-root-146 RSFFilter-section-140 RSFExpandableSection-margins-147 RSFExpandableSection-expandedPanel-155"
+    className="MuiPaper-root-161 MuiPaper-elevation1-164 MuiExpansionPanel-root-158 RSFExpandableSection-root-146 RSFExpandableSection-margins-147 RSFExpandableSection-expandedPanel-155"
   >
     <div
       aria-expanded={false}
@@ -145,19 +145,20 @@ exports[`Filter renders with filters selected 1`] = `
                 <span
                   className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259"
                 >
-                  <span>
+                  <div
+                    className="RSFFilter-groupLabel-145"
+                  >
                     <span>
                       Up to $100
                     </span>
                     <span
-                      className="MuiTypography-root-197 MuiTypography-body2-205 RSFFilter-matches-141"
-                      variable="caption"
+                      className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140"
                     >
                       (
                       20
                       )
                     </span>
-                  </span>
+                  </div>
                 </span>
               </label>
               <label
@@ -206,19 +207,20 @@ exports[`Filter renders with filters selected 1`] = `
                 <span
                   className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259"
                 >
-                  <span>
+                  <div
+                    className="RSFFilter-groupLabel-145"
+                  >
                     <span>
                       $100 - $200
                     </span>
                     <span
-                      className="MuiTypography-root-197 MuiTypography-body2-205 RSFFilter-matches-141"
-                      variable="caption"
+                      className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140"
                     >
                       (
                       10
                       )
                     </span>
-                  </span>
+                  </div>
                 </span>
               </label>
             </div>
@@ -228,7 +230,7 @@ exports[`Filter renders with filters selected 1`] = `
     </div>
   </div>
   <div
-    className="MuiPaper-root-161 MuiPaper-elevation1-164 MuiExpansionPanel-root-158 RSFExpandableSection-root-146 RSFFilter-section-140 RSFExpandableSection-margins-147 RSFExpandableSection-expandedPanel-155"
+    className="MuiPaper-root-161 MuiPaper-elevation1-164 MuiExpansionPanel-root-158 RSFExpandableSection-root-146 RSFExpandableSection-margins-147 RSFExpandableSection-expandedPanel-155"
   >
     <div
       aria-expanded={false}
@@ -368,19 +370,20 @@ exports[`Filter renders with filters selected 1`] = `
                 <span
                   className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259"
                 >
-                  <span>
+                  <div
+                    className="RSFFilter-groupLabel-145"
+                  >
                     <span>
                       Red
                     </span>
                     <span
-                      className="MuiTypography-root-197 MuiTypography-body2-205 RSFFilter-matches-141"
-                      variable="caption"
+                      className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140"
                     >
                       (
                       2
                       )
                     </span>
-                  </span>
+                  </div>
                 </span>
               </label>
               <label
@@ -429,19 +432,20 @@ exports[`Filter renders with filters selected 1`] = `
                 <span
                   className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259"
                 >
-                  <span>
+                  <div
+                    className="RSFFilter-groupLabel-145"
+                  >
                     <span>
                       Sunburst
                     </span>
                     <span
-                      className="MuiTypography-root-197 MuiTypography-body2-205 RSFFilter-matches-141"
-                      variable="caption"
+                      className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140"
                     >
                       (
                       10
                       )
                     </span>
-                  </span>
+                  </div>
                 </span>
               </label>
             </div>
@@ -458,7 +462,7 @@ exports[`Filter renders with no filters selected 1`] = `
   className="RSFFilter-root-1"
 >
   <div
-    className="MuiPaper-root-23 MuiPaper-elevation1-26 MuiExpansionPanel-root-20 RSFExpandableSection-root-8 RSFFilter-section-2 RSFExpandableSection-margins-9 RSFExpandableSection-expandedPanel-17"
+    className="MuiPaper-root-23 MuiPaper-elevation1-26 MuiExpansionPanel-root-20 RSFExpandableSection-root-8 RSFExpandableSection-margins-9 RSFExpandableSection-expandedPanel-17"
   >
     <div
       aria-expanded={false}
@@ -593,19 +597,20 @@ exports[`Filter renders with no filters selected 1`] = `
                 <span
                   className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121"
                 >
-                  <span>
+                  <div
+                    className="RSFFilter-groupLabel-7"
+                  >
                     <span>
                       Up to $100
                     </span>
                     <span
-                      className="MuiTypography-root-59 MuiTypography-body2-67 RSFFilter-matches-3"
-                      variable="caption"
+                      className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2"
                     >
                       (
                       20
                       )
                     </span>
-                  </span>
+                  </div>
                 </span>
               </label>
               <label
@@ -654,19 +659,20 @@ exports[`Filter renders with no filters selected 1`] = `
                 <span
                   className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121"
                 >
-                  <span>
+                  <div
+                    className="RSFFilter-groupLabel-7"
+                  >
                     <span>
                       $100 - $200
                     </span>
                     <span
-                      className="MuiTypography-root-59 MuiTypography-body2-67 RSFFilter-matches-3"
-                      variable="caption"
+                      className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2"
                     >
                       (
                       10
                       )
                     </span>
-                  </span>
+                  </div>
                 </span>
               </label>
             </div>
@@ -676,7 +682,7 @@ exports[`Filter renders with no filters selected 1`] = `
     </div>
   </div>
   <div
-    className="MuiPaper-root-23 MuiPaper-elevation1-26 MuiExpansionPanel-root-20 RSFExpandableSection-root-8 RSFFilter-section-2 RSFExpandableSection-margins-9 RSFExpandableSection-expandedPanel-17"
+    className="MuiPaper-root-23 MuiPaper-elevation1-26 MuiExpansionPanel-root-20 RSFExpandableSection-root-8 RSFExpandableSection-margins-9 RSFExpandableSection-expandedPanel-17"
   >
     <div
       aria-expanded={false}
@@ -811,19 +817,20 @@ exports[`Filter renders with no filters selected 1`] = `
                 <span
                   className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121"
                 >
-                  <span>
+                  <div
+                    className="RSFFilter-groupLabel-7"
+                  >
                     <span>
                       Red
                     </span>
                     <span
-                      className="MuiTypography-root-59 MuiTypography-body2-67 RSFFilter-matches-3"
-                      variable="caption"
+                      className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2"
                     >
                       (
                       2
                       )
                     </span>
-                  </span>
+                  </div>
                 </span>
               </label>
               <label
@@ -872,19 +879,20 @@ exports[`Filter renders with no filters selected 1`] = `
                 <span
                   className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121"
                 >
-                  <span>
+                  <div
+                    className="RSFFilter-groupLabel-7"
+                  >
                     <span>
                       Sunburst
                     </span>
                     <span
-                      className="MuiTypography-root-59 MuiTypography-body2-67 RSFFilter-matches-3"
-                      variable="caption"
+                      className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2"
                     >
                       (
                       10
                       )
                     </span>
-                  </span>
+                  </div>
                 </span>
               </label>
             </div>

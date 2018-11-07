@@ -7,15 +7,15 @@ exports[`Pages can display no page at all 1`] = `
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
           <Pages components={{...}} classes={{...}} app={{...}} page="Foo" loading={false} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
-            <div className="RSFPages-root-16">
+            <div className="RSFPages-root-18">
               <WithStyles(LoadMask) show={false} fullscreen={true}>
-                <LoadMask show={false} fullscreen={true} classes={{...}}>
-                  <div style={[undefined]} className="RSFLoadMask-root-18 RSFLoadMask-fullscreen-19">
+                <LoadMask show={false} fullscreen={true} classes={{...}} align="center">
+                  <div style={[undefined]} className="RSFLoadMask-root-20 RSFLoadMask-fullscreen-21">
                     <WithStyles(CircularProgress) className={[undefined]} color="secondary">
                       <CircularProgress className={[undefined]} color="secondary" classes={{...}} disableShrink={false} size={40} thickness={3.6} value={0} variant="indeterminate">
-                        <div className="MuiCircularProgress-root-21 MuiCircularProgress-colorSecondary-25 MuiCircularProgress-indeterminate-23" style={{...}} role="progressbar">
-                          <svg className="MuiCircularProgress-svg-26" viewBox="22 22 44 44">
-                            <circle className="MuiCircularProgress-circle-27 MuiCircularProgress-circleIndeterminate-29" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
+                        <div className="MuiCircularProgress-root-25 MuiCircularProgress-colorSecondary-29 MuiCircularProgress-indeterminate-27" style={{...}} role="progressbar">
+                          <svg className="MuiCircularProgress-svg-30" viewBox="22 22 44 44">
+                            <circle className="MuiCircularProgress-circle-31 MuiCircularProgress-circleIndeterminate-33" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
                           </svg>
                         </div>
                       </CircularProgress>
@@ -39,15 +39,15 @@ exports[`Pages displays a custom default loading component 1`] = `
       <WithStyles(inject-Pages) loading={[Function: loading]} components={{...}}>
         <inject-Pages loading={[Function: loading]} components={{...}} classes={{...}}>
           <Pages loading={true} components={{...}} classes={{...}} app={{...}} page="Product" uri="/" router={{...}} history={{...}} loadMasks={{...}}>
-            <div className="RSFPages-root-31">
+            <div className="RSFPages-root-35">
               <WithStyles(LoadMask) show={true} fullscreen={true}>
-                <LoadMask show={true} fullscreen={true} classes={{...}}>
-                  <div style={[undefined]} className="RSFLoadMask-root-33 RSFLoadMask-show-35 RSFLoadMask-fullscreen-34">
+                <LoadMask show={true} fullscreen={true} classes={{...}} align="center">
+                  <div style={[undefined]} className="RSFLoadMask-root-37 RSFLoadMask-show-41 RSFLoadMask-fullscreen-38">
                     <WithStyles(CircularProgress) className={[undefined]} color="secondary">
                       <CircularProgress className={[undefined]} color="secondary" classes={{...}} disableShrink={false} size={40} thickness={3.6} value={0} variant="indeterminate">
-                        <div className="MuiCircularProgress-root-36 MuiCircularProgress-colorSecondary-40 MuiCircularProgress-indeterminate-38" style={{...}} role="progressbar">
-                          <svg className="MuiCircularProgress-svg-41" viewBox="22 22 44 44">
-                            <circle className="MuiCircularProgress-circle-42 MuiCircularProgress-circleIndeterminate-44" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
+                        <div className="MuiCircularProgress-root-42 MuiCircularProgress-colorSecondary-46 MuiCircularProgress-indeterminate-44" style={{...}} role="progressbar">
+                          <svg className="MuiCircularProgress-svg-47" viewBox="22 22 44 44">
+                            <circle className="MuiCircularProgress-circle-48 MuiCircularProgress-circleIndeterminate-50" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
                           </svg>
                         </div>
                       </CircularProgress>
@@ -80,13 +80,13 @@ exports[`Pages displays the correct page 1`] = `
           <Pages components={{...}} classes={{...}} app={{...}} page="Category" loading={false} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
             <div className="RSFPages-root-1">
               <WithStyles(LoadMask) show={false} fullscreen={true}>
-                <LoadMask show={false} fullscreen={true} classes={{...}}>
+                <LoadMask show={false} fullscreen={true} classes={{...}} align="center">
                   <div style={[undefined]} className="RSFLoadMask-root-3 RSFLoadMask-fullscreen-4">
                     <WithStyles(CircularProgress) className={[undefined]} color="secondary">
                       <CircularProgress className={[undefined]} color="secondary" classes={{...}} disableShrink={false} size={40} thickness={3.6} value={0} variant="indeterminate">
-                        <div className="MuiCircularProgress-root-6 MuiCircularProgress-colorSecondary-10 MuiCircularProgress-indeterminate-8" style={{...}} role="progressbar">
-                          <svg className="MuiCircularProgress-svg-11" viewBox="22 22 44 44">
-                            <circle className="MuiCircularProgress-circle-12 MuiCircularProgress-circleIndeterminate-14" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
+                        <div className="MuiCircularProgress-root-8 MuiCircularProgress-colorSecondary-12 MuiCircularProgress-indeterminate-10" style={{...}} role="progressbar">
+                          <svg className="MuiCircularProgress-svg-13" viewBox="22 22 44 44">
+                            <circle className="MuiCircularProgress-circle-14 MuiCircularProgress-circleIndeterminate-16" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
                           </svg>
                         </div>
                       </CircularProgress>
@@ -117,15 +117,15 @@ exports[`Pages displays the default loading component 1`] = `
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
           <Pages components={{...}} classes={{...}} app={{...}} page="Product" loading={true} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
-            <div className="RSFPages-root-46">
+            <div className="RSFPages-root-52">
               <WithStyles(LoadMask) show={true} fullscreen={true}>
-                <LoadMask show={true} fullscreen={true} classes={{...}}>
-                  <div style={[undefined]} className="RSFLoadMask-root-48 RSFLoadMask-show-50 RSFLoadMask-fullscreen-49">
+                <LoadMask show={true} fullscreen={true} classes={{...}} align="center">
+                  <div style={[undefined]} className="RSFLoadMask-root-54 RSFLoadMask-show-58 RSFLoadMask-fullscreen-55">
                     <WithStyles(CircularProgress) className={[undefined]} color="secondary">
                       <CircularProgress className={[undefined]} color="secondary" classes={{...}} disableShrink={false} size={40} thickness={3.6} value={0} variant="indeterminate">
-                        <div className="MuiCircularProgress-root-51 MuiCircularProgress-colorSecondary-55 MuiCircularProgress-indeterminate-53" style={{...}} role="progressbar">
-                          <svg className="MuiCircularProgress-svg-56" viewBox="22 22 44 44">
-                            <circle className="MuiCircularProgress-circle-57 MuiCircularProgress-circleIndeterminate-59" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
+                        <div className="MuiCircularProgress-root-59 MuiCircularProgress-colorSecondary-63 MuiCircularProgress-indeterminate-61" style={{...}} role="progressbar">
+                          <svg className="MuiCircularProgress-svg-64" viewBox="22 22 44 44">
+                            <circle className="MuiCircularProgress-circle-65 MuiCircularProgress-circleIndeterminate-67" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
                           </svg>
                         </div>
                       </CircularProgress>
