@@ -10,6 +10,12 @@ All rights reserved.
 
 ## Changelog
 
+### 4.9.0
+
+* Prefetching now ramps up over the course of 25 minutes by default to ease the load on servers after clearing the cache during deployment
+
+* Removes some assets from the precache manifest that don't need to be prefetched.
+
 ### 4.8.1
 
 * You can now set a custom content-type using `response.set('content-type', contentType)`.
