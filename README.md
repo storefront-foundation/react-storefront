@@ -10,6 +10,11 @@ All rights reserved.
 
 ## Changelog
 
+### 4.10.0
+
+ * AMP analytics event data is now automatically generated based on configured targets.
+ * Added support for pageview events in AMP.
+
 ### 4.9.0
 
 * Prefetching now ramps up over the course of 25 minutes by default to ease the load on servers after clearing the cache during deployment

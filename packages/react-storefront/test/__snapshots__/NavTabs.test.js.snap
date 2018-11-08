@@ -38,7 +38,7 @@ exports[`NavTabs does not require history 1`] = `
                                             <span className="MuiTab-labelContainer-60">
                                               <span className="MuiTab-label-61">
                                                 <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                                     <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
                                                   </Track>
                                                 </inject-Track-with-app>
@@ -75,7 +75,7 @@ exports[`NavTabs does not require history 1`] = `
                                             <span className="MuiTab-labelContainer-60">
                                               <span className="MuiTab-label-61">
                                                 <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                                     <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
                                                   </Track>
                                                 </inject-Track-with-app>
@@ -169,7 +169,7 @@ exports[`NavTabs renders 1`] = `
                                             <span className="MuiTab-labelContainer-60">
                                               <span className="MuiTab-label-61">
                                                 <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                                     <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
                                                   </Track>
                                                 </inject-Track-with-app>
@@ -206,7 +206,7 @@ exports[`NavTabs renders 1`] = `
                                             <span className="MuiTab-labelContainer-60">
                                               <span className="MuiTab-label-61">
                                                 <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                                     <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
                                                   </Track>
                                                 </inject-Track-with-app>
@@ -300,7 +300,7 @@ exports[`NavTabs uses prefetch 1`] = `
                                             <span className="MuiTab-labelContainer-60">
                                               <span className="MuiTab-label-61">
                                                 <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                                     <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
                                                   </Track>
                                                 </inject-Track-with-app>
@@ -337,7 +337,7 @@ exports[`NavTabs uses prefetch 1`] = `
                                             <span className="MuiTab-labelContainer-60">
                                               <span className="MuiTab-label-61">
                                                 <inject-Track-with-app event="topNavClicked" item={{...}}>
-                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]}>
+                                                  <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                                     <div className="inject-NavTabs-clickEl-4" data-th="topNavClicked" onClick={[Function]} />
                                                   </Track>
                                                 </inject-Track-with-app>

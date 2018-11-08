@@ -85,18 +85,14 @@ describe('Track', () => {
 
   it('should create AMP triggers', () => {
     configureAnalytics({
-      testEvent() {},
+      testEvent(data) {
+        this.send(data)
+      },
+      send() {
+
+      },
       getAmpAnalyticsType() {
         return "test"
-      },
-      getPropsForAmpAnalytics() {
-        return {
-          request: 'event',
-          vars: {
-            eventCategory: 'search',
-            eventAction: 'click'
-          }
-        }
       }
     })
 
@@ -112,7 +108,7 @@ describe('Track', () => {
     expect(renderAmpAnalyticsTags()).toEqual(
       '<amp-analytics type="test">' +
         '<script type="application/json">' +
-          '{"triggers":[{"on":"click","request":"event","vars":{"eventCategory":"search","eventAction":"click"},"selector":"[data-amp-id=\\"0\\"]"}]}' +
+          "{\"triggers\":[{\"on\":\"click\",\"foo\":\"bar\",\"ampData\":{},\"selector\":\"[data-amp-id=\\\"0\\\"]\",\"request\":\"event\"}]}" +
         '</script>' +
       '</amp-analytics>'
     )
