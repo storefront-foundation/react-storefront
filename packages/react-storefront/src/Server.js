@@ -73,10 +73,12 @@ export default class Server {
    * @param {Response} response 
    */
   setContentType(request, response) {
-    if (request.pathname.endsWith('.json')) {
-      response.set('content-type', 'application/json')
-    } else {
-      response.set('content-type', 'text/html')
+    if (response.get('content-type') == null) {
+      if (request.pathname.endsWith('.json')) {
+        response.set('content-type', 'application/json')
+      } else {
+        response.set('content-type', 'text/html')
+      }
     }
   }
 

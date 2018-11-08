@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.8.1
+
+* You can now set a custom content-type using `response.set('content-type', contentType)`.
+
 ### 4.8.0
 
 * You can now override `<meta>` tags using `react-helmet`.

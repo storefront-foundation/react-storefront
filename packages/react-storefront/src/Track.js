@@ -91,37 +91,45 @@ export default class Track extends Component {
    */
   attachEvent() {
     const { app: { amp }, trigger, children: el } = this.props
-    let originalHandler = el.props[trigger]
 
-    const props = {
-      ...el.props,
-      [trigger]: (...args) => {
-        if (originalHandler) originalHandler(...args)
-        this.fireEvent()
+    if (el) {
+      let originalHandler = el.props[trigger]
+
+      const props = {
+        ...el.props,
+        [trigger]: (...args) => {
+          if (originalHandler) originalHandler(...args)
+          this.fireEvent()
+        }
       }
+  
+      if (amp) {
+        props['data-amp-id'] = this.id
+        props['data-vars-moov-test'] = 'foo'
+      }
+  
+      return React.cloneElement(el, props)
+    } else {
+      return null
     }
-
-    if (amp) {
-      props['data-amp-id'] = this.id
-      props['data-vars-moov-test'] = 'foo'
-    }
-
-    return React.cloneElement(el, props)
   }
 
   /**
    * Creates AMP event trigger objects based on this.props.event
    */
   createAmpTriggers(data) {
-    const { event } = this.props
+    const { event, children } = this.props
 
     for (let target of getTargets()) {
       const props = target.getPropsForAmpAnalytics(event, data)
 
       if (props) {
+        if (!props.trigger && children) {
+          props.selector = `[data-amp-id="${this.id}"]`
+        }
+
         this.configureAmpEvent(target.getAmpAnalyticsType(), {
           on: 'click',
-          selector: `[data-amp-id="${this.id}"]`,
           ...props
         })
       }

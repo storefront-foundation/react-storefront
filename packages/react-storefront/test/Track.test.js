@@ -15,6 +15,14 @@ describe('Track', () => {
     resetId()
   })
 
+  it('should support no children', () => {
+    expect(mount(
+      <TestProvider>
+        <Track event="testEvent" foo="bar"/>
+      </TestProvider>
+    )).toMatchSnapshot()
+  })
+
   it('should fire the configured event when clicked', () => {
     const testEvent = jest.fn()
 
@@ -104,7 +112,7 @@ describe('Track', () => {
     expect(renderAmpAnalyticsTags()).toEqual(
       '<amp-analytics type="test">' +
         '<script type="application/json">' +
-          '{"triggers":[{"on":"click","selector":"[data-amp-id=\\"0\\"]","request":"event","vars":{"eventCategory":"search","eventAction":"click"}}]}' +
+          '{"triggers":[{"on":"click","request":"event","vars":{"eventCategory":"search","eventAction":"click"},"selector":"[data-amp-id=\\"0\\"]"}]}' +
         '</script>' +
       '</amp-analytics>'
     )

@@ -73,6 +73,21 @@ describe('Server', () => {
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('application/json')
     })
 
+    it('should allow you to override the content-type', async () => {
+      global.env.path = '/test.json'
+      const router = new Router()
+        .get('/test', 
+          fromServer((params, request, response) => {
+            response.set('content-type', 'application/foo')
+            return { page: 'Test' }
+          })
+        )
+
+      await new Server({ theme, model, router, blob, globals, App }).serve()
+      expect(global.sendResponse).toBeCalled()
+      expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('application/foo')
+    })
+
     it('should render amp', async () => {
       global.env.path = '/test.amp'
       await new Server({ theme, model, router, blob, globals, App }).serve()

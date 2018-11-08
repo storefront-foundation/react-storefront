@@ -58,13 +58,13 @@ describe('redirect', () => {
     it('should send location and status code', () => {
       redirectTo('/c/1')
       expect(headers.addHeader.mock.calls[0]).toEqual(['Location', 'https://www.example.com/c/1'])
-      expect(headers.statusCode).toBe('301')
+      expect(headers.statusCode).toBe(301)
     })
 
     it('should send allow you to specify the status code', () => {
-      redirectTo('/c/1', '302')
+      redirectTo('/c/1', 302)
       expect(headers.addHeader.mock.calls[0]).toEqual(['Location', 'https://www.example.com/c/1'])
-      expect(headers.statusCode).toBe('302')
+      expect(headers.statusCode).toBe(302)
     })
   })
 
@@ -86,7 +86,7 @@ describe('redirect', () => {
     it('should redirect to the same URL but with https', () => {
       redirectToHttps()
       expect(headers.addHeader.mock.calls[0]).toEqual(['Location', 'https://www.example.com/c/1'])
-      expect(headers.statusCode).toBe('301')
+      expect(headers.statusCode).toBe(301)
     })
 
     afterEach(() => {
