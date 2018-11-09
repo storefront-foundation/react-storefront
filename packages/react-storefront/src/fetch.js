@@ -107,7 +107,7 @@ export default function fetch(url, options, qsOptions) {
 
       relaySetCookies(response, requestOptions.hostname)
 
-      response.on('data', chunk => data.push(Buffer.from(chunk, 'binary')))
+      response.on('data', chunk => data.push(chunk))
 
       response.on('end', () => {
         data = Buffer.concat(data)
