@@ -52,17 +52,23 @@ export default class Track extends Component {
     /**
      * A function to call once the event has been successfully sent by all analytics targets.
      */
-    onSuccess: PropTypes.func
+    onSuccess: PropTypes.func,
+
+    /**
+     * Additional data to send when tracking events in AMP.
+     */
+    ampData: PropTypes.object
   }
 
   static defaultProps = {
     trigger: 'onClick',
-    onSuccess: Function.prototype
+    onSuccess: Function.prototype,
+    ampData: {}
   }
 
   componentWillMount() {
     if (this.props.app.amp) {
-      const { event, trigger, app, children, ...data } = this.props
+      const { event, trigger, app, children, onSuccess, ...data } = this.props
       this.createAmpTriggers(data)
     }
   }
@@ -76,7 +82,7 @@ export default class Track extends Component {
    * block the render loop.
    */
   fireEvent() {
-    const { event, trigger, app, children, onSuccess, ...data } = this.props
+    const { event, trigger, app, children, onSuccess, ampData, ...data } = this.props
 
     setImmediate(async () => {
       await analytics[event](data)
@@ -118,20 +124,36 @@ export default class Track extends Component {
    * Creates AMP event trigger objects based on this.props.event
    */
   createAmpTriggers(data) {
-    const { event, children } = this.props
+    const { event, children, ampData } = this.props
 
     for (let target of getTargets()) {
-      const props = target.getPropsForAmpAnalytics(event, data)
+      const handler = target[event]
 
-      if (props) {
-        if (!props.trigger && children) {
-          props.selector = `[data-amp-id="${this.id}"]`
+      if (handler) {
+        let eventData
+
+        // Override send to capture the data that would be send instead of trying to send it
+        target.send = data => eventData = data
+
+        // Call the method corresponding to the event name, this should result in a call to send
+        handler.call(target, data)
+
+        if (eventData) {
+          if (!eventData.trigger && children) {
+            // no need to set a selector if we don't have a child element
+            // an example of this is pageview events
+            eventData.selector = `[data-amp-id="${this.id}"]`
+          }
+  
+          this.configureAmpEvent(target.getAmpAnalyticsType(), {
+            on: eventData.selector ? 'click' : 'visible',
+            ...eventData,
+            request: 'event',
+            ...ampData
+          })
+        } else {
+          console.log(`WARNING: No data will be sent for the ${event} event when running in AMP because ${target.constructor.name} didn't return any data for this event.`)
         }
-
-        this.configureAmpEvent(target.getAmpAnalyticsType(), {
-          on: 'click',
-          ...props
-        })
       }
     }
   }
