@@ -33,7 +33,8 @@ module.exports = {
         ...plugins,
         new webpack.ExtendedAPIPlugin(),
         new webpack.DefinePlugin({
-          'process.env.MOOV_RUNTIME': JSON.stringify('server')
+          'process.env.MOOV_RUNTIME': JSON.stringify('server'),
+          'process.env.MOOV_ENV': JSON.stringify('development')
         })
       ]
     })

@@ -70,6 +70,7 @@ module.exports = {
         ...createPlugins(root),
         new webpack.DefinePlugin({
           'process.env.MOOV_RUNTIME': JSON.stringify('client'),
+          'process.env.MOOV_ENV': JSON.stringify('development'),
           'process.env.MOOV_SW': JSON.stringify(process.env.MOOV_SW)
         }),
         new OpenBrowserPlugin({ url }),
