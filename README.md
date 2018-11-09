@@ -10,6 +10,13 @@ All rights reserved.
 
 ## Changelog
 
+### 5.0.0
+
+* Upgrade to Material UI 3
+* Improved responsive capabilities of many components
+* NavTabs can now have menus
+* Menu icon is now animated
+
 ### 4.10.0
 
 * AMP analytics event data is now automatically generated based on configured targets.
