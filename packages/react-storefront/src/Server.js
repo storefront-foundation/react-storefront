@@ -194,7 +194,7 @@ export default class Server {
    * @param {Response} response 
    */
   renderError(e, request, response) {
-    response.status(500)
+    response.status(500, 'error')
 
     return this.renderPWA({ 
       request, 
