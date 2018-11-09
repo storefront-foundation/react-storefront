@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "4.6.2",
+  "version": "4.10.0",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "author": "Moovweb",
@@ -78,7 +78,6 @@
     "simulant": "^0.2.2",
     "sinon": "^5.0.3",
     "storybook-addon-jsx": "^5.4.0",
-    "uglifyjs-webpack-plugin": "^1.2.3",
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
@@ -117,7 +116,6 @@
     "route-parser": "^0.0.5",
     "sha1": "^1.1.1",
     "store2": "2.7.0",
-    "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack-stats-plugin": "^0.2.1",
     "workbox-webpack-plugin": "^3.2.0",
     "write-file-webpack-plugin": "^4.3.2"

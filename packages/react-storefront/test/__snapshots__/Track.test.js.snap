@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Track should support no children 1`] = `
+<TestProvider>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <inject-Track-with-app event="testEvent" foo="bar">
+      <Track event="testEvent" foo="bar" app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}} />
+    </inject-Track-with-app>
+  </Provider>
+</TestProvider>
+`;

@@ -76,7 +76,7 @@ export default class Router extends EventEmitter {
       console.error('Error caught with params', params, ' and with message:', e.message)
 
       if (!this.isBrowser) {
-        response.status(500)
+        response.status(500, 'error')
       }
 
       return { page: 'Error', error: e.message, stack: e.stack, loading: false }

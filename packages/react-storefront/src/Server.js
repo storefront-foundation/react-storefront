@@ -19,7 +19,6 @@ import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from 
 import Response from './router/Response'
 import { renderAmpAnalyticsTags } from './Track'
 import createRequest from './platform/createRequest'
-import { escape } from 'lodash'
 
 export default class Server {
 
@@ -74,10 +73,12 @@ export default class Server {
    * @param {Response} response 
    */
   setContentType(request, response) {
-    if (request.pathname.endsWith('.json')) {
-      response.set('content-type', 'application/json')
-    } else {
-      response.set('content-type', 'text/html')
+    if (response.get('content-type') == null) {
+      if (request.pathname.endsWith('.json')) {
+        response.set('content-type', 'application/json')
+      } else {
+        response.set('content-type', 'text/html')
+      }
     }
   }
 
@@ -138,12 +139,7 @@ export default class Server {
         <!DOCTYPE html>
         <html${amp ? ' ⚡' : ''} ${helmet.htmlAttributes.toString()}>
           <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
-            <meta name="theme-color" content="#000000">
             ${helmet.title.toString()}
-            <link rel="manifest" href="/manifest.json">
-            ${canonicalURL ? `<link rel="canonical" href="${escape(canonicalURL)}"/>` : ''}
             ${ amp ? `
               <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
               <style amp-custom id="ssr-css">
@@ -198,7 +194,7 @@ export default class Server {
    * @param {Response} response 
    */
   renderError(e, request, response) {
-    response.status(500)
+    response.status(500, 'error')
 
     return this.renderPWA({ 
       request, 

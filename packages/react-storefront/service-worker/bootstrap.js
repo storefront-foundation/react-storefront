@@ -3,6 +3,18 @@ console.log('[react-storefront service worker]', 'Using Moov PWA Service Worker 
 let runtimeCacheOptions = {}, baseCacheName, ssrCacheName
 let abortControllers = new Set()
 let toResume = new Set()
+let deployTime, prefetchFullRampUpTime
+
+try {
+  // injected via webpack client build
+  deployTime = parseInt('{{deployTime}}')
+  prefetchFullRampUpTime = parseInt('{{prefetchRampUpTime}}') 
+} catch {
+  deployTime = 0
+  prefetchFullRampUpTime = 1
+}
+
+console.log('[react-storefront service worker]', `deployTime: ${deployTime}, prefetchFullRampUpTime: ${prefetchFullRampUpTime}`)
 
 /**
  * Configures parameters for cached routes.
@@ -44,6 +56,23 @@ function precacheLinks(response) {
 }
 
 /**
+ * Controls the ramp-up of prefetching after a deploy based on the prefetchRampUpTime injected in
+ * the webpack client build
+ */
+function isPrefetchRampedUp() {
+  const timeSinceDeploy = new Date().getTime() - deployTime
+
+  if (timeSinceDeploy >= prefetchFullRampUpTime) {
+    return true
+  } else {
+    // Probabilistically ramp up prefetching based on how close to prefetchFullRampUpTime we are.
+    // As we get closer to prefetchFullRampUpTime, which indicates the time from deploy when we always prefetch,
+    // this will return true progressively more often (linear)
+    return (timeSinceDeploy / prefetchFullRampUpTime) > Math.random()
+  }
+}
+
+/**
  * Fetches and caches the specified path.
  * @param {Object} options A URL path
  * @param {String} options.path A URL path
@@ -56,6 +85,11 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
   return caches.open(cacheName).then(cache => {
     cache.match(path).then(match => {
       if (!match) {
+        if (!isPrefetchRampedUp()) {
+          console.log('[react-storefront service worker]', `skipping prefetch of ${path}, not yet ramped up.`)
+          return
+        }
+      
         console.log('[react-storefront service worker]', 'prefetching', path)
 
         // Create an abort controller so we can abort the prefetch if a more important 
@@ -69,13 +103,16 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         // We connect the fetch with the abort controller here with the signal
         fetch(path, {
           credentials: "include",
-          signal: abort.signal
+          signal: abort.signal,
+          headers: {
+            "x-rsf-prefetch": "1"
+          }
         })
           .then(response => {
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve())
               .then(() => cache.put(decodeURIComponent(path), response))
               .then(() => abortControllers.delete(abort))
-              .then(() => console.log('[moov-pwa service worker]', 'prefetched', path))
+              .then(() => console.log('[react-storefront service worker]', 'prefetched', path))
           })
           .catch(error => {
             console.log('[react-storefront service worker] aborted prefetch for', path)
@@ -99,7 +136,7 @@ function abortPrefetches() {
 
 /** Resume queued prefetch requests which were cancelled to allow for more important requests */
 function resumePrefetches() {
-  console.log('[moov-pwa service worker] resuming prefetches')
+  console.log('[react-storefront service worker] resuming prefetches')
   for (let args of toResume) {
     cachePath(...args)
   }

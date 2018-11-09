@@ -44,5 +44,27 @@ describe('cache', () => {
       
       expect(response.cache).toEqual({ browserMaxAge: 0, serverMaxAge: 1000 })
     })
+
+    it('should throw an error for non-get requests', () => {
+      const response = new Response()
+      process.env.MOOV_RUNTIME = 'server'
+      process.env.MOOV_ENV = 'development'
+
+      let error
+  
+      try {
+        const cache = require('../../src/router').cache
+
+        cache({ server: { maxAgeSeconds: 1000 } })
+          .fn({}, { method: 'POST' }, response)
+      } catch (e) {
+        error = e
+      } finally {
+        delete process.env.MOOV_RUNTIME
+        delete process.env.MOOV_ENV
+      }
+
+      expect(error.message).toBe('Invalid use of cache handler for POST request. Only GET requests can be cached.')
+    })
   })
 })

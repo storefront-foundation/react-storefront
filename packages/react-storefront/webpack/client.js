@@ -8,7 +8,7 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 const { createClientConfig, createLoaders, createPlugins} = require('./common')
 const hash = require('md5-file').sync
 
-function createServiceWorkerPlugins({ root, dest, workboxConfig }) {
+function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime }) {
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
   const swHash = hash(path.join(swBootstrap))
   const swBootstrapDest = `serviceWorkerBootstrap.${swHash}.js`
@@ -18,13 +18,27 @@ function createServiceWorkerPlugins({ root, dest, workboxConfig }) {
       new CopyPlugin([{
         from: swBootstrap,
         to: path.join(root, 'build', 'assets', 'pwa', swBootstrapDest),
-        transform: (content) => content.toString().replace('{{version}}', new Date().getTime())
+        transform: (content) => {
+          const buildTime = new Date().getTime() + (5 * 1000 * 60) // add 5 minutes to give the build time to deploy
+
+          return content.toString()
+            .replace('{{version}}', buildTime)
+            .replace('{{deployTime}}', buildTime)
+            .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
+        }
       }]),
       new GenerateSW(Object.assign({
         swDest: path.join(dest, '..', 'service-worker.js'),
         importScripts: [ `/pwa/${swBootstrapDest}` ],
         clientsClaim: true,
-        skipWaiting: true
+        skipWaiting: true,
+        exclude: [
+          /stats\.json/,
+          /\.DS_Store/,
+          /robots\.txt/,
+          /manifest\.json/,
+          /icons\//
+        ]
       }, workboxConfig)),
     ]
   } else {
@@ -37,10 +51,13 @@ module.exports = {
   /**
    * Generates a webpack config for the client development build
    * @param {String} root The path to the root of the project
-  * @param {Object} entries Additional entries for adapt components
+   * @param {Object} options
+   * @param {Object} options.entries Additional entries for adapt components
+   * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
+   * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @return {Object} A webpack config
    */
-  dev(root, { workboxConfig, entries } = {}) {
+  dev(root, { workboxConfig, entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
@@ -53,6 +70,7 @@ module.exports = {
         ...createPlugins(root),
         new webpack.DefinePlugin({
           'process.env.MOOV_RUNTIME': JSON.stringify('client'),
+          'process.env.MOOV_ENV': JSON.stringify('development'),
           'process.env.MOOV_SW': JSON.stringify(process.env.MOOV_SW)
         }),
         new OpenBrowserPlugin({ url }),
@@ -64,7 +82,7 @@ module.exports = {
         new StatsWriterPlugin({
           filename: 'stats.json'
         }),
-        ...createServiceWorkerPlugins({ root, dest, workboxConfig: process.env.MOOV_SW ? workboxConfig : null })
+        ...createServiceWorkerPlugins({ root, dest, workboxConfig: process.env.MOOV_SW ? workboxConfig : null, prefetchRampUpTime })
       ]
     })
   },
@@ -72,15 +90,15 @@ module.exports = {
   /**
    * Generates a webpack config for the client production build
    * @param {String} root The path to the root of the project
-   * @param {Object} workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
+   * @param {Object} options
+   * @param {Object} options.entries Additional entries for adapt components
+   * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
+   * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @return {Object} A webpack config
    */
-  prod(root, { workboxConfig = {}, entries } = {}) {
+  prod(root, { workboxConfig = {}, entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
-    const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
-    const swHash = hash(path.join(swBootstrap))
-    const swBootstrapDest = `serviceWorkerBootstrap.${swHash}.js`
 
     return Object.assign(createClientConfig(root, { entries }), {
       module: {
@@ -118,7 +136,7 @@ module.exports = {
           from: path.join(root, 'public'),
           to: path.join(root, 'build', 'assets')
         }]),
-        ...createServiceWorkerPlugins({ root, dest, workboxConfig })
+        ...createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime })
       ].concat(createPlugins(root))
     });
   }

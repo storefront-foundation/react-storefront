@@ -16,7 +16,7 @@ describe('PWA', () => {
   beforeEach(() => {
     jest.spyOn(global.console, 'error').mockImplementation()
     jest.spyOn(window.navigator, 'userAgent', 'get').mockImplementation(() => userAgent)
-    app = AppModelBase.create({})
+    app = AppModelBase.create({ location: { hostname: 'localhost', pathname: '/', search: '' } })
     history = { push: jest.fn(), listen: jest.fn() }
   })
 

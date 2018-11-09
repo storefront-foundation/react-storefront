@@ -10,6 +10,36 @@ All rights reserved.
 
 ## Changelog
 
+### 4.10.0
+
+* AMP analytics event data is now automatically generated based on configured targets.
+* Added support for pageview events in AMP.
+* Adds support for res.arrayBuffer() to react-storefront's internal fetch implementation.  This allows developers to fetch binary data as a buffer.
+
+### 4.9.0
+
+* Prefetching now ramps up over the course of 25 minutes by default to ease the load on servers after clearing the cache during deployment
+
+* Removes some assets from the precache manifest that don't need to be prefetched.
+
+### 4.8.1
+
+* You can now set a custom content-type using `response.set('content-type', contentType)`.
+
+### 4.8.0
+
+* You can now override `<meta>` tags using `react-helmet`.
+
+* Now throws an error in development when a cache handler runs during non-GET request
+
+* Removes set-cookie headers when route has a cache handler with server maxAgeSeconds > 0.
+
+* Automatically caches all proxied images and fonts for a day
+
+### 4.7.0
+
+* ExpandableSection's expanded state can now be controlled via an expanded prop
+
 ### 4.6.2
 
 * Fixed bug with Referrer-Policy header.

@@ -107,21 +107,34 @@ export default class ExpandableSection extends Component {
     /**
      * Set to false to remove the default left and right margins. Defaults to `true`.
      */
-    margins: PropTypes.bool
+    margins: PropTypes.bool,
+
+    /** 
+     * Controls the expanded state.  Defaults to false
+     */
+    expanded: PropTypes.bool
   }
 
   static defaultProps = {
     margins: true
   }
 
-  constructor({ expanded=false, ExpandIcon, CollapseIcon, theme }) {
+  static getDerivedStateFromProps({ expanded }) {
+    if (typeof expanded !== 'undefined') {
+      return { expanded }
+    } else {
+      return {}
+    }
+  }
+
+  constructor({ expanded, ExpandIcon, CollapseIcon, theme }) {
     super()
 
     this.ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMoreIcon
     this.CollapseIcon = CollapseIcon || theme.CollapseIcon || this.ExpandIcon
-
-    this.state = {
-      expanded
+  
+    this.state = {	
+      expanded	
     }
   }
 

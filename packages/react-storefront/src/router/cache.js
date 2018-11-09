@@ -42,6 +42,10 @@ export default function cache({ server, client }) {
       client: true
     },
     fn: (params, request, response) => {
+      if (process.env.MOOV_RUNTIME === 'server' && process.env.MOOV_ENV === 'development' && request.method.toLowerCase() !== 'get') {
+        throw new Error(`Invalid use of cache handler for ${request.method} request. Only GET requests can be cached.`)
+      }
+
       if (process.env.MOOV_RUNTIME === 'client') {
         if (client) {
           response.cacheOnClient(true)
