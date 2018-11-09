@@ -5,11 +5,10 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import NavTabs from '../src/NavTabs'
-import AppModelBase from '../src/model/AppModelBase'
-import { Provider } from 'mobx-react'
-import { createMemoryHistory } from 'history'
 import { configureAnalytics } from '../src/analytics'
 import waitForAnalytics from './helpers/waitForAnalytics'
+import Provider from './TestProvider'
+import { createMemoryHistory } from 'history'
 
 describe('NavTabs', () => {
 
@@ -23,7 +22,7 @@ describe('NavTabs', () => {
       search: ''
     }
 
-    app = AppModelBase.create({
+    app = {
       location,
       tabs: {
         items: [
@@ -31,14 +30,13 @@ describe('NavTabs', () => {
           { text: 'Tab 1', url: '/2', state: JSON.stringify({ page: 'product' }) }
         ]
       }
-    })
-    history = createMemoryHistory()
+    }
   })
 
   it('renders', () => {
     const component = (
-      <Provider app={app} history={history}>
-        <NavTabs/>
+      <Provider app={app}>
+        <NavTabs />
       </Provider>
     )
 
@@ -46,7 +44,7 @@ describe('NavTabs', () => {
   })
 
   it('uses prefetch', () => {
-    app = AppModelBase.create({
+    app = {
       location,
       tabs: {
         items: [
@@ -54,11 +52,11 @@ describe('NavTabs', () => {
           { text: 'Tab 1', url: '/2', state: JSON.stringify({ page: 'product' }), prefetch: 'visible' }
         ]
       }
-    })
+    }
 
     const component = (
-      <Provider app={app} history={history}>
-        <NavTabs/>
+      <Provider app={app}>
+        <NavTabs />
       </Provider>
     )
 
@@ -70,33 +68,47 @@ describe('NavTabs', () => {
     configureAnalytics({ topNavClicked })
 
     mount(
-      <Provider app={app} history={history}>
-        <NavTabs/>
+      <Provider app={app}>
+        <NavTabs />
       </Provider>
     )
       .find('[data-th="topNavClicked"]')
       .at(0)
-      .simulate('click')    
+      .simulate('click')
 
-    waitForAnalytics(() => expect(topNavClicked).toHaveBeenCalledWith({ item: app.tabs.items[0] }))
+    waitForAnalytics(() => expect(topNavClicked).toHaveBeenCalledWith({
+      "item": {
+        "expanded": false, 
+        "image": null, 
+        "items": null, 
+        "prefetch": null, 
+        "root": false, 
+        "server": false, 
+        "state": "{\"page\":\"product\"}", 
+        "text": "Tab 1", 
+        "url": "/1"
+      }
+    }))
   })
 
   it('pushes the item state onto history when clicked', () => {
+    const history = createMemoryHistory()
+
     mount(
       <Provider app={app} history={history}>
-        <NavTabs/>
+        <NavTabs />
       </Provider>
     )
       .find('button').at(0)
-      .simulate('click')    
+      .simulate('click')
 
     expect(history.location.state).toEqual({ page: 'product' })
   })
 
   it('should always render absolute URLs', () => {
     const href = mount(
-      <Provider app={app} history={history}>
-        <NavTabs/>
+      <Provider app={app}>
+        <NavTabs />
       </Provider>
     ).find('a').at(0).getDOMNode().getAttribute('href')
 
@@ -105,8 +117,8 @@ describe('NavTabs', () => {
 
   it('does not require history', () => {
     expect(mount(
-      <Provider app={app} history={history}>
-        <NavTabs/>
+      <Provider app={app}>
+        <NavTabs />
       </Provider>
     )).toMatchSnapshot()
   })

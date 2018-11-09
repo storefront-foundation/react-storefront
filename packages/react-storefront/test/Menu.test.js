@@ -6,7 +6,7 @@ import React from 'react'
 import Menu from '../src/Menu'
 import AppModelBase from '../src/model/AppModelBase'
 import { mount } from 'enzyme'
-import { Provider } from 'mobx-react'
+import Provider from './TestProvider'
 import ExpandIcon from '@material-ui/icons/Add'
 import CollapseIcon from '@material-ui/icons/Remove'
 

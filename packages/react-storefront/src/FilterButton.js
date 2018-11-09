@@ -15,6 +15,9 @@ export const styles = theme => ({
   clear: {
     marginLeft: '10px',
     ...theme.typography.caption
+  },
+  drawer: {
+    height: '75vh'
   }
 })
 
@@ -79,7 +82,7 @@ export default class FilterButton extends Component {
   render() {
     const { classes, app, model, title, drawerProps, hideClearLink, clearLinkText, ...props } = this.props
     const { open, mountDrawer } = this.state
-    const { clear, ...buttonClasses } = classes
+    const { clear, drawer, ...buttonClasses } = classes
 
     return (
       <Fragment>
@@ -96,6 +99,7 @@ export default class FilterButton extends Component {
             ModalProps={{
               keepMounted: true
             }}
+            classes={{ paper: classes.drawer }}
             anchor="bottom"
             title={
               <Hbox justifyContent="center">

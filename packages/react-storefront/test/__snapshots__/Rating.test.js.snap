@@ -2,77 +2,74 @@
 
 exports[`Rating accepts a custom label 1`] = `
 <WithStyles(Rating) value={2} reviewCount={10} label={[Function: label]}>
-  <Rating classes={{...}} value={2} reviewCount={10} label={[Function: label]}>
+  <Rating value={2} reviewCount={10} label={[Function: label]} classes={{...}}>
     <Hbox>
       <WithStyles(Box) alignItems="center" flexDirection="row">
-        <Box classes={{...}} alignItems="center" flexDirection="row">
+        <Box alignItems="center" flexDirection="row" classes={{...}}>
           <div className="RSFBox-root-4" style={{...}}>
             <div className="RSFRating-root-1">
-              <pure(Star)>
-                <Star>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(StarBorder)>
-                <StarBorder>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
-              <pure(StarBorder)>
-                <StarBorder>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
-              <pure(StarBorder)>
-                <StarBorder>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
             </div>
             <div className="RSFRating-reviewsLabel-3">
               (
@@ -92,77 +89,72 @@ exports[`Rating accepts a custom label 1`] = `
 
 exports[`Rating renders 0 1`] = `
 <WithStyles(Rating) value={0}>
-  <Rating classes={{...}} value={0} label={[Function: label]}>
+  <Rating value={0} classes={{...}} label={[Function: label]}>
     <Hbox>
       <WithStyles(Box) alignItems="center" flexDirection="row">
-        <Box classes={{...}} alignItems="center" flexDirection="row">
+        <Box alignItems="center" flexDirection="row" classes={{...}}>
           <div className="RSFBox-root-4" style={{...}}>
             <div className="RSFRating-root-1">
-              <pure(StarBorder)>
-                <StarBorder>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
-              <pure(StarBorder)>
-                <StarBorder>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
-              <pure(StarBorder)>
-                <StarBorder>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
-              <pure(StarBorder)>
-                <StarBorder>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
-              <pure(StarBorder)>
-                <StarBorder>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
             </div>
           </div>
         </Box>
@@ -174,77 +166,77 @@ exports[`Rating renders 0 1`] = `
 
 exports[`Rating renders 5 1`] = `
 <WithStyles(Rating) value={5}>
-  <Rating classes={{...}} value={5} label={[Function: label]}>
+  <Rating value={5} classes={{...}} label={[Function: label]}>
     <Hbox>
       <WithStyles(Box) alignItems="center" flexDirection="row">
-        <Box classes={{...}} alignItems="center" flexDirection="row">
+        <Box alignItems="center" flexDirection="row" classes={{...}}>
           <div className="RSFBox-root-4" style={{...}}>
             <div className="RSFRating-root-1">
-              <pure(Star)>
-                <Star>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
+                </StarIcon>
+              </pure(StarIcon)>
             </div>
           </div>
         </Box>
@@ -256,77 +248,77 @@ exports[`Rating renders 5 1`] = `
 
 exports[`Rating renders null 1`] = `
 <WithStyles(Rating) value={{...}}>
-  <Rating classes={{...}} value={{...}} label={[Function: label]}>
+  <Rating value={{...}} classes={{...}} label={[Function: label]}>
     <Hbox>
       <WithStyles(Box) alignItems="center" flexDirection="row">
-        <Box classes={{...}} alignItems="center" flexDirection="row">
+        <Box alignItems="center" flexDirection="row" classes={{...}}>
           <div className="RSFBox-root-4" style={{...}}>
             <div className="RSFRating-root-1 RSFRating-blank-2">
-              <pure(Star)>
-                <Star>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
+                </StarIcon>
+              </pure(StarIcon)>
             </div>
           </div>
         </Box>
@@ -338,77 +330,77 @@ exports[`Rating renders null 1`] = `
 
 exports[`Rating should display half stars 1`] = `
 <WithStyles(Rating) value={3.5}>
-  <Rating classes={{...}} value={3.5} label={[Function: label]}>
+  <Rating value={3.5} classes={{...}} label={[Function: label]}>
     <Hbox>
       <WithStyles(Box) alignItems="center" flexDirection="row">
-        <Box classes={{...}} alignItems="center" flexDirection="row">
+        <Box alignItems="center" flexDirection="row" classes={{...}}>
           <div className="RSFBox-root-4" style={{...}}>
             <div className="RSFRating-root-1">
-              <pure(Star)>
-                <Star>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(Star)>
-                <Star>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarIcon)>
+                <StarIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </Star>
-              </pure(Star)>
-              <pure(StarHalf)>
-                <StarHalf>
+                </StarIcon>
+              </pure(StarIcon)>
+              <pure(StarHalfIcon)>
+                <StarHalfIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <defs>
+                          <path id="a" d="M0 0h24v24H0V0z" />
+                        </defs>
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarHalf>
-              </pure(StarHalf)>
-              <pure(StarBorder)>
-                <StarBorder>
+                </StarHalfIcon>
+              </pure(StarHalfIcon)>
+              <pure(StarBorderIcon)>
+                <StarBorderIcon>
                   <WithStyles(SvgIcon)>
-                    <SvgIcon classes={{...}} color="inherit" viewBox="0 0 24 24">
-                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true">
-                        <g>
-                          <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
-                        </g>
+                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                      <svg className="MuiSvgIcon-root-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                        <path fill="none" d="M0 0h24v24H0z" />
                       </svg>
                     </SvgIcon>
                   </WithStyles(SvgIcon)>
-                </StarBorder>
-              </pure(StarBorder)>
+                </StarBorderIcon>
+              </pure(StarBorderIcon)>
             </div>
           </div>
         </Box>

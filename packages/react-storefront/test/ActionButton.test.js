@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import { mount } from 'enzyme'
 import ActionButton from '../src/ActionButton'
 
@@ -14,7 +13,7 @@ describe('ActionButton', () => {
       <ActionButton/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('renders label and value', () => {
@@ -22,7 +21,7 @@ describe('ActionButton', () => {
       <ActionButton label="Label" value="Value"/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
   
 })

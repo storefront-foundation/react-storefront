@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import { mount } from 'enzyme'
 import Divider from '../src/Divider'
 
@@ -14,7 +13,7 @@ describe('Divider', () => {
       <Divider/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('renders a vertial divider', () => {
@@ -22,7 +21,7 @@ describe('Divider', () => {
       <Divider vertical/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
   
   it('renders a horizontal divider', () => {
@@ -30,7 +29,7 @@ describe('Divider', () => {
       <Divider horizontal/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('accepts a className', () => {
@@ -38,7 +37,7 @@ describe('Divider', () => {
       <Divider className="myClass"/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('passes styles to the underlying div', () => {
@@ -46,6 +45,6 @@ describe('Divider', () => {
       <Divider style={{ color: 'red' }}/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 })

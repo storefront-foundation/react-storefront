@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import { mount } from 'enzyme'
 import CmsSlot from '../src/CmsSlot'
 
@@ -16,7 +15,7 @@ describe('CmsSlot', () => {
       </CmsSlot>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('renders nothing when no children are provided', () => {
@@ -24,7 +23,7 @@ describe('CmsSlot', () => {
       <CmsSlot/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
 })

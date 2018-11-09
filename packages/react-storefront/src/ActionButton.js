@@ -37,7 +37,7 @@ function ActionButton({ label, value, children, classes, ...props }) {
   const { caption: captionClass, value: valueClass, ...otherClasses } = classes
 
   return (
-    <Button variant="raised" classes={otherClasses} {...props}>
+    <Button variant="contained" classes={otherClasses} {...props}>
       <Typography variant="button" className={captionClass}>{ label }</Typography>
       <Typography variant="caption" className={valueClass}>{value}</Typography>
     </Button>

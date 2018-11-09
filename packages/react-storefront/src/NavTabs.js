@@ -4,15 +4,14 @@
  */
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
-import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 import { types, getParent } from "mobx-state-tree"
 import { MenuItemModel } from './Menu'
 import TabsRow from './TabsRow'
 import withStyles from '@material-ui/core/styles/withStyles'
-import Track from './Track'
-import Link from './Link'
+import NavTab from './NavTab'
 import { relativeURL } from './utils/url'
+import { Fade, Paper, Popper, Hidden } from '@material-ui/core'
 
 /**
  * Scrollable navigation tabs for the top of the app. All extra props are spread to the 
@@ -20,25 +19,9 @@ import { relativeURL } from './utils/url'
  * event is fired.
  */
 export const styles = theme => ({
-  tab: {
-    height: '56px',
-  },
   tabs: {
     maxWidth: theme.maxWidth,
     flex: 1,
-  },
-  link: {
-    display: 'block',
-    height: '100%',
-    fontSize: theme.typography.body1.fontSize
-  },
-  clickEl: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1
   },
   root: {
     zIndex: theme.zIndex.appBar - 1,
@@ -66,6 +49,14 @@ export const styles = theme => ({
       background: 'linear-gradient(to left, rgba(255, 255, 255, 1.0) 0%, rgba(255, 255, 255, 0.0) 100%)',
       zIndex: 1,
     }
+  },
+  menu: {
+    zIndex: theme.zIndex.appBar,
+  },
+  menuPaper: {
+    borderRadius: '0',
+    position: 'relative',
+    top: '1px'
   }
 });
 
@@ -87,42 +78,99 @@ export default class NavTabs extends Component {
     elevation: 2
   }
 
+  state = {
+    open: false,
+    menu: null,
+    anchorEl: null,
+    overTab: false,
+    overMenu: false
+  }
+
   render() {
     const { tabs, classes, staticContext, history, elevation, ...tabsProps } = this.props
+    const { menu, overTab, overMenu, anchorEl } = this.state
+    const open = overTab || overMenu
 
     if (!tabs) return null
 
     const { selected } = tabs
 
     return (
-      <Paper className={classes.root} elevation={elevation}>
-        <TabsRow
-          initialSelectedIdx={selected}
-          onTabChange={this.handleChange}
-          items={tabs.items}
-          tabRenderer={this.renderTab}
-          centered
-          classes={{
-            root: classes.tabs,
-            tab: classes.tab
-          }}
-          {...tabsProps}
-        />
-      </Paper>
+      <Fragment>
+        <Paper className={classes.root} elevation={elevation}>
+          <TabsRow
+            initialSelectedIdx={selected}
+            onTabChange={this.handleChange}
+            items={tabs.items}
+            tabRenderer={this.renderTab}
+            centered
+            classes={{
+              root: classes.tabs,
+              tab: classes.tab
+            }}
+            {...tabsProps}
+          />
+        </Paper>
+        <Hidden xsDown>
+          <Popper
+            className={classes.menu}
+            open={open}
+            anchorEl={anchorEl}
+            transition
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <Paper 
+                  onMouseEnter={this.onMenuEnter} 
+                  onMouseLeave={this.onMenuLeave}
+                  className={classes.menuPaper}
+                >
+                  { menu }
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
+        </Hidden>
+      </Fragment>
     )
   }
 
-  renderTab = item => {
-    const { classes } = this.props
-
+  renderTab = (item, i) => {
     return (
-      <Fragment>
-        <Track event="topNavClicked" item={item}>
-          <div className={classes.clickEl} data-th="topNavClicked"></div>
-        </Track>
-        <Link state={() => item.state && JSON.parse(item.state)} className={classes.link} to={item.url} prefetch={item.prefetch} onClick={this.onLinkClick}>{item.text}</Link>
-      </Fragment>
+      <NavTab 
+        {...item}
+        key={i} 
+        item={item} 
+        onMouseEnter={this.showMenu}
+        onMouseLeave={this.onTabLeave}
+        onItemClick={this.onItemClick}
+        onClick={this.onItemClick}
+      />
     )
+  }
+
+  showMenu = ({ menu, target }) => {
+    this.setState({
+      overTab: true,
+      anchorEl: target,
+      menu
+    })
+  }
+
+  onMenuEnter = () => {
+    this.setState({ overMenu: true })
+  }
+
+  onMenuLeave = () => {
+    this.setState({ overMenu: false })
+  }
+
+  onTabLeave = () => {
+    this.setState({ overTab: false })
+  }
+
+  onItemClick = () => {
+    this.setState({ overTab: false, overMenu: false })
   }
 
   handleChange = (_event, newValue) => {

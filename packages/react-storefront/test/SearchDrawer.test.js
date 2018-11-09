@@ -5,7 +5,7 @@
 import React from 'react'
 import SearchDrawer from '../src/SearchDrawer'
 import { mount } from 'enzyme'
-import { Provider } from 'mobx-react'
+import Provider from './TestProvider'
 import AppModelBase from '../src/model/AppModelBase'
 import createTheme from '../src/createTheme'
 import { MuiThemeProvider } from '@material-ui/core'
@@ -15,14 +15,11 @@ describe('SearchDrawer', () => {
 
   beforeEach(() => {
     app = AppModelBase.create({ search: { show: true } })
-    // document.activeElement = document.body
 
     TestContext = ({ children }) => (
       <div id="root">
         <Provider app={app}>
-          <MuiThemeProvider theme={createTheme()} sheetsManager={new Map()}>
-            { children }
-          </MuiThemeProvider>
+          { children }
         </Provider>
       </div>
     )

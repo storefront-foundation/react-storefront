@@ -12,6 +12,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import Track from './Track'
+import Link from './Link'
 
 /**
  * A button that when clicked adds the specified product to the cart
@@ -30,12 +31,11 @@ export const styles = theme => ({
     zIndex: 1,
     borderRadius: '0'
   },
-  close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
-  },
   confirmation: {
     padding: '2px 0'
+  },
+  cartLink: {
+    color: 'white'
   }
 });
 
@@ -49,6 +49,16 @@ export default class AddToCartButton extends Component {
      * The product to add to the cart
      */
     product: PropTypes.object,
+
+    /**
+     * The URL for the cart page. Defaults to '/cart'.
+     */
+    cartURL: PropTypes.string,
+
+    /**
+     * The text for the cart link.  Defaults to "View My Cart".
+     */
+    cartLinkText: PropTypes.string,
 
     /**
      * Set to true to dock the button at the bottom of the viewport so that it is always visible
@@ -72,7 +82,9 @@ export default class AddToCartButton extends Component {
 
   static defaultProps = {
     docked: false,
-    snackbarProps: {}
+    snackbarProps: {},
+    cartURL: '/cart',
+    cartLinkText: 'View My Cart'
   }
 
   state = {
@@ -80,14 +92,14 @@ export default class AddToCartButton extends Component {
   }
 
   render() {
-    const { product, ampFormId, children, classes, className, cart, docked, confirmation, snackbarProps, ...other } = this.props
+    const { product, ampFormId, children, classes, className, cart, docked, confirmation, snackbarProps, cartURL, cartLinkText, ...other } = this.props
 
     return (
       <Fragment>
         <Track event="addedToCart" product={product}>
           <Button 
             key="button"
-            variant="raised" 
+            variant="contained" 
             color="secondary"
             size="large"
             {...other} 
@@ -106,6 +118,7 @@ export default class AddToCartButton extends Component {
           onClose={this.handleClose}
           message={<div className={classes.confirmation}>{confirmation}</div>}
           action={[
+            <Link to={cartURL} className={classes.cartLink}>{cartLinkText}</Link>,
             <IconButton
               key="close"
               aria-label="Close"

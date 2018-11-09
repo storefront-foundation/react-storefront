@@ -142,7 +142,7 @@ export default class TabsRow extends Component {
   }
 
   render() {
-    const { app, tabRenderer=this.tabRenderer, centered, items, classes, imageProps, scrollable, initialSelectedIdx, onTabChange, elevation, ...tabsProps } = this.props
+    const { app, tabRenderer, centered, items, classes, imageProps, scrollable, initialSelectedIdx, onTabChange, elevation, ...tabsProps } = this.props
     const { selectedIdx } = this.state
 
     return (  
@@ -176,24 +176,28 @@ export default class TabsRow extends Component {
               }
             }
 
-            return (
-              <Tab
-                key={i}
-                label={tabRenderer(item)}
-                icon={icon}
-                classes={{
-                  root: classes.tab,
-                  selected: classes.selectedTab
-                }}
-              />
-            )
+            if (tabRenderer) {
+              return tabRenderer(item, i)
+            } else {
+              return (
+                <Tab
+                  key={i}
+                  label={this.renderLabel(item)}
+                  icon={icon}
+                  classes={{
+                    root: classes.tab,
+                    selected: classes.selectedTab
+                  }}
+                />
+              )
+            }
           })
         }
       </Tabs>
     )
   }
 
-  tabRenderer = item => {
+  renderLabel = item => {
     const { classes } = this.props
     
     return item.url ? (

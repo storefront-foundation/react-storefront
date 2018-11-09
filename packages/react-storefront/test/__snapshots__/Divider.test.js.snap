@@ -1,36 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Divider accepts a className 1`] = `
-<div
-  className="myClass RSFDivider-root-1 RSFDivider-horizontal-3"
-/>
+<WithStyles(Divider) className="myClass">
+  <Divider className="myClass" classes={{...}}>
+    <div className="myClass RSFDivider-root-1 RSFDivider-horizontal-3" />
+  </Divider>
+</WithStyles(Divider)>
 `;
 
 exports[`Divider defaults to horizontal 1`] = `
-<div
-  className="RSFDivider-root-1 RSFDivider-horizontal-3"
-/>
+<WithStyles(Divider)>
+  <Divider classes={{...}}>
+    <div className="RSFDivider-root-1 RSFDivider-horizontal-3" />
+  </Divider>
+</WithStyles(Divider)>
 `;
 
 exports[`Divider passes styles to the underlying div 1`] = `
-<div
-  className="RSFDivider-root-1 RSFDivider-horizontal-3"
-  style={
-    Object {
-      "color": "red",
-    }
-  }
-/>
+<WithStyles(Divider) style={{...}}>
+  <Divider style={{...}} classes={{...}}>
+    <div className="RSFDivider-root-1 RSFDivider-horizontal-3" style={{...}} />
+  </Divider>
+</WithStyles(Divider)>
 `;
 
 exports[`Divider renders a horizontal divider 1`] = `
-<div
-  className="RSFDivider-root-1 RSFDivider-horizontal-3"
-/>
+<WithStyles(Divider) horizontal={true}>
+  <Divider horizontal={true} classes={{...}}>
+    <div className="RSFDivider-root-1 RSFDivider-horizontal-3" />
+  </Divider>
+</WithStyles(Divider)>
 `;
 
 exports[`Divider renders a vertial divider 1`] = `
-<div
-  className="RSFDivider-root-1 RSFDivider-vertical-2"
-/>
+<WithStyles(Divider) vertical={true}>
+  <Divider vertical={true} classes={{...}}>
+    <div className="RSFDivider-root-1 RSFDivider-vertical-2" />
+  </Divider>
+</WithStyles(Divider)>
 `;

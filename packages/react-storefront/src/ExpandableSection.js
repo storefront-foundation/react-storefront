@@ -19,8 +19,7 @@ export const styles = (theme) => ({
   root: {
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    margin: 0,
-    paddingLeft: '20px',
+    background: 'transparent',
 
     '&::before': {
       display: 'none'
@@ -30,6 +29,10 @@ export const styles = (theme) => ({
       padding: '0',
       minHeight: '0'
     }
+  },
+
+  margins: {
+    padding: `0 ${theme.margins.container}px`,
   },
 
   caption: {
@@ -47,24 +50,32 @@ export const styles = (theme) => ({
   },
 
   details: {
-    paddingLeft: '0',
-    paddingRight: '0'
+    padding: 0
   },
 
   summary: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginRight: '25px !important'
+    '[aria-expanded=true] > &': {
+      margin: '12px 0 !important'
+    }
   },
-  
 
   withCollapseIcon: {
     transform: 'translateY(-50%) rotate(0deg) !important'
   },
 
-  expandIcon: {},
-  collapseIcon: {}
+  summaryIconWrap: {
+    right: `-${theme.margins.container}px`
+  },
+
+  expandedPanel: {
+    margin: 0
+  },
+
+  expandIcon: { },
+  collapseIcon: { }
 });
 
 @withStyles(styles, { name: 'RSFExpandableSection' })
@@ -94,9 +105,18 @@ export default class ExpandableSection extends Component {
     CollapseIcon: PropTypes.func,
 
     /**
+     * Set to false to remove the default left and right margins. Defaults to `true`.
+     */
+    margins: PropTypes.bool,
+
+    /** 
      * Controls the expanded state.  Defaults to false
      */
     expanded: PropTypes.bool
+  }
+
+  static defaultProps = {
+    margins: true
   }
 
   static getDerivedStateFromProps({ expanded }) {
@@ -119,7 +139,7 @@ export default class ExpandableSection extends Component {
   }
 
   render() {
-    let { amp, classes, theme, children = [], title, caption, expanded, ExpandIcon: ei, CollapseIcon: ci, ...others } = this.props
+    let { amp, classes, theme, children = [], title, caption, expanded, ExpandIcon: ei, CollapseIcon: ci, margins, ...others } = this.props
 
     const { ExpandIcon, CollapseIcon } = this
 
@@ -127,12 +147,25 @@ export default class ExpandableSection extends Component {
       return <AmpExpandableSection ExpandIcon={ExpandIcon} CollapseIcon={CollapseIcon} title={title}>{children}</AmpExpandableSection>
     } else {
       return (
-        <ExpansionPanel classes={{ root: classes.root }} expanded={expanded} {...others} onChange={this.onChange}>
+        <ExpansionPanel 
+          classes={{ 
+            root: classnames({
+              [classes.root]: true,
+              [classes.margins]: margins,
+              [classes.expandedPanel]: true
+            }) 
+          }}
+          expanded={expanded} 
+          {...others} 
+          onChange={this.onChange}
+        >
           <ExpansionPanelSummary 
-            expandIcon={this.state.expanded ? <CollapseIcon className={classes.collapseIcon}/> : <ExpandIcon className={classes.expandIcon}/>} 
+            expandIcon={
+              this.state.expanded ? <CollapseIcon className={classes.collapseIcon}/> : <ExpandIcon className={classes.expandIcon}/>
+            } 
             classes={this.getSummaryClasses()}
-            >
-            <Typography variant="subheading">{title}</Typography>
+          >
+            <Typography variant="subtitle1">{title}</Typography>
             { caption && (
               <Typography 
                 variant="caption" 
@@ -163,7 +196,8 @@ export default class ExpandableSection extends Component {
     const { classes } = this.props
 
     const result = {
-      content: classes.summary
+      content: classes.summary,
+      expandIcon: classes.summaryIconWrap
     }
 
     if (this.CollapseIcon !== this.ExpandIcon) {

@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import { mount } from 'enzyme'
 import CartButton from '../src/CartButton'
 import AppModelBase from '../src/model/AppModelBase'
@@ -28,7 +27,7 @@ describe('CartButton', () => {
       </Provider>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('fires the view_cart event when clicked', () => {
@@ -37,7 +36,7 @@ describe('CartButton', () => {
 
     mount(
       <Provider app={app} history={history}>
-        <CartButton onClick={() => console.log('clicked')}/>
+        <CartButton/>
       </Provider>
     )
       .find('a').at(0)

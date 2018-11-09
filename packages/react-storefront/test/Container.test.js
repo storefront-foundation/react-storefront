@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import { mount } from 'enzyme'
 import Container from '../src/Container'
 
@@ -14,7 +13,7 @@ describe('Container', () => {
       <Container/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('accepts a className prop', () => {
@@ -22,7 +21,7 @@ describe('Container', () => {
       <Container className="myClassName"/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('accepts a root class', () => {
@@ -30,7 +29,7 @@ describe('Container', () => {
       <Container classes={{ root: 'myRootClass' }}/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('spreads props to the underlying div', () => {
@@ -38,7 +37,7 @@ describe('Container', () => {
       <Container style={{ backgroundColor: 'red' }}/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
   
 })

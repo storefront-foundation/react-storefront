@@ -3,7 +3,7 @@
 exports[`withStyleProps should provide props to withStyles 1`] = `
 <Component height={50}>
   <WithStyles(Test) height={50}>
-    <Test classes={{...}} height={50}>
+    <Test height={50} classes={{...}}>
       <div className="Test-root-1">
         test
       </div>

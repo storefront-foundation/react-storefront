@@ -5,6 +5,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import UpdateNotification from '../src/UpdateNotification'
+import TestProvider from './TestProvider'
 
 describe('UpdateNotification', () => {
   beforeEach(function(){
@@ -13,12 +14,12 @@ describe('UpdateNotification', () => {
 
   it('should render without any props', () => {
     expect(
-      mount(<UpdateNotification/>)
+      mount(<TestProvider><UpdateNotification/></TestProvider>)
     ).toMatchSnapshot()
   })
 
   it('should accept a custom message', () => {
-    const wrapper = mount(<UpdateNotification message="Update available"/>)
+    const wrapper = mount(<TestProvider><UpdateNotification message="Update available"/></TestProvider>)
 
     return new Promise((resolve, reject) => {
       document.dispatchEvent(new CustomEvent('moov-update-available'))
@@ -30,7 +31,7 @@ describe('UpdateNotification', () => {
   })
 
   it('should accept custom text for the reload button', () => {
-    const wrapper = mount(<UpdateNotification reloadButtonText="REFRESH"/>)
+    const wrapper = mount(<TestProvider><UpdateNotification reloadButtonText="REFRESH"/></TestProvider>)
 
     return new Promise((resolve, reject) => {
       document.dispatchEvent(new CustomEvent('moov-update-available'))
@@ -42,7 +43,7 @@ describe('UpdateNotification', () => {
   })
 
   it('should show when moov-update-available is dispatched', () => {
-    const wrapper = mount(<UpdateNotification/>)
+    const wrapper = mount(<TestProvider><UpdateNotification/></TestProvider>)
 
     return new Promise((resolve, reject) => {
       document.dispatchEvent(new CustomEvent('moov-update-available'))

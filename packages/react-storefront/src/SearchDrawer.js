@@ -259,7 +259,7 @@ export default class SearchDrawer extends Component {
           [classes.closeButton]: true,
           [classes.closeButtonText]: closeButtonText != null
         })}
-        variant="raised"
+        variant="contained"
         color="primary"
         onClick={this.hide}
       >

@@ -55,12 +55,11 @@ export default class Breadcrumbs extends Component {
 
     breadcrumbs = items || breadcrumbs
 
-    if (!breadcrumbs || !breadcrumbs.length) return null
-
     return (
       <Typography className={classes.breadcrumbs} variant="caption">
         <Container>
-          { breadcrumbs.map(this.renderBreadcrumb) }
+          { breadcrumbs && breadcrumbs.map(this.renderBreadcrumb) }
+          <span>&nbsp;</span>
         </Container>
       </Typography>
     )

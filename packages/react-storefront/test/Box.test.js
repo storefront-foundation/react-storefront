@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import { mount } from 'enzyme'
 import Box, { Vbox, Hbox } from '../src/Box'
 
@@ -14,7 +13,7 @@ describe('Box', () => {
       <Box/>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
   
   it('fowards props to style', () => {
@@ -25,7 +24,7 @@ describe('Box', () => {
       />
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
 
@@ -37,18 +36,18 @@ describe('Box', () => {
       />
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 })
 
 describe('Vbox', () => {
   it('renders', () => {
-    expect(create(<Vbox/>).toJSON()).toMatchSnapshot()
+    expect(mount(<Vbox/>)).toMatchSnapshot()
   })
 })
 
 describe('Hbox', () => {
   it('renders', () => {
-    expect(create(<Hbox/>).toJSON()).toMatchSnapshot()
+    expect(mount(<Hbox/>)).toMatchSnapshot()
   })
 })

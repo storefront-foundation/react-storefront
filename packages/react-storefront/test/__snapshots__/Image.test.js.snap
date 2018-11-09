@@ -3,8 +3,8 @@
 exports[`Image should lazy load the image when lazy==true 1`] = `
 <Provider app={{...}}>
   <WithStyles(inject-Image) lazy={true} src="/foo.png" aspectRatio={50} lazyOffset={-10000}>
-    <inject-Image classes={{...}} lazy={true} src="/foo.png" aspectRatio={50} lazyOffset={-10000}>
-      <Image classes={{...}} lazy={true} src="/foo.png" aspectRatio={50} lazyOffset={-10000} amp={false} quality={{...}} contain={false} fill={false}>
+    <inject-Image lazy={true} src="/foo.png" aspectRatio={50} lazyOffset={-10000} classes={{...}}>
+      <Image lazy={true} src="/foo.png" aspectRatio={50} lazyOffset={-10000} classes={{...}} amp={false} quality={{...}} contain={false} fill={false}>
         <VisibilitySensor active={true} onChange={[Function]} partialVisibility={true} offset={{...}} minTopValue={0} scrollCheck={false} scrollDelay={250} scrollThrottle={-1} resizeCheck={false} resizeDelay={250} resizeThrottle={-1} intervalCheck={true} intervalDelay={100} delayedCall={false} containment={{...}}>
           <div className="RSFImage-root-1 RSFImage-contain-3">
             <div style={{...}} />
@@ -19,8 +19,8 @@ exports[`Image should lazy load the image when lazy==true 1`] = `
 exports[`Image should render 1`] = `
 <Provider app={{...}}>
   <WithStyles(inject-Image) src="/foo.png">
-    <inject-Image classes={{...}} src="/foo.png">
-      <Image classes={{...}} src="/foo.png" amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
+    <inject-Image src="/foo.png" classes={{...}}>
+      <Image src="/foo.png" classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
         <div className="RSFImage-root-1">
           <img src="/foo.png" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} />
         </div>
@@ -33,8 +33,8 @@ exports[`Image should render 1`] = `
 exports[`Image should use amp-img when rendering with amp: true 1`] = `
 <Provider app={{...}}>
   <WithStyles(inject-Image) src="/foo.png">
-    <inject-Image classes={{...}} src="/foo.png">
-      <Image classes={{...}} src="/foo.png" amp={true} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
+    <inject-Image src="/foo.png" classes={{...}}>
+      <Image src="/foo.png" classes={{...}} amp={true} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
         <div className="RSFImage-root-1">
           <amp-img src="/foo.png" class="" layout="intrinsic" height={[undefined]} width={[undefined]} alt={[undefined]} />
         </div>
@@ -47,8 +47,8 @@ exports[`Image should use amp-img when rendering with amp: true 1`] = `
 exports[`Image should use the image optimizer when quality is set 1`] = `
 <Provider app={{...}}>
   <WithStyles(inject-Image) quality={50} src="/foo.png" aspectRatio={50}>
-    <inject-Image classes={{...}} quality={50} src="/foo.png" aspectRatio={50}>
-      <Image classes={{...}} quality={50} src="/foo.png" aspectRatio={50} amp={false} contain={false} fill={false} lazy={false} lazyOffset={100}>
+    <inject-Image quality={50} src="/foo.png" aspectRatio={50} classes={{...}}>
+      <Image quality={50} src="/foo.png" aspectRatio={50} classes={{...}} amp={false} contain={false} fill={false} lazy={false} lazyOffset={100}>
         <div className="RSFImage-root-1 RSFImage-contain-3">
           <div style={{...}} />
           <img src="https://opt.moovweb.net/?quality=50&img=%2Ffoo.png" className="RSFImage-fit-2" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} />

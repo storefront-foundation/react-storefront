@@ -2,12 +2,12 @@
 
 exports[`ToolbarButton should render additional children inside the button 1`] = `
 <WithStyles(ToolbarButton) icon={{...}} label="menu">
-  <ToolbarButton classes={{...}} icon={{...}} label="menu">
+  <ToolbarButton icon={{...}} label="menu" classes={{...}}>
     <WithStyles(IconButton) classes={{...}}>
       <IconButton classes={{...}} color="default" disabled={false}>
         <WithStyles(ButtonBase) className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false}>
-          <ButtonBase classes={{...}} className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false} disableRipple={false} tabIndex="0" type="button">
-            <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-8 MuiIconButton-root-2" type="button" disabled={false}>
+          <ButtonBase className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+            <button className="MuiButtonBase-root-8 MuiIconButton-root-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false}>
               <span className="MuiIconButton-label-7">
                 <div className="RSFToolbarButton-wrap-1">
                   <div>
@@ -21,13 +21,15 @@ exports[`ToolbarButton should render additional children inside the button 1`] =
                   additional child
                 </div>
               </span>
-              <WithStyles(TouchRipple) innerRef={[Function: value]} center={true}>
-                <TouchRipple classes={{...}} center={true}>
-                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-11" childFactory={[Function: childFactory]}>
-                    <span className="MuiTouchRipple-root-11" />
-                  </TransitionGroup>
-                </TouchRipple>
-              </WithStyles(TouchRipple)>
+              <NoSsr defer={false} fallback={{...}}>
+                <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                  <TouchRipple center={true} classes={{...}}>
+                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-11" childFactory={[Function: childFactory]}>
+                      <span className="MuiTouchRipple-root-11" />
+                    </TransitionGroup>
+                  </TouchRipple>
+                </WithStyles(TouchRipple)>
+              </NoSsr>
             </button>
           </ButtonBase>
         </WithStyles(ButtonBase)>
@@ -39,12 +41,12 @@ exports[`ToolbarButton should render additional children inside the button 1`] =
 
 exports[`ToolbarButton should render icon and button 1`] = `
 <WithStyles(ToolbarButton) icon={{...}} label="menu">
-  <ToolbarButton classes={{...}} icon={{...}} label="menu">
+  <ToolbarButton icon={{...}} label="menu" classes={{...}}>
     <WithStyles(IconButton) classes={{...}}>
       <IconButton classes={{...}} color="default" disabled={false}>
         <WithStyles(ButtonBase) className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false}>
-          <ButtonBase classes={{...}} className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false} disableRipple={false} tabIndex="0" type="button">
-            <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-8 MuiIconButton-root-2" type="button" disabled={false}>
+          <ButtonBase className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+            <button className="MuiButtonBase-root-8 MuiIconButton-root-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false}>
               <span className="MuiIconButton-label-7">
                 <div className="RSFToolbarButton-wrap-1">
                   <div>
@@ -55,13 +57,15 @@ exports[`ToolbarButton should render icon and button 1`] = `
                   </div>
                 </div>
               </span>
-              <WithStyles(TouchRipple) innerRef={[Function: value]} center={true}>
-                <TouchRipple classes={{...}} center={true}>
-                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-11" childFactory={[Function: childFactory]}>
-                    <span className="MuiTouchRipple-root-11" />
-                  </TransitionGroup>
-                </TouchRipple>
-              </WithStyles(TouchRipple)>
+              <NoSsr defer={false} fallback={{...}}>
+                <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                  <TouchRipple center={true} classes={{...}}>
+                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-11" childFactory={[Function: childFactory]}>
+                      <span className="MuiTouchRipple-root-11" />
+                    </TransitionGroup>
+                  </TouchRipple>
+                </WithStyles(TouchRipple)>
+              </NoSsr>
             </button>
           </ButtonBase>
         </WithStyles(ButtonBase)>

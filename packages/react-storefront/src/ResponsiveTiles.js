@@ -103,7 +103,7 @@ function createInner({ spacing, cols }) {
   
       return (
         <ul
-          className={classnames(classes.root, className)}
+          className={classnames(className, classes.root)}
           {...other}
         >
           {React.Children.map(children, (child, i) => {

@@ -1,53 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CartButton renders 1`] = `
-<a
-  className="RSFLink-root-3"
-  data-moov-link="on"
-  href="/cart"
-  onClick={[Function]}
->
-  <button
-    aria-label="Cart"
-    className="MuiButtonBase-root-11 MuiIconButton-root-5 MuiIconButton-colorInherit-6"
-    disabled={false}
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    onTouchStart={[Function]}
-    tabIndex="0"
-    type="button"
-  >
-    <span
-      className="MuiIconButton-label-10"
-    >
-      <div
-        className="RSFToolbarButton-wrap-4"
-      >
-        <svg
-          aria-hidden="true"
-          className="MuiSvgIcon-root-14 RSFCartButton-icon-2"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <g>
-            <path
-              d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"
-            />
-          </g>
-        </svg>
-        <div />
-      </div>
-    </span>
-    <span
-      className="MuiTouchRipple-root-20"
-    />
-  </button>
-</a>
+<Provider app={{...}} history={{...}}>
+  <WithStyles(inject-CartButton)>
+    <inject-CartButton classes={{...}}>
+      <CartButton classes={{...}} cart={{...}} path="/cart">
+        <inject-Track-with-app event="cartClicked">
+          <Track event="cartClicked" app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
+            <WithStyles(inject-Link) to="/cart" server={[undefined]} onClick={[Function]}>
+              <inject-Link to="/cart" server={[undefined]} onClick={[Function]} classes={{...}}>
+                <Link to="/cart" server={[undefined]} onClick={[Function]} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
+                  <a data-moov-link="on" className="RSFLink-root-3" style={[undefined]} onClick={[Function]} href="/cart">
+                    <WithStyles(ToolbarButton) aria-label="Cart" color="inherit" icon={{...}}>
+                      <ToolbarButton aria-label="Cart" color="inherit" icon={{...}} classes={{...}}>
+                        <WithStyles(IconButton) classes={{...}} aria-label="Cart" color="inherit">
+                          <IconButton aria-label="Cart" color="inherit" classes={{...}} disabled={false}>
+                            <WithStyles(ButtonBase) className="MuiIconButton-root-5 MuiIconButton-colorInherit-6" centerRipple={true} focusRipple={true} disabled={false} aria-label="Cart">
+                              <ButtonBase className="MuiIconButton-root-5 MuiIconButton-colorInherit-6" centerRipple={true} focusRipple={true} disabled={false} aria-label="Cart" classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                <button className="MuiButtonBase-root-11 MuiIconButton-root-5 MuiIconButton-colorInherit-6" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Cart">
+                                  <span className="MuiIconButton-label-10">
+                                    <div className="RSFToolbarButton-wrap-4">
+                                      <pure(ShoppingCartIcon) className="RSFCartButton-icon-2">
+                                        <ShoppingCartIcon className="RSFCartButton-icon-2">
+                                          <WithStyles(SvgIcon) className="RSFCartButton-icon-2">
+                                            <SvgIcon className="RSFCartButton-icon-2" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                              <svg className="MuiSvgIcon-root-14 RSFCartButton-icon-2" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                                                <path fill="none" d="M0 0h24v24H0z" />
+                                              </svg>
+                                            </SvgIcon>
+                                          </WithStyles(SvgIcon)>
+                                        </ShoppingCartIcon>
+                                      </pure(ShoppingCartIcon)>
+                                      <div />
+                                    </div>
+                                  </span>
+                                  <NoSsr defer={false} fallback={{...}}>
+                                    <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                      <TouchRipple center={true} classes={{...}}>
+                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-23" childFactory={[Function: childFactory]}>
+                                          <span className="MuiTouchRipple-root-23" />
+                                        </TransitionGroup>
+                                      </TouchRipple>
+                                    </WithStyles(TouchRipple)>
+                                  </NoSsr>
+                                </button>
+                              </ButtonBase>
+                            </WithStyles(ButtonBase)>
+                          </IconButton>
+                        </WithStyles(IconButton)>
+                      </ToolbarButton>
+                    </WithStyles(ToolbarButton)>
+                  </a>
+                </Link>
+              </inject-Link>
+            </WithStyles(inject-Link)>
+          </Track>
+        </inject-Track-with-app>
+      </CartButton>
+    </inject-CartButton>
+  </WithStyles(inject-CartButton)>
+</Provider>
 `;

@@ -1,71 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ActionButton renders label and value 1`] = `
-<button
-  className="MuiButtonBase-root-21 MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1"
-  disabled={false}
-  onBlur={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchEnd={[Function]}
-  onTouchMove={[Function]}
-  onTouchStart={[Function]}
-  tabIndex="0"
-  type="button"
->
-  <span
-    className="MuiButton-label-6 ActionButton-label-2"
-  >
-    <span
-      className="MuiTypography-root-24 MuiTypography-button-35 ActionButton-caption-3"
-    >
-      Label
-    </span>
-    <span
-      className="MuiTypography-root-24 MuiTypography-caption-34 ActionButton-value-4"
-    >
-      Value
-    </span>
-  </span>
-  <span
-    className="MuiTouchRipple-root-48"
-  />
-</button>
+<WithStyles(ActionButton) label="Label" value="Value">
+  <ActionButton label="Label" value="Value" classes={{...}}>
+    <WithStyles(Button) variant="contained" classes={{...}}>
+      <Button variant="contained" classes={{...}} color="default" component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+        <WithStyles(ButtonBase) className="MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-24" component="button" type="button">
+          <ButtonBase className="MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-24" component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+            <button className="MuiButtonBase-root-31 MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 ActionButton-raised-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false}>
+              <span className="MuiButton-label-6 ActionButton-label-2">
+                <WithStyles(Typography) variant="button" className="ActionButton-caption-3">
+                  <Typography variant="button" className="ActionButton-caption-3" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                    <span className="MuiTypography-root-34 MuiTypography-button-45 ActionButton-caption-3">
+                      Label
+                    </span>
+                  </Typography>
+                </WithStyles(Typography)>
+                <WithStyles(Typography) variant="caption" className="ActionButton-value-4">
+                  <Typography variant="caption" className="ActionButton-value-4" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                    <span className="MuiTypography-root-34 MuiTypography-caption-44 ActionButton-value-4">
+                      Value
+                    </span>
+                  </Typography>
+                </WithStyles(Typography)>
+              </span>
+              <NoSsr defer={false} fallback={{...}}>
+                <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                  <TouchRipple center={false} classes={{...}}>
+                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-69" childFactory={[Function: childFactory]}>
+                      <span className="MuiTouchRipple-root-69" />
+                    </TransitionGroup>
+                  </TouchRipple>
+                </WithStyles(TouchRipple)>
+              </NoSsr>
+            </button>
+          </ButtonBase>
+        </WithStyles(ButtonBase)>
+      </Button>
+    </WithStyles(Button)>
+  </ActionButton>
+</WithStyles(ActionButton)>
 `;
 
 exports[`ActionButton renders with no props 1`] = `
-<button
-  className="MuiButtonBase-root-21 MuiButton-root-5 MuiButton-raised-11 ActionButton-raised-1"
-  disabled={false}
-  onBlur={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchEnd={[Function]}
-  onTouchMove={[Function]}
-  onTouchStart={[Function]}
-  tabIndex="0"
-  type="button"
->
-  <span
-    className="MuiButton-label-6 ActionButton-label-2"
-  >
-    <span
-      className="MuiTypography-root-24 MuiTypography-button-35 ActionButton-caption-3"
-    />
-    <span
-      className="MuiTypography-root-24 MuiTypography-caption-34 ActionButton-value-4"
-    />
-  </span>
-  <span
-    className="MuiTouchRipple-root-48"
-  />
-</button>
+<WithStyles(ActionButton)>
+  <ActionButton classes={{...}}>
+    <WithStyles(Button) variant="contained" classes={{...}}>
+      <Button variant="contained" classes={{...}} color="default" component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+        <WithStyles(ButtonBase) className="MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-24" component="button" type="button">
+          <ButtonBase className="MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 ActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-24" component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+            <button className="MuiButtonBase-root-31 MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 ActionButton-raised-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false}>
+              <span className="MuiButton-label-6 ActionButton-label-2">
+                <WithStyles(Typography) variant="button" className="ActionButton-caption-3">
+                  <Typography variant="button" className="ActionButton-caption-3" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                    <span className="MuiTypography-root-34 MuiTypography-button-45 ActionButton-caption-3" />
+                  </Typography>
+                </WithStyles(Typography)>
+                <WithStyles(Typography) variant="caption" className="ActionButton-value-4">
+                  <Typography variant="caption" className="ActionButton-value-4" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                    <span className="MuiTypography-root-34 MuiTypography-caption-44 ActionButton-value-4" />
+                  </Typography>
+                </WithStyles(Typography)>
+              </span>
+              <NoSsr defer={false} fallback={{...}}>
+                <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                  <TouchRipple center={false} classes={{...}}>
+                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-69" childFactory={[Function: childFactory]}>
+                      <span className="MuiTouchRipple-root-69" />
+                    </TransitionGroup>
+                  </TouchRipple>
+                </WithStyles(TouchRipple)>
+              </NoSsr>
+            </button>
+          </ButtonBase>
+        </WithStyles(ButtonBase)>
+      </Button>
+    </WithStyles(Button)>
+  </ActionButton>
+</WithStyles(ActionButton)>
 `;

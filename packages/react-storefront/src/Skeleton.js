@@ -23,13 +23,13 @@ export const styles = theme => ({
   },
   
   space: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.default,
     width: theme.margins.container + 'px'
   },
 
   '@keyframes shimmer': {
-    from: { backgroundPosition: '-468px 0'},
-    to: { backgroundPosition: '468px 0' }
+    from: { backgroundPosition: '0 0'},
+    to: { backgroundPosition: '100vw 0' }
   },
   
   shimmer: {
@@ -39,8 +39,7 @@ export const styles = theme => ({
     animationIterationCount: 'infinite',
     animationName: 'shimmer',
     animationTimingFunction: 'linear',
-    background: `linear-gradient(to right, #eee 8%, #e6e6e6 18%, #eee 33%)`,
-    backgroundSize: '800px 104px'
+    background: `linear-gradient(to right, #eee 0%, #e6e6e6 20%, #eee 40%)`,
   },
 
   fullscreen: {
@@ -52,7 +51,9 @@ export const styles = theme => ({
   },
 
   filledContent: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default,
+    display: 'flex',
+    alignItems: 'center'
   }
 })
 
@@ -92,7 +93,7 @@ export const Row = withStyles(styles)(
  * White space between content
  */
 export const Space = withStyles(styles)(
-  ({ classes, ...style }) => <div className={classes.space} style={style}/>
+  ({ classes, ...style }) => <div data-rel="space" className={classes.space} style={style}/>
 )
 
 /**
@@ -122,12 +123,12 @@ export const BlankRow = withStyles(styles)(({ classes, ...others }) => (
 @withStyleProps(({ theme, spacing }) => ({
   root: {
     borderStyle: 'solid',
-    borderColor: theme.palette.background.paper,
-    borderWidth: `0 ${spacing/2}px`
+    borderColor: theme.palette.background.default,
+    margin: `0 -${spacing}px !important`
   },
   tile: {
     borderStyle: 'solid',
-    borderColor: theme.palette.background.paper,
+    borderColor: theme.palette.background.default,
     borderWidth: `0 ${spacing/2}px`
   }
 }), { name: 'RSFSkeletonTiles' })
@@ -166,8 +167,13 @@ Tiles.defaultProps = {
 }
 
 @withStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
   image: {
-    width: '100%'
+    width: '100%',
+    flex: 1,
   }
 }))
 @observer
@@ -188,7 +194,7 @@ export class ImageSwitcher extends Component {
     const { classes, thumbnails, product, loadingThumbnailProps } = this.props
 
     return (
-      <Fragment>
+      <div className={classes.root}>
         { product && product.thumbnail ? (
           <Row>
             <Content flex="1">
@@ -208,7 +214,7 @@ export class ImageSwitcher extends Component {
             </Row>
           </Fragment>
         ) : null}
-      </Fragment>
+      </div>
     )
   }
 }

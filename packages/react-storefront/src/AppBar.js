@@ -7,13 +7,11 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { throttle } from 'lodash'
 import Toolbar from '@material-ui/core/Toolbar'
-import SvgIcon from '@material-ui/core/SvgIcon'
 import { observer, inject } from 'mobx-react'
 import Hidden from '@material-ui/core/Hidden'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { Vbox } from './Box'
 import ToolbarButton from './ToolbarButton'
-import MenuIcon from './assets/menu.svg'
+import MenuIcon from './MenuIcon'
 
 export const styles = (theme) => ({
   root: {
@@ -24,10 +22,6 @@ export const styles = (theme) => ({
 
   withAmp: {
     zIndex: theme.zIndex.amp.modal + 1
-  },
-
-  icon: {
-    color: theme.palette.action.active
   },
 
   toolBar: {
@@ -121,8 +115,6 @@ export default class Header extends Component {
   render() {
     const { MenuIcon, classes, children, fixed, menu, responsive, width, amp, showLabels } = this.props
 
-    const menuIcon = <SvgIcon className={classes.icon}><MenuIcon/></SvgIcon>
-
     return (
       <div className={classnames({ [classes.root]: true, [classes.withAmp]: amp })}> 
         <div className={classnames({
@@ -141,7 +133,7 @@ export default class Header extends Component {
                   aria-label="Menu" 
                   color="inherit" 
                   onClick={menu.toggle}
-                  icon={menuIcon}
+                  icon={<MenuIcon open={menu.open}/>}
                 />
               </a>
             </Hidden>

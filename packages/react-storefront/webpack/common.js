@@ -167,7 +167,8 @@ function createAliases(root) {
     "@material-ui/core": path.join(root, 'node_modules', '@material-ui/core'),
     "react-storefront": path.join(root, 'node_modules', 'react-storefront', 'src'),
     "react-storefront-extensions": path.join(root, 'node_modules', 'react-storefront-extensions', 'src'),
-    "react-universal-component": path.join(root, 'node_modules', 'react-universal-component')
+    "react-universal-component": path.join(root, 'node_modules', 'react-universal-component'),
+    "react-transition-group": path.join(root, 'node_modules', 'react-transition-group')
   }
 }
 

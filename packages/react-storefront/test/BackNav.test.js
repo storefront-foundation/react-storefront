@@ -72,7 +72,7 @@ describe('BackNav', () => {
       </Provider>
     )
 
-    wrapper.find('BorderAll[onClick]').at(0).simulate('click')
+    wrapper.find('BorderAllIcon[onClick]').at(0).simulate('click')
     expect(searchResults.layout).toBe(LAYOUT_GRID)
   })
 
@@ -85,7 +85,7 @@ describe('BackNav', () => {
       </Provider>
     )
 
-    wrapper.find('ViewAgenda[onClick] svg').at(0).simulate('click')
+    wrapper.find('ViewAgendaIcon[onClick] svg').at(0).simulate('click')
     expect(searchResults.layout).toBe(LAYOUT_LIST)
   })
 })

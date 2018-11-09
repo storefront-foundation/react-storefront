@@ -52,7 +52,7 @@ export const styles = theme => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     '& img': {
       maxHeight: '100%',
       maxWidth: '100%',
@@ -92,6 +92,12 @@ export const styles = theme => ({
 
   selected: {
     borderColor: '#D0D0D0'
+  },
+
+  arrows: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
   },
 
   arrow: {
@@ -270,7 +276,7 @@ export default class ImageSwitcher extends Component {
     images: [],
     thumbnails: [],
     viewerThumbnailsOnly: false,
-    arrows: false,
+    arrows: true,
     indicators: false,
     loadingThumbnailProps: {},
     reactPinchZoomPanOptions: {

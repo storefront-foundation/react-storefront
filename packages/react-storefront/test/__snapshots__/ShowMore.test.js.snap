@@ -3,11 +3,13 @@
 exports[`ShowMore should hide when the number of items is equal to the total 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <WithStyles(inject-ShowMore-with-app) model={{...}}>
-      <inject-ShowMore-with-app classes={{...}} model={{...}}>
-        <ShowMore classes={{...}} model={{...}} app={{...}} Loading={[Function: Loading]} offset={100} />
-      </inject-ShowMore-with-app>
-    </WithStyles(inject-ShowMore-with-app)>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(inject-ShowMore-with-app) model={{...}}>
+        <inject-ShowMore-with-app model={{...}} classes={{...}}>
+          <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100} />
+        </inject-ShowMore-with-app>
+      </WithStyles(inject-ShowMore-with-app)>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -15,11 +17,13 @@ exports[`ShowMore should hide when the number of items is equal to the total 1`]
 exports[`ShowMore should hide when the page is equal to the numberOfPages - 1 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <WithStyles(inject-ShowMore-with-app) model={{...}}>
-      <inject-ShowMore-with-app classes={{...}} model={{...}}>
-        <ShowMore classes={{...}} model={{...}} app={{...}} Loading={[Function: Loading]} offset={100} />
-      </inject-ShowMore-with-app>
-    </WithStyles(inject-ShowMore-with-app)>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(inject-ShowMore-with-app) model={{...}}>
+        <inject-ShowMore-with-app model={{...}} classes={{...}}>
+          <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100} />
+        </inject-ShowMore-with-app>
+      </WithStyles(inject-ShowMore-with-app)>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -27,32 +31,36 @@ exports[`ShowMore should hide when the page is equal to the numberOfPages - 1 1`
 exports[`ShowMore should render 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <WithStyles(inject-ShowMore-with-app) model={{...}}>
-      <inject-ShowMore-with-app classes={{...}} model={{...}}>
-        <ShowMore classes={{...}} model={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
-          <WithStyles(Button) variant="raised" color="primary" href={{...}} className="RSFShowMore-root-1" onClick={[Function: res]}>
-            <Button classes={{...}} variant="raised" color="primary" href={{...}} className="RSFShowMore-root-1" onClick={[Function: res]} disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
-              <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFShowMore-root-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" href={{...}} onClick={[Function: res]} type="button">
-                <ButtonBase classes={{...}} className="MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFShowMore-root-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-12" href={{...}} onClick={[Function: res]} type="button" centerRipple={false} disableRipple={false} tabIndex="0">
-                  <button onBlur={[Function: handleEvent]} onFocus={[Function: value]} onKeyDown={[Function: value]} onKeyUp={[Function: value]} onMouseDown={[Function: handleEvent]} onMouseLeave={[Function: handleEvent]} onMouseUp={[Function: handleEvent]} onTouchEnd={[Function: handleEvent]} onTouchMove={[Function: handleEvent]} onTouchStart={[Function: handleEvent]} tabIndex="0" className="MuiButtonBase-root-19 MuiButton-root-3 MuiButton-raised-9 MuiButton-raisedPrimary-10 RSFShowMore-root-1" type="button" disabled={false} href={{...}} onClick={[Function: res]}>
-                    <span className="MuiButton-label-4">
-                      Show More
-                    </span>
-                    <WithStyles(TouchRipple) innerRef={[Function: value]} center={false}>
-                      <TouchRipple classes={{...}} center={false}>
-                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-22" childFactory={[Function: childFactory]}>
-                          <span className="MuiTouchRipple-root-22" />
-                        </TransitionGroup>
-                      </TouchRipple>
-                    </WithStyles(TouchRipple)>
-                  </button>
-                </ButtonBase>
-              </WithStyles(ButtonBase)>
-            </Button>
-          </WithStyles(Button)>
-        </ShowMore>
-      </inject-ShowMore-with-app>
-    </WithStyles(inject-ShowMore-with-app)>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(inject-ShowMore-with-app) model={{...}}>
+        <inject-ShowMore-with-app model={{...}} classes={{...}}>
+          <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
+            <WithStyles(Button) variant="contained" color="primary" href={{...}} className="RSFShowMore-root-1" onClick={[Function: res]}>
+              <Button variant="contained" color="primary" href={{...}} className="RSFShowMore-root-1" onClick={[Function: res]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
+                <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFShowMore-root-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" href={{...}} onClick={[Function: res]} component="button" type="button">
+                  <ButtonBase className="MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFShowMore-root-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" href={{...}} onClick={[Function: res]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                    <button className="MuiButtonBase-root-29 MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFShowMore-root-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} href={{...}} onClick={[Function: res]}>
+                      <span className="MuiButton-label-4">
+                        Show More
+                      </span>
+                      <NoSsr defer={false} fallback={{...}}>
+                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                          <TouchRipple center={false} classes={{...}}>
+                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-32" childFactory={[Function: childFactory]}>
+                              <span className="MuiTouchRipple-root-32" />
+                            </TransitionGroup>
+                          </TouchRipple>
+                        </WithStyles(TouchRipple)>
+                      </NoSsr>
+                    </button>
+                  </ButtonBase>
+                </WithStyles(ButtonBase)>
+              </Button>
+            </WithStyles(Button)>
+          </ShowMore>
+        </inject-ShowMore-with-app>
+      </WithStyles(inject-ShowMore-with-app)>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -60,25 +68,27 @@ exports[`ShowMore should render 1`] = `
 exports[`ShowMore should show loading when loadingMore is true 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <WithStyles(inject-ShowMore-with-app) model={{...}}>
-      <inject-ShowMore-with-app classes={{...}} model={{...}}>
-        <ShowMore classes={{...}} model={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
-          <div className="RSFShowMore-loading-2 RSFShowMore-root-1">
-            <Loading>
-              <WithStyles(CircularProgress)>
-                <CircularProgress classes={{...}} color="primary" size={40} thickness={3.6} value={0} variant="indeterminate">
-                  <div className="MuiCircularProgress-root-29 MuiCircularProgress-colorPrimary-32 MuiCircularProgress-indeterminate-31" style={{...}} role="progressbar">
-                    <svg className="MuiCircularProgress-svg-34" viewBox="0 0 50 50">
-                      <circle className="MuiCircularProgress-circle-35 MuiCircularProgress-circleIndeterminate-37" style={{...}} cx={25} cy={25} r={20} fill="none" strokeWidth={3.6} />
-                    </svg>
-                  </div>
-                </CircularProgress>
-              </WithStyles(CircularProgress)>
-            </Loading>
-          </div>
-        </ShowMore>
-      </inject-ShowMore-with-app>
-    </WithStyles(inject-ShowMore-with-app)>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(inject-ShowMore-with-app) model={{...}}>
+        <inject-ShowMore-with-app model={{...}} classes={{...}}>
+          <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
+            <div className="RSFShowMore-loading-116 RSFShowMore-root-115">
+              <Loading>
+                <WithStyles(CircularProgress)>
+                  <CircularProgress classes={{...}} color="primary" disableShrink={false} size={40} thickness={3.6} value={0} variant="indeterminate">
+                    <div className="MuiCircularProgress-root-117 MuiCircularProgress-colorPrimary-120 MuiCircularProgress-indeterminate-119" style={{...}} role="progressbar">
+                      <svg className="MuiCircularProgress-svg-122" viewBox="22 22 44 44">
+                        <circle className="MuiCircularProgress-circle-123 MuiCircularProgress-circleIndeterminate-125" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
+                      </svg>
+                    </div>
+                  </CircularProgress>
+                </WithStyles(CircularProgress)>
+              </Loading>
+            </div>
+          </ShowMore>
+        </inject-ShowMore-with-app>
+      </WithStyles(inject-ShowMore-with-app)>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -86,25 +96,27 @@ exports[`ShowMore should show loading when loadingMore is true 1`] = `
 exports[`ShowMore should show the loading spinner even when there are no more records 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <WithStyles(inject-ShowMore-with-app) model={{...}}>
-      <inject-ShowMore-with-app classes={{...}} model={{...}}>
-        <ShowMore classes={{...}} model={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
-          <div className="RSFShowMore-loading-2 RSFShowMore-root-1">
-            <Loading>
-              <WithStyles(CircularProgress)>
-                <CircularProgress classes={{...}} color="primary" size={40} thickness={3.6} value={0} variant="indeterminate">
-                  <div className="MuiCircularProgress-root-29 MuiCircularProgress-colorPrimary-32 MuiCircularProgress-indeterminate-31" style={{...}} role="progressbar">
-                    <svg className="MuiCircularProgress-svg-34" viewBox="0 0 50 50">
-                      <circle className="MuiCircularProgress-circle-35 MuiCircularProgress-circleIndeterminate-37" style={{...}} cx={25} cy={25} r={20} fill="none" strokeWidth={3.6} />
-                    </svg>
-                  </div>
-                </CircularProgress>
-              </WithStyles(CircularProgress)>
-            </Loading>
-          </div>
-        </ShowMore>
-      </inject-ShowMore-with-app>
-    </WithStyles(inject-ShowMore-with-app)>
+    <MuiThemeProvider theme={{...}}>
+      <WithStyles(inject-ShowMore-with-app) model={{...}}>
+        <inject-ShowMore-with-app model={{...}} classes={{...}}>
+          <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
+            <div className="RSFShowMore-loading-132 RSFShowMore-root-131">
+              <Loading>
+                <WithStyles(CircularProgress)>
+                  <CircularProgress classes={{...}} color="primary" disableShrink={false} size={40} thickness={3.6} value={0} variant="indeterminate">
+                    <div className="MuiCircularProgress-root-133 MuiCircularProgress-colorPrimary-136 MuiCircularProgress-indeterminate-135" style={{...}} role="progressbar">
+                      <svg className="MuiCircularProgress-svg-138" viewBox="22 22 44 44">
+                        <circle className="MuiCircularProgress-circle-139 MuiCircularProgress-circleIndeterminate-141" style={{...}} cx={44} cy={44} r={20.2} fill="none" strokeWidth={3.6} />
+                      </svg>
+                    </div>
+                  </CircularProgress>
+                </WithStyles(CircularProgress)>
+              </Loading>
+            </div>
+          </ShowMore>
+        </inject-ShowMore-with-app>
+      </WithStyles(inject-ShowMore-with-app)>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;

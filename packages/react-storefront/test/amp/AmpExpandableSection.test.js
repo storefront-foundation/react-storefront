@@ -5,22 +5,15 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import AmpExpandableSection from '../../src/amp/AmpExpandableSection'
-import createTheme from '../../src/createTheme'
-import { MuiThemeProvider } from '@material-ui/core'
+import TestProvider from '../TestProvider'
 
 describe('AmpExpandableSection', () => {
-  let theme
-
-  beforeEach(() => {
-    theme = createTheme()
-  })
-
   it('should render', () => {
     expect(
       mount(
-        <MuiThemeProvider theme={theme}>
+        <TestProvider>
           <AmpExpandableSection title="Title">Foo</AmpExpandableSection>
-        </MuiThemeProvider>
+        </TestProvider>
       )
     ).toMatchSnapshot()
   })
@@ -28,9 +21,9 @@ describe('AmpExpandableSection', () => {
   it('should render expanded', () => {
     expect(
       mount(
-        <MuiThemeProvider theme={theme}>
+        <TestProvider>
           <AmpExpandableSection title="Title" expanded>Foo</AmpExpandableSection>
-        </MuiThemeProvider>
+        </TestProvider>
       )
     ).toMatchSnapshot()
   })

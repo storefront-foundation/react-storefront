@@ -66,8 +66,10 @@ export default class ShowMore extends Component {
   }
 
   onVisibilityChange = isVisible => {
-    if (isVisible) {
-      this.props.model.showMore()
+    const { model } = this.props
+
+    if (isVisible && !model.loadingMore) {
+      model.showMore()
     }
   }
 
@@ -85,6 +87,7 @@ export default class ShowMore extends Component {
       if (infiniteScroll && !app.amp) {
         return (
           <VisibilitySensor
+            key={model.page}
             offset={{ bottom: -offset }}
             onChange={this.onVisibilityChange}
           >
@@ -94,7 +97,7 @@ export default class ShowMore extends Component {
       }
       return (
         <Button 
-          variant="raised" 
+          variant="contained" 
           color="primary" 
           href={app.amp ? `${app.location.pathname.replace(/\.amp/, '')}?page=1#item-${model.pageSize}` : null}
           className={classnames(classes.root, className)}

@@ -8,14 +8,17 @@ import PropTypes from 'prop-types'
 import Link from './Link'
 import Track from './Track'
 import Image from './Image'
+import classnames from 'classnames'
 
 /**
  * A promo banner that automatically fires the promo_banner_clicked analytics event.
  */
 export const styles = theme => ({
   root: {
-    display: 'block',
-    zIndex: theme.zIndex.appBar - 1
+    display: 'flex',
+    justifyContent: 'center',
+    zIndex: theme.zIndex.appBar - 1,
+    cursor: 'pointer'
   },
   img: {
     width: '100%',
@@ -27,6 +30,11 @@ export const styles = theme => ({
 export default class PromoBanner extends Component {
   
   static propTypes = {
+    /**
+     * A css class to apply
+     */
+    className: PropTypes.string,
+
     /**
      * CSS classes
      */
@@ -65,11 +73,11 @@ export default class PromoBanner extends Component {
   }
 
   render() {
-    const { href, classes, onClick, name, src, alt, imgProps } = this.props
+    const { href, classes, onClick, name, src, alt, imgProps, className } = this.props
 
     return (
       <Track event="promoBannerClicked" name={name} imageUrl={src}>
-        <Link to={href} className={classes.root} onClick={onClick}>
+        <Link to={href} className={classnames(className, classes.root)} onClick={onClick}>
           <Image className={classes.img} src={src} alt={alt} fill {...imgProps}/>
         </Link>
       </Track>

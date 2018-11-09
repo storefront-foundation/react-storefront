@@ -1,50 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Box accepts css 1`] = `
-<div
-  className="RSFBox-root-1 rootClass myClass"
-  style={Object {}}
-/>
+<WithStyles(Box) className="myClass" classes={{...}}>
+  <Box className="myClass" classes={{...}}>
+    <div className="RSFBox-root-1 rootClass myClass" style={{...}} />
+  </Box>
+</WithStyles(Box)>
 `;
 
 exports[`Box fowards props to style 1`] = `
-<div
-  className="RSFBox-root-1"
-  style={
-    Object {
-      "height": "100%",
-      "width": "100%",
-    }
-  }
-/>
+<WithStyles(Box) height="100%" width="100%">
+  <Box height="100%" width="100%" classes={{...}}>
+    <div className="RSFBox-root-1" style={{...}} />
+  </Box>
+</WithStyles(Box)>
 `;
 
 exports[`Box renders with no props 1`] = `
-<div
-  className="RSFBox-root-1"
-  style={Object {}}
-/>
+<WithStyles(Box)>
+  <Box classes={{...}}>
+    <div className="RSFBox-root-1" style={{...}} />
+  </Box>
+</WithStyles(Box)>
 `;
 
 exports[`Hbox renders 1`] = `
-<div
-  className="RSFBox-root-1"
-  style={
-    Object {
-      "alignItems": "center",
-      "flexDirection": "row",
-    }
-  }
-/>
+<Hbox>
+  <WithStyles(Box) alignItems="center" flexDirection="row">
+    <Box alignItems="center" flexDirection="row" classes={{...}}>
+      <div className="RSFBox-root-1" style={{...}} />
+    </Box>
+  </WithStyles(Box)>
+</Hbox>
 `;
 
 exports[`Vbox renders 1`] = `
-<div
-  className="RSFBox-root-1"
-  style={
-    Object {
-      "flexDirection": "column",
-    }
-  }
-/>
+<Vbox>
+  <WithStyles(Box) flexDirection="column">
+    <Box flexDirection="column" classes={{...}}>
+      <div className="RSFBox-root-1" style={{...}} />
+    </Box>
+  </WithStyles(Box)>
+</Vbox>
 `;
