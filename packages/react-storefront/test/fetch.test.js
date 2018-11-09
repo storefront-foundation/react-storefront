@@ -29,6 +29,12 @@ describe('fetch', () => {
     expect(data).toHaveProperty('title');
   })
 
+  it('should respond with a buffer', async () => {
+    const data = await fetch('https://jsonplaceholder.typicode.com/posts/1')
+		  .then(res => res.arrayBuffer());
+    expect(JSON.parse(data.toString('utf8'))).toHaveProperty('title');
+  })
+
   it('should POST string data verbatim', async () => {
     const data = await fetch('https://jsonplaceholder.typicode.com/posts', {
 		    body: JSON.stringify({

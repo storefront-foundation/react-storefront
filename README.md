@@ -12,8 +12,9 @@ All rights reserved.
 
 ### 4.10.0
 
- * AMP analytics event data is now automatically generated based on configured targets.
- * Added support for pageview events in AMP.
+* AMP analytics event data is now automatically generated based on configured targets.
+* Added support for pageview events in AMP.
+* Adds support for res.arrayBuffer() to react-storefront's internal fetch implementation.  This allows developers to fetch binary data as a buffer.
 
 ### 4.9.0
 
