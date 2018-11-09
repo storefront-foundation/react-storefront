@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.10.0
+
+* Adds support for res.arrayBuffer() to react-storefront's internal fetch implementation.  This allows developers to fetch binary data as a buffer.
+
 ### 4.9.0
 
 * Prefetching now ramps up over the course of 25 minutes by default to ease the load on servers after clearing the cache during deployment
