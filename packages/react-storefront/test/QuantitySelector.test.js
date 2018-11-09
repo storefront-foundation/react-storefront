@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import QuantitySelector from '../src/QuantitySelector'
 import { mount } from 'enzyme'
 import { Provider } from "mobx-react"

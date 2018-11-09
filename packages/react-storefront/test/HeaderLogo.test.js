@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import { mount } from 'enzyme'
 import HeaderLogo from '../src/HeaderLogo'
 import AppModelBase from '../src/model/AppModelBase'
@@ -28,7 +27,7 @@ describe('HeaderLogo', () => {
       </Provider>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('fires the logo_clicked event when clicked', () => {

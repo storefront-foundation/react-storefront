@@ -5,18 +5,10 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import ExpandableSection from '../src/ExpandableSection'
-import createTheme from '../src/createTheme'
 import TestProvider from './TestProvider'
 import AppModelBase from '../src/model/AppModelBase'
 
 describe('ExpandableSection', () => {
-
-  let theme
-
-  beforeEach(() => {
-    theme = createTheme()
-  })
-
   it('should render', () => {
     const app = AppModelBase.create({ amp: false })
 
@@ -46,11 +38,9 @@ describe('ExpandableSection', () => {
 
     expect(
       mount(
-        <Provider app={app}>
-          <MuiThemeProvider theme={theme}>
-            <ExpandableSection title="Title" expanded>Foo</ExpandableSection>
-          </MuiThemeProvider>
-        </Provider>
+        <TestProvider app={app}>
+          <ExpandableSection title="Title" expanded>Foo</ExpandableSection>
+        </TestProvider>
       )
     ).toMatchSnapshot()
   })

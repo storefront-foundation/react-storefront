@@ -3,10 +3,10 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import SubcategoryModelBase from '../src/model/SubcategoryModelBase'
 import Filter from '../src/Filter'
 import Provider from './TestProvider'
+import { mount } from 'enzyme'
 
 function createModel(filters) {
   return SubcategoryModelBase.create({
@@ -47,7 +47,7 @@ describe('Filter', () => {
       </Provider>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('renders with filters selected', () => {
@@ -57,7 +57,7 @@ describe('Filter', () => {
       </Provider>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
 })

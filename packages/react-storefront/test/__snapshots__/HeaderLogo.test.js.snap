@@ -1,16 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderLogo renders 1`] = `
-<a
-  className="RSFLink-root-3 RSFHeaderLogo-logoWrap-1"
-  data-moov-link="on"
-  href="/"
-  onClick={[Function]}
->
-  <span
-    className="RSFHeaderLogo-altText-2"
-  >
-    brand logo
-  </span>
-</a>
+<Provider app={{...}} history={{...}}>
+  <WithStyles(HeaderLogo)>
+    <HeaderLogo classes={{...}} alt="brand logo">
+      <inject-Track-with-app event="logoClicked">
+        <Track event="logoClicked" app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
+          <WithStyles(inject-Link) to="/" className="RSFHeaderLogo-logoWrap-1" onClick={[Function]}>
+            <inject-Link to="/" className="RSFHeaderLogo-logoWrap-1" onClick={[Function]} classes={{...}}>
+              <Link to="/" className="RSFHeaderLogo-logoWrap-1" onClick={[Function]} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
+                <a data-moov-link="on" className="RSFLink-root-3 RSFHeaderLogo-logoWrap-1" style={[undefined]} onClick={[Function]} href="/">
+                  <span className="RSFHeaderLogo-altText-2">
+                    brand logo
+                  </span>
+                </a>
+              </Link>
+            </inject-Link>
+          </WithStyles(inject-Link)>
+        </Track>
+      </inject-Track-with-app>
+    </HeaderLogo>
+  </WithStyles(HeaderLogo)>
+</Provider>
 `;

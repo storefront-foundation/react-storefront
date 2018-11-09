@@ -29,12 +29,19 @@
   },
   "scripts": {
     "precommit": "gulp addLicense",
-    "postinstall": "lerna bootstrap",
     "publish": "lerna publish --force-publish=* --yes",
     "docs": "pushd packages/react-storefront; npm run docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
     "test": "pushd packages/react-storefront; npm test; popd;",
     "add-license": "node ./tasks/addLicense"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "*"
+    ]
   },
   "husky": {
     "hooks": {

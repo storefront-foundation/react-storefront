@@ -1,20 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PromoBanner renders 1`] = `
-<a
-  className="RSFLink-root-3 RSFPromoBanner-root-1"
-  data-moov-link="on"
-  href={null}
-  onClick={[Function]}
->
-  <div
-    className="RSFPromoBanner-img-2 RSFImage-root-4 RSFImage-fill-7"
-  >
-    <img
-      alt="promo"
-      className=""
-      layout={null}
-    />
-  </div>
-</a>
+<Provider history={{...}} app={{...}}>
+  <WithStyles(PromoBanner)>
+    <PromoBanner classes={{...}} name="promo" alt="promo" imgProps={{...}}>
+      <inject-Track-with-app event="promoBannerClicked" name="promo" imageUrl={[undefined]}>
+        <Track event="promoBannerClicked" name="promo" imageUrl={[undefined]} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
+          <WithStyles(inject-Link) to={[undefined]} className="RSFPromoBanner-root-1" onClick={[Function]}>
+            <inject-Link to={[undefined]} className="RSFPromoBanner-root-1" onClick={[Function]} classes={{...}}>
+              <Link to={[undefined]} className="RSFPromoBanner-root-1" onClick={[Function]} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
+                <a data-moov-link="on" className="RSFLink-root-3 RSFPromoBanner-root-1" style={[undefined]} onClick={[Function]} href={{...}}>
+                  <WithStyles(inject-Image) className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" fill={true}>
+                    <inject-Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" fill={true} classes={{...}}>
+                      <Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                        <div className="RSFPromoBanner-img-2 RSFImage-root-4 RSFImage-fill-7">
+                          <img src={[undefined]} className="" layout={{...}} height={[undefined]} width={[undefined]} alt="promo" />
+                        </div>
+                      </Image>
+                    </inject-Image>
+                  </WithStyles(inject-Image)>
+                </a>
+              </Link>
+            </inject-Link>
+          </WithStyles(inject-Link)>
+        </Track>
+      </inject-Track-with-app>
+    </PromoBanner>
+  </WithStyles(PromoBanner)>
+</Provider>
 `;

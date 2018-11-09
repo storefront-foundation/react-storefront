@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { create } from 'react-test-renderer'
 import { mount } from 'enzyme'
 import PromoBanner from '../src/PromoBanner'
 import { Provider } from 'mobx-react'
@@ -28,7 +27,7 @@ describe('PromoBanner', () => {
       </Provider>
     )
 
-    expect(create(component).toJSON()).toMatchSnapshot()
+    expect(mount(component)).toMatchSnapshot()
   })
 
   it('fires the promo_banner_clicked event when clicked', () => {
