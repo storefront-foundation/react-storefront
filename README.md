@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 5.0.1
+
+* Improved performance of page transitions by setting `app.loading` to `true` in `PageLink` to eliminate a reconciliation cycle.
+
 ### 5.0.0
 
 * Upgrade to Material UI 3

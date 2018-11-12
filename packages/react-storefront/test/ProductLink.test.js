@@ -36,6 +36,7 @@ describe('ProductLink', () => {
       .simulate('click')
 
     expect(history.location.state).toEqual({ 
+      loading: true,
       page: 'Product',
       loadingProduct: product.toJSON()
     })
@@ -55,6 +56,7 @@ describe('ProductLink', () => {
       .simulate('click')
 
     expect(history.location.state).toEqual({ 
+      loading: true,
       page: 'Product',
       loadingProduct: product.toJSON()
     })

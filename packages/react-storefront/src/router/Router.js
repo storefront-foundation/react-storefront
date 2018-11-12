@@ -237,6 +237,20 @@ export default class Router extends EventEmitter {
   }
 
   /**
+   * Creates an object describing the browser location
+   * @return {Object}
+   */
+  createLocation() {
+    return {
+      protocol: location.protocol.replace(/:/, ''),
+      pathname: location.pathname,
+      search: location.search,
+      hostname: location.hostname,
+      port: location.port
+    }
+  }
+
+  /**
    * Runs the current url (from env) and generates a result from each the matching route's handlers.
    * @param {Object} request The request being served
    * @param {String} request.path The url path
@@ -260,13 +274,7 @@ export default class Router extends EventEmitter {
     if (this.isBrowser) {
       yield {
         loading: willFetchFromServer,
-        location: {
-          protocol: location.protocol.replace(/:/, ''),
-          pathname: location.pathname,
-          search: location.search,
-          hostname: location.hostname,
-          port: location.port
-        },
+        location: this.createLocation(),
         ...historyState
       }
     } else {

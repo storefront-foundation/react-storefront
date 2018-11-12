@@ -42,6 +42,9 @@ export default class PageLink extends Component {
   
       return {
         page, 
+        // setting loading to true here speeds up page transitions because it eliminates the reconciliation cycle that 
+        // would otherwise follow when the router decides it needs to fetch data from the srver
+        loading: true, 
         [`loading${page}`]: {
           id: model.id + '-loading',
           ...model
