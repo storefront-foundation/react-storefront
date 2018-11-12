@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 5.0.2
+
+* Corrected peerDependencies by adding "react-transition-group" and removing "react-css-transition-group"
+
 ### 5.0.1
 
 * Improved performance of page transitions by setting `app.loading` to `true` in `PageLink` to eliminate a reconciliation cycle.
