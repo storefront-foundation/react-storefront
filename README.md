@@ -13,6 +13,7 @@ All rights reserved.
 ### 5.0.1
 
 * Improved performance of page transitions by setting `app.loading` to `true` in `PageLink` to eliminate a reconciliation cycle.
+* The service worker now excludes mp4 videos from the catch-all runtime route to work around a known issue with videos and service workers in Safari.
 
 ### 5.0.0
 
