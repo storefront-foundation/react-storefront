@@ -255,6 +255,11 @@ export default class ImageSwitcher extends Component {
      */
     loadingThumbnailProps: PropTypes.object,
 
+    /*
+     * Option to manually set the selected index
+     */
+    selectedIndex: PropTypes.number,
+
     /**
      * Config options for the image viewer
      */
@@ -281,6 +286,13 @@ export default class ImageSwitcher extends Component {
   state = {
     selectedIndex: 0,
     viewerActive: false
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof nextProps.selectedIndex === 'number' && nextProps.selectedIndex !== prevState.selectedIndex) {
+      return { selectedIndex: nextProps.selectedIndex }
+    }
+    return null
   }
 
   renderViewerToggle(withClose) {

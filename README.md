@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.10.1
+
+* Added option to override selectedIndex in ImageSwitcher
+
 ### 4.10.0
 
 * AMP analytics event data is now automatically generated based on configured targets.
