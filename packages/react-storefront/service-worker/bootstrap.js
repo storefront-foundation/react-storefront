@@ -289,9 +289,19 @@ function shouldServeHTMLFromCache(url, event) {
   return isAmp({ pathname: event.request.referrer }) || /\?source=pwa/.test(url.search)
 }
 
+/**
+ * Returns true of the request is for a video file
+ * @param {Object} context
+ * @return {Boolean}
+ */
+function isVideo(context) {
+  return context.url.pathname.match(/\.mp4$/)
+}
+
 const matchRuntimePath = (context) => {
   return isSecure(context) && /* non secure requests will fail */ 
-    !isStaticAsset(context) /* let precache routes handle those */
+    !isStaticAsset(context) && /* let precache routes handle those */
+    !isVideo(context) /* Safari has a known issue with service workers and videos: https://adactio.com/journal/14452 */
 }
 
 workbox.routing.registerRoute(matchRuntimePath, async (context) => {
