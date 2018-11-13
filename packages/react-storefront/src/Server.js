@@ -45,12 +45,12 @@ export default class Server {
   /**
    * Handles an isomorphic request by serving json, html, or amp content based on the URL.
    */
-  serve = async () => {
+  serve = async (request, response) => {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const request = createRequest()
-    const response = new Response(request)
+    request = request || createRequest()
+    response = response || new Response(request)
   
     try {
       // indicate to the XDN that we want to to add set the x-moov-cache-hit cookie so we can differentiate
@@ -59,7 +59,7 @@ export default class Server {
 
       const state = await this.router.runAll(request, response)
 
-      if (!state.proxyUpstream && !response.sent) {
+      if (!state.proxyUpstream && !response.headersSent) {
         await this.renderPWA({ request, response, state })
       }
     } catch (e) {
@@ -74,7 +74,7 @@ export default class Server {
    */
   setContentType(request, response) {
     if (response.get('content-type') == null) {
-      if (request.pathname.endsWith('.json')) {
+      if (request.path.endsWith('.json')) {
         response.set('content-type', 'application/json')
       } else {
         response.set('content-type', 'text/html')
@@ -94,18 +94,18 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { protocol, hostname, port, pathname, search } = request
+    const { protocol, hostname, port, path, search } = request
     this.setContentType(request, response)
 
-    if (pathname.endsWith('.json')) {
+    if (path.endsWith('.json')) {
       return response.send(JSON.stringify(state))
     }
 
     const stats = await getStats()
-    const amp = pathname.endsWith('.amp')
+    const amp = path.endsWith('.amp')
     const { App, theme }  = this
     const sheetsRegistry = new SheetsRegistry()
-    const history = createMemoryHistory({ initialEntries: [pathname + search] })
+    const history = createMemoryHistory({ initialEntries: [path + search] })
 
     const model = this.model.create({
       ...state,

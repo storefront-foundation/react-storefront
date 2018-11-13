@@ -18,6 +18,7 @@ module.exports = {
 
     return ({ entry, plugins, output, target, resolve }) => merge(createServerConfig(root, alias), {
       entry, 
+      mode: 'development',
       output: merge(output,
         {
           devtoolModuleFilenameTemplate: '[absolute-resource-path]'
@@ -57,6 +58,7 @@ module.exports = {
       output,
       target,
       resolve,
+      mode: 'production',
       module: {
         rules: createLoaders(root, { modules: 'commonjs', plugins: [ 'react-storefront' ], eslintConfig: './eslint-server' })
       },

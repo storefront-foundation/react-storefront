@@ -63,6 +63,7 @@ module.exports = {
 
     return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries }), {
       devtool: 'inline-cheap-module-source-map',
+      mode: 'development',
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
       },
@@ -101,6 +102,7 @@ module.exports = {
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
     return Object.assign(createClientConfig(root, { entries }), {
+      mode: 'production',
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
       },

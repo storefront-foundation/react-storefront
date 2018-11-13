@@ -15,15 +15,11 @@ export default function createRequest() {
     sendResponse: global.sendResponse, 
     body: global.requestBody, 
     headers: env.headers ? JSON.parse(env.headers) : getHeaders(), 
-    pathname, 
+    path: pathname, 
     search: search ? `?${search}` : '',
     method: env.method, 
     port: env.host.split(/:/)[1] || (env.secure ? '443' : '80'),
     hostname: env.host_no_port,
-    protocol: env.host_no_port === 'localhost' ? 'http:' : env.secure ? 'https:' : 'http:',
-    get path() {
-      console.warn('warning: request.path is deprecated and will be removed in a future version of react-storefront')
-      return env.path
-    }
+    protocol: env.host_no_port === 'localhost' ? 'http:' : env.secure ? 'https:' : 'http:'
   }
 }

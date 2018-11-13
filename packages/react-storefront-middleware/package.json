@@ -1,0 +1,11 @@
+{
+  "name": "react-storefront-middleware",
+  "version": "5.0.2",
+  "description": "Express middleware for react-storefront",
+  "author": "Moovweb",
+  "license": "UNLICENSED",
+  "main": "./index.js",
+  "peerDependencies": {
+    "express": "^4.16.4"
+  }
+}

@@ -33,7 +33,7 @@ export default class Response {
   /**
    * This will be flipped to `true` when send is called.
    */
-  sent = false
+  headersSent = false
 
   /**
    * The application/json mime type
@@ -88,7 +88,7 @@ export default class Response {
     })
 
     this.request.sendResponse({ body, htmlparsed: body != null })
-    this.sent = true
+    this.headersSent = true
     return this
   }
 

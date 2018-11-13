@@ -204,8 +204,7 @@ export default class Router extends EventEmitter {
    * @param {Object} request
    */
   cacheInitialState(request) {
-    const { pathname, search } = request
-    cache(pathname + search, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+    cache(request.path + request.search, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
   }
 
   /**
@@ -306,7 +305,7 @@ export default class Router extends EventEmitter {
         }
 
         // skip client handlers when serving an AJAX request on the server
-        if (request.pathname.endsWith('.json') && (handler.runOn.server !== true || this.isBrowser)) {
+        if (request.path.endsWith('.json') && (handler.runOn.server !== true || this.isBrowser)) {
           continue;
         }
 
@@ -415,14 +414,14 @@ export default class Router extends EventEmitter {
    */
   findMatchingRoute(request) {
     let params
-    let { pathname, search, method='GET' } = request
-    const path = pathname + search
+    let { path, search, method='GET' } = request
+    const uri = path + search
 
     method = method.toUpperCase()
 
     const match = this.routes
       .filter(route => method === route.method)
-      .find(route => params = route.path.match(path))
+      .find(route => params = route.path.match(uri))
 
     return { match, params: {...params, ...qs.parse(search, { ignoreQueryPrefix: true })} }
   }
@@ -460,7 +459,7 @@ export default class Router extends EventEmitter {
     this.prevLocation = location // this needs to come before handlers are called or going back while async handlers are running will lead to a broken state
 
     const { pathname, search } = location
-    const request = { pathname, search, method: 'GET' }
+    const request = { path: pathname, search, method: 'GET' }
     const response = new Response(request)
     const { state } = location
 
@@ -511,7 +510,7 @@ export default class Router extends EventEmitter {
     history.listen(this.onLocationChange.bind(this, callback))
 
     const { pathname, search } = history.location
-    const request = { pathname, search, method: 'GET' }
+    const request = { path: pathname, search, method: 'GET' }
     const response = new Response(request)
 
     this.runAll(request, response, { initialLoad: true }, window.initialState)
