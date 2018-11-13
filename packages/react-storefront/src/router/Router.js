@@ -204,7 +204,7 @@ export default class Router extends EventEmitter {
    * @param {Object} request
    */
   cacheInitialState(request) {
-    cache(request.path + request.search, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+    cache(request.path + qs.stringify(request.query), `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
   }
 
   /**
@@ -414,16 +414,15 @@ export default class Router extends EventEmitter {
    */
   findMatchingRoute(request) {
     let params
-    let { path, search, method='GET' } = request
-    const uri = path + search
+    let { path, query, method='GET' } = request
 
     method = method.toUpperCase()
 
     const match = this.routes
       .filter(route => method === route.method)
-      .find(route => params = route.path.match(uri))
+      .find(route => params = route.path.match(path))
 
-    return { match, params: {...params, ...qs.parse(search, { ignoreQueryPrefix: true })} }
+    return { match, params: {...params, ...query }}
   }
 
   /**
@@ -459,7 +458,7 @@ export default class Router extends EventEmitter {
     this.prevLocation = location // this needs to come before handlers are called or going back while async handlers are running will lead to a broken state
 
     const { pathname, search } = location
-    const request = { path: pathname, search, method: 'GET' }
+    const request = { path: pathname, query: qs.parse(search), method: 'GET' }
     const response = new Response(request)
     const { state } = location
 
@@ -510,7 +509,7 @@ export default class Router extends EventEmitter {
     history.listen(this.onLocationChange.bind(this, callback))
 
     const { pathname, search } = history.location
-    const request = { path: pathname, search, method: 'GET' }
+    const request = { path: pathname, query: qs.parse(search), method: 'GET' }
     const response = new Response(request)
 
     this.runAll(request, response, { initialLoad: true }, window.initialState)
@@ -533,15 +532,6 @@ export default class Router extends EventEmitter {
     })
 
     history.replace(`${history.location.pathname}?${nextParams}`)
-  }
-
-  /**
-   * Gets the query string parameters for the current url as an object of key/value pairs
-   * @return {Object}
-   */
-  getQueryParams() {
-    const { history } = this
-    return qs.parse(history.location.search, { ignoreQueryPrefix: true })
   }
 
 }

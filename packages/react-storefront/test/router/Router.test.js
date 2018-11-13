@@ -691,14 +691,6 @@ bar\r
     })
   })
 
-  describe('getQueryParams', () => {
-    it('should parse the query string of the current url', () => {
-      const history = createMemoryHistory({ initialEntries: ['/?foo=bar']})
-      const router = new Router().watch(history, Function.prototype)
-      expect(router.getQueryParams()).toEqual({foo: 'bar'})
-    })
-  })
-
   describe('Fetching within cacheable route', () => {
     it('should set send cookie ENV variable for fetch', async () => {
       router.get('/new',

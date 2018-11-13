@@ -94,7 +94,7 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { protocol, hostname, port, path, search } = request
+    const { protocol, hostname, port, path, query } = request
     this.setContentType(request, response)
 
     if (path.endsWith('.json')) {
@@ -105,7 +105,7 @@ export default class Server {
     const amp = path.endsWith('.amp')
     const { App, theme }  = this
     const sheetsRegistry = new SheetsRegistry()
-    const history = createMemoryHistory({ initialEntries: [path + search] })
+    const history = createMemoryHistory({ initialEntries: [path + query] })
 
     const model = this.model.create({
       ...state,
@@ -133,7 +133,6 @@ export default class Server {
       })
 
       const helmet = Helmet.renderStatic()
-      const { canonicalURL } = model
 
       html = `
         <!DOCTYPE html>
