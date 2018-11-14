@@ -17,7 +17,7 @@
   "peerDependencies": {
     "@material-ui/core": "^3.0.0",
     "@material-ui/icons": "^3.0.0",
-    "babel-plugin-react-storefront": "^4.7.0",
+    "babel-plugin-react-storefront": "^5.0.0",
     "eslint-config-react-app": "^2.1.0",
     "file-loader": "^1.1.11",
     "mobx": "^4.1.0",
