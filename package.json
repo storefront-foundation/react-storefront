@@ -29,7 +29,7 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "precommit": "gulp addLicense",
+    "precommit": "pushd packages/react-storefront; npm run create-indexes; popd; && gulp addLicense",
     "publish": "lerna publish --force-publish=* --yes",
     "docs": "pushd packages/react-storefront; npm run docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
