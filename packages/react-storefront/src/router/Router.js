@@ -7,8 +7,7 @@ import isFunction from 'lodash.isfunction'
 import qs from 'qs'
 import { merge, cloneDeep } from 'lodash'
 import { configureCache, cache } from './serviceWorker'
-import parseMultipartRequest from './parseMultipartRequest'
-import Response from './Response'
+import ClientContext from './ClientContext'
 import EventEmitter from 'eventemitter3'
 
 /**
@@ -276,8 +275,6 @@ export default class Router extends EventEmitter {
         location: this.createLocation(),
         ...historyState
       }
-    } else {
-      this.parseBody(request)
     }
 
     try {
@@ -346,40 +343,6 @@ export default class Router extends EventEmitter {
     }
 
     return state
-  }
-
-  /**
-   * Parses JSON and form body content
-   * @private
-   * @param {String} body The request body
-   * @param {String} contentType The content-type header
-   * @return {Object}
-   */
-  parseBody(request) {
-    if (!request.headers || !request.body) return
-
-    const contentType = (request.headers['content-type'] || '').toLowerCase()
-    const { body } = request
-
-    if (contentType === 'application/json') {
-      try {
-        request.body = JSON.parse(body)
-      } catch (e) {
-        throw new Error('could not parse request body as application/json: ' + e.message)
-      }
-    } else if (contentType === 'application/x-www-form-urlencoded') {
-      try {
-        request.body = qs.parse(body)
-      } catch (e) {
-        throw new Error('could not parse request body as x-www-form-urlencoded: ' + e.message)
-      }
-    } else if (contentType.startsWith('multipart/form-data')) {
-      try {
-        request.body = parseMultipartRequest(request)
-      } catch (e) {
-        throw new Error('could not parse request body as multipart/form-data: ' + e.message)
-      }
-    }
   }
 
   /**
@@ -459,14 +422,14 @@ export default class Router extends EventEmitter {
 
     const { pathname, search } = location
     const request = { path: pathname, query: qs.parse(search), method: 'GET' }
-    const response = new Response(request)
+    const context = new ClientContext()
     const { state } = location
 
     if (state) {
       callback(state, action) // called when restoring history state and applying state from Link components
     }
 
-    this.emit('before', { request, response })
+    this.emit('before', { request, response: context })
 
     if (action === 'PUSH' || !state) {
       /*
@@ -474,14 +437,14 @@ export default class Router extends EventEmitter {
        * In those cases, if we have location.state, we can assume it's the full state.  We don't need to
        * do anything for replace.
        */
-      for await (let state of this.run(request, response, { historyState: state })) {
+      for await (let state of this.run(request, context, { historyState: state })) {
         callback(state, action)
       }
     } else if (state) {
       callback(state, action) // called when restoring history state and applying state from Link components
     }
 
-    this.emit('after', { request, response })
+    this.emit('after', { request, response: context })
   }
 
   /**
@@ -510,10 +473,10 @@ export default class Router extends EventEmitter {
 
     const { pathname, search } = history.location
     const request = { path: pathname, query: qs.parse(search), method: 'GET' }
-    const response = new Response(request)
+    const context = new ClientContext(request)
 
-    this.runAll(request, response, { initialLoad: true }, window.initialState)
-    this.emit('after', { request, response, initialLoad: true })
+    this.runAll(request, context, { initialLoad: true }, window.initialState)
+    this.emit('after', { request, response: context, initialLoad: true })
 
     return this
   }

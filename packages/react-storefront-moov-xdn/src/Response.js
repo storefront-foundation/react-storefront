@@ -20,11 +20,6 @@ export default class Response {
   redirectTo = null
 
   /**
-   * The setting for service-worker caching
-   */
-  clientCache = 'default'
-
-  /**
    * Set to false to prevent set-cookie headers returned from the upstream (proxied) site from
    * being relayed to the browser
    */
@@ -164,17 +159,6 @@ export default class Response {
   status(code, text) {
     this.statusCode = code
     this.statusText = text
-    return this
-  }
-
-  /**
-   * Controls caching in the service worker
-   * @param {Boolean} shouldCache Set to true to cache the response on the client
-   * @return {Response} this
-   */
-  cacheOnClient(shouldCache) {
-    if (shouldCache == null) throw new Error('shouldCache cannot be null in call to response.cacheOnClient')
-    this.clientCache = shouldCache ? 'force-cache' : 'default'
     return this
   }
 

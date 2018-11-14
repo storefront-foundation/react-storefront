@@ -16,9 +16,7 @@ import createMemoryHistory from 'history/createMemoryHistory'
 import { Helmet } from "react-helmet"
 import sanitizeAmpHtml from './amp/sanitizeAmpHtml'
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
-import Response from './router/Response'
 import { renderAmpAnalyticsTags } from './Track'
-import createRequest from './platform/createRequest'
 
 export default class Server {
 
@@ -48,9 +46,6 @@ export default class Server {
   serve = async (request, response) => {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
-
-    request = request || createRequest()
-    response = response || new Response(request)
   
     try {
       // indicate to the XDN that we want to to add set the x-moov-cache-hit cookie so we can differentiate

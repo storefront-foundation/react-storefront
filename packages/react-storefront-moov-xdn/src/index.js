@@ -3,8 +3,10 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 
-import Server from '../Server'
-import Config from '../Config'
+import Server from 'react-storefront/Server'
+import Config from 'react-storefront/Config'
+import Request from './Request'
+import Response from './Response'
 
 useMoovAsyncTransformer()
 
@@ -30,7 +32,9 @@ export default function responseRewriter({ theme, model, App, router, blob }) {
   } else {
     // render the page
     Config.load(blob)
-    new Server({ theme, model, App, router }).serve()
+    const request = new Request()
+    const response = new Response(request)
+    new Server({ theme, model, App, router }).serve(request, response)
   }
 
 }

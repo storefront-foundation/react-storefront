@@ -1,0 +1,8 @@
+{
+  "name": "react-storefront-moov-xdn",
+  "version": "5.0.2",
+  "description": "Extension for running React Storefront apps on Moovweb's XDN platform.",
+  "author": "Moovweb",
+  "license": "UNLICENSED",
+  "main": "./index.js"
+}
