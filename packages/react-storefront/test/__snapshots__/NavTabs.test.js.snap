@@ -3,7 +3,7 @@
 exports[`NavTabs does not require history 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>
           <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
@@ -152,7 +152,7 @@ exports[`NavTabs does not require history 1`] = `
           </NavTabs>
         </inject-NavTabs>
       </WithStyles(inject-NavTabs)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -160,7 +160,7 @@ exports[`NavTabs does not require history 1`] = `
 exports[`NavTabs renders 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>
           <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
@@ -309,7 +309,7 @@ exports[`NavTabs renders 1`] = `
           </NavTabs>
         </inject-NavTabs>
       </WithStyles(inject-NavTabs)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -317,7 +317,7 @@ exports[`NavTabs renders 1`] = `
 exports[`NavTabs uses prefetch 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>
           <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
@@ -468,7 +468,7 @@ exports[`NavTabs uses prefetch 1`] = `
           </NavTabs>
         </inject-NavTabs>
       </WithStyles(inject-NavTabs)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

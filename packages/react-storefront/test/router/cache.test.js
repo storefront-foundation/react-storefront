@@ -2,17 +2,17 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+import ClientContext from '../../src/router/ClientContext'
+
 describe('cache', () => {
   describe('on the client', () => {
-    let cache, serviceWorker, Response
+    let cache, Response
 
     beforeEach(() => {
       global.env = {}
       process.env.MOOV_RUNTIME = 'client'
       jest.mock('../../src/router/serviceWorker')
-      serviceWorker = require('../../src/router/serviceWorker')
       cache = require('../../src/router').cache
-      Response = require('../../src/router').Response
     })
   
     afterEach(() => {
@@ -22,9 +22,9 @@ describe('cache', () => {
   
     it('should set context.cache to force-cache', () => {
       const instance = cache({ client: true })
-      const response = new Response()
-      instance.fn(null, null, response)
-      expect(response.clientCache).toBe('force-cache')
+      const context = new ClientContext()
+      instance.fn(null, null, context)
+      expect(context.clientCache).toBe('force-cache')
     })
   })
 
@@ -32,7 +32,7 @@ describe('cache', () => {
     let Response
 
     beforeEach(() => {
-      Response = require('../../src/router/Response').default
+      Response = require('../../../react-storefront-moov-xdn/src/Response').default
     })
 
     it('should set response.cache', () => {

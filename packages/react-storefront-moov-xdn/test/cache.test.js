@@ -1,4 +1,4 @@
-import { cache } from '../../src/platform/cache'
+import { cache } from '../src/cache'
 
 describe('cache', () => {
   beforeEach(() => {

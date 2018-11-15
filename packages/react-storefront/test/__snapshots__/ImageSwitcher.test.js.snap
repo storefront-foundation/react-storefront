@@ -3,7 +3,7 @@
 exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
         <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
           <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
@@ -81,7 +81,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
           </ImageSwitcher>
         </inject-ImageSwitcher-with-app>
       </WithStyles(inject-ImageSwitcher-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -89,7 +89,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
 exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
 <TestProvider app={{...}} nextId={[Function: nextId]}>
   <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <inject-AmpState>
         <AmpState amp={true} initialState={{...}} id="moovAmpState">
           <Provider ampStateId="moovAmpState">
@@ -131,7 +131,7 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
           </Provider>
         </AmpState>
       </inject-AmpState>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -139,7 +139,7 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
 exports[`ImageSwitcher should render arrows 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} arrows={true}>
         <inject-ImageSwitcher-with-app images={{...}} arrows={true} classes={{...}}>
           <ImageSwitcher images={{...}} arrows={true} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
@@ -217,7 +217,7 @@ exports[`ImageSwitcher should render arrows 1`] = `
           </ImageSwitcher>
         </inject-ImageSwitcher-with-app>
       </WithStyles(inject-ImageSwitcher-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -225,7 +225,7 @@ exports[`ImageSwitcher should render arrows 1`] = `
 exports[`ImageSwitcher should render indicator dots 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} showIndicators={true}>
         <inject-ImageSwitcher-with-app images={{...}} showIndicators={true} classes={{...}}>
           <ImageSwitcher images={{...}} showIndicators={true} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
@@ -303,7 +303,7 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
           </ImageSwitcher>
         </inject-ImageSwitcher-with-app>
       </WithStyles(inject-ImageSwitcher-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -311,7 +311,7 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
 exports[`ImageSwitcher should render thumbnails 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} thumbnails={{...}}>
         <inject-ImageSwitcher-with-app images={{...}} thumbnails={{...}} classes={{...}}>
           <ImageSwitcher images={{...}} thumbnails={{...}} classes={{...}} app={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
@@ -524,7 +524,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
           </ImageSwitcher>
         </inject-ImageSwitcher-with-app>
       </WithStyles(inject-ImageSwitcher-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

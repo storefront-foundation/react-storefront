@@ -3,7 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import { proxyUpstream } from '../../src/router'
-import Response from '../../src/router/Response'
+import Response from '../../../react-storefront-moov-xdn/src/Response'
 
 describe('proxyUpstream', () => {
   describe('on the client', () => {

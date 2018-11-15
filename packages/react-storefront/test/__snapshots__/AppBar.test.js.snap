@@ -3,7 +3,7 @@
 exports[`AppBar should render 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(Header)>
         <WithStyles(Header) menu={{...}} amp={false}>
           <Header menu={{...}} amp={false} classes={{...}} responsive={false} MenuIcon={[Function: WithStyles]}>
@@ -79,7 +79,7 @@ exports[`AppBar should render 1`] = `
           </Header>
         </WithStyles(Header)>
       </inject-WithStyles(Header)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

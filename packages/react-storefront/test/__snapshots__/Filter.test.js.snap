@@ -3,7 +3,7 @@
 exports[`Filter renders with filters selected 1`] = `
 <TestProvider router={{...}} app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Filter-with-router) model={{...}}>
         <inject-Filter-with-router model={{...}} classes={{...}}>
           <Filter model={{...}} classes={{...}} router={{...}} onViewResultsClick={[Function]} queryParam="filters" margins={true}>
@@ -482,7 +482,7 @@ exports[`Filter renders with filters selected 1`] = `
           </Filter>
         </inject-Filter-with-router>
       </WithStyles(inject-Filter-with-router)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -490,7 +490,7 @@ exports[`Filter renders with filters selected 1`] = `
 exports[`Filter renders with no filters selected 1`] = `
 <TestProvider router={{...}} app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Filter-with-router) model={{...}}>
         <inject-Filter-with-router model={{...}} classes={{...}}>
           <Filter model={{...}} classes={{...}} router={{...}} onViewResultsClick={[Function]} queryParam="filters" margins={true}>
@@ -955,7 +955,7 @@ exports[`Filter renders with no filters selected 1`] = `
           </Filter>
         </inject-Filter-with-router>
       </WithStyles(inject-Filter-with-router)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

@@ -3,7 +3,7 @@
 exports[`TabsRow render should render in amp 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-TabsRow-with-app) items={{...}}>
         <inject-TabsRow-with-app items={{...}} classes={{...}}>
           <TabsRow items={{...}} classes={{...}} app={{...}} scrollable={true} centered={false}>
@@ -112,7 +112,7 @@ exports[`TabsRow render should render in amp 1`] = `
           </TabsRow>
         </inject-TabsRow-with-app>
       </WithStyles(inject-TabsRow-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -120,7 +120,7 @@ exports[`TabsRow render should render in amp 1`] = `
 exports[`TabsRow render should render tabs with images 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-TabsRow-with-app) items={{...}}>
         <inject-TabsRow-with-app items={{...}} classes={{...}}>
           <TabsRow items={{...}} classes={{...}} app={{...}} scrollable={true} centered={false}>
@@ -221,7 +221,7 @@ exports[`TabsRow render should render tabs with images 1`] = `
           </TabsRow>
         </inject-TabsRow-with-app>
       </WithStyles(inject-TabsRow-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -229,7 +229,7 @@ exports[`TabsRow render should render tabs with images 1`] = `
 exports[`TabsRow render should render tabs with text 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-TabsRow-with-app) items={{...}}>
         <inject-TabsRow-with-app items={{...}} classes={{...}}>
           <TabsRow items={{...}} classes={{...}} app={{...}} scrollable={true} centered={false}>
@@ -322,7 +322,7 @@ exports[`TabsRow render should render tabs with text 1`] = `
           </TabsRow>
         </inject-TabsRow-with-app>
       </WithStyles(inject-TabsRow-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -330,7 +330,7 @@ exports[`TabsRow render should render tabs with text 1`] = `
 exports[`TabsRow render should render tabs with urls 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-TabsRow-with-app) items={{...}}>
         <inject-TabsRow-with-app items={{...}} classes={{...}}>
           <TabsRow items={{...}} classes={{...}} app={{...}} scrollable={true} centered={false}>
@@ -439,7 +439,7 @@ exports[`TabsRow render should render tabs with urls 1`] = `
           </TabsRow>
         </inject-TabsRow-with-app>
       </WithStyles(inject-TabsRow-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

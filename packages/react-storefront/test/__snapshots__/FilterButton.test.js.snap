@@ -3,7 +3,7 @@
 exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) title="Filter By" model={{...}} drawerProps={{...}}>
         <inject-FilterButton-with-app title="Filter By" model={{...}} drawerProps={{...}} classes={{...}}>
           <FilterButton title="Filter By" model={{...}} drawerProps={{...}} classes={{...}} app={{...}} hideClearLink={false} clearLinkText="clear all">
@@ -148,7 +148,7 @@ exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
           </FilterButton>
         </inject-FilterButton-with-app>
       </WithStyles(inject-FilterButton-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -156,7 +156,7 @@ exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
 exports[`FilterButton renders with filters selected 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) model={{...}}>
         <inject-FilterButton-with-app model={{...}} classes={{...}}>
           <FilterButton model={{...}} classes={{...}} app={{...}} title="Filter" drawerProps={{...}} hideClearLink={false} clearLinkText="clear all">
@@ -306,7 +306,7 @@ exports[`FilterButton renders with filters selected 1`] = `
           </FilterButton>
         </inject-FilterButton-with-app>
       </WithStyles(inject-FilterButton-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -314,7 +314,7 @@ exports[`FilterButton renders with filters selected 1`] = `
 exports[`FilterButton renders with no filters selected 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) model={{...}}>
         <inject-FilterButton-with-app model={{...}} classes={{...}}>
           <FilterButton model={{...}} classes={{...}} app={{...}} title="Filter" drawerProps={{...}} hideClearLink={false} clearLinkText="clear all">
@@ -459,7 +459,7 @@ exports[`FilterButton renders with no filters selected 1`] = `
           </FilterButton>
         </inject-FilterButton-with-app>
       </WithStyles(inject-FilterButton-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -467,7 +467,7 @@ exports[`FilterButton renders with no filters selected 1`] = `
 exports[`FilterButton uses the title prop as the label and drawer header 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) title="Filter By" model={{...}}>
         <inject-FilterButton-with-app title="Filter By" model={{...}} classes={{...}}>
           <FilterButton title="Filter By" model={{...}} classes={{...}} app={{...}} drawerProps={{...}} hideClearLink={false} clearLinkText="clear all">
@@ -612,7 +612,7 @@ exports[`FilterButton uses the title prop as the label and drawer header 1`] = `
           </FilterButton>
         </inject-FilterButton-with-app>
       </WithStyles(inject-FilterButton-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

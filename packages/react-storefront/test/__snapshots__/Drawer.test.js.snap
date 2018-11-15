@@ -3,7 +3,7 @@
 exports[`Drawer accepts a className prop 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) className="myClassName" onRequestClose={[Function]}>
         <inject-Drawer className="myClassName" onRequestClose={[Function]} classes={{...}}>
           <Drawer className="myClassName" onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
@@ -17,7 +17,7 @@ exports[`Drawer accepts a className prop 1`] = `
           </Drawer>
         </inject-Drawer>
       </WithStyles(inject-Drawer)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -25,7 +25,7 @@ exports[`Drawer accepts a className prop 1`] = `
 exports[`Drawer accepts a paper class 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) classes={{...}} onRequestClose={[Function]}>
         <inject-Drawer onRequestClose={[Function]} classes={{...}}>
           <Drawer onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
@@ -39,7 +39,7 @@ exports[`Drawer accepts a paper class 1`] = `
           </Drawer>
         </inject-Drawer>
       </WithStyles(inject-Drawer)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -47,7 +47,7 @@ exports[`Drawer accepts a paper class 1`] = `
 exports[`Drawer sets up amp-bind when ampBindClosed is set 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <inject-AmpState id="myState">
         <AmpState id="myState" amp={true} initialState={{...}}>
           <Provider ampStateId="myState">
@@ -75,7 +75,7 @@ exports[`Drawer sets up amp-bind when ampBindClosed is set 1`] = `
           </Provider>
         </AmpState>
       </inject-AmpState>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -83,7 +83,7 @@ exports[`Drawer sets up amp-bind when ampBindClosed is set 1`] = `
 exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) open={true} onRequestClose={[Function]}>
         <inject-Drawer open={true} onRequestClose={[Function]} classes={{...}}>
           <Drawer open={true} onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
@@ -166,7 +166,7 @@ exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
           </Drawer>
         </inject-Drawer>
       </WithStyles(inject-Drawer)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -174,7 +174,7 @@ exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
 exports[`Drawer uses a div for title 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) open={true} title="Title" onRequestClose={[Function]}>
         <inject-Drawer open={true} title="Title" onRequestClose={[Function]} classes={{...}}>
           <Drawer open={true} title="Title" onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
@@ -266,7 +266,7 @@ exports[`Drawer uses a div for title 1`] = `
           </Drawer>
         </inject-Drawer>
       </WithStyles(inject-Drawer)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

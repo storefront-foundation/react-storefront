@@ -5,7 +5,7 @@ exports[`SearchDrawer should render with no props 1`] = `
   <div id="root">
     <TestProvider app={{...}}>
       <Provider router={{...}} app={{...}} history={{...}}>
-        <MuiThemeProvider theme={{...}}>
+        <MuiThemeProviderOld theme={{...}}>
           <WithStyles(inject-SearchDrawer)>
             <inject-SearchDrawer classes={{...}}>
               <SearchDrawer classes={{...}} search={{...}} history={{...}} theme={[undefined]} placeholder="Search..." CloseButtonIcon={[Function: CloseButtonIcon]} blurBackground={true}>
@@ -125,7 +125,7 @@ exports[`SearchDrawer should render with no props 1`] = `
               </SearchDrawer>
             </inject-SearchDrawer>
           </WithStyles(inject-SearchDrawer)>
-        </MuiThemeProvider>
+        </MuiThemeProviderOld>
       </Provider>
     </TestProvider>
   </div>

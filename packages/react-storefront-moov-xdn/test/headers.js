@@ -13,6 +13,10 @@ const headers = {
     }
   },
 
+  headerKeys() {
+    return Object.keys(values)
+  },
+
   removeAllHeaders(name) {
     delete values[name.toLowerCase()]
   },

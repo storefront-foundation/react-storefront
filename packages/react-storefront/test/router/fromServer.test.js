@@ -3,7 +3,6 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import { StaleResponseError } from '../../src/fetchLatest'
-import { createMemoryHistory } from 'history'
 
 describe('fromServer', () => {
   let fetch, 
@@ -24,7 +23,7 @@ describe('fromServer', () => {
       return fetchResult
     }
     fromServer = require('../../src/router').fromServer
-    response = new (require('../../src/router').Response)()
+    response = new (require('../../../react-storefront-moov-xdn/src/Response').default)()
   })
 
   afterEach(() => {

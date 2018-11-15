@@ -128,13 +128,8 @@
       "./test/snapshotSerializer"
     ],
     "collectCoverage": true,
-    "transformIgnorePatterns": [
-      "node_modules/(?!moov)"
-    ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|svg)$": "../test/config/assetMock.js",
-      "^moov-pwa-analytics$": "moov-pwa-analytics/src",
-      "^moov-pwa-analytics/(.*)$": "moov-pwa-analytics/src/$1"
+      "\\.(jpg|jpeg|png|svg)$": "../test/config/assetMock.js"
     }
   }
 }

@@ -4,5 +4,34 @@
   "description": "Extension for running React Storefront apps on Moovweb's XDN platform.",
   "author": "Moovweb",
   "license": "UNLICENSED",
-  "main": "./index.js"
+  "main": "./index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "react-storefront": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.4.3",
+    "jest": "^23.6.0",
+    "jest-fetch-mock": "^1.5.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1"
+  },
+  "jest": {
+    "testEnvironment": "../react-storefront/test/jsdom",
+    "setupFiles": [
+      "../react-storefront/test/setup.js"
+    ],
+    "snapshotSerializers": [
+      "../react-storefront/test/snapshotSerializer"
+    ],
+    "collectCoverage": true,
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-storefront)"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|svg)$": "../test/config/assetMock.js"
+    }
+  }
 }
