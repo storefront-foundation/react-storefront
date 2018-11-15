@@ -21,6 +21,11 @@ All rights reserved.
 
 ## Changelog
 
+### 5.0.3
+
+* Fix CSS syntax error in LoadMask that could cause CSS not to load properly app-wide
+* Reduce latency when serving static assets
+
 ### 5.0.2
 
 * Corrected peerDependencies by adding "react-transition-group" and removing "react-css-transition-group"

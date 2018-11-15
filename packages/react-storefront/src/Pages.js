@@ -57,7 +57,8 @@ export default class Pages extends Component {
   }
 
   static defaultProps = {
-    loadMasks: {}
+    loadMasks: {},
+    components: {}
   }
 
   state = { 
