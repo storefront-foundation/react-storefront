@@ -120,8 +120,7 @@ export default class Header extends Component {
 
   render() {
     const { MenuIcon, classes, children, fixed, menu, amp, menuAlign, menuIconProps } = this.props
-
-    const items = [...children]
+    const items = React.Children.toArray(children)
 
     const menuButton = (
       <Hidden mdUp implementation="css">
