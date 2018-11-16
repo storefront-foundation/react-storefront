@@ -279,17 +279,23 @@ export default class Menu extends Component {
     /**
      * The icon to use for expanded groups
      */
-    CollapseIcon: PropTypes.func
+    CollapseIcon: PropTypes.func,
+
+    /**
+     * Sets the side of the screen from which the menu appears.
+     */
+    align: PropTypes.oneOf(['left', 'right'])
   }
 
   static defaultProps = {
     drawerWidth: 330,
     simple: false,
-    expandFirstItem: false
+    expandFirstItem: false,
+    align: 'left'
   }
 
   render() {
-    const { app, classes, rootHeader, rootFooter, drawerWidth, simple, persistent } = this.props
+    const { app, classes, align, rootHeader, rootFooter, drawerWidth, simple, persistent } = this.props
     const { amp, menu } = app
     const { levels, level } = menu
     const position = -drawerWidth * level;
@@ -305,6 +311,7 @@ export default class Menu extends Component {
         variant={persistent ? 'persistent' : 'temporary' } 
         open={menu.open || persistent} 
         onClose={menu.close} 
+        anchor={align}
         ModalProps={{
           keepMounted: true
         }}
