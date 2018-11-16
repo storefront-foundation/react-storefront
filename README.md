@@ -21,6 +21,11 @@ All rights reserved.
 
 ## Changelog
 
+### 5.0.4
+
+* TabPanel is now controllable via a new `onChange` prop.
+* Fixed bug in Container that would cause horizontal scrollbars to display on the window body.
+
 ### 5.0.3
 
 * Fix CSS syntax error in LoadMask that could cause CSS not to load properly app-wide
