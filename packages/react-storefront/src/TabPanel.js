@@ -10,7 +10,6 @@ import Tab from '@material-ui/core/Tab'
 import { inject } from 'mobx-react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import isFunction from 'lodash.isfunction'
 
 export const styles = theme => ({
   root: {
@@ -198,10 +197,9 @@ export default class TabPanel extends Component {
   onChange = (event, selected) => {
     const { onChange } = this.props
 
-    if (isFunction(onChange)) {
+    this.setState({ selected })
+    if (onChange) {
       onChange(selected)
-    } else {
-      this.setState({ selected })
     }
   }
 
