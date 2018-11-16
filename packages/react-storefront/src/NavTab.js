@@ -85,11 +85,11 @@ export default class NavTab extends Component {
 
     return children || (
       <div className={classes.menu}>
-        { item.items.map((item, i) => (
+        { item.items ? item.items.map((item, i) => (
           <div key={i} className={classes.menuItem}>
             <Link to={item.url} onClick={onItemClick}>{item.text}</Link>
           </div>
-        ))}
+        )) : null}
       </div>
     )
   }
