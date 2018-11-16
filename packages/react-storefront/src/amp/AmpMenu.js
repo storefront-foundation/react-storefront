@@ -82,7 +82,7 @@ export default class AmpMenu extends Component {
 
   render() {
     const { id, menu, classes, drawerWidth, rootHeader, rootFooter } = this.props
-    const root = menu.levels[0]
+    const root = menu.levels.length ? menu.levels[0] : null
 
     return (
       <Fragment>

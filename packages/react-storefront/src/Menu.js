@@ -350,7 +350,8 @@ export default class Menu extends Component {
    * search engine bots can crawl them.
    */
   renderLinksForSEO() {
-    const root = this.props.app.menu.levels[0]
+    const levels = this.props.app.menu.levels
+    const root = levels.length && levels[0]
 
     if (!root) return null
     

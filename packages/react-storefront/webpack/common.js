@@ -1,9 +1,8 @@
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const { merge } = require('lodash')
 const path = require('path')
-const webpack = require('webpack')
 
 function createClientConfig(
   root,
@@ -145,11 +144,6 @@ function createPlugins(root) {
       allowExternal: true,
       verbose: false
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-    //   filename: '[name].[hash].js',
-    //   minChunks: Infinity
-    // }),
     new HtmlWebpackPlugin({
       filename: 'install-service-worker.html',
       title: 'Installing Service Worker...',

@@ -6,7 +6,7 @@ const https = require('https')
  * @return {Function} An express middleware function
  */
 module.exports = function(server) {
-  return (req, res, next) => {
+  return (req, res) => {
     const exportedValues = {}
 
     Object.assign(res, {
@@ -27,9 +27,6 @@ module.exports = function(server) {
       }
     })
 
-    console.log('exportedValues', exportedValues)
-
-    // console.log('req', req) 
     server.serve(req, res)
   }
 }
