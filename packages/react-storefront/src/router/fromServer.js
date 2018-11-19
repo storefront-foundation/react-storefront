@@ -140,6 +140,10 @@ export default function fromServer(handlerPath, getURL) {
       } else {
         if (handlerPath == null) throw new Error('You must provide a path to a handler in fromServer().  Please check your routes.')
         
+        // indicate handler path and asset class in a response header so we can track it in logs
+        response.set('x-rsf-handler', handlerPath.path)
+        response.set('x-rsf-response-type', request.path.endsWith('.json') ? 'json' : 'ssr')
+
         // handler path has been transpiled to a function
         return handlerPath(params, request, response) 
       }

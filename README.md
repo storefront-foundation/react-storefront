@@ -21,6 +21,11 @@ All rights reserved.
 
 ## Changelog
 
+### 5.1.0
+
+* Added x-rsf-response-type and x-rsf-handler headers
+* TabPanel's onChange prop no longer requires selected to be controlled.
+
 ### 5.0.4
 
 * TabPanel is now controllable via a new `onChange` prop.
