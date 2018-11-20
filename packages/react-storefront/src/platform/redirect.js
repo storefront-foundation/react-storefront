@@ -9,7 +9,7 @@ import { cache } from './cache'
  * @return {Boolean}
  */
 function isAmpPost() {
-  const referer = JSON.parse(env.headers).referer
+  const referer = env.headers ? JSON.parse(env.headers).referer : null
 
   return (
     referer && 

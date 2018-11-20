@@ -21,6 +21,10 @@ All rights reserved.
 
 ## Changelog
 
+### 5.1.1
+
+* Fixed error when attempting to redirect from http to https.
+
 ### 5.1.0
 
 * Added x-rsf-response-type and x-rsf-handler headers
