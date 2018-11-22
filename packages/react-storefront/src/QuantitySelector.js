@@ -20,7 +20,6 @@ export const styles = theme => ({
   },
   icon: {
     fontSize: theme.typography.title.fontSize,
-    top: '-4px',
     position: 'relative'
   },
   button: {
@@ -43,7 +42,7 @@ export const styles = theme => ({
 })
 
 /**
- * A quantity selector with plus and minus buttons. Any extra props are spread to the 
+ * A quantity selector with plus and minus buttons. Any extra props are spread to the
  * underlying Material UI input element.
  */
 @inject(({ app, ampStateId }) => ({ app, ampStateId }))
@@ -102,19 +101,19 @@ export default class QuantitySelector extends Component {
   }
 
   render() {
-    let { 
+    let {
       app,
-      classes, 
-      addIcon, 
-      subtractIcon, 
-      value, 
+      classes,
+      addIcon,
+      subtractIcon,
+      value,
       minValue,
       maxValue,
       analytics,
       product,
       inputProps,
       ampStateId,
-      ...other 
+      ...other
     } = this.props
 
     if (product) {
@@ -135,19 +134,19 @@ export default class QuantitySelector extends Component {
       <Fragment>
         <Input
           startAdornment={
-            <IconButton 
-              size="small" 
-              classes={{ root: button }} 
-              onClick={() => this.onChange(value - 1)} 
+            <IconButton
+              size="small"
+              classes={{ root: button }}
+              onClick={() => this.onChange(value - 1)}
               on={`tap:AMP.setState({ ${ampStateId}: { quantity: max(${minValue}, (${ampStateId}.quantity || ${value}) - 1) } })`}
             >
               {subtractIcon || <Remove classes={{ root: icon }}/>}
             </IconButton>
           }
           endAdornment={
-            <IconButton 
-              size="small" 
-              classes={{ root: button }} 
+            <IconButton
+              size="small"
+              classes={{ root: button }}
               onClick={() => this.onChange(value + 1)}
               on={`tap:AMP.setState({ ${ampStateId}: { quantity: min(${maxValue}, (${ampStateId}.quantity || ${value}) + 1) } })`}
             >
@@ -172,7 +171,7 @@ export default class QuantitySelector extends Component {
 
     if (value >= minValue && value <= maxValue) {
       this.props.onChange(value)
-      
+
       if (product) {
         product.setQuantity(value)
       }
