@@ -21,6 +21,10 @@ All rights reserved.
 
 ## Changelog
 
+### 5.2.1
+
+* Fixed vertical alignment of + / - icons in QuantiySelector
+
 ### 5.2.0
 
 * You can now display the main menu on the right by setting `<AppBar menuAlign="right"/>` and `<Menu align="right"/>`.
