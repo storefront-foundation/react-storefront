@@ -95,7 +95,7 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
           options: {
             formatter: eslintFormatter,
             eslintPath: require.resolve('eslint'),
-            configFile: require.resolve(eslintConfig)
+            baseConfig: eslintConfig
           }
         }
       ]
@@ -111,7 +111,7 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
         {
           loader: 'url-loader',
           options: {
-            // having a limit here is crtical to keeping css size below amp's limits.
+            // having a limit here is critical to keeping css size below amp's limits.
             // when an asset is larger than this limit in bytes, webpack falls back to using
             // file-loader
             limit: 8192,

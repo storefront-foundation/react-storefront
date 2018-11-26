@@ -7,9 +7,9 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
       <WithTheme(WithStyles(inject-Menu-with-app)) simple={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} simple={true}>
           <inject-Menu-with-app theme={{...}} simple={true} classes={{...}}>
-            <Menu theme={{...}} simple={true} classes={{...}} app={{...}} drawerWidth={330} expandFirstItem={false}>
-              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
-                <Drawer variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+            <Menu theme={{...}} simple={true} classes={{...}} app={{...}} drawerWidth={330} expandFirstItem={false} align="left">
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
                   <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-708 MuiDrawer-modal-719" open={false} onClose={[Function: res]} keepMounted={true}>
                     <Modal BackdropProps={{...}} className="MuiDrawer-root-708 MuiDrawer-modal-719" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                       <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
@@ -330,9 +330,9 @@ exports[`Menu should render in complex mode by default 1`] = `
       <WithTheme(WithStyles(inject-Menu-with-app))>
         <WithStyles(inject-Menu-with-app) theme={{...}}>
           <inject-Menu-with-app theme={{...}} classes={{...}}>
-            <Menu theme={{...}} classes={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false}>
-              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
-                <Drawer variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+            <Menu theme={{...}} classes={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false} align="left">
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
                   <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-123 MuiDrawer-modal-134" open={false} onClose={[Function: res]} keepMounted={true}>
                     <Modal BackdropProps={{...}} className="MuiDrawer-root-123 MuiDrawer-modal-134" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                       <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
@@ -474,9 +474,9 @@ exports[`Menu should render in complex mode by default 2`] = `
       <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true}>
           <inject-Menu-with-app theme={{...}} useexpanders={true} classes={{...}}>
-            <Menu theme={{...}} useexpanders={true} classes={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false}>
-              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
-                <Drawer variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+            <Menu theme={{...}} useexpanders={true} classes={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false} align="left">
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
                   <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-226 MuiDrawer-modal-237" open={false} onClose={[Function: res]} keepMounted={true}>
                     <Modal BackdropProps={{...}} className="MuiDrawer-root-226 MuiDrawer-modal-237" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                       <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
@@ -618,9 +618,9 @@ exports[`Menu should render in simple mode 1`] = `
       <WithTheme(WithStyles(inject-Menu-with-app)) simple={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} simple={true}>
           <inject-Menu-with-app theme={{...}} simple={true} classes={{...}}>
-            <Menu theme={{...}} simple={true} classes={{...}} app={{...}} drawerWidth={330} expandFirstItem={false}>
-              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
-                <Drawer variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+            <Menu theme={{...}} simple={true} classes={{...}} app={{...}} drawerWidth={330} expandFirstItem={false} align="left">
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
                   <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-16 MuiDrawer-modal-27" open={false} onClose={[Function: res]} keepMounted={true}>
                     <Modal BackdropProps={{...}} className="MuiDrawer-root-16 MuiDrawer-modal-27" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                       <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
@@ -890,9 +890,9 @@ exports[`Menu should render without expand first not root item by default 1`] = 
       <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true}>
           <inject-Menu-with-app theme={{...}} useexpanders={true} classes={{...}}>
-            <Menu theme={{...}} useexpanders={true} classes={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false}>
-              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
-                <Drawer variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+            <Menu theme={{...}} useexpanders={true} classes={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false} align="left">
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
                   <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-570 MuiDrawer-modal-581" open={false} onClose={[Function: res]} keepMounted={true}>
                     <Modal BackdropProps={{...}} className="MuiDrawer-root-570 MuiDrawer-modal-581" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                       <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
@@ -1151,9 +1151,9 @@ exports[`Menu should use custom icons 1`] = `
       <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
         <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
           <inject-Menu-with-app theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} classes={{...}}>
-            <Menu theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} classes={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false}>
-              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} classes={{...}}>
-                <Drawer variant="temporary" open={false} onClose={[Function: res]} ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} anchor="left" elevation={16} transitionDuration={{...}}>
+            <Menu theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} classes={{...}} app={{...}} drawerWidth={330} simple={false} expandFirstItem={false} align="left">
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
                   <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-329 MuiDrawer-modal-340" open={false} onClose={[Function: res]} keepMounted={true}>
                     <Modal BackdropProps={{...}} className="MuiDrawer-root-329 MuiDrawer-modal-340" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                       <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>

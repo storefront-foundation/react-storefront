@@ -83,15 +83,21 @@ export default class NavTab extends Component {
   getMenu() {
     const { children, item, classes, onItemClick } = this.props
 
-    return children || (
-      <div className={classes.menu}>
-        { item.items ? item.items.map((item, i) => (
-          <div key={i} className={classes.menuItem}>
-            <Link to={item.url} onClick={onItemClick}>{item.text}</Link>
-          </div>
-        )) : null}
-      </div>
-    )
+    if (children) {
+      return children
+    } else if (item.items.length) {
+      return  (
+        <div className={classes.menu}>
+          { item.items ? item.items.map((item, i) => (
+            <div key={i} className={classes.menuItem}>
+              <Link to={item.url} onClick={onItemClick}>{item.text}</Link>
+            </div>
+          )) : null}
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 
 }

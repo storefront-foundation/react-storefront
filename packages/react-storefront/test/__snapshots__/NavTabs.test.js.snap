@@ -137,18 +137,6 @@ exports[`NavTabs does not require history 1`] = `
                 </div>
               </Paper>
             </WithStyles(Paper)>
-            <Hidden xsDown={true} implementation="js" lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-              <WithTheme(WithWidth(HiddenJs)) xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                <WithWidth(HiddenJs) theme={{...}} xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                  <HiddenJs width="md" xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                    <WithTheme(Popper) className="inject-NavTabs-menu-408" open={false} anchorEl={{...}} transition={true}>
-                      <Popper theme={{...}} className="inject-NavTabs-menu-408" open={false} anchorEl={{...}} transition={true} disablePortal={false} placement="bottom" />
-                    </WithTheme(Popper)>
-                  </HiddenJs>
-                  <EventListener target="window" onResize={[Function: debounced]} />
-                </WithWidth(HiddenJs)>
-              </WithTheme(WithWidth(HiddenJs))>
-            </Hidden>
           </NavTabs>
         </inject-NavTabs>
       </WithStyles(inject-NavTabs)>
@@ -294,18 +282,6 @@ exports[`NavTabs renders 1`] = `
                 </div>
               </Paper>
             </WithStyles(Paper)>
-            <Hidden xsDown={true} implementation="js" lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-              <WithTheme(WithWidth(HiddenJs)) xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                <WithWidth(HiddenJs) theme={{...}} xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                  <HiddenJs width="md" xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                    <WithTheme(Popper) className="inject-NavTabs-menu-3" open={false} anchorEl={{...}} transition={true}>
-                      <Popper theme={{...}} className="inject-NavTabs-menu-3" open={false} anchorEl={{...}} transition={true} disablePortal={false} placement="bottom" />
-                    </WithTheme(Popper)>
-                  </HiddenJs>
-                  <EventListener target="window" onResize={[Function: debounced]} />
-                </WithWidth(HiddenJs)>
-              </WithTheme(WithWidth(HiddenJs))>
-            </Hidden>
           </NavTabs>
         </inject-NavTabs>
       </WithStyles(inject-NavTabs)>
@@ -453,18 +429,6 @@ exports[`NavTabs uses prefetch 1`] = `
                 </div>
               </Paper>
             </WithStyles(Paper)>
-            <Hidden xsDown={true} implementation="js" lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-              <WithTheme(WithWidth(HiddenJs)) xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                <WithWidth(HiddenJs) theme={{...}} xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                  <HiddenJs width="md" xsDown={true} lgDown={false} lgUp={false} mdDown={false} mdUp={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsUp={false}>
-                    <WithTheme(Popper) className="inject-NavTabs-menu-84" open={false} anchorEl={{...}} transition={true}>
-                      <Popper theme={{...}} className="inject-NavTabs-menu-84" open={false} anchorEl={{...}} transition={true} disablePortal={false} placement="bottom" />
-                    </WithTheme(Popper)>
-                  </HiddenJs>
-                  <EventListener target="window" onResize={[Function: debounced]} />
-                </WithWidth(HiddenJs)>
-              </WithTheme(WithWidth(HiddenJs))>
-            </Hidden>
           </NavTabs>
         </inject-NavTabs>
       </WithStyles(inject-NavTabs)>

@@ -2,7 +2,7 @@
 
 exports[`MenuIcon should accept custom icons 1`] = `
 <WithStyles(MenuIcon) OpenIcon={[Function: ShouldUpdate]} CloseIcon={[Function: ShouldUpdate]}>
-  <MenuIcon OpenIcon={[Function: ShouldUpdate]} CloseIcon={[Function: ShouldUpdate]} classes={{...}} open={false}>
+  <MenuIcon OpenIcon={[Function: ShouldUpdate]} CloseIcon={[Function: ShouldUpdate]} classes={{...}} open={false} label={true}>
     <div className="RSFMenuIcon-root-1">
       <TransitionGroup component="div" childFactory={[Function: childFactory]}>
         <div>
@@ -37,7 +37,7 @@ exports[`MenuIcon should accept custom icons 1`] = `
 
 exports[`MenuIcon should show the close icon when opened 1`] = `
 <WithStyles(MenuIcon) open={true}>
-  <MenuIcon open={true} classes={{...}} OpenIcon="test-file-stub" CloseIcon={[Function: ShouldUpdate]}>
+  <MenuIcon open={true} classes={{...}} label={true} CloseIcon={[Function: ShouldUpdate]}>
     <div className="RSFMenuIcon-root-1">
       <TransitionGroup component="div" childFactory={[Function: childFactory]}>
         <div>
@@ -72,7 +72,7 @@ exports[`MenuIcon should show the close icon when opened 1`] = `
 
 exports[`MenuIcon should show the open icon when closed 1`] = `
 <WithStyles(MenuIcon)>
-  <MenuIcon classes={{...}} open={false} OpenIcon="test-file-stub" CloseIcon={[Function: ShouldUpdate]}>
+  <MenuIcon classes={{...}} open={false} label={true} CloseIcon={[Function: ShouldUpdate]}>
     <div className="RSFMenuIcon-root-1">
       <TransitionGroup component="div" childFactory={[Function: childFactory]}>
         <div>

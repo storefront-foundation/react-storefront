@@ -8,16 +8,18 @@ module.exports = {
    * Generates a webpack config for the server development build
    * @param {String} root The path to the root of the project
    * @return {Object} A webpack config
+   * @param {Object} options
+   * @param {Object} options.eslintConfig A config object for eslint
    */
-  dev(root) {
+  dev(root, { eslintConfig = require('./eslint-server') } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
-    
+
     const alias = {
       'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'src', 'stats', 'getStatsInDev')
     }
 
     return ({ entry, plugins, output, target, resolve }) => merge(createServerConfig(root, alias), {
-      entry, 
+      entry,
       output: merge(output,
         {
           devtoolModuleFilenameTemplate: '[absolute-resource-path]'
@@ -26,7 +28,7 @@ module.exports = {
       target,
       resolve,
       module: {
-        rules: createLoaders(root, { modules: 'commonjs', plugins: [ 'react-storefront' ], assetsPath: '../build/assets/pwa', eslintConfig: './eslint-server' })
+        rules: createLoaders(root, { modules: 'commonjs', plugins: [ 'react-storefront' ], assetsPath: '../build/assets/pwa', eslintConfig })
       },
       devtool: 'cheap-module-source-map',
       plugins: [
