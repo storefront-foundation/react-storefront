@@ -128,8 +128,9 @@ export default class Track extends Component {
 
     for (let target of getTargets()) {
       const handler = target[event]
+      const type = target.getAmpAnalyticsType()
 
-      if (handler) {
+      if (handler && type) {
         let eventData
 
         // Override send to capture the data that would be send instead of trying to send it
@@ -145,7 +146,7 @@ export default class Track extends Component {
             eventData.selector = `[data-amp-id="${this.id}"]`
           }
   
-          this.configureAmpEvent(target.getAmpAnalyticsType(), {
+          this.configureAmpEvent(type, {
             on: eventData.selector ? 'click' : 'visible',
             ...eventData,
             request: 'event',
@@ -182,7 +183,7 @@ export function renderAmpAnalyticsTags() {
 
   for (let type in ampAnalyticsTypes) {
     result.push(
-      `<amp-analytics type="${type}">` +
+      `<amp-analytics${type === 'gtm' ? '' : ` type="${type}"`}>` +
         `<script type="application/json">${JSON.stringify(ampAnalyticsTypes[type])}</script>` +
       `</amp-analytics>`
     )
