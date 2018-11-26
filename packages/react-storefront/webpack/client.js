@@ -55,16 +55,17 @@ module.exports = {
    * @param {Object} options.entries Additional entries for adapt components
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
+   * @param {Object} options.eslintConfig A config object for eslint
    * @return {Object} A webpack config
    */
-  dev(root, { workboxConfig, entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
+  dev(root, { workboxConfig, entries, eslintConfig = require('./eslint-client'), prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
     return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries }), {
       devtool: 'inline-cheap-module-source-map',
       module: {
-        rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
+        rules: createLoaders(path.resolve(root, 'src'), { eslintConfig })
       },
       plugins: [
         ...createPlugins(root),

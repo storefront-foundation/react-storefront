@@ -94,7 +94,7 @@ export default class Pages extends Component {
   }
 
   /**
-   * Creates a lazy component that automatically manages the loading spinnner
+   * Creates a lazy component that automatically manages the loading spinner
    * @param {React.Component} comp The component to make lazy
    * @return {React.Component}
    */

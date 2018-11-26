@@ -12,7 +12,7 @@ import Response from './Response'
 import EventEmitter from 'eventemitter3'
 
 /**
- * Provides routing for MUR-based applications and PWAs.  This class is innspired by express and uses https://github.com/rcs/route-parser,
+ * Provides routing for MUR-based applications and PWAs.  This class is inspired by express and uses https://github.com/rcs/route-parser,
  * which supports sophisticated pattern matching including optional paths, params, and splatting.
  *
  * Example:
