@@ -21,6 +21,11 @@ All rights reserved.
 
 ## Changelog
 
+### 5.2.2
+
+* Fixed bug where all analytics targets would result in AMP event triggers being rendered, even if they don't support AMP.
+* Removed some unused dependencies.
+
 ### 5.2.1
 
 * Fixed vertical alignment of + / - icons in QuantiySelector

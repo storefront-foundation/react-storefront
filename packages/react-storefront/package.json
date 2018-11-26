@@ -36,9 +36,7 @@
     "webpack-flush-chunks": "^1.2.3"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.0.0-beta.49",
     "@storybook/react": "^3.4.8",
-    "@team-griffin/install-self-peers": "^1.1.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^22.4.3",
@@ -72,7 +70,6 @@
     "karma-webpack": "^3.0.0",
     "mocha": "^5.1.1",
     "react-docgen": "^2.20.1",
-    "react-helmet": "^5.2.0",
     "regenerator-runtime": "^0.11.1",
     "simulant": "^0.2.2",
     "sinon": "^5.0.3",
