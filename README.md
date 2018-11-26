@@ -21,6 +21,10 @@ All rights reserved.
 
 ## Changelog
 
+### 5.2.3
+
+* Prevents errors when webpack's OpenBrowserPlugin fails
+
 ### 5.2.2
 
 * Fixed bug where all analytics targets would result in AMP event triggers being rendered, even if they don't support AMP.
