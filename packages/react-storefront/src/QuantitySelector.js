@@ -24,7 +24,8 @@ export const styles = theme => ({
   },
   button: {
     height: '36px',
-    width: '36px'
+    width: '36px',
+    padding: 0
   },
   input: {
     color: theme.typography.body1.color,
