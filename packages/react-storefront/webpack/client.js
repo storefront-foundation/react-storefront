@@ -74,7 +74,7 @@ module.exports = {
           'process.env.MOOV_ENV': JSON.stringify('development'),
           'process.env.MOOV_SW': JSON.stringify(process.env.MOOV_SW)
         }),
-        new OpenBrowserPlugin({ url }),
+        new OpenBrowserPlugin({ url, ignoreErrors: true }),
         new WriteFilePlugin(),
         new CopyPlugin([{
           from: path.join(root, 'public'),

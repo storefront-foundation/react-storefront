@@ -21,6 +21,10 @@ All rights reserved.
 
 ## Changelog
 
+### 5.2.2
+
+* Prevents errors when webpack's OpenBrowserPlugin fails
+
 ### 5.2.1
 
 * Fixed vertical alignment of + / - icons in QuantiySelector
