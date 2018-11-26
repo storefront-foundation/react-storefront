@@ -111,26 +111,28 @@ export default class NavTabs extends Component {
             {...tabsProps}
           />
         </Paper>
-        <Hidden xsDown>
-          <Popper
-            className={classes.menu}
-            open={open}
-            anchorEl={anchorEl}
-            transition
-          >
-            {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={350}>
-                <Paper 
-                  onMouseEnter={this.onMenuEnter} 
-                  onMouseLeave={this.onMenuLeave}
-                  className={classes.menuPaper}
-                >
-                  { menu }
-                </Paper>
-              </Fade>
-            )}
-          </Popper>
-        </Hidden>
+        { !menu ? null : (
+          <Hidden xsDown>
+            <Popper
+              className={classes.menu}
+              open={open}
+              anchorEl={anchorEl}
+              transition
+            >
+              {({ TransitionProps }) => (
+                <Fade {...TransitionProps} timeout={350}>
+                  <Paper 
+                    onMouseEnter={this.onMenuEnter} 
+                    onMouseLeave={this.onMenuLeave}
+                    className={classes.menuPaper}
+                  >
+                    { menu }
+                  </Paper>
+                </Fade>
+              )}
+            </Popper>
+          </Hidden>
+        )}
       </Fragment>
     )
   }

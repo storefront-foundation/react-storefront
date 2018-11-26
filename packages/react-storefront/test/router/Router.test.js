@@ -25,7 +25,7 @@ describe('Router:Node', function() {
     global.env = {}
     runAll = function(method, path) {
       const [ pathname, search ] = path.split(/\?/)
-      const request = { pathname, search: search ? `?${search}` : '', method }
+      const request = { path: pathname, pathname, search: search ? `?${search}` : '', method }
       const promise = router.runAll(request, response = new Response())
 
       if (promise) {

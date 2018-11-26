@@ -21,6 +21,13 @@ All rights reserved.
 
 ## Changelog
 
+### 5.2.0
+
+* You can now display the main menu on the right by setting `<AppBar menuAlign="right"/>` and `<Menu align="right"/>`.
+* You can disable the "menu" label below the main menu button by setting `<AppBar menuIconProps={{ label: false }}/>`
+* You can now provide a custom eslint config for webpack client and server builds.
+* Fix bug where an empty popup would show when the user hovers over a NavTab without a menu on desktop.
+
 ### 5.1.1
 
 * Fixed error when attempting to redirect from http to https.
@@ -29,8 +36,6 @@ All rights reserved.
 
 * Added x-rsf-response-type and x-rsf-handler headers
 * TabPanel's onChange prop no longer requires selected to be controlled.
-* You can now display the main menu on the right by setting `<AppBar menuAlign="right"/>` and `<Menu align="right"/>`.
-* You can disable the "menu" label below the main menu button by setting `<AppBar menuIconProps={{ label: false }}/>`
 
 ### 5.0.4
 

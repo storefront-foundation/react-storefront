@@ -123,7 +123,7 @@ export default class Header extends Component {
     const items = React.Children.toArray(children)
 
     const menuButton = (
-      <Hidden mdUp implementation="css">
+      <Hidden mdUp implementation="css" key="menuButton">
         <a on="tap:moov_menu.toggle" className={classes.link}>
           <ToolbarButton 
             aria-label="Menu" 
