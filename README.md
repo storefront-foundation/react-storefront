@@ -29,6 +29,8 @@ All rights reserved.
 
 * Added x-rsf-response-type and x-rsf-handler headers
 * TabPanel's onChange prop no longer requires selected to be controlled.
+* You can now display the main menu on the right by setting `<AppBar menuAlign="right"/>` and `<Menu align="right"/>`.
+* You can disable the "menu" label below the main menu button by setting `<AppBar menuIconProps={{ label: false }}/>`
 
 ### 5.0.4
 

@@ -6,16 +6,16 @@ exports[`AppBar should render 1`] = `
     <MuiThemeProvider theme={{...}}>
       <inject-WithStyles(Header)>
         <WithStyles(Header) menu={{...}} amp={false}>
-          <Header menu={{...}} amp={false} classes={{...}} responsive={false} MenuIcon={[Function: WithStyles]}>
+          <Header menu={{...}} amp={false} classes={{...}} MenuIcon={[Function: WithStyles]} menuIconProps={{...}} menuAlign="left">
             <div className="RSFAppBar-root-1">
               <div className="RSFAppBar-wrap-4">
                 <WithStyles(Toolbar) disableGutters={true} classes={{...}}>
                   <Toolbar disableGutters={true} classes={{...}} variant="regular">
                     <div className="MuiToolbar-root-11 RSFAppBar-toolBar-3 MuiToolbar-regular-13">
-                      <Hidden mdUp={false} implementation="css" lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
-                        <WithStyles(HiddenCss) mdUp={false} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
-                          <HiddenCss mdUp={false} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false} classes={{...}}>
-                            <div className="">
+                      <Hidden mdUp={true} implementation="css" lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
+                        <WithStyles(HiddenCss) mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
+                          <HiddenCss mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false} classes={{...}}>
+                            <div className="MuiPrivateHiddenCss-mdUp-22">
                               <a on="tap:moov_menu.toggle" className="RSFAppBar-link-10">
                                 <WithStyles(ToolbarButton) aria-label="Menu" color="inherit" onClick={[Function: res]} icon={{...}}>
                                   <ToolbarButton aria-label="Menu" color="inherit" onClick={[Function: res]} icon={{...}} classes={{...}}>
@@ -27,7 +27,7 @@ exports[`AppBar should render 1`] = `
                                               <span className="MuiIconButton-label-36">
                                                 <div className="RSFToolbarButton-wrap-30">
                                                   <WithStyles(MenuIcon) open={false}>
-                                                    <MenuIcon open={false} classes={{...}} OpenIcon="test-file-stub" CloseIcon={[Function: ShouldUpdate]}>
+                                                    <MenuIcon open={false} classes={{...}} label={true} CloseIcon={[Function: ShouldUpdate]}>
                                                       <div className="RSFMenuIcon-root-40">
                                                         <TransitionGroup component="div" childFactory={[Function: childFactory]}>
                                                           <div>
