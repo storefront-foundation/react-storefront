@@ -21,6 +21,10 @@ All rights reserved.
 
 ## Changelog
 
+### 5.3.0
+
+* Transpiling code to ES5 before publishing
+
 ### 5.2.3
 
 * Prevents errors when webpack's OpenBrowserPlugin fails
