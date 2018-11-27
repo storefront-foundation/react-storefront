@@ -29,6 +29,7 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
+    "prepublish": "pushd packages/react-storefront; npm run build; popd;",
     "precommit": "pushd packages/react-storefront; npm run create-indexes; popd; && gulp addLicense",
     "publish": "lerna publish --force-publish=* --yes",
     "docs": "pushd packages/react-storefront; npm run docs; popd;",
