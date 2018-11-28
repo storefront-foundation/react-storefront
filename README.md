@@ -19,6 +19,33 @@ create-react-storefront my-site
 
 All rights reserved.
 
+## Development
+
+First, clone the repo and run yarn to install dependencies
+
+```
+yarn
+```
+
+To automatically transpile your code when you make changes, run:
+
+```
+yarn watch
+```
+
+To use your local copy of react-storefront when developing apps, in your clone of this repo, run:
+
+```
+yarn link:all
+```
+
+Then, in your app's root directory run:
+
+```
+npm link react-storefront
+npm link babel-plugin-react-storefront
+```
+
 ## Changelog
 
 ### 5.3.0
@@ -238,20 +265,3 @@ All rights reserved.
 * AMP Form POST is now supported and multipart encoded request bodies are parsed automatically.
 * Added `Skeleton` components for creating custom loading skeletons
 
-## Development
-
-### Linking from Projects
-
-To use your local copy of react-storefront when developing Moov PWA projects, in your clone of this repo, run:
-
-```
-yarn install
-cd packages/react-storefront
-yarn link
-```
-
-Then, in your project run:
-
-```
-yarn link react-storefront
-```

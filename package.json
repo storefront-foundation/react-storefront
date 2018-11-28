@@ -29,13 +29,15 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "prepublish": "pushd packages/react-storefront; npm run build; popd;",
-    "precommit": "pushd packages/react-storefront; npm run create-indexes; popd; npm run add-license",
+    "prepublish": "pushd packages/react-storefront; yarn build; popd;",
+    "precommit": "pushd packages/react-storefront; yarn create-indexes; popd; yarn add-license",
     "publish": "lerna publish --force-publish=* --yes",
-    "docs": "pushd packages/react-storefront; npm run docs; popd;",
+    "docs": "pushd packages/react-storefront; yarn docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
-    "test": "pushd packages/react-storefront; npm test; popd;",
-    "add-license": "node ./tasks/addLicense"
+    "test": "pushd packages/react-storefront; yarn test; popd;",
+    "watch": "pushd packages/react-storefront; yarn build --watch; popd;",
+    "add-license": "node ./tasks/addLicense",
+    "link:all": "pushd packages/react-storefront; npm link; popd; pushd packages/babel-plugin-react-storefront; npm link; popd;"
   },
   "workspaces": {
     "packages": [

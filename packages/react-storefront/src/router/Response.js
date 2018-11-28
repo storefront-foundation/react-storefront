@@ -66,7 +66,7 @@ export default class Response {
   constructor(request) {
     this.request = request
     let headers = global.headers || { statusCode: 200, statusText: 'OK' }
-    this.statusCode = headers.statusCode
+    this.statusCode = Number(headers.statusCode)
     this.statusText = headers.statusText
   }
 

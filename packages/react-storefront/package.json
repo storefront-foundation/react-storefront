@@ -13,7 +13,7 @@
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
     "create-indexes": "create-index -ri src",
-    "build": "rm -Rf lib && babel src --source-maps inline --out-dir lib && cp -r src/assets lib",
+    "build": "rm -Rf lib && babel $@ src --source-maps inline --out-dir lib",
     "docs": "npm run build-storybook && npm run deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
