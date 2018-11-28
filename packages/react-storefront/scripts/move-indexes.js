@@ -6,3 +6,5 @@ const created = findIndexFiles(__dirname + '/../src', { silent: true }).map(path
 
 // Move to lib
 created.forEach(path => renameSync(path, path.replace('src', 'lib')));
+
+console.log('Moved', created.length, 'indexes.');
