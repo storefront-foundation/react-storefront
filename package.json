@@ -29,7 +29,7 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "prepublish": "pushd packages/react-storefront; npm run build; popd;",
+    "prepublish": "pushd packages/react-storefront; yarn build; popd;",
     "precommit": "yarn add-license",
     "publish": "lerna publish --force-publish=* --yes",
     "docs": "pushd packages/react-storefront; yarn docs; popd;",
