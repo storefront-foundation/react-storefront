@@ -6,7 +6,7 @@ Build and deploy e-commerce progressive web apps in record time.
 
 # Example Site
 
-[Example Site Built with React Storefront](https://react-storefront-boilerplate.moovdemos.com/)
+[Example Site Built with React Storefront](https://react-storefront-boilerplate.moovweb.cloud)
 
 You can create a local copy of this site using `create-react-storefront` to use as a starting point for your own site:
 
