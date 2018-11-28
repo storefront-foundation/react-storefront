@@ -60,7 +60,6 @@ export { default as Track } from './Track.js';
 export { default as UpdateNotification } from './UpdateNotification.js';
 export { default as amp } from './amp';
 export { default as analytics } from './analytics.js';
-export { default as assets } from './assets';
 export { default as createTheme } from './createTheme.js';
 export { default as fetch } from './fetch.js';
 export { default as fetchLatest } from './fetchLatest.js';
