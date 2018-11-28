@@ -18,7 +18,7 @@ function createClientConfig(
     context: path.join(root, 'src'),
     entry: Object.assign({ 
       main: ['./client.js'],
-      installServiceWorker: path.join(root, 'node_modules', 'react-storefront', 'src', 'amp', 'installServiceWorker')
+      installServiceWorker: path.join(root, 'node_modules', 'react-storefront', 'lib', 'amp', 'installServiceWorker')
     }, entries),
     resolve: {
       alias: Object.assign({}, createAliases(root), {
@@ -41,7 +41,7 @@ function createServerConfig(root, alias) {
     context: path.join(root, 'src'),
     resolve: {
       alias: Object.assign({}, createAliases(root), alias, {
-        fetch: path.join(root, 'node_modules', 'react-storefront', 'src', 'fetch'),
+        fetch: path.join(root, 'node_modules', 'react-storefront', 'lib', 'fetch'),
       })
     }
   })
@@ -102,7 +102,8 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
     },
     {
       test: /\.js$/,
-      include: /(src|node_modules\/react-storefront\/src|node_modules\/react-storefront-extensions\/src)/,
+      include: sourcePath,
+      exclude: /node_modules/,
       use: [babelLoader]
     },
     {
@@ -165,8 +166,8 @@ function createAliases(root) {
     "react-dom": path.join(root, 'node_modules', 'react-dom'),
     "react-helmet": path.join(root, 'node_modules', 'react-helmet'),
     "@material-ui/core": path.join(root, 'node_modules', '@material-ui/core'),
-    "react-storefront": path.join(root, 'node_modules', 'react-storefront', 'src'),
-    "react-storefront-extensions": path.join(root, 'node_modules', 'react-storefront-extensions', 'src'),
+    "react-storefront": path.join(root, 'node_modules', 'react-storefront', 'lib'),
+    "react-storefront-extensions": path.join(root, 'node_modules', 'react-storefront-extensions', 'lib'),
     "react-universal-component": path.join(root, 'node_modules', 'react-universal-component'),
     "react-transition-group": path.join(root, 'node_modules', 'react-transition-group')
   }

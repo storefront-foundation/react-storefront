@@ -12,6 +12,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
+    "create-indexes": "create-index -ri src",
+    "build": "rm -Rf lib && babel src --source-maps inline --out-dir lib && cp -r src/assets lib",
     "docs": "npm run build-storybook && npm run deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
@@ -55,6 +57,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^4.1.2",
+    "create-index": "^2.3.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "gh-pages": "^1.2.0",

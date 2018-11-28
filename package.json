@@ -29,7 +29,8 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "precommit": "gulp addLicense",
+    "prepublish": "pushd packages/react-storefront; npm run build; popd;",
+    "precommit": "pushd packages/react-storefront; npm run create-indexes; popd; npm run add-license",
     "publish": "lerna publish --force-publish=* --yes",
     "docs": "pushd packages/react-storefront; npm run docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
@@ -46,7 +47,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn add-license"
+      "pre-commit": "yarn precommit"
     }
   }
 }
