@@ -61,8 +61,12 @@ module.exports = {
   dev(root, { workboxConfig, entries, eslintConfig = require('./eslint-client'), prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
+    
+    const alias = {
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+    }
 
-    return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries }), {
+    return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries, alias }), {
       devtool: 'inline-cheap-module-source-map',
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { eslintConfig })
@@ -101,7 +105,11 @@ module.exports = {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
-    return Object.assign(createClientConfig(root, { entries }), {
+    const alias = {
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+    }
+
+    return Object.assign(createClientConfig(root, { entries, alias }), {
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
       },

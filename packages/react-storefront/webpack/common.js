@@ -9,7 +9,8 @@ function createClientConfig(
   root,
   {
     // This is where the developer will add additional entries for adapt components.
-    entries = {}
+    entries = {},
+    alias = {}
   }
 ) {
   return {
@@ -18,10 +19,10 @@ function createClientConfig(
     context: path.join(root, 'src'),
     entry: Object.assign({ 
       main: ['./client.js'],
-      installServiceWorker: path.join(root, 'node_modules', 'react-storefront', 'lib', 'amp', 'installServiceWorker')
+      installServiceWorker: path.join(root, 'node_modules', 'react-storefront', 'amp', 'installServiceWorker')
     }, entries),
     resolve: {
-      alias: Object.assign({}, createAliases(root), {
+      alias: Object.assign({}, createAliases(root), alias, {
         fetch: 'isomorphic-unfetch'
       })
     },
@@ -41,7 +42,7 @@ function createServerConfig(root, alias) {
     context: path.join(root, 'src'),
     resolve: {
       alias: Object.assign({}, createAliases(root), alias, {
-        fetch: path.join(root, 'node_modules', 'react-storefront', 'lib', 'fetch'),
+        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch'),
       })
     }
   })
@@ -59,7 +60,7 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
             uglify: true
           },
           useBuiltIns: true,
-          modules
+          modules:false 
         }],
         "react"
       ],
@@ -166,7 +167,6 @@ function createAliases(root) {
     "react-dom": path.join(root, 'node_modules', 'react-dom'),
     "react-helmet": path.join(root, 'node_modules', 'react-helmet'),
     "@material-ui/core": path.join(root, 'node_modules', '@material-ui/core'),
-    "react-storefront": path.join(root, 'node_modules', 'react-storefront', 'lib'),
     "react-storefront-extensions": path.join(root, 'node_modules', 'react-storefront-extensions', 'lib'),
     "react-universal-component": path.join(root, 'node_modules', 'react-universal-component'),
     "react-transition-group": path.join(root, 'node_modules', 'react-transition-group')

@@ -11,7 +11,6 @@ import React from 'react'
 import { SheetsRegistry } from 'react-jss/lib/jss'
 import { flushChunkNames } from 'react-universal-component/server'
 import PWA from './PWA'
-import getStats from 'react-storefront-stats'
 import createMemoryHistory from 'history/createMemoryHistory'
 import { Helmet } from "react-helmet"
 import sanitizeAmpHtml from './amp/sanitizeAmpHtml'
@@ -19,6 +18,8 @@ import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from 
 import Response from './router/Response'
 import { renderAmpAnalyticsTags } from './Track'
 import createRequest from './platform/createRequest'
+
+console.log('Server!!!')
 
 export default class Server {
 
@@ -101,6 +102,7 @@ export default class Server {
       return response.send(JSON.stringify(state))
     }
 
+    const getStats = require('react-storefront-stats')
     const stats = await getStats()
     const amp = pathname.endsWith('.amp')
     const { App, theme }  = this

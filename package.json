@@ -37,7 +37,7 @@
     "test": "pushd packages/react-storefront; yarn test; popd;",
     "watch": "pushd packages/react-storefront; yarn build --watch; popd;",
     "add-license": "node ./tasks/addLicense",
-    "link:all": "pushd packages/react-storefront; npm link; popd; pushd packages/babel-plugin-react-storefront; npm link; popd;"
+    "link:all": "pushd packages/react-storefront/lib; npm link; popd; pushd packages/babel-plugin-react-storefront; npm link; popd;"
   },
   "workspaces": {
     "packages": [
