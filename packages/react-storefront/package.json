@@ -12,8 +12,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
-    "ci": "create-index -ri src",
-    "build": "rm -Rf lib && npm run ci && babel $@ src --source-maps inline --out-dir lib && node scripts/copy-indexes",
+    "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2018 Moov Corporation.  All rights reserved.\n */\" src",
+    "build": "rm -Rf lib && npm run create-indexes && babel $@ src --source-maps inline --out-dir lib && node scripts/copy-indexes",
     "docs": "npm run build-storybook && npm run deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {

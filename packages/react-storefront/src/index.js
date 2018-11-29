@@ -2,6 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+
 // @create-index {"ignore":["platform","registerServiceWorker","amp","launchClient"]}
 
 export { default as ActionButton } from './ActionButton.js';
