@@ -30,7 +30,7 @@
   },
   "scripts": {
     "prepublish": "pushd packages/react-storefront; yarn build; popd;",
-    "precommit": "pushd packages/react-storefront; yarn create-indexes; popd; yarn add-license",
+    "precommit": "yarn add-license",
     "publish": "lerna publish --force-publish=* --yes",
     "docs": "pushd packages/react-storefront; yarn docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
