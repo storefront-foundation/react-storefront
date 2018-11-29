@@ -9,7 +9,7 @@ import { isAlive } from 'mobx-state-tree'
 
 /**
  * A link to a page that automatically set AppModelBase.loading{props.Page}
- * This component wraps moov-pwa/Link and supports all of its props.
+ * This component wraps react-storefront/Link and supports all of its props.
  */
 export default class PageLink extends Component {
 

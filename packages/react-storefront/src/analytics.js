@@ -14,8 +14,8 @@ let _targets = []
  *  // src/analytics.js
  * 
  *  import { configureAnalytics } from 'react-storefront/analytics'
- *  import GoogleTagManagerTarget from 'moov-pwa-analytics/GoogleTagManagerTarget'
- *  import MerkleSearchTarget from 'moov-pwa-analytics/MerkleSearchTarget'
+ *  import GoogleTagManagerTarget from 'react-storefront-analytics/GoogleTagManagerTarget'
+ *  import MerkleSearchTarget from 'react-storefront-analytics/MerkleSearchTarget'
  * 
  *  configureAnalytics(
  *    new GoogleTagManagerTarget({ apiKey: 'my_gtm_api_key' }),
@@ -48,8 +48,8 @@ export function getTargets() {
  *  // src/analytics.js
  * 
  *  import { configureAnalytics } from 'react-storefront/analytics'
- *  import GoogleTagManagerTarget from 'moov-pwa-analytics/GoogleTagManagerTarget'
- *  import MerkleSearchTarget from 'moov-pwa-analytics/MerkleSearchTarget'
+ *  import GoogleTagManagerTarget from 'react-storefront-analytics/GoogleTagManagerTarget'
+ *  import MerkleSearchTarget from 'react-storefront-analytics/MerkleSearchTarget'
  * 
  *  configureAnalytics(
  *    new GoogleTagManagerTarget({ apiKey: 'my_gtm_api_key' }),
