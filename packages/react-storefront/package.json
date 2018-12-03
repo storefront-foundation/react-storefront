@@ -3,7 +3,7 @@
   "version": "5.2.3",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
-  "module": "./lib/index.js",
+  "module": "./index.js",
   "author": "Moovweb",
   "license": "UNLICENSED",
   "scripts": {
