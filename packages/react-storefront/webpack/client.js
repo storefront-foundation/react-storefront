@@ -1,5 +1,7 @@
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+// const MinifyPlugin = require("babel-minify-webpack-plugin");
+
 const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
@@ -63,7 +65,7 @@ module.exports = {
     const dest = path.join(root, 'build', 'assets', 'pwa')
     
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'lib', 'stats', 'getStatsInDev')
     }
 
     return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries, alias }), {
@@ -106,7 +108,7 @@ module.exports = {
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'lib', 'stats', 'getStatsInDev')
     }
 
     return Object.assign(createClientConfig(root, { entries, alias }), {
@@ -124,20 +126,24 @@ module.exports = {
           'process.env.MOOV_ENV': JSON.stringify('production'),
           'process.env.PUBLIC_URL': JSON.stringify('') // needed for registerServiceWorker.js
         }),
-        new UglifyJSPlugin({
-          uglifyOptions: {
-            compress: {
-              warnings: false
-            },
-            mangle: {
-              safari10: true
-            },
-            output: {
-              comments: false
-            },
-            ie8: false
-          }
-        }),
+
+        // new MinifyPlugin(),
+
+
+        // new UglifyJSPlugin({
+        //   uglifyOptions: {
+        //     compress: {
+        //       warnings: false
+        //     },
+        //     mangle: {
+        //       safari10: true
+        //     },
+        //     output: {
+        //       comments: false
+        //     },
+        //     ie8: false
+        //   }
+        // }),
         new StatsWriterPlugin({
           filename: path.relative(dest, path.join(root, 'scripts', 'build', 'stats.json'))
         }),

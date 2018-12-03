@@ -3,7 +3,7 @@
   "version": "5.2.3",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
-  "module": "./index.js",
+  "module": "./lib/index.js",
   "author": "Moovweb",
   "license": "UNLICENSED",
   "scripts": {
@@ -14,7 +14,7 @@
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
     "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2018 Moov Corporation.  All rights reserved.\n */\" src",
-    "build": "rm -Rf lib && npm run create-indexes && babel $@ src --source-maps inline --out-dir lib && node scripts/copy-indexes && cp package.json lib && cp -r webpack lib && cp -r service-worker lib",
+    "build": "rm -Rf lib && npm run create-indexes && babel $@ src --source-maps inline --out-dir lib && cp package.json lib && cp -r webpack lib && cp -r service-worker lib",
     "docs": "yarn build-storybook && yarn deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
@@ -55,6 +55,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-es2017": "^6.24.1",
+    "babel-preset-minify": "^0.5.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^4.1.2",

@@ -15,7 +15,7 @@ module.exports = {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
 
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'lib', 'stats', 'getStatsInDev')
     }
 
     return ({ entry, plugins, output, target, resolve }) => merge(createServerConfig(root, alias), {
@@ -51,7 +51,7 @@ module.exports = {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
 
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStats')
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'lib', 'stats', 'getStats')
     }
 
     return ({ entry, plugins, output, target, resolve }) => merge(createServerConfig(root, alias), {

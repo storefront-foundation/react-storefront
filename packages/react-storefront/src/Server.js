@@ -19,8 +19,6 @@ import Response from './router/Response'
 import { renderAmpAnalyticsTags } from './Track'
 import createRequest from './platform/createRequest'
 
-console.log('Server!!!')
-
 export default class Server {
 
   /**
