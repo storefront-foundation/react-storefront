@@ -19,6 +19,17 @@ create-react-storefront my-site
 
 All rights reserved.
 
+## Contributing
+
+To contribute to react-storefront:
+
+1. Make a branch from `master`
+2. Make your changes
+3. Add tests
+4. Verify all tests pass by running `yarn test`
+5. Add an item to the Change Log in readme.md.  Use your best judgement as to whether your change is a patch, minor release, or major release.  We'll ensure that the correct version number is assigned before it is released.
+6. Create a PR.
+
 ## Development
 
 First, clone the repo and run yarn to install dependencies
