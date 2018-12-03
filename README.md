@@ -52,6 +52,10 @@ npm link babel-plugin-react-storefront
 
 * Transpiling code to ES5 before publishing
 
+### 5.2.4
+
+* Fixed a bug with sending redirects in response to POST requests from AMP.
+
 ### 5.2.3
 
 * Prevents errors when webpack's OpenBrowserPlugin fails
