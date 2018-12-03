@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.10.2
+
+* Fixed a bug with sending redirects in response to POST requests from AMP.
+
 ### 4.10.1
 
 * Added option to override selectedIndex in ImageSwitcher
