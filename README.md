@@ -21,6 +21,10 @@ All rights reserved.
 
 ## Changelog
 
+### 5.2.4
+
+* Fixed a bug with sending redirects in response to POST requests from AMP.
+
 ### 5.2.3
 
 * Prevents errors when webpack's OpenBrowserPlugin fails
