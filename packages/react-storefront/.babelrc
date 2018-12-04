@@ -5,7 +5,8 @@
         "browsers": "> 1%",
         "uglify": true
       },
-      "useBuiltIns": true
+      "useBuiltIns": true,
+      "modules": false
     }],
     "stage-0",
     "react"
@@ -17,9 +18,7 @@
     }],
     "transform-async-to-generator",
     "transform-decorators-legacy",
-    "syntax-dynamic-import",
     "transform-object-rest-spread",
-    "transform-class-properties",
-    "universal-import"
+    "transform-class-properties"
   ]
 }

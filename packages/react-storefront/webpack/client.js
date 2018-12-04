@@ -1,7 +1,5 @@
 const path = require('path');
-// const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-// const MinifyPlugin = require("babel-minify-webpack-plugin");
-
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
@@ -126,24 +124,20 @@ module.exports = {
           'process.env.MOOV_ENV': JSON.stringify('production'),
           'process.env.PUBLIC_URL': JSON.stringify('') // needed for registerServiceWorker.js
         }),
-
-        // new MinifyPlugin(),
-
-
-        // new UglifyJSPlugin({
-        //   uglifyOptions: {
-        //     compress: {
-        //       warnings: false
-        //     },
-        //     mangle: {
-        //       safari10: true
-        //     },
-        //     output: {
-        //       comments: false
-        //     },
-        //     ie8: false
-        //   }
-        // }),
+        new UglifyJSPlugin({
+          uglifyOptions: {
+            compress: {
+              warnings: false
+            },
+            mangle: {
+              safari10: true
+            },
+            output: {
+              comments: false
+            },
+            ie8: false
+          }
+        }),
         new StatsWriterPlugin({
           filename: path.relative(dest, path.join(root, 'scripts', 'build', 'stats.json'))
         }),
