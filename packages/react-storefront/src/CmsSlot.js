@@ -20,7 +20,7 @@ export const styles = theme => ({
  * A container for HTML blob content from a CMS.  Content is dangerously inserted into the DOM.
  * Pass the html as a string as the child of this component.
  */
-@withStyles(styles)
+@withStyles(styles, { name: 'RSFCmsSlot' })
 export default class CmsSlot extends Component {
   static proptypes = {
     /**
