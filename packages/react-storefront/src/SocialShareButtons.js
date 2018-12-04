@@ -64,7 +64,7 @@ export const styles = theme => ({
   }
 });
 
-@withStyles(styles)
+@withStyles(styles, { name: 'RSFSocialShareButton' })
 class SocialShareButton extends React.Component {
   render() {
     const { classes, href, path, name } = this.props;
