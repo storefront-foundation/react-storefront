@@ -70,7 +70,7 @@ export const styles = theme => ({
 });
 
 @withStyles(styles)
-@inject(({ app, history }) => ({ tabs: app.tabs, history }))
+@inject(({ app, history }) => ({ tabs: app.tabs, amp: app.amp, history }))
 @observer
 export default class NavTabs extends Component {
 
@@ -88,7 +88,7 @@ export default class NavTabs extends Component {
   }
 
   render() {
-    const { tabs, classes, staticContext, history, elevation, ...tabsProps } = this.props
+    const { tabs, classes, staticContext, history, elevation, amp, ...tabsProps } = this.props
 
     if (!tabs) return null
 
@@ -113,16 +113,27 @@ export default class NavTabs extends Component {
   }
 
   renderTab = item => {
-    const { classes } = this.props
-
-    return (
-      <Fragment>
-        <Track event="topNavClicked" item={item}>
-          <div className={classes.clickEl} data-th="topNavClicked"></div>
-        </Track>
-        <Link state={() => item.state && JSON.parse(item.state)} className={classes.link} to={item.url} prefetch={item.prefetch} onClick={this.onLinkClick}>{item.text}</Link>
-      </Fragment>
+    const { classes, amp } = this.props
+    
+    const link = (
+      <Link state={() => item.state && JSON.parse(item.state)} className={classes.link} to={item.url} prefetch={item.prefetch} onClick={this.onLinkClick}>{item.text}</Link>
     )
+
+    if (amp) {
+      return (
+        <Track event="topNavClicked" item={item}>{link}</Track>
+      )
+    } else {
+      return (
+        <Fragment>
+          <Track event="topNavClicked" item={item}>
+            <div className={classes.clickEl} data-th="topNavClicked"></div>
+          </Track>
+          {link}
+        </Fragment>
+      )
+    }
+
   }
 
   handleChange = (_event, newValue) => {
