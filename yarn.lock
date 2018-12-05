@@ -4393,9 +4393,9 @@ eslint-plugin-jsx-a11y@^6.1.2:
     has "^1.0.3"
     jsx-ast-utils "^2.0.1"
 
-eslint-plugin-react-storefront@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-storefront/-/eslint-plugin-react-storefront-0.0.1.tgz#cdf73ca9682cf8ff342b202270c9c856e878c58f"
+eslint-plugin-react-storefront@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-storefront/-/eslint-plugin-react-storefront-0.0.7.tgz#0ec17c492d3176941f7a06baa57869def820a90a"
 
 eslint-plugin-react@^7.11.1:
   version "7.11.1"
