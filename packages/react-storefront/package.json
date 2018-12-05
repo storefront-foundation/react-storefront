@@ -81,6 +81,7 @@
     "simulant": "^0.2.2",
     "sinon": "^5.0.3",
     "storybook-addon-jsx": "^5.4.0",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {

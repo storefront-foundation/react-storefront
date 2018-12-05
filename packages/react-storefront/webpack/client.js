@@ -8,6 +8,8 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 const { createClientConfig, createLoaders, createPlugins} = require('./common')
 const hash = require('md5-file').sync
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime }) {
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
   const swHash = hash(path.join(swBootstrap))
@@ -87,6 +89,7 @@ module.exports = {
         new StatsWriterPlugin({
           filename: 'stats.json'
         }),
+        new BundleAnalyzerPlugin(),
         ...createServiceWorkerPlugins({ root, dest, workboxConfig: process.env.MOOV_SW ? workboxConfig : null, prefetchRampUpTime })
       ]
     })
@@ -145,6 +148,7 @@ module.exports = {
           from: path.join(root, 'public'),
           to: path.join(root, 'build', 'assets')
         }]),
+        new BundleAnalyzerPlugin(),
         ...createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime })
       ].concat(createPlugins(root))
     });
