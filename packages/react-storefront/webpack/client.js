@@ -89,7 +89,6 @@ module.exports = {
         new StatsWriterPlugin({
           filename: 'stats.json'
         }),
-        new BundleAnalyzerPlugin(),
         ...createServiceWorkerPlugins({ root, dest, workboxConfig: process.env.MOOV_SW ? workboxConfig : null, prefetchRampUpTime })
       ]
     })
@@ -107,9 +106,14 @@ module.exports = {
   prod(root, { workboxConfig = {}, entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
+    const optionalPlugins = []
 
     const alias = {
       'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+    }
+
+    if (process.env.ANALYZE === 'true') {
+      optionalPlugins.push(new BundleAnalyzerPlugin())
     }
 
     return Object.assign(createClientConfig(root, { entries, alias }), {
@@ -148,7 +152,7 @@ module.exports = {
           from: path.join(root, 'public'),
           to: path.join(root, 'build', 'assets')
         }]),
-        new BundleAnalyzerPlugin(),
+        ...optionalPlugins,
         ...createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime })
       ].concat(createPlugins(root))
     });
