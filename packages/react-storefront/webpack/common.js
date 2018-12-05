@@ -59,7 +59,7 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
             browsers: "> 1%",
             uglify: true
           },
-          useBuiltIns: true,
+          useBuiltIns: "usage",
           modules
         }],
         "react"

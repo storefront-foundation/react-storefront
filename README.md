@@ -61,7 +61,9 @@ npm link babel-plugin-react-storefront
 
 ### 5.3.0
 
-* Transpiling code to ES5 before publishing
+* Code is now transpiled to ES5 before publishing
+* Bundle size reduced by about 20%
+* Can now run your build with an environment variable `ANALYZE=true` to see client build stats in your browser.
 
 ### 5.2.4
 
