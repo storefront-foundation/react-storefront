@@ -11,7 +11,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import registerServiceWorker from './registerServiceWorker'
 import PWA from './PWA'
 import { onSnapshot } from 'mobx-state-tree'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 
 /**
  * Bootstraps the PWA react application.

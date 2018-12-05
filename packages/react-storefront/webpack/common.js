@@ -1,7 +1,7 @@
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const { merge } = require('lodash')
+const merge = require('lodash/merge')
 const path = require('path')
 const webpack = require('webpack')
 

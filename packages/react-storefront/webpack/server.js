@@ -1,6 +1,6 @@
 const path = require('path')
 const { createServerConfig, createLoaders } = require('./common')
-const { merge } = require('lodash')
+const merge = require('lodash/merge')
 
 module.exports = {
 

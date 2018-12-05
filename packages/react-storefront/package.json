@@ -8,14 +8,15 @@
   "license": "UNLICENSED",
   "scripts": {
     "test:unit": "jest",
-    "test": "jest test.js && yarn run test:browser",
+    "test": "jest test.js && yarn test:browser",
     "test:browser": "webpack --config=config/webpack.config.js && karma start config/karma.conf.js --single-run",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
     "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2018 Moov Corporation.  All rights reserved.\n */\" src",
-    "watch": "yarn run build && babel --watch src --source-maps inline --out-dir lib",
-    "build": "rm -Rf lib && yarn run create-indexes && babel $@ src --source-maps inline --out-dir lib && cp package.json lib && cp -r webpack lib && cp -r service-worker lib",
+    "watch": "yarn build && babel --watch src --source-maps inline --out-dir lib",
+    "clean": "mkdir -p lib; find lib -not -name 'node_modules' -delete",
+    "build": "yarn run clean && yarn create-indexes && babel $@ src --source-maps inline --out-dir lib && cp package.json lib && cp -r webpack lib && cp -r service-worker lib",
     "docs": "yarn build-storybook && yarn deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {

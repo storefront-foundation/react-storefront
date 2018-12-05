@@ -29,16 +29,16 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "build": "cd packages/react-storefront; yarn build; cd ../../;",
+    "build": "pushd packages/react-storefront; yarn build; popd;",
     "precommit": "yarn add-license",
     "update-versions": "lerna publish --skip-npm --yes",
-    "publish": "yarn run update-versions; yarn run build; cd packages/react-storefront/lib; yarn publish --non-interactive; cd ../../../; cd packages/babel-plugin-react-storefront; yarn publish --non-interactive; cd ../../",
-    "docs": "cd packages/react-storefront; yarn docs; cd ../../;",
+    "publish": "yarn update-versions; yarn build; pushd packages/react-storefront/lib; yarn publish --non-interactive; popd; pushd packages/babel-plugin-react-storefront; yarn publish --non-interactive; popd",
+    "docs": "pushd packages/react-storefront; yarn docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
-    "test": "cd packages/react-storefront; yarn test; cd ../../;",
-    "watch": "cd packages/react-storefront; yarn watch; cd ../../;",
+    "test": "pushd packages/react-storefront; yarn test; popd;",
+    "watch": "pushd packages/react-storefront; yarn watch; popd;",
     "add-license": "node ./tasks/addLicense",
-    "link:all": "cd packages/react-storefront/lib; yarn link; cd ../../../; cd packages/babel-plugin-react-storefront; yarn link; cd ../../;"
+    "link:all": "yarn build; pushd packages/react-storefront/lib; npm link; popd; pushd packages/babel-plugin-react-storefront; npm link; popd;"
   },
   "workspaces": {
     "packages": [
