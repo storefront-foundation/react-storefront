@@ -63,7 +63,7 @@ module.exports = {
     const dest = path.join(root, 'build', 'assets', 'pwa')
     
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'lib', 'stats', 'getStatsInDev')
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
     }
 
     return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries, alias }), {
@@ -106,7 +106,7 @@ module.exports = {
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'lib', 'stats', 'getStatsInDev')
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
     }
 
     return Object.assign(createClientConfig(root, { entries, alias }), {
