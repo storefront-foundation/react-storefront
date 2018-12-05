@@ -38,16 +38,16 @@ First, clone the repo and run yarn to install dependencies
 yarn
 ```
 
-To automatically transpile your code when you make changes, run:
-
-```
-yarn watch
-```
-
 To use your local copy of react-storefront when developing apps, in your clone of this repo, run:
 
 ```
 yarn link:all
+```
+
+To automatically transpile your code when you make changes, run:
+
+```
+yarn watch
 ```
 
 Then, in your app's root directory run:
