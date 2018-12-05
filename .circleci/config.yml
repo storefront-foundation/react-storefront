@@ -34,5 +34,6 @@ jobs:
       - run: 
           command: |
             cd packages/react-storefront
-            yarn test
-            yarn test:browser
+            yarn test:unit
+            # yarn test
+            # yarn test:browser

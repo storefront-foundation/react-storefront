@@ -2,9 +2,9 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import fetch from 'fetch'
+const fetch = require('fetch').default
 
-export default function getStatsInDev() {
+module.exports = function getStatsInDev() {
   return fetch(`http:${env.asset_host}/pwa/stats.json`)
     .then(res => res.json())
 }

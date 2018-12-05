@@ -4,8 +4,8 @@
  */
 import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { get } from 'lodash';
-import { observer, inject } from 'mobx-react';
+import get from 'lodash/get'
+import { observer, inject } from 'mobx-react'
 import ExpandableSection from './ExpandableSection'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormGroup from '@material-ui/core/FormGroup'

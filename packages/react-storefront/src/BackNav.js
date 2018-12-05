@@ -3,7 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React, { Component } from 'react'
-import { get } from 'lodash'
+import get from 'lodash/get'
 import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import ListViewIcon from '@material-ui/icons/ViewAgenda'
 import GridViewIcon from '@material-ui/icons/BorderAll'
@@ -11,7 +11,6 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
 import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import analytics from './analytics'
 import classnames from 'classnames'
 import { LAYOUT_LIST,  LAYOUT_GRID } from './model/SearchResultsModelBase'
 import Paper from '@material-ui/core/Paper'
