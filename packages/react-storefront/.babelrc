@@ -5,8 +5,7 @@
         "browsers": "> 1%",
         "uglify": true
       },
-      "useBuiltIns": true,
-      "modules": false
+      "useBuiltIns": true
     }],
     "stage-0",
     "react"
