@@ -35,9 +35,9 @@
     "docs": "cd packages/react-storefront; yarn docs; cd ../../;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
     "test": "cd packages/react-storefront; yarn test; cd ../../;",
-    "watch": "cd packages/react-storefront; yarn build --watch; cd ../../;",
+    "watch": "cd packages/react-storefront; yarn watch; cd ../../;",
     "add-license": "node ./tasks/addLicense",
-    "link:all": "cd packages/react-storefront/lib; npm link; cd ../../../; cd packages/babel-plugin-react-storefront; npm link; cd ../../;"
+    "link:all": "cd packages/react-storefront/lib; yarn link; cd ../../../; cd packages/babel-plugin-react-storefront; yarn link; cd ../../;"
   },
   "workspaces": {
     "packages": [
