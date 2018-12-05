@@ -10,6 +10,11 @@
     "stage-0",
     "react"
   ],
+  "env": {
+    "production": {
+      "presets": ["minify"]
+    }
+  },
   "plugins": [
     ["transform-runtime", {
       "polyfill": false,
