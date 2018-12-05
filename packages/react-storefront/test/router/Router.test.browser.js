@@ -37,7 +37,7 @@ describe('Router:Browser', function() {
 
     runAll = function(method, path) {
       const [ pathname, search ] = path.split(/\?/)
-      const request = { pathname, search: search ? `?${search}` : '', method }
+      const request = { path: pathname, pathname, search: search ? `?${search}` : '', method }
       const promise = router.runAll(request, response)
 
       if (promise) {
@@ -319,9 +319,9 @@ describe('Router:Browser', function() {
       cacheHandler.fn = sinon.fake()
   
       router.get('/test', 
+        cacheHandler,
         fromClient({ view: 'test' }),
         fromServer(() => Promise.resolve({ value: 'test' })),
-        cacheHandler
       )
   
       await router.runAll({ pathname: '/test', search: '' }, response)
