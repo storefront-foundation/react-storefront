@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.3.1
+
+* Fix bugs related to production builds
+
 ### 5.3.0
 
 * Code is now transpiled to ES5 before publishing
