@@ -180,8 +180,7 @@ export default class TabsRow extends Component {
               const itemWithClasses = {
                 ...item,
                 classes: {
-                  root: classes.tab,
-                  selected: classes.selectedTab
+                  root: classes.tab
                 }
               }
               return tabRenderer(itemWithClasses, i)
