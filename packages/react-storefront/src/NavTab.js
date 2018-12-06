@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Track from './Track'
 import Link from './Link'
 import Tab from '@material-ui/core/Tab'
@@ -85,14 +85,14 @@ export default class NavTab extends Component {
 
     if (children) {
       return children
-    } else if (item.items.length) {
+    } else if (item.items && item.items.length) {
       return  (
         <div className={classes.menu}>
-          { item.items ? item.items.map((item, i) => (
+          {item.items.map((item, i) => (
             <div key={i} className={classes.menuItem}>
               <Link to={item.url} onClick={onItemClick}>{item.text}</Link>
             </div>
-          )) : null}
+          ))}
         </div>
       )
     } else {

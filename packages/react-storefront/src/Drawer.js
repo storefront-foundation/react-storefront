@@ -7,7 +7,7 @@ import ResizeObserver from 'resize-observer-polyfill'
 import MUIDrawer from '@material-ui/core/Drawer'
 import { withStyles } from '@material-ui/core/styles';
 import Close from '@material-ui/icons/Close'
-import Button from '@material-ui/core/Button'
+import Fab from '@material-ui/core/Fab'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import { inject } from 'mobx-react'
@@ -93,15 +93,15 @@ export default class Drawer extends Component {
     const { amp, ampStateId, ampBindClosed, variant, closeButtonProps, showCloseButton, open, onRequestClose, title, children, classes, autoAdjustBodyPadding, ...rest } = this.props
 
     return (
-      <MUIDrawer 
-        anchor="bottom" 
+      <MUIDrawer
+        anchor="bottom"
         classes={{
           paper: classnames({
             [classes.paper]: true,
             [classes.ampClosed]: amp && !open
           })
         }}
-        amp-bind={ampBindClosed ? `class=>${ampStateId}.${ampBindClosed} ? '${classes.ampClosed}' : null` : null} 
+        amp-bind={ampBindClosed ? `class=>${ampStateId}.${ampBindClosed} ? '${classes.ampClosed}' : null` : null}
         open={(amp && variant === "temporary") || open}
         variant={variant}
         {...rest}
@@ -114,17 +114,16 @@ export default class Drawer extends Component {
           )}
 
           { showCloseButton && (
-            <Button 
-              variant="fab" 
-              color="primary" 
-              className={classes.closeButton} 
-              onClick={this.closeDrawer} 
+            <Fab
+              color="primary"
+              className={classes.closeButton}
+              onClick={this.closeDrawer}
               style={{ display: open ? '' : 'none' }}
               on={ampBindClosed ? `tap:AMP.setState({ ${ampStateId}: { ${ampBindClosed}: true }})` : null}
               {...closeButtonProps}
             >
               <Close/>
-            </Button>
+            </Fab>
           )}
 
           { children }
