@@ -6,7 +6,6 @@ import { configure } from 'mobx'
 
 configure({ isolateGlobalState: true })
 
-import 'babel-polyfill'
 import React from 'react'
 import { SheetsRegistry } from 'react-jss/lib/jss'
 import { flushChunkNames } from 'react-universal-component/server'
