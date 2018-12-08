@@ -10,6 +10,10 @@ All rights reserved.
 
 ## Changelog
 
+### 4.10.4
+
+* Fixed issue with importScripts in Chrome 71
+
 ### 4.10.3
 
 * Fixed NavTab click handling in AMP
