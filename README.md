@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.3.2
+
+* Fixes an issue with Chrome 71 which prevents async loading of scripts by the service worker.
+
 ### 5.3.1
 
 * Fix bugs related to production builds
