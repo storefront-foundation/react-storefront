@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.4.0
+
+* Added `itemRenderer` prop to `Menu`
+
 ### 5.3.2
 
 * Fixes an issue with Chrome 71 which prevents async loading of scripts by the service worker.
