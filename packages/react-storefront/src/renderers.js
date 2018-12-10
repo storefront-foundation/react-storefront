@@ -17,12 +17,6 @@ import createGenerateClassName from './utils/createGenerateClassName'
 // Escape <\ in a closing script tag to avoid untimely script closing
 const getSanitizedModelJson = state => JSON.stringify(state.toJSON()).replace(/<\/script/gi, '<\\/script')
 
-let scriptContext = '/pwa';
-
-export function setScriptContext(context) {
-	scriptContext = context;
-}
-
 /**
  * Get javascript asset filename by chunk name 
  * @param  {Object} stats Webpack generated stats
@@ -85,7 +79,8 @@ export function renderInitialStateScript({ state, defer, initialStateProperty = 
 export function renderScript({ stats, chunk, defer }) {
 	const src = getJS(stats, chunk);
 	if (!src) return '';
-	return `<script type="text/javascript" ${defer ? 'defer': ''} src="${scriptContext}/${src}"></script>`;
+	const assetPathBase = process.env.ASSET_PATH_BASE || '';
+	return `<script type="text/javascript" ${defer ? 'defer': ''} src="${assetPathBase}/pwa/${src}"></script>`;
 }
 
 /**
