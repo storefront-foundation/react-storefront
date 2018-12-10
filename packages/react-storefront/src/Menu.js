@@ -432,11 +432,8 @@ export default class Menu extends Component {
   }
 
   renderGroup(depth, item, key) {
-    let { app: { menu }, classes, useExpanders, simple, ExpandIcon, CollapseIcon, theme } = this.props
+    let { app: { menu }, classes, useExpanders, simple } = this.props
     const showExpander = simple || (depth > 0 && useExpanders)
-
-    ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMore
-    CollapseIcon = CollapseIcon || theme.CollapseIcon || ExpandLess
 
     const elements = [
       <MenuItem
@@ -451,7 +448,7 @@ export default class Menu extends Component {
           })
         }}
       >
-        { this.renderItemContents(item, false) }
+        { this.renderItemContents(item, false, showExpander) }
       </MenuItem>
     ]
 
@@ -487,8 +484,8 @@ export default class Menu extends Component {
     );
   }
 
-  renderItemContents(item, leaf) {
-    const { itemRenderer, classes, showExpander } = this.props
+  renderItemContents(item, leaf, showExpander) {
+    let { itemRenderer, classes, ExpandIcon, CollapseIcon, theme } = this.props
 
     let contents
     
@@ -513,6 +510,9 @@ export default class Menu extends Component {
         </Fragment>
       )
     } else {
+      ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMore
+      CollapseIcon = CollapseIcon || theme.CollapseIcon || ExpandLess
+  
       return (
         <Fragment>
           {item.image && (

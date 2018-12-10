@@ -56,18 +56,18 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                                                                     <WithStyles(ListItemIcon) className="RSFMenu-listItemIcon-703">
                                                                       <ListItemIcon className="RSFMenu-listItemIcon-703" classes={{...}}>
                                                                         <div className="MuiListItemIcon-root-778 RSFMenu-listItemIcon-703">
-                                                                          <pure(ChevronRightIcon) className="RSFMenu-icon-697">
-                                                                            <ChevronRightIcon className="RSFMenu-icon-697">
+                                                                          <pure(ExpandMoreIcon) className="RSFMenu-icon-697">
+                                                                            <ExpandMoreIcon className="RSFMenu-icon-697">
                                                                               <WithStyles(SvgIcon) className="RSFMenu-icon-697">
                                                                                 <SvgIcon className="RSFMenu-icon-697" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
                                                                                   <svg className="MuiSvgIcon-root-779 RSFMenu-icon-697" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                                                     <path fill="none" d="M0 0h24v24H0z" />
                                                                                   </svg>
                                                                                 </SvgIcon>
                                                                               </WithStyles(SvgIcon)>
-                                                                            </ChevronRightIcon>
-                                                                          </pure(ChevronRightIcon)>
+                                                                            </ExpandMoreIcon>
+                                                                          </pure(ExpandMoreIcon)>
                                                                         </div>
                                                                       </ListItemIcon>
                                                                     </WithStyles(ListItemIcon)>
@@ -116,18 +116,18 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                                                                                         <WithStyles(ListItemIcon) className="RSFMenu-listItemIcon-703">
                                                                                           <ListItemIcon className="RSFMenu-listItemIcon-703" classes={{...}}>
                                                                                             <div className="MuiListItemIcon-root-778 RSFMenu-listItemIcon-703">
-                                                                                              <pure(ChevronRightIcon) className="RSFMenu-icon-697">
-                                                                                                <ChevronRightIcon className="RSFMenu-icon-697">
+                                                                                              <pure(ExpandMoreIcon) className="RSFMenu-icon-697">
+                                                                                                <ExpandMoreIcon className="RSFMenu-icon-697">
                                                                                                   <WithStyles(SvgIcon) className="RSFMenu-icon-697">
                                                                                                     <SvgIcon className="RSFMenu-icon-697" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
                                                                                                       <svg className="MuiSvgIcon-root-779 RSFMenu-icon-697" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                                                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                                                                         <path fill="none" d="M0 0h24v24H0z" />
                                                                                                       </svg>
                                                                                                     </SvgIcon>
                                                                                                   </WithStyles(SvgIcon)>
-                                                                                                </ChevronRightIcon>
-                                                                                              </pure(ChevronRightIcon)>
+                                                                                                </ExpandMoreIcon>
+                                                                                              </pure(ExpandMoreIcon)>
                                                                                             </div>
                                                                                           </ListItemIcon>
                                                                                         </WithStyles(ListItemIcon)>
@@ -379,18 +379,18 @@ exports[`Menu should call a custom itemRenderer 1`] = `
                                                                     <WithStyles(ListItemIcon) className="RSFMenu-listItemIcon-810">
                                                                       <ListItemIcon className="RSFMenu-listItemIcon-810" classes={{...}}>
                                                                         <div className="MuiListItemIcon-root-885 RSFMenu-listItemIcon-810">
-                                                                          <pure(ChevronRightIcon) className="RSFMenu-icon-804">
-                                                                            <ChevronRightIcon className="RSFMenu-icon-804">
+                                                                          <pure(ExpandMoreIcon) className="RSFMenu-icon-804">
+                                                                            <ExpandMoreIcon className="RSFMenu-icon-804">
                                                                               <WithStyles(SvgIcon) className="RSFMenu-icon-804">
                                                                                 <SvgIcon className="RSFMenu-icon-804" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
                                                                                   <svg className="MuiSvgIcon-root-886 RSFMenu-icon-804" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                                                     <path fill="none" d="M0 0h24v24H0z" />
                                                                                   </svg>
                                                                                 </SvgIcon>
                                                                               </WithStyles(SvgIcon)>
-                                                                            </ChevronRightIcon>
-                                                                          </pure(ChevronRightIcon)>
+                                                                            </ExpandMoreIcon>
+                                                                          </pure(ExpandMoreIcon)>
                                                                         </div>
                                                                       </ListItemIcon>
                                                                     </WithStyles(ListItemIcon)>
@@ -439,18 +439,18 @@ exports[`Menu should call a custom itemRenderer 1`] = `
                                                                                         <WithStyles(ListItemIcon) className="RSFMenu-listItemIcon-810">
                                                                                           <ListItemIcon className="RSFMenu-listItemIcon-810" classes={{...}}>
                                                                                             <div className="MuiListItemIcon-root-885 RSFMenu-listItemIcon-810">
-                                                                                              <pure(ChevronRightIcon) className="RSFMenu-icon-804">
-                                                                                                <ChevronRightIcon className="RSFMenu-icon-804">
+                                                                                              <pure(ExpandMoreIcon) className="RSFMenu-icon-804">
+                                                                                                <ExpandMoreIcon className="RSFMenu-icon-804">
                                                                                                   <WithStyles(SvgIcon) className="RSFMenu-icon-804">
                                                                                                     <SvgIcon className="RSFMenu-icon-804" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
                                                                                                       <svg className="MuiSvgIcon-root-886 RSFMenu-icon-804" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                                                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                                                                         <path fill="none" d="M0 0h24v24H0z" />
                                                                                                       </svg>
                                                                                                     </SvgIcon>
                                                                                                   </WithStyles(SvgIcon)>
-                                                                                                </ChevronRightIcon>
-                                                                                              </pure(ChevronRightIcon)>
+                                                                                                </ExpandMoreIcon>
+                                                                                              </pure(ExpandMoreIcon)>
                                                                                             </div>
                                                                                           </ListItemIcon>
                                                                                         </WithStyles(ListItemIcon)>
@@ -1261,18 +1261,18 @@ exports[`Menu should render in simple mode 1`] = `
                                                                     <WithStyles(ListItemIcon) className="RSFMenu-listItemIcon-11">
                                                                       <ListItemIcon className="RSFMenu-listItemIcon-11" classes={{...}}>
                                                                         <div className="MuiListItemIcon-root-86 RSFMenu-listItemIcon-11">
-                                                                          <pure(ChevronRightIcon) className="RSFMenu-icon-5">
-                                                                            <ChevronRightIcon className="RSFMenu-icon-5">
+                                                                          <pure(ExpandMoreIcon) className="RSFMenu-icon-5">
+                                                                            <ExpandMoreIcon className="RSFMenu-icon-5">
                                                                               <WithStyles(SvgIcon) className="RSFMenu-icon-5">
                                                                                 <SvgIcon className="RSFMenu-icon-5" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
                                                                                   <svg className="MuiSvgIcon-root-87 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                                                     <path fill="none" d="M0 0h24v24H0z" />
                                                                                   </svg>
                                                                                 </SvgIcon>
                                                                               </WithStyles(SvgIcon)>
-                                                                            </ChevronRightIcon>
-                                                                          </pure(ChevronRightIcon)>
+                                                                            </ExpandMoreIcon>
+                                                                          </pure(ExpandMoreIcon)>
                                                                         </div>
                                                                       </ListItemIcon>
                                                                     </WithStyles(ListItemIcon)>
@@ -1321,18 +1321,18 @@ exports[`Menu should render in simple mode 1`] = `
                                                                                         <WithStyles(ListItemIcon) className="RSFMenu-listItemIcon-11">
                                                                                           <ListItemIcon className="RSFMenu-listItemIcon-11" classes={{...}}>
                                                                                             <div className="MuiListItemIcon-root-86 RSFMenu-listItemIcon-11">
-                                                                                              <pure(ChevronRightIcon) className="RSFMenu-icon-5">
-                                                                                                <ChevronRightIcon className="RSFMenu-icon-5">
+                                                                                              <pure(ExpandMoreIcon) className="RSFMenu-icon-5">
+                                                                                                <ExpandMoreIcon className="RSFMenu-icon-5">
                                                                                                   <WithStyles(SvgIcon) className="RSFMenu-icon-5">
                                                                                                     <SvgIcon className="RSFMenu-icon-5" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
                                                                                                       <svg className="MuiSvgIcon-root-87 RSFMenu-icon-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                                                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                                                                         <path fill="none" d="M0 0h24v24H0z" />
                                                                                                       </svg>
                                                                                                     </SvgIcon>
                                                                                                   </WithStyles(SvgIcon)>
-                                                                                                </ChevronRightIcon>
-                                                                                              </pure(ChevronRightIcon)>
+                                                                                                </ExpandMoreIcon>
+                                                                                              </pure(ExpandMoreIcon)>
                                                                                             </div>
                                                                                           </ListItemIcon>
                                                                                         </WithStyles(ListItemIcon)>
