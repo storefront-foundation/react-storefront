@@ -1,6 +1,7 @@
 const path = require('path')
 const { createServerConfig, createLoaders } = require('./common')
 const merge = require('lodash/merge')
+const version = require('../package.json').version;
 
 module.exports = {
 
@@ -36,7 +37,8 @@ module.exports = {
         new webpack.ExtendedAPIPlugin(),
         new webpack.DefinePlugin({
           'process.env.MOOV_RUNTIME': JSON.stringify('server'),
-          'process.env.MOOV_ENV': JSON.stringify('development')
+          'process.env.MOOV_ENV': JSON.stringify('development'),
+          'process.env.REACT_STOREFRONT_VERSION': JSON.stringify(version)
         })
       ]
     })
@@ -70,7 +72,8 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
           'process.env.MOOV_RUNTIME': JSON.stringify('server'),
-          'process.env.MOOV_ENV': JSON.stringify('production')
+          'process.env.MOOV_ENV': JSON.stringify('production'),
+          'process.env.REACT_STOREFRONT_VERSION': JSON.stringify(version)
         })
       ]
     })
