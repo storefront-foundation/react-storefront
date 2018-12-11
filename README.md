@@ -59,6 +59,11 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.5.0
+
+* Added `envVariables` to webpack server options
+* Added ability to set asset path base
+
 ### 5.4.0
 
 * Added `itemRenderer` prop to `Menu`
