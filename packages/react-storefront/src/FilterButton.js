@@ -75,7 +75,7 @@ export default class FilterButton extends Component {
 
     this.state = {
       open: app.location.search.indexOf('openFilter') !== -1, 
-      mountDrawer: false
+      mountDrawer: app.location.search.indexOf('openFilter') !== -1
     }
   }
 
