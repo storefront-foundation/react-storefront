@@ -11,9 +11,8 @@ describe('createRequest', () => {
     headers: JSON.stringify({})
   }
 
-  it('should warn when you access path', () => {
+  it('should create a request', () => {
     console.warn = jest.fn()
-    expect(createRequest().path).toBe('/')
-    expect(console.warn).toHaveBeenCalledWith('warning: request.path is deprecated and will be removed in a future version of react-storefront')
+    expect(createRequest()).not.toBeNull()
   })
 })

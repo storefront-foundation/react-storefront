@@ -79,7 +79,8 @@ export function renderInitialStateScript({ state, defer, initialStateProperty = 
 export function renderScript({ stats, chunk, defer }) {
 	const src = getJS(stats, chunk);
 	if (!src) return '';
-	return `<script type="text/javascript" ${defer ? 'defer': ''} src="/pwa/${src}"></script>`;
+	const assetPathBase = process.env.ASSET_PATH_BASE || '';
+	return `<script type="text/javascript" ${defer ? 'defer': ''} src="${assetPathBase}/pwa/${src}"></script>`;
 }
 
 /**

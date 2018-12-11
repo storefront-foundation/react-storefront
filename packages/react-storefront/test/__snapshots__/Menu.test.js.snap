@@ -323,6 +323,600 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
 </TestProvider>
 `;
 
+exports[`Menu should call a custom itemRenderer 1`] = `
+<TestProvider app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithTheme(WithStyles(inject-Menu-with-app)) simple={true} itemRenderer={[Function: mockConstructor]}>
+        <WithStyles(inject-Menu-with-app) theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]}>
+          <inject-Menu-with-app theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]} classes={{...}}>
+            <Menu theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]} classes={{...}} app={{...}} drawerWidth={330} expandFirstItem={false} align="left">
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
+                  <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-815 MuiDrawer-modal-826" open={false} onClose={[Function: res]} keepMounted={true}>
+                    <Modal BackdropProps={{...}} className="MuiDrawer-root-815 MuiDrawer-modal-826" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
+                      <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
+                        <Portal containerInfo={{...}}>
+                          <div className="MuiModal-root-827 MuiDrawer-root-815 MuiDrawer-modal-826 MuiModal-hidden-828">
+                            <WithStyles(Backdrop) open={false} onClick={[Function]} transitionDuration={{...}}>
+                              <Backdrop open={false} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
+                                <WithTheme(Fade) in={false} timeout={{...}} onClick={[Function]}>
+                                  <Fade theme={{...}} in={false} timeout={{...}} onClick={[Function]}>
+                                    <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={false} timeout={{...}} onClick={[Function]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                      <div className="MuiBackdrop-root-829" aria-hidden="true" style={{...}} onClick={[Function]} />
+                                    </Transition>
+                                  </Fade>
+                                </WithTheme(Fade)>
+                              </Backdrop>
+                            </WithStyles(Backdrop)>
+                            <RootRef rootRef={[Function]}>
+                              <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                                <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                                  <EventListener target="window" onResize={[Function: debounced]}>
+                                    <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                      <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-817 RSFMenu-drawer-800 MuiDrawer-paperAnchorLeft-818" style={{...}} direction="right" role="document" tabIndex="-1">
+                                        <Paper elevation={16} square={true} className="MuiDrawer-paper-817 RSFMenu-drawer-800 MuiDrawer-paperAnchorLeft-818" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
+                                          <div className="MuiPaper-root-831 MuiPaper-elevation16-849 MuiDrawer-paper-817 RSFMenu-drawer-800 MuiDrawer-paperAnchorLeft-818" style={{...}} direction="right" role="document" tabIndex="-1">
+                                            <MenuList classes={{...}}>
+                                              <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}}>
+                                                <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                                                  <ul className="MuiList-root-858 MuiList-padding-859 RSFMenu-list-801" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                                                    <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                      <MenuItem button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                        <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" divider={true} onClick={[Function: bound ]} onFocus={[Function]}>
+                                                          <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" divider={true} onClick={[Function: bound ]} onFocus={[Function]} classes={{...}} ContainerComponent="li" dense={false} disabled={false}>
+                                                            <MergeListContext dense={false}>
+                                                              <WithStyles(ButtonBase) className="MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-867">
+                                                                <ButtonBase className="MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-867" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                  <li className="MuiButtonBase-root-876 MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem" onClick={[Function: bound ]}>
+                                                                    <WithStyles(ListItemText) primary="Group 1" disableTypography={true}>
+                                                                      <ListItemText primary="Group 1" disableTypography={true} classes={{...}} inset={false}>
+                                                                        <div className="MuiListItemText-root-879">
+                                                                          Group 1
+                                                                        </div>
+                                                                      </ListItemText>
+                                                                    </WithStyles(ListItemText)>
+                                                                    <WithStyles(ListItemIcon) className="RSFMenu-listItemIcon-810">
+                                                                      <ListItemIcon className="RSFMenu-listItemIcon-810" classes={{...}}>
+                                                                        <div className="MuiListItemIcon-root-885 RSFMenu-listItemIcon-810">
+                                                                          <pure(ExpandMoreIcon) className="RSFMenu-icon-804">
+                                                                            <ExpandMoreIcon className="RSFMenu-icon-804">
+                                                                              <WithStyles(SvgIcon) className="RSFMenu-icon-804">
+                                                                                <SvgIcon className="RSFMenu-icon-804" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                  <svg className="MuiSvgIcon-root-886 RSFMenu-icon-804" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                                                                    <path fill="none" d="M0 0h24v24H0z" />
+                                                                                  </svg>
+                                                                                </SvgIcon>
+                                                                              </WithStyles(SvgIcon)>
+                                                                            </ExpandMoreIcon>
+                                                                          </pure(ExpandMoreIcon)>
+                                                                        </div>
+                                                                      </ListItemIcon>
+                                                                    </WithStyles(ListItemIcon)>
+                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                        <TouchRipple center={false} classes={{...}}>
+                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-900" childFactory={[Function: childFactory]}>
+                                                                            <span className="MuiTouchRipple-root-900" />
+                                                                          </TransitionGroup>
+                                                                        </TouchRipple>
+                                                                      </WithStyles(TouchRipple)>
+                                                                    </NoSsr>
+                                                                  </li>
+                                                                </ButtonBase>
+                                                              </WithStyles(ButtonBase)>
+                                                            </MergeListContext>
+                                                          </ListItem>
+                                                        </WithStyles(ListItem)>
+                                                      </MenuItem>
+                                                    </WithStyles(MenuItem)>
+                                                    <WithStyles(Collapse) in={false} timeout="auto" tabIndex={-1} onFocus={[Function]}>
+                                                      <Collapse in={false} timeout="auto" tabIndex={-1} onFocus={[Function]} theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
+                                                        <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={false} tabIndex={-1} onFocus={[Function]} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                          <div className="MuiCollapse-container-895" style={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                            <div className="MuiCollapse-wrapper-897">
+                                                              <div className="MuiCollapse-wrapperInner-898">
+                                                                <MenuList component="div" classes={{...}}>
+                                                                  <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}}>
+                                                                    <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}} dense={false} disablePadding={false}>
+                                                                      <div className="MuiList-root-858 RSFMenu-list-801 MuiList-padding-859" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                                                                        <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={0} onFocus={[Function]}>
+                                                                          <MenuItem button={true} divider={true} onClick={[Function: bound ]} tabIndex={0} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                                            <WithStyles(ListItem) button={true} role="menuitem" tabIndex={0} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" divider={true} onClick={[Function: bound ]} onFocus={[Function]}>
+                                                                              <ListItem button={true} role="menuitem" tabIndex={0} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" divider={true} onClick={[Function: bound ]} onFocus={[Function]} classes={{...}} ContainerComponent="li" dense={false} disabled={false}>
+                                                                                <MergeListContext dense={false}>
+                                                                                  <WithStyles(ButtonBase) className="MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" disabled={false} role="menuitem" tabIndex={0} onClick={[Function: bound ]} onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-867">
+                                                                                    <ButtonBase className="MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" disabled={false} role="menuitem" tabIndex={0} onClick={[Function: bound ]} onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-867" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                                      <li className="MuiButtonBase-root-876 MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-expander-811 MuiMenuItem-gutters-863" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={0} role="menuitem" onClick={[Function: bound ]}>
+                                                                                        <WithStyles(ListItemText) primary="Item 1" disableTypography={true}>
+                                                                                          <ListItemText primary="Item 1" disableTypography={true} classes={{...}} inset={false}>
+                                                                                            <div className="MuiListItemText-root-879">
+                                                                                              Item 1
+                                                                                            </div>
+                                                                                          </ListItemText>
+                                                                                        </WithStyles(ListItemText)>
+                                                                                        <WithStyles(ListItemIcon) className="RSFMenu-listItemIcon-810">
+                                                                                          <ListItemIcon className="RSFMenu-listItemIcon-810" classes={{...}}>
+                                                                                            <div className="MuiListItemIcon-root-885 RSFMenu-listItemIcon-810">
+                                                                                              <pure(ExpandMoreIcon) className="RSFMenu-icon-804">
+                                                                                                <ExpandMoreIcon className="RSFMenu-icon-804">
+                                                                                                  <WithStyles(SvgIcon) className="RSFMenu-icon-804">
+                                                                                                    <SvgIcon className="RSFMenu-icon-804" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                                      <svg className="MuiSvgIcon-root-886 RSFMenu-icon-804" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                                                                                        <path fill="none" d="M0 0h24v24H0z" />
+                                                                                                      </svg>
+                                                                                                    </SvgIcon>
+                                                                                                  </WithStyles(SvgIcon)>
+                                                                                                </ExpandMoreIcon>
+                                                                                              </pure(ExpandMoreIcon)>
+                                                                                            </div>
+                                                                                          </ListItemIcon>
+                                                                                        </WithStyles(ListItemIcon)>
+                                                                                        <NoSsr defer={false} fallback={{...}}>
+                                                                                          <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                            <TouchRipple center={false} classes={{...}}>
+                                                                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-900" childFactory={[Function: childFactory]}>
+                                                                                                <span className="MuiTouchRipple-root-900" />
+                                                                                              </TransitionGroup>
+                                                                                            </TouchRipple>
+                                                                                          </WithStyles(TouchRipple)>
+                                                                                        </NoSsr>
+                                                                                      </li>
+                                                                                    </ButtonBase>
+                                                                                  </WithStyles(ButtonBase)>
+                                                                                </MergeListContext>
+                                                                              </ListItem>
+                                                                            </WithStyles(ListItem)>
+                                                                          </MenuItem>
+                                                                        </WithStyles(MenuItem)>
+                                                                        <WithStyles(Collapse) in={false} timeout="auto" tabIndex={-1} onFocus={[Function]}>
+                                                                          <Collapse in={false} timeout="auto" tabIndex={-1} onFocus={[Function]} theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
+                                                                            <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={false} tabIndex={-1} onFocus={[Function]} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                                              <div className="MuiCollapse-container-895" style={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                                                <div className="MuiCollapse-wrapper-897">
+                                                                                  <div className="MuiCollapse-wrapperInner-898">
+                                                                                    <MenuList component="div" classes={{...}}>
+                                                                                      <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}}>
+                                                                                        <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}} dense={false} disablePadding={false}>
+                                                                                          <div className="MuiList-root-858 RSFMenu-list-801 MuiList-padding-859" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                                                                                            <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-808" server={false} state={{...}} tabIndex={0} onFocus={[Function]}>
+                                                                                              <inject-Link to="/item1/child1" className="RSFMenu-link-808" server={false} state={{...}} tabIndex={0} onFocus={[Function]} classes={{...}}>
+                                                                                                <Link to="/item1/child1" className="RSFMenu-link-808" server={false} state={{...}} tabIndex={0} onFocus={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                                                  <a data-moov-link="on" className="RSFLink-root-899 RSFMenu-link-808" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                                                                    <WithStyles(MenuItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                                                                      <MenuItem button={true} divider={true} selected={false} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                                                                        <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" divider={true}>
+                                                                                                          <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" divider={true} classes={{...}} ContainerComponent="li" dense={false} disabled={false}>
+                                                                                                            <MergeListContext dense={false}>
+                                                                                                              <WithStyles(ButtonBase) className="MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-867">
+                                                                                                                <ButtonBase className="MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-867" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                                                                  <li className="MuiButtonBase-root-876 MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem">
+                                                                                                                    <WithStyles(ListItemText) primary="Child 1" disableTypography={true}>
+                                                                                                                      <ListItemText primary="Child 1" disableTypography={true} classes={{...}} inset={false}>
+                                                                                                                        <div className="MuiListItemText-root-879">
+                                                                                                                          Child 1
+                                                                                                                        </div>
+                                                                                                                      </ListItemText>
+                                                                                                                    </WithStyles(ListItemText)>
+                                                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                                                        <TouchRipple center={false} classes={{...}}>
+                                                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-900" childFactory={[Function: childFactory]}>
+                                                                                                                            <span className="MuiTouchRipple-root-900" />
+                                                                                                                          </TransitionGroup>
+                                                                                                                        </TouchRipple>
+                                                                                                                      </WithStyles(TouchRipple)>
+                                                                                                                    </NoSsr>
+                                                                                                                  </li>
+                                                                                                                </ButtonBase>
+                                                                                                              </WithStyles(ButtonBase)>
+                                                                                                            </MergeListContext>
+                                                                                                          </ListItem>
+                                                                                                        </WithStyles(ListItem)>
+                                                                                                      </MenuItem>
+                                                                                                    </WithStyles(MenuItem)>
+                                                                                                  </a>
+                                                                                                </Link>
+                                                                                              </inject-Link>
+                                                                                            </WithStyles(inject-Link)>
+                                                                                          </div>
+                                                                                        </List>
+                                                                                      </WithStyles(List)>
+                                                                                    </MenuList>
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
+                                                                            </Transition>
+                                                                          </Collapse>
+                                                                        </WithStyles(Collapse)>
+                                                                      </div>
+                                                                    </List>
+                                                                  </WithStyles(List)>
+                                                                </MenuList>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </Transition>
+                                                      </Collapse>
+                                                    </WithStyles(Collapse)>
+                                                    <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-808" server={false} state={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                      <inject-Link to="/leaf" className="RSFMenu-link-808" server={false} state={{...}} tabIndex={-1} onFocus={[Function]} classes={{...}}>
+                                                        <Link to="/leaf" className="RSFMenu-link-808" server={false} state={{...}} tabIndex={-1} onFocus={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                          <a data-moov-link="on" className="RSFLink-root-899 RSFMenu-link-808" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                                            <WithStyles(MenuItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                              <MenuItem button={true} divider={true} selected={false} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                                <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" divider={true}>
+                                                                  <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" divider={true} classes={{...}} ContainerComponent="li" dense={false} disabled={false}>
+                                                                    <MergeListContext dense={false}>
+                                                                      <WithStyles(ButtonBase) className="MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-867">
+                                                                        <ButtonBase className="MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-867" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                          <li className="MuiButtonBase-root-876 MuiListItem-root-865 MuiListItem-default-868 MuiListItem-gutters-872 MuiListItem-divider-871 MuiListItem-button-873 MuiMenuItem-root-862 RSFMenu-listItem-807 RSFMenu-leaf-812 MuiMenuItem-gutters-863" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem">
+                                                                            <WithStyles(ListItemText) primary="Leaf" disableTypography={true}>
+                                                                              <ListItemText primary="Leaf" disableTypography={true} classes={{...}} inset={false}>
+                                                                                <div className="MuiListItemText-root-879">
+                                                                                  Leaf
+                                                                                </div>
+                                                                              </ListItemText>
+                                                                            </WithStyles(ListItemText)>
+                                                                            <NoSsr defer={false} fallback={{...}}>
+                                                                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                <TouchRipple center={false} classes={{...}}>
+                                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-900" childFactory={[Function: childFactory]}>
+                                                                                    <span className="MuiTouchRipple-root-900" />
+                                                                                  </TransitionGroup>
+                                                                                </TouchRipple>
+                                                                              </WithStyles(TouchRipple)>
+                                                                            </NoSsr>
+                                                                          </li>
+                                                                        </ButtonBase>
+                                                                      </WithStyles(ButtonBase)>
+                                                                    </MergeListContext>
+                                                                  </ListItem>
+                                                                </WithStyles(ListItem)>
+                                                              </MenuItem>
+                                                            </WithStyles(MenuItem)>
+                                                          </a>
+                                                        </Link>
+                                                      </inject-Link>
+                                                    </WithStyles(inject-Link)>
+                                                  </ul>
+                                                </List>
+                                              </WithStyles(List)>
+                                            </MenuList>
+                                            <noscript>
+                                              <ul>
+                                                <li>
+                                                  <WithStyles(inject-Link) to="/item1">
+                                                    <inject-Link to="/item1" classes={{...}}>
+                                                      <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                        <a data-moov-link="on" className="RSFLink-root-899" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                                          Item 1
+                                                        </a>
+                                                      </Link>
+                                                    </inject-Link>
+                                                  </WithStyles(inject-Link)>
+                                                </li>
+                                                <li>
+                                                  <WithStyles(inject-Link) to="/item1/child1">
+                                                    <inject-Link to="/item1/child1" classes={{...}}>
+                                                      <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                        <a data-moov-link="on" className="RSFLink-root-899" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                          Child 1
+                                                        </a>
+                                                      </Link>
+                                                    </inject-Link>
+                                                  </WithStyles(inject-Link)>
+                                                </li>
+                                                <li>
+                                                  <WithStyles(inject-Link) to="/leaf">
+                                                    <inject-Link to="/leaf" classes={{...}}>
+                                                      <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                        <a data-moov-link="on" className="RSFLink-root-899" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                                          Leaf
+                                                        </a>
+                                                      </Link>
+                                                    </inject-Link>
+                                                  </WithStyles(inject-Link)>
+                                                </li>
+                                              </ul>
+                                            </noscript>
+                                          </div>
+                                        </Paper>
+                                      </WithStyles(Paper)>
+                                    </Transition>
+                                  </EventListener>
+                                </Slide>
+                              </WithTheme(Slide)>
+                            </RootRef>
+                          </div>
+                        </Portal>
+                      </Portal>
+                    </Modal>
+                  </WithStyles(Modal)>
+                </Drawer>
+              </WithStyles(Drawer)>
+            </Menu>
+          </inject-Menu-with-app>
+        </WithStyles(inject-Menu-with-app)>
+      </WithTheme(WithStyles(inject-Menu-with-app))>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
+`;
+
+exports[`Menu should call a custom itemRenderer 2`] = `
+<TestProvider app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <WithTheme(WithStyles(inject-Menu-with-app)) simple={true} itemRenderer={[Function: renderer]}>
+        <WithStyles(inject-Menu-with-app) theme={{...}} simple={true} itemRenderer={[Function: renderer]}>
+          <inject-Menu-with-app theme={{...}} simple={true} itemRenderer={[Function: renderer]} classes={{...}}>
+            <Menu theme={{...}} simple={true} itemRenderer={[Function: renderer]} classes={{...}} app={{...}} drawerWidth={330} expandFirstItem={false} align="left">
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
+                  <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-922 MuiDrawer-modal-933" open={false} onClose={[Function: res]} keepMounted={true}>
+                    <Modal BackdropProps={{...}} className="MuiDrawer-root-922 MuiDrawer-modal-933" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
+                      <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
+                        <Portal containerInfo={{...}}>
+                          <div className="MuiModal-root-934 MuiDrawer-root-922 MuiDrawer-modal-933 MuiModal-hidden-935">
+                            <WithStyles(Backdrop) open={false} onClick={[Function]} transitionDuration={{...}}>
+                              <Backdrop open={false} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
+                                <WithTheme(Fade) in={false} timeout={{...}} onClick={[Function]}>
+                                  <Fade theme={{...}} in={false} timeout={{...}} onClick={[Function]}>
+                                    <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={false} timeout={{...}} onClick={[Function]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                      <div className="MuiBackdrop-root-936" aria-hidden="true" style={{...}} onClick={[Function]} />
+                                    </Transition>
+                                  </Fade>
+                                </WithTheme(Fade)>
+                              </Backdrop>
+                            </WithStyles(Backdrop)>
+                            <RootRef rootRef={[Function]}>
+                              <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                                <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                                  <EventListener target="window" onResize={[Function: debounced]}>
+                                    <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                      <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-924 RSFMenu-drawer-907 MuiDrawer-paperAnchorLeft-925" style={{...}} direction="right" role="document" tabIndex="-1">
+                                        <Paper elevation={16} square={true} className="MuiDrawer-paper-924 RSFMenu-drawer-907 MuiDrawer-paperAnchorLeft-925" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
+                                          <div className="MuiPaper-root-938 MuiPaper-elevation16-956 MuiDrawer-paper-924 RSFMenu-drawer-907 MuiDrawer-paperAnchorLeft-925" style={{...}} direction="right" role="document" tabIndex="-1">
+                                            <MenuList classes={{...}}>
+                                              <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}}>
+                                                <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                                                  <ul className="MuiList-root-965 MuiList-padding-966 RSFMenu-list-908" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                                                    <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                      <MenuItem button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                        <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" divider={true} onClick={[Function: bound ]} onFocus={[Function]}>
+                                                          <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" divider={true} onClick={[Function: bound ]} onFocus={[Function]} classes={{...}} ContainerComponent="li" dense={false} disabled={false}>
+                                                            <MergeListContext dense={false}>
+                                                              <WithStyles(ButtonBase) className="MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-974">
+                                                                <ButtonBase className="MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" disabled={false} role="menuitem" tabIndex={-1} onClick={[Function: bound ]} onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-974" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                  <li className="MuiButtonBase-root-983 MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem" onClick={[Function: bound ]}>
+                                                                    <div>
+                                                                      Group 1
+                                                                    </div>
+                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                        <TouchRipple center={false} classes={{...}}>
+                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-991" childFactory={[Function: childFactory]}>
+                                                                            <span className="MuiTouchRipple-root-991" />
+                                                                          </TransitionGroup>
+                                                                        </TouchRipple>
+                                                                      </WithStyles(TouchRipple)>
+                                                                    </NoSsr>
+                                                                  </li>
+                                                                </ButtonBase>
+                                                              </WithStyles(ButtonBase)>
+                                                            </MergeListContext>
+                                                          </ListItem>
+                                                        </WithStyles(ListItem)>
+                                                      </MenuItem>
+                                                    </WithStyles(MenuItem)>
+                                                    <WithStyles(Collapse) in={false} timeout="auto" tabIndex={-1} onFocus={[Function]}>
+                                                      <Collapse in={false} timeout="auto" tabIndex={-1} onFocus={[Function]} theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
+                                                        <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={false} tabIndex={-1} onFocus={[Function]} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                          <div className="MuiCollapse-container-986" style={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                            <div className="MuiCollapse-wrapper-988">
+                                                              <div className="MuiCollapse-wrapperInner-989">
+                                                                <MenuList component="div" classes={{...}}>
+                                                                  <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}}>
+                                                                    <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}} dense={false} disablePadding={false}>
+                                                                      <div className="MuiList-root-965 RSFMenu-list-908 MuiList-padding-966" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                                                                        <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={0} onFocus={[Function]}>
+                                                                          <MenuItem button={true} divider={true} onClick={[Function: bound ]} tabIndex={0} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                                            <WithStyles(ListItem) button={true} role="menuitem" tabIndex={0} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" divider={true} onClick={[Function: bound ]} onFocus={[Function]}>
+                                                                              <ListItem button={true} role="menuitem" tabIndex={0} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" divider={true} onClick={[Function: bound ]} onFocus={[Function]} classes={{...}} ContainerComponent="li" dense={false} disabled={false}>
+                                                                                <MergeListContext dense={false}>
+                                                                                  <WithStyles(ButtonBase) className="MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" disabled={false} role="menuitem" tabIndex={0} onClick={[Function: bound ]} onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-974">
+                                                                                    <ButtonBase className="MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" disabled={false} role="menuitem" tabIndex={0} onClick={[Function: bound ]} onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-974" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                                      <li className="MuiButtonBase-root-983 MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-expander-918 MuiMenuItem-gutters-970" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={0} role="menuitem" onClick={[Function: bound ]}>
+                                                                                        <div>
+                                                                                          Item 1
+                                                                                        </div>
+                                                                                        <NoSsr defer={false} fallback={{...}}>
+                                                                                          <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                            <TouchRipple center={false} classes={{...}}>
+                                                                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-991" childFactory={[Function: childFactory]}>
+                                                                                                <span className="MuiTouchRipple-root-991" />
+                                                                                              </TransitionGroup>
+                                                                                            </TouchRipple>
+                                                                                          </WithStyles(TouchRipple)>
+                                                                                        </NoSsr>
+                                                                                      </li>
+                                                                                    </ButtonBase>
+                                                                                  </WithStyles(ButtonBase)>
+                                                                                </MergeListContext>
+                                                                              </ListItem>
+                                                                            </WithStyles(ListItem)>
+                                                                          </MenuItem>
+                                                                        </WithStyles(MenuItem)>
+                                                                        <WithStyles(Collapse) in={false} timeout="auto" tabIndex={-1} onFocus={[Function]}>
+                                                                          <Collapse in={false} timeout="auto" tabIndex={-1} onFocus={[Function]} theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
+                                                                            <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={false} tabIndex={-1} onFocus={[Function]} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                                              <div className="MuiCollapse-container-986" style={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                                                <div className="MuiCollapse-wrapper-988">
+                                                                                  <div className="MuiCollapse-wrapperInner-989">
+                                                                                    <MenuList component="div" classes={{...}}>
+                                                                                      <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}}>
+                                                                                        <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}} dense={false} disablePadding={false}>
+                                                                                          <div className="MuiList-root-965 RSFMenu-list-908 MuiList-padding-966" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                                                                                            <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-915" server={false} state={{...}} tabIndex={0} onFocus={[Function]}>
+                                                                                              <inject-Link to="/item1/child1" className="RSFMenu-link-915" server={false} state={{...}} tabIndex={0} onFocus={[Function]} classes={{...}}>
+                                                                                                <Link to="/item1/child1" className="RSFMenu-link-915" server={false} state={{...}} tabIndex={0} onFocus={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                                                  <a data-moov-link="on" className="RSFLink-root-990 RSFMenu-link-915" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                                                                    <WithStyles(MenuItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                                                                      <MenuItem button={true} divider={true} selected={false} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                                                                        <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" divider={true}>
+                                                                                                          <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" divider={true} classes={{...}} ContainerComponent="li" dense={false} disabled={false}>
+                                                                                                            <MergeListContext dense={false}>
+                                                                                                              <WithStyles(ButtonBase) className="MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-974">
+                                                                                                                <ButtonBase className="MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-974" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                                                                  <li className="MuiButtonBase-root-983 MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem">
+                                                                                                                    <div>
+                                                                                                                      Child 1
+                                                                                                                    </div>
+                                                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                                                        <TouchRipple center={false} classes={{...}}>
+                                                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-991" childFactory={[Function: childFactory]}>
+                                                                                                                            <span className="MuiTouchRipple-root-991" />
+                                                                                                                          </TransitionGroup>
+                                                                                                                        </TouchRipple>
+                                                                                                                      </WithStyles(TouchRipple)>
+                                                                                                                    </NoSsr>
+                                                                                                                  </li>
+                                                                                                                </ButtonBase>
+                                                                                                              </WithStyles(ButtonBase)>
+                                                                                                            </MergeListContext>
+                                                                                                          </ListItem>
+                                                                                                        </WithStyles(ListItem)>
+                                                                                                      </MenuItem>
+                                                                                                    </WithStyles(MenuItem)>
+                                                                                                  </a>
+                                                                                                </Link>
+                                                                                              </inject-Link>
+                                                                                            </WithStyles(inject-Link)>
+                                                                                          </div>
+                                                                                        </List>
+                                                                                      </WithStyles(List)>
+                                                                                    </MenuList>
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
+                                                                            </Transition>
+                                                                          </Collapse>
+                                                                        </WithStyles(Collapse)>
+                                                                      </div>
+                                                                    </List>
+                                                                  </WithStyles(List)>
+                                                                </MenuList>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </Transition>
+                                                      </Collapse>
+                                                    </WithStyles(Collapse)>
+                                                    <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-915" server={false} state={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                      <inject-Link to="/leaf" className="RSFMenu-link-915" server={false} state={{...}} tabIndex={-1} onFocus={[Function]} classes={{...}}>
+                                                        <Link to="/leaf" className="RSFMenu-link-915" server={false} state={{...}} tabIndex={-1} onFocus={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                          <a data-moov-link="on" className="RSFLink-root-990 RSFMenu-link-915" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                                            <WithStyles(MenuItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                              <MenuItem button={true} divider={true} selected={false} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                                <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" divider={true}>
+                                                                  <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" divider={true} classes={{...}} ContainerComponent="li" dense={false} disabled={false}>
+                                                                    <MergeListContext dense={false}>
+                                                                      <WithStyles(ButtonBase) className="MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-974">
+                                                                        <ButtonBase className="MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-974" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                          <li className="MuiButtonBase-root-983 MuiListItem-root-972 MuiListItem-default-975 MuiListItem-gutters-979 MuiListItem-divider-978 MuiListItem-button-980 MuiMenuItem-root-969 RSFMenu-listItem-914 RSFMenu-leaf-919 MuiMenuItem-gutters-970" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem">
+                                                                            <div>
+                                                                              Leaf
+                                                                            </div>
+                                                                            <NoSsr defer={false} fallback={{...}}>
+                                                                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                <TouchRipple center={false} classes={{...}}>
+                                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-991" childFactory={[Function: childFactory]}>
+                                                                                    <span className="MuiTouchRipple-root-991" />
+                                                                                  </TransitionGroup>
+                                                                                </TouchRipple>
+                                                                              </WithStyles(TouchRipple)>
+                                                                            </NoSsr>
+                                                                          </li>
+                                                                        </ButtonBase>
+                                                                      </WithStyles(ButtonBase)>
+                                                                    </MergeListContext>
+                                                                  </ListItem>
+                                                                </WithStyles(ListItem)>
+                                                              </MenuItem>
+                                                            </WithStyles(MenuItem)>
+                                                          </a>
+                                                        </Link>
+                                                      </inject-Link>
+                                                    </WithStyles(inject-Link)>
+                                                  </ul>
+                                                </List>
+                                              </WithStyles(List)>
+                                            </MenuList>
+                                            <noscript>
+                                              <ul>
+                                                <li>
+                                                  <WithStyles(inject-Link) to="/item1">
+                                                    <inject-Link to="/item1" classes={{...}}>
+                                                      <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                        <a data-moov-link="on" className="RSFLink-root-990" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                                          Item 1
+                                                        </a>
+                                                      </Link>
+                                                    </inject-Link>
+                                                  </WithStyles(inject-Link)>
+                                                </li>
+                                                <li>
+                                                  <WithStyles(inject-Link) to="/item1/child1">
+                                                    <inject-Link to="/item1/child1" classes={{...}}>
+                                                      <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                        <a data-moov-link="on" className="RSFLink-root-990" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                          Child 1
+                                                        </a>
+                                                      </Link>
+                                                    </inject-Link>
+                                                  </WithStyles(inject-Link)>
+                                                </li>
+                                                <li>
+                                                  <WithStyles(inject-Link) to="/leaf">
+                                                    <inject-Link to="/leaf" classes={{...}}>
+                                                      <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                        <a data-moov-link="on" className="RSFLink-root-990" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                                          Leaf
+                                                        </a>
+                                                      </Link>
+                                                    </inject-Link>
+                                                  </WithStyles(inject-Link)>
+                                                </li>
+                                              </ul>
+                                            </noscript>
+                                          </div>
+                                        </Paper>
+                                      </WithStyles(Paper)>
+                                    </Transition>
+                                  </EventListener>
+                                </Slide>
+                              </WithTheme(Slide)>
+                            </RootRef>
+                          </div>
+                        </Portal>
+                      </Portal>
+                    </Modal>
+                  </WithStyles(Modal)>
+                </Drawer>
+              </WithStyles(Drawer)>
+            </Menu>
+          </inject-Menu-with-app>
+        </WithStyles(inject-Menu-with-app)>
+      </WithTheme(WithStyles(inject-Menu-with-app))>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
+`;
+
 exports[`Menu should render in complex mode by default 1`] = `
 <TestProvider app={{...}} history={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>

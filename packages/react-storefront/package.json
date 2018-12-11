@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "5.3.0",
+  "version": "5.5.0",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "module": "./index.js",
@@ -15,8 +15,8 @@
     "deploy-storybook": "gh-pages -d storybook-static",
     "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2018 Moov Corporation.  All rights reserved.\n */\" src",
     "watch": "yarn build && babel --watch src --source-maps --out-dir lib",
-    "clean": "mkdir -p lib; find lib -not -name 'node_modules' -delete",
-    "build": "yarn run clean && yarn create-indexes && NODE_ENV=production babel $@ src --source-maps --out-dir lib && cp package.json lib && cp -r webpack lib && cp -r service-worker lib",
+    "clean": "mkdir -p lib; find lib -not -name 'node_modules' -not -name 'package-lock.json' -delete",
+    "build": "yarn run clean && yarn create-indexes && NODE_ENV=production babel $@ src --source-maps --out-dir lib && cp package.json lib && cp -r webpack docs lib && cp -r service-worker lib",
     "docs": "yarn build-storybook && yarn deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
@@ -55,8 +55,6 @@
     "babel-plugin-universal-import": "^1.4.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-es2017": "^6.24.1",
     "babel-preset-minify": "0.5.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.16.0",

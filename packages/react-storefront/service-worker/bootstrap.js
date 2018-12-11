@@ -1,5 +1,7 @@
 console.log('[react-storefront service worker]', 'Using Moov PWA Service Worker Bootstrap')
 
+workbox.loadModule('workbox-strategies')
+
 let runtimeCacheOptions = {}, baseCacheName, ssrCacheName
 let abortControllers = new Set()
 let toResume = new Set()

@@ -59,6 +59,23 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.5.0
+
+* Added `envVariables` to webpack server options
+* Added ability to set asset path base
+
+### 5.4.0
+
+* Added `itemRenderer` prop to `Menu`
+
+### 5.3.2
+
+* Fixes an issue with Chrome 71 which prevents async loading of scripts by the service worker.
+
+### 5.3.1
+
+* Fix bugs related to production builds
+
 ### 5.3.0
 
 * Code is now transpiled to ES5 before publishing

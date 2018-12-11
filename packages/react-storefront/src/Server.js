@@ -6,7 +6,6 @@ import { configure } from 'mobx'
 
 configure({ isolateGlobalState: true })
 
-import 'babel-polyfill'
 import React from 'react'
 import { SheetsRegistry } from 'react-jss/lib/jss'
 import { flushChunkNames } from 'react-universal-component/server'
@@ -18,6 +17,7 @@ import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from 
 import Response from './router/Response'
 import { renderAmpAnalyticsTags } from './Track'
 import createRequest from './platform/createRequest'
+import getStats from 'react-storefront-stats'
 
 export default class Server {
 
@@ -100,7 +100,6 @@ export default class Server {
       return response.send(JSON.stringify(state))
     }
 
-    const getStats = require('react-storefront-stats')
     const stats = await getStats()
     const amp = pathname.endsWith('.amp')
     const { App, theme }  = this

@@ -24,14 +24,30 @@ export const styles = theme => ({
     zIndex: 1
   },
 
+  container: {
+    height: '100%',
+    boxSizing: 'border-box',
+    paddingTop: '72px'
+  },
+
+  content: {
+    height: '100%',
+    overflow: 'auto',
+    paddingBottom: '64px'
+  },
+
   paper: {
     overflowY: 'visible'
   },
 
   title: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100%',
+    height: '72px',
+    lineHeight: '72px',
     textAlign: 'center',
-    padding: '20px',
-    fontSize: '18px',
     borderBottom: `1px solid ${theme.palette.divider}`
   },
 
@@ -93,32 +109,36 @@ export default class Drawer extends Component {
     const { amp, ampStateId, ampBindClosed, variant, closeButtonProps, showCloseButton, open, onRequestClose, title, children, classes, autoAdjustBodyPadding, ...rest } = this.props
 
     return (
-      <MUIDrawer 
-        anchor="bottom" 
+      <MUIDrawer
+        anchor="bottom"
         classes={{
           paper: classnames({
             [classes.paper]: true,
             [classes.ampClosed]: amp && !open
           })
         }}
-        amp-bind={ampBindClosed ? `class=>${ampStateId}.${ampBindClosed} ? '${classes.ampClosed}' : null` : null} 
+        amp-bind={ampBindClosed ? `class=>${ampStateId}.${ampBindClosed} ? '${classes.ampClosed}' : null` : null}
         open={(amp && variant === "temporary") || open}
         variant={variant}
         {...rest}
       >
-        <div ref={this.drawer}>
+        <div className={classes.container} ref={this.drawer}>
           { title && (
-            <div className={classes.title}>
-              <Typography variant="h6" component="div">{title}</Typography>
-            </div>
+            <Typography
+              className={classes.title}
+              variant="h6"
+              component="div"
+            >
+              {title}
+            </Typography>
           )}
 
           { showCloseButton && (
-            <Button 
-              variant="fab" 
-              color="primary" 
-              className={classes.closeButton} 
-              onClick={this.closeDrawer} 
+            <Button
+              variant="fab"
+              color="primary"
+              className={classes.closeButton}
+              onClick={this.closeDrawer}
               style={{ display: open ? '' : 'none' }}
               on={ampBindClosed ? `tap:AMP.setState({ ${ampStateId}: { ${ampBindClosed}: true }})` : null}
               {...closeButtonProps}
@@ -127,7 +147,7 @@ export default class Drawer extends Component {
             </Button>
           )}
 
-          { children }
+          <div className={classes.content}>{ children }</div>
         </div>
       </MUIDrawer>
     )
