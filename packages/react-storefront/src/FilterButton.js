@@ -86,7 +86,7 @@ export default class FilterButton extends Component {
     const { open, mountDrawer } = this.state
     const { clear, drawer, ...buttonClasses } = classes
     const pwaPath = app.location.pathname.replace(/\.amp/, '')
-    const pwaSearch = app.location.search
+    const pwaSearch = app.location.search || ''
     const queryChar = pwaSearch ? '&' : '?'
     const ampUrl = pwaPath + pwaSearch + queryChar + 'openFilter'
 
