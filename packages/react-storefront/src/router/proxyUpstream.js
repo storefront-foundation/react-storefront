@@ -32,6 +32,9 @@ export default function proxyUpstream(cb=perfectProxy) {
         window.moov.router.reloadFromServer()
       } else {
         if (cb == null) throw new Error('You must provide a path to a handler in proxyUpstream().  Please check your routes.')
+        // indicate handler path and asset class in a response header so we can track it in logs
+        response.set('x-rsf-handler', cb.path)
+        response.set('x-rsf-response-type', 'proxy')
         return await cb(params, request, response) || { proxyUpstream: true }
       }
     }

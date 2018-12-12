@@ -34,7 +34,7 @@ describe('Router:Node', function() {
       global.env.path = path
       global.env.method = method
       const promise = router.runAll(new Request(), response = new Response())
-
+      
       if (promise) {
         return promise
       } else {

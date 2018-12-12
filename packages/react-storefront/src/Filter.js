@@ -4,8 +4,8 @@
  */
 import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { get } from 'lodash';
-import { observer, inject } from 'mobx-react';
+import get from 'lodash/get'
+import { observer, inject } from 'mobx-react'
 import ExpandableSection from './ExpandableSection'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormGroup from '@material-ui/core/FormGroup'
@@ -20,11 +20,7 @@ import { Hbox } from './Box'
  * FilterButton to automatically display this component in a drawer that slides up from the bottom of the viewport.
  */
 export const styles = theme => ({
-  root: {
-    overflowY: 'auto',
-    overflowX: 'hidden',
-    paddingBottom: '64px'
-  },
+  root: { },
   matches: {
     marginLeft: '5px',
     display: 'inline'
@@ -109,7 +105,7 @@ export default class Filter extends Component {
 
   constructor(props) {
     super(props)
-    
+
     this.state = {
       expanded: props.expandAll ? this.createExpandAllState() : {}
     }
@@ -178,9 +174,9 @@ export default class Filter extends Component {
     }
 
     return (
-      <ExpandableSection 
+      <ExpandableSection
         key={key}
-        title={group.name} 
+        title={group.name}
         caption={caption}
         expanded={expanded[group.name]}
         onChange={(e, expanded) => this.setState({ expanded: { ...this.state.expanded, [group.name]: expanded }})}
@@ -193,7 +189,7 @@ export default class Filter extends Component {
 
   onToggleFilter = (facet) => {
     this.props.model.toggleFilter(facet)
-    
+
     if(this.props.refreshOnChange) {
       this.refresh()
     }
@@ -229,4 +225,3 @@ export default class Filter extends Component {
   }
 
 }
-

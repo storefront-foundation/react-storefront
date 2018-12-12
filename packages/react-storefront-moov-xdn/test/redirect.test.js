@@ -12,9 +12,7 @@ describe('redirect', () => {
 
         global.env = {
           method: 'post',
-          headers: JSON.stringify({
-            referer: '/.amp'
-          }),
+          referer: 'https://localhost:8080/.amp',
           host: 'www.example.com'
         }
       })
@@ -43,9 +41,7 @@ describe('redirect', () => {
 
       global.env = {
         method: 'get',
-        headers: JSON.stringify({
-          referer: '/'
-        }),
+        referer: 'https://localhost:8080/',
         host: 'www.example.com'
       }
     })
@@ -79,7 +75,7 @@ describe('redirect', () => {
       global.env = {
         host: 'www.example.com',
         path: '/c/1',
-        headers: '{}'
+        referer: 'http://www.example.com'
       }
     })
 

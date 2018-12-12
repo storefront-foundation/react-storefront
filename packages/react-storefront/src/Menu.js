@@ -3,7 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import { types } from "mobx-state-tree"
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { observer, inject } from "mobx-react"
 import PropTypes from 'prop-types'
 import Drawer from '@material-ui/core/Drawer'
@@ -279,17 +279,39 @@ export default class Menu extends Component {
     /**
      * The icon to use for expanded groups
      */
-    CollapseIcon: PropTypes.func
+    CollapseIcon: PropTypes.func,
+
+    /**
+     * Sets the side of the screen from which the menu appears.
+     */
+    align: PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * A function to render the contents of a menu item.  It is passed the following arguments:
+     * 
+     * 1.) item - the MenuItemModel instance. 
+     * 2.) leaf - `true` when the item is a leaf node, otherwise `false`
+     * 
+     * Return undefined to render the default contents
+     * 
+     * Example:
+     * 
+     *  itemRenderer={(item, leaf) => {
+     *    return leaf ? <ListItemText primary={item.text}/> : undefined
+     *  }}
+     */
+    itemRenderer: PropTypes.func
   }
 
   static defaultProps = {
     drawerWidth: 330,
     simple: false,
-    expandFirstItem: false
+    expandFirstItem: false,
+    align: 'left'
   }
 
   render() {
-    const { app, classes, rootHeader, rootFooter, drawerWidth, simple, persistent } = this.props
+    const { app, classes, align, rootHeader, rootFooter, drawerWidth, simple, persistent } = this.props
     const { amp, menu } = app
     const { levels, level } = menu
     const position = -drawerWidth * level;
@@ -305,6 +327,7 @@ export default class Menu extends Component {
         variant={persistent ? 'persistent' : 'temporary' } 
         open={menu.open || persistent} 
         onClose={menu.close} 
+        anchor={align}
         ModalProps={{
           keepMounted: true
         }}
@@ -410,11 +433,8 @@ export default class Menu extends Component {
   }
 
   renderGroup(depth, item, key) {
-    let { app: { menu }, classes, useExpanders, simple, ExpandIcon, CollapseIcon, theme } = this.props
+    let { app: { menu }, classes, useExpanders, simple } = this.props
     const showExpander = simple || (depth > 0 && useExpanders)
-
-    ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMore
-    CollapseIcon = CollapseIcon || theme.CollapseIcon || ExpandLess
 
     const elements = [
       <MenuItem
@@ -429,22 +449,7 @@ export default class Menu extends Component {
           })
         }}
       >
-        {item.image && (
-          <ListItemIcon>
-            <img className={classes.listItemImage} alt={item.text} src={item.image} />
-          </ListItemIcon>
-        )}
-        <ListItemText
-          primary={item.text}
-          disableTypography
-        />
-        <ListItemIcon className={classes.listItemIcon}>
-          {showExpander ? (
-            item.expanded ? <CollapseIcon className={classes.icon} /> : <ExpandIcon className={classes.icon} />
-          ) : (
-            <ChevronRight className={classes.icon} />
-          )}
-        </ListItemIcon>
+        { this.renderItemContents(item, false, showExpander) }
       </MenuItem>
     ]
 
@@ -474,6 +479,26 @@ export default class Menu extends Component {
             root: classnames(classes.listItem, classes.leaf)
           }}
         >
+          { this.renderItemContents(item, true) }
+        </MenuItem>
+      </Link>
+    );
+  }
+
+  renderItemContents(item, leaf, showExpander) {
+    let { itemRenderer, classes, ExpandIcon, CollapseIcon, theme } = this.props
+
+    let contents
+    
+    if (itemRenderer) {
+      contents = itemRenderer(item, leaf)
+    } 
+    
+    if (contents) {
+      return contents
+    } else if (leaf) {
+      return (
+        <Fragment>
           {item.image && (
             <ListItemIcon>
               <img className={classes.listItemImage} alt={item.text} src={item.image} />
@@ -483,9 +508,33 @@ export default class Menu extends Component {
             primary={item.text}
             disableTypography
           />
-        </MenuItem>
-      </Link>
-    );
+        </Fragment>
+      )
+    } else {
+      ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMore
+      CollapseIcon = CollapseIcon || theme.CollapseIcon || ExpandLess
+  
+      return (
+        <Fragment>
+          {item.image && (
+            <ListItemIcon>
+              <img className={classes.listItemImage} alt={item.text} src={item.image} />
+            </ListItemIcon>
+          )}
+          <ListItemText
+            primary={item.text}
+            disableTypography
+          />
+          <ListItemIcon className={classes.listItemIcon}>
+            {showExpander ? (
+              item.expanded ? <CollapseIcon className={classes.icon} /> : <ExpandIcon className={classes.icon} />
+            ) : (
+              <ChevronRight className={classes.icon} />
+            )}
+          </ListItemIcon>
+        </Fragment>
+      )
+    }
   }
 
   slideToItem = (item, menu) => {

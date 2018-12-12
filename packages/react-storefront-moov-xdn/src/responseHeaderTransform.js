@@ -13,6 +13,8 @@ export default function responseHeaderTransform({
 } = {}) {
 
   if (env.__static_origin_path__) {
+    headers.header('x-rsf-response-type', 'static')
+    
     // It is important that the client never caches the servce-worker so that it always goes to the network
     // to check for a new one.
     if (env.path.startsWith('/service-worker.js')) {

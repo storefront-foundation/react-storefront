@@ -18,7 +18,7 @@ export const styles = theme => ({
 })
 
 /**
- * A toolbar button with optional label.  Use these in your AppBar. All additonal
+ * A toolbar button with optional label.  Use these in your AppBar. All additional
  * props are spread to the underlying material-ui IconButton.
  */
 @withStyles(styles, { name: 'RSFToolbarButton'})

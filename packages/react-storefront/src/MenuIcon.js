@@ -4,7 +4,8 @@
  */
 import React, { PureComponent } from 'react'
 import SvgIcon from '@material-ui/core/SvgIcon'
-import Open from './assets/menu.svg'
+import OpenWithLabel from './icons/OpenWithLabel'
+import Open from '@material-ui/icons/Menu'
 import Close from '@material-ui/icons/Close'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { withStyles } from '@material-ui/core'
@@ -61,6 +62,11 @@ export default class MenuIcon extends PureComponent {
     open: PropTypes.bool,
 
     /**
+     * Set to `false` to hide the text "menu" underneath the button when the menu is closed.
+     */
+    label: PropTypes.bool,
+
+    /**
      * The icon to display when the menu is closed
      */
     OpenIcon: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
@@ -73,14 +79,27 @@ export default class MenuIcon extends PureComponent {
 
   static defaultProps = {
     open: false,
-    OpenIcon: Open,
+    label: true,
     CloseIcon: Close
+  }
+
+  state = {
+    OpenIcon: null,
+    CloseIcon: null
   }
 
   cssProps = { classNames: 'rsf-menu-icon', timeout: 300 }
 
+  static getDerivedStateFromProps = props => {
+    return {
+      OpenIcon: props.OpenIcon || (props.label ? OpenWithLabel : Open),
+      CloseIcon: props.CloseIcon
+    }
+  }
+
   render() {
-    const { open, classes, OpenIcon, CloseIcon } = this.props
+    const { open, classes } = this.props
+    const { OpenIcon, CloseIcon } = this.state
 
     return (
       <div className={classes.root}>

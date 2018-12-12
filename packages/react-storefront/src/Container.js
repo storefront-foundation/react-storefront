@@ -14,8 +14,7 @@ import classnames from 'classnames'
 export const styles = theme => ({
   root: {
     margin: `0 auto`,
-    maxWidth: theme.maxWidth,
-    width: '100vw',
+    maxWidth: theme.maxWidth || '100vw',
   },
   inset: {
     padding: `0 ${theme.margins && theme.margins.container}px`

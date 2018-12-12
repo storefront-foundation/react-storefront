@@ -5,13 +5,14 @@
 import Route from 'route-parser'
 import isFunction from 'lodash.isfunction'
 import qs from 'qs'
-import { merge, cloneDeep } from 'lodash'
+import merge from 'lodash/merge'
+import cloneDeep from 'lodash/cloneDeep'
 import { configureCache, cache } from './serviceWorker'
 import ClientContext from './ClientContext'
 import EventEmitter from 'eventemitter3'
 
 /**
- * Provides routing for MUR-based applications and PWAs.  This class is innspired by express and uses https://github.com/rcs/route-parser,
+ * Provides routing for MUR-based applications and PWAs.  This class is inspired by express and uses https://github.com/rcs/route-parser,
  * which supports sophisticated pattern matching including optional paths, params, and splatting.
  *
  * Example:

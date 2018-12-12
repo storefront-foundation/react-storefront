@@ -132,5 +132,81 @@ describe('Menu', () => {
       </Provider>
     )).toMatchSnapshot()
   })
+  it('should call a custom itemRenderer', () => {
+    let appWithTopLevelLeaf = AppModelBase.create({
+      location: {
+        pathname: '/',
+        search: '',
+        hostname: 'localhost'
+      },
+      menu: {
+        levels: [{
+          root: true,
+          items: [{
+            text: "Group 1",
+            items: [
+              { text: 'Item 1', url: '/item1', items: [
+                { text: 'Child 1', url: '/item1/child1' }
+              ]}
+            ]
+          }, {
+            text: 'Leaf',
+            url: '/leaf'
+          }]
+        }]
+      }
+    })
 
+    const renderer = jest.fn()
+
+    expect(mount(
+      <Provider app={appWithTopLevelLeaf} history={{}}>
+        <Menu simple itemRenderer={renderer}/>
+      </Provider>
+    )).toMatchSnapshot()
+
+    expect(renderer.mock.calls.length).toBe(4)
+    expect(renderer.mock.calls[0][0].text).toEqual('Group 1')
+    expect(renderer.mock.calls[0][1]).toEqual(false)
+    expect(renderer.mock.calls[1][0].text).toEqual('Item 1')
+    expect(renderer.mock.calls[1][1]).toEqual(false)
+    expect(renderer.mock.calls[2][0].text).toEqual('Child 1')
+    expect(renderer.mock.calls[2][1]).toEqual(true)
+    expect(renderer.mock.calls[3][0].text).toEqual('Leaf')
+    expect(renderer.mock.calls[3][1]).toEqual(true)
+  })
+
+  it('should call a custom itemRenderer', () => {
+    let appWithTopLevelLeaf = AppModelBase.create({
+      location: {
+        pathname: '/',
+        search: '',
+        hostname: 'localhost'
+      },
+      menu: {
+        levels: [{
+          root: true,
+          items: [{
+            text: "Group 1",
+            items: [
+              { text: 'Item 1', url: '/item1', items: [
+                { text: 'Child 1', url: '/item1/child1' }
+              ]}
+            ]
+          }, {
+            text: 'Leaf',
+            url: '/leaf'
+          }]
+        }]
+      }
+    })
+
+    const renderer = (item) => <div>{item.text}</div>
+
+    expect(mount(
+      <Provider app={appWithTopLevelLeaf} history={{}}>
+        <Menu simple itemRenderer={renderer}/>
+      </Provider>
+    )).toMatchSnapshot()
+  })
 })

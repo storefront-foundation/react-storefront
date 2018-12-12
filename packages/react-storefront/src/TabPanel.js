@@ -87,6 +87,10 @@ export default class TabPanel extends Component {
      * Selected tab index
      */
     selected: PropTypes.number,
+    /**
+     * On change callback
+     */
+    onChange: PropTypes.func,
   }
 
   static defaultProps = {
@@ -191,7 +195,12 @@ export default class TabPanel extends Component {
   }
 
   onChange = (event, selected) => {
+    const { onChange } = this.props
+
     this.setState({ selected })
+    if (onChange) {
+      onChange(selected)
+    }
   }
 
 }

@@ -177,7 +177,13 @@ export default class TabsRow extends Component {
             }
 
             if (tabRenderer) {
-              return tabRenderer(item, i)
+              const itemWithClasses = {
+                ...item,
+                classes: {
+                  root: classes.tab
+                }
+              }
+              return tabRenderer(itemWithClasses, i)
             } else {
               return (
                 <Tab

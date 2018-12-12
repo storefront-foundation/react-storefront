@@ -2,7 +2,8 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { isString, merge } from 'lodash'
+import isString from 'lodash/isString'
+import merge from 'lodash/merge'
 import URL from 'url'
 import qs from 'qs'
 
