@@ -208,6 +208,16 @@ export default class Response {
     return this
   }
 
+  /**
+   * Sets cookie name to value.
+   * @param  {String} name  
+   * @param  {String} value
+   * @return {Response} this      
+   */
+  cookie(name, value) {
+    this.set('Set-Cookie', `${name}=${value}`)
+    return this
+  }
 }
 
 /**
