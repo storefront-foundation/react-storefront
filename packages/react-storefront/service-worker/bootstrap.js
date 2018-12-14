@@ -87,10 +87,10 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
   return caches.open(cacheName).then(cache => {
     cache.match(path).then(match => {
       if (!match) {
-        if (!isPrefetchRampedUp()) {
-          console.log('[react-storefront service worker]', `skipping prefetch of ${path}, not yet ramped up.`)
-          return
-        }
+        // if (!isPrefetchRampedUp()) {
+        //   console.log('[react-storefront service worker]', `skipping prefetch of ${path}, not yet ramped up.`)
+        //   return
+        // }
       
         console.log('[react-storefront service worker]', 'prefetching', path)
 
@@ -288,7 +288,7 @@ function isAmp(url) {
  * @return {Boolean}
  */
 function shouldServeHTMLFromCache(url, event) {
-  return isAmp({ pathname: event.request.referrer }) || /\?source=pwa/.test(url.search)
+  return isAmp({ pathname: event.request.referrer }) || /\?source=pwa/.test(url.search) || /(\?|&)powerlink/.test(url.search)
 }
 
 /**
@@ -318,11 +318,17 @@ workbox.routing.registerRoute(matchRuntimePath, async (context) => {
     const cacheName = getAPICacheName(apiVersion, url.pathname)
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
 
+    console.log('cacheOptions.cacheName', cacheOptions.cacheName)
+    console.log(`shouldServeHTMLFromCache('${url.pathname}', event)`, shouldServeHTMLFromCache(url, event))
+
     if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
       return workbox.strategies.networkOnly().handle(context)
     } else if (event.request.cache === 'force-cache' /* set by cache and sent by fromServer */) {
+      console.log('serving from cache', url)
       return workbox.strategies.cacheFirst(cacheOptions).handle(context)
     } else {
+      console.log('serving from cache', url)
+
       // Check the cache for all routes. If the result is not found, get it from the network.
       return workbox.strategies.cacheOnly(cacheOptions).handle(context).then(result => {
         return result || workbox.strategies.networkOnly().handle(context)
