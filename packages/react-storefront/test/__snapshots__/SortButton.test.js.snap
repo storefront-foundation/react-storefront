@@ -3,7 +3,7 @@
 exports[`SortButton passes drawerProps to the underlying Sort component 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <inject-SortButton-with-app title="Sort By" model={{...}} drawerProps={{...}}>
         <SortButton title="Sort By" model={{...}} drawerProps={{...}} app={{...}} variant="drawer">
           <WithStyles(ActionButton) href={{...}} label="Sort By" value="Price - Low to High" onClick={[Function]}>
@@ -55,7 +55,7 @@ exports[`SortButton passes drawerProps to the underlying Sort component 1`] = `
           </Hidden>
         </SortButton>
       </inject-SortButton-with-app>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -63,7 +63,7 @@ exports[`SortButton passes drawerProps to the underlying Sort component 1`] = `
 exports[`SortButton renders with a sort selected 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <inject-SortButton-with-app model={{...}}>
         <SortButton model={{...}} app={{...}} title="Sort" variant="drawer" drawerProps={{...}}>
           <WithStyles(ActionButton) href={{...}} label="Sort" value="Price - Low to High" onClick={[Function]}>
@@ -115,7 +115,7 @@ exports[`SortButton renders with a sort selected 1`] = `
           </Hidden>
         </SortButton>
       </inject-SortButton-with-app>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -123,7 +123,7 @@ exports[`SortButton renders with a sort selected 1`] = `
 exports[`SortButton renders with no sort selected 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <inject-SortButton-with-app model={{...}}>
         <SortButton model={{...}} app={{...}} title="Sort" variant="drawer" drawerProps={{...}}>
           <WithStyles(ActionButton) href={{...}} label="Sort" value={[undefined]} onClick={[Function]}>
@@ -173,7 +173,7 @@ exports[`SortButton renders with no sort selected 1`] = `
           </Hidden>
         </SortButton>
       </inject-SortButton-with-app>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -181,7 +181,7 @@ exports[`SortButton renders with no sort selected 1`] = `
 exports[`SortButton uses the title prop as the label and drawer header 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <inject-SortButton-with-app title="Sort By" model={{...}}>
         <SortButton title="Sort By" model={{...}} app={{...}} variant="drawer" drawerProps={{...}}>
           <WithStyles(ActionButton) href={{...}} label="Sort By" value="Price - Low to High" onClick={[Function]}>
@@ -233,7 +233,7 @@ exports[`SortButton uses the title prop as the label and drawer header 1`] = `
           </Hidden>
         </SortButton>
       </inject-SortButton-with-app>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;

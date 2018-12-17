@@ -3,7 +3,7 @@
 exports[`UpdateNotification should accept a custom message 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(UpdateNotification) message="Update available">
         <UpdateNotification message="Update available" classes={{...}} reloadButtonText="RELOAD">
           <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="Update available" action={{...}}>
@@ -94,13 +94,13 @@ exports[`UpdateNotification should accept a custom message 1`] = `
                     </Slide>
                   </WithTheme(Slide)>
                 </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
+                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} />
               </ClickAwayListener>
             </Snackbar>
           </WithStyles(Snackbar)>
         </UpdateNotification>
       </WithStyles(UpdateNotification)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -108,7 +108,7 @@ exports[`UpdateNotification should accept a custom message 1`] = `
 exports[`UpdateNotification should accept custom text for the reload button 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(UpdateNotification) reloadButtonText="REFRESH">
         <UpdateNotification reloadButtonText="REFRESH" classes={{...}} message="An new version of this app is available.">
           <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
@@ -199,13 +199,13 @@ exports[`UpdateNotification should accept custom text for the reload button 1`] 
                     </Slide>
                   </WithTheme(Slide)>
                 </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
+                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} />
               </ClickAwayListener>
             </Snackbar>
           </WithStyles(Snackbar)>
         </UpdateNotification>
       </WithStyles(UpdateNotification)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -213,7 +213,7 @@ exports[`UpdateNotification should accept custom text for the reload button 1`] 
 exports[`UpdateNotification should render without any props 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(UpdateNotification)>
         <UpdateNotification classes={{...}} message="An new version of this app is available." reloadButtonText="RELOAD">
           <WithStyles(Snackbar) open={false} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
@@ -221,7 +221,7 @@ exports[`UpdateNotification should render without any props 1`] = `
           </WithStyles(Snackbar)>
         </UpdateNotification>
       </WithStyles(UpdateNotification)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -229,7 +229,7 @@ exports[`UpdateNotification should render without any props 1`] = `
 exports[`UpdateNotification should show when moov-update-available is dispatched 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(UpdateNotification)>
         <UpdateNotification classes={{...}} message="An new version of this app is available." reloadButtonText="RELOAD">
           <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
@@ -320,13 +320,13 @@ exports[`UpdateNotification should show when moov-update-available is dispatched
                     </Slide>
                   </WithTheme(Slide)>
                 </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
+                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} />
               </ClickAwayListener>
             </Snackbar>
           </WithStyles(Snackbar)>
         </UpdateNotification>
       </WithStyles(UpdateNotification)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;

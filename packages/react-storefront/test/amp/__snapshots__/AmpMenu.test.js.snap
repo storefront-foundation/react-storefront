@@ -3,7 +3,7 @@
 exports[`AmpMenu should render 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithTheme(WithStyles(inject-AmpMenu))>
         <WithStyles(inject-AmpMenu) theme={{...}}>
           <inject-AmpMenu theme={{...}} classes={{...}}>
@@ -133,7 +133,7 @@ exports[`AmpMenu should render 1`] = `
           </inject-AmpMenu>
         </WithStyles(inject-AmpMenu)>
       </WithTheme(WithStyles(inject-AmpMenu))>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;

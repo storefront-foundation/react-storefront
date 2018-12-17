@@ -3,13 +3,13 @@
 exports[`ShowMore should hide when the number of items is equal to the total 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100} />
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -17,13 +17,13 @@ exports[`ShowMore should hide when the number of items is equal to the total 1`]
 exports[`ShowMore should hide when the page is equal to the numberOfPages - 1 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100} />
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -31,7 +31,7 @@ exports[`ShowMore should hide when the page is equal to the numberOfPages - 1 1`
 exports[`ShowMore should render 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
@@ -60,7 +60,7 @@ exports[`ShowMore should render 1`] = `
           </ShowMore>
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -68,7 +68,7 @@ exports[`ShowMore should render 1`] = `
 exports[`ShowMore should show loading when loadingMore is true 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
@@ -88,7 +88,7 @@ exports[`ShowMore should show loading when loadingMore is true 1`] = `
           </ShowMore>
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;
@@ -96,7 +96,7 @@ exports[`ShowMore should show loading when loadingMore is true 1`] = `
 exports[`ShowMore should show the loading spinner even when there are no more records 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
@@ -116,7 +116,7 @@ exports[`ShowMore should show the loading spinner even when there are no more re
           </ShowMore>
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;

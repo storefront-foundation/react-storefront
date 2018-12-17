@@ -26,7 +26,7 @@ describe('withStyleProps', () => {
     )
 
     const html = document.documentElement.innerHTML.replace(/\s/g, '')
-    expect(html.replace(/\s/g, '')).toBe(`<head><styledata-jss=\"\"data-meta=\"Test\">.Test-root-1{height:50px;}</style></head><body></body>`)
+    expect(html.replace(/\s/g, '')).toBe(`<head><styletype=\"text/css\"data-jss=\"\"data-meta=\"Test\">.Test-root-1{height:50px;}</style></head><body></body>`)
     expect(wrapper).toMatchSnapshot()
   })
 

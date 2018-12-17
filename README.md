@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.7.0
+
+* Added `cookie` helper method to `Response`
+
 ### 5.6.0
 
 * Fix errors in SearchResultModelBase when filtering after paging.
