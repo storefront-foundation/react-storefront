@@ -63,6 +63,9 @@ npm link babel-plugin-react-storefront
 
 * Added `envVariables` to webpack server options
 * Added ability to set asset path base
+* Fix errors in SearchResultModelBase when filtering after paging.
+* Runs `yarn link:all` during CI builds to ensure that linking will work properly.
+* Transition to PWA and open filter/sort from AMP.
 
 ### 5.4.0
 
