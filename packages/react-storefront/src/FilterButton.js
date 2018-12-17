@@ -73,9 +73,11 @@ export default class FilterButton extends Component {
   constructor({ app }) {
     super()
 
+    const openFilter = app.location.search.indexOf('openFilter') !== -1
+
     this.state = {
-      open: app.location.search.indexOf('openFilter') !== -1, 
-      mountDrawer: app.location.search.indexOf('openFilter') !== -1
+      open: openFilter, 
+      mountDrawer: openFilter
     }
   }
 
@@ -83,12 +85,16 @@ export default class FilterButton extends Component {
     const { classes, app, model, title, drawerProps, hideClearLink, clearLinkText, ...props } = this.props
     const { open, mountDrawer } = this.state
     const { clear, drawer, ...buttonClasses } = classes
+    const pwaPath = app.location.pathname.replace(/\.amp/, '')
+    const pwaSearch = app.location.search || ''
+    const queryChar = pwaSearch ? '&' : '?'
+    const ampUrl = pwaPath + pwaSearch + queryChar + 'openFilter'
 
     return (
       <Fragment>
         <ActionButton 
           label={title}
-          href={ app.amp ? `${app.location.pathname.replace(/\.amp/, '')}?openFilter` : null }
+          href={ app.amp ? ampUrl : null }
           value={this.getFilterList()} 
           classes={buttonClasses}
           {...props} 
