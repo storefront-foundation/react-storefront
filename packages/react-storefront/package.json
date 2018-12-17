@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "5.5.0",
+  "version": "5.6.0",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "module": "./index.js",
@@ -14,9 +14,10 @@
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
     "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2018 Moov Corporation.  All rights reserved.\n */\" src",
-    "watch": "yarn build && babel --watch src --source-maps --out-dir lib",
     "clean": "mkdir -p lib; find lib -not -name 'node_modules' -not -name 'package-lock.json' -delete",
-    "build": "yarn run clean && yarn create-indexes && NODE_ENV=production babel $@ src --source-maps --out-dir lib && cp package.json lib && cp -r webpack docs lib && cp -r service-worker lib",
+    "build:prep": "yarn run clean && yarn create-indexes && cp package.json lib && cp -r webpack docs lib && cp -r service-worker lib",
+    "build": "yarn build:prep && NODE_ENV=production babel src --source-maps --out-dir lib",
+    "watch": "yarn build:prep && babel --watch src --source-maps --out-dir lib",
     "docs": "yarn build-storybook && yarn deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
