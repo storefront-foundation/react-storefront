@@ -66,6 +66,7 @@ npm link babel-plugin-react-storefront
 * Fix errors in SearchResultModelBase when filtering after paging.
 * Runs `yarn link:all` during CI builds to ensure that linking will work properly.
 * Transition to PWA and open filter/sort from AMP.
+* Added `variant="drawer|menu"` to `FilterButton`.  The default is "`drawer`".
 
 ### 5.4.0
 
