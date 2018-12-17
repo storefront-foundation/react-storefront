@@ -3,7 +3,7 @@
 exports[`ExpandableSection should render 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(WithTheme(inject-ExpandableSection)) title="Title">
         <WithTheme(inject-ExpandableSection) title="Title" classes={{...}}>
           <inject-ExpandableSection theme={{...}} title="Title" classes={{...}}>
@@ -93,7 +93,7 @@ exports[`ExpandableSection should render 1`] = `
           </inject-ExpandableSection>
         </WithTheme(inject-ExpandableSection)>
       </WithStyles(WithTheme(inject-ExpandableSection))>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -101,7 +101,7 @@ exports[`ExpandableSection should render 1`] = `
 exports[`ExpandableSection should render AmpExpandableSection when amp == true 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(WithTheme(inject-ExpandableSection)) title="Title">
         <WithTheme(inject-ExpandableSection) title="Title" classes={{...}}>
           <inject-ExpandableSection theme={{...}} title="Title" classes={{...}}>
@@ -157,7 +157,7 @@ exports[`ExpandableSection should render AmpExpandableSection when amp == true 1
           </inject-ExpandableSection>
         </WithTheme(inject-ExpandableSection)>
       </WithStyles(WithTheme(inject-ExpandableSection))>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -165,7 +165,7 @@ exports[`ExpandableSection should render AmpExpandableSection when amp == true 1
 exports[`ExpandableSection should render expanded when expanded=true 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(WithTheme(inject-ExpandableSection)) title="Title" expanded={true}>
         <WithTheme(inject-ExpandableSection) title="Title" expanded={true} classes={{...}}>
           <inject-ExpandableSection theme={{...}} title="Title" expanded={true} classes={{...}}>
@@ -221,7 +221,7 @@ exports[`ExpandableSection should render expanded when expanded=true 1`] = `
           </inject-ExpandableSection>
         </WithTheme(inject-ExpandableSection)>
       </WithStyles(WithTheme(inject-ExpandableSection))>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

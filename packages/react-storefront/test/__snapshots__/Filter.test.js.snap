@@ -3,7 +3,7 @@
 exports[`Filter renders with filters selected 1`] = `
 <TestProvider router={{...}} app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Filter-with-router) model={{...}}>
         <inject-Filter-with-router model={{...}} classes={{...}}>
           <Filter model={{...}} classes={{...}} router={{...}} onViewResultsClick={[Function]} queryParam="filters" margins={true}>
@@ -88,140 +88,148 @@ exports[`Filter renders with filters selected 1`] = `
                                                   <WithStyles(FormGroup)>
                                                     <FormGroup classes={{...}} row={false}>
                                                       <div className="MuiFormGroup-root-252">
-                                                        <WithStyles(FormControlLabel) label={{...}} control={{...}}>
-                                                          <FormControlLabel label={{...}} control={{...}} classes={{...}} labelPlacement="end">
-                                                            <label className="MuiFormControlLabel-root-254">
-                                                              <WithStyles(Checkbox) checked={true} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                <Checkbox checked={true} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
-                                                                  <WithStyles(SwitchBase) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                    <SwitchBase type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
-                                                                      <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                        <IconButton component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
-                                                                          <WithStyles(ButtonBase) className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                            <ButtonBase className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
-                                                                              <span className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
-                                                                                <span className="MuiIconButton-label-237">
-                                                                                  <pure(CheckBox)>
-                                                                                    <CheckBox>
-                                                                                      <WithStyles(SvgIcon)>
-                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                          <svg className="MuiSvgIcon-root-238" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                            <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                                                                          </svg>
-                                                                                        </SvgIcon>
-                                                                                      </WithStyles(SvgIcon)>
-                                                                                    </CheckBox>
-                                                                                  </pure(CheckBox)>
-                                                                                  <input autoFocus={[undefined]} checked={true} className="MuiPrivateSwitchBase-input-269" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
-                                                                                </span>
-                                                                                <NoSsr defer={false} fallback={{...}}>
-                                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                                    <TouchRipple center={true} classes={{...}}>
-                                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-270" childFactory={[Function: childFactory]}>
-                                                                                        <span className="MuiTouchRipple-root-270" />
-                                                                                      </TransitionGroup>
-                                                                                    </TouchRipple>
-                                                                                  </WithStyles(TouchRipple)>
-                                                                                </NoSsr>
-                                                                              </span>
-                                                                            </ButtonBase>
-                                                                          </WithStyles(ButtonBase)>
-                                                                        </IconButton>
-                                                                      </WithStyles(IconButton)>
-                                                                    </SwitchBase>
-                                                                  </WithStyles(SwitchBase)>
-                                                                </Checkbox>
-                                                              </WithStyles(Checkbox)>
-                                                              <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-259">
-                                                                <Typography component="span" className="MuiFormControlLabel-label-259" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                  <span className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259">
-                                                                    <div className="RSFFilter-groupLabel-145">
-                                                                      <span>
-                                                                        Up to $100
-                                                                      </span>
-                                                                      <WithStyles(Typography) variant="caption" className="RSFFilter-matches-140" component="span">
-                                                                        <Typography variant="caption" className="RSFFilter-matches-140" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                          <span className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140">
-                                                                            (
-                                                                            20
-                                                                            )
-                                                                          </span>
-                                                                        </Typography>
-                                                                      </WithStyles(Typography)>
-                                                                    </div>
-                                                                  </span>
-                                                                </Typography>
-                                                              </WithStyles(Typography)>
-                                                            </label>
-                                                          </FormControlLabel>
-                                                        </WithStyles(FormControlLabel)>
-                                                        <WithStyles(FormControlLabel) label={{...}} control={{...}}>
-                                                          <FormControlLabel label={{...}} control={{...}} classes={{...}} labelPlacement="end">
-                                                            <label className="MuiFormControlLabel-root-254">
-                                                              <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
-                                                                  <WithStyles(SwitchBase) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                    <SwitchBase type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
-                                                                      <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                        <IconButton component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
-                                                                          <WithStyles(ButtonBase) className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                            <ButtonBase className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
-                                                                              <span className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
-                                                                                <span className="MuiIconButton-label-237">
-                                                                                  <pure(CheckBoxOutlineBlank)>
-                                                                                    <CheckBoxOutlineBlank>
-                                                                                      <WithStyles(SvgIcon)>
-                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                          <svg className="MuiSvgIcon-root-238" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                            <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-                                                                                          </svg>
-                                                                                        </SvgIcon>
-                                                                                      </WithStyles(SvgIcon)>
-                                                                                    </CheckBoxOutlineBlank>
-                                                                                  </pure(CheckBoxOutlineBlank)>
-                                                                                  <input autoFocus={[undefined]} checked={false} className="MuiPrivateSwitchBase-input-269" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
-                                                                                </span>
-                                                                                <NoSsr defer={false} fallback={{...}}>
-                                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                                    <TouchRipple center={true} classes={{...}}>
-                                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-270" childFactory={[Function: childFactory]}>
-                                                                                        <span className="MuiTouchRipple-root-270" />
-                                                                                      </TransitionGroup>
-                                                                                    </TouchRipple>
-                                                                                  </WithStyles(TouchRipple)>
-                                                                                </NoSsr>
-                                                                              </span>
-                                                                            </ButtonBase>
-                                                                          </WithStyles(ButtonBase)>
-                                                                        </IconButton>
-                                                                      </WithStyles(IconButton)>
-                                                                    </SwitchBase>
-                                                                  </WithStyles(SwitchBase)>
-                                                                </Checkbox>
-                                                              </WithStyles(Checkbox)>
-                                                              <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-259">
-                                                                <Typography component="span" className="MuiFormControlLabel-label-259" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                  <span className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259">
-                                                                    <div className="RSFFilter-groupLabel-145">
-                                                                      <span>
-                                                                        $100 - $200
-                                                                      </span>
-                                                                      <WithStyles(Typography) variant="caption" className="RSFFilter-matches-140" component="span">
-                                                                        <Typography variant="caption" className="RSFFilter-matches-140" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                          <span className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140">
-                                                                            (
-                                                                            10
-                                                                            )
-                                                                          </span>
-                                                                        </Typography>
-                                                                      </WithStyles(Typography)>
-                                                                    </div>
-                                                                  </span>
-                                                                </Typography>
-                                                              </WithStyles(Typography)>
-                                                            </label>
-                                                          </FormControlLabel>
-                                                        </WithStyles(FormControlLabel)>
+                                                        <WithStyles(WithFormControlContext(FormControlLabel)) label={{...}} control={{...}}>
+                                                          <WithFormControlContext(FormControlLabel) label={{...}} control={{...}} classes={{...}}>
+                                                            <FormControlLabel muiFormControl={[undefined]} label={{...}} control={{...}} classes={{...}} labelPlacement="end">
+                                                              <label className="MuiFormControlLabel-root-254">
+                                                                <WithStyles(Checkbox) checked={true} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                  <Checkbox checked={true} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
+                                                                    <WithStyles(WithFormControlContext(SwitchBase)) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                      <WithFormControlContext(SwitchBase) type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                        <SwitchBase muiFormControl={[undefined]} type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                          <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                            <IconButton component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
+                                                                              <WithStyles(ButtonBase) className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                                <ButtonBase className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
+                                                                                  <span className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
+                                                                                    <span className="MuiIconButton-label-237">
+                                                                                      <pure(CheckBox)>
+                                                                                        <CheckBox>
+                                                                                          <WithStyles(SvgIcon)>
+                                                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                              <svg className="MuiSvgIcon-root-238" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                                                                              </svg>
+                                                                                            </SvgIcon>
+                                                                                          </WithStyles(SvgIcon)>
+                                                                                        </CheckBox>
+                                                                                      </pure(CheckBox)>
+                                                                                      <input autoFocus={[undefined]} checked={true} defaultChecked={[undefined]} className="MuiPrivateSwitchBase-input-269" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
+                                                                                    </span>
+                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                        <TouchRipple center={true} classes={{...}}>
+                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-270" childFactory={[Function: childFactory]}>
+                                                                                            <span className="MuiTouchRipple-root-270" />
+                                                                                          </TransitionGroup>
+                                                                                        </TouchRipple>
+                                                                                      </WithStyles(TouchRipple)>
+                                                                                    </NoSsr>
+                                                                                  </span>
+                                                                                </ButtonBase>
+                                                                              </WithStyles(ButtonBase)>
+                                                                            </IconButton>
+                                                                          </WithStyles(IconButton)>
+                                                                        </SwitchBase>
+                                                                      </WithFormControlContext(SwitchBase)>
+                                                                    </WithStyles(WithFormControlContext(SwitchBase))>
+                                                                  </Checkbox>
+                                                                </WithStyles(Checkbox)>
+                                                                <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-259">
+                                                                  <Typography component="span" className="MuiFormControlLabel-label-259" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <span className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259">
+                                                                      <div className="RSFFilter-groupLabel-145">
+                                                                        <span>
+                                                                          Up to $100
+                                                                        </span>
+                                                                        <WithStyles(Typography) variant="caption" className="RSFFilter-matches-140" component="span">
+                                                                          <Typography variant="caption" className="RSFFilter-matches-140" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                            <span className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140">
+                                                                              (
+                                                                              20
+                                                                              )
+                                                                            </span>
+                                                                          </Typography>
+                                                                        </WithStyles(Typography)>
+                                                                      </div>
+                                                                    </span>
+                                                                  </Typography>
+                                                                </WithStyles(Typography)>
+                                                              </label>
+                                                            </FormControlLabel>
+                                                          </WithFormControlContext(FormControlLabel)>
+                                                        </WithStyles(WithFormControlContext(FormControlLabel))>
+                                                        <WithStyles(WithFormControlContext(FormControlLabel)) label={{...}} control={{...}}>
+                                                          <WithFormControlContext(FormControlLabel) label={{...}} control={{...}} classes={{...}}>
+                                                            <FormControlLabel muiFormControl={[undefined]} label={{...}} control={{...}} classes={{...}} labelPlacement="end">
+                                                              <label className="MuiFormControlLabel-root-254">
+                                                                <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                  <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
+                                                                    <WithStyles(WithFormControlContext(SwitchBase)) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                      <WithFormControlContext(SwitchBase) type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                        <SwitchBase muiFormControl={[undefined]} type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                          <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                            <IconButton component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
+                                                                              <WithStyles(ButtonBase) className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                                <ButtonBase className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
+                                                                                  <span className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
+                                                                                    <span className="MuiIconButton-label-237">
+                                                                                      <pure(CheckBoxOutlineBlank)>
+                                                                                        <CheckBoxOutlineBlank>
+                                                                                          <WithStyles(SvgIcon)>
+                                                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                              <svg className="MuiSvgIcon-root-238" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                                                                              </svg>
+                                                                                            </SvgIcon>
+                                                                                          </WithStyles(SvgIcon)>
+                                                                                        </CheckBoxOutlineBlank>
+                                                                                      </pure(CheckBoxOutlineBlank)>
+                                                                                      <input autoFocus={[undefined]} checked={false} defaultChecked={[undefined]} className="MuiPrivateSwitchBase-input-269" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
+                                                                                    </span>
+                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                        <TouchRipple center={true} classes={{...}}>
+                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-270" childFactory={[Function: childFactory]}>
+                                                                                            <span className="MuiTouchRipple-root-270" />
+                                                                                          </TransitionGroup>
+                                                                                        </TouchRipple>
+                                                                                      </WithStyles(TouchRipple)>
+                                                                                    </NoSsr>
+                                                                                  </span>
+                                                                                </ButtonBase>
+                                                                              </WithStyles(ButtonBase)>
+                                                                            </IconButton>
+                                                                          </WithStyles(IconButton)>
+                                                                        </SwitchBase>
+                                                                      </WithFormControlContext(SwitchBase)>
+                                                                    </WithStyles(WithFormControlContext(SwitchBase))>
+                                                                  </Checkbox>
+                                                                </WithStyles(Checkbox)>
+                                                                <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-259">
+                                                                  <Typography component="span" className="MuiFormControlLabel-label-259" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <span className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259">
+                                                                      <div className="RSFFilter-groupLabel-145">
+                                                                        <span>
+                                                                          $100 - $200
+                                                                        </span>
+                                                                        <WithStyles(Typography) variant="caption" className="RSFFilter-matches-140" component="span">
+                                                                          <Typography variant="caption" className="RSFFilter-matches-140" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                            <span className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140">
+                                                                              (
+                                                                              10
+                                                                              )
+                                                                            </span>
+                                                                          </Typography>
+                                                                        </WithStyles(Typography)>
+                                                                      </div>
+                                                                    </span>
+                                                                  </Typography>
+                                                                </WithStyles(Typography)>
+                                                              </label>
+                                                            </FormControlLabel>
+                                                          </WithFormControlContext(FormControlLabel)>
+                                                        </WithStyles(WithFormControlContext(FormControlLabel))>
                                                       </div>
                                                     </FormGroup>
                                                   </WithStyles(FormGroup)>
@@ -323,140 +331,148 @@ exports[`Filter renders with filters selected 1`] = `
                                                   <WithStyles(FormGroup)>
                                                     <FormGroup classes={{...}} row={false}>
                                                       <div className="MuiFormGroup-root-252">
-                                                        <WithStyles(FormControlLabel) label={{...}} control={{...}}>
-                                                          <FormControlLabel label={{...}} control={{...}} classes={{...}} labelPlacement="end">
-                                                            <label className="MuiFormControlLabel-root-254">
-                                                              <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
-                                                                  <WithStyles(SwitchBase) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                    <SwitchBase type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
-                                                                      <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                        <IconButton component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
-                                                                          <WithStyles(ButtonBase) className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                            <ButtonBase className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
-                                                                              <span className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
-                                                                                <span className="MuiIconButton-label-237">
-                                                                                  <pure(CheckBoxOutlineBlank)>
-                                                                                    <CheckBoxOutlineBlank>
-                                                                                      <WithStyles(SvgIcon)>
-                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                          <svg className="MuiSvgIcon-root-238" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                            <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-                                                                                          </svg>
-                                                                                        </SvgIcon>
-                                                                                      </WithStyles(SvgIcon)>
-                                                                                    </CheckBoxOutlineBlank>
-                                                                                  </pure(CheckBoxOutlineBlank)>
-                                                                                  <input autoFocus={[undefined]} checked={false} className="MuiPrivateSwitchBase-input-269" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
-                                                                                </span>
-                                                                                <NoSsr defer={false} fallback={{...}}>
-                                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                                    <TouchRipple center={true} classes={{...}}>
-                                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-270" childFactory={[Function: childFactory]}>
-                                                                                        <span className="MuiTouchRipple-root-270" />
-                                                                                      </TransitionGroup>
-                                                                                    </TouchRipple>
-                                                                                  </WithStyles(TouchRipple)>
-                                                                                </NoSsr>
-                                                                              </span>
-                                                                            </ButtonBase>
-                                                                          </WithStyles(ButtonBase)>
-                                                                        </IconButton>
-                                                                      </WithStyles(IconButton)>
-                                                                    </SwitchBase>
-                                                                  </WithStyles(SwitchBase)>
-                                                                </Checkbox>
-                                                              </WithStyles(Checkbox)>
-                                                              <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-259">
-                                                                <Typography component="span" className="MuiFormControlLabel-label-259" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                  <span className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259">
-                                                                    <div className="RSFFilter-groupLabel-145">
-                                                                      <span>
-                                                                        Red
-                                                                      </span>
-                                                                      <WithStyles(Typography) variant="caption" className="RSFFilter-matches-140" component="span">
-                                                                        <Typography variant="caption" className="RSFFilter-matches-140" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                          <span className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140">
-                                                                            (
-                                                                            2
-                                                                            )
-                                                                          </span>
-                                                                        </Typography>
-                                                                      </WithStyles(Typography)>
-                                                                    </div>
-                                                                  </span>
-                                                                </Typography>
-                                                              </WithStyles(Typography)>
-                                                            </label>
-                                                          </FormControlLabel>
-                                                        </WithStyles(FormControlLabel)>
-                                                        <WithStyles(FormControlLabel) label={{...}} control={{...}}>
-                                                          <FormControlLabel label={{...}} control={{...}} classes={{...}} labelPlacement="end">
-                                                            <label className="MuiFormControlLabel-root-254">
-                                                              <WithStyles(Checkbox) checked={true} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                <Checkbox checked={true} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
-                                                                  <WithStyles(SwitchBase) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                    <SwitchBase type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
-                                                                      <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                        <IconButton component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
-                                                                          <WithStyles(ButtonBase) className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                            <ButtonBase className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
-                                                                              <span className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
-                                                                                <span className="MuiIconButton-label-237">
-                                                                                  <pure(CheckBox)>
-                                                                                    <CheckBox>
-                                                                                      <WithStyles(SvgIcon)>
-                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                          <svg className="MuiSvgIcon-root-238" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                            <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                                                                          </svg>
-                                                                                        </SvgIcon>
-                                                                                      </WithStyles(SvgIcon)>
-                                                                                    </CheckBox>
-                                                                                  </pure(CheckBox)>
-                                                                                  <input autoFocus={[undefined]} checked={true} className="MuiPrivateSwitchBase-input-269" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
-                                                                                </span>
-                                                                                <NoSsr defer={false} fallback={{...}}>
-                                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                                    <TouchRipple center={true} classes={{...}}>
-                                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-270" childFactory={[Function: childFactory]}>
-                                                                                        <span className="MuiTouchRipple-root-270" />
-                                                                                      </TransitionGroup>
-                                                                                    </TouchRipple>
-                                                                                  </WithStyles(TouchRipple)>
-                                                                                </NoSsr>
-                                                                              </span>
-                                                                            </ButtonBase>
-                                                                          </WithStyles(ButtonBase)>
-                                                                        </IconButton>
-                                                                      </WithStyles(IconButton)>
-                                                                    </SwitchBase>
-                                                                  </WithStyles(SwitchBase)>
-                                                                </Checkbox>
-                                                              </WithStyles(Checkbox)>
-                                                              <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-259">
-                                                                <Typography component="span" className="MuiFormControlLabel-label-259" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                  <span className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259">
-                                                                    <div className="RSFFilter-groupLabel-145">
-                                                                      <span>
-                                                                        Sunburst
-                                                                      </span>
-                                                                      <WithStyles(Typography) variant="caption" className="RSFFilter-matches-140" component="span">
-                                                                        <Typography variant="caption" className="RSFFilter-matches-140" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                          <span className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140">
-                                                                            (
-                                                                            10
-                                                                            )
-                                                                          </span>
-                                                                        </Typography>
-                                                                      </WithStyles(Typography)>
-                                                                    </div>
-                                                                  </span>
-                                                                </Typography>
-                                                              </WithStyles(Typography)>
-                                                            </label>
-                                                          </FormControlLabel>
-                                                        </WithStyles(FormControlLabel)>
+                                                        <WithStyles(WithFormControlContext(FormControlLabel)) label={{...}} control={{...}}>
+                                                          <WithFormControlContext(FormControlLabel) label={{...}} control={{...}} classes={{...}}>
+                                                            <FormControlLabel muiFormControl={[undefined]} label={{...}} control={{...}} classes={{...}} labelPlacement="end">
+                                                              <label className="MuiFormControlLabel-root-254">
+                                                                <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                  <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
+                                                                    <WithStyles(WithFormControlContext(SwitchBase)) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                      <WithFormControlContext(SwitchBase) type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                        <SwitchBase muiFormControl={[undefined]} type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                          <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                            <IconButton component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
+                                                                              <WithStyles(ButtonBase) className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                                <ButtonBase className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
+                                                                                  <span className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
+                                                                                    <span className="MuiIconButton-label-237">
+                                                                                      <pure(CheckBoxOutlineBlank)>
+                                                                                        <CheckBoxOutlineBlank>
+                                                                                          <WithStyles(SvgIcon)>
+                                                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                              <svg className="MuiSvgIcon-root-238" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                                                                              </svg>
+                                                                                            </SvgIcon>
+                                                                                          </WithStyles(SvgIcon)>
+                                                                                        </CheckBoxOutlineBlank>
+                                                                                      </pure(CheckBoxOutlineBlank)>
+                                                                                      <input autoFocus={[undefined]} checked={false} defaultChecked={[undefined]} className="MuiPrivateSwitchBase-input-269" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
+                                                                                    </span>
+                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                        <TouchRipple center={true} classes={{...}}>
+                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-270" childFactory={[Function: childFactory]}>
+                                                                                            <span className="MuiTouchRipple-root-270" />
+                                                                                          </TransitionGroup>
+                                                                                        </TouchRipple>
+                                                                                      </WithStyles(TouchRipple)>
+                                                                                    </NoSsr>
+                                                                                  </span>
+                                                                                </ButtonBase>
+                                                                              </WithStyles(ButtonBase)>
+                                                                            </IconButton>
+                                                                          </WithStyles(IconButton)>
+                                                                        </SwitchBase>
+                                                                      </WithFormControlContext(SwitchBase)>
+                                                                    </WithStyles(WithFormControlContext(SwitchBase))>
+                                                                  </Checkbox>
+                                                                </WithStyles(Checkbox)>
+                                                                <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-259">
+                                                                  <Typography component="span" className="MuiFormControlLabel-label-259" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <span className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259">
+                                                                      <div className="RSFFilter-groupLabel-145">
+                                                                        <span>
+                                                                          Red
+                                                                        </span>
+                                                                        <WithStyles(Typography) variant="caption" className="RSFFilter-matches-140" component="span">
+                                                                          <Typography variant="caption" className="RSFFilter-matches-140" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                            <span className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140">
+                                                                              (
+                                                                              2
+                                                                              )
+                                                                            </span>
+                                                                          </Typography>
+                                                                        </WithStyles(Typography)>
+                                                                      </div>
+                                                                    </span>
+                                                                  </Typography>
+                                                                </WithStyles(Typography)>
+                                                              </label>
+                                                            </FormControlLabel>
+                                                          </WithFormControlContext(FormControlLabel)>
+                                                        </WithStyles(WithFormControlContext(FormControlLabel))>
+                                                        <WithStyles(WithFormControlContext(FormControlLabel)) label={{...}} control={{...}}>
+                                                          <WithFormControlContext(FormControlLabel) label={{...}} control={{...}} classes={{...}}>
+                                                            <FormControlLabel muiFormControl={[undefined]} label={{...}} control={{...}} classes={{...}} labelPlacement="end">
+                                                              <label className="MuiFormControlLabel-root-254">
+                                                                <WithStyles(Checkbox) checked={true} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                  <Checkbox checked={true} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
+                                                                    <WithStyles(WithFormControlContext(SwitchBase)) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                      <WithFormControlContext(SwitchBase) type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                        <SwitchBase muiFormControl={[undefined]} type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={true} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                          <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                            <IconButton component="span" className="MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
+                                                                              <WithStyles(ButtonBase) className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                                <ButtonBase className="MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
+                                                                                  <span className="MuiButtonBase-root-194 MuiIconButton-root-232 MuiPrivateSwitchBase-root-266 MuiCheckbox-root-260 MuiCheckbox-colorPrimary-264 MuiPrivateSwitchBase-checked-267 MuiCheckbox-checked-261" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
+                                                                                    <span className="MuiIconButton-label-237">
+                                                                                      <pure(CheckBox)>
+                                                                                        <CheckBox>
+                                                                                          <WithStyles(SvgIcon)>
+                                                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                              <svg className="MuiSvgIcon-root-238" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                                                                              </svg>
+                                                                                            </SvgIcon>
+                                                                                          </WithStyles(SvgIcon)>
+                                                                                        </CheckBox>
+                                                                                      </pure(CheckBox)>
+                                                                                      <input autoFocus={[undefined]} checked={true} defaultChecked={[undefined]} className="MuiPrivateSwitchBase-input-269" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
+                                                                                    </span>
+                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                        <TouchRipple center={true} classes={{...}}>
+                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-270" childFactory={[Function: childFactory]}>
+                                                                                            <span className="MuiTouchRipple-root-270" />
+                                                                                          </TransitionGroup>
+                                                                                        </TouchRipple>
+                                                                                      </WithStyles(TouchRipple)>
+                                                                                    </NoSsr>
+                                                                                  </span>
+                                                                                </ButtonBase>
+                                                                              </WithStyles(ButtonBase)>
+                                                                            </IconButton>
+                                                                          </WithStyles(IconButton)>
+                                                                        </SwitchBase>
+                                                                      </WithFormControlContext(SwitchBase)>
+                                                                    </WithStyles(WithFormControlContext(SwitchBase))>
+                                                                  </Checkbox>
+                                                                </WithStyles(Checkbox)>
+                                                                <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-259">
+                                                                  <Typography component="span" className="MuiFormControlLabel-label-259" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <span className="MuiTypography-root-197 MuiTypography-body2-205 MuiFormControlLabel-label-259">
+                                                                      <div className="RSFFilter-groupLabel-145">
+                                                                        <span>
+                                                                          Sunburst
+                                                                        </span>
+                                                                        <WithStyles(Typography) variant="caption" className="RSFFilter-matches-140" component="span">
+                                                                          <Typography variant="caption" className="RSFFilter-matches-140" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                            <span className="MuiTypography-root-197 MuiTypography-caption-207 RSFFilter-matches-140">
+                                                                              (
+                                                                              10
+                                                                              )
+                                                                            </span>
+                                                                          </Typography>
+                                                                        </WithStyles(Typography)>
+                                                                      </div>
+                                                                    </span>
+                                                                  </Typography>
+                                                                </WithStyles(Typography)>
+                                                              </label>
+                                                            </FormControlLabel>
+                                                          </WithFormControlContext(FormControlLabel)>
+                                                        </WithStyles(WithFormControlContext(FormControlLabel))>
                                                       </div>
                                                     </FormGroup>
                                                   </WithStyles(FormGroup)>
@@ -482,7 +498,7 @@ exports[`Filter renders with filters selected 1`] = `
           </Filter>
         </inject-Filter-with-router>
       </WithStyles(inject-Filter-with-router)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -490,7 +506,7 @@ exports[`Filter renders with filters selected 1`] = `
 exports[`Filter renders with no filters selected 1`] = `
 <TestProvider router={{...}} app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Filter-with-router) model={{...}}>
         <inject-Filter-with-router model={{...}} classes={{...}}>
           <Filter model={{...}} classes={{...}} router={{...}} onViewResultsClick={[Function]} queryParam="filters" margins={true}>
@@ -568,140 +584,148 @@ exports[`Filter renders with no filters selected 1`] = `
                                                   <WithStyles(FormGroup)>
                                                     <FormGroup classes={{...}} row={false}>
                                                       <div className="MuiFormGroup-root-114">
-                                                        <WithStyles(FormControlLabel) label={{...}} control={{...}}>
-                                                          <FormControlLabel label={{...}} control={{...}} classes={{...}} labelPlacement="end">
-                                                            <label className="MuiFormControlLabel-root-116">
-                                                              <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
-                                                                  <WithStyles(SwitchBase) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                    <SwitchBase type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
-                                                                      <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                        <IconButton component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
-                                                                          <WithStyles(ButtonBase) className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                            <ButtonBase className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
-                                                                              <span className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
-                                                                                <span className="MuiIconButton-label-99">
-                                                                                  <pure(CheckBoxOutlineBlank)>
-                                                                                    <CheckBoxOutlineBlank>
-                                                                                      <WithStyles(SvgIcon)>
-                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                          <svg className="MuiSvgIcon-root-100" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                            <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-                                                                                          </svg>
-                                                                                        </SvgIcon>
-                                                                                      </WithStyles(SvgIcon)>
-                                                                                    </CheckBoxOutlineBlank>
-                                                                                  </pure(CheckBoxOutlineBlank)>
-                                                                                  <input autoFocus={[undefined]} checked={false} className="MuiPrivateSwitchBase-input-131" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
-                                                                                </span>
-                                                                                <NoSsr defer={false} fallback={{...}}>
-                                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                                    <TouchRipple center={true} classes={{...}}>
-                                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-132" childFactory={[Function: childFactory]}>
-                                                                                        <span className="MuiTouchRipple-root-132" />
-                                                                                      </TransitionGroup>
-                                                                                    </TouchRipple>
-                                                                                  </WithStyles(TouchRipple)>
-                                                                                </NoSsr>
-                                                                              </span>
-                                                                            </ButtonBase>
-                                                                          </WithStyles(ButtonBase)>
-                                                                        </IconButton>
-                                                                      </WithStyles(IconButton)>
-                                                                    </SwitchBase>
-                                                                  </WithStyles(SwitchBase)>
-                                                                </Checkbox>
-                                                              </WithStyles(Checkbox)>
-                                                              <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-121">
-                                                                <Typography component="span" className="MuiFormControlLabel-label-121" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                  <span className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121">
-                                                                    <div className="RSFFilter-groupLabel-7">
-                                                                      <span>
-                                                                        Up to $100
-                                                                      </span>
-                                                                      <WithStyles(Typography) variant="caption" className="RSFFilter-matches-2" component="span">
-                                                                        <Typography variant="caption" className="RSFFilter-matches-2" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                          <span className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2">
-                                                                            (
-                                                                            20
-                                                                            )
-                                                                          </span>
-                                                                        </Typography>
-                                                                      </WithStyles(Typography)>
-                                                                    </div>
-                                                                  </span>
-                                                                </Typography>
-                                                              </WithStyles(Typography)>
-                                                            </label>
-                                                          </FormControlLabel>
-                                                        </WithStyles(FormControlLabel)>
-                                                        <WithStyles(FormControlLabel) label={{...}} control={{...}}>
-                                                          <FormControlLabel label={{...}} control={{...}} classes={{...}} labelPlacement="end">
-                                                            <label className="MuiFormControlLabel-root-116">
-                                                              <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
-                                                                  <WithStyles(SwitchBase) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                    <SwitchBase type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
-                                                                      <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                        <IconButton component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
-                                                                          <WithStyles(ButtonBase) className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                            <ButtonBase className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
-                                                                              <span className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
-                                                                                <span className="MuiIconButton-label-99">
-                                                                                  <pure(CheckBoxOutlineBlank)>
-                                                                                    <CheckBoxOutlineBlank>
-                                                                                      <WithStyles(SvgIcon)>
-                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                          <svg className="MuiSvgIcon-root-100" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                            <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-                                                                                          </svg>
-                                                                                        </SvgIcon>
-                                                                                      </WithStyles(SvgIcon)>
-                                                                                    </CheckBoxOutlineBlank>
-                                                                                  </pure(CheckBoxOutlineBlank)>
-                                                                                  <input autoFocus={[undefined]} checked={false} className="MuiPrivateSwitchBase-input-131" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
-                                                                                </span>
-                                                                                <NoSsr defer={false} fallback={{...}}>
-                                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                                    <TouchRipple center={true} classes={{...}}>
-                                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-132" childFactory={[Function: childFactory]}>
-                                                                                        <span className="MuiTouchRipple-root-132" />
-                                                                                      </TransitionGroup>
-                                                                                    </TouchRipple>
-                                                                                  </WithStyles(TouchRipple)>
-                                                                                </NoSsr>
-                                                                              </span>
-                                                                            </ButtonBase>
-                                                                          </WithStyles(ButtonBase)>
-                                                                        </IconButton>
-                                                                      </WithStyles(IconButton)>
-                                                                    </SwitchBase>
-                                                                  </WithStyles(SwitchBase)>
-                                                                </Checkbox>
-                                                              </WithStyles(Checkbox)>
-                                                              <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-121">
-                                                                <Typography component="span" className="MuiFormControlLabel-label-121" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                  <span className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121">
-                                                                    <div className="RSFFilter-groupLabel-7">
-                                                                      <span>
-                                                                        $100 - $200
-                                                                      </span>
-                                                                      <WithStyles(Typography) variant="caption" className="RSFFilter-matches-2" component="span">
-                                                                        <Typography variant="caption" className="RSFFilter-matches-2" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                          <span className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2">
-                                                                            (
-                                                                            10
-                                                                            )
-                                                                          </span>
-                                                                        </Typography>
-                                                                      </WithStyles(Typography)>
-                                                                    </div>
-                                                                  </span>
-                                                                </Typography>
-                                                              </WithStyles(Typography)>
-                                                            </label>
-                                                          </FormControlLabel>
-                                                        </WithStyles(FormControlLabel)>
+                                                        <WithStyles(WithFormControlContext(FormControlLabel)) label={{...}} control={{...}}>
+                                                          <WithFormControlContext(FormControlLabel) label={{...}} control={{...}} classes={{...}}>
+                                                            <FormControlLabel muiFormControl={[undefined]} label={{...}} control={{...}} classes={{...}} labelPlacement="end">
+                                                              <label className="MuiFormControlLabel-root-116">
+                                                                <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                  <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
+                                                                    <WithStyles(WithFormControlContext(SwitchBase)) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                      <WithFormControlContext(SwitchBase) type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                        <SwitchBase muiFormControl={[undefined]} type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                          <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                            <IconButton component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
+                                                                              <WithStyles(ButtonBase) className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                                <ButtonBase className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
+                                                                                  <span className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
+                                                                                    <span className="MuiIconButton-label-99">
+                                                                                      <pure(CheckBoxOutlineBlank)>
+                                                                                        <CheckBoxOutlineBlank>
+                                                                                          <WithStyles(SvgIcon)>
+                                                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                              <svg className="MuiSvgIcon-root-100" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                                                                              </svg>
+                                                                                            </SvgIcon>
+                                                                                          </WithStyles(SvgIcon)>
+                                                                                        </CheckBoxOutlineBlank>
+                                                                                      </pure(CheckBoxOutlineBlank)>
+                                                                                      <input autoFocus={[undefined]} checked={false} defaultChecked={[undefined]} className="MuiPrivateSwitchBase-input-131" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
+                                                                                    </span>
+                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                        <TouchRipple center={true} classes={{...}}>
+                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-132" childFactory={[Function: childFactory]}>
+                                                                                            <span className="MuiTouchRipple-root-132" />
+                                                                                          </TransitionGroup>
+                                                                                        </TouchRipple>
+                                                                                      </WithStyles(TouchRipple)>
+                                                                                    </NoSsr>
+                                                                                  </span>
+                                                                                </ButtonBase>
+                                                                              </WithStyles(ButtonBase)>
+                                                                            </IconButton>
+                                                                          </WithStyles(IconButton)>
+                                                                        </SwitchBase>
+                                                                      </WithFormControlContext(SwitchBase)>
+                                                                    </WithStyles(WithFormControlContext(SwitchBase))>
+                                                                  </Checkbox>
+                                                                </WithStyles(Checkbox)>
+                                                                <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-121">
+                                                                  <Typography component="span" className="MuiFormControlLabel-label-121" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <span className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121">
+                                                                      <div className="RSFFilter-groupLabel-7">
+                                                                        <span>
+                                                                          Up to $100
+                                                                        </span>
+                                                                        <WithStyles(Typography) variant="caption" className="RSFFilter-matches-2" component="span">
+                                                                          <Typography variant="caption" className="RSFFilter-matches-2" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                            <span className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2">
+                                                                              (
+                                                                              20
+                                                                              )
+                                                                            </span>
+                                                                          </Typography>
+                                                                        </WithStyles(Typography)>
+                                                                      </div>
+                                                                    </span>
+                                                                  </Typography>
+                                                                </WithStyles(Typography)>
+                                                              </label>
+                                                            </FormControlLabel>
+                                                          </WithFormControlContext(FormControlLabel)>
+                                                        </WithStyles(WithFormControlContext(FormControlLabel))>
+                                                        <WithStyles(WithFormControlContext(FormControlLabel)) label={{...}} control={{...}}>
+                                                          <WithFormControlContext(FormControlLabel) label={{...}} control={{...}} classes={{...}}>
+                                                            <FormControlLabel muiFormControl={[undefined]} label={{...}} control={{...}} classes={{...}} labelPlacement="end">
+                                                              <label className="MuiFormControlLabel-root-116">
+                                                                <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                  <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
+                                                                    <WithStyles(WithFormControlContext(SwitchBase)) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                      <WithFormControlContext(SwitchBase) type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                        <SwitchBase muiFormControl={[undefined]} type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                          <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                            <IconButton component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
+                                                                              <WithStyles(ButtonBase) className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                                <ButtonBase className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
+                                                                                  <span className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
+                                                                                    <span className="MuiIconButton-label-99">
+                                                                                      <pure(CheckBoxOutlineBlank)>
+                                                                                        <CheckBoxOutlineBlank>
+                                                                                          <WithStyles(SvgIcon)>
+                                                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                              <svg className="MuiSvgIcon-root-100" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                                                                              </svg>
+                                                                                            </SvgIcon>
+                                                                                          </WithStyles(SvgIcon)>
+                                                                                        </CheckBoxOutlineBlank>
+                                                                                      </pure(CheckBoxOutlineBlank)>
+                                                                                      <input autoFocus={[undefined]} checked={false} defaultChecked={[undefined]} className="MuiPrivateSwitchBase-input-131" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
+                                                                                    </span>
+                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                        <TouchRipple center={true} classes={{...}}>
+                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-132" childFactory={[Function: childFactory]}>
+                                                                                            <span className="MuiTouchRipple-root-132" />
+                                                                                          </TransitionGroup>
+                                                                                        </TouchRipple>
+                                                                                      </WithStyles(TouchRipple)>
+                                                                                    </NoSsr>
+                                                                                  </span>
+                                                                                </ButtonBase>
+                                                                              </WithStyles(ButtonBase)>
+                                                                            </IconButton>
+                                                                          </WithStyles(IconButton)>
+                                                                        </SwitchBase>
+                                                                      </WithFormControlContext(SwitchBase)>
+                                                                    </WithStyles(WithFormControlContext(SwitchBase))>
+                                                                  </Checkbox>
+                                                                </WithStyles(Checkbox)>
+                                                                <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-121">
+                                                                  <Typography component="span" className="MuiFormControlLabel-label-121" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <span className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121">
+                                                                      <div className="RSFFilter-groupLabel-7">
+                                                                        <span>
+                                                                          $100 - $200
+                                                                        </span>
+                                                                        <WithStyles(Typography) variant="caption" className="RSFFilter-matches-2" component="span">
+                                                                          <Typography variant="caption" className="RSFFilter-matches-2" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                            <span className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2">
+                                                                              (
+                                                                              10
+                                                                              )
+                                                                            </span>
+                                                                          </Typography>
+                                                                        </WithStyles(Typography)>
+                                                                      </div>
+                                                                    </span>
+                                                                  </Typography>
+                                                                </WithStyles(Typography)>
+                                                              </label>
+                                                            </FormControlLabel>
+                                                          </WithFormControlContext(FormControlLabel)>
+                                                        </WithStyles(WithFormControlContext(FormControlLabel))>
                                                       </div>
                                                     </FormGroup>
                                                   </WithStyles(FormGroup)>
@@ -796,140 +820,148 @@ exports[`Filter renders with no filters selected 1`] = `
                                                   <WithStyles(FormGroup)>
                                                     <FormGroup classes={{...}} row={false}>
                                                       <div className="MuiFormGroup-root-114">
-                                                        <WithStyles(FormControlLabel) label={{...}} control={{...}}>
-                                                          <FormControlLabel label={{...}} control={{...}} classes={{...}} labelPlacement="end">
-                                                            <label className="MuiFormControlLabel-root-116">
-                                                              <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
-                                                                  <WithStyles(SwitchBase) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                    <SwitchBase type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
-                                                                      <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                        <IconButton component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
-                                                                          <WithStyles(ButtonBase) className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                            <ButtonBase className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
-                                                                              <span className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
-                                                                                <span className="MuiIconButton-label-99">
-                                                                                  <pure(CheckBoxOutlineBlank)>
-                                                                                    <CheckBoxOutlineBlank>
-                                                                                      <WithStyles(SvgIcon)>
-                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                          <svg className="MuiSvgIcon-root-100" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                            <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-                                                                                          </svg>
-                                                                                        </SvgIcon>
-                                                                                      </WithStyles(SvgIcon)>
-                                                                                    </CheckBoxOutlineBlank>
-                                                                                  </pure(CheckBoxOutlineBlank)>
-                                                                                  <input autoFocus={[undefined]} checked={false} className="MuiPrivateSwitchBase-input-131" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
-                                                                                </span>
-                                                                                <NoSsr defer={false} fallback={{...}}>
-                                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                                    <TouchRipple center={true} classes={{...}}>
-                                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-132" childFactory={[Function: childFactory]}>
-                                                                                        <span className="MuiTouchRipple-root-132" />
-                                                                                      </TransitionGroup>
-                                                                                    </TouchRipple>
-                                                                                  </WithStyles(TouchRipple)>
-                                                                                </NoSsr>
-                                                                              </span>
-                                                                            </ButtonBase>
-                                                                          </WithStyles(ButtonBase)>
-                                                                        </IconButton>
-                                                                      </WithStyles(IconButton)>
-                                                                    </SwitchBase>
-                                                                  </WithStyles(SwitchBase)>
-                                                                </Checkbox>
-                                                              </WithStyles(Checkbox)>
-                                                              <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-121">
-                                                                <Typography component="span" className="MuiFormControlLabel-label-121" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                  <span className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121">
-                                                                    <div className="RSFFilter-groupLabel-7">
-                                                                      <span>
-                                                                        Red
-                                                                      </span>
-                                                                      <WithStyles(Typography) variant="caption" className="RSFFilter-matches-2" component="span">
-                                                                        <Typography variant="caption" className="RSFFilter-matches-2" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                          <span className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2">
-                                                                            (
-                                                                            2
-                                                                            )
-                                                                          </span>
-                                                                        </Typography>
-                                                                      </WithStyles(Typography)>
-                                                                    </div>
-                                                                  </span>
-                                                                </Typography>
-                                                              </WithStyles(Typography)>
-                                                            </label>
-                                                          </FormControlLabel>
-                                                        </WithStyles(FormControlLabel)>
-                                                        <WithStyles(FormControlLabel) label={{...}} control={{...}}>
-                                                          <FormControlLabel label={{...}} control={{...}} classes={{...}} labelPlacement="end">
-                                                            <label className="MuiFormControlLabel-root-116">
-                                                              <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
-                                                                  <WithStyles(SwitchBase) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
-                                                                    <SwitchBase type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
-                                                                      <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                        <IconButton component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
-                                                                          <WithStyles(ButtonBase) className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
-                                                                            <ButtonBase className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
-                                                                              <span className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
-                                                                                <span className="MuiIconButton-label-99">
-                                                                                  <pure(CheckBoxOutlineBlank)>
-                                                                                    <CheckBoxOutlineBlank>
-                                                                                      <WithStyles(SvgIcon)>
-                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                          <svg className="MuiSvgIcon-root-100" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                            <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-                                                                                          </svg>
-                                                                                        </SvgIcon>
-                                                                                      </WithStyles(SvgIcon)>
-                                                                                    </CheckBoxOutlineBlank>
-                                                                                  </pure(CheckBoxOutlineBlank)>
-                                                                                  <input autoFocus={[undefined]} checked={false} className="MuiPrivateSwitchBase-input-131" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
-                                                                                </span>
-                                                                                <NoSsr defer={false} fallback={{...}}>
-                                                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                                    <TouchRipple center={true} classes={{...}}>
-                                                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-132" childFactory={[Function: childFactory]}>
-                                                                                        <span className="MuiTouchRipple-root-132" />
-                                                                                      </TransitionGroup>
-                                                                                    </TouchRipple>
-                                                                                  </WithStyles(TouchRipple)>
-                                                                                </NoSsr>
-                                                                              </span>
-                                                                            </ButtonBase>
-                                                                          </WithStyles(ButtonBase)>
-                                                                        </IconButton>
-                                                                      </WithStyles(IconButton)>
-                                                                    </SwitchBase>
-                                                                  </WithStyles(SwitchBase)>
-                                                                </Checkbox>
-                                                              </WithStyles(Checkbox)>
-                                                              <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-121">
-                                                                <Typography component="span" className="MuiFormControlLabel-label-121" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                  <span className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121">
-                                                                    <div className="RSFFilter-groupLabel-7">
-                                                                      <span>
-                                                                        Sunburst
-                                                                      </span>
-                                                                      <WithStyles(Typography) variant="caption" className="RSFFilter-matches-2" component="span">
-                                                                        <Typography variant="caption" className="RSFFilter-matches-2" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                          <span className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2">
-                                                                            (
-                                                                            10
-                                                                            )
-                                                                          </span>
-                                                                        </Typography>
-                                                                      </WithStyles(Typography)>
-                                                                    </div>
-                                                                  </span>
-                                                                </Typography>
-                                                              </WithStyles(Typography)>
-                                                            </label>
-                                                          </FormControlLabel>
-                                                        </WithStyles(FormControlLabel)>
+                                                        <WithStyles(WithFormControlContext(FormControlLabel)) label={{...}} control={{...}}>
+                                                          <WithFormControlContext(FormControlLabel) label={{...}} control={{...}} classes={{...}}>
+                                                            <FormControlLabel muiFormControl={[undefined]} label={{...}} control={{...}} classes={{...}} labelPlacement="end">
+                                                              <label className="MuiFormControlLabel-root-116">
+                                                                <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                  <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
+                                                                    <WithStyles(WithFormControlContext(SwitchBase)) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                      <WithFormControlContext(SwitchBase) type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                        <SwitchBase muiFormControl={[undefined]} type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                          <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                            <IconButton component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
+                                                                              <WithStyles(ButtonBase) className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                                <ButtonBase className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
+                                                                                  <span className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
+                                                                                    <span className="MuiIconButton-label-99">
+                                                                                      <pure(CheckBoxOutlineBlank)>
+                                                                                        <CheckBoxOutlineBlank>
+                                                                                          <WithStyles(SvgIcon)>
+                                                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                              <svg className="MuiSvgIcon-root-100" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                                                                              </svg>
+                                                                                            </SvgIcon>
+                                                                                          </WithStyles(SvgIcon)>
+                                                                                        </CheckBoxOutlineBlank>
+                                                                                      </pure(CheckBoxOutlineBlank)>
+                                                                                      <input autoFocus={[undefined]} checked={false} defaultChecked={[undefined]} className="MuiPrivateSwitchBase-input-131" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
+                                                                                    </span>
+                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                        <TouchRipple center={true} classes={{...}}>
+                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-132" childFactory={[Function: childFactory]}>
+                                                                                            <span className="MuiTouchRipple-root-132" />
+                                                                                          </TransitionGroup>
+                                                                                        </TouchRipple>
+                                                                                      </WithStyles(TouchRipple)>
+                                                                                    </NoSsr>
+                                                                                  </span>
+                                                                                </ButtonBase>
+                                                                              </WithStyles(ButtonBase)>
+                                                                            </IconButton>
+                                                                          </WithStyles(IconButton)>
+                                                                        </SwitchBase>
+                                                                      </WithFormControlContext(SwitchBase)>
+                                                                    </WithStyles(WithFormControlContext(SwitchBase))>
+                                                                  </Checkbox>
+                                                                </WithStyles(Checkbox)>
+                                                                <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-121">
+                                                                  <Typography component="span" className="MuiFormControlLabel-label-121" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <span className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121">
+                                                                      <div className="RSFFilter-groupLabel-7">
+                                                                        <span>
+                                                                          Red
+                                                                        </span>
+                                                                        <WithStyles(Typography) variant="caption" className="RSFFilter-matches-2" component="span">
+                                                                          <Typography variant="caption" className="RSFFilter-matches-2" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                            <span className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2">
+                                                                              (
+                                                                              2
+                                                                              )
+                                                                            </span>
+                                                                          </Typography>
+                                                                        </WithStyles(Typography)>
+                                                                      </div>
+                                                                    </span>
+                                                                  </Typography>
+                                                                </WithStyles(Typography)>
+                                                              </label>
+                                                            </FormControlLabel>
+                                                          </WithFormControlContext(FormControlLabel)>
+                                                        </WithStyles(WithFormControlContext(FormControlLabel))>
+                                                        <WithStyles(WithFormControlContext(FormControlLabel)) label={{...}} control={{...}}>
+                                                          <WithFormControlContext(FormControlLabel) label={{...}} control={{...}} classes={{...}}>
+                                                            <FormControlLabel muiFormControl={[undefined]} label={{...}} control={{...}} classes={{...}} labelPlacement="end">
+                                                              <label className="MuiFormControlLabel-root-116">
+                                                                <WithStyles(Checkbox) checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                  <Checkbox checked={false} color="primary" onChange={[Function: bound ]} disabled={[undefined]} classes={{...}} checkedIcon={{...}} icon={{...}} indeterminate={false} indeterminateIcon={{...}}>
+                                                                    <WithStyles(WithFormControlContext(SwitchBase)) type="checkbox" checkedIcon={{...}} className="" classes={{...}} inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]}>
+                                                                      <WithFormControlContext(SwitchBase) type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                        <SwitchBase muiFormControl={[undefined]} type="checkbox" checkedIcon={{...}} className="" inputProps={{...}} icon={{...}} checked={false} onChange={[Function: bound ]} disabled={[undefined]} classes={{...}}>
+                                                                          <WithStyles(IconButton) component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={[undefined]} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                            <IconButton component="span" className="MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" disabled={false} tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} color="default">
+                                                                              <WithStyles(ButtonBase) className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]}>
+                                                                                <ButtonBase className="MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" centerRipple={true} focusRipple={true} disabled={false} component="span" tabIndex={{...}} role={[undefined]} onFocus={[Function]} onBlur={[Function]} classes={{...}} disableRipple={false} disableTouchRipple={false} type="button">
+                                                                                  <span className="MuiButtonBase-root-56 MuiIconButton-root-94 MuiPrivateSwitchBase-root-128 MuiCheckbox-root-122 MuiCheckbox-colorPrimary-126" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={{...}} role={[undefined]}>
+                                                                                    <span className="MuiIconButton-label-99">
+                                                                                      <pure(CheckBoxOutlineBlank)>
+                                                                                        <CheckBoxOutlineBlank>
+                                                                                          <WithStyles(SvgIcon)>
+                                                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                              <svg className="MuiSvgIcon-root-100" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                                                                              </svg>
+                                                                                            </SvgIcon>
+                                                                                          </WithStyles(SvgIcon)>
+                                                                                        </CheckBoxOutlineBlank>
+                                                                                      </pure(CheckBoxOutlineBlank)>
+                                                                                      <input autoFocus={[undefined]} checked={false} defaultChecked={[undefined]} className="MuiPrivateSwitchBase-input-131" disabled={[undefined]} id={[undefined]} name={[undefined]} onChange={[Function]} readOnly={[undefined]} required={[undefined]} tabIndex={[undefined]} type="checkbox" value={[undefined]} data-indeterminate={false} />
+                                                                                    </span>
+                                                                                    <NoSsr defer={false} fallback={{...}}>
+                                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                        <TouchRipple center={true} classes={{...}}>
+                                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-132" childFactory={[Function: childFactory]}>
+                                                                                            <span className="MuiTouchRipple-root-132" />
+                                                                                          </TransitionGroup>
+                                                                                        </TouchRipple>
+                                                                                      </WithStyles(TouchRipple)>
+                                                                                    </NoSsr>
+                                                                                  </span>
+                                                                                </ButtonBase>
+                                                                              </WithStyles(ButtonBase)>
+                                                                            </IconButton>
+                                                                          </WithStyles(IconButton)>
+                                                                        </SwitchBase>
+                                                                      </WithFormControlContext(SwitchBase)>
+                                                                    </WithStyles(WithFormControlContext(SwitchBase))>
+                                                                  </Checkbox>
+                                                                </WithStyles(Checkbox)>
+                                                                <WithStyles(Typography) component="span" className="MuiFormControlLabel-label-121">
+                                                                  <Typography component="span" className="MuiFormControlLabel-label-121" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                    <span className="MuiTypography-root-59 MuiTypography-body2-67 MuiFormControlLabel-label-121">
+                                                                      <div className="RSFFilter-groupLabel-7">
+                                                                        <span>
+                                                                          Sunburst
+                                                                        </span>
+                                                                        <WithStyles(Typography) variant="caption" className="RSFFilter-matches-2" component="span">
+                                                                          <Typography variant="caption" className="RSFFilter-matches-2" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                            <span className="MuiTypography-root-59 MuiTypography-caption-69 RSFFilter-matches-2">
+                                                                              (
+                                                                              10
+                                                                              )
+                                                                            </span>
+                                                                          </Typography>
+                                                                        </WithStyles(Typography)>
+                                                                      </div>
+                                                                    </span>
+                                                                  </Typography>
+                                                                </WithStyles(Typography)>
+                                                              </label>
+                                                            </FormControlLabel>
+                                                          </WithFormControlContext(FormControlLabel)>
+                                                        </WithStyles(WithFormControlContext(FormControlLabel))>
                                                       </div>
                                                     </FormGroup>
                                                   </WithStyles(FormGroup)>
@@ -955,7 +987,7 @@ exports[`Filter renders with no filters selected 1`] = `
           </Filter>
         </inject-Filter-with-router>
       </WithStyles(inject-Filter-with-router)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

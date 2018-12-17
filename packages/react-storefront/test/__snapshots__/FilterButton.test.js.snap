@@ -3,7 +3,7 @@
 exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) title="Filter By" model={{...}} drawerProps={{...}}>
         <inject-FilterButton-with-app title="Filter By" model={{...}} drawerProps={{...}} classes={{...}}>
           <FilterButton title="Filter By" model={{...}} drawerProps={{...}} classes={{...}} app={{...}} hideClearLink={false} clearLinkText="clear all">
@@ -53,7 +53,7 @@ exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
                         <Modal BackdropProps={{...}} className="MuiDrawer-root-488 MuiDrawer-modal-499" open={false} onClose={[undefined]} amp-bind={{...}} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                           <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
                             <Portal containerInfo={{...}}>
-                              <div className="MuiModal-root-500 MuiDrawer-root-488 MuiDrawer-modal-499 MuiModal-hidden-501" amp-bind={{...}}>
+                              <div className="mui-fixed MuiModal-root-500 MuiDrawer-root-488 MuiDrawer-modal-499 MuiModal-hidden-501" amp-bind={{...}}>
                                 <WithStyles(Backdrop) open={false} onClick={[Function]} transitionDuration={{...}}>
                                   <Backdrop open={false} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
                                     <WithTheme(Fade) in={false} timeout={{...}} onClick={[Function]}>
@@ -147,7 +147,7 @@ exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
           </FilterButton>
         </inject-FilterButton-with-app>
       </WithStyles(inject-FilterButton-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -155,7 +155,7 @@ exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
 exports[`FilterButton renders with filters selected 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) model={{...}}>
         <inject-FilterButton-with-app model={{...}} classes={{...}}>
           <FilterButton model={{...}} classes={{...}} app={{...}} title="Filter" drawerProps={{...}} hideClearLink={false} clearLinkText="clear all">
@@ -207,7 +207,7 @@ exports[`FilterButton renders with filters selected 1`] = `
                         <Modal BackdropProps={{...}} className="MuiDrawer-root-214 MuiDrawer-modal-225" open={false} onClose={[undefined]} amp-bind={{...}} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                           <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
                             <Portal containerInfo={{...}}>
-                              <div className="MuiModal-root-226 MuiDrawer-root-214 MuiDrawer-modal-225 MuiModal-hidden-227" amp-bind={{...}}>
+                              <div className="mui-fixed MuiModal-root-226 MuiDrawer-root-214 MuiDrawer-modal-225 MuiModal-hidden-227" amp-bind={{...}}>
                                 <WithStyles(Backdrop) open={false} onClick={[Function]} transitionDuration={{...}}>
                                   <Backdrop open={false} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
                                     <WithTheme(Fade) in={false} timeout={{...}} onClick={[Function]}>
@@ -304,7 +304,7 @@ exports[`FilterButton renders with filters selected 1`] = `
           </FilterButton>
         </inject-FilterButton-with-app>
       </WithStyles(inject-FilterButton-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -312,7 +312,7 @@ exports[`FilterButton renders with filters selected 1`] = `
 exports[`FilterButton renders with no filters selected 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) model={{...}}>
         <inject-FilterButton-with-app model={{...}} classes={{...}}>
           <FilterButton model={{...}} classes={{...}} app={{...}} title="Filter" drawerProps={{...}} hideClearLink={false} clearLinkText="clear all">
@@ -362,7 +362,7 @@ exports[`FilterButton renders with no filters selected 1`] = `
                         <Modal BackdropProps={{...}} className="MuiDrawer-root-77 MuiDrawer-modal-88" open={false} onClose={[undefined]} amp-bind={{...}} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                           <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
                             <Portal containerInfo={{...}}>
-                              <div className="MuiModal-root-89 MuiDrawer-root-77 MuiDrawer-modal-88 MuiModal-hidden-90" amp-bind={{...}}>
+                              <div className="mui-fixed MuiModal-root-89 MuiDrawer-root-77 MuiDrawer-modal-88 MuiModal-hidden-90" amp-bind={{...}}>
                                 <WithStyles(Backdrop) open={false} onClick={[Function]} transitionDuration={{...}}>
                                   <Backdrop open={false} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
                                     <WithTheme(Fade) in={false} timeout={{...}} onClick={[Function]}>
@@ -456,7 +456,7 @@ exports[`FilterButton renders with no filters selected 1`] = `
           </FilterButton>
         </inject-FilterButton-with-app>
       </WithStyles(inject-FilterButton-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -464,7 +464,7 @@ exports[`FilterButton renders with no filters selected 1`] = `
 exports[`FilterButton uses the title prop as the label and drawer header 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) title="Filter By" model={{...}}>
         <inject-FilterButton-with-app title="Filter By" model={{...}} classes={{...}}>
           <FilterButton title="Filter By" model={{...}} classes={{...}} app={{...}} drawerProps={{...}} hideClearLink={false} clearLinkText="clear all">
@@ -514,7 +514,7 @@ exports[`FilterButton uses the title prop as the label and drawer header 1`] = `
                         <Modal BackdropProps={{...}} className="MuiDrawer-root-351 MuiDrawer-modal-362" open={false} onClose={[undefined]} amp-bind={{...}} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
                           <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
                             <Portal containerInfo={{...}}>
-                              <div className="MuiModal-root-363 MuiDrawer-root-351 MuiDrawer-modal-362 MuiModal-hidden-364" amp-bind={{...}}>
+                              <div className="mui-fixed MuiModal-root-363 MuiDrawer-root-351 MuiDrawer-modal-362 MuiModal-hidden-364" amp-bind={{...}}>
                                 <WithStyles(Backdrop) open={false} onClick={[Function]} transitionDuration={{...}}>
                                   <Backdrop open={false} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
                                     <WithTheme(Fade) in={false} timeout={{...}} onClick={[Function]}>
@@ -608,7 +608,7 @@ exports[`FilterButton uses the title prop as the label and drawer header 1`] = `
           </FilterButton>
         </inject-FilterButton-with-app>
       </WithStyles(inject-FilterButton-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
