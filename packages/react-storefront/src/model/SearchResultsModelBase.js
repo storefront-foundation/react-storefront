@@ -185,17 +185,14 @@ export default types
     showPage: async function(page) {
       self.page = page
       let { pathname, search } = window.location
-      search += search.length ? '&': '?'
-      if (page > 0) {
-        search += `page=${page}`
-      }
+      search += `${search.length ? '&': '?'}page=${self.page}`
 
       try {
         self.loadingMore = page > 0
         const results = await fetch(self.getShowMoreURL(`${pathname}.json${search}`)).then(res => res.json())
         if (isAlive(self)) {
           self.addItems(results.items)
-          self.updateTotalCount(results.total)
+          self.setTotal(results.total)
         }
       }
       finally {
@@ -232,9 +229,14 @@ export default types
       if (Array.isArray(items)) {
         self.items = [...self.items, ...items]
       }
+      self.endLoadingMore()
     },
-    updateTotalCount(count){
-      self.total = count
+    /**
+     * Sets the total number of matching records
+     * @param {Integer} total 
+     */
+    setTotal(total){
+      self.total = total
     },
     /**
      * Toggles the layout
