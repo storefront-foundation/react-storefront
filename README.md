@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.6.1
+
+* Added warning for setting cookies on cached route
+
 ### 5.6.0
 
 * Fix errors in SearchResultModelBase when filtering after paging.
