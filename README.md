@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.6.1
+
+* Fix for production webpack builds with no options
+
 ### 5.6.0
 
 * Fix errors in SearchResultModelBase when filtering after paging.
