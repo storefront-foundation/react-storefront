@@ -728,7 +728,7 @@ bar\r
       )
       const res = await runAll('get', '/new')
       expect(env.shouldSendCookies).toBe(false);
-      expect(console.warn).toHaveBeenCalledWith('[react-storefront router]', 'Cannot set cookies on cached route')
+      expect(console.warn).toHaveBeenCalledWith('[react-storefront response]', 'Cannot set cookies on cached route')
     })
   })
 
