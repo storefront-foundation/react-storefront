@@ -49,7 +49,7 @@ module.exports = {
    * @param {Object} options
    * @return {Object} A webpack config
    */
-  prod(root, { envVariables = {} }) {
+  prod(root, { envVariables = {} } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
 
     const alias = {
