@@ -141,6 +141,9 @@ export default class Response {
    * @return {Response} this
    */
   set(name, value) {
+    if (!env.shouldSendCookies) {
+      console.warn('[react-storefront response]', 'Cannot set cookies on cached route')
+    }
     if (name == null) throw new Error('name cannot be null in call to response.set')
     this.headers[name] = value
     return this
