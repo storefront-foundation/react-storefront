@@ -160,9 +160,7 @@ function createAliases(root) {
     "react-dom": path.join(root, 'node_modules', 'react-dom'),
     "react-helmet": path.join(root, 'node_modules', 'react-helmet'),
     "@material-ui/core": path.join(root, 'node_modules', '@material-ui/core'),
-    "react-storefront": path.join(root, 'node_modules', 'react-storefront', 'src'),
     "react-storefront-moov-xdn": path.join(root, 'node_modules', 'react-storefront-moov-xdn', 'src'),
-    "react-storefront-extensions": path.join(root, 'node_modules', 'react-storefront-extensions', 'src'),
     "react-universal-component": path.join(root, 'node_modules', 'react-universal-component'),
     "react-transition-group": path.join(root, 'node_modules', 'react-transition-group')
   }

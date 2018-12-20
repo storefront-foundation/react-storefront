@@ -14,9 +14,9 @@
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
     "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2018 Moov Corporation.  All rights reserved.\n */\" src",
-    "watch": "yarn build && babel --watch src --watch webpack --source-maps --out-dir lib",
+    "watch": "yarn build && babel --watch src --source-maps --out-dir lib --ignore \"webpack/*.js\"",
     "clean": "mkdir -p lib; find lib -not -name 'node_modules' -not -name 'package-lock.json' -delete",
-    "build": "yarn run clean && yarn create-indexes && NODE_ENV=production babel $@ src --source-maps --out-dir lib && cp package.json lib && cp -r webpack docs lib && cp -r service-worker lib",
+    "build": "yarn run clean && yarn create-indexes && NODE_ENV=production babel $@ src --source-maps --out-dir lib --ignore \"webpack/*.js\" && cp package.json lib && cp -r webpack docs lib && cp -r service-worker lib",
     "docs": "yarn build-storybook && yarn deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
@@ -41,6 +41,9 @@
     "webpack-flush-chunks": "^1.2.3"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^4.1.3",
+    "@storybook/addon-links": "^4.1.3",
+    "@storybook/addons": "^4.1.3",
     "@storybook/react": "^4.1.3",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -80,10 +83,7 @@
     "sinon": "^5.0.3",
     "storybook-addon-jsx": "^5.4.0",
     "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^2.0.14",
-    "@storybook/addon-actions": "^4.1.3",
-    "@storybook/addon-links": "^4.1.3",
-    "@storybook/addons": "^4.1.3"
+    "webpack-cli": "^2.0.14"
   },
   "dependencies": {
     "babel-eslint": "^8.2.3",
@@ -123,6 +123,7 @@
     "route-parser": "^0.0.5",
     "sha1": "^1.1.1",
     "store2": "2.7.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack-stats-plugin": "^0.2.1",
     "workbox-webpack-plugin": "^3.2.0",
     "write-file-webpack-plugin": "^4.3.2"
