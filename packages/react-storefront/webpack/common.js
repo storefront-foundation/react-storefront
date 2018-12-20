@@ -47,7 +47,7 @@ function createServerConfig(root, alias) {
   })
 }
 
-function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', eslintConfig }) {
+function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', eslintConfig } = {}) {
   const babelLoader = {
     loader: 'babel-loader',
     options: {
@@ -85,21 +85,21 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
   }
 
   return [
-    {
-      test: /\.js$/,
-      enforce: 'pre',
-      include: sourcePath,
-      use: [
-        {
-          loader: 'eslint-loader',
-          options: {
-            formatter: eslintFormatter,
-            eslintPath: require.resolve('eslint'),
-            baseConfig: eslintConfig
-          }
-        }
-      ]
-    },
+    // {
+    //   test: /\.js$/,
+    //   enforce: 'pre',
+    //   include: sourcePath,
+    //   use: [
+    //     {
+    //       loader: 'eslint-loader',
+    //       options: {
+    //         formatter: eslintFormatter,
+    //         eslintPath: require.resolve('eslint'),
+    //         baseConfig: eslintConfig
+    //       }
+    //     }
+    //   ]
+    // },
     {
       test: /\.js$/,
       include: /(src|node_modules\/proxy-polyfill)/,

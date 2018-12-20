@@ -120,7 +120,8 @@ module.exports = {
     return Object.assign(createClientConfig(root, { entries, alias }), {
       mode: 'production',
       module: {
-        rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
+        // rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
+        rules: createLoaders(path.resolve(root, 'src'))
       },
       plugins: [
         new webpack.LoaderOptionsPlugin({
@@ -139,7 +140,7 @@ module.exports = {
               warnings: false
             },
             mangle: {
-              safari10: true
+              // safari10: true
             },
             output: {
               comments: false
