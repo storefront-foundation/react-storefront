@@ -14,7 +14,7 @@
     "build-storybook": "build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
     "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2018 Moov Corporation.  All rights reserved.\n */\" src",
-    "clean": "mkdir -p lib; ls lib | grep -v 'node_modules\\|package-lock.json'",
+    "clean": "mkdir -p lib; pushd lib; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; popd;",
     "build:prep": "yarn run clean && yarn create-indexes && cp package.json lib && cp -r webpack docs lib && cp -r service-worker lib",
     "build": "yarn build:prep && NODE_ENV=production babel src --source-maps --out-dir lib",
     "watch": "yarn build:prep && babel --watch src --source-maps --out-dir lib",
