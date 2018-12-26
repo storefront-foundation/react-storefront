@@ -62,6 +62,7 @@ npm link babel-plugin-react-storefront
 ### 5.6.2
 
 * Fix layout issue with Filter title bar.
+* Added warning for setting cookies on cached route
 
 ### 5.6.1
 
