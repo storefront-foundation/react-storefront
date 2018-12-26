@@ -100,7 +100,6 @@ export default class Server {
       return response.send(JSON.stringify(state))
     }
 
-    const stats = await getStats()
     const amp = pathname.endsWith('.amp')
     const { App, theme }  = this
     const sheetsRegistry = new SheetsRegistry()
@@ -119,6 +118,8 @@ export default class Server {
     })
 
     try {
+      const stats = await getStats()
+
       let html = renderHtml({
         component: <PWA><App/></PWA>,
         providers: {

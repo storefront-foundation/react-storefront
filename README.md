@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.6.3
+
+* Improved error handling for SSR.
+
 ### 5.6.2
 
 * Fix layout issue with Filter title bar.
