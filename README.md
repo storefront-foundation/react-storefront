@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.6.2
+
+* Fix layout issue with Filter title bar.
+
 ### 5.6.1
 
 * Fix for production webpack builds with no options
