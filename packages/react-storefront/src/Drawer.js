@@ -27,11 +27,13 @@ export const styles = theme => ({
   container: {
     height: '100%',
     boxSizing: 'border-box',
-    paddingTop: '72px'
+    flexWrap: 'nowrap',
+    display: 'flex',
+    flexDirection: 'column',
   },
 
   content: {
-    height: '100%',
+    flexBasis: '100%',
     overflow: 'auto',
     paddingBottom: '64px'
   },
@@ -41,9 +43,9 @@ export const styles = theme => ({
   },
 
   title: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
+    flexBasis: 'auto',
+    flexGrow: 0,
+    flexShrink: 1,
     width: '100%',
     height: '72px',
     lineHeight: '72px',
