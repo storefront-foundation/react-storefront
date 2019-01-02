@@ -1,10 +1,10 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 
 import { once } from 'lodash'
 
-/**
- * @license
- * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
- */
 export default function sanitizeAmpHtml(html) {
   let styleId = 0
   const styles = []
