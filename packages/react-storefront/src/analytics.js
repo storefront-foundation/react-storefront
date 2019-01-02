@@ -81,7 +81,7 @@ export default new Proxy(
       if (method === 'fire') {
         return fire
       } else {
-        return fire.bind(window, method)
+        return fire.bind(null, method)
       }
     }
   }
