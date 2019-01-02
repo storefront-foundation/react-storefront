@@ -1,3 +1,6 @@
+
+import { once } from 'lodash'
+
 /**
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
@@ -8,6 +11,12 @@ export default function sanitizeAmpHtml(html) {
   const { fns } = global
   const dom = fns.init$(html)
   const { $ } = global // note this must be after fns.init$(), which ensures that $ is exported globally
+  const includeYoutubeAmpComponent = once(function(){
+    dom.$('head').append('<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>')
+  })
+  const includeIframeAmpComponent = once(function(){
+    dom.$('head').append('<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>')
+  })
   
   // Provide support for amp bind expressions on custom amp tags
   // React removes attributes like [selected]="selectedTab" and throws a warning, but allows attributes without brackets,
@@ -61,6 +70,37 @@ export default function sanitizeAmpHtml(html) {
     }
 
     $img.replaceWith($ampImg)
+  })
+
+  dom.$('iframe').each((index, iframe) => {
+    const $iframe = $(iframe)
+    const src = $iframe.attr('src')
+    const height = $iframe.attr('height')
+    const width = $iframe.attr('width')
+    const frameborder = $iframe.attr('frameborder')
+    let $ampIframe
+    const fromYoutube = /\byoutube\b/.test(src)
+    
+    if (fromYoutube) {
+      const videoId = src.substr(src.lastIndexOf('/') + 1)
+      $ampIframe = $('<amp-youtube layout="responsive"></amp-youtube>')
+
+      if (width) $ampIframe.attr('width', 16)
+      if (height) $ampIframe.attr('height', 9)
+      $ampIframe.attr('data-videoid', videoId)
+      includeYoutubeAmpComponent()
+    }
+    else {
+      $ampIframe = $('<amp-iframe layout="responsive"></amp-iframe>')
+
+      if (src) $ampIframe.attr('src', src)
+      if (frameborder) $ampIframe.attr('frameborder', frameborder)
+      if (height) $ampIframe.attr('height', height)
+      if (width) $ampIframe.attr('width', width)
+      includeIframeAmpComponent()
+    }
+
+    $iframe.replaceWith($ampIframe)
   })
 
   // remove focusable attribute on all svg elements

@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import classnames from 'classnames'
 import withStyles from '@material-ui/core/styles/withStyles'
