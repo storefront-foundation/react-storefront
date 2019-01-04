@@ -53,15 +53,15 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
     options: {
       cacheDirectory: true,
       presets: [
-        ["env", {
+        ["@babel/env", {
           targets: {
-            browsers: "> 1%",
-            uglify: true
+            browsers: "> 1%"
           },
           useBuiltIns: "usage",
+          forceAllTransforms: true,
           modules
         }],
-        "react"
+        "@babel/react"
       ],
       env: {
         "production": {
@@ -70,16 +70,18 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
       },
       plugins: [
         ...plugins,
-        ["transform-runtime", {
-          "polyfill": false,
+        ["@babel/plugin-transform-runtime", {
           "regenerator": true
         }],
-        "transform-async-to-generator",
-        "transform-decorators-legacy",
-        "syntax-dynamic-import",
-        "transform-object-rest-spread",
-        "transform-class-properties",
-        "universal-import"
+        "@babel/plugin-transform-async-to-generator",
+        ["@babel/plugin-proposal-decorators", {
+          "legacy": true
+        }],
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-proposal-class-properties"
+        // TODO: May need to upgrade this plugin
+        // "universal-import"
       ]
     }
   }
