@@ -7,10 +7,10 @@ import SearchResultsModelBase from './SearchResultsModelBase'
 
 const SubcategoryModelBase = types.compose(SearchResultsModelBase, 
   types.model("SubcategoryModelBase", {
-    id: types.identifier(types.string),
-    url: types.maybe(types.string),
-    name: types.maybe(types.string),
-    description: types.maybe(types.string)
+    id: types.identifier,
+    url: types.maybeNull(types.string),
+    name: types.maybeNull(types.string),
+    description: types.maybeNull(types.string)
   })
   .views(self => ({
     shouldApplyPatchOnPop(patch) {

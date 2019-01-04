@@ -16,17 +16,17 @@ export const FacetModelBase = types.model('FacetModelBase', {
   /**
    * The value sent to the API when filtering
    */
-  code: types.maybe(types.string),
+  code: types.maybeNull(types.string),
 
   /**
    * The text displayed in the UI
    */
-  name: types.identifier(types.string),
+  name: types.identifier,
 
   /**
    * The number of items having the value
    */
-  matches: types.maybe(types.number)
+  matches: types.maybeNull(types.number)
 })
 
 /**
@@ -36,7 +36,7 @@ export const FacetGroupModelBase = types.model('FacetGroupModelBase', {
   /**
    * The text displayed in the UI
    */
-  name: types.identifier(types.string),
+  name: types.identifier,
 
   /**
    * The facets in the group
@@ -51,12 +51,12 @@ export const SortBase = types.model('SortBase', {
   /**
    * The code sent to the API when sorting
    */
-  code: types.identifier(types.string),
+  code: types.identifier,
 
   /**
    * The text displayed in the UI
    */
-  name: types.maybe(types.string)
+  name: types.maybeNull(types.string)
 })
 
 /**
@@ -83,7 +83,7 @@ export default types
     /**
      * The code for the currently selected sort option
      */
-    sort: types.maybe(types.string),
+    sort: types.maybeNull(types.string),
 
     /**
      * Sort options that can be selected
@@ -94,13 +94,13 @@ export default types
      * The total number of matching items. You can either specify numberOfPages or total to determine
      * when to display the Show More Button.  Only one is required.
      */
-    total: types.maybe(types.number),
+    total: types.maybeNull(types.number),
 
     /**
      * The total number of pages.  You can either specify numberOfPages or total to determine
      * when to display the Show More Button.  Only one is required.
      */
-    numberOfPages: types.maybe(types.number),
+    numberOfPages: types.maybeNull(types.number),
 
     /**
      * The matching items

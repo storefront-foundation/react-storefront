@@ -80,8 +80,6 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
         "@babel/plugin-syntax-dynamic-import",
         "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-class-properties"
-        // TODO: May need to upgrade this plugin
-        // "universal-import"
       ]
     }
   }

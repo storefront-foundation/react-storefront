@@ -26,7 +26,7 @@ export const ResultsModel = types
     /**
      * A url for a thumbnail image
      */
-    thumbnail: types.maybe(types.string),
+    thumbnail: types.maybeNull(types.string),
     /**
      * The thumbnail height
      */

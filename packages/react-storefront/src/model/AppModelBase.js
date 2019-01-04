@@ -21,7 +21,7 @@ export const BreadcrumbModel = types
     /**
      * The URL to link to
      */
-    url: types.maybe(types.string),
+    url: types.maybeNull(types.string),
 
     /**
      * The text for the link
@@ -31,7 +31,7 @@ export const BreadcrumbModel = types
 
 export const LocationModel = types.model({
   protocol: 'https',
-  hostname: types.maybe(types.string),
+  hostname: types.maybeNull(types.string),
   pathname: types.string,
   search: types.string,
   port: '443'
@@ -41,22 +41,22 @@ const AppModelBase = types
   .model("AppModelBase", {
     amp: false,
     initialWidth: 'xs',
-    page: types.maybe(types.string),
-    title: types.maybe(types.string),
-    description: types.maybe(types.string),
+    page: types.maybeNull(types.string),
+    title: types.maybeNull(types.string),
+    description: types.maybeNull(types.string),
     loading: false,
-    error: types.maybe(types.string),
-    stack: types.maybe(types.string),
+    error: types.maybeNull(types.string),
+    stack: types.maybeNull(types.string),
     menu: types.optional(MenuModel, {}),
-    tabs: types.maybe(TabsModel),
-    category: types.maybe(CategoryModelBase),
-    subcategory: types.maybe(SubcategoryModelBase),
-    product: types.maybe(ProductModelBase),
-    loadingProduct: types.maybe(ProductModelBase),
-    loadingSubcategory: types.maybe(SubcategoryModelBase),
-    loadingCategory: types.maybe(CategoryModelBase),
-    user: types.maybe(UserModelBase),
-    location: types.maybe(LocationModel),
+    tabs: types.maybeNull(TabsModel),
+    category: types.maybeNull(CategoryModelBase),
+    subcategory: types.maybeNull(SubcategoryModelBase),
+    product: types.maybeNull(ProductModelBase),
+    loadingProduct: types.maybeNull(ProductModelBase),
+    loadingSubcategory: types.maybeNull(SubcategoryModelBase),
+    loadingCategory: types.maybeNull(CategoryModelBase),
+    user: types.maybeNull(UserModelBase),
+    location: types.maybeNull(LocationModel),
     search: types.optional(SearchModelBase, {}), 
     breadcrumbs: types.optional(types.array(BreadcrumbModel), []),
     cart: types.optional(CartModelBase, {})

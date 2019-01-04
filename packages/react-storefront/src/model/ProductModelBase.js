@@ -7,20 +7,20 @@ import SelectionModelBase from "./SelectionModelBase"
 
 const ProductModelBase = types
   .model('ProductModelBase', {
-    id: types.identifier(types.string),
-    url: types.maybe(types.string),
-    name: types.maybe(types.string),
-    description: types.maybe(types.string),
-    size: types.maybe(SelectionModelBase),
-    color: types.maybe(SelectionModelBase),
+    id: types.identifier,
+    url: types.maybeNull(types.string),
+    name: types.maybeNull(types.string),
+    description: types.maybeNull(types.string),
+    size: types.maybeNull(SelectionModelBase),
+    color: types.maybeNull(SelectionModelBase),
     quantity: types.optional(types.number, 1),
-    rating: types.maybe(types.number),
-    reviewCount: types.maybe(types.number),
-    basePrice: types.maybe(types.number),
-    brand: types.maybe(types.string),
-    images: types.optional(types.array(types.string), []),
-    thumbnails: types.optional(types.array(types.string), []),
-    thumbnail: types.maybe(types.string),
+    rating: types.maybeNull(types.number),
+    reviewCount: types.maybeNull(types.number),
+    basePrice: types.maybeNull(types.number),
+    brand: types.maybeNull(types.string),
+    images: types.array(types.string),
+    thumbnails: types.array(types.string),
+    thumbnail: types.maybeNull(types.string),
     loadingImages: false
   })
   .views(self => ({

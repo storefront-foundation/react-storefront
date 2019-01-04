@@ -25,13 +25,13 @@ import withTheme from '@material-ui/core/styles/withTheme'
 export const MenuItemModel = types
   .model("MenuItemModel", {
     text: types.optional(types.string, ''),
-    url: types.maybe(types.string),
-    state: types.maybe(types.string),
-    image: types.maybe(types.string),
-    items: types.maybe(types.array(types.late(() => MenuItemModel))),
+    url: types.maybeNull(types.string),
+    state: types.maybeNull(types.string),
+    image: types.maybeNull(types.string),
+    items: types.maybeNull(types.array(types.late(() => MenuItemModel))),
     root: types.optional(types.boolean, false),
     server: types.optional(types.boolean, false),
-    prefetch: types.maybe(types.string),
+    prefetch: types.maybeNull(types.string),
     expanded: false
   })
   .actions(self => ({

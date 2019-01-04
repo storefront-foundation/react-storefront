@@ -14,7 +14,7 @@ const SelectionModelBase = types
     /**
      * The selected option
      */
-    selected: types.maybe(OptionModelBase)
+    selected: types.maybeNull(OptionModelBase)
   })
   .actions(self => ({
     /**
