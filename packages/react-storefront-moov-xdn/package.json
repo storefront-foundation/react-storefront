@@ -8,6 +8,10 @@
   "scripts": {
     "test": "jest"
   },
+  "dependencies": {
+    "moov_stdlib": "^2.6.33",
+    "moov_builder": "^3.0.12"
+  },
   "peerDependencies": {
     "react-storefront": "^5.0.0"
   },
