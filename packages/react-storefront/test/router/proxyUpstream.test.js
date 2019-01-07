@@ -9,6 +9,7 @@ describe('proxyUpstream', () => {
   describe('on the client', () => {
     beforeEach(() => {
       process.env.MOOV_RUNTIME = 'client'
+      global.env = {}
       window.moov = {
         router: {
           reloadFromServer: jest.fn()

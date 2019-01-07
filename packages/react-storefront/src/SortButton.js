@@ -31,6 +31,11 @@ export default class SortButton extends Component {
     classes: PropTypes.object,
 
     /**
+     * Sets the type of control displayed when the menu is clicked
+     */
+    variant: PropTypes.oneOf(['drawer', 'menu']),
+
+    /**
      * Props to pass to the underlying `Sort` component.
      */
     drawerProps: PropTypes.object,
@@ -43,21 +48,24 @@ export default class SortButton extends Component {
 
   static defaultProps = {
     title: 'Sort',
+    variant: 'drawer',
     drawerProps: {}
   }
 
-  constructor({ app }) {
+  constructor({ app, variant }) {
     super()
 
+    const open = variant === 'drawer' && app.location.search.indexOf('openSort') !== -1
+
     this.state = {
-      open: app.location.search.indexOf('openSort') !== -1,
-      mountDrawer: false,
+      open,
+      mountDrawer: open,
       anchorEl: null
     }
   }
 
   render() {
-    const { app, model, title, drawerProps, ...props } = this.props
+    const { app, variant, model, title, drawerProps, ...props } = this.props
     const { open, mountDrawer, anchorEl } = this.state
     const selectedOption = model.sortOptions.find(o => model.sort === o.code)
 
@@ -71,7 +79,7 @@ export default class SortButton extends Component {
           {...props} 
           onClick={this.onClick}
         />
-        {!app.amp && (
+        {!app.amp && variant === 'drawer' && (
           <Hidden smUp>
             <Drawer 
               ModalProps={{
@@ -89,7 +97,7 @@ export default class SortButton extends Component {
             </Drawer>               
           </Hidden>
         )}
-        {!app.amp && (
+        {!app.amp && variant === 'menu' && (
           <Hidden xsDown>
             <Menu open={open} anchorEl={anchorEl} onClose={this.close}>
               <Sort variant="menu-items" model={model} onSelect={this.onSelect}/>

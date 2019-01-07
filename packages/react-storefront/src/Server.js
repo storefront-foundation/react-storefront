@@ -68,7 +68,7 @@ export default class Server {
    */
   setContentType(request, response) {
     if (response.get('content-type') == null) {
-      if (request.path.endsWith('.json')) {
+      if (request.pathname.endsWith('.json')) {
         response.set('content-type', 'application/json')
       } else {
         response.set('content-type', 'text/html')
@@ -88,18 +88,18 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { protocol, hostname, port, path, query } = request
+    const { protocol, hostname, port, pathname, query } = request
     this.setContentType(request, response)
 
-    if (path.endsWith('.json')) {
+    if (pathname.endsWith('.json')) {
       return response.send(JSON.stringify(state))
     }
 
-    const stats = await getStats()
-    const amp = path.endsWith('.amp')
+    const amp = pathname.endsWith('.amp')
+
     const { App, theme }  = this
     const sheetsRegistry = new SheetsRegistry()
-    const history = createMemoryHistory({ initialEntries: [path + query] })
+    const history = createMemoryHistory({ initialEntries: [pathname + query] })
 
     const model = this.model.create({
       ...state,
@@ -114,6 +114,8 @@ export default class Server {
     })
 
     try {
+      const stats = await getStats()
+
       let html = renderHtml({
         component: <PWA><App/></PWA>,
         providers: {
