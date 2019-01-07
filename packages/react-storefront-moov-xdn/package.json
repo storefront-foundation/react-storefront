@@ -4,39 +4,26 @@
   "description": "Extension for running React Storefront apps on Moovweb's XDN platform.",
   "author": "Moovweb",
   "license": "UNLICENSED",
-  "main": "./index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "watch": "babel --watch src --source-maps --out-dir dist",
+    "build": "NODE_ENV=production babel src --source-maps --out-dir dist"
   },
   "dependencies": {
-    "moov_stdlib": "2.6.33",
+    "moov_stdlib": "^2.6.33",
     "moov_builder": "4.0.0-alpha.1"
   },
   "peerDependencies": {
     "react-storefront": "^6.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.4.2",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "babel-jest": "^23.6.0",
     "jest": "^23.6.0",
-    "jest-fetch-mock": "^1.5.0"
-  },
-  "jest": {
-    "testEnvironment": "../react-storefront/test/jsdom",
-    "setupFiles": [
-      "../react-storefront/test/setup.js"
-    ],
-    "snapshotSerializers": [
-      "../react-storefront/test/snapshotSerializer"
-    ],
-    "collectCoverage": true,
-    "transformIgnorePatterns": [
-      "node_modules/(?!react-storefront)"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|svg)$": "../test/config/assetMock.js"
-    }
+    "regenerator-runtime": "^0.13.1"
   }
 }
