@@ -8,6 +8,8 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 const { createClientConfig, createLoaders, createPlugins} = require('./common')
 const hash = require('md5-file').sync
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime }) {
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
   const swHash = hash(path.join(swBootstrap))
@@ -55,16 +57,21 @@ module.exports = {
    * @param {Object} options.entries Additional entries for adapt components
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
+   * @param {Object} options.eslintConfig A config object for eslint
    * @return {Object} A webpack config
    */
-  dev(root, { workboxConfig, entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
+  dev(root, { workboxConfig, entries, eslintConfig = require('./eslint-client'), prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
+    
+    const alias = {
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+    }
 
-    return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries }), {
+    return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries, alias }), {
       devtool: 'inline-cheap-module-source-map',
       module: {
-        rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
+        rules: createLoaders(path.resolve(root, 'src'), { eslintConfig })
       },
       plugins: [
         ...createPlugins(root),
@@ -73,7 +80,7 @@ module.exports = {
           'process.env.MOOV_ENV': JSON.stringify('development'),
           'process.env.MOOV_SW': JSON.stringify(process.env.MOOV_SW)
         }),
-        new OpenBrowserPlugin({ url }),
+        new OpenBrowserPlugin({ url, ignoreErrors: true }),
         new WriteFilePlugin(),
         new CopyPlugin([{
           from: path.join(root, 'public'),
@@ -99,8 +106,17 @@ module.exports = {
   prod(root, { workboxConfig = {}, entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
+    const optionalPlugins = []
 
-    return Object.assign(createClientConfig(root, { entries }), {
+    const alias = {
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+    }
+
+    if (process.env.ANALYZE === 'true') {
+      optionalPlugins.push(new BundleAnalyzerPlugin())
+    }
+
+    return Object.assign(createClientConfig(root, { entries, alias }), {
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
       },
@@ -136,6 +152,7 @@ module.exports = {
           from: path.join(root, 'public'),
           to: path.join(root, 'build', 'assets')
         }]),
+        ...optionalPlugins,
         ...createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime })
       ].concat(createPlugins(root))
     });

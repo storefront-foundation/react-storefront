@@ -3,7 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import fetch from 'fetch'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 import { types } from "mobx-state-tree"
 import { fetchLatest, StaleResponseError } from '../fetchLatest'
 

@@ -1,7 +1,7 @@
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { merge } = require('lodash')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const merge = require('lodash/merge')
 const path = require('path')
 const webpack = require('webpack')
 
@@ -9,7 +9,8 @@ function createClientConfig(
   root,
   {
     // This is where the developer will add additional entries for adapt components.
-    entries = {}
+    entries = {},
+    alias = {}
   }
 ) {
   return {
@@ -18,10 +19,10 @@ function createClientConfig(
     context: path.join(root, 'src'),
     entry: Object.assign({ 
       main: ['./client.js'],
-      installServiceWorker: path.join(root, 'node_modules', 'react-storefront', 'src', 'amp', 'installServiceWorker')
+      installServiceWorker: path.join(root, 'node_modules', 'react-storefront', 'amp', 'installServiceWorker')
     }, entries),
     resolve: {
-      alias: Object.assign({}, createAliases(root), {
+      alias: Object.assign({}, createAliases(root), alias, {
         fetch: 'isomorphic-unfetch'
       })
     },
@@ -41,7 +42,7 @@ function createServerConfig(root, alias) {
     context: path.join(root, 'src'),
     resolve: {
       alias: Object.assign({}, createAliases(root), alias, {
-        fetch: path.join(root, 'node_modules', 'react-storefront', 'src', 'fetch'),
+        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch'),
       })
     }
   })
@@ -58,7 +59,7 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
             browsers: "> 1%",
             uglify: true
           },
-          useBuiltIns: true,
+          useBuiltIns: "usage",
           modules
         }],
         "react"
@@ -95,14 +96,14 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
           options: {
             formatter: eslintFormatter,
             eslintPath: require.resolve('eslint'),
-            configFile: require.resolve(eslintConfig)
+            baseConfig: eslintConfig
           }
         }
       ]
     },
     {
       test: /\.js$/,
-      include: /(src|node_modules\/react-storefront\/src|node_modules\/react-storefront-extensions\/src)/,
+      include: /(src|node_modules\/proxy-polyfill)/,
       use: [babelLoader]
     },
     {
@@ -111,7 +112,7 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
         {
           loader: 'url-loader',
           options: {
-            // having a limit here is crtical to keeping css size below amp's limits.
+            // having a limit here is critical to keeping css size below amp's limits.
             // when an asset is larger than this limit in bytes, webpack falls back to using
             // file-loader
             limit: 8192,
@@ -165,8 +166,6 @@ function createAliases(root) {
     "react-dom": path.join(root, 'node_modules', 'react-dom'),
     "react-helmet": path.join(root, 'node_modules', 'react-helmet'),
     "@material-ui/core": path.join(root, 'node_modules', '@material-ui/core'),
-    "react-storefront": path.join(root, 'node_modules', 'react-storefront', 'src'),
-    "react-storefront-extensions": path.join(root, 'node_modules', 'react-storefront-extensions', 'src'),
     "react-universal-component": path.join(root, 'node_modules', 'react-universal-component'),
     "react-transition-group": path.join(root, 'node_modules', 'react-transition-group')
   }

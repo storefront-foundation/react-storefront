@@ -23,6 +23,7 @@ describe('fromServer', () => {
       fetchURL = url
       return fetchResult
     }
+    global.env = {}
     fromServer = require('../../src/router').fromServer
     response = new (require('../../src/router').Response)()
   })
@@ -35,9 +36,9 @@ describe('fromServer', () => {
     expect(await fromServer('./foo/bar').fn(null, null, response)).toEqual({ foo: 'bar', loading: false })
   })
 
-  it('should run the specified function', () => {
+  it('should run the specified function', async () => {
     const handler = jest.fn()
-    fromServer(handler).fn(null, null, response)
+    await fromServer(handler).fn({}, { path: '/' }, response)
     expect(handler).toHaveBeenCalled()
   })
 

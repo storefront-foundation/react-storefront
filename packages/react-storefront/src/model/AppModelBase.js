@@ -11,7 +11,7 @@ import ProductModelBase from './ProductModelBase'
 import UserModelBase from './UserModelBase'
 import CartModelBase from './CartModelBase'
 import SearchModelBase from './SearchModelBase'
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 
 /**
  * Represents a single breadcrumb

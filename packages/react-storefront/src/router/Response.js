@@ -66,7 +66,7 @@ export default class Response {
   constructor(request) {
     this.request = request
     let headers = global.headers || { statusCode: 200, statusText: 'OK' }
-    this.statusCode = headers.statusCode
+    this.statusCode = Number(headers.statusCode)
     this.statusText = headers.statusText
   }
 
@@ -141,6 +141,9 @@ export default class Response {
    * @return {Response} this
    */
   set(name, value) {
+    if (name.match(/set-cookie/i) && !env.shouldSendCookies) {
+      console.warn('[react-storefront response]', 'Cannot set cookies on cached route')
+    }
     if (name == null) throw new Error('name cannot be null in call to response.set')
     this.headers[name] = value
     return this

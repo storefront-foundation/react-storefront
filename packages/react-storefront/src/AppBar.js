@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { throttle } from 'lodash'
+import throttle from 'lodash/throttle'
 import Toolbar from '@material-ui/core/Toolbar'
 import { observer, inject } from 'mobx-react'
 import Hidden from '@material-ui/core/Hidden'
@@ -97,23 +97,49 @@ export default class Header extends Component {
     classes: PropTypes.object,
 
     /**
-     * Set to true to show the hamburger button only on mobile devices. Defaults to false.
-     */
-    responsive: PropTypes.bool,
-
-    /**
      * A component for the menu icon.
      */
-    MenuIcon: PropTypes.func
+    MenuIcon: PropTypes.func,
+
+    /**
+     * Additional props for the menu icon
+     */
+    menuIconProps: PropTypes.object,
+
+    /**
+     * Sets the alignment of the menu icon. "right" or "left".
+     */
+    menuAlign: PropTypes.oneOf(['left', 'right'])
   }
 
   static defaultProps = {
-    responsive: false,
-    MenuIcon
+    MenuIcon,
+    menuIconProps: {},
+    menuAlign: 'left'
   }
 
   render() {
-    const { MenuIcon, classes, children, fixed, menu, responsive, width, amp, showLabels } = this.props
+    const { MenuIcon, classes, children, fixed, menu, amp, menuAlign, menuIconProps } = this.props
+    const items = React.Children.toArray(children)
+
+    const menuButton = (
+      <Hidden mdUp implementation="css" key="menuButton">
+        <a on="tap:moov_menu.toggle" className={classes.link}>
+          <ToolbarButton 
+            aria-label="Menu" 
+            color="inherit" 
+            onClick={menu.toggle}
+            icon={<MenuIcon open={menu.open} {...menuIconProps}/>}
+          />
+        </a>
+      </Hidden>
+    )
+
+    if (menuAlign === 'right') {
+      items.push(menuButton)
+    } else {
+      items.unshift(menuButton)
+    }
 
     return (
       <div className={classnames({ [classes.root]: true, [classes.withAmp]: amp })}> 
@@ -127,17 +153,7 @@ export default class Header extends Component {
           [classes.menuOpen]: menu.open
         })}>
           <Toolbar disableGutters classes={{ root: classes.toolBar }}>
-            <Hidden mdUp={responsive} implementation="css">
-              <a on="tap:moov_menu.toggle" className={classes.link}>
-                <ToolbarButton 
-                  aria-label="Menu" 
-                  color="inherit" 
-                  onClick={menu.toggle}
-                  icon={<MenuIcon open={menu.open}/>}
-                />
-              </a>
-            </Hidden>
-            { children }
+            { items }
           </Toolbar>
         </div>
       </div>

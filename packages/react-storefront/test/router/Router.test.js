@@ -25,7 +25,8 @@ describe('Router:Node', function() {
     global.env = {}
     runAll = function(method, path) {
       const [ pathname, search ] = path.split(/\?/)
-      const request = { pathname, search: search ? `?${search}` : '', method }
+      const request = { path: pathname, pathname, search: search ? `?${search}` : '', method }
+      jest.spyOn(console, 'warn').mockImplementation()
       const promise = router.runAll(request, response = new Response())
 
       if (promise) {
@@ -711,6 +712,23 @@ bar\r
       )
       await runAll('get', '/new')
       expect(env.shouldSendCookies).toBe(false);
+    })
+  })
+
+  describe('Caching and Cookies', () => {
+    it('should warn when removing cookies on a cached route', async () => {
+      router.get('/new',
+        cache({ 
+          server: { maxAgeSeconds: 300 }
+        }),
+        fromServer((params, request, response) => {
+          response.set('set-cookie', 'foo=bar')
+          return Promise.resolve({ some: 'data' })
+        })    
+      )
+      const res = await runAll('get', '/new')
+      expect(env.shouldSendCookies).toBe(false);
+      expect(console.warn).toHaveBeenCalledWith('[react-storefront response]', 'Cannot set cookies on cached route')
     })
   })
 

@@ -59,7 +59,13 @@ module.exports = function (babel) {
           const arg = path.get('arguments')[0]
 
           if (arg) {
-            arg.replaceWithSourceString(`require('${arg.node.value}').default`)
+            arg.replaceWithSourceString(`
+              (function() {
+                var handler = require('${arg.node.value}').default;
+                handler.path = '${arg.node.value}';
+                return handler;
+              })()
+            `)
           }
         }
       }

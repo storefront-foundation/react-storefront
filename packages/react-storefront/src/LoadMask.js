@@ -22,7 +22,7 @@ export const styles = theme => ({
     zIndex: 1,
   },
   fullscreen: {
-    height: `calc(100vh - ${theme.headerHeight}px`,
+    height: `calc(100vh - ${theme.headerHeight}px)`,
     bottom: 'initial',
     zIndex: theme.zIndex.appBar - 10,
     'body.moov-amp &': {

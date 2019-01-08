@@ -26,7 +26,7 @@ export const styles = theme => ({
   }
 });
 
-@withStyles(styles)
+@withStyles(styles, { name: 'RSFBottomDrawer' })
 export default class BottomDrawer extends Component {
 
   static propTypes = {

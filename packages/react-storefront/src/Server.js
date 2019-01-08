@@ -6,12 +6,10 @@ import { configure } from 'mobx'
 
 configure({ isolateGlobalState: true })
 
-import 'babel-polyfill'
 import React from 'react'
 import { SheetsRegistry } from 'react-jss/lib/jss'
 import { flushChunkNames } from 'react-universal-component/server'
 import PWA from './PWA'
-import getStats from 'react-storefront-stats'
 import createMemoryHistory from 'history/createMemoryHistory'
 import { Helmet } from "react-helmet"
 import sanitizeAmpHtml from './amp/sanitizeAmpHtml'
@@ -19,6 +17,7 @@ import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from 
 import Response from './router/Response'
 import { renderAmpAnalyticsTags } from './Track'
 import createRequest from './platform/createRequest'
+import getStats from 'react-storefront-stats'
 
 export default class Server {
 
@@ -101,7 +100,6 @@ export default class Server {
       return response.send(JSON.stringify(state))
     }
 
-    const stats = await getStats()
     const amp = pathname.endsWith('.amp')
     const { App, theme }  = this
     const sheetsRegistry = new SheetsRegistry()
@@ -120,6 +118,8 @@ export default class Server {
     })
 
     try {
+      const stats = await getStats()
+
       let html = renderHtml({
         component: <PWA><App/></PWA>,
         providers: {

@@ -115,7 +115,7 @@ export const styles = theme => ({
   }
 });
 
-@withStyles(styles)
+@withStyles(styles, { name: 'RSFSearchPopup' })
 @inject(({ app: { searchPopup, search }, history }) => ({ searchPopup, search, history }))
 @observer
 export default class SearchPopup extends Component {

@@ -51,8 +51,8 @@ const ProductModelBase = types
      * Updates the quantity and fires an analytics event
      * @param {Number} quantity 
      */
-    setQuantity(quantity) {
-      self.quantity = Math.max(1, quantity)
+    setQuantity(q) {
+      self.quantity = q < 1 ? 1 : q
     },
     /**
      * Get images for the selected color

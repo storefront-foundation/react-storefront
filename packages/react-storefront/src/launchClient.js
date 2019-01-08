@@ -2,7 +2,6 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import 'babel-polyfill'
 import 'proxy-polyfill' // needed for IE9-11
 import React from 'react'
 import { hydrate } from './renderers'
@@ -11,7 +10,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import registerServiceWorker from './registerServiceWorker'
 import PWA from './PWA'
 import { onSnapshot } from 'mobx-state-tree'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 
 /**
  * Bootstraps the PWA react application.

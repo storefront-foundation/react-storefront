@@ -5,11 +5,16 @@
         "browsers": "> 1%",
         "uglify": true
       },
-      "useBuiltIns": true
+      "useBuiltIns": "usage"
     }],
     "stage-0",
     "react"
   ],
+  "env": {
+    "production": {
+      "presets": ["minify"]
+    }
+  },
   "plugins": [
     ["transform-runtime", {
       "polyfill": false,
@@ -17,9 +22,7 @@
     }],
     "transform-async-to-generator",
     "transform-decorators-legacy",
-    "syntax-dynamic-import",
     "transform-object-rest-spread",
-    "transform-class-properties",
-    "universal-import"
+    "transform-class-properties"
   ]
 }
