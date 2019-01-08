@@ -18,7 +18,7 @@
     "build:prep": "yarn run clean && yarn create-indexes && cp package.json lib && cp -r webpack docs lib && cp -r service-worker lib",
     "build": "yarn build:prep && NODE_ENV=production babel src --source-maps --out-dir lib",
     "watch": "yarn build:prep && babel --watch src --source-maps --out-dir lib",
-    "docs": "yarn build-storybook && yarn deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
+    "docs": "mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
     "@material-ui/core": "^3.0.0",
