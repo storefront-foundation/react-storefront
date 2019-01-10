@@ -29,7 +29,7 @@
     "webpack": "^4.25.1"
   },
   "scripts": {
-    "build": "pushd packages/react-storefront; yarn build; popd;",
+    "build": "pushd packages/react-storefront; yarn build; popd; pushd packages/react-storefront-moov-xdn; yarn build; popd;",
     "precommit": "yarn add-license",
     "update-versions": "lerna publish --skip-npm --yes",
     "publish": "yarn update-versions; yarn build; pushd packages/react-storefront/lib; yarn publish --non-interactive; popd; pushd packages/babel-plugin-react-storefront; yarn publish --non-interactive; popd",
@@ -38,7 +38,7 @@
     "test": "pushd packages/react-storefront; yarn test; popd;",
     "watch": "pushd packages/react-storefront; yarn watch; popd;",
     "add-license": "node ./tasks/addLicense",
-    "link:all": "yarn build; pushd packages/react-storefront/lib; npm link; yarn link; popd; pushd packages/babel-plugin-react-storefront; npm link; yarn link; popd;"
+    "link:all": "yarn build; pushd packages/react-storefront/lib; npm link; yarn link; popd; pushd packages/babel-plugin-react-storefront; npm link; yarn link; popd; pushd packages/react-storefront-moov-xdn/dist; npm link; yarn link; popd;"
   },
   "workspaces": {
     "packages": [

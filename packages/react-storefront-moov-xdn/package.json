@@ -8,7 +8,7 @@
   "scripts": {
     "test": "jest",
     "watch": "babel --watch src --source-maps --out-dir dist",
-    "build": "NODE_ENV=production babel src --source-maps --out-dir dist && cp package.json dist"
+    "build": "mkdir -p dist; cp .npmrc dist; NODE_ENV=production babel src --source-maps --out-dir dist && cp package.json dist"
   },
   "dependencies": {
     "moov_stdlib": "^2.6.33",
