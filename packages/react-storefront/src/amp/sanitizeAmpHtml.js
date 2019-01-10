@@ -75,8 +75,8 @@ export default function sanitizeAmpHtml(html) {
   dom.$('iframe').each((index, iframe) => {
     const $iframe = $(iframe)
     const src = $iframe.attr('src')
-    const height = $iframe.attr('height')
     const width = $iframe.attr('width')
+    const height = $iframe.attr('height')
     const frameborder = $iframe.attr('frameborder')
     let $ampIframe
     const fromYoutube = /\byoutube\b/.test(src)
@@ -84,9 +84,8 @@ export default function sanitizeAmpHtml(html) {
     if (fromYoutube) {
       const videoId = src.substr(src.lastIndexOf('/') + 1)
       $ampIframe = $('<amp-youtube layout="responsive"></amp-youtube>')
-
-      if (width) $ampIframe.attr('width', 16)
-      if (height) $ampIframe.attr('height', 9)
+      $ampIframe.attr('width', 16)
+      $ampIframe.attr('height', 9)
       $ampIframe.attr('data-videoid', videoId)
       includeYoutubeAmpComponent()
     }
@@ -95,8 +94,8 @@ export default function sanitizeAmpHtml(html) {
 
       if (src) $ampIframe.attr('src', src)
       if (frameborder) $ampIframe.attr('frameborder', frameborder)
-      if (height) $ampIframe.attr('height', height)
       if (width) $ampIframe.attr('width', width)
+      if (height) $ampIframe.attr('height', height)
       includeIframeAmpComponent()
     }
 
