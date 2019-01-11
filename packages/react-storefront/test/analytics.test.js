@@ -18,6 +18,18 @@ describe('AnalyticsProvider', () => {
     })
   })
 
+  it('supports fire(event, ...params)', () => {
+    const targets = [1,2,3].map(i => ({ testMethod: jest.fn() }))
+    
+    configureAnalytics(...targets)
+    const data = { search: { keywords: 'red shirt' } }
+    analytics.fire('testMethod', data)
+
+    targets.forEach(target => {
+      expect(target.testMethod).toHaveBeenCalledWith(data)
+    })
+  })
+
   it('displays a warning when a target does not support a method', () => {
     jest.spyOn(global.console, 'warn')
     const target = {}

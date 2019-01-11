@@ -3,7 +3,7 @@
 exports[`AppBar should render 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
+    <MuiThemeProvider theme={{...}}>
       <inject-WithStyles(Header)>
         <WithStyles(Header) menu={{...}} amp={false}>
           <Header menu={{...}} amp={false} classes={{...}} MenuIcon={[Function: WithStyles]} menuIconProps={{...}} menuAlign="left">
@@ -23,7 +23,7 @@ exports[`AppBar should render 1`] = `
                                       <IconButton aria-label="Menu" color="inherit" onClick={[Function: res]} classes={{...}} disabled={false}>
                                         <WithStyles(ButtonBase) className="MuiIconButton-root-31 MuiIconButton-colorInherit-32" centerRipple={true} focusRipple={true} disabled={false} aria-label="Menu" onClick={[Function: res]}>
                                           <ButtonBase className="MuiIconButton-root-31 MuiIconButton-colorInherit-32" centerRipple={true} focusRipple={true} disabled={false} aria-label="Menu" onClick={[Function: res]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                            <button className="MuiButtonBase-root-37 MuiIconButton-root-31 MuiIconButton-colorInherit-32" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Menu" onClick={[Function: res]}>
+                                            <button className="MuiButtonBase-root-37 MuiIconButton-root-31 MuiIconButton-colorInherit-32" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Menu" onClick={[Function: res]}>
                                               <span className="MuiIconButton-label-36">
                                                 <div className="RSFToolbarButton-wrap-30">
                                                   <WithStyles(MenuIcon) open={false}>
@@ -84,7 +84,7 @@ exports[`AppBar should render 1`] = `
           </Header>
         </WithStyles(Header)>
       </inject-WithStyles(Header)>
-    </MuiThemeProviderOld>
+    </MuiThemeProvider>
   </Provider>
 </TestProvider>
 `;

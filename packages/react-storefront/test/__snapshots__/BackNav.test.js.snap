@@ -9,14 +9,14 @@ exports[`BackNav renders 1`] = `
           <Paper className="RSFBackNav-root-1" classes={{...}} component="div" elevation={2} square={false}>
             <div className="MuiPaper-root-7 MuiPaper-elevation2-11 MuiPaper-rounded-8 RSFBackNav-root-1">
               <WithStyles(Typography) variant="caption">
-                <Typography variant="caption" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} inline={false} noWrap={false} paragraph={false}>
+                <Typography variant="caption" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                   <span className="MuiTypography-root-34 MuiTypography-caption-44">
                     <span onClick={[Function: onClick]} className="RSFBackNav-backButtonWrapper-3">
                       <pure(KeyboardArrowLeftIcon)>
                         <KeyboardArrowLeftIcon>
                           <WithStyles(SvgIcon)>
                             <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                              <svg className="MuiSvgIcon-root-70" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                              <svg className="MuiSvgIcon-root-69" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                 <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
                                 <path fill="none" d="M0 0h24v24H0V0z" />
                               </svg>
@@ -49,14 +49,14 @@ exports[`BackNav renders the view type switcher 1`] = `
           <Paper className="RSFBackNav-root-1" classes={{...}} component="div" elevation={2} square={false}>
             <div className="MuiPaper-root-7 MuiPaper-elevation2-11 MuiPaper-rounded-8 RSFBackNav-root-1">
               <WithStyles(Typography) variant="caption">
-                <Typography variant="caption" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} inline={false} noWrap={false} paragraph={false}>
+                <Typography variant="caption" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                   <span className="MuiTypography-root-34 MuiTypography-caption-44">
                     <span onClick={[Function: onClick]} className="RSFBackNav-backButtonWrapper-3">
                       <pure(KeyboardArrowLeftIcon)>
                         <KeyboardArrowLeftIcon>
                           <WithStyles(SvgIcon)>
                             <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                              <svg className="MuiSvgIcon-root-70" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                              <svg className="MuiSvgIcon-root-69" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                 <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
                                 <path fill="none" d="M0 0h24v24H0V0z" />
                               </svg>
@@ -74,7 +74,7 @@ exports[`BackNav renders the view type switcher 1`] = `
                           <BorderAllIcon color="secondary" onClick={[Function: onClick]}>
                             <WithStyles(SvgIcon) color="secondary" onClick={[Function: onClick]}>
                               <SvgIcon color="secondary" onClick={[Function: onClick]} classes={{...}} component="svg" fontSize="default" viewBox="0 0 24 24">
-                                <svg className="MuiSvgIcon-root-70 MuiSvgIcon-colorSecondary-72" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" onClick={[Function: onClick]}>
+                                <svg className="MuiSvgIcon-root-69 MuiSvgIcon-colorSecondary-71" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" onClick={[Function: onClick]}>
                                   <path d="M3 3v18h18V3H3zm8 16H5v-6h6v6zm0-8H5V5h6v6zm8 8h-6v-6h6v6zm0-8h-6V5h6v6z" />
                                   <path fill="none" d="M0 0h24v24H0z" />
                                 </svg>
@@ -88,7 +88,7 @@ exports[`BackNav renders the view type switcher 1`] = `
                           <ViewAgendaIcon color="primary" onClick={[Function: onClick]}>
                             <WithStyles(SvgIcon) color="primary" onClick={[Function: onClick]}>
                               <SvgIcon color="primary" onClick={[Function: onClick]} classes={{...}} component="svg" fontSize="default" viewBox="0 0 24 24">
-                                <svg className="MuiSvgIcon-root-70 MuiSvgIcon-colorPrimary-71" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" onClick={[Function: onClick]}>
+                                <svg className="MuiSvgIcon-root-69 MuiSvgIcon-colorPrimary-70" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" onClick={[Function: onClick]}>
                                   <path fill="none" d="M0 0h24v24H0z" />
                                   <path d="M20 13H3c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h17c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zm0-10H3c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h17c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1z" />
                                 </svg>

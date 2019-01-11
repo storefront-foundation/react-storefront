@@ -7,17 +7,17 @@ exports[`ActionButton renders label and value 1`] = `
       <Button variant="contained" classes={{...}} color="default" component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
         <WithStyles(ButtonBase) className="MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 RSFActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-24" component="button" type="button">
           <ButtonBase className="MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 RSFActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-24" component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-            <button className="MuiButtonBase-root-31 MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 RSFActionButton-raised-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false}>
+            <button className="MuiButtonBase-root-31 MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 RSFActionButton-raised-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false}>
               <span className="MuiButton-label-6 RSFActionButton-label-2">
                 <WithStyles(Typography) variant="button" className="RSFActionButton-caption-3">
-                  <Typography variant="button" className="RSFActionButton-caption-3" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} inline={false} noWrap={false} paragraph={false}>
+                  <Typography variant="button" className="RSFActionButton-caption-3" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                     <span className="MuiTypography-root-34 MuiTypography-button-45 RSFActionButton-caption-3">
                       Label
                     </span>
                   </Typography>
                 </WithStyles(Typography)>
                 <WithStyles(Typography) variant="caption" className="RSFActionButton-value-4">
-                  <Typography variant="caption" className="RSFActionButton-value-4" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} inline={false} noWrap={false} paragraph={false}>
+                  <Typography variant="caption" className="RSFActionButton-value-4" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                     <span className="MuiTypography-root-34 MuiTypography-caption-44 RSFActionButton-value-4">
                       Value
                     </span>
@@ -27,8 +27,8 @@ exports[`ActionButton renders label and value 1`] = `
               <NoSsr defer={false} fallback={{...}}>
                 <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
                   <TouchRipple center={false} classes={{...}}>
-                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-70" childFactory={[Function: childFactory]}>
-                      <span className="MuiTouchRipple-root-70" />
+                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-69" childFactory={[Function: childFactory]}>
+                      <span className="MuiTouchRipple-root-69" />
                     </TransitionGroup>
                   </TouchRipple>
                 </WithStyles(TouchRipple)>
@@ -49,15 +49,15 @@ exports[`ActionButton renders with no props 1`] = `
       <Button variant="contained" classes={{...}} color="default" component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
         <WithStyles(ButtonBase) className="MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 RSFActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-24" component="button" type="button">
           <ButtonBase className="MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 RSFActionButton-raised-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-24" component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-            <button className="MuiButtonBase-root-31 MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 RSFActionButton-raised-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false}>
+            <button className="MuiButtonBase-root-31 MuiButton-root-5 MuiButton-contained-16 MuiButton-raised-19 RSFActionButton-raised-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false}>
               <span className="MuiButton-label-6 RSFActionButton-label-2">
                 <WithStyles(Typography) variant="button" className="RSFActionButton-caption-3">
-                  <Typography variant="button" className="RSFActionButton-caption-3" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} inline={false} noWrap={false} paragraph={false}>
+                  <Typography variant="button" className="RSFActionButton-caption-3" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                     <span className="MuiTypography-root-34 MuiTypography-button-45 RSFActionButton-caption-3" />
                   </Typography>
                 </WithStyles(Typography)>
                 <WithStyles(Typography) variant="caption" className="RSFActionButton-value-4">
-                  <Typography variant="caption" className="RSFActionButton-value-4" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} inline={false} noWrap={false} paragraph={false}>
+                  <Typography variant="caption" className="RSFActionButton-value-4" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
                     <span className="MuiTypography-root-34 MuiTypography-caption-44 RSFActionButton-value-4" />
                   </Typography>
                 </WithStyles(Typography)>
@@ -65,8 +65,8 @@ exports[`ActionButton renders with no props 1`] = `
               <NoSsr defer={false} fallback={{...}}>
                 <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
                   <TouchRipple center={false} classes={{...}}>
-                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-70" childFactory={[Function: childFactory]}>
-                      <span className="MuiTouchRipple-root-70" />
+                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-69" childFactory={[Function: childFactory]}>
+                      <span className="MuiTouchRipple-root-69" />
                     </TransitionGroup>
                   </TouchRipple>
                 </WithStyles(TouchRipple)>
