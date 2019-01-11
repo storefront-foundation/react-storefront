@@ -156,6 +156,7 @@ function createPlugins(root) {
 function createAliases(root) {
   return {
     "mobx": path.join(root, 'node_modules', 'mobx'),
+    "lodash": path.join(root, 'node_modules', 'lodash'),
     "react": path.join(root, 'node_modules', 'react'),
     "react-dom": path.join(root, 'node_modules', 'react-dom'),
     "react-helmet": path.join(root, 'node_modules', 'react-helmet'),

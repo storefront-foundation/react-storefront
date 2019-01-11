@@ -2,6 +2,12 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+import Cookie from 'cookie'
+
+/**
+ * @license
+ * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
+ */
 
 /**
  * The standard cache-control header value sent for all resources that are not to be cached.
@@ -195,6 +201,22 @@ export default class Response {
     return this
   }
 
+  /**
+   * Sets cookie name to value.
+   * @param  {String} name  
+   * @param  {String} value
+   * @param  {Object} options
+   * @return {Response} this      
+   */
+  cookie(name, value, options) {
+    const cookies = Cookie.parse(this.headers['set-cookie'] || '')
+    // Restructure for easier serialization
+    Object.keys(cookies).forEach(name => cookies[name] = `${name}=${cookies[name]}`)
+    // Add or replace cookie
+    cookies[name] = Cookie.serialize(name, value, options)
+    this.set('set-cookie', Object.keys(cookies).map(name => cookies[name]).join(';'))
+    return this
+  }
 }
 
 /**

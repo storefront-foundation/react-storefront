@@ -180,4 +180,16 @@ describe('Response', () => {
       expect(response.get('X-Foo')).toBe('bar')
     })
   })
+
+  it('should set cookie manually', () => {
+    response.set('set-cookie', 'foo=bar')
+    expect(response.headers['set-cookie']).toEqual('foo=bar')
+  })
+
+  it('should transform cookies', () => {
+    response.set('set-cookie', 'foo=max;name=max')
+    response.cookie('ssid', 'abc012', { maxAge: 999 })
+    response.cookie('foo', 'bar', { httpOnly: true, maxAge: 1000 })
+    expect(response.headers['set-cookie']).toEqual('foo=bar; Max-Age=1000; HttpOnly;name=max;ssid=abc012;Max-Age=999')
+  })
 })

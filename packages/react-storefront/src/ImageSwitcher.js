@@ -384,7 +384,7 @@ export default class ImageSwitcher extends Component {
         prevState.selectedIndex && 
         prevState.selectedIndex !== this.state.selectedIndex && 
         this.props.product) {
-      analytics.imageSwitched({ product: this.props.product, imageUrl: this.props.images[this.state.selectedIndex] })
+      analytics.fire('imageSwitched', { product: this.props.product, imageUrl: this.props.images[this.state.selectedIndex] })
     }
   }
 

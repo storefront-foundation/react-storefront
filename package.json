@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "pushd packages/react-storefront; yarn build; popd; pushd packages/react-storefront-moov-xdn; yarn build; popd;",
-    "precommit": "yarn add-license",
+    "precommit": "yarn add-license && yarn docs",
     "update-versions": "lerna publish --skip-npm --yes",
     "publish": "yarn update-versions; yarn build; pushd packages/react-storefront/lib; yarn publish --non-interactive; popd; pushd packages/babel-plugin-react-storefront; yarn publish --non-interactive; popd",
     "docs": "pushd packages/react-storefront; yarn docs; popd;",
@@ -52,5 +52,8 @@
     "hooks": {
       "pre-commit": "yarn precommit"
     }
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
   }
 }

@@ -23,6 +23,10 @@ const OptionModelBase = types
      */
     image: types.maybeNull(types.string),
     /**
+     * An accessbility label for the image.  If left blank, text will be used as the accesibility label.
+     */
+    alt: types.maybe(types.string),
+    /**
      * A CSS color value to display when an image is not available
      */
     color: types.maybeNull(types.string),
