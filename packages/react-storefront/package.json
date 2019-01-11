@@ -88,6 +88,7 @@
     "babel-eslint": "^8.2.3",
     "babel-minify-webpack-plugin": "^0.3.1",
     "clean-webpack-plugin": "^0.1.19",
+    "cookie": "^0.3.1",
     "copy-webpack-plugin": "^4.5.1",
     "delegate": "^3.2.0",
     "eslint": "^5.9.0",

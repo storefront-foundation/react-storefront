@@ -61,8 +61,7 @@ npm link babel-plugin-react-storefront
 
 ### 5.7.0
 
-#### Added
-
+* Added `cookie` helper method to `Response`
 * Replaced regular `<iframe>` with `<amp-iframe>` when rendering AMP.
 * Replaced YouTube `<iframe>` with `<amp-youtube>` when rendering AMP.
 * Removed extra padding at the bottom of the Drawer component.
