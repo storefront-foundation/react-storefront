@@ -7,7 +7,7 @@ exports[`ToolbarButton should render additional children inside the button 1`] =
       <IconButton classes={{...}} color="default" disabled={false}>
         <WithStyles(ButtonBase) className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false}>
           <ButtonBase className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-            <button className="MuiButtonBase-root-8 MuiIconButton-root-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false}>
+            <button className="MuiButtonBase-root-8 MuiIconButton-root-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false}>
               <span className="MuiIconButton-label-7">
                 <div className="RSFToolbarButton-wrap-1">
                   <div>
@@ -46,7 +46,7 @@ exports[`ToolbarButton should render icon and button 1`] = `
       <IconButton classes={{...}} color="default" disabled={false}>
         <WithStyles(ButtonBase) className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false}>
           <ButtonBase className="MuiIconButton-root-2" centerRipple={true} focusRipple={true} disabled={false} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-            <button className="MuiButtonBase-root-8 MuiIconButton-root-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false}>
+            <button className="MuiButtonBase-root-8 MuiIconButton-root-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false}>
               <span className="MuiIconButton-label-7">
                 <div className="RSFToolbarButton-wrap-1">
                   <div>

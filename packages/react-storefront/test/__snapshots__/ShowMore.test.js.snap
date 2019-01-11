@@ -3,13 +3,13 @@
 exports[`ShowMore should hide when the number of items is equal to the total 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100} />
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -17,13 +17,13 @@ exports[`ShowMore should hide when the number of items is equal to the total 1`]
 exports[`ShowMore should hide when the page is equal to the numberOfPages - 1 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100} />
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -31,7 +31,7 @@ exports[`ShowMore should hide when the page is equal to the numberOfPages - 1 1`
 exports[`ShowMore should render 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
@@ -39,7 +39,7 @@ exports[`ShowMore should render 1`] = `
               <Button variant="contained" color="primary" href={{...}} className="RSFShowMore-root-1" onClick={[Function: res]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} size="medium" type="button">
                 <WithStyles(ButtonBase) className="MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFShowMore-root-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" href={{...}} onClick={[Function: res]} component="button" type="button">
                   <ButtonBase className="MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFShowMore-root-1" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" href={{...}} onClick={[Function: res]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-                    <button className="MuiButtonBase-root-29 MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFShowMore-root-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} href={{...}} onClick={[Function: res]}>
+                    <button className="MuiButtonBase-root-29 MuiButton-root-3 MuiButton-contained-14 MuiButton-containedPrimary-15 MuiButton-raised-17 MuiButton-raisedPrimary-18 RSFShowMore-root-1" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} href={{...}} onClick={[Function: res]}>
                       <span className="MuiButton-label-4">
                         Show More
                       </span>
@@ -60,7 +60,7 @@ exports[`ShowMore should render 1`] = `
           </ShowMore>
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -68,7 +68,7 @@ exports[`ShowMore should render 1`] = `
 exports[`ShowMore should show loading when loadingMore is true 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
@@ -88,7 +88,7 @@ exports[`ShowMore should show loading when loadingMore is true 1`] = `
           </ShowMore>
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -96,7 +96,7 @@ exports[`ShowMore should show loading when loadingMore is true 1`] = `
 exports[`ShowMore should show the loading spinner even when there are no more records 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ShowMore-with-app) model={{...}}>
         <inject-ShowMore-with-app model={{...}} classes={{...}}>
           <ShowMore model={{...}} classes={{...}} app={{...}} Loading={[Function: Loading]} offset={100}>
@@ -116,7 +116,7 @@ exports[`ShowMore should show the loading spinner even when there are no more re
           </ShowMore>
         </inject-ShowMore-with-app>
       </WithStyles(inject-ShowMore-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

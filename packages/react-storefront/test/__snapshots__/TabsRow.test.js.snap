@@ -3,19 +3,17 @@
 exports[`TabsRow render should render in amp 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-TabsRow-with-app) items={{...}}>
         <inject-TabsRow-with-app items={{...}} classes={{...}}>
           <TabsRow items={{...}} classes={{...}} app={{...}} scrollable={true} centered={false}>
             <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-137" classes={{...}}>
-              <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-137" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
+              <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-137" theme={{...}} classes={{...}} centered={false} component="div" ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit" variant="standard">
                 <div className="MuiTabs-root-143 RSFTabsRow-root-137 RSFTabsRow-root-137">
                   <EventListener target="window" onResize={[Function: debounced]} />
-                  <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                    <div>
-                      <EventListener target="window" onResize={[Function: debounced]} />
-                      <div style={{...}} />
-                    </div>
+                  <ScrollbarSize onChange={[Function]}>
+                    <EventListener target="window" onResize={[Function: debounced]} />
+                    <div style={{...}} />
                   </ScrollbarSize>
                   <div className="MuiTabs-flexContainer-144">
                     <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-149 MuiTabs-scrollButtonsAuto-150">
@@ -29,7 +27,7 @@ exports[`TabsRow render should render in amp 1`] = `
                           <Tab label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} classes={{...}} disabled={false}>
                             <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-153 RSFTabsRow-tab-138 MuiTab-textColorInherit-155" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
                               <ButtonBase focusRipple={true} className="MuiTab-root-153 RSFTabsRow-tab-138 MuiTab-textColorInherit-155" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                <button className="MuiButtonBase-root-165 MuiTab-root-153 RSFTabsRow-tab-138 MuiTab-textColorInherit-155" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                <button className="MuiButtonBase-root-165 MuiTab-root-153 RSFTabsRow-tab-138 MuiTab-textColorInherit-155" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                   <span className="MuiTab-wrapper-161">
                                     <span className="MuiTab-labelContainer-162">
                                       <span className="MuiTab-label-163">
@@ -63,7 +61,7 @@ exports[`TabsRow render should render in amp 1`] = `
                           <Tab label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} classes={{...}} disabled={false}>
                             <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-153 RSFTabsRow-tab-138 MuiTab-textColorInherit-155" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
                               <ButtonBase focusRipple={true} className="MuiTab-root-153 RSFTabsRow-tab-138 MuiTab-textColorInherit-155" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                <button className="MuiButtonBase-root-165 MuiTab-root-153 RSFTabsRow-tab-138 MuiTab-textColorInherit-155" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                <button className="MuiButtonBase-root-165 MuiTab-root-153 RSFTabsRow-tab-138 MuiTab-textColorInherit-155" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                   <span className="MuiTab-wrapper-161">
                                     <span className="MuiTab-labelContainer-162">
                                       <span className="MuiTab-label-163">
@@ -112,7 +110,7 @@ exports[`TabsRow render should render in amp 1`] = `
           </TabsRow>
         </inject-TabsRow-with-app>
       </WithStyles(inject-TabsRow-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -120,19 +118,17 @@ exports[`TabsRow render should render in amp 1`] = `
 exports[`TabsRow render should render tabs with images 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-TabsRow-with-app) items={{...}}>
         <inject-TabsRow-with-app items={{...}} classes={{...}}>
           <TabsRow items={{...}} classes={{...}} app={{...}} scrollable={true} centered={false}>
             <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-3" classes={{...}}>
-              <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-3" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
+              <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-3" theme={{...}} classes={{...}} centered={false} component="div" ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit" variant="standard">
                 <div className="MuiTabs-root-9 RSFTabsRow-root-3 RSFTabsRow-root-3">
                   <EventListener target="window" onResize={[Function: debounced]} />
-                  <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                    <div>
-                      <EventListener target="window" onResize={[Function: debounced]} />
-                      <div style={{...}} />
-                    </div>
+                  <ScrollbarSize onChange={[Function]}>
+                    <EventListener target="window" onResize={[Function: debounced]} />
+                    <div style={{...}} />
                   </ScrollbarSize>
                   <div className="MuiTabs-flexContainer-10">
                     <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-15 MuiTabs-scrollButtonsAuto-16">
@@ -146,7 +142,7 @@ exports[`TabsRow render should render tabs with images 1`] = `
                           <Tab label={[undefined]} icon={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} classes={{...}} disabled={false}>
                             <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-19 RSFTabsRow-tab-4 MuiTab-textColorInherit-21" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
                               <ButtonBase focusRipple={true} className="MuiTab-root-19 RSFTabsRow-tab-4 MuiTab-textColorInherit-21" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                <button className="MuiButtonBase-root-31 MuiTab-root-19 RSFTabsRow-tab-4 MuiTab-textColorInherit-21" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                <button className="MuiButtonBase-root-31 MuiTab-root-19 RSFTabsRow-tab-4 MuiTab-textColorInherit-21" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                   <span className="MuiTab-wrapper-27">
                                     <WithStyles(inject-Image) src="https://example.com" alt={[undefined]}>
                                       <inject-Image src="https://example.com" alt={[undefined]} classes={{...}}>
@@ -176,7 +172,7 @@ exports[`TabsRow render should render tabs with images 1`] = `
                           <Tab label={[undefined]} icon={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} classes={{...}} disabled={false}>
                             <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-19 RSFTabsRow-tab-4 MuiTab-textColorInherit-21" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
                               <ButtonBase focusRipple={true} className="MuiTab-root-19 RSFTabsRow-tab-4 MuiTab-textColorInherit-21" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                <button className="MuiButtonBase-root-31 MuiTab-root-19 RSFTabsRow-tab-4 MuiTab-textColorInherit-21" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                <button className="MuiButtonBase-root-31 MuiTab-root-19 RSFTabsRow-tab-4 MuiTab-textColorInherit-21" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                   <span className="MuiTab-wrapper-27">
                                     <WithStyles(inject-Image) src="https://example.com" alt={[undefined]}>
                                       <inject-Image src="https://example.com" alt={[undefined]} classes={{...}}>
@@ -221,7 +217,7 @@ exports[`TabsRow render should render tabs with images 1`] = `
           </TabsRow>
         </inject-TabsRow-with-app>
       </WithStyles(inject-TabsRow-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -229,19 +225,17 @@ exports[`TabsRow render should render tabs with images 1`] = `
 exports[`TabsRow render should render tabs with text 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-TabsRow-with-app) items={{...}}>
         <inject-TabsRow-with-app items={{...}} classes={{...}}>
           <TabsRow items={{...}} classes={{...}} app={{...}} scrollable={true} centered={false}>
             <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-50" classes={{...}}>
-              <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-50" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
+              <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-50" theme={{...}} classes={{...}} centered={false} component="div" ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit" variant="standard">
                 <div className="MuiTabs-root-56 RSFTabsRow-root-50 RSFTabsRow-root-50">
                   <EventListener target="window" onResize={[Function: debounced]} />
-                  <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                    <div>
-                      <EventListener target="window" onResize={[Function: debounced]} />
-                      <div style={{...}} />
-                    </div>
+                  <ScrollbarSize onChange={[Function]}>
+                    <EventListener target="window" onResize={[Function: debounced]} />
+                    <div style={{...}} />
                   </ScrollbarSize>
                   <div className="MuiTabs-flexContainer-57">
                     <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-62 MuiTabs-scrollButtonsAuto-63">
@@ -255,7 +249,7 @@ exports[`TabsRow render should render tabs with text 1`] = `
                           <Tab label="Tab 1" icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} classes={{...}} disabled={false}>
                             <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-66 RSFTabsRow-tab-51 MuiTab-textColorInherit-68" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
                               <ButtonBase focusRipple={true} className="MuiTab-root-66 RSFTabsRow-tab-51 MuiTab-textColorInherit-68" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                <button className="MuiButtonBase-root-78 MuiTab-root-66 RSFTabsRow-tab-51 MuiTab-textColorInherit-68" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                <button className="MuiButtonBase-root-78 MuiTab-root-66 RSFTabsRow-tab-51 MuiTab-textColorInherit-68" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                   <span className="MuiTab-wrapper-74">
                                     <span className="MuiTab-labelContainer-75">
                                       <span className="MuiTab-label-76">
@@ -281,7 +275,7 @@ exports[`TabsRow render should render tabs with text 1`] = `
                           <Tab label="Tab 2" icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} classes={{...}} disabled={false}>
                             <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-66 RSFTabsRow-tab-51 MuiTab-textColorInherit-68" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
                               <ButtonBase focusRipple={true} className="MuiTab-root-66 RSFTabsRow-tab-51 MuiTab-textColorInherit-68" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                <button className="MuiButtonBase-root-78 MuiTab-root-66 RSFTabsRow-tab-51 MuiTab-textColorInherit-68" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                <button className="MuiButtonBase-root-78 MuiTab-root-66 RSFTabsRow-tab-51 MuiTab-textColorInherit-68" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                   <span className="MuiTab-wrapper-74">
                                     <span className="MuiTab-labelContainer-75">
                                       <span className="MuiTab-label-76">
@@ -322,7 +316,7 @@ exports[`TabsRow render should render tabs with text 1`] = `
           </TabsRow>
         </inject-TabsRow-with-app>
       </WithStyles(inject-TabsRow-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -330,19 +324,17 @@ exports[`TabsRow render should render tabs with text 1`] = `
 exports[`TabsRow render should render tabs with urls 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-TabsRow-with-app) items={{...}}>
         <inject-TabsRow-with-app items={{...}} classes={{...}}>
           <TabsRow items={{...}} classes={{...}} app={{...}} scrollable={true} centered={false}>
             <WithStyles(Tabs) value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-93" classes={{...}}>
-              <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-93" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
+              <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-93" theme={{...}} classes={{...}} centered={false} component="div" ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit" variant="standard">
                 <div className="MuiTabs-root-99 RSFTabsRow-root-93 RSFTabsRow-root-93">
                   <EventListener target="window" onResize={[Function: debounced]} />
-                  <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                    <div>
-                      <EventListener target="window" onResize={[Function: debounced]} />
-                      <div style={{...}} />
-                    </div>
+                  <ScrollbarSize onChange={[Function]}>
+                    <EventListener target="window" onResize={[Function: debounced]} />
+                    <div style={{...}} />
                   </ScrollbarSize>
                   <div className="MuiTabs-flexContainer-100">
                     <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-105 MuiTabs-scrollButtonsAuto-106">
@@ -356,7 +348,7 @@ exports[`TabsRow render should render tabs with urls 1`] = `
                           <Tab label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={0} classes={{...}} disabled={false}>
                             <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-109 RSFTabsRow-tab-94 MuiTab-textColorInherit-111" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
                               <ButtonBase focusRipple={true} className="MuiTab-root-109 RSFTabsRow-tab-94 MuiTab-textColorInherit-111" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                <button className="MuiButtonBase-root-121 MuiTab-root-109 RSFTabsRow-tab-94 MuiTab-textColorInherit-111" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                <button className="MuiButtonBase-root-121 MuiTab-root-109 RSFTabsRow-tab-94 MuiTab-textColorInherit-111" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                   <span className="MuiTab-wrapper-117">
                                     <span className="MuiTab-labelContainer-118">
                                       <span className="MuiTab-label-119">
@@ -390,7 +382,7 @@ exports[`TabsRow render should render tabs with urls 1`] = `
                           <Tab label={{...}} icon={[undefined]} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} classes={{...}} disabled={false}>
                             <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-109 RSFTabsRow-tab-94 MuiTab-textColorInherit-111" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
                               <ButtonBase focusRipple={true} className="MuiTab-root-109 RSFTabsRow-tab-94 MuiTab-textColorInherit-111" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                <button className="MuiButtonBase-root-121 MuiTab-root-109 RSFTabsRow-tab-94 MuiTab-textColorInherit-111" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                <button className="MuiButtonBase-root-121 MuiTab-root-109 RSFTabsRow-tab-94 MuiTab-textColorInherit-111" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} onContextMenu={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                   <span className="MuiTab-wrapper-117">
                                     <span className="MuiTab-labelContainer-118">
                                       <span className="MuiTab-label-119">
@@ -439,7 +431,7 @@ exports[`TabsRow render should render tabs with urls 1`] = `
           </TabsRow>
         </inject-TabsRow-with-app>
       </WithStyles(inject-TabsRow-with-app)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
