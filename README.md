@@ -61,9 +61,7 @@ npm link babel-plugin-react-storefront
 
 ### 5.7.0
 
-#### Fixed
-
-* Remove extra padding bottom space in the Drawer component
+* Removed extra padding at the bottom of the Drawer component.
 
 ### 5.6.3
 
