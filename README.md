@@ -63,6 +63,19 @@ npm link babel-plugin-react-storefront
 
 * Added `cookie` helper method to `Response`
 
+### 5.6.3
+
+* Improved error handling for SSR.
+
+### 5.6.2
+
+* Fix layout issue with Filter title bar.
+* Added warning for setting cookies on cached route
+
+### 5.6.1
+
+* Fix for production webpack builds with no options
+
 ### 5.6.0
 
 * Fix errors in SearchResultModelBase when filtering after paging.
