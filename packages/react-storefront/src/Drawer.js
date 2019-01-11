@@ -35,7 +35,6 @@ export const styles = theme => ({
   content: {
     flexBasis: '100%',
     overflow: 'auto',
-    paddingBottom: '64px'
   },
 
   paper: {

@@ -20,7 +20,12 @@ import { Hbox } from './Box'
  * FilterButton to automatically display this component in a drawer that slides up from the bottom of the viewport.
  */
 export const styles = theme => ({
-  root: { },
+  root: { 
+    marginBottom: '64px',
+    height: 'calc(100% - 64px)',
+    overflow: 'auto',
+    overflowX: 'hidden'
+  },
   matches: {
     marginLeft: '5px',
     display: 'inline'

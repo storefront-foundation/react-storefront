@@ -61,6 +61,7 @@ npm link babel-plugin-react-storefront
 
 ### 5.7.0
 
+* Removed extra padding at the bottom of the Drawer component.
 * Improved accessibility of QuantitySelector and ButtonSelector.
 
 ### 5.6.3
