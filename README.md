@@ -59,6 +59,12 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.6.4
+
+#### Fixed
+
+* Remove extra padding bottom space in the Drawer component
+
 ### 5.6.3
 
 * Improved error handling for SSR.
