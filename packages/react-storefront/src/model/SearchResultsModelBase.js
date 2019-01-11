@@ -153,7 +153,7 @@ export default types
     },
     /**
      * Sets the filtersChanged field
-     * @param {Boolean} changed 
+     * @param {Boolean} changed
      */
     setFiltersChanged(changed) {
       self.filtersChanged = changed
@@ -169,7 +169,7 @@ export default types
     }),
     /**
      * Toggles a facet on or off.
-     * @param {FacetModelBase} facet 
+     * @param {FacetModelBase} facet
      */
     toggleFilter(facet) {
       const { code } = facet
@@ -180,26 +180,25 @@ export default types
       } else {
         self.filters.splice(index, 1)
       }
-      
       self.filtersChanged = true
     },
     showPage: async function(page) {
       self.page = page
       let { pathname, search } = window.location
-      search += search.length ? '&': '?'
-      search += `page=${self.page}`
-      
+      search += `${search.length ? '&': '?'}page=${self.page}`
+
       try {
         self.loadingMore = page > 0
         const results = await fetch(self.getShowMoreURL(`${pathname}.json${search}`)).then(res => res.json())
         if (isAlive(self)) {
           self.addItems(results.items)
+          self.setTotal(results.total)
         }
-      } catch (e) {
+      }
+      finally {
         if (isAlive(self)) {
           self.endLoadingMore()
         }
-        throw e
       }
     },
     /**
@@ -221,7 +220,7 @@ export default types
     },
     /**
      * Adds more items to the results
-     * @param {Array} items 
+     * @param {Array} items
      */
     addItems(items) {
       if (self.page === 0) {
@@ -231,6 +230,13 @@ export default types
         self.items = [...self.items, ...items]
       }
       self.endLoadingMore()
+    },
+    /**
+     * Sets the total number of matching records
+     * @param {Integer} total 
+     */
+    setTotal(total){
+      self.total = total
     },
     /**
      * Toggles the layout

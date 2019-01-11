@@ -6,7 +6,7 @@ Build and deploy e-commerce progressive web apps in record time.
 
 # Example Site
 
-[Example Site Built with React Storefront](https://react-storefront-boilerplate.moovdemos.com/)
+[Example Site Built with React Storefront](https://react-storefront-boilerplate.moovweb.cloud)
 
 You can create a local copy of this site using `create-react-storefront` to use as a starting point for your own site:
 
@@ -19,7 +19,96 @@ create-react-storefront my-site
 
 All rights reserved.
 
+## Contributing
+
+To contribute to react-storefront:
+
+1. Make a branch from `master`
+2. Make your changes
+3. Add tests
+4. Verify all tests pass by running `yarn test`
+5. Add an item to the Change Log in readme.md.  Use your best judgement as to whether your change is a patch, minor release, or major release.  We'll ensure that the correct version number is assigned before it is released.
+6. Create a PR.
+
+## Development
+
+First, clone the repo and run yarn to install dependencies
+
+```
+yarn
+```
+
+To use your local copy of react-storefront when developing apps, in your clone of this repo, run:
+
+```
+yarn link:all
+```
+
+To automatically transpile your code when you make changes, run:
+
+```
+yarn watch
+```
+
+Then, in your app's root directory run:
+
+```
+npm link react-storefront
+npm link babel-plugin-react-storefront
+```
+
 ## Changelog
+
+### 5.7.0
+
+* Added `cookie` helper method to `Response`
+* Replaced regular `<iframe>` with `<amp-iframe>` when rendering AMP.
+* Replaced YouTube `<iframe>` with `<amp-youtube>` when rendering AMP.
+* Removed extra padding at the bottom of the Drawer component.
+* Improved accessibility of QuantitySelector and ButtonSelector.
+
+### 5.6.3
+
+* Improved error handling for SSR.
+
+### 5.6.2
+
+* Fix layout issue with Filter title bar.
+* Added warning for setting cookies on cached route
+
+### 5.6.1
+
+* Fix for production webpack builds with no options
+
+### 5.6.0
+
+* Fix errors in SearchResultModelBase when filtering after paging.
+* Runs `yarn link:all` during CI builds to ensure that linking will work properly.
+* Transition to PWA and open filter/sort from AMP.
+* Added `variant="drawer|menu"` to `FilterButton`.  The default is "`drawer`".
+
+### 5.5.0
+
+* Added `envVariables` to webpack server options
+* Added ability to set asset path base
+
+### 5.4.0
+
+* Added `itemRenderer` prop to `Menu`
+
+### 5.3.2
+
+* Fixes an issue with Chrome 71 which prevents async loading of scripts by the service worker.
+
+### 5.3.1
+
+* Fix bugs related to production builds
+
+### 5.3.0
+
+* Code is now transpiled to ES5 before publishing
+* Bundle size reduced by about 20%
+* Can now run your build with an environment variable `ANALYZE=true` to see client build stats in your browser.
 
 ### 5.2.4
 
@@ -238,20 +327,3 @@ All rights reserved.
 * AMP Form POST is now supported and multipart encoded request bodies are parsed automatically.
 * Added `Skeleton` components for creating custom loading skeletons
 
-## Development
-
-### Linking from Projects
-
-To use your local copy of react-storefront when developing Moov PWA projects, in your clone of this repo, run:
-
-```
-yarn install
-cd packages/react-storefront
-yarn link
-```
-
-Then, in your project run:
-
-```
-yarn link react-storefront
-```

@@ -22,7 +22,6 @@ export default function createRequest() {
     hostname: env.host_no_port,
     protocol: env.host_no_port === 'localhost' ? 'http:' : env.secure ? 'https:' : 'http:',
     get path() {
-      console.warn('warning: request.path is deprecated and will be removed in a future version of react-storefront')
       return env.path
     }
   }

@@ -3,7 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React, { Component } from 'react'
-import { get } from 'lodash'
+import get from 'lodash/get'
 import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import ListViewIcon from '@material-ui/icons/ViewAgenda'
 import GridViewIcon from '@material-ui/icons/BorderAll'
@@ -11,21 +11,19 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
 import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import analytics from './analytics'
 import classnames from 'classnames'
 import { LAYOUT_LIST,  LAYOUT_GRID } from './model/SearchResultsModelBase'
 import Paper from '@material-ui/core/Paper'
 
 /**
- * A header that allows the user to navigate back.  When a searchResults prop is provided, 
+ * A header that allows the user to navigate back.  When a searchResults prop is provided,
  * this component also allows the user to switch between grid and list views.
  */
 export const styles = theme => ({
   root: {
-    padding: '12px',
+    padding: '6px 86px',
     position: 'relative',
     display: 'flex',
-    height: '48px',
     justifyContent: 'center',
     alignItems: 'center',
     borderTop: `1px solid ${theme.palette.divider}`,
@@ -47,7 +45,7 @@ export const styles = theme => ({
     position: 'absolute',
     top: 0,
     left: '5px',
-    bottom: 0,
+    height: '41px',
     display: 'flex',
     alignItems: 'center'
   },
@@ -56,8 +54,8 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     top: 0,
-    bottom: 0,
-    right: '10px'
+    right: '10px',
+    height: '41px'
   },
   switchButton: {
     marginLeft: '5px',

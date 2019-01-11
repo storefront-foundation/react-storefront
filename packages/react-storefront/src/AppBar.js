@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { throttle } from 'lodash'
+import throttle from 'lodash/throttle'
 import Toolbar from '@material-ui/core/Toolbar'
 import { observer, inject } from 'mobx-react'
 import Hidden from '@material-ui/core/Hidden'

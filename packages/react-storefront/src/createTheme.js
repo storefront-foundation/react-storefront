@@ -3,7 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import { createMuiTheme } from '@material-ui/core/styles'
-import { merge } from 'lodash'
+import merge from 'lodash/merge'
 import green from '@material-ui/core/colors/green'
 
 export default function createTheme(values = {}) {

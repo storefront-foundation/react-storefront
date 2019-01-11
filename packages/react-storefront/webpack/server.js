@@ -1,6 +1,6 @@
 const path = require('path')
 const { createServerConfig, createLoaders } = require('./common')
-const { merge } = require('lodash')
+const merge = require('lodash/merge')
 
 module.exports = {
 
@@ -11,11 +11,11 @@ module.exports = {
    * @param {Object} options
    * @param {Object} options.eslintConfig A config object for eslint
    */
-  dev(root, { eslintConfig = require('./eslint-server') } = {}) {
+  dev(root, { eslintConfig = require('./eslint-server'), envVariables = {} } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
 
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'src', 'stats', 'getStatsInDev')
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
     }
 
     return ({ entry, plugins, output, target, resolve }) => merge(createServerConfig(root, alias), {
@@ -36,7 +36,8 @@ module.exports = {
         new webpack.ExtendedAPIPlugin(),
         new webpack.DefinePlugin({
           'process.env.MOOV_RUNTIME': JSON.stringify('server'),
-          'process.env.MOOV_ENV': JSON.stringify('development')
+          'process.env.MOOV_ENV': JSON.stringify('development'),
+          ...envVariables
         })
       ]
     })
@@ -45,13 +46,14 @@ module.exports = {
   /**
    * Generates a webpack config for the server production build
    * @param {String} root The path to the root of the project
+   * @param {Object} options
    * @return {Object} A webpack config
    */
-  prod(root) {
+  prod(root, { envVariables = {} } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
 
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'src', 'stats', 'getStats')
+      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStats')
     }
 
     return ({ entry, plugins, output, target, resolve }) => merge(createServerConfig(root, alias), {
@@ -70,7 +72,8 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
           'process.env.MOOV_RUNTIME': JSON.stringify('server'),
-          'process.env.MOOV_ENV': JSON.stringify('production')
+          'process.env.MOOV_ENV': JSON.stringify('production'),
+          ...envVariables
         })
       ]
     })

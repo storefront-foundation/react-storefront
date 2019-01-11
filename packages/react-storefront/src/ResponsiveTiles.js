@@ -97,7 +97,7 @@ function createInner({ spacing, cols }) {
     }
   }
 
-  class ResponsiveTilesInner extends Component {
+  const ResponsiveTilesInner = class extends Component {
     render() {
       const { className, classes, children, ...other } = this.props
   

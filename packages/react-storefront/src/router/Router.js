@@ -3,9 +3,10 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import Route from 'route-parser'
-import isFunction from 'lodash.isfunction'
+import isFunction from 'lodash/isfunction'
 import qs from 'qs'
-import { merge, cloneDeep } from 'lodash'
+import merge from 'lodash/merge'
+import cloneDeep from 'lodash/cloneDeep'
 import { configureCache, cache } from './serviceWorker'
 import parseMultipartRequest from './parseMultipartRequest'
 import Response from './Response'

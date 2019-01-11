@@ -3,7 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 const JSDOMEnvironment = require("jest-environment-jsdom");
-const { merge } = require('lodash')
+const merge = require('lodash/merge')
 
 module.exports = class JSDOMEnvironmentGlobal extends JSDOMEnvironment {
   constructor(config) {

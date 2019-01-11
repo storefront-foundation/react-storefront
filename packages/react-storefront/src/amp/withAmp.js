@@ -28,10 +28,6 @@ export default function withAmp(WrappedComponent) {
   @inject('app', 'history')
   @observer
   class WithAmp extends Component {
-    constructor(props) {
-      super(props)
-    }
- 
     render() {
       const { pathname, search, hostname } = this.props.app.location
       const { amp } = this.props.app

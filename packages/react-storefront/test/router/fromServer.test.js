@@ -23,6 +23,7 @@ describe('fromServer', () => {
       fetchURL = url
       return fetchResult
     }
+    global.env = {}
     fromServer = require('../../src/router').fromServer
     response = new (require('../../src/router').Response)()
   })

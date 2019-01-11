@@ -60,7 +60,7 @@ export const styles = theme => ({
   }
 });
 
-@withStyles(styles)
+@withStyles(styles, { name: 'RSFNavTabs' })
 @inject(({ app, history }) => ({ tabs: app.tabs, history }))
 @observer
 export default class NavTabs extends Component {

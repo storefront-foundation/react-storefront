@@ -4,7 +4,7 @@
  */
 import React, { PureComponent } from 'react'
 import SvgIcon from '@material-ui/core/SvgIcon'
-import OpenWithLabel from './assets/menu.svg'
+import OpenWithLabel from './icons/OpenWithLabel'
 import Open from '@material-ui/icons/Menu'
 import Close from '@material-ui/icons/Close'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'

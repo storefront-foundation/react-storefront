@@ -29,12 +29,16 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "precommit": "gulp addLicense",
-    "publish": "lerna publish --force-publish=* --yes",
-    "docs": "pushd packages/react-storefront; npm run docs; popd;",
+    "build": "pushd packages/react-storefront; yarn build; popd;",
+    "precommit": "yarn add-license && yarn docs",
+    "update-versions": "lerna publish --skip-npm --yes",
+    "publish": "yarn update-versions; yarn build; pushd packages/react-storefront/lib; yarn publish --non-interactive; popd; pushd packages/babel-plugin-react-storefront; yarn publish --non-interactive; popd",
+    "docs": "pushd packages/react-storefront; yarn docs; popd;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
-    "test": "pushd packages/react-storefront; npm test; popd;",
-    "add-license": "node ./tasks/addLicense"
+    "test": "pushd packages/react-storefront; yarn test; popd;",
+    "watch": "pushd packages/react-storefront; yarn watch; popd;",
+    "add-license": "node ./tasks/addLicense",
+    "link:all": "yarn build; pushd packages/react-storefront/lib; npm link; yarn link; popd; pushd packages/babel-plugin-react-storefront; npm link; yarn link; popd;"
   },
   "workspaces": {
     "packages": [
@@ -46,7 +50,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn add-license"
+      "pre-commit": "yarn precommit"
     }
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
   }
 }

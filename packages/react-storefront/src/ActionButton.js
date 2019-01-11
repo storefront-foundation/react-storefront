@@ -56,4 +56,4 @@ ActionButton.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 }
 
-export default withStyles(styles)(ActionButton)
+export default withStyles(styles, { name: 'RSFActionButton' })(ActionButton)
