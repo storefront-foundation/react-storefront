@@ -133,7 +133,6 @@ export default class Server {
       })
 
       const helmet = Helmet.renderStatic()
-      const { canonicalURL } = model
 
       html = `
         <!DOCTYPE html>
