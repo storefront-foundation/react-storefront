@@ -59,7 +59,7 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
-### 5.6.4
+### 5.7.0
 
 #### Fixed
 
