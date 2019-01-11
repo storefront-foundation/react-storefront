@@ -59,6 +59,13 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.6.4
+
+#### Added
+
+* Replace regular `<iframe>` with `<amp-iframe>` in an arbitrary text content
+* Replace YouTube `<iframe>` with `<amp-youtube>` in an arbitrary text content
+
 ### 5.6.3
 
 * Improved error handling for SSR.
