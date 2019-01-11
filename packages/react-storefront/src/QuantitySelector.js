@@ -91,14 +91,20 @@ export default class QuantitySelector extends Component {
      * If specified, this component will automatically control the price of a product.
      * This should be an instance of ProductModelBase
      */
-    product: PropTypes.object
+    product: PropTypes.object,
+
+    /**
+     * The accessibility label.  Add and subtract button aria-label values are derived from this as "add one {ariaLabel}" and "subtract one {ariaLabel}"
+     */
+    ariaLabel: PropTypes.string
   }
 
   static defaultProps = {
     onChange: Function.prototype,
     minValue: 1,
     maxValue: 100,
-    value: 1
+    value: 1,
+    ariaLabel: 'quantity'
   }
 
   render() {
@@ -114,6 +120,7 @@ export default class QuantitySelector extends Component {
       product,
       inputProps,
       ampStateId,
+      ariaLabel,
       ...other
     } = this.props
 
@@ -125,6 +132,7 @@ export default class QuantitySelector extends Component {
 
     const bindProps = {
       inputProps: {
+        "aria-label": ariaLabel,
         ...inputProps,
         "amp-bind": `value=>${ampStateId}.quantity`
       },
@@ -139,6 +147,7 @@ export default class QuantitySelector extends Component {
               size="small"
               classes={{ root: button }}
               onClick={() => this.onChange(value - 1)}
+              aria-label={`add one ${ariaLabel}`}
               on={`tap:AMP.setState({ ${ampStateId}: { quantity: max(${minValue}, (${ampStateId}.quantity || ${value}) - 1) } })`}
             >
               {subtractIcon || <Remove classes={{ root: icon }}/>}
@@ -149,6 +158,7 @@ export default class QuantitySelector extends Component {
               size="small"
               classes={{ root: button }}
               onClick={() => this.onChange(value + 1)}
+              aria-label={`subtract one ${ariaLabel}`}
               on={`tap:AMP.setState({ ${ampStateId}: { quantity: min(${maxValue}, (${ampStateId}.quantity || ${value}) + 1) } })`}
             >
               {addIcon || <Add classes={{ root: icon }}/>}
