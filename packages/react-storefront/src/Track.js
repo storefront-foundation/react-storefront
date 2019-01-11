@@ -85,7 +85,7 @@ export default class Track extends Component {
     const { event, trigger, app, children, onSuccess, ampData, ...data } = this.props
 
     setImmediate(async () => {
-      await analytics[event](data)
+      await analytics.fire(event, data)
       onSuccess()
     })
   }

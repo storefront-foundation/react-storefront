@@ -3,7 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import Route from 'route-parser'
-import isFunction from 'lodash.isfunction'
+import isFunction from 'lodash/isfunction'
 import qs from 'qs'
 import merge from 'lodash/merge'
 import cloneDeep from 'lodash/cloneDeep'

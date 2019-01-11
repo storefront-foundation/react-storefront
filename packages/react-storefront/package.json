@@ -18,7 +18,7 @@
     "build:prep": "yarn run clean && yarn create-indexes && cp package.json lib && cp -r webpack docs lib && cp -r service-worker lib",
     "build": "yarn build:prep && NODE_ENV=production babel src --source-maps --out-dir lib",
     "watch": "yarn build:prep && babel --watch src --source-maps --out-dir lib",
-    "docs": "yarn build-storybook && yarn deploy-storybook && mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
+    "docs": "mkdir -p docs/build && babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
     "@material-ui/core": "^3.0.0",
@@ -38,6 +38,7 @@
     "react-svg-loader": "^2.1.0",
     "react-transition-group": "^2.5.0",
     "react-universal-component": "^2.9.0",
+    "lodash": "^4.17.5",
     "webpack": "^3.11.0",
     "webpack-flush-chunks": "^1.2.3"
   },
@@ -104,7 +105,6 @@
     "isomorphic-unfetch": "^2.0.0",
     "js-cookie": "^2.2.0",
     "jss": "^9.8.7",
-    "lodash.isfunction": "^3.0.9",
     "md5-file": "^4.0.0",
     "mst-middlewares": "^2.0.5",
     "open-browser-webpack-plugin": "^0.0.5",

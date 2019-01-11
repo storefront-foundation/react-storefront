@@ -211,7 +211,7 @@ export default class ButtonSelector extends Component {
     let children = option.text
 
     if (option.image) {
-      children = <Image src={option.image} className={classes.image} fill { ...imageProps } />
+      children = <Image src={option.image} className={classes.image} fill { ...imageProps } alt={option.alt || option.text}/>
     } else if (option.color) {
       children = <div className={classes.image} style={{ backgroundColor: option.color }}/>
     }
@@ -224,6 +224,7 @@ export default class ButtonSelector extends Component {
       >
         <Button
           onClick={(e) => this.handleClick(e, option, i)}
+          aria-label={option.text}
           href={option.url}
           disabled={option.disabled}
           on={`tap:AMP.setState({ ${ampStateId}: { ${name}: { selected: ${JSON.stringify(option.toJSON())} }}})`}

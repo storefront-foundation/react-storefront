@@ -63,8 +63,10 @@ npm link babel-plugin-react-storefront
 
 #### Added
 
-* Replace regular `<iframe>` with `<amp-iframe>` in an arbitrary text content
-* Replace YouTube `<iframe>` with `<amp-youtube>` in an arbitrary text content
+* Replaced regular `<iframe>` with `<amp-iframe>` when rendering AMP.
+* Replaced YouTube `<iframe>` with `<amp-youtube>` when rendering AMP.
+* Removed extra padding at the bottom of the Drawer component.
+* Improved accessibility of QuantitySelector and ButtonSelector.
 
 ### 5.6.3
 
