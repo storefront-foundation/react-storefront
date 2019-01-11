@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.7.0
+
+* Improved accessibility of QuantitySelector and ButtonSelector.
+
 ### 5.6.3
 
 * Improved error handling for SSR.

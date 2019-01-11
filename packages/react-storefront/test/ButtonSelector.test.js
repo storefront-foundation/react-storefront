@@ -49,6 +49,27 @@ describe('ButtonSelector', () => {
     )).toMatchSnapshot()
   })
 
+  it('should apply alt values to the images', () => {
+    selection = SelectionModelBase.create({
+      options: [
+        { id: '1', image: 'http://via.placeholder.com/128x128/ffffff', alt: 'image1' },
+        { id: '2', image: 'http://via.placeholder.com/128x128/000000', text: 'image2' }
+      ],
+      selected: { id: '2', image: 'http://via.placeholder.com/128x128/000000' }
+    })
+
+    const wrapper = mount(
+      <Provider app={app}>
+        <ButtonSelector model={selection}/>
+      </Provider>
+    )
+    
+    const images = Array.from(wrapper.find('img'))
+
+    expect(images[0].props['alt']).toBe('image1')
+    expect(images[1].props['alt']).toBe('image2')
+  })
+
   it('should support amp', () => {
     app.applyState({ amp: true })
 
@@ -156,6 +177,18 @@ describe('ButtonSelector', () => {
     wrapper.find('button').at(0).simulate('click')
 
     expect(selection.selected.id).toBe('2')
+  })
+
+  it('should use the option text as the aria-label', () => {
+    const wrapper = mount(
+      <Provider app={app}>
+        <ButtonSelector model={selection}/>
+      </Provider>
+    )
+
+    for (let button of wrapper.find('button')) {
+      expect(button.props['aria-label']).not.toBeUndefined()
+    }
   })
 
   it('should show the text of the selected option', () => {
