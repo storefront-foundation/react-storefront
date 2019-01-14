@@ -9,8 +9,7 @@ import ClientContext from '../../src/router/ClientContext'
 import * as serviceWorker from '../../src/router/serviceWorker'
 import { createMemoryHistory } from 'history'
 
-import Request from 'react-storefront-moov-xdn/src/Request'
-import Response from 'react-storefront-moov-xdn/src/Response'
+import Response from '../../../react-storefront-moov-xdn/src/Response'
 
 describe('Router:Node', function() {
   let router, runAll, response

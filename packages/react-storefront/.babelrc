@@ -13,6 +13,18 @@
   "env": {
     "production": {
       "presets": ["minify"]
+    },
+    "test": {
+      "presets": [
+        ["@babel/env", {
+          "targets": {
+            "browsers": "> 1%"
+          },
+          "useBuiltIns": "usage",
+          "forceAllTransforms": true
+        }],
+        "@babel/react"
+      ]
     }
   },
   "plugins": [

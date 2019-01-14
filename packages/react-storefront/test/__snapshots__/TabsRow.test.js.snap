@@ -11,11 +11,9 @@ exports[`TabsRow render should render in amp 1`] = `
               <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-137" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
                 <div className="MuiTabs-root-143 RSFTabsRow-root-137 RSFTabsRow-root-137">
                   <EventListener target="window" onResize={[Function: debounced]} />
-                  <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                    <div>
-                      <EventListener target="window" onResize={[Function: debounced]} />
-                      <div style={{...}} />
-                    </div>
+                  <ScrollbarSize onChange={[Function]}>
+                    <EventListener target="window" onResize={[Function: debounced]} />
+                    <div style={{...}} />
                   </ScrollbarSize>
                   <div className="MuiTabs-flexContainer-144">
                     <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-149 MuiTabs-scrollButtonsAuto-150">
@@ -128,11 +126,9 @@ exports[`TabsRow render should render tabs with images 1`] = `
               <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-3" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
                 <div className="MuiTabs-root-9 RSFTabsRow-root-3 RSFTabsRow-root-3">
                   <EventListener target="window" onResize={[Function: debounced]} />
-                  <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                    <div>
-                      <EventListener target="window" onResize={[Function: debounced]} />
-                      <div style={{...}} />
-                    </div>
+                  <ScrollbarSize onChange={[Function]}>
+                    <EventListener target="window" onResize={[Function: debounced]} />
+                    <div style={{...}} />
                   </ScrollbarSize>
                   <div className="MuiTabs-flexContainer-10">
                     <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-15 MuiTabs-scrollButtonsAuto-16">
@@ -237,11 +233,9 @@ exports[`TabsRow render should render tabs with text 1`] = `
               <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-50" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
                 <div className="MuiTabs-root-56 RSFTabsRow-root-50 RSFTabsRow-root-50">
                   <EventListener target="window" onResize={[Function: debounced]} />
-                  <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                    <div>
-                      <EventListener target="window" onResize={[Function: debounced]} />
-                      <div style={{...}} />
-                    </div>
+                  <ScrollbarSize onChange={[Function]}>
+                    <EventListener target="window" onResize={[Function: debounced]} />
+                    <div style={{...}} />
                   </ScrollbarSize>
                   <div className="MuiTabs-flexContainer-57">
                     <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-62 MuiTabs-scrollButtonsAuto-63">
@@ -338,11 +332,9 @@ exports[`TabsRow render should render tabs with urls 1`] = `
               <Tabs value={false} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-93" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
                 <div className="MuiTabs-root-99 RSFTabsRow-root-93 RSFTabsRow-root-93">
                   <EventListener target="window" onResize={[Function: debounced]} />
-                  <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                    <div>
-                      <EventListener target="window" onResize={[Function: debounced]} />
-                      <div style={{...}} />
-                    </div>
+                  <ScrollbarSize onChange={[Function]}>
+                    <EventListener target="window" onResize={[Function: debounced]} />
+                    <div style={{...}} />
                   </ScrollbarSize>
                   <div className="MuiTabs-flexContainer-100">
                     <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-105 MuiTabs-scrollButtonsAuto-106">
