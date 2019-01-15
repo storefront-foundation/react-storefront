@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.7.1
+
+* Fixed case error with importing lodash/isFunction in Router.
+
 ### 5.7.0
 
 * Added `cookie` helper method to `Response`
