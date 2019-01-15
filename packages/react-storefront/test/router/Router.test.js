@@ -8,9 +8,9 @@ import { Router, fromClient, fromServer, cache, proxyUpstream } from '../../src/
 import ClientContext from '../../src/router/ClientContext'
 import * as serviceWorker from '../../src/router/serviceWorker'
 import { createMemoryHistory } from 'history'
+import qs from 'qs'
 
-import Request from 'react-storefront-moov-xdn/src/Request'
-import Response from 'react-storefront-moov-xdn/src/Response'
+import Response from '../../../react-storefront-moov-xdn/src/Response'
 
 describe('Router:Node', function() {
   let router, runAll, response
@@ -35,7 +35,7 @@ describe('Router:Node', function() {
       global.env.method = method
 
       const [ pathname, search ] = path.split(/\?/)
-      const request = { path: pathname, pathname, search: search ? `?${search}` : '', method }
+      const request = { path: pathname, pathname, query: qs.parse(search), search: search ? `?${search}` : '', method }
       jest.spyOn(console, 'warn').mockImplementation()
       const promise = router.runAll(request, response = new Response())
 

@@ -29,16 +29,16 @@
     "webpack": "^4.25.1"
   },
   "scripts": {
-    "build": "pushd packages/react-storefront; yarn build; popd; pushd packages/react-storefront-moov-xdn; yarn build; popd;",
+    "build": "cd packages/react-storefront; yarn build; cd ../../; cd packages/react-storefront-moov-xdn; yarn build; cd ../../;",
     "precommit": "yarn add-license && yarn docs",
     "update-versions": "lerna publish --skip-npm --yes",
-    "publish": "yarn update-versions; yarn build; pushd packages/react-storefront/lib; yarn publish --non-interactive; popd; pushd packages/babel-plugin-react-storefront; yarn publish --non-interactive; popd",
-    "docs": "pushd packages/react-storefront; yarn docs; popd;",
+    "publish": "yarn update-versions; yarn build; cd packages/react-storefront/lib; yarn publish --non-interactive; cd ../../../; cd packages/babel-plugin-react-storefront; yarn publish --non-interactive; cd ../../",
+    "docs": "cd packages/react-storefront; yarn docs; cd ../../;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
-    "test": "pushd packages/react-storefront; yarn test; popd;",
-    "watch": "pushd packages/react-storefront; yarn watch; popd;",
+    "test": "cd packages/react-storefront; yarn test:unit; cd ../../;",
+    "watch": "cd packages/react-storefront; yarn watch; cd ../../;",
     "add-license": "node ./tasks/addLicense",
-    "link:all": "yarn build; pushd packages/react-storefront/lib; npm link; yarn link; popd; pushd packages/babel-plugin-react-storefront; npm link; yarn link; popd; pushd packages/react-storefront-moov-xdn/dist; npm link; yarn link; popd;"
+    "link:all": "yarn build; cd packages/react-storefront/lib; npm link; yarn link; cd ../../../; cd packages/babel-plugin-react-storefront; npm link; yarn link; cd ../../; cd packages/react-storefront-moov-xdn/dist; npm link; yarn link; cd ../../../;"
   },
   "workspaces": {
     "packages": [

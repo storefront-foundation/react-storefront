@@ -2,10 +2,10 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import getHeaders from "./getHeaders"
 import qs from 'qs'
 import parseMultipartRequest from './parseMultipartRequest'
 import Headers from './Headers'
+import getHeaders from "./getHeaders"
 
 /**
  * Creates a request object for route handlers from the moovjs environment.

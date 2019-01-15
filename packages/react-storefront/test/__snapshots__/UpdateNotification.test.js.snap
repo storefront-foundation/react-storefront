@@ -94,7 +94,7 @@ exports[`UpdateNotification should accept a custom message 1`] = `
                     </Slide>
                   </WithTheme(Slide)>
                 </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} />
+                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
               </ClickAwayListener>
             </Snackbar>
           </WithStyles(Snackbar)>
@@ -199,7 +199,7 @@ exports[`UpdateNotification should accept custom text for the reload button 1`] 
                     </Slide>
                   </WithTheme(Slide)>
                 </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} />
+                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
               </ClickAwayListener>
             </Snackbar>
           </WithStyles(Snackbar)>
@@ -320,7 +320,7 @@ exports[`UpdateNotification should show when moov-update-available is dispatched
                     </Slide>
                   </WithTheme(Slide)>
                 </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} />
+                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
               </ClickAwayListener>
             </Snackbar>
           </WithStyles(Snackbar)>

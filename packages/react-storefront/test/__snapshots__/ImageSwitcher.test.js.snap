@@ -396,11 +396,9 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                         <Tabs value={0} onChange={[Function]} indicatorColor="secondary" scrollable={true} className="RSFTabsRow-root-96 RSFImageSwitcher-tabsRowRoot-72" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
                           <div className="MuiTabs-root-102 RSFTabsRow-root-96 RSFImageSwitcher-tabsRowRoot-72 RSFTabsRow-root-96 RSFImageSwitcher-tabsRowRoot-72">
                             <EventListener target="window" onResize={[Function: debounced]} />
-                            <ScrollbarSize onLoad={[Function]} onChange={[Function]}>
-                              <div>
-                                <EventListener target="window" onResize={[Function: debounced]} />
-                                <div style={{...}} />
-                              </div>
+                            <ScrollbarSize onChange={[Function]}>
+                              <EventListener target="window" onResize={[Function: debounced]} />
+                              <div style={{...}} />
                             </ScrollbarSize>
                             <div className="MuiTabs-flexContainer-103 RSFTabsRow-centered-101">
                               <WithStyles(TabScrollButton) direction="left" onClick={[Function]} visible={false} className="MuiTabs-scrollButtons-108 MuiTabs-scrollButtonsAuto-109">
