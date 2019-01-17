@@ -37,7 +37,7 @@
     "react-jss": "^8.3.5",
     "react-svg-loader": "^2.1.0",
     "react-transition-group": "^2.5.0",
-    "react-universal-component": "^2.9.0",
+    "react-universal-component": "3.0.2-beta.3",
     "webpack": "^4.25.1",
     "lodash": "^4.17.5",
     "webpack-flush-chunks": "^1.2.3"
