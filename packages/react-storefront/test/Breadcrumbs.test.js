@@ -45,6 +45,19 @@ describe('Breadcrumbs', () => {
     )).toMatchSnapshot()
   })
 
+  it('includes state in the link', () => {
+    const app = AppModelBase.create({ breadcrumbs: [
+      { url: '/', text: 'Home' },
+      { url: '/c/1', text: 'Category 1', state: JSON.stringify({ loadingCategory: { title: 'Category 1' }}) },
+      { text: 'Subcategory 1', state: JSON.stringify({ loadingSubcategory: { title: 'Subcategory 1' }}) }
+    ] })
+    expect(mount(
+      <Provider app={app}>
+        <Breadcrumbs/>
+      </Provider>
+    )).toMatchSnapshot()
+  })
+
   it('should fire a breadcrumb_clicked event when clicked', () => {
     const breadcrumbClicked = jest.fn()
 
@@ -70,7 +83,8 @@ describe('Breadcrumbs', () => {
       expect(breadcrumbClicked).toHaveBeenCalledWith({
         "breadcrumb": {
           "text":  "Home",
-          "url": "/"
+          "url": "/",
+          "state": null
         }
       })
     })
