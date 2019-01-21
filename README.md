@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.8.0
+
+* Added a `state` field to `BreadcrumbModel` so that state can be passed to skeletons when the user clicks on a breadcrumb.
+
 ### 5.7.1
 
 * Fixed case error with importing lodash/isFunction in Router.
