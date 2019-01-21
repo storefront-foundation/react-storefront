@@ -26,7 +26,12 @@ export const BreadcrumbModel = types
     /**
      * The text for the link
      */
-    text: types.string
+    text: types.string,
+
+    /**
+     * JSON to be applied to the state tree when the breadcrumb is clicked.
+     */
+    state: types.maybe(types.string)
   })
 
 export const LocationModel = types.model({
