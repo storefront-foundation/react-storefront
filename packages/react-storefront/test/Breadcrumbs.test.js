@@ -48,8 +48,8 @@ describe('Breadcrumbs', () => {
   it('includes state in the link', () => {
     const app = AppModelBase.create({ breadcrumbs: [
       { url: '/', text: 'Home' },
-      { url: '/c/1', text: 'Category 1', state: JSON.stringify({ loadingCategory: { title: 'Category 1' }}) },
-      { text: 'Subcategory 1', state: JSON.stringify({ loadingSubcategory: { title: 'Subcategory 1' }}) }
+      { url: '/c/1', text: 'Category 1', state: { loadingCategory: { title: 'Category 1' }} },
+      { text: 'Subcategory 1', state: { loadingSubcategory: { title: 'Subcategory 1' }} }
     ] })
     expect(mount(
       <Provider app={app}>
@@ -84,7 +84,7 @@ describe('Breadcrumbs', () => {
         "breadcrumb": {
           "text":  "Home",
           "url": "/",
-          "state": null
+          "state": undefined
         }
       })
     })
