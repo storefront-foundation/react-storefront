@@ -12,6 +12,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import NavTab from './NavTab'
 import { relativeURL } from './utils/url'
 import { Fade, Paper, Popper, Hidden } from '@material-ui/core'
+import { parseState } from './utils/state'
 
 /**
  * Scrollable navigation tabs for the top of the app. All extra props are spread to the 
@@ -181,7 +182,7 @@ export default class NavTabs extends Component {
     const url = relativeURL(item.url)
 
     if (history) {
-      history.push(url, item.state && JSON.parse(item.state))
+      history.push(url, parseState(item.state))
     } else {
       window.location.href = url
     }

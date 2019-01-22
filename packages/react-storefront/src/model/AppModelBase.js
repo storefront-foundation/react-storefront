@@ -29,9 +29,9 @@ export const BreadcrumbModel = types
     text: types.string,
 
     /**
-     * JSON to be applied to the state tree when the breadcrumb is clicked.
+     * An object to be applied to the state tree when the breadcrumb is clicked.  The shape should match your AppModel class.
      */
-    state: types.maybe(types.string)
+    state: types.frozen
   })
 
 export const LocationModel = types.model({
