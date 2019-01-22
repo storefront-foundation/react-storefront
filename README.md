@@ -62,7 +62,6 @@ npm link babel-plugin-react-storefront
 ### 5.7.2
 
 * Added support for setting bundle analyser mode using `ANALYZER_MODE` env variable.
-* Set default bundle analyser mode to `static`.
 
 ### 5.7.1
 
