@@ -120,11 +120,11 @@ module.exports = {
           throw new Error(`Unknown analyzerMode: {analyzerMode}`)
         }
       } else {
-        analyzerMode = 'static'  // default
+        analyzerMode = 'server'  // default
       }
 
       optionalPlugins.push(new BundleAnalyzerPlugin({
-        analyzerMode: analyzerMode
+        analyzerMode
       }))
     }
 
