@@ -8,8 +8,7 @@
       "forceAllTransforms": true,
       "modules": false
     }],
-    "@babel/react",
-    "minify"
+    "@babel/react"
   ],
   "env": {
     "test": {

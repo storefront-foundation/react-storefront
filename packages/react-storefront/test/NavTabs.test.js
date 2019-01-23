@@ -76,9 +76,9 @@ describe('NavTabs', () => {
       .at(0)
       .simulate('click')
 
-    waitForAnalytics(() => expect(topNavClicked).toHaveBeenCalledWith({
+    return waitForAnalytics(() => expect(topNavClicked).toHaveBeenCalledWith({
       "item": {
-        "classes": {"root": "RSFTabsRow-tab-197"},
+        "classes": {"root": "RSFTabsRow-tab-195"},
         "expanded": false, 
         "image": null, 
         "items": null, 

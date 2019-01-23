@@ -16,8 +16,12 @@
 export default function waitForAnalytics(cb) {
   return new Promise((resolve, reject) => {
     setImmediate(() => {
-      cb()
-      resolve()
+      try {
+        cb()
+        resolve()
+      } catch (e) {
+        reject(e)
+      }
     })
   })
 }
