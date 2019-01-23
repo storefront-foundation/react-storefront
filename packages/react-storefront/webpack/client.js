@@ -1,13 +1,11 @@
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin');
-const { createClientConfig, createLoaders, createPlugins} = require('./common')
+const { createClientConfig, createLoaders, createPlugins, optimization } = require('./common')
 const hash = require('md5-file').sync
-
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime }) {
@@ -72,7 +70,7 @@ module.exports = {
       devtool: 'inline-cheap-module-source-map',
       mode: 'development',
       module: {
-        rules: createLoaders(path.resolve(root, 'src'), { eslintConfig })
+        rules: createLoaders(path.resolve(root, 'src'), { envName: 'development-client', eslintConfig })
       },
       plugins: [
         ...createPlugins(root),
@@ -119,9 +117,9 @@ module.exports = {
 
     return Object.assign(createClientConfig(root, { entries, alias }), {
       mode: 'production',
+      optimization,
       module: {
-        // rules: createLoaders(path.resolve(root, 'src'), { eslintConfig: './eslint-client' })
-        rules: createLoaders(path.resolve(root, 'src'))
+        rules: createLoaders(path.resolve(root, 'src'), { envName: 'production-client' })
       },
       plugins: [
         new webpack.LoaderOptionsPlugin({
@@ -133,20 +131,6 @@ module.exports = {
           'process.env.NODE_ENV': JSON.stringify('production'),
           'process.env.MOOV_ENV': JSON.stringify('production'),
           'process.env.PUBLIC_URL': JSON.stringify('') // needed for registerServiceWorker.js
-        }),
-        new UglifyJSPlugin({
-          uglifyOptions: {
-            compress: {
-              warnings: false
-            },
-            mangle: {
-              // safari10: true
-            },
-            output: {
-              comments: false
-            },
-            ie8: false
-          }
         }),
         new StatsWriterPlugin({
           filename: path.relative(dest, path.join(root, 'scripts', 'build', 'stats.json'))

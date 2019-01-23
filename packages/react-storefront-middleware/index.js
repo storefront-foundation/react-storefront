@@ -9,6 +9,8 @@ module.exports = function(server) {
   return (req, res) => {
     const exportedValues = {}
 
+    req.pathname = req.path
+
     Object.assign(res, {
       relayUpstreamCookies: Function.prototype,
       cacheOnServer: Function.prototype

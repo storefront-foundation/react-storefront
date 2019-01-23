@@ -8,12 +8,10 @@
       "forceAllTransforms": true,
       "modules": false
     }],
-    "@babel/react"
+    "@babel/react",
+    "minify"
   ],
   "env": {
-    "production": {
-      "presets": ["minify"]
-    },
     "test": {
       "presets": [
         ["@babel/env", {

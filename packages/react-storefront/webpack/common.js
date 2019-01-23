@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const { merge } = require('lodash')
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 
 function createClientConfig(
   root,
@@ -47,44 +48,7 @@ function createServerConfig(root, alias) {
   })
 }
 
-function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', eslintConfig } = {}) {
-  const babelLoader = {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-      presets: [
-        ["@babel/env", {
-          targets: {
-            browsers: "> 1%"
-          },
-          useBuiltIns: "usage",
-          forceAllTransforms: true,
-          modules
-        }],
-        "@babel/react"
-      ],
-      env: {
-        "production": {
-          "presets": ["minify"]
-        }
-      },
-      plugins: [
-        ...plugins,
-        ["@babel/plugin-transform-runtime", {
-          "regenerator": true
-        }],
-        "@babel/plugin-transform-async-to-generator",
-        ["@babel/plugin-proposal-decorators", {
-          "legacy": true
-        }],
-        "@babel/plugin-syntax-dynamic-import",
-        "@babel/plugin-proposal-object-rest-spread",
-        "@babel/plugin-proposal-class-properties",
-        "universal-import"
-      ]
-    }
-  }
-
+function createLoaders(sourcePath, { envName, assetsPath='.', eslintConfig } = {}) {
   return [
     {
       test: /\.js$/,
@@ -104,7 +68,9 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
     {
       test: /\.js$/,
       include: /(src|node_modules\/proxy-polyfill)/,
-      use: [babelLoader]
+      use: [
+        { loader: 'babel-loader', options: { envName }}
+      ]
     },
     {
       test: /\.(png|jpg|gif|otf|woff)$/,
@@ -126,7 +92,7 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
     {
       test: /\.svg$/,
       use: [
-        babelLoader,
+        { loader: 'babel-loader', options: { envName }},
         { loader: "react-svg-loader" }
       ]
     },
@@ -167,9 +133,34 @@ function createAliases(root) {
   }
 }
 
+const optimization = {
+  minimize: true,
+  minimizer: [
+    new TerserPlugin({
+      terserOptions: {
+        warnings: false,
+        ie8: false,
+        compress: {
+          comparisons: false,
+        },
+        parse: {},
+        mangle: true,
+        output: {
+          comments: false,
+          ascii_only: true,
+        },
+      },
+      parallel: true,
+      cache: true,
+      sourceMap: true,
+    }),
+  ],
+}
+
 module.exports = {
   createClientConfig,
   createServerConfig,
   createPlugins,
-  createLoaders
+  createLoaders,
+  optimization
 }
