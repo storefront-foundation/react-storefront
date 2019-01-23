@@ -16,6 +16,7 @@ import sanitizeAmpHtml from './amp/sanitizeAmpHtml'
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
 import { renderAmpAnalyticsTags } from './Track'
 import getStats from 'react-storefront-stats'
+import { ReportChunks } from 'react-universal-component'
 
 export default class Server {
 
@@ -113,11 +114,19 @@ export default class Server {
       }
     })
 
+    this.chunkNames = []
+
     try {
       const stats = await getStats()
 
       let html = renderHtml({
-        component: <PWA><App/></PWA>,
+        component: (
+          <ReportChunks report={chunkName => this.chunkNames.push(chunkName)}>
+            <PWA>
+              <App/>
+            </PWA>
+          </ReportChunks>
+        ),
         providers: {
           app: model,
           history,
@@ -209,7 +218,7 @@ export default class Server {
    * @return {String[]}
    */
   getScripts(stats) {    
-    return flushChunkNames()
+    return flushChunkNames(stats, { chunkNames: this.chunkNames })
       .map(chunk => renderScript({ stats, chunk, defer: this.deferScripts }))
       .filter(e => !!e)
   }

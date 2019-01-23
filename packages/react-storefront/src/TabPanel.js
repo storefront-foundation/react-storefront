@@ -96,7 +96,7 @@ export default class TabPanel extends Component {
   static defaultProps = {
     ampStateId: 'moovAmpState',
     ampStateProperty: 'selectedTab',
-    scrollable: true,
+    variant: 'scrollable',
     selected: 0
   }
 
@@ -180,7 +180,7 @@ export default class TabPanel extends Component {
           </Helmet>
         )}
         <Tabs 
-          scrollable={scrollable}
+          variant={scrollable ? 'scrollable' : null}
           value={selected} 
           onChange={this.onChange}
           classes={{

@@ -112,7 +112,7 @@ export default class TabsRow extends Component {
 
   static defaultProps = {
     items: [],
-    scrollable: true,
+    variant: 'scrollable',
     centered: false
   }
 
@@ -150,7 +150,7 @@ export default class TabsRow extends Component {
         value={selectedIdx == null ? false : selectedIdx}
         onChange={this.handleChange}
         indicatorColor="secondary"
-        scrollable={scrollable}
+        variant={scrollable ? 'scrollable' : null}
         className={classes.root}
         classes={{
           root: classes.root,
