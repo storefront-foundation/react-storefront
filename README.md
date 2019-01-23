@@ -59,9 +59,9 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
-### 5.7.2
+### 5.8.0
 
-* Added support for setting bundle analyser mode using `ANALYZER_MODE` env variable.
+* Added support for setting bundle analyzer mode using `ANALYZER_MODE` env variable.
 
 ### 5.7.1
 
