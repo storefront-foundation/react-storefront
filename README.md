@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.8.0
+
+* Added support for setting bundle analyzer mode using `ANALYZER_MODE` env variable.
+
 ### 5.7.1
 
 * Fixed case error with importing lodash/isFunction in Router.
