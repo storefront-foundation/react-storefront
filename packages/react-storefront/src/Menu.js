@@ -26,7 +26,7 @@ export const MenuItemModel = types
   .model("MenuItemModel", {
     text: types.optional(types.string, ''),
     url: types.maybe(types.string),
-    state: types.maybe(types.string),
+    state: types.frozen,
     image: types.maybe(types.string),
     items: types.maybe(types.array(types.late(() => MenuItemModel))),
     root: types.optional(types.boolean, false),

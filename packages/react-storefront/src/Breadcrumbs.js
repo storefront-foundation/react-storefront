@@ -72,7 +72,7 @@ export default class Breadcrumbs extends Component {
       return (
         <span key={i}>
           <Track event="breadcrumbClicked" breadcrumb={item}>
-            <Link to={item.url}>{item.text}</Link>
+            <Link to={item.url} state={item.state}>{item.text}</Link>
           </Track>
           <ArrowRight className={classes.separator}/>
         </span>

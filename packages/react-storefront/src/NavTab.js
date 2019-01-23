@@ -8,6 +8,7 @@ import Link from './Link'
 import Tab from '@material-ui/core/Tab'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { observer } from 'mobx-react'
+import { lazyState } from './utils/state'
 
 export const styles = theme => ({
   root: {
@@ -50,7 +51,7 @@ export default class NavTab extends Component {
     return (
       <Track event="topNavClicked" item={item}>
         <Link
-          state={() => JSON.parse(state)}
+          state={lazyState(state)}
           className={classes.link}
           to={url}
           prefetch={prefetch}
