@@ -2,9 +2,6 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { configure } from 'mobx'
-
-configure({ isolateGlobalState: true })
 
 import React from 'react'
 import { SheetsRegistry } from 'react-jss/lib/jss'
@@ -16,7 +13,6 @@ import sanitizeAmpHtml from './amp/sanitizeAmpHtml'
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
 import { renderAmpAnalyticsTags } from './Track'
 import getStats from 'react-storefront-stats'
-import { ReportChunks } from 'react-universal-component'
 
 export default class Server {
 
@@ -69,7 +65,7 @@ export default class Server {
    */
   setContentType(request, response) {
     if (response.get('content-type') == null) {
-      if (request.pathname.endsWith('.json')) {
+      if (request.path.endsWith('.json')) {
         response.set('content-type', 'application/json')
       } else {
         response.set('content-type', 'text/html')
@@ -89,18 +85,18 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { protocol, hostname, port, pathname, query } = request
+    const { protocol, hostname, port, path, query } = request
     this.setContentType(request, response)
 
-    if (pathname.endsWith('.json')) {
+    if (path.endsWith('.json')) {
       return response.send(JSON.stringify(state))
     }
 
-    const amp = pathname.endsWith('.amp')
+    const amp = path.endsWith('.amp')
 
     const { App, theme }  = this
     const sheetsRegistry = new SheetsRegistry()
-    const history = createMemoryHistory({ initialEntries: [pathname + query] })
+    const history = createMemoryHistory({ initialEntries: [path + query] })
 
     const model = this.model.create({
       ...state,
@@ -121,11 +117,9 @@ export default class Server {
 
       let html = renderHtml({
         component: (
-          <ReportChunks report={chunkName => this.chunkNames.push(chunkName)}>
-            <PWA>
-              <App/>
-            </PWA>
-          </ReportChunks>
+          <PWA>
+            <App/>
+          </PWA>
         ),
         providers: {
           app: model,
@@ -218,7 +212,7 @@ export default class Server {
    * @return {String[]}
    */
   getScripts(stats) {    
-    return flushChunkNames(stats, { chunkNames: this.chunkNames })
+    return flushChunkNames(stats)
       .map(chunk => renderScript({ stats, chunk, defer: this.deferScripts }))
       .filter(e => !!e)
   }

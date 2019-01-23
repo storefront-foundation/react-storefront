@@ -35,6 +35,21 @@ export function getJS(stats, chunk) {
 }
 
 /**
+ * Gets all source paths for the given chunk
+ * @param  {Object} stats Webpack generated stats
+ * @param  {String} chunk Chunk name
+ * @return {String[]}
+ */
+function getSources(stats, chunk) {
+	const sources = []
+	const main = getJS(stats, chunk)
+	const vendor = getJS(stats, `vendors~${chunk}`)
+	if (main) sources.push(main)
+	if (vendor) sources.push(vendor)
+	return sources
+}
+
+/**
  * Render HTML of given component
  * @param  {React.Component} options.component Component to be rendered
  * @param  {Object} options.providers          Data providers
@@ -77,10 +92,11 @@ export function renderInitialStateScript({ state, defer, initialStateProperty = 
  * @return {String}                 Script HTML
  */
 export function renderScript({ stats, chunk, defer }) {
-	const src = getJS(stats, chunk);
-	if (!src) return '';
 	const assetPathBase = process.env.ASSET_PATH_BASE || '';
-	return `<script type="text/javascript" ${defer ? 'defer': ''} src="${assetPathBase}/pwa/${src}"></script>`;
+
+	return getSources(stats, chunk)
+		.map(src => `<script type="text/javascript" ${defer ? 'defer': ''} src="${assetPathBase}/pwa/${src}"></script>`)
+		.join('')
 }
 
 /**

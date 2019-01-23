@@ -86,21 +86,21 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
   }
 
   return [
-    // {
-    //   test: /\.js$/,
-    //   enforce: 'pre',
-    //   include: sourcePath,
-    //   use: [
-    //     {
-    //       loader: 'eslint-loader',
-    //       options: {
-    //         formatter: eslintFormatter,
-    //         eslintPath: require.resolve('eslint'),
-    //         baseConfig: eslintConfig
-    //       }
-    //     }
-    //   ]
-    // },
+    {
+      test: /\.js$/,
+      enforce: 'pre',
+      include: sourcePath,
+      use: [
+        {
+          loader: 'eslint-loader',
+          options: {
+            formatter: eslintFormatter,
+            eslintPath: require.resolve('eslint'),
+            baseConfig: eslintConfig
+          }
+        }
+      ]
+    },
     {
       test: /\.js$/,
       include: /(src|node_modules\/proxy-polyfill)/,
