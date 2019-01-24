@@ -125,7 +125,7 @@ export default class Image extends Component {
       [ amp ? 'class' : 'className']: classnames({ 
         [classes.fit]: aspectRatio != null
       }),
-      layout: amp ? (contain ? 'fill' : 'intrinsic') : null,
+      layout: amp ? this.ampLayout() : null,
       height,
       width,
       alt
@@ -162,6 +162,16 @@ export default class Image extends Component {
     }
 
     return result
+  }
+
+  ampLayout() {
+    const { fill, contain, aspectRatio } = this.props
+
+    if (contain || fill || aspectRatio) {
+      return 'fill'
+    } else {
+      return 'intrinsic'
+    }
   }
 
   lazyLoad = (visible) => {

@@ -10,9 +10,6 @@ import Track from './Track'
 import Image from './Image'
 import classnames from 'classnames'
 
-/**
- * A promo banner that automatically fires the promo_banner_clicked analytics event.
- */
 export const styles = theme => ({
   root: {
     display: 'flex',
@@ -22,10 +19,15 @@ export const styles = theme => ({
   },
   img: {
     width: '100%',
+    height: '100%',
     zIndex: theme.zIndex.appBar - 1
   }
 });
 
+/**
+ * A promo banner that automatically fires the promo_banner_clicked analytics event.
+ * Additional props are spread to the Link component
+ */
 @withStyles(styles, { name: 'RSFPromoBanner' })
 export default class PromoBanner extends Component {
   
@@ -73,12 +75,12 @@ export default class PromoBanner extends Component {
   }
 
   render() {
-    const { href, classes, onClick, name, src, alt, imgProps, className } = this.props
+    const { href, classes, onClick, name, src, alt, imgProps, className, ...others } = this.props
 
     return (
       <Track event="promoBannerClicked" name={name} imageUrl={src}>
-        <Link to={href} className={classnames(className, classes.root)} onClick={onClick}>
-          <Image className={classes.img} src={src} alt={alt} fill {...imgProps}/>
+        <Link {...others} to={href} className={classnames(className, classes.root)} onClick={onClick}>
+          <Image className={classes.img} src={src} alt={alt} contain {...imgProps}/>
         </Link>
       </Track>
     )

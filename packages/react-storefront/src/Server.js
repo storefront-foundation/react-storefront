@@ -9,7 +9,6 @@ import { flushChunkNames } from 'react-universal-component/server'
 import PWA from './PWA'
 import createMemoryHistory from 'history/createMemoryHistory'
 import { Helmet } from "react-helmet"
-import sanitizeAmpHtml from './amp/sanitizeAmpHtml'
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
 import { renderAmpAnalyticsTags } from './Track'
 import getStats from 'react-storefront-stats'
@@ -23,9 +22,9 @@ export default class Server {
    * @param {React.Component} config.App The root app component
    * @param {Router} config.router An instance of moov_router's Router class
    * @param {Boolean} [config.deferScripts=true] Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
-   * @param {Function} afterRender Transformation HTML after Server
+   * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
    */
-  constructor({ theme, model, App, router, deferScripts=true, afterRender }) {
+  constructor({ theme, model, App, router, deferScripts=true, transform }) {
     console.error = console.warn = console.log
 
     Object.assign(this, {
@@ -34,7 +33,7 @@ export default class Server {
       App, 
       router,
       deferScripts,
-      afterRender
+      transform
     })
   }
 
@@ -87,7 +86,7 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { protocol, hostname, port, path, query } = request
+    const { protocol, hostname, port, path, search } = request
     this.setContentType(request, response)
 
     if (path.endsWith('.json')) {
@@ -95,10 +94,9 @@ export default class Server {
     }
 
     const amp = path.endsWith('.amp')
-
     const { App, theme }  = this
     const sheetsRegistry = new SheetsRegistry()
-    const history = createMemoryHistory({ initialEntries: [path + query] })
+    const history = createMemoryHistory({ initialEntries: [path + search] })
 
     const model = this.model.create({
       ...state,
@@ -171,8 +169,8 @@ export default class Server {
         </html>
       `
 
-      if (typeof this.afterRender === 'function') {
-        html = this.afterRender(html, amp);
+      if (typeof this.transform === 'function') {
+        html = this.transform(html, amp)
       }
 
       response.send(html)
