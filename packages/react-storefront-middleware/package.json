@@ -1,6 +1,6 @@
 {
   "name": "react-storefront-middleware",
-  "version": "6.0.0-beta.0",
+  "version": "6.0.0-beta.1",
   "description": "Express middleware for react-storefront",
   "author": "Moovweb",
   "license": "UNLICENSED",
