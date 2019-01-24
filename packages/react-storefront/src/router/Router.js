@@ -422,7 +422,7 @@ export default class Router extends EventEmitter {
     this.prevLocation = location // this needs to come before handlers are called or going back while async handlers are running will lead to a broken state
 
     const { pathname, search } = location
-    const request = { path: pathname, query: qs.parse(search), method: 'GET' }
+    const request = { path: pathname, search, query: qs.parse(search), method: 'GET' }
     const context = new ClientContext()
     const { state } = location
 
@@ -473,7 +473,7 @@ export default class Router extends EventEmitter {
     history.listen(this.onLocationChange.bind(this, callback))
 
     const { pathname, search } = history.location
-    const request = { path: pathname, query: qs.parse(search), method: 'GET' }
+    const request = { path: pathname, search, query: qs.parse(search), method: 'GET' }
     const context = new ClientContext(request)
 
     this.runAll(request, context, { initialLoad: true }, window.initialState)

@@ -166,5 +166,28 @@ describe('Server', () => {
       const data = global.sendResponse.mock.calls[0][0]
       expect($.load(data.body)('meta[name=viewport]').attr('content')).toBe(viewport)
     })
+
+    it('should call transform and return the result', async () => {
+      const App = () => (
+        <PWA>
+          <div>test</div>
+        </PWA>
+      )
+
+      let called = false
+      const body = '<div>foo</div>'
+
+      const transform = html => {
+        called = true
+        expect(html).toMatch(/<!DOCTYPE html>.*<div>test<\/div>/)
+        return body
+      }
+
+      await new Server({ theme, model, router, blob, globals, App, transform }).serve(request, response)
+      const data = global.sendResponse.mock.calls[0][0]
+
+      expect(data).toEqual({ body, htmlparsed: true })
+      expect(called).toBe(true)
+    })
   })
 })
