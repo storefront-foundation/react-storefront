@@ -23,8 +23,9 @@ export default class Server {
    * @param {React.Component} config.App The root app component
    * @param {Router} config.router An instance of moov_router's Router class
    * @param {Boolean} [config.deferScripts=true] Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
+   * @param {Function} afterRender Transformation HTML after Server
    */
-  constructor({ theme, model, App, router, deferScripts=true }) {
+  constructor({ theme, model, App, router, deferScripts=true, afterRender }) {
     console.error = console.warn = console.log
 
     Object.assign(this, {
@@ -32,7 +33,8 @@ export default class Server {
       model, 
       App, 
       router,
-      deferScripts
+      deferScripts,
+      afterRender
     })
   }
 
@@ -169,8 +171,8 @@ export default class Server {
         </html>
       `
 
-      if (amp) {
-        html = sanitizeAmpHtml(html)
+      if (typeof this.afterRender === 'function') {
+        html = this.afterRender(html, amp);
       }
 
       response.send(html)
