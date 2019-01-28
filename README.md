@@ -66,6 +66,7 @@ npm link babel-plugin-react-storefront
 ### 5.8.0
 
 * Added a `state` field to `BreadcrumbModel` so that state can be passed to skeletons when the user clicks on a breadcrumb.
+* Added support for setting bundle analyzer mode using `ANALYZER_MODE` env variable.
 
 ### 5.7.1
 
