@@ -74,6 +74,10 @@ yarn release
 * Upgraded to webpack 4
 * Upgraded to material-ui@3.8.1
 
+### 5.8.1
+
+* Switch Webpack Bundle Analyzer to static mode so that analysis can be saved by CI
+
 ### 5.8.0
 
 * Added a `state` field to `BreadcrumbModel` so that state can be passed to skeletons when the user clicks on a breadcrumb.
