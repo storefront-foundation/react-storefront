@@ -68,7 +68,6 @@ yarn release
 
 ### 6.0.0
 
-* Added support for running in express.  Try it out by running `npm run start:express`.
 * Upgraded to mobx 4 and mobx-state-tree 3
 * Upgraded to babel 7
 * Upgraded to webpack 4
