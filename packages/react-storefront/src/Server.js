@@ -10,7 +10,6 @@ import PWA from './PWA'
 import createMemoryHistory from 'history/createMemoryHistory'
 import { Helmet } from "react-helmet"
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
-import { renderAmpAnalyticsTags } from './Track'
 import getStats from 'react-storefront-stats'
 
 export default class Server {
@@ -135,26 +134,16 @@ export default class Server {
 
       html = `
         <!DOCTYPE html>
-        <html${amp ? ' ⚡' : ''} ${helmet.htmlAttributes.toString()}>
+        <html ${helmet.htmlAttributes.toString()}>
           <head>
             ${helmet.title.toString()}
-            ${ amp ? `
-              <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-              <style amp-custom id="ssr-css">
-                ${sheetsRegistry.toString().replace(/\!important/g, '')}
-                ${helmet.style.toString().replace(/<\/?style[^>]*>/g, '')}
-              </style>
-            ` : `
-              <noscript id="jss-insertion-point"></noscript>
-            `}
+            <noscript id="jss-insertion-point"></noscript>
             ${helmet.meta.toString()}
             ${helmet.link.toString()}
             ${helmet.script.toString()}
-            ${ amp ? `<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>` : ''}
           </head>
-          <body${amp ? ' class="moov-amp"': ''} ${helmet.bodyAttributes.toString()}>
-            ${ amp ? renderAmpAnalyticsTags() : '' }
-            ${ amp ? '' : renderStyle({ registry: sheetsRegistry }) }
+          <body ${helmet.bodyAttributes.toString()}>
+            ${ renderStyle({ registry: sheetsRegistry, id: 'ssr-css' }) }
             <noscript>
               You need to enable JavaScript to run this app.
             </noscript>
@@ -170,7 +159,7 @@ export default class Server {
       `
 
       if (typeof this.transform === 'function') {
-        html = this.transform(html, amp)
+        html = this.transform(html, { model, sheetsRegistry, helmet })
       }
 
       response.send(html)
