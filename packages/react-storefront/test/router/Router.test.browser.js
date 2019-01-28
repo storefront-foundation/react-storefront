@@ -4,9 +4,11 @@
  */
 import 'babel-polyfill'
 import { expect } from 'chai'
-import { Router, fromClient, fromServer, cache, Response } from '../../src/router'
+import { Router, fromClient, fromServer, cache } from '../../src/router'
 import sinon from 'sinon'
 import { createMemoryHistory } from 'history'
+import Response from '../../../react-storefront-moov-xdn/src/Response'
+import qs from 'qs'
 
 const location = {protocol: 'http', pathname: '/context.html', search: '', hostname: 'localhost', port: '9876'}
 const allRouteData = { loading: false, location }
@@ -35,9 +37,10 @@ describe('Router:Browser', function() {
       }
     })
 
-    runAll = function(method, path) {
-      const [ pathname, search ] = path.split(/\?/)
-      const request = { path: pathname, pathname, search: search ? `?${search}` : '', method }
+    runAll = function(method, uri) {
+      const [ path, search ] = uri.split(/\?/)
+      const query = qs.parse(search)
+      const request = { path, query, method }
       const promise = router.runAll(request, response)
 
       if (promise) {
@@ -209,9 +212,8 @@ describe('Router:Browser', function() {
     })
 
     it('should provide params in client handler', async function() {
-      router.get('/c/:id', 
-        fromClient((params) => ({ view: 'category', id: params.id, query: params.q }))
-      )
+      router.get('/c/:id', fromClient((params) => ({ view: 'category', id: params.id, query: params.q })))
+
       expect(await runAll('get', '/c/1?q=hello')).to.deep.equal({
         view: 'category',
         query: 'hello',
@@ -324,7 +326,7 @@ describe('Router:Browser', function() {
         fromServer(() => Promise.resolve({ value: 'test' })),
       )
   
-      await router.runAll({ pathname: '/test', search: '' }, response)
+      await router.runAll({ path: '/test', search: '' }, response)
       expect(cacheHandler.fn.called).to.be.true
     })
   })

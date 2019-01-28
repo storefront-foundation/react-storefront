@@ -11,6 +11,7 @@ import createMemoryHistory from 'history/createMemoryHistory'
 import { Helmet } from "react-helmet"
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
 import getStats from 'react-storefront-stats'
+import { renderAmpAnalyticsTags } from './Track'
 
 export default class Server {
 

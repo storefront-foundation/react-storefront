@@ -292,7 +292,7 @@ export default class Router extends EventEmitter {
           continue;
         }
 
-        // skip server handlers when runnning in the browser
+        // skip server handlers when running in the browser
         if (!handler.runOn.client && this.isBrowser) {
           continue;
         }

@@ -100,7 +100,7 @@
     "sinon": "^5.0.3",
     "storybook-addon-jsx": "^5.4.0",
     "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^2.0.14"
+    "webpack-cli": "^3.2.1"
   },
   "dependencies": {
     "babel-eslint": "^9.0.0",
