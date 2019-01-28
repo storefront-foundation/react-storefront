@@ -113,18 +113,8 @@ module.exports = {
     }
 
     if (process.env.ANALYZE === 'true') {
-      const analyzerModes = ['server', 'static', 'disabled'];
-      let analyzerMode = process.env.ANALYZER_MODE;
-      if (analyzerMode) {
-        if (!(analyzerMode in analyzerModes)) {
-          throw new Error(`Unknown analyzerMode: {analyzerMode}`)
-        }
-      } else {
-        analyzerMode = 'server'  // default
-      }
-
       optionalPlugins.push(new BundleAnalyzerPlugin({
-        analyzerMode
+        analyzerMode: 'static'
       }))
     }
 
