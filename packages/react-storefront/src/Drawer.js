@@ -7,7 +7,7 @@ import ResizeObserver from 'resize-observer-polyfill'
 import MUIDrawer from '@material-ui/core/Drawer'
 import { withStyles } from '@material-ui/core/styles';
 import Close from '@material-ui/icons/Close'
-import Button from '@material-ui/core/Button'
+import Fab from '@material-ui/core/Fab'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import { inject } from 'mobx-react'
@@ -135,8 +135,7 @@ export default class Drawer extends Component {
           )}
 
           { showCloseButton && (
-            <Button
-              variant="fab"
+            <Fab
               color="primary"
               className={classes.closeButton}
               onClick={this.closeDrawer}
@@ -145,7 +144,7 @@ export default class Drawer extends Component {
               {...closeButtonProps}
             >
               <Close/>
-            </Button>
+            </Fab>
           )}
 
           <div className={classes.content}>{ children }</div>

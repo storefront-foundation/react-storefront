@@ -3,8 +3,10 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 
-import Server from '../Server'
-import Config from '../Config'
+import Server from 'react-storefront/Server'
+import Config from 'react-storefront/Config'
+import Request from './Request'
+import Response from './Response'
 
 useMoovAsyncTransformer()
 
@@ -16,8 +18,9 @@ useMoovAsyncTransformer()
  * @param {React.Component} App The app react component
  * @param {Router} router An instance of react-storefront/router
  * @param {String} blob The blob 
+ * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
  */
-export default function responseRewriter({ theme, model, App, router, blob }) {
+export default function responseRewriter({ theme, model, App, router, blob, transform }) {
 
   if (env.secure !== 'true') {
     // Always redirect on non-secure requests.
@@ -30,7 +33,9 @@ export default function responseRewriter({ theme, model, App, router, blob }) {
   } else {
     // render the page
     Config.load(blob)
-    new Server({ theme, model, App, router }).serve()
+    const request = new Request()
+    const response = new Response(request)
+    new Server({ theme, model, App, router, transform }).serve(request, response)
   }
 
 }

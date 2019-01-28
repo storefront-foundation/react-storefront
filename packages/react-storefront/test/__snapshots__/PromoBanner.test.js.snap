@@ -10,10 +10,10 @@ exports[`PromoBanner renders 1`] = `
             <inject-Link to={[undefined]} className="RSFPromoBanner-root-1" onClick={[Function]} classes={{...}}>
               <Link to={[undefined]} className="RSFPromoBanner-root-1" onClick={[Function]} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
                 <a data-moov-link="on" className="RSFLink-root-3 RSFPromoBanner-root-1" style={[undefined]} onClick={[Function]} href={{...}}>
-                  <WithStyles(inject-Image) className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" fill={true}>
-                    <inject-Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" fill={true} classes={{...}}>
-                      <Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
-                        <div className="RSFPromoBanner-img-2 RSFImage-root-4 RSFImage-fill-7">
+                  <WithStyles(inject-Image) className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true}>
+                    <inject-Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true} classes={{...}}>
+                      <Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true} classes={{...}} amp={false} quality={{...}} fill={false} lazy={false} lazyOffset={100}>
+                        <div className="RSFPromoBanner-img-2 RSFImage-root-4 RSFImage-contain-6">
                           <img src={[undefined]} className="" layout={{...}} height={[undefined]} width={[undefined]} alt="promo" />
                         </div>
                       </Image>

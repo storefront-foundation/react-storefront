@@ -4,9 +4,12 @@
  */
 jest.mock('../../src/router/serviceWorker')
 
-import { Router, fromClient, fromServer, cache, Response, proxyUpstream } from '../../src/router'
+import { Router, fromClient, fromServer, cache, proxyUpstream } from '../../src/router'
+import ClientContext from '../../src/router/ClientContext'
 import * as serviceWorker from '../../src/router/serviceWorker'
 import { createMemoryHistory } from 'history'
+import qs from 'qs'
+import Response from '../../../react-storefront-moov-xdn/src/Response'
 
 describe('Router:Node', function() {
   let router, runAll, response
@@ -22,10 +25,16 @@ describe('Router:Node', function() {
     global.headers = {
       header: Function.prototype
     }
-    global.env = {}
+    global.env = {
+      host: 'localhost',
+      headers: JSON.stringify({})
+    }
     runAll = function(method, path) {
+      global.env.path = path
+      global.env.method = method
+
       const [ pathname, search ] = path.split(/\?/)
-      const request = { path: pathname, pathname, search: search ? `?${search}` : '', method }
+      const request = { path: pathname, pathname, query: qs.parse(search), search: search ? `?${search}` : '', method }
       jest.spyOn(console, 'warn').mockImplementation()
       const promise = router.runAll(request, response = new Response())
 
@@ -120,7 +129,7 @@ describe('Router:Node', function() {
       )
 
       const initialState = { foo: 'bar' }
-      const request = { pathname: '/', search: '', method: 'get' }
+      const request = { path: '/', search: '', method: 'get' }
       const result = await router.runAll(request, new Response(), { }, initialState)
 
       expect(result.foo).toEqual('xxx')
@@ -146,7 +155,7 @@ describe('Router:Node', function() {
           }
         })
 
-      for await (let result of router.run({ pathname: '/', search: '' }, response)) {
+      for await (let result of router.run({ path: '/', search: '' }, response)) {
         ran = result
       }
 
@@ -169,14 +178,14 @@ describe('Router:Node', function() {
 
       const results = []
 
-      for await (let result of router.run({ pathname: '/', search: '' }, response)) {
+      for await (let result of router.run({ path: '/', search: '' }, response)) {
         results.push(result)
       }
 
       expect(results[0]).toEqual({ view: 'home' })
       expect(results[1]).toEqual({ error: 'Error message' })
       expect(results.length).toEqual(2)
-      expect(await router.runAll({ pathname: '/', search: '', method: 'GET' }, response)).toEqual({ view: 'home', error: 'Error message' })
+      expect(await router.runAll({ path: '/', search: '', method: 'GET' }, response)).toEqual({ view: 'home', error: 'Error message' })
     })
 
     describe('initialLoad', () => {
@@ -191,7 +200,7 @@ describe('Router:Node', function() {
           )
 
         window.initialState = { view: 'home', foo: 'bar' }
-        await router.runAll({ pathname: '/', search: '', method: 'get' }, new Response(), { initialLoad: true, afterOnly: true })
+        await router.runAll({ path: '/', search: '', method: 'get' }, new ClientContext(), { initialLoad: true, afterOnly: true })
         expect(serviceWorker.cache.mock.calls[0]).toEqual(['/', '<!DOCTYPE html>\n<html><head></head><body></body></html>'])
       })
     })
@@ -445,7 +454,7 @@ describe('Router:Node', function() {
         })
       )
 
-      expect(router.getCacheKey({ pathname: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
+      expect(router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
     })
 
     it('should return the defaults when no server config is specified', () => {
@@ -455,7 +464,7 @@ describe('Router:Node', function() {
         })
       )
 
-      expect(router.getCacheKey({ pathname: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
+      expect(router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
     })
 
     it('should return the defaults when no cache handler is specified', () => {
@@ -463,19 +472,19 @@ describe('Router:Node', function() {
         fromClient({ a: 'b' })
       )
 
-      expect(router.getCacheKey({ pathname: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
+      expect(router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
     })
 
     it('should call cache.server.key for the matching route', () => {
       router.get('/test',
         cache({
           server: {
-            key: (request, defaults) => ({ ...defaults, path: request.pathname + request.search })
+            key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
           }
         })
       )
 
-      expect(router.getCacheKey({ pathname: '/test', search: '' }, { foo: 'bar' })).toEqual({ foo: 'bar', path: '/test' })
+      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({ foo: 'bar', path: '/test' })
     })
 
     it('should work on fallback routes', () => {
@@ -483,12 +492,12 @@ describe('Router:Node', function() {
         .fallback(
           cache({
             server: {
-              key: (request, defaults) => ({ ...defaults, path: request.pathname + request.search })
+              key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
             }
           })
         )
 
-      expect(router.getCacheKey({ pathname: '/test', search: '' }, { foo: 'bar' })).toEqual({ foo: 'bar', path: '/test' })
+      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({ foo: 'bar', path: '/test' })
     })
   })
 
@@ -579,60 +588,6 @@ describe('Router:Node', function() {
     })
   })
 
-  describe('parseBody', () => {
-
-    it('should parse application/json content', () => {
-      const body = { foo: 'bar' }
-
-      const request = {
-        body: JSON.stringify(body),
-        headers: {
-          "content-type": "application/json"
-        }
-      }
-
-      new Router().parseBody(request)
-
-      expect(request.body).toEqual(body)
-    })
-
-    it('should parse application/x-www-form-urlencoded content', () => {
-      const body = "a=b&c=d"
-
-      const request = {
-        body,
-        headers: {
-          "content-type": "application/x-www-form-urlencoded"
-        }
-      }
-
-      new Router().parseBody(request)
-
-      expect(request.body).toEqual({ a: 'b', c: 'd' })
-    })
-
-    it('should parse multipart/form-data content', () => {
-      const request = {
-        body:
-`------WebKitFormBoundaryJv1eDdVdR3gaMjcE\r
-Content-Disposition: form-data; name="foo"\r
-\r
-bar\r
-------WebKitFormBoundaryJv1eDdVdR3gaMjcE--`
-        ,
-        headers: {
-          "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryJv1eDdVdR3gaMjcE"
-        }
-      }
-
-      new Router().parseBody(request)
-
-      expect(request.body).toEqual({
-        foo: "bar"
-      })
-    })
-  })
-
   describe('reloadFromServer', () => {
     it('should reset the history.location to the previous location', () => {
       const history = createMemoryHistory({ initialEntries: ['/'] })
@@ -648,14 +603,14 @@ bar\r
       const router = new Router()
         .get('/about', proxyUpstream())
 
-      expect(router.willFetchFromUpstream({ pathname: '/about', search: '' })).toBe(true)
+      expect(router.willFetchFromUpstream({ path: '/about', search: '' })).toBe(true)
     })
 
     it('should return false if the route has no proxyUpstream handler', () => {
       const router = new Router()
         .get('/about', proxyUpstream())
 
-      expect(router.willFetchFromUpstream({ pathname: '/', search: '' })).toBe(false)
+      expect(router.willFetchFromUpstream({ path: '/', search: '' })).toBe(false)
     })
   })
 
@@ -689,14 +644,6 @@ bar\r
       router.on('after', onAfter)
       router.watch(history, Function.prototype)
       expect(onAfter).toHaveBeenCalled()
-    })
-  })
-
-  describe('getQueryParams', () => {
-    it('should parse the query string of the current url', () => {
-      const history = createMemoryHistory({ initialEntries: ['/?foo=bar']})
-      const router = new Router().watch(history, Function.prototype)
-      expect(router.getQueryParams()).toEqual({foo: 'bar'})
     })
   })
 

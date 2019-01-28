@@ -14,10 +14,10 @@
     "gh-pages": "^1.2.0",
     "glob": "^7.1.3",
     "husky": "^1.1.2",
-    "lerna": "^2.11.0",
+    "lerna": "^3.10.7",
     "mobx": "^4.1.0",
     "mobx-react": "^5.0.0",
-    "mobx-state-tree": "^2.0.1",
+    "mobx-state-tree": "^3.10.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -26,19 +26,22 @@
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.5.0",
     "react-universal-component": "^2.9.0",
-    "webpack": "^3.11.0"
+    "webpack": "^4.25.1"
   },
   "scripts": {
-    "build": "pushd packages/react-storefront; yarn build; popd;",
+    "build": "cd packages/react-storefront; yarn build; cd ../../; cd packages/react-storefront-moov-xdn; yarn build; cd ../../;",
     "precommit": "yarn add-license && yarn docs",
-    "update-versions": "lerna publish --skip-npm --yes",
-    "publish": "yarn update-versions; yarn build; pushd packages/react-storefront/lib; yarn publish --non-interactive; popd; pushd packages/babel-plugin-react-storefront; yarn publish --non-interactive; popd",
-    "docs": "pushd packages/react-storefront; yarn docs; popd;",
+    "release": "lerna version --force-publish=*; yarn build; yarn release:rsf; yarn release:moov-xdn; yarn release:middleware; yarn release:babel-plugin", 
+    "release:rsf": "cd packages/react-storefront/dist; yarn publish --non-interactive",
+    "release:babel-plugin": "cd packages/babel-plugin-react-storefront; yarn publish --non-interactive",
+    "release:moov-xdn": "cd packages/react-storefront-moov-xdn/dist; yarn publish --non-interactive",
+    "release:middleware": "cd packages/react-storefront-middleware; yarn publish --non-interactive",
+    "docs": "cd packages/react-storefront; yarn docs; cd ../../;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
-    "test": "pushd packages/react-storefront; yarn test; popd;",
-    "watch": "pushd packages/react-storefront; yarn watch; popd;",
+    "test": "cd packages/react-storefront; yarn test:unit; cd ../../;",
+    "watch": "cd packages/react-storefront; yarn watch; cd ../../;",
     "add-license": "node ./tasks/addLicense",
-    "link:all": "yarn build; pushd packages/react-storefront/lib; npm link; yarn link; popd; pushd packages/babel-plugin-react-storefront; npm link; yarn link; popd;"
+    "link:all": "yarn build; cd packages/react-storefront/dist; npm link; yarn link; cd ../../../; cd packages/babel-plugin-react-storefront; npm link; yarn link; cd ../../; cd packages/react-storefront-moov-xdn/dist; npm link; yarn link; cd ../../../;"
   },
   "workspaces": {
     "packages": [

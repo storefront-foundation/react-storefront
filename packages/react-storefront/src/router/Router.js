@@ -8,8 +8,7 @@ import qs from 'qs'
 import merge from 'lodash/merge'
 import cloneDeep from 'lodash/cloneDeep'
 import { configureCache, cache } from './serviceWorker'
-import parseMultipartRequest from './parseMultipartRequest'
-import Response from './Response'
+import ClientContext from './ClientContext'
 import EventEmitter from 'eventemitter3'
 
 /**
@@ -76,7 +75,7 @@ export default class Router extends EventEmitter {
     this.errorHandler = (e, params, request, response) => {
       console.error('Error caught with params', params, ' and with message:', e.message)
 
-      if (!this.isBrowser) {
+      if (response && response.status) {
         response.status(500, 'error')
       }
 
@@ -205,8 +204,7 @@ export default class Router extends EventEmitter {
    * @param {Object} request
    */
   cacheInitialState(request) {
-    const { pathname, search } = request
-    cache(pathname + search, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+    cache(request.path + qs.stringify(request.query), `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
   }
 
   /**
@@ -278,8 +276,6 @@ export default class Router extends EventEmitter {
         location: this.createLocation(),
         ...historyState
       }
-    } else {
-      this.parseBody(request)
     }
 
     try {
@@ -296,7 +292,7 @@ export default class Router extends EventEmitter {
           continue;
         }
 
-        // skip server handlers when runnning in the browser
+        // skip server handlers when running in the browser
         if (!handler.runOn.client && this.isBrowser) {
           continue;
         }
@@ -307,7 +303,7 @@ export default class Router extends EventEmitter {
         }
 
         // skip client handlers when serving an AJAX request on the server
-        if (request.pathname.endsWith('.json') && (handler.runOn.server !== true || this.isBrowser)) {
+        if (request.path.endsWith('.json') && (handler.runOn.server !== true || this.isBrowser)) {
           continue;
         }
 
@@ -351,40 +347,6 @@ export default class Router extends EventEmitter {
   }
 
   /**
-   * Parses JSON and form body content
-   * @private
-   * @param {String} body The request body
-   * @param {String} contentType The content-type header
-   * @return {Object}
-   */
-  parseBody(request) {
-    if (!request.headers || !request.body) return
-
-    const contentType = (request.headers['content-type'] || '').toLowerCase()
-    const { body } = request
-
-    if (contentType === 'application/json') {
-      try {
-        request.body = JSON.parse(body)
-      } catch (e) {
-        throw new Error('could not parse request body as application/json: ' + e.message)
-      }
-    } else if (contentType === 'application/x-www-form-urlencoded') {
-      try {
-        request.body = qs.parse(body)
-      } catch (e) {
-        throw new Error('could not parse request body as x-www-form-urlencoded: ' + e.message)
-      }
-    } else if (contentType.startsWith('multipart/form-data')) {
-      try {
-        request.body = parseMultipartRequest(request)
-      } catch (e) {
-        throw new Error('could not parse request body as multipart/form-data: ' + e.message)
-      }
-    }
-  }
-
-  /**
    * Converts specified callback to a promise
    * @param {Function/Object} callback A function that returns a Promise that
    *  resolves to the new state, a function that returns the new state, or the new state itself.
@@ -416,8 +378,7 @@ export default class Router extends EventEmitter {
    */
   findMatchingRoute(request) {
     let params
-    let { pathname, search, method='GET' } = request
-    const path = pathname + search
+    let { path, query, method='GET' } = request
 
     method = method.toUpperCase()
 
@@ -425,7 +386,7 @@ export default class Router extends EventEmitter {
       .filter(route => method === route.method)
       .find(route => params = route.path.match(path))
 
-    return { match, params: {...params, ...qs.parse(search, { ignoreQueryPrefix: true })} }
+    return { match, params: {...params, ...query }}
   }
 
   /**
@@ -461,15 +422,15 @@ export default class Router extends EventEmitter {
     this.prevLocation = location // this needs to come before handlers are called or going back while async handlers are running will lead to a broken state
 
     const { pathname, search } = location
-    const request = { pathname, search, method: 'GET' }
-    const response = new Response(request)
+    const request = { path: pathname, search, query: qs.parse(search), method: 'GET' }
+    const context = new ClientContext()
     const { state } = location
 
     if (state) {
       callback(state, action) // called when restoring history state and applying state from Link components
     }
 
-    this.emit('before', { request, response })
+    this.emit('before', { request, response: context })
 
     if (action === 'PUSH' || !state) {
       /*
@@ -477,14 +438,14 @@ export default class Router extends EventEmitter {
        * In those cases, if we have location.state, we can assume it's the full state.  We don't need to
        * do anything for replace.
        */
-      for await (let state of this.run(request, response, { historyState: state })) {
+      for await (let state of this.run(request, context, { historyState: state })) {
         callback(state, action)
       }
     } else if (state) {
       callback(state, action) // called when restoring history state and applying state from Link components
     }
 
-    this.emit('after', { request, response })
+    this.emit('after', { request, response: context })
   }
 
   /**
@@ -512,11 +473,11 @@ export default class Router extends EventEmitter {
     history.listen(this.onLocationChange.bind(this, callback))
 
     const { pathname, search } = history.location
-    const request = { pathname, search, method: 'GET' }
-    const response = new Response(request)
+    const request = { path: pathname, search, query: qs.parse(search), method: 'GET' }
+    const context = new ClientContext(request)
 
-    this.runAll(request, response, { initialLoad: true }, window.initialState)
-    this.emit('after', { request, response, initialLoad: true })
+    this.runAll(request, context, { initialLoad: true }, window.initialState)
+    this.emit('after', { request, response: context, initialLoad: true })
 
     return this
   }
@@ -535,15 +496,6 @@ export default class Router extends EventEmitter {
     })
 
     history.replace(`${history.location.pathname}?${nextParams}`)
-  }
-
-  /**
-   * Gets the query string parameters for the current url as an object of key/value pairs
-   * @return {Object}
-   */
-  getQueryParams() {
-    const { history } = this
-    return qs.parse(history.location.search, { ignoreQueryPrefix: true })
   }
 
 }

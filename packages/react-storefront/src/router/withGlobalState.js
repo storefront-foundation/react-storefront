@@ -20,7 +20,7 @@
  * @return {Object}
  */
 export default async function withGlobalState(request, globalState, localState) {
-  if (request.pathname.endsWith('.json')) {
+  if (request.path.endsWith('.json')) {
     return localState
   } else {
     if (typeof globalState === 'function') {

@@ -1,5 +1,5 @@
 const path = require('path')
-const { createServerConfig, createLoaders } = require('./common')
+const { createServerConfig, createLoaders, optimization } = require('./common')
 const merge = require('lodash/merge')
 
 module.exports = {
@@ -19,7 +19,8 @@ module.exports = {
     }
 
     return ({ entry, plugins, output, target, resolve }) => merge(createServerConfig(root, alias), {
-      entry,
+      entry, 
+      mode: 'development',
       output: merge(output,
         {
           devtoolModuleFilenameTemplate: '[absolute-resource-path]'
@@ -28,12 +29,15 @@ module.exports = {
       target,
       resolve,
       module: {
-        rules: createLoaders(root, { modules: 'commonjs', plugins: [ 'react-storefront' ], assetsPath: '../build/assets/pwa', eslintConfig })
+        rules: createLoaders(root, { envName: 'development-server', assetsPath: '../build/assets/pwa', eslintConfig })
       },
       devtool: 'cheap-module-source-map',
       plugins: [
         ...plugins,
         new webpack.ExtendedAPIPlugin(),
+        new webpack.optimize.LimitChunkCountPlugin({
+          maxChunks: 1
+        }),
         new webpack.DefinePlugin({
           'process.env.MOOV_RUNTIME': JSON.stringify('server'),
           'process.env.MOOV_ENV': JSON.stringify('development'),
@@ -61,8 +65,10 @@ module.exports = {
       output,
       target,
       resolve,
+      mode: 'production',
+      optimization,
       module: {
-        rules: createLoaders(root, { modules: 'commonjs', plugins: [ 'react-storefront' ], eslintConfig: './eslint-server' })
+        rules: createLoaders(root, { envName: 'production-server', eslintConfig: './eslint-server' })
       },
       plugins: [
         ...plugins,

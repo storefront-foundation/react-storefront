@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import createRequest from './createRequest'
+import Request from './Request'
 
 /**
  * Helper for moov_request_header_transform.js
@@ -19,7 +19,7 @@ export default function requestHeaderTransform({ router, hostDomains=[] }) {
     // don't bother going upstream if we're not using https, we're just going to redirect
     return moovSkipUpstream()
   } else {
-    const request = createRequest()
+    const request = new Request()
     fns.export('headers', JSON.stringify(request.headers))
     fns.export('behindOuterEdge', process.env.MOOV_ENV === 'development' || request.headers['x-moov-xdn-version'] == null ? 'false' : 'true') // needed in edgeResponseTransform.js
   

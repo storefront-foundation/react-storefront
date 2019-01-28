@@ -81,8 +81,8 @@ export default class AmpMenu extends Component {
   }
 
   render() {
-    const { id, menu, classes, drawerWidth, rootHeader, rootFooter } = this.props
-    const root = menu.levels[0]
+    const { id, menu, classes, drawerWidth, rootHeader, rootFooter, align } = this.props
+    const root = menu.levels.length ? menu.levels[0] : null
 
     return (
       <Fragment>
@@ -95,7 +95,7 @@ export default class AmpMenu extends Component {
             }
           `}</style>
         </Helmet>
-        <amp-sidebar key="sidebar" id={id} class={classes.root} layout="nodisplay">
+        <amp-sidebar key="sidebar" id={id} class={classes.root} layout="nodisplay" side={align}>
           { rootHeader }
           { this.renderItem(root) }
           { rootFooter }

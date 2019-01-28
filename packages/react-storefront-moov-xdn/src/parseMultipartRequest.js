@@ -8,12 +8,11 @@
  * 
  * Copyright@ 2013-2014 Wolfgang Kuehn, released under the MIT license.
  * 
- * @param {Object} request The request object passed into a fromServer route handler
+ * @param {String} body The raw body content
+ * @param {String} contentType The content-type header
  * @return {Object} The form values
  */
-export default function parseMultipartRequest({ body, headers }) {
-  const contentType = headers['content-type']
-
+export default function parseMultipartRequest(body, contentType) {
   var s, fieldName;
 
   // Examples for content types:
@@ -22,7 +21,7 @@ export default function parseMultipartRequest({ body, headers }) {
   var m = contentType.match(/boundary=(?:"([^"]+)"|([^;]+))/i);
 
   if ( !m ) {
-      throw new Error('Bad content-type header, no multipart boundary');
+    throw new Error('Bad content-type header, no multipart boundary');
   }
 
   var boundary = m[1] || m[2];

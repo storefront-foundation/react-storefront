@@ -3,6 +3,7 @@ const webpack = require('webpack')
 module.exports = {
   context: __dirname,
   entry: "../test/router/Router.test.browser.js",
+  mode: 'development',
 
   module: {
     rules: [

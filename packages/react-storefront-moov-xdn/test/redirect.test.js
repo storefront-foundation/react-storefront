@@ -1,4 +1,4 @@
-import { redirectTo, redirectToHttps } from '../../src/platform/redirect'
+import { redirectTo, redirectToHttps } from '../src/redirect'
 
 describe('redirect', () => {
   describe('redirectTo', () => {

@@ -53,11 +53,25 @@ yarn watch
 Then, in your app's root directory run:
 
 ```
-npm link react-storefront
-npm link babel-plugin-react-storefront
+npm link react-storefront && npm link babel-plugin-react-storefront && npm link react-storefront-moov-xdn && npm link react-storefront-middleware
+```
+
+## Publishing
+
+To publish a release, run:
+
+```
+yarn release
 ```
 
 ## Changelog
+
+### 6.0.0
+
+* Upgraded to mobx 4 and mobx-state-tree 3
+* Upgraded to babel 7
+* Upgraded to webpack 4
+* Upgraded to material-ui@3.8.1
 
 ### 5.8.1
 

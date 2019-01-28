@@ -11,9 +11,11 @@ import { Router, fromServer } from '../src/router'
 import React from 'react'
 import { inject } from 'mobx-react'
 import $ from 'cheerio'
+import Request from '../../react-storefront-moov-xdn/src/Request'
+import Response from '../../react-storefront-moov-xdn/src/Response'
 
 describe('Server', () => {
-  let router, theme, blob, globals, model, App, exported
+  let router, theme, blob, globals, model, App, exported, request, response
 
   beforeEach(() => {
     exported = {}
@@ -41,6 +43,8 @@ describe('Server', () => {
       host_no_port: 'moovweb.com',
       secure: true
     }
+    request = new Request()
+    response = new Response(request)
   })
 
   afterEach(() => {
@@ -53,7 +57,7 @@ describe('Server', () => {
 
   describe('serve', () => {
     it('should send an html response', async () => {
-      await new Server({ theme, model, router, blob, globals, App }).serve()
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
       expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('text/html')
@@ -61,20 +65,27 @@ describe('Server', () => {
 
     it('should prevent XSS attacks via malicious URL parameters injected into link rel="canonical"', async () => {
       global.env.path = `/'"/>--></title></style></script%20dt=fy><dtfy>`
-      await new Server({ theme, model, router, blob, globals, App }).serve()
+      request = new Request()
+      response = new Response(request)
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const body = global.sendResponse.mock.calls[0][0].body
       expect(body).not.toContain(`"/>--></title></style></script%20dt=fy><dtfy>`)
     })
 
     it('should send a json response', async () => {
       global.env.path = '/test.json'
-      await new Server({ theme, model, router, blob, globals, App }).serve()
+      request = new Request()
+      response = new Response(request)
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('application/json')
     })
 
     it('should allow you to override the content-type', async () => {
       global.env.path = '/test.json'
+      request = new Request()
+      response = new Response(request)
+
       const router = new Router()
         .get('/test', 
           fromServer((params, request, response) => {
@@ -83,21 +94,23 @@ describe('Server', () => {
           })
         )
 
-      await new Server({ theme, model, router, blob, globals, App }).serve()
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('application/foo')
     })
 
     it('should render amp', async () => {
       global.env.path = '/test.amp'
-      await new Server({ theme, model, router, blob, globals, App }).serve()
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
       expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
     })
 
     it('should send a json response if the path ends with .json', async () => {
       global.env.path = '/test.json'
-      await new Server({ theme, model, router, blob, globals, App }).serve()
+      request = new Request()
+      response = new Response(request)
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const body = JSON.parse(global.sendResponse.mock.calls[0][0].body)
       expect(body.page).toBe('Test')
       expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
@@ -118,7 +131,7 @@ describe('Server', () => {
         }
       })
 
-      await new Server({ theme, model, router, blob, App }).serve()
+      await new Server({ theme, model, router, blob, App }).serve(request, response)
       const { body } = global.sendResponse.mock.calls[0][0]
       expect(body).toMatch(/<div class="page">Error<\/div>/)
       expect(body).toMatch(/<div class="error">test<\/div>/)
@@ -133,7 +146,7 @@ describe('Server', () => {
           })
         )
         
-      await new Server({ theme, model, router, blob, globals, App }).serve()
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalledWith({ body: JSON.stringify({ foo: "bar" }), htmlparsed: true })
       expect(global.sendResponse.mock.calls.length).toBe(1)
     })
@@ -149,9 +162,32 @@ describe('Server', () => {
         </PWA>
       )
   
-      await new Server({ theme, model, router, blob, globals, App }).serve()
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const data = global.sendResponse.mock.calls[0][0]
       expect($.load(data.body)('meta[name=viewport]').attr('content')).toBe(viewport)
+    })
+
+    it('should call transform and return the result', async () => {
+      const App = () => (
+        <PWA>
+          <div>test</div>
+        </PWA>
+      )
+
+      let called = false
+      const body = '<div>foo</div>'
+
+      const transform = html => {
+        called = true
+        expect(html).toMatch(/<!DOCTYPE html>.*<div>test<\/div>/)
+        return body
+      }
+
+      await new Server({ theme, model, router, blob, globals, App, transform }).serve(request, response)
+      const data = global.sendResponse.mock.calls[0][0]
+
+      expect(data).toEqual({ body, htmlparsed: true })
+      expect(called).toBe(true)
     })
   })
 })

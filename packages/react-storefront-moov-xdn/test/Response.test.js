@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { Response } from '../../src/router'
+import Response from '../src/Response'
 
 describe('Response', () => {
   let oldFns, response, request
@@ -106,30 +106,6 @@ describe('Response', () => {
     it('should send htmlparsed:false when no arguments are provided', () => {
       response.send()
       expect(request.sendResponse).toBeCalledWith({ htmlparsed: false })
-    })
-  })
-
-  describe('cacheOnClient', () => {
-    it('should be default by default', () => {
-      expect(response.clientCache).toBe('default')
-    })
-
-    it('should set force-cache when true is passed', () => {
-      response.cacheOnClient(true)
-      expect(response.clientCache).toBe('force-cache')
-    })
-
-    it('should set default when false is passed', () => {
-      response.cacheOnClient(false)
-      expect(response.clientCache).toBe('default')
-    })
-
-    it('should return the response', () => {
-      expect(response.cacheOnClient(true)).toBe(response)
-    })
-
-    it('should throw an Error if no parameter is provided', () => {
-      expect(() => response.cacheOnClient()).toThrow()
     })
   })
 

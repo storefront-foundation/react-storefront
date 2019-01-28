@@ -3,7 +3,7 @@
 exports[`AmpMenu should render 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-AmpMenu))>
         <WithStyles(inject-AmpMenu) theme={{...}}>
           <inject-AmpMenu theme={{...}} classes={{...}}>
@@ -13,7 +13,7 @@ exports[`AmpMenu should render 1`] = `
                   <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} style={{...}} />
                 </SideEffect(NullComponent)>
               </HelmetWrapper>
-              <amp-sidebar id="moov_menu" class="RSFAmpMenu-root-1" layout="nodisplay">
+              <amp-sidebar id="moov_menu" class="RSFAmpMenu-root-1" layout="nodisplay" side={[undefined]}>
                 <section>
                   <div>
                     <amp-accordion disable-session-states={true}>
@@ -133,7 +133,7 @@ exports[`AmpMenu should render 1`] = `
           </inject-AmpMenu>
         </WithStyles(inject-AmpMenu)>
       </WithTheme(WithStyles(inject-AmpMenu))>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

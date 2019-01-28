@@ -1,9 +1,9 @@
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const merge = require('lodash/merge')
+const { merge } = require('lodash')
 const path = require('path')
-const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
 
 function createClientConfig(
   root,
@@ -48,43 +48,7 @@ function createServerConfig(root, alias) {
   })
 }
 
-function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', eslintConfig }) {
-  const babelLoader = {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-      presets: [
-        ["env", {
-          targets: {
-            browsers: "> 1%",
-            uglify: true
-          },
-          useBuiltIns: "usage",
-          modules
-        }],
-        "react"
-      ],
-      env: {
-        "production": {
-          "presets": ["minify"]
-        }
-      },
-      plugins: [
-        ...plugins,
-        ["transform-runtime", {
-          "polyfill": false,
-          "regenerator": true
-        }],
-        "transform-async-to-generator",
-        "transform-decorators-legacy",
-        "syntax-dynamic-import",
-        "transform-object-rest-spread",
-        "transform-class-properties",
-        "universal-import"
-      ]
-    }
-  }
-
+function createLoaders(sourcePath, { envName, assetsPath='.', eslintConfig } = {}) {
   return [
     {
       test: /\.js$/,
@@ -104,7 +68,9 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
     {
       test: /\.js$/,
       include: /(src|node_modules\/proxy-polyfill)/,
-      use: [babelLoader]
+      use: [
+        { loader: 'babel-loader', options: { envName }}
+      ]
     },
     {
       test: /\.(png|jpg|gif|otf|woff)$/,
@@ -126,7 +92,7 @@ function createLoaders(sourcePath, { modules=false, plugins=[], assetsPath='.', 
     {
       test: /\.svg$/,
       use: [
-        babelLoader,
+        { loader: 'babel-loader', options: { envName }},
         { loader: "react-svg-loader" }
       ]
     },
@@ -145,11 +111,6 @@ function createPlugins(root) {
     ], { 
       allowExternal: true,
       verbose: false
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-      filename: '[name].[hash].js',
-      minChunks: Infinity
     }),
     new HtmlWebpackPlugin({
       filename: 'install-service-worker.html',
@@ -172,9 +133,34 @@ function createAliases(root) {
   }
 }
 
+const optimization = {
+  minimize: true,
+  minimizer: [
+    new TerserPlugin({
+      terserOptions: {
+        warnings: false,
+        ie8: false,
+        compress: {
+          comparisons: false,
+        },
+        parse: {},
+        mangle: true,
+        output: {
+          comments: false,
+          ascii_only: true,
+        },
+      },
+      parallel: true,
+      cache: true,
+      sourceMap: true,
+    }),
+  ],
+}
+
 module.exports = {
   createClientConfig,
   createServerConfig,
   createPlugins,
-  createLoaders
+  createLoaders,
+  optimization
 }

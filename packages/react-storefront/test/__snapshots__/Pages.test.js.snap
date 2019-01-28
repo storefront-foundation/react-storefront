@@ -3,7 +3,7 @@
 exports[`Pages can display no page at all 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
           <Pages components={{...}} classes={{...}} app={{...}} page="Foo" loading={false} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
@@ -27,7 +27,7 @@ exports[`Pages can display no page at all 1`] = `
           </Pages>
         </inject-Pages>
       </WithStyles(inject-Pages)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -35,7 +35,7 @@ exports[`Pages can display no page at all 1`] = `
 exports[`Pages displays a custom default loading component 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) loading={[Function: loading]} components={{...}}>
         <inject-Pages loading={[Function: loading]} components={{...}} classes={{...}}>
           <Pages loading={true} components={{...}} classes={{...}} app={{...}} page="Product" uri="/" router={{...}} history={{...}} loadMasks={{...}}>
@@ -66,7 +66,7 @@ exports[`Pages displays a custom default loading component 1`] = `
           </Pages>
         </inject-Pages>
       </WithStyles(inject-Pages)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -74,7 +74,7 @@ exports[`Pages displays a custom default loading component 1`] = `
 exports[`Pages displays the correct page 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
           <Pages components={{...}} classes={{...}} app={{...}} page="Category" loading={false} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
@@ -105,7 +105,7 @@ exports[`Pages displays the correct page 1`] = `
           </Pages>
         </inject-Pages>
       </WithStyles(inject-Pages)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;
@@ -113,7 +113,7 @@ exports[`Pages displays the correct page 1`] = `
 exports[`Pages displays the default loading component 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProvider theme={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
           <Pages components={{...}} classes={{...}} app={{...}} page="Product" loading={true} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
@@ -144,7 +144,7 @@ exports[`Pages displays the default loading component 1`] = `
           </Pages>
         </inject-Pages>
       </WithStyles(inject-Pages)>
-    </MuiThemeProvider>
+    </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
 `;

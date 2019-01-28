@@ -1,28 +1,38 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/env", {
       "targets": {
-        "browsers": "> 1%",
-        "uglify": true
+        "browsers": "> 1%"
       },
-      "useBuiltIns": "usage"
+      "useBuiltIns": "usage",
+      "forceAllTransforms": true,
+      "modules": false
     }],
-    "stage-0",
-    "react"
+    "@babel/react"
   ],
   "env": {
-    "production": {
-      "presets": ["minify"]
+    "test": {
+      "presets": [
+        ["@babel/env", {
+          "targets": {
+            "browsers": "> 1%"
+          },
+          "useBuiltIns": "usage",
+          "forceAllTransforms": true
+        }],
+        "@babel/react"
+      ]
     }
   },
   "plugins": [
-    ["transform-runtime", {
-      "polyfill": false,
+    ["@babel/plugin-transform-runtime", {
       "regenerator": true
     }],
-    "transform-async-to-generator",
-    "transform-decorators-legacy",
-    "transform-object-rest-spread",
-    "transform-class-properties"
+    "@babel/plugin-transform-async-to-generator",
+    ["@babel/plugin-proposal-decorators", {
+      "legacy": true
+    }],
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties"
   ]
 }

@@ -9,11 +9,11 @@ const OptionModelBase = types
     /**
      * Used to identify the option.  This is the value sent to analytics.
      */
-    id: types.maybe(types.string),
+    id: types.maybeNull(types.string),
     /**
      * The string to display to the user
      */
-    text: types.maybe(types.string),
+    text: types.maybeNull(types.string),
     /**
      * Set to true to prevent the option from being selected
      */
@@ -21,7 +21,7 @@ const OptionModelBase = types
     /**
      * A URL for an image to display
      */
-    image: types.maybe(types.string),
+    image: types.maybeNull(types.string),
     /**
      * An accessbility label for the image.  If left blank, text will be used as the accesibility label.
      */
@@ -29,11 +29,11 @@ const OptionModelBase = types
     /**
      * A CSS color value to display when an image is not available
      */
-    color: types.maybe(types.string),
+    color: types.maybeNull(types.string),
     /**
      * The item price for the option.
      */
-    price: types.maybe(types.number)
+    price: types.maybeNull(types.number)
   })
 
 export default OptionModelBase 

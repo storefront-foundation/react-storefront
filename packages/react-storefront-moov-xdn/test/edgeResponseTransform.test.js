@@ -1,4 +1,4 @@
-import edgeResponseTransform from '../../src/platform/edgeResponseTransform'
+import edgeResponseTransform from '../src/edgeResponseTransform'
 
 describe('edgeResponseTransform', () => {
 

@@ -1,5 +1,10 @@
 /**
  * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
+
+/**
+ * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 /**
@@ -107,4 +112,16 @@ export async function removeOldCaches() {
   if (await waitForServiceWorkerController()) {
     navigator.serviceWorker.controller.postMessage({ action: 'remove-old-caches', apiVersion: window.moov.apiVersion })
   }
+}
+
+
+export default {
+  removeOldCaches,
+  waitForServiceWorkerController,
+  configureCache,
+  resumePrefetches,
+  abortPrefetches,
+  prefetch,
+  prefetchJsonFor,
+  cache,
 }

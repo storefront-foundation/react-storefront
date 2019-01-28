@@ -1,0 +1,29 @@
+{
+  "name": "react-storefront-moov-xdn",
+  "version": "6.0.0-beta.2",
+  "description": "Extension for running React Storefront apps on Moovweb's XDN platform.",
+  "author": "Moovweb",
+  "license": "UNLICENSED",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "babel --watch src --source-maps --out-dir dist",
+    "build": "mkdir -p dist; cp .npmrc dist; NODE_ENV=production babel src --source-maps --out-dir dist && cp package.json dist"
+  },
+  "dependencies": {
+    "moov_builder": "4.0.0-alpha.1",
+    "moov_stdlib": "^2.6.33"
+  },
+  "peerDependencies": {
+    "react-storefront": "^6.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.13.1"
+  }
+}

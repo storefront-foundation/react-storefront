@@ -1,6 +1,6 @@
 import headers, { reset } from './headers'
-import responseHeaderTransform from '../../src/platform/responseHeaderTransform'
-import { FAR_FUTURE } from '../../src/platform/cache'
+import responseHeaderTransform from '..//src/responseHeaderTransform'
+import { FAR_FUTURE } from '../src/cache'
 
 describe('responseHeaderTransform', () => {
   beforeAll(() => {
