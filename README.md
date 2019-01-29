@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.8.2
+
+* Fixed a bug causing the Filter component's apply button to be hidden on iOS.
+
 ### 5.8.1
 
 * Switch Webpack Bundle Analyzer to static mode so that analysis can be saved by CI
