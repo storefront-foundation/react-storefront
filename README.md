@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.0.1
+
+* Corrected some out-of-date peerDependencies.
+
 ### 6.0.0
 
 * Upgraded to mobx 4 and mobx-state-tree 3
