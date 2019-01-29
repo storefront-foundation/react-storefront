@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.0.2
+
+* Fixed a bug causing the Filter component's apply button to be hidden on iOS.
+
 ### 6.0.1
 
 * Corrected some out-of-date peerDependencies.
@@ -76,6 +80,10 @@ yarn release
 * Upgraded to babel 7
 * Upgraded to webpack 4
 * Upgraded to material-ui@3.8.1
+
+### 5.8.2
+
+* Fixed a bug causing the Filter component's apply button to be hidden on iOS.
 
 ### 5.8.1
 

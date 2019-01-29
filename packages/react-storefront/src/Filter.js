@@ -21,10 +21,15 @@ import { Hbox } from './Box'
  */
 export const styles = theme => ({
   root: { 
-    marginBottom: '64px',
-    height: 'calc(100% - 64px)',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch'
+  },
+  facetGroups: {
     overflow: 'auto',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    flex: '1'
   },
   matches: {
     marginLeft: '5px',
@@ -34,13 +39,8 @@ export const styles = theme => ({
     backgroundColor: theme.palette.secondary.main,
     padding: '12px 20px',
     color: 'white',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     justifyContent: 'space-between',
     alignItems: 'center',
-    transform: 'translate3d(0,0,0)'
   },
   itemsFound: {
     color: theme.palette.secondary.contrastText
@@ -121,14 +121,16 @@ export default class Filter extends Component {
 
     return (
       <div className={classes.root}>
-       { title ? <div className={classes.title}>{title}</div> : null }
-       { get(model, 'facetGroups', []).map((facetGroup, i) => this.renderFacetGroup(facetGroup, i)) }
-       { model.filtersChanged && (
-        <Hbox className={classes.footer} split>
-          <Typography variant="subtitle1" className={classes.itemsFound}>{model.filters.length || 'No'} filter{model.filters.length === 1 ? '' : 's'} selected</Typography>
-          <Button variant="contained" size="large" color="default" onClick={this.onViewResultsClick}>View Results</Button>
-        </Hbox>
-       )}
+        { title ? <div className={classes.title}>{title}</div> : null }
+        <div className={classes.facetGroups}>
+          { get(model, 'facetGroups', []).map((facetGroup, i) => this.renderFacetGroup(facetGroup, i)) }
+        </div>
+        { model.filtersChanged && (
+          <Hbox className={classes.footer} split>
+            <Typography variant="subtitle1" className={classes.itemsFound}>{model.filters.length || 'No'} filter{model.filters.length === 1 ? '' : 's'} selected</Typography>
+            <Button variant="contained" size="large" color="default" onClick={this.onViewResultsClick}>View Results</Button>
+          </Hbox>
+        )}
       </div>
     )
   }
