@@ -14,12 +14,19 @@
  * @param {String} cacheData The data to cache
  */
 export async function cache(path, cacheData) {
-  if (await waitForServiceWorkerController()) {
+  console.log('cache', path)
+
+  const proceed = await waitForServiceWorkerController()
+
+  console.log('proceed', proceed)
+
+  if (proceed) {
     const { apiVersion } = window.moov
 
     if (cacheData) {
       navigator.serviceWorker.controller.postMessage({ action: 'cache-state', path, apiVersion, cacheData })
     } else {
+      console.log('postMessage', 'cache-path', path, apiVersion)
       navigator.serviceWorker.controller.postMessage({ action: 'cache-path', path, apiVersion })
     }
   }

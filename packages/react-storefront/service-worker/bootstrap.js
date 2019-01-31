@@ -5,7 +5,7 @@ workbox.loadModule('workbox-strategies')
 let runtimeCacheOptions = {}, baseCacheName, ssrCacheName
 let abortControllers = new Set()
 let toResume = new Set()
-let deployTime, prefetchFullRampUpTime
+let deployTime, prefetchFullRampUpTime, alwaysServeHtmlFromCache = false
 
 try {
   // injected via webpack client build
@@ -25,9 +25,10 @@ console.log('[react-storefront service worker]', `deployTime: ${deployTime}, pre
  * @param {Object} options.maxEntries The max number of entries to store in the cache
  * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
  */
-function configureRuntimeCaching({ cacheName = 'runtime', maxEntries = 200, maxAgeSeconds = 3600 } = {}) {
+function configureRuntimeCaching({ cacheName = 'runtime', maxEntries = 200, maxAgeSeconds = 3600, cacheHtml = false } = {}) {
   baseCacheName = cacheName
   ssrCacheName = `${cacheName}-html-{{version}}` 
+  alwaysServeHtmlFromCache = cacheHtml
 
   runtimeCacheOptions = {
     plugins: [
@@ -288,7 +289,7 @@ function isAmp(url) {
  * @return {Boolean}
  */
 function shouldServeHTMLFromCache(url, event) {
-  return isAmp({ pathname: event.request.referrer }) || /\?source=pwa/.test(url.search)
+  return alwaysServeHtmlFromCache || isAmp({ pathname: event.request.referrer }) || /\?source=pwa/.test(url.search)
 }
 
 /**
