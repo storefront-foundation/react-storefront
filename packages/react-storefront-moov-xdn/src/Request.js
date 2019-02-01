@@ -13,7 +13,7 @@ import getHeaders from "./getHeaders"
  */
 export default class Request {
   
-  constructor() {
+  constructor({ proxy=false } = {}) {
     const [path, search] = env.path.split(/\?/)
 
     Object.assign(this, {
@@ -28,7 +28,15 @@ export default class Request {
       protocol: env.host_no_port === 'localhost' ? 'http:' : env.secure ? 'https:' : 'http:'
     })
 
-    this.body = parseBody(this)
+    try {
+      this.body = parseBody(this)
+    } catch (e) {
+      if (proxy) {
+        console.log('warning: could not parse request body, request.body will be null. Original error => ', e)
+      } else {
+        throw e
+      }
+    }
   }
 
   get pathname() {
@@ -49,7 +57,9 @@ function parseBody(request) {
   const contentType = (request.headers.get('content-type') || '').toLowerCase()
   const body = global.requestBody
 
-  if (contentType === 'application/json') {
+  if (body == null) {
+    return null
+  } if (contentType === 'application/json') {
     try {
       return JSON.parse(body)
     } catch (e) {

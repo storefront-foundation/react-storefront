@@ -33,7 +33,7 @@ export default function responseRewriter({ theme, model, App, router, blob, tran
   } else {
     // render the page
     Config.load(blob)
-    const request = new Request()
+    const request = new Request({ proxy: true })
     const response = new Response(request)
     new Server({ theme, model, App, router, transform }).serve(request, response)
   }
