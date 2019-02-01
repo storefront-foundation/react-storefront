@@ -5,7 +5,7 @@ workbox.loadModule('workbox-strategies')
 let runtimeCacheOptions = {}, baseCacheName, ssrCacheName
 let abortControllers = new Set()
 let toResume = new Set()
-let deployTime, prefetchFullRampUpTime, alwaysServeHtmlFromCache = false
+let deployTime, prefetchFullRampUpTime, alwaysServeHtmlFromCache = true
 
 try {
   // injected via webpack client build
@@ -25,7 +25,7 @@ console.log('[react-storefront service worker]', `deployTime: ${deployTime}, pre
  * @param {Object} options.maxEntries The max number of entries to store in the cache
  * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
  */
-function configureRuntimeCaching({ cacheName = 'runtime', maxEntries = 200, maxAgeSeconds = 3600, cacheHtml = false } = {}) {
+function configureRuntimeCaching({ cacheName = 'runtime', maxEntries = 200, maxAgeSeconds = 3600, cacheHtml = alwaysServeHtmlFromCache } = {}) {
   baseCacheName = cacheName
   ssrCacheName = `${cacheName}-html-{{version}}` 
   alwaysServeHtmlFromCache = cacheHtml
@@ -112,7 +112,14 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
           }
         })
           .then(response => {
+            const prefetch = response.headers.get('x-rsf-prefetch')
+
+            if (prefetch) {
+              JSON.parse(prefetch).forEach(url => cachePath({ path: url }))
+            }
+
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve())
+              .then(() => cache.put(path, response))
               .then(() => cache.put(decodeURIComponent(path), response))
               .then(() => abortControllers.delete(abort))
               .then(() => console.log('[react-storefront service worker]', 'prefetched', path))
@@ -324,6 +331,7 @@ workbox.routing.registerRoute(matchRuntimePath, async (context) => {
     } else if (event.request.cache === 'force-cache' /* set by cache and sent by fromServer */) {
       return workbox.strategies.cacheFirst(cacheOptions).handle(context)
     } else {
+      console.log(`atempting to get ${url.pathname + url.search} from cache`)
       // Check the cache for all routes. If the result is not found, get it from the network.
       return workbox.strategies.cacheOnly(cacheOptions).handle(context).then(result => {
         return result || workbox.strategies.networkOnly().handle(context)
