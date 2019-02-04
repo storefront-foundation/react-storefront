@@ -91,6 +91,8 @@ export default class Server {
 
     if (path.endsWith('.json')) {
       return response.send(JSON.stringify(state))
+    } else if (!this.model || this.App || this.theme) {
+      throw new Error('App, model, and theme are all required for server side rendering.')
     }
 
     const amp = path.endsWith('.amp')
