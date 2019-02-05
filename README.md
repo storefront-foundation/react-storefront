@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.0.3
+
+* Properly handle vendor chunks for components shared between pages.
+
 ### 6.0.2
 
 * Fixed a bug causing the Filter component's apply button to be hidden on iOS.

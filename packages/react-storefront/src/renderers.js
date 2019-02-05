@@ -41,12 +41,17 @@ export function getJS(stats, chunk) {
  * @return {String[]}
  */
 function getSources(stats, chunk) {
-	const sources = []
-	const main = getJS(stats, chunk)
-	const vendor = getJS(stats, `vendors~${chunk}`)
-	if (main) sources.push(main)
-	if (vendor) sources.push(vendor)
-	return sources
+	return Object.keys(stats.assetsByChunkName)
+		.filter(key => {
+			// render any that have `chunk` in the name, split by ~
+			// when webpack sees two or more chunks that share some vendor libs, it can decide
+			// to create a separate chunk just for the libs those two chunks share.
+			// for example: vendors~component-Component~guide-Guide
+			return key.split('~').some(page => page === chunk)
+		})
+		.map(key => {
+			return stats.assetsByChunkName[key]
+		})
 }
 
 /**
