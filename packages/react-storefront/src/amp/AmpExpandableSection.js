@@ -95,8 +95,8 @@ export default class AmpExpandableSection extends Component {
           <section className={classes.section} {...sectionAttributes}>
             <Typography variant="subtitle1" component="h3" className={classes.title}>
               {title}
-              <ExpandIcon className={classnames(classes.toggle, classes.collapse)}/>
-              <CollapseIcon className={classnames(classes.toggle, classes.expand)}/>
+              <ExpandIcon className={classnames(classes.toggle, classes.expand)}/>
+              <CollapseIcon className={classnames(classes.toggle, classes.collapse)}/>
             </Typography>
             <div className={classes.body}>
               { children }
