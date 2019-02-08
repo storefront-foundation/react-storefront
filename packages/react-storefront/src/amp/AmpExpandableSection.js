@@ -49,7 +49,7 @@ export const styles = theme => ({
 /**
  * An AMP-compatible expandable section based on amp-accordion.
  */
-@withStyles(styles, { name: "MoovAmpExpandableSection" })
+@withStyles(styles, { name: 'RSFAmpExpandableSection' })
 export default class AmpExpandableSection extends Component {
 
   static propTypes = {
