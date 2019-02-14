@@ -66,6 +66,11 @@ yarn release
 
 ## Changelog
 
+### 6.1.0
+
+* `<Track>` now allows you to map triggers to events.  For example: `<Track trigger={{ onVisible: 'productShown', onClick: 'productClicked' }}>`
+* `<Link>` now has a `onVisible` prop that you can use to be notified when a link is scrolled into the viewport.
+
 ### 6.0.3
 
 * Properly handle vendor chunks for components shared between pages.
