@@ -134,7 +134,9 @@ describe('Track', () => {
       .simulate('click')
       .simulate('focus')
 
-    expect(click).toHaveBeenCalledWith(expect.any(Object))
-    expect(focus).toHaveBeenCalledWith(expect.any(Object))
+    return waitForAnalytics(() => {
+      expect(click).toHaveBeenCalledWith(expect.any(Object))
+      expect(focus).toHaveBeenCalledWith(expect.any(Object))
+    })
   })
 })

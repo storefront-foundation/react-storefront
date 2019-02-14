@@ -95,7 +95,6 @@ export default class Track extends Component {
     let originalHandler = el.props[trigger]
 
     return (...args) => {
-      console.log('handler for ' + trigger)
       if (originalHandler) originalHandler(...args)
       this.fireEvent(event)
     }
