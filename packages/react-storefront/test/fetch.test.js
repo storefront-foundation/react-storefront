@@ -142,7 +142,7 @@ describe('fetch', () => {
     expect(env.MUR_SET_COOKIES["jsonplaceholder.typicode.com"].length).toEqual(1);
   })
 
-  it('should decode gzip responses', async () => {
+  it('should decode gzip text responses', async () => {
     nock('https://www.example.com')
       .get('/test')
       .reply(200, pako.deflate('test'), {
@@ -151,6 +151,18 @@ describe('fetch', () => {
 
     const result = await fetch('https://www.example.com/test').then(res => res.text())
     expect(result).toEqual('test')
+  })
+
+  it('should decode gzip json responses', async () => {
+    nock('https://www.example.com')
+      .get('/test')
+      .reply(200, pako.deflate(JSON.stringify({ foo: 'bar' })), {
+        'content-encoding': 'gzip',
+        'content-type': 'application/json'
+      })
+
+    const result = await fetch('https://www.example.com/test').then(res => res.json())
+    expect(result).toEqual({ foo: 'bar' })
   })
 })
 
