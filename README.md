@@ -68,6 +68,7 @@ yarn release
 
 ### 6.1.0
 
+* `fetch` now supports inflating responses with `content-encoding: gzip`
 * `<Track>` now allows you to map triggers to events.  For example: `<Track trigger={{ onVisible: 'productShown', onClick: 'productClicked' }}>`
 * `<Link>` now has a `onVisible` prop that you can use to be notified when a link is scrolled into the viewport.
 * `withGlobalState(request, callback, localState)` now passes `request` to the `callback`.
