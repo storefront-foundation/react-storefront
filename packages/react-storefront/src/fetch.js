@@ -6,6 +6,7 @@ import isString from 'lodash/isString'
 import merge from 'lodash/merge'
 import URL from 'url'
 import qs from 'qs'
+import pako from 'pako'
 
 function isFormUrlEncoded(contentType) {
   return contentType && contentType.indexOf('x-www-form-urlencoded') >= 0
@@ -134,8 +135,8 @@ export default function fetch(url, options, qsOptions) {
           ok,
           headers: response.headers,
           arrayBuffer: () => Promise.resolve(data),
-          text: () => Promise.resolve(data.toString('utf8')),
-          json: () => Promise.resolve(JSON.parse(data.toString('utf8'))),
+          text: () => Promise.resolve(extractString(response, data)),
+          json: () => Promise.resolve(JSON.parse(extractString(response, data))),
         }
 
         if (!ok) {
@@ -162,6 +163,14 @@ export default function fetch(url, options, qsOptions) {
 
     req.end()    
   })
+}
+
+function extractString(response, data) {
+  if (response.headers['content-encoding'] === 'gzip') {
+    return pako.inflate(data, { to: 'string' });
+  } else {
+    return data.toString('utf8')
+  }
 }
 
 /**
