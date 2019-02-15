@@ -2,14 +2,17 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+import nock from 'nock'
 import fetch, { fetchWithCookies, acceptInvalidCerts } from '../src/fetch'
+import pako from 'pako'
+import https from 'https'
 
 jest.unmock('../src/fetch')
 
 describe('fetch', () => {
 
   beforeEach(() => {
-    global.https = require('http');
+    global.https = https;
     global.fns = {
       export: (key, value) => {
         global.env[key] = value
@@ -137,6 +140,29 @@ describe('fetch', () => {
       .catch(err => err.message)
       
     expect(env.MUR_SET_COOKIES["jsonplaceholder.typicode.com"].length).toEqual(1);
+  })
+
+  it('should decode gzip text responses', async () => {
+    nock('https://www.example.com')
+      .get('/test')
+      .reply(200, pako.deflate('test'), {
+        'content-encoding': 'gzip'
+      })
+
+    const result = await fetch('https://www.example.com/test').then(res => res.text())
+    expect(result).toEqual('test')
+  })
+
+  it('should decode gzip json responses', async () => {
+    nock('https://www.example.com')
+      .get('/test')
+      .reply(200, pako.deflate(JSON.stringify({ foo: 'bar' })), {
+        'content-encoding': 'gzip',
+        'content-type': 'application/json'
+      })
+
+    const result = await fetch('https://www.example.com/test').then(res => res.json())
+    expect(result).toEqual({ foo: 'bar' })
   })
 })
 
