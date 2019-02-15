@@ -137,7 +137,7 @@ export default class Track extends Component {
    * this function will return { [trigger]: event }
    */
   getTriggers() {
-    let { event, trigger, children: el } = this.props
+    let { event, trigger } = this.props
     
     if (typeof trigger === 'string') {
       return { [trigger]: event }

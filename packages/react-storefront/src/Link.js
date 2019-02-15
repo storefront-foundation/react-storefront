@@ -134,8 +134,6 @@ export default class Link extends Component {
   onVisibleChange = (visible) => {
     const { prefetch, onVisible } = this.props
 
-    console.log('onVisibleChange', visible, onVisible)
-
     if (visible) {
       const el = this.el.current
 
