@@ -71,12 +71,11 @@ function fire(event, ...args) {
  *  )
  * 
  */
-export default new Proxy(
-  { 
-    setHistory: () => {}, // polyfill for IE11 requires defined fields in Target argument
-    fire
-  }, 
-  {
+
+let analytics = { fire }
+
+if (typeof Proxy !== 'undefined') {
+  analytics = new Proxy({ fire }, {
     get: function (o, method) {
       if (method === 'fire') {
         return fire
@@ -84,5 +83,7 @@ export default new Proxy(
         return fire.bind(null, method)
       }
     }
-  }
-)
+  })
+}
+
+export default analytics
