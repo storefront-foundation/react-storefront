@@ -57,7 +57,12 @@ export default class Link extends Component {
     /**
      * Props to apply to the underlying html anchor element
      */
-    anchorProps: PropTypes.object
+    anchorProps: PropTypes.object,
+
+    /**
+     * A function to call when the link becomes visible
+     */
+    onVisible: PropTypes.func
   }
 
   static defaultProps = {
@@ -96,7 +101,7 @@ export default class Link extends Component {
   }
 
   render() {
-    const { anchorProps, className, style, children, prefetch, to, location, ...others } = this.props
+    const { anchorProps, className, style, children, prefetch, to, location, onVisible, ...others } = this.props
 
     const props = {
       ...anchorProps,
@@ -115,7 +120,7 @@ export default class Link extends Component {
 
     const link = <a {...props}>{children}</a>
 
-    if (prefetch === 'visible') {
+    if (prefetch === 'visible' || onVisible) {
       return (
         <VisibilitySensor onChange={this.onVisibleChange} partialVisibility>
           {link}
@@ -127,6 +132,8 @@ export default class Link extends Component {
   }
 
   onVisibleChange = (visible) => {
+    const { prefetch, onVisible } = this.props
+
     if (visible) {
       const el = this.el.current
 
@@ -135,7 +142,13 @@ export default class Link extends Component {
       // that page has been hidden.  We check el.offsetParent to make sure the link is truly visible
       // see https://stackoverflow.com/questions/19669786/check-if-element-is-visible-in-dom for more info on this method
       if (el.offsetParent != null) {
-        this.prefetch()
+        if (prefetch === 'visible') {
+          this.prefetch()
+        }
+
+        if (onVisible) {
+          onVisible()
+        }
       }
     }
   }

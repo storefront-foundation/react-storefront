@@ -116,4 +116,27 @@ describe('Track', () => {
     // make sure it adds the data-amp-id to the wrapped element
     expect(wrapper.find('button[data-amp-id="0"]').length).toBe(1)
   })
+
+  it('should support multiple triggers', () => {
+    const click = jest.fn(), 
+      focus = jest.fn()
+
+    configureAnalytics({ click, focus })
+
+    mount(
+      <TestProvider>
+        <Track trigger={{ onClick: 'click', onFocus: 'focus' }} foo="bar">
+          <button>Click Me</button>
+        </Track>
+      </TestProvider>
+    )
+      .find('button')
+      .simulate('click')
+      .simulate('focus')
+
+    return waitForAnalytics(() => {
+      expect(click).toHaveBeenCalledWith(expect.any(Object))
+      expect(focus).toHaveBeenCalledWith(expect.any(Object))
+    })
+  })
 })

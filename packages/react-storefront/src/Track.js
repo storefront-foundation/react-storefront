@@ -42,12 +42,12 @@ export default class Track extends Component {
      * The name of the method to call on all configured analytics targets.
      * For example, "addedToCart".
      */
-    event: PropTypes.string.isRequired,
+    event: PropTypes.string,
 
     /**
      * The name of the handler prop on child component to intercept.  Defaults to "onClick"
      */
-    trigger: PropTypes.string,
+    trigger: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * A function to call once the event has been successfully sent by all analytics targets.
@@ -80,14 +80,24 @@ export default class Track extends Component {
   /**
    * Fires the analytics event asynchronously using setImmediate so as not to 
    * block the render loop.
+   * @param {String} e The event to fire
    */
-  fireEvent() {
+  fireEvent(e) {
     const { event, trigger, app, children, onSuccess, ampData, ...data } = this.props
 
     setImmediate(async () => {
-      await analytics.fire(event, data)
+      await analytics.fire(e, data)
       onSuccess()
     })
+  }
+
+  createTriggerHandler(el, trigger, event) {
+    let originalHandler = el.props[trigger]
+
+    return (...args) => {
+      if (originalHandler) originalHandler(...args)
+      this.fireEvent(event)
+    }
   }
 
   /**
@@ -96,19 +106,21 @@ export default class Track extends Component {
    * @return {React.Element}
    */
   attachEvent() {
-    const { app: { amp }, trigger, children: el } = this.props
+    let { app: { amp }, children: el } = this.props
 
     if (el) {
-      let originalHandler = el.props[trigger]
+      const triggers = this.getTriggers()
+      const triggerHandlers = {}
+
+      for (let propName in triggers) {
+        triggerHandlers[propName] = this.createTriggerHandler(el, propName, triggers[propName])
+      }
 
       const props = {
         ...el.props,
-        [trigger]: (...args) => {
-          if (originalHandler) originalHandler(...args)
-          this.fireEvent()
-        }
+        ...triggerHandlers
       }
-  
+
       if (amp) {
         props['data-amp-id'] = this.id
         props['data-vars-moov-test'] = 'foo'
@@ -117,6 +129,20 @@ export default class Track extends Component {
       return React.cloneElement(el, props)
     } else {
       return null
+    }
+  }
+
+  /**
+   * Returns the value of the trigger prop normalized to an object.  If trigger is a string, 
+   * this function will return { [trigger]: event }
+   */
+  getTriggers() {
+    let { event, trigger } = this.props
+    
+    if (typeof trigger === 'string') {
+      return { [trigger]: event }
+    } else {
+      return trigger
     }
   }
 

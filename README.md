@@ -68,6 +68,8 @@ yarn release
 
 ### 6.1.0
 
+* `<Track>` now allows you to map triggers to events.  For example: `<Track trigger={{ onVisible: 'productShown', onClick: 'productClicked' }}>`
+* `<Link>` now has a `onVisible` prop that you can use to be notified when a link is scrolled into the viewport.
 * `withGlobalState(request, callback, localState)` now passes `request` to the `callback`.
 * Removed proxy-polyfill, which was causing errors when using analytics in IE11. If you plan to support IE11 and use analytics, you must call `analytics.fire('eventName', data)` instead of the proxied methods like `analytics.eventName(data)`.
 
