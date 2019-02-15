@@ -69,6 +69,7 @@ yarn release
 ### 6.1.0
 
 * `withGlobalState(request, callback, localState)` now passes `request` to the `callback`.
+* Removed proxy-polyfill, which was causing errors when using analytics in IE11. If you plan to support IE11 and use analytics, you must call `analytics.fire('eventName', data)` instead of the proxied methods like `analytics.eventName(data)`.
 
 ### 6.0.3
 
@@ -88,6 +89,10 @@ yarn release
 * Upgraded to babel 7
 * Upgraded to webpack 4
 * Upgraded to material-ui@3.8.1
+
+### 5.9.0
+
+* Removed proxy-polyfill, which was causing errors when using analytics in IE11. If you plan to support IE11 and use analytics, you must call `analytics.fire('eventName', data)` instead of the proxied methods like `analytics.eventName(data)`.
 
 ### 5.8.2
 

@@ -2,7 +2,6 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import 'proxy-polyfill' // needed for IE9-11
 import React from 'react'
 import { hydrate } from './renderers'
 import { connectReduxDevtools } from "mst-middlewares"
