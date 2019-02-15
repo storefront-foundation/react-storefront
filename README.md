@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.1.0
+
+* `withGlobalState(request, callback, localState)` now passes `request` to the `callback`.
+
 ### 6.0.3
 
 * Properly handle vendor chunks for components shared between pages.

@@ -24,7 +24,7 @@ export default async function withGlobalState(request, globalState, localState) 
     return localState
   } else {
     if (typeof globalState === 'function') {
-      globalState = await globalState()
+      globalState = await globalState(request)
     }
     return { ...globalState, ...localState }
   }
