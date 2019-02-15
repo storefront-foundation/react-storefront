@@ -68,6 +68,7 @@ yarn release
 
 ### 6.1.0
 
+* `withGlobalState(request, callback, localState)` now passes `request` to the `callback`.
 * Removed proxy-polyfill, which was causing errors when using analytics in IE11. If you plan to support IE11 and use analytics, you must call `analytics.fire('eventName', data)` instead of the proxied methods like `analytics.eventName(data)`.
 
 ### 6.0.3
