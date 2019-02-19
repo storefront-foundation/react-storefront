@@ -20,6 +20,7 @@ import Image from './Image'
 import Container from './Container'
 import classnames from 'classnames'
 import Drawer from '@material-ui/core/Drawer'
+import { Hbox } from './Box'
 
 /**
  * A modal search UI that displays a single text search field and grouped results.  The
@@ -80,7 +81,8 @@ export const styles = theme => ({
     border: 0,
     borderRadius: '35px',
     backgroundColor: theme.palette.background.paper,
-    margin: '10px'
+    margin: 0,
+    height: '48px'
   },
   searchInput: {
     padding: '0 0 0 20px'
@@ -124,6 +126,13 @@ export const styles = theme => ({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  searchFab: {
+    height: '48px',
+    width: '48px',
+    marginLeft: '10px',
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.secondary
   }
 })
 
@@ -149,13 +158,25 @@ export default class SearchDrawer extends Component {
     /**
      * Set to false to disable background blurring.  Defaults to true.
      */
-    blurBackground: PropTypes.bool
+    blurBackground: PropTypes.bool,
+    /**
+     * Set to "icon" to display the search button as an icon in the search input. 
+     * Set to "fab" to display the search button as a separate floating action button to the right of the search input when
+     * the user enters text.
+     */
+    searchButtonVariant: PropTypes.oneOf(['icon', 'fab']),
+    /**
+     * Set to false to never show the clear button.  The search icon will be shown inside the input even when the user has entered text.
+     */
+    showClearButton: PropTypes.bool
   }
 
   static defaultProps = {
     placeholder: 'Search...',
     CloseButtonIcon: () => <ClearIcon/>,
-    blurBackground: true    
+    blurBackground: true,
+    searchButtonVariant: 'fab',
+    showClearButton: true
   }
 
   constructor({ search }) {
@@ -180,7 +201,7 @@ export default class SearchDrawer extends Component {
   }
 
   render() {
-    const { classes, search, placeholder, blurBackground } = this.props
+    const { classes, search, placeholder, blurBackground, searchButtonVariant, showClearButton } = this.props
     const loading = search.loading
     const contentReady = this.props.search.text && !loading
 
@@ -200,36 +221,43 @@ export default class SearchDrawer extends Component {
         <div className={classes.wrap}>
           <form className={classes.header} onSubmit={this.onSearchFormSubmit}>
             { this.renderCloseButton() }
-            <Input
-              type="text"
-              value={search.text}
-              placeholder={placeholder}
-              onChange={e => this.onChangeSearchText(e.target.value)}
-              onFocus={this.onInputFocus}
-              disableUnderline
-              inputRef={this.inputRef}
-              classes={{
-                root: classes.searchField,
-                input: classes.searchInput
-              }}
-              endAdornment={
-                search.text ? (
-                  <IconButton 
-                    onClick={this.clearSearch}
-                    className={classes.searchReset}
-                  >
-                    <ClearIcon/>
-                  </IconButton>
-                ) : (
-                  <IconButton
-                    onClick={this.onSearchSubmit}
-                    className={classes.searchButton}
-                  >
-                    <SearchIcon/>
-                  </IconButton>
-                )
-              }
-            />
+            <Hbox>
+              <Input
+                type="text"
+                value={search.text}
+                placeholder={placeholder}
+                onChange={e => this.onChangeSearchText(e.target.value)}
+                onFocus={this.onInputFocus}
+                disableUnderline
+                inputRef={this.inputRef}
+                classes={{
+                  root: classes.searchField,
+                  input: classes.searchInput
+                }}
+                endAdornment={
+                  search.text && showClearButton ? (
+                    <IconButton 
+                      onClick={this.clearSearch}
+                      className={classes.searchReset}
+                    >
+                      <ClearIcon/>
+                    </IconButton>
+                  ) : searchButtonVariant === 'icon' && (
+                    <IconButton
+                      onClick={this.onSearchSubmit}
+                      className={classes.searchButton}
+                    >
+                      <SearchIcon/>
+                    </IconButton>
+                  )
+                }
+              />
+              { searchButtonVariant === 'fab' && search.text.length > 0 && (
+                <Button variant="fab" className={classes.searchFab} onClick={this.onSearchSubmit}>
+                  <SearchIcon/>
+                </Button>
+              )}
+            </Hbox>
           </form>
           {loading && (
             <div className={classes.loading}>
