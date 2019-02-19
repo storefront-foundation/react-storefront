@@ -63,6 +63,7 @@ npm link babel-plugin-react-storefront
 
 * Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.
 * Fixed an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
+* Added `notFound` prop to `Image` component which will be used in case the primary image source fails to load
 
 ### 5.9.0
 

@@ -14,7 +14,10 @@ export const styles = theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    // Without a minimum height, the container will not fire
+    // the visibility change
+    minHeight: 1
   },
   fit: {
     position: 'absolute',
@@ -61,6 +64,11 @@ export default class Image extends Component {
     src: PropTypes.string,
 
     /**
+     * The URL of the image to use in case the primary image fails to load
+     */
+    notFoundSrc: PropTypes.string,
+
+    /**
      * The ratio of height/width as a float.  For example: 1 when the height and width match, 
      * 0.5 when height is half of the width.
      */
@@ -99,7 +107,8 @@ export default class Image extends Component {
     contain: false,
     fill: false,
     lazy: false,
-    lazyOffset: 100
+    lazyOffset: 100,
+    primaryNotFound: false
   }
 
   constructor({ lazy, amp }) {
@@ -111,13 +120,17 @@ export default class Image extends Component {
   }
 
   render() {
-    let { lazy, lazyOffset, height, width, quality, amp, fill, contain, classes, className, aspectRatio, alt, src, ...imgAttributes } = this.props
-    const { loaded } = this.state
+    let { lazy, lazyOffset, notFoundSrc, height, width, quality, amp, fill, contain, classes, className, aspectRatio, alt, src, ...imgAttributes } = this.props
+    const { loaded, primaryNotFound } = this.state
 
     contain = contain || aspectRatio
     
     // Overiding `src` prop if `quality` was set
     src = this.getOptimizedSrc()
+
+    if (primaryNotFound) {
+      src = notFoundSrc
+    }
 
     const assignedAttributes = {
       src,
@@ -143,7 +156,7 @@ export default class Image extends Component {
         { amp ? (
           <amp-img {...assignedAttributes}/>
         ) : (
-          loaded && <img {...assignedAttributes} {...imgAttributes}/>
+          loaded && <img {...assignedAttributes} {...imgAttributes} onError={this.handleNotFound} />
         )}
       </div>
     )
@@ -162,6 +175,10 @@ export default class Image extends Component {
     }
 
     return result
+  }
+
+  handleNotFound = () => {
+    this.setState({ primaryNotFound: true })
   }
 
   lazyLoad = (visible) => {

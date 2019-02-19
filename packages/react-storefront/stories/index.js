@@ -341,10 +341,14 @@ storiesOf('Image', module)
   .addDecorator(wrapWithProvider())
   .addWithJSX('with default props', () => <Image src="https://placehold.it/200x100" />)
   .addWithJSX('with optimized', () => <Image src="https://placehold.it/200x100" quality={20} />)
+  .addWithJSX('with not found primary image', () => <Image
+    src="https://mock.com/test.png"
+    notFoundSrc="https://placehold.it/300x300?text=NOT+FOUND"
+  />)
   .addWithJSX('with lazy', () => <div>
     <div style={{ height: '2000px' }}>
       Scroll Down Please...
-        </div>
+    </div>
     <Image src="https://placehold.it/300x300?text=LAZY" lazy />
   </div>
   );

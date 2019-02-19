@@ -418,9 +418,9 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <span className="MuiTab-wrapper-120">
                                               <WithStyles(inject-Image) src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true}>
                                                 <inject-Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}}>
-                                                  <Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                                  <Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} primaryNotFound={false}>
                                                     <div className="RSFImageSwitcher-thumbnail-57 RSFImage-root-124 RSFImage-fill-127">
-                                                      <img src="/at.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" />
+                                                      <img src="/at.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" primaryNotFound={false} onError={[Function]} />
                                                     </div>
                                                   </Image>
                                                 </inject-Image>
@@ -448,9 +448,9 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <span className="MuiTab-wrapper-120">
                                               <WithStyles(inject-Image) src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true}>
                                                 <inject-Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}}>
-                                                  <Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                                  <Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} primaryNotFound={false}>
                                                     <div className="RSFImageSwitcher-thumbnail-57 RSFImage-root-124 RSFImage-fill-127">
-                                                      <img src="/bt.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" />
+                                                      <img src="/bt.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" primaryNotFound={false} onError={[Function]} />
                                                     </div>
                                                   </Image>
                                                 </inject-Image>
@@ -478,9 +478,9 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <span className="MuiTab-wrapper-120">
                                               <WithStyles(inject-Image) src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true}>
                                                 <inject-Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}}>
-                                                  <Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                                  <Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-57" fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} primaryNotFound={false}>
                                                     <div className="RSFImageSwitcher-thumbnail-57 RSFImage-root-124 RSFImage-fill-127">
-                                                      <img src="/ct.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" />
+                                                      <img src="/ct.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" primaryNotFound={false} onError={[Function]} />
                                                     </div>
                                                   </Image>
                                                 </inject-Image>
