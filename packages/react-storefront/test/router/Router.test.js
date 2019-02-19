@@ -588,16 +588,6 @@ describe('Router:Node', function() {
     })
   })
 
-  describe('reloadFromServer', () => {
-    it('should reset the history.location to the previous location', () => {
-      const history = createMemoryHistory({ initialEntries: ['/'] })
-      history.goBack = jest.fn()
-      const router = new Router().watch(history)
-      router.reloadFromServer()
-      expect(history.goBack).toHaveBeenCalled()
-    })
-  })
-
   describe('willFetchFromUpstream', () => {
     it('should return true if the route has a proxyUpstream handler', () => {
       const router = new Router()

@@ -89,8 +89,10 @@ export default class PWA extends Component {
   }
 
   componentDidMount() {
+    const { router } = this.props 
+    
     // scroll to the top and close the when the router runs a PWA route
-    this.props.router.on('fetch', this.resetPage)
+    router && router.on('fetch', this.resetPage)
 
     this.watchLinkClicks()
 
