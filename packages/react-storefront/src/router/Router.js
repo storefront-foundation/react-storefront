@@ -307,6 +307,10 @@ export default class Router extends EventEmitter {
           continue;
         }
 
+        if (handler.type === 'fromServer') {
+          this.emit('fetch')
+        }
+
         const result = await this.toPromise(handler.fn, params, request, response)
 
         if (result) {
@@ -456,7 +460,6 @@ export default class Router extends EventEmitter {
    */
   reloadFromServer() {
     const { href } = window.location
-    this.history.goBack()
     self.location.href = href
   }
 
