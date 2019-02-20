@@ -66,7 +66,7 @@ yarn release
 
 ## Changelog
 
-### 6.2.0
+### 6.1.1
 
 * Fix a bug that resulted in an error from mst-middleware about rendering circular JSON when the user opens the main menu.
 
