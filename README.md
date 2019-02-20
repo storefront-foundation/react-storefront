@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.2.0
+
+* Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you great control over the behavior of the search input.
+
 ### 6.1.0
 
 * `fetch` now supports inflating responses with `content-encoding: gzip`
