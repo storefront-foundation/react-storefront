@@ -31,6 +31,7 @@ export default function responseRewriter({ theme, model, App, router, blob, tran
     fns.export('Cache-Time', '2903040000') // static paths use hash-based cache-busting, so we far-future cache them in varnish and the browser
     return sendResponse({ htmlparsed: false })
   } else {
+    console.log('blob', blob)
     // render the page
     Config.load(blob)
     const request = new Request()
