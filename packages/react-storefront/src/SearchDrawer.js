@@ -240,21 +240,21 @@ export default class SearchDrawer extends Component {
                       onClick={this.clearSearch}
                       className={classes.searchReset}
                     >
-                      <ClearIcon/>
+                      <ClearIcon rel="clear"/>
                     </IconButton>
                   ) : searchButtonVariant === 'icon' && (
                     <IconButton
                       onClick={this.onSearchSubmit}
                       className={classes.searchButton}
                     >
-                      <SearchIcon/>
+                      <SearchIcon rel="search"/>
                     </IconButton>
                   )
                 }
               />
               { searchButtonVariant === 'fab' && search.text.length > 0 && (
                 <Button variant="fab" className={classes.searchFab} onClick={this.onSearchSubmit}>
-                  <SearchIcon/>
+                  <SearchIcon rel="search"/>
                 </Button>
               )}
             </Hbox>
