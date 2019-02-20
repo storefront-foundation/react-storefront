@@ -128,7 +128,7 @@ export default class Header extends Component {
           <ToolbarButton 
             aria-label="Menu" 
             color="inherit" 
-            onClick={menu.toggle}
+            onClick={this.onMenuButtonClick}
             icon={<MenuIcon open={menu.open} {...menuIconProps}/>}
           />
         </a>
@@ -172,6 +172,10 @@ export default class Header extends Component {
     if (!prevState.hidden && this.state.hidden) {
       setTimeout(() => this.setState({ animate: true }), 100)
     }
+  }
+
+  onMenuButtonClick = () => {
+    this.props.menu.toggle()
   }
 
   onScroll = () => {
