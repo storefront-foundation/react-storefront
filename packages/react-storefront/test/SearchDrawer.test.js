@@ -82,5 +82,40 @@ describe('SearchDrawer', () => {
     
     expect(document.body.classList.contains('moov-blur')).toBe(false)
   })
-})
 
+  describe('searchButtonVariant', () => {
+    describe('fab', () => {
+      it('should render the search button as a separate fab when text is entered', () => {
+        const wrapper = mount(
+          <TestContext>
+            <SearchDrawer searchButtonVariant="fab"/>
+          </TestContext>
+        )
+        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        expect(wrapper.find({ rel: 'search' }).exists()).toBe(true)
+        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
+      })
+    })
+    describe('icon', () => {
+      it('should not show the clear button when showClearButton is false and text is entered', () => {
+        const wrapper = mount(
+          <TestContext>
+            <SearchDrawer showClearButton={false} searchButtonVariant="icon"/>
+          </TestContext>
+        )
+        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(false)
+      })
+      it('should show the clear text is entered', () => {
+        const wrapper = mount(
+          <TestContext>
+            <SearchDrawer searchButtonVariant="icon"/>
+          </TestContext>
+        )
+        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
+        expect(wrapper.find({ rel: 'search' }).exists()).toBe(false)
+      })
+    })
+  })
+})
