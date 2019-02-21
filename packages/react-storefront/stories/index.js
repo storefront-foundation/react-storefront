@@ -443,6 +443,8 @@ storiesOf('SearchDrawer', module)
     })
   }))
   .addWithJSX('with default props', () => <SearchDrawer />)
+  .addWithJSX('with searchButtonVariant="icon"', () => <SearchDrawer searchButtonVariant="icon"/>)
+  .addWithJSX('with showClearButton=false', () => <SearchDrawer searchButtonVariant="icon" showClearButton={false}/>)
 
 storiesOf('ShowMore', module)
   .addDecorator(wrapWithProvider())
