@@ -8,6 +8,7 @@ import { Provider } from 'mobx-react'
 import AppModelBase from '../src/model/AppModelBase'
 import createTheme from '../src/createTheme'
 import { MuiThemeProvider } from '@material-ui/core'
+import { Router } from '../src/Router'
 
 export default function TestProvider({ app, history, children, ...stores }) {
   if (app == null || !app.applyState) {
@@ -25,6 +26,8 @@ export default function TestProvider({ app, history, children, ...stores }) {
 
   if (app.location) {
     initialEntries.push(app.location.pathname + app.location.search)
+  } else {
+    initialEntries.push('/')
   }
 
   history = history || createMemoryHistory({ initialEntries })
@@ -37,7 +40,7 @@ export default function TestProvider({ app, history, children, ...stores }) {
 
   return (
     <Provider 
-      router={{}} 
+      router={new Router()} 
       app={app}
       history={history}
       {...stores}
