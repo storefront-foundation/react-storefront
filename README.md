@@ -68,7 +68,7 @@ yarn release
 
 ### 6.2.0
 
-* Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you great control over the behavior of the search input.
+* Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.
 
 ### 6.1.0
 
