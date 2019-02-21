@@ -70,6 +70,10 @@ yarn release
 
 * Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.
 
+### 6.1.1
+
+* Fix a bug that resulted in an error from mst-middleware about rendering circular JSON when the user opens the main menu.
+
 ### 6.1.0
 
 * `fetch` now supports inflating responses with `content-encoding: gzip`
