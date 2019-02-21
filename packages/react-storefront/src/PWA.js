@@ -134,7 +134,7 @@ export default class PWA extends Component {
     // false for links with a target other than self
     if (linkTarget && linkTarget !== '_self') return false
 
-    return canUseClientSideNavigation(href)
+    return canUseClientSideNavigation(href, this.props.router)
   }
 
   /**

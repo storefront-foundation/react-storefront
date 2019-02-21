@@ -58,10 +58,11 @@ export function absoluteURL(url, currentLocation) {
 
 /**
  * Returns true if a URL can be navigated to on the client using history.push
- * @param {String} url 
+ * @param {String} url The URL to check
+ * @param {String} router The router 
  * @return {Boolean}
  */
-export function canUseClientSideNavigation(url) {
+export function canUseClientSideNavigation(url, router) {
   if (!url) return false
   
   // return false for non-webpage links
@@ -72,6 +73,9 @@ export function canUseClientSideNavigation(url) {
 
   // return false for absolute URLs
   if (url.match(/^(http|https)?:?\/\//)) return false
+
+  // check if there is a proxyUpstream handler on the corresponding route
+  if (router && router.willNavigateToUpstream(url)) return false
 
   return true
 }

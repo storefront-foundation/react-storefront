@@ -439,6 +439,17 @@ export default class Router extends EventEmitter {
   }
 
   /**
+   * Returns true if the URL points to a route that has a proxyUpstream handler.  
+   * @param {String} url The url to check
+   * @param {String} [method='get']
+   * @return {Boolean}
+   */
+  willNavigateToUpstream(url, method='get') {
+    const { pathname } = new URL(url, typeof window !== 'undefined' ? window.location : undefined)
+    return this.willFetchFromUpstream({ path: pathname, method })
+  }
+
+  /**
    * Returns true if the route will result in the server connecting to the
    * upstream site due to the presence of a `proxyUpstream` handler, otherwise
    * false.
