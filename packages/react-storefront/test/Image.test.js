@@ -68,4 +68,20 @@ describe("Image", () => {
 
     expect(wrapper).toMatchSnapshot()
   })
+
+  it('should use the not found image when the primary src fails', done => {
+    const wrapper = mount(
+      <Provider app={AppModelBase.create({ amp: false })}>
+        <Image src="/foo.png" aspectRatio={50} notFoundSrc="/bar.png" />
+      </Provider>
+    )
+
+    const image = wrapper.find('Image')
+
+    image.setState({ primaryNotFound: true }, () => {
+      const img = wrapper.find('img')
+      expect(img.prop('src')).toBe('/bar.png')
+      done()
+    })
+  })
 })
