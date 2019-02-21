@@ -25,6 +25,13 @@ jobs:
           command: |
             yarn install
 
+      # deploy to production
+      - run: 
+          command: |
+            if [ $CIRCLE_BRANCH = 'master' ]; then
+              yarn upgrade-docs
+            fi
+
       - save_cache:
           paths:
             - node_modules

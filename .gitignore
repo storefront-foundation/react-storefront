@@ -72,3 +72,5 @@ build/*
 
 # Storybook static built files
 storybook-static
+
+docs/
