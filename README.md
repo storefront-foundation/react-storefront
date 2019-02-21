@@ -59,11 +59,15 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.10.1
+
+* Added `notFoundSrc` prop to `ImageSwitcher` and handle missing images before the app mounts.
+
 ### 5.10.0
 
 * Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.
 * Fixed an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
-* Added `notFound` prop to `Image` component which will be used in case the primary image source fails to load
+* Added `notFoundSrc` prop to `Image` component which will be used in case the primary image source fails to load
 
 ### 5.9.0
 
