@@ -10,16 +10,12 @@ describe('proxyUpstream', () => {
     beforeEach(() => {
       process.env.MOOV_RUNTIME = 'client'
       global.env = {}
-      window.moov = {
-        router: {
-          reloadFromServer: jest.fn()
-        }
-      }
+      window.location.reload = jest.fn()
     })
 
     it('should reload from the server', async () => {
       await proxyUpstream().fn()
-      expect(window.moov.router.reloadFromServer).toHaveBeenCalled()
+      expect(window.location.reload).toHaveBeenCalled()
     })
   })
 

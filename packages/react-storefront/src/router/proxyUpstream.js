@@ -29,7 +29,7 @@ export default function proxyUpstream(cb=perfectProxy) {
     fn: async (params, request, response) => {
       if (process.env.MOOV_RUNTIME === 'client') {
         // reload the page if this handler is called during client-side navigation
-        window.moov.router.reloadFromServer()
+        window.location.reload()
       } else {
         if (cb == null) throw new Error('You must provide a path to a handler in proxyUpstream().  Please check your routes.')
         // indicate handler path and asset class in a response header so we can track it in logs

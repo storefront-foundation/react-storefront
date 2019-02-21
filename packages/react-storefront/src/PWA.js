@@ -32,7 +32,7 @@ export const styles = theme => ({
 });
 
 @withStyles(styles)
-@inject(({ app, history }) => ({ menu: app.menu, app, history, amp: app.amp }))
+@inject(({ app, history, router }) => ({ menu: app.menu, app, history, router, amp: app.amp }))
 @observer
 export default class PWA extends Component {
   
@@ -89,8 +89,11 @@ export default class PWA extends Component {
   }
 
   componentDidMount() {
-    // Send state to service worker to cache
-    this.props.history.listen(this.onRouteChange)
+    const { router } = this.props 
+    
+    // scroll to the top and close the when the router runs a PWA route
+    router && router.on('fetch', this.resetPage)
+
     this.watchLinkClicks()
 
     // put os class on body for platform-specific styling
@@ -153,11 +156,9 @@ export default class PWA extends Component {
     })
   }
 
-  onRouteChange = (_location, action) => {
-    if (action === 'PUSH') {
-      window.scrollTo(0, 0)
-      this.props.menu.close()
-    }
+  resetPage = () => {
+    window.scrollTo(0, 0)
+    this.props.menu.close()
   }
 
 }
