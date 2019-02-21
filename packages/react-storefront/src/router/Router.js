@@ -59,6 +59,12 @@ import EventEmitter from 'eventemitter3'
  *      sendResponse({ body, htmlparsed: true })
  *    })
  *  }
+ * 
+ * Router is an EventEmitting that fires the following events:
+ * 
+ * `before`: Fires before a route is run, passing an object containing `request` and `response`.
+ * `after`: Fires after a route is run and all handlers have finised, passing an object containing `request` and `response`.
+ * `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
  */
 export default class Router extends EventEmitter {
 
@@ -307,6 +313,10 @@ export default class Router extends EventEmitter {
           continue;
         }
 
+        if (handler.type === 'fromServer') {
+          this.emit('fetch')
+        }
+
         const result = await this.toPromise(handler.fn, params, request, response)
 
         if (result) {
@@ -446,18 +456,6 @@ export default class Router extends EventEmitter {
     }
 
     this.emit('after', { request, response: context })
-  }
-
-  /**
-   * Call this function when client-side navigation to a non-PWA route has occurred.  This
-   * will revert window.history to the previous url and reload the original destination URL
-   * from the server.
-   * @private
-   */
-  reloadFromServer() {
-    const { href } = window.location
-    this.history.goBack()
-    self.location.href = href
   }
 
   /**

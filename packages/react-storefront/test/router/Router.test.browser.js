@@ -330,4 +330,22 @@ describe('Router:Browser', function() {
       expect(cacheHandler.fn.called).to.be.true
     })
   })
+
+  describe('fetch', async () => {
+    it('should be fired when a fromServer handler runs', async function(){
+      const router = new Router()
+        .get('/', 
+          { 
+            type: 'fromServer', 
+            runOn: { client: true, server: true }, 
+            fn: () => Promise.resolve({ }) 
+          }
+        )
+
+      const fn = sinon.fake()
+      router.on('fetch', fn)
+      await router.runAll({ path: '/' }, response)
+      expect(fn.called).to.be.true
+    })
+  })
 })

@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.2.0
+
+* Fixes an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
+
 ### 6.1.1
 
 * Fix a bug that resulted in an error from mst-middleware about rendering circular JSON when the user opens the main menu.

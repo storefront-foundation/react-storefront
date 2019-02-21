@@ -4,7 +4,7 @@ exports[`PWA should render amp-install-service worker when amp==true 1`] = `
 <Provider history={{...}} app={{...}}>
   <WithStyles(inject-PWA)>
     <inject-PWA classes={{...}}>
-      <PWA classes={{...}} menu={{...}} app={{...}} history={{...}} amp={true}>
+      <PWA classes={{...}} menu={{...}} app={{...}} history={{...}} router={[undefined]} amp={true}>
         <Provider nextId={[Function]}>
           <WithStyles(CssBaseline)>
             <CssBaseline classes={{...}} />
@@ -34,7 +34,7 @@ exports[`PWA should render children 1`] = `
 <Provider history={{...}} app={{...}}>
   <WithStyles(inject-PWA)>
     <inject-PWA classes={{...}}>
-      <PWA classes={{...}} menu={{...}} app={{...}} history={{...}} amp={false}>
+      <PWA classes={{...}} menu={{...}} app={{...}} history={{...}} router={[undefined]} amp={false}>
         <Provider nextId={[Function]}>
           <WithStyles(CssBaseline)>
             <CssBaseline classes={{...}} />
