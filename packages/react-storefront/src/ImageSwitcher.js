@@ -267,6 +267,11 @@ export default class ImageSwitcher extends Component {
     selectedIndex: PropTypes.number,
 
     /**
+     * The URL of image to load if an image fails to load
+     */
+    notFoundSrc: PropTypes.string,
+
+    /**
      * Config options for the image viewer
      */
     reactPinchZoomPanOptions: PropTypes.shape({
@@ -351,7 +356,7 @@ export default class ImageSwitcher extends Component {
   }
 
   renderThumbnails() {
-    const { classes, thumbnailsTitle } = this.props
+    const { classes, thumbnailsTitle, notFoundSrc } = this.props
     const { thumbnails } = this
     const modifiedThumbs = thumbnails && thumbnails.map(({ src, alt }) => ({ imageUrl: src, alt }))
     const { viewerActive, selectedIndex } = this.state
@@ -368,6 +373,7 @@ export default class ImageSwitcher extends Component {
           }}
           imageProps={{
             className: classes.thumbnail,
+            notFoundSrc,
             fill: true
           }}
           centered
@@ -389,7 +395,7 @@ export default class ImageSwitcher extends Component {
   }
 
   render() {
-    let { app, product, classes, className, arrows, indicators, style, reactPinchZoomPanOptions, loadingThumbnailProps, viewerThumbnailsOnly } = this.props
+    let { app, product, classes, className, arrows, indicators, style, reactPinchZoomPanOptions, loadingThumbnailProps, viewerThumbnailsOnly, notFoundSrc } = this.props
     const { images, thumbnails } = this
 
     if (app.amp) return (
@@ -421,8 +427,9 @@ export default class ImageSwitcher extends Component {
                     layout="fill"
                   />
                 ) : (
-                  <img 
+                  <Image
                     key={src} 
+                    notFoundSrc={notFoundSrc} 
                     src={i===0 && app.loading ? null : src} // need to clear src when app.loading is true so that the onLoad event will fire and the loading thumbnail will be removed
                     alt={alt || "product"} 
                     onLoad={i === 0 ? this.clearLoadingProduct : null} 

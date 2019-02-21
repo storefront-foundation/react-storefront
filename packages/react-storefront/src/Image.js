@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types'
 import { inject } from 'mobx-react'
@@ -107,15 +107,25 @@ export default class Image extends Component {
     contain: false,
     fill: false,
     lazy: false,
-    lazyOffset: 100,
-    primaryNotFound: false
+    lazyOffset: 100
   }
 
   constructor({ lazy, amp }) {
     super()
 
     this.state = {
-      loaded: !lazy || amp
+      loaded: !lazy || amp,
+      primaryNotFound: false
+    }
+
+    this.ref = createRef()
+  }
+
+  componentDidMount() {
+    const img = this.ref.current
+    
+    if (img && img.complete && img.naturalWidth === 0) {
+      this.handleNotFound()
     }
   }
 
@@ -156,7 +166,7 @@ export default class Image extends Component {
         { amp ? (
           <amp-img {...assignedAttributes}/>
         ) : (
-          loaded && <img {...assignedAttributes} {...imgAttributes} onError={this.handleNotFound} />
+          loaded && <img ref={this.ref} {...assignedAttributes} {...imgAttributes} onError={this.handleNotFound} />
         )}
       </div>
     )
