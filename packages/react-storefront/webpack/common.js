@@ -73,7 +73,7 @@ function createLoaders(sourcePath, { envName, assetsPath='.', eslintConfig } = {
       ]
     },
     {
-      test: /\.(png|jpg|gif|otf|woff)$/,
+      test: /\.(png|jpg|gif|otf|woff|ttf)$/,
       use: [
         {
           loader: 'url-loader',
