@@ -69,6 +69,7 @@ yarn release
 ### 6.2.0
 
 * Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.
+* Fixes an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
 
 ### 6.1.1
 
