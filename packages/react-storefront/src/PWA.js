@@ -11,6 +11,9 @@ import { canUseClientSideNavigation } from './utils/url'
 import delegate from 'delegate'
 import { cache } from './router/serviceWorker'
 import { isSafari } from './utils/browser'
+import { connectReduxDevtools } from "mst-middlewares"
+import { onSnapshot } from 'mobx-state-tree'
+import debounce from 'lodash/debounce'
 
 /**
  * @private
@@ -32,7 +35,7 @@ export const styles = theme => ({
 });
 
 @withStyles(styles)
-@inject(({ app, history }) => ({ menu: app.menu, app, history, amp: app.amp }))
+@inject(({ app, history, router }) => ({ menu: app.menu, app, history, router, amp: app.amp }))
 @observer
 export default class PWA extends Component {
   
@@ -89,8 +92,21 @@ export default class PWA extends Component {
   }
 
   componentDidMount() {
-    // Send state to service worker to cache
-    this.props.history.listen(this.onRouteChange)
+    const { router, app, history } = this.props 
+    
+    if (router) {
+      router.on('fetch', this.resetPage)
+
+      window.addEventListener('load', () => {
+        // we only start watching after the window.onload event so that
+        // timing metrics are fully collected and be reported correctly to analytics
+        router.watch(history, app.applyState)
+      })
+    }
+
+    this.bindAppStateToHistory()
+
+    // scroll to the top and close the when the router runs a PWA route
     this.watchLinkClicks()
 
     // put os class on body for platform-specific styling
@@ -98,6 +114,41 @@ export default class PWA extends Component {
 
     // cache the launch screen for when the pwa is installed on the desktop
     cache('/?source=pwa')
+
+    this.handleRejections()
+
+    if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+      connectReduxDevtools(require("remotedev"), app)
+    }
+  }
+
+  /**
+   * Each time the app state changes, record the current app state as the history.state.
+   * This makes restoring the page when going back really fast.
+   */
+  bindAppStateToHistory() {
+    const { app, history } = this.props
+
+    const recordState = snapshot => {
+      console.log('recordState', snapshot)
+      const { pathname, search } = history.location
+      history.replace(pathname + search, snapshot)
+    }
+  
+    // record app state in history.state restore it when going back or forward
+    // see Router#onLocationChange
+    onSnapshot(app, debounce(snapshot => !snapshot.loading && recordState(snapshot), 150))
+  
+    // record the initial state so that if the user comes back to the initial landing page the app state will be restored correctly.
+    recordState(app.toJSON())
+  }
+
+  /**
+   * When an unhandled rejection occurs, store the error in app state so it 
+   * can be displayed to the developer.
+   */
+  handleRejections() {
+    window.addEventListener('unhandledrejection', event => this.props.app.onError(event.reason))
   }
 
   /**
@@ -131,7 +182,7 @@ export default class PWA extends Component {
     // false for links with a target other than self
     if (linkTarget && linkTarget !== '_self') return false
 
-    return canUseClientSideNavigation(href)
+    return canUseClientSideNavigation(href, this.props.router)
   }
 
   /**
@@ -153,11 +204,9 @@ export default class PWA extends Component {
     })
   }
 
-  onRouteChange = (_location, action) => {
-    if (action === 'PUSH') {
-      window.scrollTo(0, 0)
-      this.props.menu.close()
-    }
+  resetPage = () => {
+    window.scrollTo(0, 0)
+    this.props.menu.close()
   }
 
 }

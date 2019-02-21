@@ -11,6 +11,7 @@ import { Provider } from 'mobx-react'
 import { createMemoryHistory } from 'history'
 import AppModelBase from '../src/model/AppModelBase'
 import * as serviceWorker from '../src/router/serviceWorker'
+import { Router, proxyUpstream, fromServer } from '../src/router'
 
 describe('Link', () => {
 
@@ -121,6 +122,39 @@ describe('Link', () => {
     expect(history.location.pathname).toEqual('/p/1')
   })
 
+  it('should not call history.push if the link points to a route with a proxyUpstream handler', () => {
+    const history = { push: jest.fn() }
+    const router = new Router()
+      .get('/proxy', proxyUpstream('./proxyHandler'))
+
+    mount(
+      <Provider history={history} app={app} router={router}>
+        <Link to="/proxy">Proxy</Link>
+      </Provider>
+    )
+      .find('a').at(0)
+      .simulate('click')
+
+    expect(history.push).not.toHaveBeenCalled()
+  })
+
+  it('should call history.push if the link points to a route without a proxyUpstream handler', () => {
+    history.push = jest.fn()
+    
+    const router = new Router()
+      .get('/pwa', fromServer('./fromServer'))
+
+    mount(
+      <Provider history={history} app={app} router={router}>
+        <Link to="/pwa">PWA</Link>
+      </Provider>
+    )
+      .find('a').at(0)
+      .simulate('click')
+
+    expect(history.push).toHaveBeenCalled()
+  })
+
   it('should not call history.push if the link contains mailto:', () => {
     const history = { push: jest.fn() }
 
@@ -177,6 +211,21 @@ describe('Link', () => {
         </Provider>
       ).find('a[target="_blank"]').length
     ).toBe(1)
+  })
+
+  it('should not push onto history if the url is the same as the current window location', () => {
+    history.push('/p/1')
+    history.push = jest.fn()
+
+    mount(
+      <Provider history={history} app={app}>
+        <Link to="/p/1" anchorProps={{ target: '_blank' }}>Red Shirt</Link>
+      </Provider>
+    )
+      .find('a').at(0)
+      .simulate('click')
+
+    expect(history.push).not.toHaveBeenCalled()
   })
 
   afterAll(() => {
