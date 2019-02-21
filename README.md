@@ -59,6 +59,11 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.10.0
+
+* Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.
+* Fixed an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
+
 ### 5.9.0
 
 * Removed proxy-polyfill, which was causing errors when using analytics in IE11. If you plan to support IE11 and use analytics, you must call `analytics.fire('eventName', data)` instead of the proxied methods like `analytics.eventName(data)`.
