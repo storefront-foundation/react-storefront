@@ -9,6 +9,7 @@ import AppModelBase from '../src/model/AppModelBase'
 import PWA from '../src/PWA'
 import simulant from 'simulant'
 import { clearTestCache } from '../src/utils/browser'
+import { Router, proxyUpstream } from '../src/router';
 
 describe('PWA', () => {
   let history, app, userAgent
@@ -123,6 +124,23 @@ describe('PWA', () => {
           <a id="link1" href="http://www.google.com">Google 1</a>
           <a id="link2" href="https://www.google.com">Google 2</a>
           <a id="link3" href="//www.google.com">Google 3</a>
+        </PWA>
+      </Provider>
+    , { attachTo: document.body })
+
+    document.body.querySelectorAll('a').forEach(a => simulant.fire(a, 'click'))
+
+    expect(history.push.mock.calls.length).toEqual(0)
+  })
+
+  it('should not call history.push when a link points to a route with a proxyUpstream handler', () => {
+    const router = new Router()
+      .get('/proxy', proxyUpstream('./proxyHandler'))
+      
+    const wrapper = mount(
+      <Provider history={history} app={app} router={router}>
+        <PWA>
+          <a href="/proxy">proxyUpstream</a>
         </PWA>
       </Provider>
     , { attachTo: document.body })

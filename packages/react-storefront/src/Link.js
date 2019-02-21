@@ -166,7 +166,7 @@ export default class Link extends Component {
 
     const url = relativeURL(to)
 
-    if (!e.isDefaultPrevented() && !server && canUseClientSideNavigation(url)) {
+    if (!e.isDefaultPrevented() && !server && canUseClientSideNavigation(url, this.props.router)) {
       e.preventDefault()
 
       if (this.props.history) {

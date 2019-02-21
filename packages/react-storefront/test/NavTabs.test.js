@@ -9,6 +9,7 @@ import { configureAnalytics } from '../src/analytics'
 import waitForAnalytics from './helpers/waitForAnalytics'
 import Provider from './TestProvider'
 import { createMemoryHistory } from 'history'
+import { Router } from '../src/router'
 
 describe('NavTabs', () => {
 
@@ -65,10 +66,12 @@ describe('NavTabs', () => {
 
   it('fires the topNavClicked event when clicked', () => {
     const topNavClicked = jest.fn()
+    const router = new Router()
+
     configureAnalytics({ topNavClicked })
 
     mount(
-      <Provider app={app}>
+      <Provider app={app} router={router}>
         <NavTabs />
       </Provider>
     )
@@ -94,9 +97,10 @@ describe('NavTabs', () => {
 
   it('pushes the item state onto history when clicked', () => {
     const history = createMemoryHistory()
+    const router = new Router()
 
     mount(
-      <Provider app={app} history={history}>
+      <Provider app={app} history={history} router={router}>
         <NavTabs />
       </Provider>
     )
