@@ -9,6 +9,7 @@ import Breadcrumbs from '../src/Breadcrumbs'
 import AppModelBase from '../src/model/AppModelBase'
 import waitForAnalytics from './helpers/waitForAnalytics'
 import { configureAnalytics } from '../src/analytics'
+import TestProvider from './TestProvider'
 
 describe('Breadcrumbs', () => {
 
@@ -72,9 +73,9 @@ describe('Breadcrumbs', () => {
     })
 
     const wrapper = mount(
-      <Provider app={app}>
+      <TestProvider app={app}>
         <Breadcrumbs/>
-      </Provider>
+      </TestProvider>
     )
 
     wrapper.find('a').at(0).simulate('click')

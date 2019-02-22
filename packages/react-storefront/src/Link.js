@@ -154,7 +154,7 @@ export default class Link extends Component {
   }
 
   onClick = e => {
-    let { server, onClick, to, state } = this.props
+    let { server, onClick, to, state, history } = this.props
     
     if (onClick) {
       onClick(e)
@@ -168,6 +168,12 @@ export default class Link extends Component {
 
     if (!e.isDefaultPrevented() && !server && canUseClientSideNavigation(url, this.props.router)) {
       e.preventDefault()
+
+      if (url === history.location.pathname + history.location.search) {
+        // return immediately if the url isn't changing.  Pushing the existing URL onto state will override the 
+        // current state and going forward then back will yield a broken page.
+        return
+      }
 
       if (this.props.history) {
         this.props.history.push(url, state && state.toJSON ? state.toJSON() : state)

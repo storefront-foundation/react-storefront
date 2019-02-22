@@ -406,8 +406,8 @@ export default class Router extends EventEmitter {
    * @return {Boolean}
    */
   willNavigateToUpstream(url, method='get') {
-    const { pathname } = new URL(url, typeof window !== 'undefined' ? window.location : undefined)
-    return this.willFetchFromUpstream({ path: pathname, method })
+    const { pathname: path, search } = new URL(url, typeof window !== 'undefined' ? window.location : undefined)
+    return this.willFetchFromUpstream({ path, search, method })
   }
 
   /**

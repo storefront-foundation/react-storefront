@@ -12,13 +12,14 @@ import { clearTestCache } from '../src/utils/browser'
 import { Router, proxyUpstream } from '../src/router';
 
 describe('PWA', () => {
-  let history, app, userAgent
+  let history, app, userAgent, location
 
   beforeEach(() => {
     jest.spyOn(global.console, 'error').mockImplementation()
     jest.spyOn(window.navigator, 'userAgent', 'get').mockImplementation(() => userAgent)
-    app = AppModelBase.create({ location: { hostname: 'localhost', pathname: '/', search: '' } })
-    history = { push: jest.fn(), listen: jest.fn() }
+    location = { hostname: 'localhost', pathname: '/', search: '' }
+    app = AppModelBase.create({ location })
+    history = { push: jest.fn(), listen: jest.fn(), location, replace: jest.fn() }
   })
 
   it('should render amp-install-service worker when amp==true', () => {
@@ -232,5 +233,20 @@ describe('PWA', () => {
     expect(app.error).toBe("Error during rendering")
     expect(app.stack).not.toBeNull()
     expect(app.page).toBe('Error')
+  })
+
+  it('should record app state in history.state', (done) => {
+    mount(
+      <Provider history={history} app={app}>
+        <PWA/>
+      </Provider>
+    )
+
+    app.applyState({ title: 'updated' })
+
+    setTimeout(() => {
+      expect(history.replace).toHaveBeenCalledWith(location.pathname + location.search, app.toJSON()) 
+      done()
+    }, 200) // because state recording is debounced so it's async
   })
 })

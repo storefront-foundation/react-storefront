@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types'
 import { inject } from 'mobx-react'
@@ -14,7 +14,10 @@ export const styles = theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    // Without a minimum height, the container will not fire
+    // the visibility change
+    minHeight: 1
   },
   fit: {
     position: 'absolute',
@@ -59,6 +62,11 @@ export default class Image extends Component {
      * The URL for the image
      */
     src: PropTypes.string,
+
+    /**
+     * The URL of the image to use in case the primary image fails to load
+     */
+    notFoundSrc: PropTypes.string,
 
     /**
      * The ratio of height/width as a float.  For example: 1 when the height and width match, 
@@ -106,18 +114,33 @@ export default class Image extends Component {
     super()
 
     this.state = {
-      loaded: !lazy || amp
+      loaded: !lazy || amp,
+      primaryNotFound: false
+    }
+
+    this.ref = createRef()
+  }
+
+  componentDidMount() {
+    const img = this.ref.current
+    
+    if (img && img.complete && img.naturalWidth === 0) {
+      this.handleNotFound()
     }
   }
 
   render() {
-    let { lazy, lazyOffset, height, width, quality, amp, fill, contain, classes, className, aspectRatio, alt, src, ...imgAttributes } = this.props
-    const { loaded } = this.state
+    let { lazy, lazyOffset, notFoundSrc, height, width, quality, amp, fill, contain, classes, className, aspectRatio, alt, src, ...imgAttributes } = this.props
+    const { loaded, primaryNotFound } = this.state
 
     contain = contain || aspectRatio
     
     // Overiding `src` prop if `quality` was set
     src = this.getOptimizedSrc()
+
+    if (primaryNotFound) {
+      src = notFoundSrc
+    }
 
     const assignedAttributes = {
       src,
@@ -143,7 +166,7 @@ export default class Image extends Component {
         { amp ? (
           <amp-img {...assignedAttributes}/>
         ) : (
-          loaded && <img {...assignedAttributes} {...imgAttributes}/>
+          loaded && <img ref={this.ref} {...assignedAttributes} {...imgAttributes} onError={this.handleNotFound} />
         )}
       </div>
     )
@@ -172,6 +195,10 @@ export default class Image extends Component {
     } else {
       return 'intrinsic'
     }
+  }
+  
+  handleNotFound = () => {
+    this.setState({ primaryNotFound: true })
   }
 
   lazyLoad = (visible) => {

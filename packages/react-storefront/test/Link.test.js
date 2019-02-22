@@ -123,7 +123,9 @@ describe('Link', () => {
   })
 
   it('should not call history.push if the link points to a route with a proxyUpstream handler', () => {
-    const history = { push: jest.fn() }
+    const history = createMemoryHistory({ initialEntries: ['/'] })
+    history.push = jest.fn()
+    
     const router = new Router()
       .get('/proxy', proxyUpstream('./proxyHandler'))
 
@@ -139,7 +141,8 @@ describe('Link', () => {
   })
 
   it('should call history.push if the link points to a route without a proxyUpstream handler', () => {
-    const history = { push: jest.fn() }
+    history.push = jest.fn()
+    
     const router = new Router()
       .get('/pwa', fromServer('./fromServer'))
 
@@ -210,6 +213,21 @@ describe('Link', () => {
         </Provider>
       ).find('a[target="_blank"]').length
     ).toBe(1)
+  })
+
+  it('should not push onto history if the url is the same as the current window location', () => {
+    history.push('/p/1')
+    history.push = jest.fn()
+
+    mount(
+      <Provider history={history} app={app}>
+        <Link to="/p/1" anchorProps={{ target: '_blank' }}>Red Shirt</Link>
+      </Provider>
+    )
+      .find('a').at(0)
+      .simulate('click')
+
+    expect(history.push).not.toHaveBeenCalled()
   })
 
   afterAll(() => {

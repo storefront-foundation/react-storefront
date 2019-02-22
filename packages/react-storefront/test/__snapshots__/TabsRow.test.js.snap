@@ -125,7 +125,7 @@ exports[`TabsRow render should render tabs with images 1`] = `
                                       <inject-Image src="https://example.com" alt={[undefined]} classes={{...}}>
                                         <Image src="https://example.com" alt={[undefined]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
                                           <div className="RSFImage-root-33">
-                                            <img src="https://example.com" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} />
+                                            <img src="https://example.com" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onError={[Function]} />
                                           </div>
                                         </Image>
                                       </inject-Image>
@@ -155,7 +155,7 @@ exports[`TabsRow render should render tabs with images 1`] = `
                                       <inject-Image src="https://example.com" alt={[undefined]} classes={{...}}>
                                         <Image src="https://example.com" alt={[undefined]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
                                           <div className="RSFImage-root-33">
-                                            <img src="https://example.com" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} />
+                                            <img src="https://example.com" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onError={[Function]} />
                                           </div>
                                         </Image>
                                       </inject-Image>
