@@ -72,6 +72,7 @@ yarn release
 * Fixes an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
 * Added `notFound` prop to `Image` component which will be used in case the primary image source fails to load
 * Added TTF to webpack file loader
+* Fixed where links were unresponsive until all JavaScript was fully loaded.
 
 ### 6.1.1
 
@@ -104,11 +105,20 @@ yarn release
 * Upgraded to webpack 4
 * Upgraded to material-ui@3.8.1
 
+### 5.10.2
+
+* Fixed where links were unresponsive until all JavaScript was fully loaded.
+* Removed extraneous console.log calls.
+
+### 5.10.1
+
+* Added `notFoundSrc` prop to `ImageSwitcher` and handle missing images before the app mounts.
+
 ### 5.10.0
 
 * Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.
 * Fixed an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
-* Added `notFound` prop to `Image` component which will be used in case the primary image source fails to load
+* Added `notFoundSrc` prop to `Image` component which will be used in case the primary image source fails to load
 
 ### 5.9.0
 

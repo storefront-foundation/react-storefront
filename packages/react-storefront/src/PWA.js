@@ -96,12 +96,7 @@ export default class PWA extends Component {
     
     if (router) {
       router.on('fetch', this.resetPage)
-
-      window.addEventListener('load', () => {
-        // we only start watching after the window.onload event so that
-        // timing metrics are fully collected and be reported correctly to analytics
-        router.watch(history, app.applyState)
-      })
+      router.watch(history, app.applyState)
     }
 
     this.bindAppStateToHistory()
