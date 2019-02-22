@@ -59,6 +59,11 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.10.2
+
+* Fixed where links were unresponsive until all JavaScript was fully loaded.
+* Removed extraneous console.log calls.
+
 ### 5.10.1
 
 * Added `notFoundSrc` prop to `ImageSwitcher` and handle missing images before the app mounts.
