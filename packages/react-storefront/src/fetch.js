@@ -18,7 +18,7 @@ function isFormUrlEncoded(contentType) {
  * @param {Object} options fetch options
  * @param {String} qsOptions Options for serializing the request body using the qs package
  */
-function createRequestOptions(url, fetchOptions = {}, qsOptions) {
+function createRequestOptions(url, fetchOptions, qsOptions) {
   let { body, headers = {}, method, ...options } = fetchOptions
 
   if (body) {
@@ -92,10 +92,12 @@ export function fetchWithCookies(url, options = {}, qsOptions) {
  * 
  * @param {String} url 
  * @param {Object} options Options for fetch
+ * @param {Object} [options.redirect=manual] "manual", "follow", or "error"
+ * @param {Object} [options.maxRedirects=20]
  * @param {String} qsOptions Options for serializing the request body using the qs package
  * @return {Promise}
  */
-export default function fetch(url, options, qsOptions) {
+export default function fetch(url, options={}, qsOptions) {
   return new Promise((resolve, reject) => {
     const protocol = url.match(/^https/) ? global.https : global.http
     const { body, ...requestOptions } = createRequestOptions(url, options, qsOptions)
@@ -114,41 +116,54 @@ export default function fetch(url, options, qsOptions) {
       response.on('end', () => {
         data = Buffer.concat(data)
 
-        const ok = response.statusCode >= 200 && response.statusCode <= 299
-
         if ([301, 302].includes(response.statusCode) && response.headers.location) {
-          const redirectData = {
-            redirect: response.headers.location
+          // redirects
+          const { maxRedirects=20 } = options
+
+          if (options.redirect === 'follow') {
+            if (maxRedirects > 0) {
+              const redirectURL = URL.resolve(url, response.headers.location)
+              return resolve(fetch(redirectURL, { ...options, maxRedirects: maxRedirects - 1 }))
+            } else {
+              return reject(new Error('The maximum number of redirects has been reached while using fetch.'))
+            }
+          } else if (options.redirect === 'error') {
+            return reject(new Error(`fetch received a redirect response status ${response.statusCode} and options.redirect was set to "error".`))
+          } else {
+            const redirectData = { redirect: response.headers.location }
+            
+            return resolve({
+              status: response.statusCode,
+              ok: true,
+              headers: response.headers,
+              text: () => Promise.resolve(JSON.stringify(redirectData)),
+              json: () => Promise.resolve(redirectData),
+            })
           }
+        } else {
+          // all other success and error response codes
+          const ok = response.statusCode >= 200 && response.statusCode <= 299
 
-          return resolve({
+          const result = {
             status: response.statusCode,
-            ok: true,
+            ok,
             headers: response.headers,
-            text: () => Promise.resolve(JSON.stringify(redirectData)),
-            json: () => Promise.resolve(redirectData),
-          })
+            arrayBuffer: () => Promise.resolve(data),
+            text: () => Promise.resolve(extractString(response, data)),
+            json: () => Promise.resolve(JSON.parse(extractString(response, data)))
+          }
+  
+          if (!ok) {
+            const error = new Error(`${response.statusCode}: ${data.toString('utf8')}`)
+            error.response = result
+            reject(error)
+            return
+          }
+  
+          // Recreating simple API similar to Fetch
+          // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+          resolve(result)
         }
-
-        const result = {
-          status: response.statusCode,
-          ok,
-          headers: response.headers,
-          arrayBuffer: () => Promise.resolve(data),
-          text: () => Promise.resolve(extractString(response, data)),
-          json: () => Promise.resolve(JSON.parse(extractString(response, data))),
-        }
-
-        if (!ok) {
-          const error = new Error(`${response.statusCode}: ${data.toString('utf8')}`)
-          error.response = result
-          reject(error)
-          return
-        }
-
-        // Recreating simple API similar to Fetch
-        // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
-        resolve(result)
       })
     })
 

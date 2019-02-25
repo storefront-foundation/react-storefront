@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "test:unit": "jest --runInBand",
-    "test": "jest test.js && yarn test:browser",
+    "test": "jest test.js --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!test/**/* && yarn test:browser",
     "test:browser": "webpack --config=config/webpack.config.js && karma start config/karma.conf.js --single-run",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",

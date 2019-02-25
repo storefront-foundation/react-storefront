@@ -8,7 +8,7 @@ import { Provider } from 'mobx-react'
 import AppModelBase from '../src/model/AppModelBase'
 import createTheme from '../src/createTheme'
 import { MuiThemeProvider } from '@material-ui/core'
-import { Router } from '../src/Router'
+import { Router } from '../src/router'
 
 export default function TestProvider({ app, history, children, ...stores }) {
   if (app == null || !app.applyState) {

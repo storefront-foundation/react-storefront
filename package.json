@@ -71,7 +71,7 @@
     "release:middleware": "cd packages/react-storefront-middleware; yarn publish --non-interactive",
     "docs": "cd packages/react-storefront; yarn docs; cd ../../;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
-    "test": "cd packages/react-storefront; yarn test:unit; cd ../../;",
+    "test": "cd packages/react-storefront; yarn test; cd ../../;",
     "watch": "concurrently \"yarn watch:rsf\" \"yarn watch:rsf-moov-xdn\"",
     "watch:rsf": "pushd packages/react-storefront; yarn watch; popd;",
     "watch:rsf-moov-xdn": "pushd packages/react-storefront-moov-xdn; yarn watch; popd;",
