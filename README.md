@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.2.1
+
+* Added `x-rsf-routes` header to get available route information
+
 ### 6.2.0
 
 * Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.

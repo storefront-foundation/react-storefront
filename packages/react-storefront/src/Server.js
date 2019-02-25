@@ -44,6 +44,10 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
   
+    if (request.headers['x-rsf-routes']) {
+      return response.json(this.router.routes.map(route => route.path.spec))
+    }
+
     try {
       // indicate to the XDN that we want to to add set the x-moov-cache-hit cookie so we can differentiate
       // cache hits and misses when tracking performance
