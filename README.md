@@ -66,9 +66,10 @@ yarn release
 
 ## Changelog
 
-### 6.2.1
+### 6.3.0
 
-* Added `x-rsf-routes` header to get available route information
+* `fetch` now supports the `redirect` option with values `"follow"`, `"error"`, and `"manual"`.
+* Added `x-rsf-routes` header to get available route information.
 
 ### 6.2.0
 
