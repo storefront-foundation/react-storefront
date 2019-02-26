@@ -46,18 +46,24 @@ export default class Request {
  * @return {Object}
  */
 function parseBody(request) {
-  const contentType = (request.headers.get('content-type') || '').toLowerCase()
+  const contentType = (request.headers.get('content-type') || '')
+
+  // MIME types should be matched as case insesitive, but we need to pass the original
+  // content-type value when parsing multi-part form data so that the boundary is
+  // correctly matched.
+  const contentTypeLowerCase = contentType.toLowerCase() 
+  
   const body = global.requestBody
 
-  if (contentType === 'application/json') {
+  if (contentTypeLowerCase === 'application/json') {
     try {
       return JSON.parse(body)
     } catch (e) {
       throw new Error('could not parse request body as application/json: ' + e.message)
     }
-  } else if (contentType === 'application/x-www-form-urlencoded') {
+  } else if (contentTypeLowerCase === 'application/x-www-form-urlencoded') {
     return qs.parse(body)
-  } else if (contentType.startsWith('multipart/form-data')) {
+  } else if (contentTypeLowerCase.startsWith('multipart/form-data')) {
     try {
       return parseMultipartRequest(body, contentType)
     } catch (e) {

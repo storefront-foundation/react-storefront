@@ -4,7 +4,7 @@ exports[`QuantitySelector renders 1`] = `
 <Provider app={[Function: res]}>
   <inject-WithStyles(QuantitySelector)>
     <WithStyles(QuantitySelector) app={[Function: res]} ampStateId={[undefined]}>
-      <QuantitySelector app={[Function: res]} ampStateId={[undefined]} classes={{...}} onChange={[Function]} minValue={1} maxValue={100} value={1} ariaLabel="quantity">
+      <QuantitySelector app={[Function: res]} ampStateId={[undefined]} classes={{...}} name="quantity" onChange={[Function]} minValue={1} maxValue={100} value={1} ariaLabel="quantity">
         <WithStyles(Input) startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={1} classes={{...}} inputProps={{...}} disabled={true}>
           <Input startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={1} inputProps={{...}} disabled={true} classes={{...}}>
             <WithStyles(WithFormControlContext(InputBase)) classes={{...}} startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={1} inputProps={{...}} disabled={true} fullWidth={false} inputComponent="input" multiline={false} type="text">
@@ -44,7 +44,7 @@ exports[`QuantitySelector renders 1`] = `
                         </WithStyles(ButtonBase)>
                       </IconButton>
                     </WithStyles(IconButton)>
-                    <input aria-invalid={[undefined]} autoComplete={[undefined]} autoFocus={[undefined]} className="MuiInputBase-input-30 MuiInput-input-15 RSFQuantitySelector-input-4 MuiInputBase-disabled-23 MuiInput-disabled-10 MuiInputBase-inputAdornedStart-35 MuiInputBase-inputAdornedEnd-36" defaultValue={[undefined]} disabled={true} id={[undefined]} name={[undefined]} onBlur={[Function]} onChange={[Function]} onFocus={[Function]} onKeyDown={[undefined]} onKeyUp={[undefined]} placeholder={[undefined]} readOnly={[undefined]} required={[undefined]} rows={[undefined]} value={1} type="text" aria-label="quantity" amp-bind="value=>undefined.quantity" />
+                    <input aria-invalid={[undefined]} autoComplete={[undefined]} autoFocus={[undefined]} className="MuiInputBase-input-30 MuiInput-input-15 RSFQuantitySelector-input-4 MuiInputBase-disabled-23 MuiInput-disabled-10 MuiInputBase-inputAdornedStart-35 MuiInputBase-inputAdornedEnd-36" defaultValue={[undefined]} disabled={true} id={[undefined]} name="quantity" onBlur={[Function]} onChange={[Function]} onFocus={[Function]} onKeyDown={[undefined]} onKeyUp={[undefined]} placeholder={[undefined]} readOnly={[undefined]} required={[undefined]} rows={[undefined]} value={1} type="text" aria-label="quantity" amp-bind="value=>undefined.quantity" />
                     <WithStyles(IconButton) size="small" classes={{...}} onClick={[Function: onClick]} aria-label="subtract one quantity" on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 1) + 1) } })">
                       <IconButton size="small" onClick={[Function: onClick]} aria-label="subtract one quantity" on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 1) + 1) } })" classes={{...}} color="default" disabled={false}>
                         <WithStyles(ButtonBase) className="MuiIconButton-root-37 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} aria-label="subtract one quantity" on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 1) + 1) } })">
@@ -94,7 +94,7 @@ exports[`QuantitySelector should accept a value 1`] = `
 <Provider app={[Function: res]}>
   <inject-WithStyles(QuantitySelector) value={2}>
     <WithStyles(QuantitySelector) value={2} app={[Function: res]} ampStateId={[undefined]}>
-      <QuantitySelector value={2} app={[Function: res]} ampStateId={[undefined]} classes={{...}} onChange={[Function]} minValue={1} maxValue={100} ariaLabel="quantity">
+      <QuantitySelector value={2} app={[Function: res]} ampStateId={[undefined]} classes={{...}} name="quantity" onChange={[Function]} minValue={1} maxValue={100} ariaLabel="quantity">
         <WithStyles(Input) startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={2} classes={{...}} inputProps={{...}} disabled={true}>
           <Input startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={2} inputProps={{...}} disabled={true} classes={{...}}>
             <WithStyles(WithFormControlContext(InputBase)) classes={{...}} startAdornment={{...}} endAdornment={{...}} onChange={[Function]} value={2} inputProps={{...}} disabled={true} fullWidth={false} inputComponent="input" multiline={false} type="text">
@@ -134,7 +134,7 @@ exports[`QuantitySelector should accept a value 1`] = `
                         </WithStyles(ButtonBase)>
                       </IconButton>
                     </WithStyles(IconButton)>
-                    <input aria-invalid={[undefined]} autoComplete={[undefined]} autoFocus={[undefined]} className="MuiInputBase-input-30 MuiInput-input-15 RSFQuantitySelector-input-4 MuiInputBase-disabled-23 MuiInput-disabled-10 MuiInputBase-inputAdornedStart-35 MuiInputBase-inputAdornedEnd-36" defaultValue={[undefined]} disabled={true} id={[undefined]} name={[undefined]} onBlur={[Function]} onChange={[Function]} onFocus={[Function]} onKeyDown={[undefined]} onKeyUp={[undefined]} placeholder={[undefined]} readOnly={[undefined]} required={[undefined]} rows={[undefined]} value={2} type="text" aria-label="quantity" amp-bind="value=>undefined.quantity" />
+                    <input aria-invalid={[undefined]} autoComplete={[undefined]} autoFocus={[undefined]} className="MuiInputBase-input-30 MuiInput-input-15 RSFQuantitySelector-input-4 MuiInputBase-disabled-23 MuiInput-disabled-10 MuiInputBase-inputAdornedStart-35 MuiInputBase-inputAdornedEnd-36" defaultValue={[undefined]} disabled={true} id={[undefined]} name="quantity" onBlur={[Function]} onChange={[Function]} onFocus={[Function]} onKeyDown={[undefined]} onKeyUp={[undefined]} placeholder={[undefined]} readOnly={[undefined]} required={[undefined]} rows={[undefined]} value={2} type="text" aria-label="quantity" amp-bind="value=>undefined.quantity" />
                     <WithStyles(IconButton) size="small" classes={{...}} onClick={[Function: onClick]} aria-label="subtract one quantity" on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 2) + 1) } })">
                       <IconButton size="small" onClick={[Function: onClick]} aria-label="subtract one quantity" on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 2) + 1) } })" classes={{...}} color="default" disabled={false}>
                         <WithStyles(ButtonBase) className="MuiIconButton-root-37 RSFQuantitySelector-button-3" centerRipple={true} focusRipple={true} disabled={false} size="small" onClick={[Function: onClick]} aria-label="subtract one quantity" on="tap:AMP.setState({ undefined: { quantity: min(100, (undefined.quantity || 2) + 1) } })">

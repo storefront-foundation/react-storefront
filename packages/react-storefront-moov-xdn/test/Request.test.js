@@ -72,6 +72,12 @@ describe('Request', () => {
     expect(new Request().body).toEqual({ foo: 'bar' })
   })
 
+  it('should parse multipart/form data', () => {
+    global.requestBody = body
+    global.env.headers = JSON.stringify({ 'content-type': contentType })
+    expect(new Request().body).toEqual({ foo: 'bar' })
+  })
+
   it('should throw an error when parsing malformed multipart/form-data', () => {
     global.requestBody = 'gsfdghdf'
     global.env.headers = JSON.stringify({ 'content-type': 'multipart/form-data' })

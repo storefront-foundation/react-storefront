@@ -66,7 +66,12 @@ yarn release
 
 ## Changelog
 
-### 6.3.0
+### 6.4.0
+
+* Added `name` prop to `QuantitySelector` to make it easier to submit the value when rendering AMP.
+* Fixed a bug where multipart/form-data requests were not parsed properly.
+
+### 6.2.1
 
 * `fetch` now supports the `redirect` option with values `"follow"`, `"error"`, and `"manual"`.
 * Added `x-rsf-routes` header to get available route information.

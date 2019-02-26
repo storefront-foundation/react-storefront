@@ -53,6 +53,11 @@ export default class QuantitySelector extends Component {
 
   static propTypes = {
     /**
+     * The name to apply to the input when rendering AMP.
+     */
+    name: PropTypes.string,
+
+    /**
      * CSS classes
      */
     classes: PropTypes.object,
@@ -100,6 +105,7 @@ export default class QuantitySelector extends Component {
   }
 
   static defaultProps = {
+    name: 'quantity',
     onChange: Function.prototype,
     minValue: 1,
     maxValue: 100,
@@ -109,6 +115,7 @@ export default class QuantitySelector extends Component {
 
   render() {
     let {
+      name,
       app,
       classes,
       addIcon,
@@ -133,6 +140,7 @@ export default class QuantitySelector extends Component {
     const bindProps = {
       inputProps: {
         "aria-label": ariaLabel,
+        name,
         ...inputProps,
         "amp-bind": `value=>${ampStateId}.quantity`
       },
