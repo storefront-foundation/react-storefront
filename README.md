@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.4.1
+
+* Fixed a bug where an error would be thrown when posting application/json data with ESL enabled or posting an empty body.
+
 ### 6.4.0
 
 * Added `name` prop to `QuantitySelector` to make it easier to submit the value when rendering AMP.

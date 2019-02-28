@@ -83,4 +83,10 @@ describe('Request', () => {
     global.env.headers = JSON.stringify({ 'content-type': 'multipart/form-data' })
     expect(() => new Request().body).toThrowError()
   })
+
+  it('should handle a null body', () => {
+    global.requestBody = undefined
+    global.env.headers = JSON.stringify({ 'content-type': 'application/json' })
+    expect(new Request().body).toBeNull()
+  })
 })

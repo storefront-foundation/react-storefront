@@ -55,7 +55,11 @@ function parseBody(request) {
   
   const body = global.requestBody
 
-  if (contentTypeLowerCase === 'application/json') {
+  if (body == null) {
+    // note: we will get here when attempting to parse the body at edge, because the request body
+    // isn't provided to the edge worker.
+    return null
+  } else if (contentTypeLowerCase === 'application/json') {
     try {
       return JSON.parse(body)
     } catch (e) {
