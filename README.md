@@ -66,8 +66,10 @@ yarn release
 
 ## Changelog
 
-### 6.4.1
+### 6.5.0
 
+* Removed extraneous logging of config on every request.
+* `Menu` now renders children so you can add custom controls.
 * Fixed a bug where an error would be thrown when posting application/json data with ESL enabled or posting an empty body.
 
 ### 6.4.0

@@ -205,11 +205,14 @@ export const styles = (theme) => ({
     top: 0,
     height: '100vh',
     borderTop: 'none'
-  }
+  },
+
+  modal: {}
 })
 
 /**
  * The main app menu that slides in from the left when the AppHeader's menu button is clicked.
+ * Children are rendered above the list of menu items.
  */
 @withTheme()
 @withStyles(styles, { name: 'RSFMenu' })
@@ -311,7 +314,7 @@ export default class Menu extends Component {
   }
 
   render() {
-    const { app, classes, align, rootHeader, rootFooter, drawerWidth, simple, persistent } = this.props
+    const { app, classes, align, rootHeader, rootFooter, drawerWidth, simple, persistent, children } = this.props
     const { amp, menu } = app
     const { levels, level } = menu
     const position = -drawerWidth * level;
@@ -336,10 +339,12 @@ export default class Menu extends Component {
         }}
         classes={{ 
           paper: classnames(classes.drawer, { 
-            [classes.drawerFixed]: persistent 
-          }) 
+            [classes.drawerFixed]: persistent, 
+          }),
+          modal: classes.modal 
         }}
       >
+        { children }
         { simple ? this.renderSimple() : (
           <div className={classes.hbox} style={{ transform: `translateX(${position}px)`, flex: 1 }}>
             {levels.map((list, depth) => (

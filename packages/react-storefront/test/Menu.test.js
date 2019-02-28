@@ -209,4 +209,15 @@ describe('Menu', () => {
       </Provider>
     )).toMatchSnapshot()
   })
+
+  it('should render children', () => {
+    const wrapper = mount(
+      <Provider app={app} history={{}}>
+        <Menu>
+          <div id="child">Test</div>
+        </Menu>
+      </Provider>
+    )
+    expect(wrapper.find('#child')).toHaveLength(1)
+  })
 })
