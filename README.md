@@ -87,7 +87,8 @@ yarn release
 * Added `searchButtonVariant` and `showClearButton` props to `SearchDrawer` to give you greater control over the behavior of the search input.
 * Fixes an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
 * Added `notFound` prop to `Image` component which will be used in case the primary image source fails to load
-* Added TTF to webpack file loader
+* TTF files are not processed by webpack file loader
+* Fix a bug that resulted in an error from mst-middleware about rendering circular JSON when the user opens the main menu.
 * Fixed where links were unresponsive until all JavaScript was fully loaded.
 
 ### 6.1.1
