@@ -88,7 +88,7 @@ yarn release
 * Fixes an issue where the page scrolls to the top when a route with a `proxyUpstream` handler runs on the client.
 * Added `notFoundSrc` prop to `Image` component which will be used in case the primary image source fails to load
 * TTF files are now processed by webpack file loader
-* Fixed where links were unresponsive until all JavaScript was fully loaded.
+* Fixed a bug where links were unresponsive until all JavaScript was fully loaded.
 
 ### 6.1.1
 
