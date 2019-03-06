@@ -71,13 +71,17 @@ const SearchModelBase = types
      */
     groups: types.optional(types.array(ResultsGroupModel), []),
     /**
-     * True to show the loading sprinner
+     * True to show the loading spinner
      */
     loading: false,
     /**
      * True to show the search popup
      */
-    show: false
+    show: false,
+    /**
+     * Minimum search text length for submission
+     */
+    minimumTextLength: 1
   })
   .actions(self => ({
     /**
@@ -93,8 +97,12 @@ const SearchModelBase = types
      */
     setText(text) {
       self.text = text
-      self.loading = self.text.trim().length > 0
-      self.submit(text)
+      if (self.text.trim().length >= self.minimumTextLength) {
+        self.loading = true
+        self.submit(text)
+      } else {
+        self.loading = false
+      }
     },
     /**
      * Set `true` to show the loading spinner, `false` to hide.

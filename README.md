@@ -68,6 +68,7 @@ yarn release
 
 ### 6.6.0
 
+* Added `minimumTextLength` to `SearchModelBase`
 * Added `AmpModal` component based on `<amp-lightbox>`.
 
 ### 6.5.0

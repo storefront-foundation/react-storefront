@@ -18,9 +18,20 @@ describe('SearchModelBase', () => {
     expect(model.text).toBe("foo")
     expect(model.loading).toBe(true)
     model.setText("")
-    expect(model.submit).toHaveBeenCalledWith("")
+    expect(model.submit).not.toHaveBeenCalledWith("")
     expect(model.text).toBe("")
     expect(model.loading).toBe(false)
+  })
+
+  it('should submit only when minimum string length is provided', () => {
+    model = SearchModelBase.create({ minimumTextLength: 3 })
+    model.submit = jest.fn()
+    model.setText("f")
+    expect(model.submit).not.toHaveBeenCalledWith("f")
+    model.setText("fo")
+    expect(model.submit).not.toHaveBeenCalledWith("fo")
+    model.setText("foo")
+    expect(model.submit).toHaveBeenCalledWith("foo")
   })
 
   it('should show and hide when toggle is called', () => {
