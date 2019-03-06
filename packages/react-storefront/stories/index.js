@@ -2,6 +2,7 @@ import React from 'react';
 
 import { storiesOf, setAddon } from '@storybook/react';
 import JSXAddon from 'storybook-addon-jsx';
+import green from '@material-ui/core/colors/green'
 
 import ActionButton from '../src/ActionButton'
 import AddToCartButton from '../src/AddToCartButton'
@@ -78,7 +79,7 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 jss.options.insertionPoint = 'jss-insertion-point'
 
 // TODO: Pass state in if we need different state for other stories
-const wrapWithProvider = extraState => story => {
+const wrapWithProvider = (extraState, themeOverrides) => story => {
   const state = {
     location: LocationModel.create({ pathname: '', search: '' }),
     breadcrumbs: [
@@ -117,7 +118,7 @@ const wrapWithProvider = extraState => story => {
     search: SearchModelBase.create()
   }
 
-  const theme = createTheme();
+  const theme = createTheme(themeOverrides);
   theme.margins = {};
 
   return (
@@ -140,8 +141,12 @@ storiesOf('ActionButton', module)
   .addWithJSX('with caption', () => <ActionButton label="Label" value="caption" />)
 
 storiesOf('AddToCartButton', module)
-  .addDecorator(wrapWithProvider())
-  .addWithJSX('with default props', () => <AddToCartButton confirmation="Added to cart" />)
+  .addDecorator(wrapWithProvider({}, {
+    palette: {
+      secondary: green
+    }
+  }))
+  .addWithJSX('with custom theme', () => <AddToCartButton confirmation="Added to cart" />)
 
 // storiesOf('AppBar', module)
 // 	.addDecorator(wrapWithProvider())

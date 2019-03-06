@@ -4,7 +4,6 @@
  */
 import { createMuiTheme } from '@material-ui/core/styles'
 import merge from 'lodash/merge'
-import green from '@material-ui/core/colors/green'
 
 export default function createTheme(values = {}) {
   let config = {}
@@ -15,11 +14,8 @@ export default function createTheme(values = {}) {
     },
 
     palette: {
-      // The colors for the Add to Cart and Checkout buttons
-      addToCart: {
-        background: green[500],
-        contrastText: 'white'
-      }
+      // primary
+      // secondary
     },
     
     margins: {
