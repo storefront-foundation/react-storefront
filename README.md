@@ -68,6 +68,7 @@ yarn release
 
 ### 6.6.0
 
+* Fixed a bug where `ImageSwitcher`'s `thumbs` class is not applied when rendering AMP.
 * Added customization props to `Rating`
 * Added ability to add plugins to client webpack bundle
 * Added `minimumTextLength` to `SearchModelBase`

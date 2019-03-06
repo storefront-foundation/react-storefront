@@ -231,7 +231,8 @@ export default class ImageSwitcher extends Component {
     images: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, imagePropType])).isRequired,
 
     /**
-     * An array of thumbnails to display below the main image
+     * An array of thumbnails to display below the main image.  You can also
+     * specify `false` to hide the thumbnails entirely.
      */
     thumbnails: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, imagePropType]))]),
 
@@ -403,7 +404,7 @@ export default class ImageSwitcher extends Component {
         images={images}
         thumbnails={thumbnails} 
         className={className} 
-        classes={{ root: classes.root, dot: classes.dot, dots: classes.dots, dotSelected: classes.dotSelected }}
+        classes={{ root: classes.root, dot: classes.dot, dots: classes.dots, dotSelected: classes.dotSelected, thumbnails: classes.thumbs }}
         arrows={arrows}
         indicators={indicators}
         thumbnails={viewerThumbnailsOnly ? null : this.thumbnails}
