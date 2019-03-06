@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AmpModal should render 1`] = `
+<TestProvider>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <Provider amp={true}>
+        <WithStyles(AmpModal) id="my-modal">
+          <AmpModal id="my-modal" classes={{...}} animateIn="fade-in">
+            <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+              <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+              </SideEffect(NullComponent)>
+            </HelmetWrapper>
+            <amp-lightbox layout="nodisplay" id="my-modal" animate-in="fade-in" class="RSFAmpModal-root-1">
+              <div>
+                inner
+              </div>
+            </amp-lightbox>
+          </AmpModal>
+        </WithStyles(AmpModal)>
+      </Provider>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
+`;
+
+exports[`AmpModal should render with custom props 1`] = `
+<TestProvider>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProvider theme={{...}}>
+      <Provider amp={true}>
+        <WithStyles(AmpModal) id="my-modal" animateIn="fly-in-bottom" on="amp-modal-custom-id:AMP.setState({ someStateId: { modalOpened: true }})">
+          <AmpModal id="my-modal" animateIn="fly-in-bottom" on="amp-modal-custom-id:AMP.setState({ someStateId: { modalOpened: true }})" classes={{...}}>
+            <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+              <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+              </SideEffect(NullComponent)>
+            </HelmetWrapper>
+            <amp-lightbox layout="nodisplay" id="my-modal" animate-in="fly-in-bottom" class="RSFAmpModal-root-2" on="amp-modal-custom-id:AMP.setState({ someStateId: { modalOpened: true }})">
+              <div>
+                inner
+              </div>
+            </amp-lightbox>
+          </AmpModal>
+        </WithStyles(AmpModal)>
+      </Provider>
+    </MuiThemeProvider>
+  </Provider>
+</TestProvider>
+`;
