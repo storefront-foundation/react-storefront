@@ -53,12 +53,13 @@ module.exports = {
    * @param {String} root The path to the root of the project
    * @param {Object} options
    * @param {Object} options.entries Additional entries for adapt components
+   * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @param {Object} options.eslintConfig A config object for eslint
    * @return {Object} A webpack config
    */
-  dev(root, { workboxConfig, entries, eslintConfig = require('./eslint-client'), prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
+  dev(root, { workboxConfig, entries, additionalPlugins = [], eslintConfig = require('./eslint-client'), prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
     
@@ -88,6 +89,7 @@ module.exports = {
         new StatsWriterPlugin({
           filename: 'stats.json'
         }),
+        ...additionalPlugins,
         ...createServiceWorkerPlugins({ root, dest, workboxConfig: process.env.MOOV_SW ? workboxConfig : null, prefetchRampUpTime })
       ]
     })
@@ -98,21 +100,21 @@ module.exports = {
    * @param {String} root The path to the root of the project
    * @param {Object} options
    * @param {Object} options.entries Additional entries for adapt components
+   * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @return {Object} A webpack config
    */
-  prod(root, { workboxConfig = {}, entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
+  prod(root, { workboxConfig = {}, additionalPlugins = [], entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
-    const optionalPlugins = []
-
+    
     const alias = {
       'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
     }
 
     if (process.env.ANALYZE === 'true') {
-      optionalPlugins.push(new BundleAnalyzerPlugin({
+      additionalPlugins.push(new BundleAnalyzerPlugin({
         analyzerMode: 'static'
       }))
     }
@@ -141,7 +143,7 @@ module.exports = {
           from: path.join(root, 'public'),
           to: path.join(root, 'build', 'assets')
         }]),
-        ...optionalPlugins,
+        ...additionalPlugins,
         ...createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime })
       ].concat(createPlugins(root))
     });

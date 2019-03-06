@@ -68,6 +68,7 @@ yarn release
 
 ### 6.6.0
 
+* Added ability to add plugins to client webpack bundle
 * Added `minimumTextLength` to `SearchModelBase`
 * Added `AmpModal` component based on `<amp-lightbox>`.
 
