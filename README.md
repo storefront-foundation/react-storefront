@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.6.0
+
+* Added `AmpModal` component based on `<amp-lightbox>`.
+
 ### 6.5.0
 
 * Removed extraneous logging of config on every request.
@@ -120,6 +124,10 @@ yarn release
 * Upgraded to babel 7
 * Upgraded to webpack 4
 * Upgraded to material-ui@3.8.1
+
+### 5.11.0
+
+* Added `AmpModal` component based on `<amp-lightbox>`.
 
 ### 5.10.2
 
