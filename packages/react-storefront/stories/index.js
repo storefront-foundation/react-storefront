@@ -67,6 +67,10 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera'
 import PaginationContainer from './PaginationContainer'
 import Helmet from 'react-helmet'
 
+import Pets from '@material-ui/icons/Pets'
+import ThumbUp from '@material-ui/icons/ThumbUp'
+import ThumbUpOutlined from '@material-ui/icons/ThumbUpOutlined'
+
 setAddon(JSXAddon);
 
 const history = createBrowserHistory();
@@ -399,7 +403,19 @@ storiesOf('QuantitySelector', module)
 
 storiesOf('Rating', module)
   .addDecorator(wrapWithProvider())
-  .addWithJSX('with default props', () => <Rating value={2} />);
+  .addWithJSX('with default props', () => <Rating value={3.5} />)
+  .addWithJSX('with fill empty setting', () => <Rating value={2} fillEmpty />)
+  .addWithJSX('with simple custom images', () => <Rating
+    value={3}
+    iconFull={Pets}    
+    fillEmpty
+  />)
+  .addWithJSX('with complex custom images', () => <Rating
+    value={3.5}
+    iconFull={ThumbUp}    
+    iconHalf={ThumbUp}
+    iconEmpty={ThumbUpOutlined}
+  />);
 
 storiesOf('ResponsiveTiles', module)
   .addWithJSX('with default column sizes', () => <ResponsiveTiles>

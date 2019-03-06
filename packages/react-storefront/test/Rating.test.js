@@ -28,6 +28,11 @@ describe('Rating', () => {
     expect(mount(component)).toMatchSnapshot()
   })
 
+  it('renders with fillEmpty', () => {
+    const component = <Rating value={3} fillEmpty />
+    expect(mount(component)).toMatchSnapshot()
+  })
+
   it('accepts a custom label', () => {
     const component = (
       <Rating 

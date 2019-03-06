@@ -21,9 +21,11 @@ export const styles = theme => ({
       color: theme.palette.rating,
       height: '16px',
       width: '16px',
-      marginLeft: '-2px',
       display: 'block'
     }
+  },
+  filledEmpty: {
+    fill: theme.palette.divider
   },
   blank: {
     '& svg': {
@@ -65,29 +67,57 @@ export default class Rating extends Component {
     /**
      * An instance of ProductModelBase.  You can set this instead of setting value an reviewCount individually.
      */
-    product: PropTypes.object
+    product: PropTypes.object,
+
+    /**
+     * Custom full point icon
+     */
+    iconFull: PropTypes.func,
+
+    /**
+     * Custom half point icon
+     */
+    iconHalf: PropTypes.func,
+
+    /**
+     * Custom empty icon, will override fillEmpty icon
+     */
+    iconEmpty: PropTypes.func,
+
+    /**
+     * Use filled icon with light grey background for empty icon
+     */
+    fillEmpty: PropTypes.bool
   }
 
   static defaultProps = {
-    label: reviewCount => <span> {reviewCount == 1 ? 'review' : 'reviews'}</span>
+    label: reviewCount => <span> {reviewCount == 1 ? 'review' : 'reviews'}</span>,
+    fillEmpty: false
   }
 
   render() {
-    let { classes, value, label, reviewCount, className, product } = this.props
+    let { iconFull, iconHalf, iconEmpty, classes, value,
+      label, reviewCount, className, product, fillEmpty } = this.props
     let stars = []
 
     if (product) {
       reviewCount = product.reviewCount
       value = product.rating
     }
+
+    const IconFull = iconFull || Star
+    const IconHalf = iconHalf || StarHalf
+    const IconEmpty = iconEmpty || StarBorder
   
     for (let i=1; i<=5; i++) {
       if (value == null || value >= i) {
-        stars.push(<Star key={i}/>)
+        stars.push(<IconFull key={i} />)
       } else if (value >= i - 0.5) {
-        stars.push(<StarHalf key={i}/>)
+        stars.push(<IconHalf key={i}/>)
+      } else if (fillEmpty) {
+        stars.push(<IconFull className={classes.filledEmpty} key={i} />)
       } else {
-        stars.push(<StarBorder key={i}/>)
+        stars.push(<IconEmpty key={i} />)
       }
     }
   
