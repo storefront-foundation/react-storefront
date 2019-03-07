@@ -74,6 +74,8 @@ yarn release
 * Added `minimumTextLength` to `SearchModelBase`
 * Added `AmpModal` component based on `<amp-lightbox>`.
 
+* Added `AnalyticsProvider` for loading analytics on mount
+
 ### 6.5.0
 
 * Removed extraneous logging of config on every request.
@@ -128,6 +130,11 @@ yarn release
 * Upgraded to babel 7
 * Upgraded to webpack 4
 * Upgraded to material-ui@3.8.1
+
+### 5.12.0
+
+
+* Added `AnalyticsProvider` for loading analytics on mount
 
 ### 5.11.0
 
