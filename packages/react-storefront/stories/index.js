@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { storiesOf, setAddon } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import JSXAddon from 'storybook-addon-jsx';
 import green from '@material-ui/core/colors/green'
 
@@ -38,6 +39,7 @@ import ShowMore from '../src/ShowMore'
 import { Skeleton, Row, Space, Content, BlankRow } from '../src/Skeleton'
 import { FacebookShareButton, TwitterShareButton, GooglePlusShareButton, PinterestShareButton } from '../src/SocialShareButtons'
 import SortButton from '../src/SortButton'
+import Sort from '../src/Sort'
 import Spacer from '../src/Spacer'
 import TabPanel from '../src/TabPanel'
 import TabsRow from '../src/TabsRow'
@@ -525,8 +527,16 @@ storiesOf('Social Share Buttons', module)
 
 storiesOf('SortButton', module)
   .addDecorator(wrapWithProvider())
-  .addWithJSX('with default props', () => <SortButton model={filterModel} />);
+  .addWithJSX('with default props', () => <SortButton model={filterModel} />)
+  .addWithJSX('with menu variant', () => <SortButton variant="menu" model={filterModel} />);
 
+storiesOf('Sort', module)
+  .addDecorator(wrapWithProvider())
+  .addWithJSX('with default props', () => <Sort
+    model={filterModel}
+    onSelect={e => action('Sort Selected')(e.name)}
+  />)
+  
 storiesOf('Spacer', module)
   .addWithJSX('with default props', () => <Spacer />);
 
