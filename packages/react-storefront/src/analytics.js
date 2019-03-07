@@ -79,6 +79,8 @@ if (typeof Proxy !== 'undefined') {
     get: function (o, method) {
       if (method === 'fire') {
         return fire
+      } else if (method === 'toString') {
+        return () => 'AnalyticsProxy';
       } else {
         return fire.bind(null, method)
       }
