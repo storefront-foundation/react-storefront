@@ -21,6 +21,7 @@ import Link from './Link'
 import classnames from 'classnames'
 import AmpMenu from './amp/AmpMenu'
 import withTheme from '@material-ui/core/styles/withTheme'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 export const MenuItemModel = types
   .model("MenuItemModel", {
@@ -313,6 +314,19 @@ export default class Menu extends Component {
     align: 'left'
   }
 
+  componentDidUpdate() {
+    const el = document.querySelector('.rsf-menu-body-lock')
+    if (this.props.app.menu.open) {
+      disableBodyScroll(el)
+    }else {
+      enableBodyScroll(el)
+    }
+  }
+
+  componentWillUnmount() {
+    clearAllBodyScrollLocks()
+  }
+
   render() {
     const { app, classes, align, rootHeader, rootFooter, drawerWidth, simple, persistent, children } = this.props
     const { amp, menu } = app
@@ -348,7 +362,7 @@ export default class Menu extends Component {
         { simple ? this.renderSimple() : (
           <div className={classes.hbox} style={{ transform: `translateX(${position}px)`, flex: 1 }}>
             {levels.map((list, depth) => (
-              <MenuList style={{ width: `${drawerWidth}px` }} classes={{ root: classes.list, padding: classes.padding }} key={depth}>
+              <MenuList className={level === depth ? 'rsf-menu-body-lock' : ''} style={{ width: `${drawerWidth}px` }} classes={{ root: classes.list, padding: classes.padding }} key={depth}>
                 {list.root && rootHeader}
                 {!list.root && (
                   <MenuItem divider button onClick={this.goBack}>

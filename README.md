@@ -75,6 +75,7 @@ yarn release
 * Added `AmpModal` component based on `<amp-lightbox>`.
 
 * Added `AnalyticsProvider` for loading analytics on mount
+* Fixed `Menu` body scrolling issue in iOS
 
 ### 6.5.0
 
