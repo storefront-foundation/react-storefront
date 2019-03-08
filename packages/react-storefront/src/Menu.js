@@ -318,8 +318,8 @@ export default class Menu extends Component {
     const el = document.querySelector('.rsf-menu-body-lock')
     if (this.props.app.menu.open) {
       disableBodyScroll(el)
-    }else {
-      enableBodyScroll(el)
+    } else {
+      clearAllBodyScrollLocks()
     }
   }
 
