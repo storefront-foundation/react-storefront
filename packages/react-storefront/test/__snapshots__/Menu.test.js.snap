@@ -850,10 +850,10 @@ exports[`Menu should render in complex mode by default 1`] = `
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-128 RSFMenu-drawer-110 MuiDrawer-paperAnchorLeft-129" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-142 MuiPaper-elevation16-160 MuiDrawer-paper-128 RSFMenu-drawer-110 MuiDrawer-paperAnchorLeft-129" style={{...}} direction="right" role="document" tabIndex="-1">
                                             <div className="RSFMenu-hbox-116" style={{...}}>
-                                              <MenuList style={{...}} classes={{...}}>
-                                                <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
-                                                  <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
-                                                    <ul className="MuiList-root-169 RSFMenu-list-111 MuiList-padding-170" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
+                                              <MenuList className="rsf-menu-body-lock" style={{...}} classes={{...}}>
+                                                <WithStyles(List) role="menu" className="rsf-menu-body-lock" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
+                                                  <List role="menu" className="rsf-menu-body-lock" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                                                    <ul className="MuiList-root-169 RSFMenu-list-111 MuiList-padding-170 rsf-menu-body-lock" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
                                                       <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                         <MenuItem button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
                                                           <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-173 RSFMenu-listItem-117 MuiMenuItem-gutters-174" divider={true} onClick={[Function: bound ]} onFocus={[Function]}>
@@ -971,10 +971,10 @@ exports[`Menu should render in complex mode by default 2`] = `
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-232 RSFMenu-drawer-214 MuiDrawer-paperAnchorLeft-233" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-246 MuiPaper-elevation16-264 MuiDrawer-paper-232 RSFMenu-drawer-214 MuiDrawer-paperAnchorLeft-233" style={{...}} direction="right" role="document" tabIndex="-1">
                                             <div className="RSFMenu-hbox-220" style={{...}}>
-                                              <MenuList style={{...}} classes={{...}}>
-                                                <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
-                                                  <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
-                                                    <ul className="MuiList-root-273 RSFMenu-list-215 MuiList-padding-274" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
+                                              <MenuList className="rsf-menu-body-lock" style={{...}} classes={{...}}>
+                                                <WithStyles(List) role="menu" className="rsf-menu-body-lock" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
+                                                  <List role="menu" className="rsf-menu-body-lock" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                                                    <ul className="MuiList-root-273 RSFMenu-list-215 MuiList-padding-274 rsf-menu-body-lock" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
                                                       <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                         <MenuItem button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
                                                           <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-277 RSFMenu-listItem-221 MuiMenuItem-gutters-278" divider={true} onClick={[Function: bound ]} onFocus={[Function]}>
@@ -1341,9 +1341,9 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-579 RSFMenu-drawer-561 MuiDrawer-paperAnchorLeft-580" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-593 MuiPaper-elevation16-611 MuiDrawer-paper-579 RSFMenu-drawer-561 MuiDrawer-paperAnchorLeft-580" style={{...}} direction="right" role="document" tabIndex="-1">
                                             <div className="RSFMenu-hbox-567" style={{...}}>
-                                              <MenuList style={{...}} classes={{...}}>
-                                                <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
-                                                  <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                                              <MenuList className="" style={{...}} classes={{...}}>
+                                                <WithStyles(List) role="menu" className="" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
+                                                  <List role="menu" className="" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                     <ul className="MuiList-root-620 RSFMenu-list-562 MuiList-padding-621" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
                                                       <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                         <MenuItem button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
@@ -1399,10 +1399,10 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                                   </List>
                                                 </WithStyles(List)>
                                               </MenuList>
-                                              <MenuList style={{...}} classes={{...}}>
-                                                <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
-                                                  <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
-                                                    <ul className="MuiList-root-620 RSFMenu-list-562 MuiList-padding-621" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
+                                              <MenuList className="rsf-menu-body-lock" style={{...}} classes={{...}}>
+                                                <WithStyles(List) role="menu" className="rsf-menu-body-lock" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
+                                                  <List role="menu" className="rsf-menu-body-lock" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                                                    <ul className="MuiList-root-620 RSFMenu-list-562 MuiList-padding-621 rsf-menu-body-lock" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
                                                       <WithStyles(MenuItem) divider={true} button={true} onClick={[Function]} tabIndex={-1} onFocus={[Function]}>
                                                         <MenuItem divider={true} button={true} onClick={[Function]} tabIndex={-1} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
                                                           <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-624 MuiMenuItem-gutters-625" divider={true} onClick={[Function]} onFocus={[Function]}>
@@ -1579,10 +1579,10 @@ exports[`Menu should use custom icons 1`] = `
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-336 RSFMenu-drawer-318 MuiDrawer-paperAnchorLeft-337" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-350 MuiPaper-elevation16-368 MuiDrawer-paper-336 RSFMenu-drawer-318 MuiDrawer-paperAnchorLeft-337" style={{...}} direction="right" role="document" tabIndex="-1">
                                             <div className="RSFMenu-hbox-324" style={{...}}>
-                                              <MenuList style={{...}} classes={{...}}>
-                                                <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
-                                                  <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
-                                                    <ul className="MuiList-root-377 RSFMenu-list-319 MuiList-padding-378" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
+                                              <MenuList className="rsf-menu-body-lock" style={{...}} classes={{...}}>
+                                                <WithStyles(List) role="menu" className="rsf-menu-body-lock" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
+                                                  <List role="menu" className="rsf-menu-body-lock" onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                                                    <ul className="MuiList-root-377 RSFMenu-list-319 MuiList-padding-378 rsf-menu-body-lock" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
                                                       <WithStyles(MenuItem) button={true} divider={true} onClick={[Function: bound ]} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                         <MenuItem button={true} divider={true} onClick={[Function: bound ]} tabIndex={-1} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
                                                           <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-381 RSFMenu-listItem-325 MuiMenuItem-gutters-382" divider={true} onClick={[Function: bound ]} onFocus={[Function]}>
