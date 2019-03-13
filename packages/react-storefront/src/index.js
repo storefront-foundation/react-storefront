@@ -7,6 +7,7 @@
 
 export { default as ActionButton } from './ActionButton.js';
 export { default as AddToCartButton } from './AddToCartButton.js';
+export { default as AnalyticsProvider } from './AnalyticsProvider.js';
 export { default as AppBar } from './AppBar.js';
 export { default as BackNav } from './BackNav.js';
 export { default as BottomDrawer } from './BottomDrawer.js';
