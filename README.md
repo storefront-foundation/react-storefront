@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.12.1
+
+* Fixes a layout issue with the `Drawer` component on iOS <= 10
+
 ### 5.12.0
 
 
