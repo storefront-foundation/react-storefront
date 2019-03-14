@@ -96,7 +96,13 @@ export default class PWA extends Component {
     
     if (router) {
       router.on('fetch', this.resetPage)
-      router.watch(history, app.applyState)
+      // Added this event handler back as an experiment to try and fix session issues in GA
+      // Was originally removed here: https://github.com/moovweb/react-storefront/commit/a550a60e392a621663a7447231ef153d521281a5
+      window.addEventListener('load', () => {
+        // we only start watching after the window.onload event so that
+        // timing metrics are fully collected and be reported correctly to analytics
+        router.watch(history, app.applyState)
+      })
     }
 
     this.bindAppStateToHistory()
