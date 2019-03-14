@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.6.2
+
+* Handle `content-type: text/plain` in post bodies.
+
 ### 6.6.1
 
 * Fixed posting from AMP when served from Google cache by adding the correct CORS headers.

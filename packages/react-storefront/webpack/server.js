@@ -10,8 +10,10 @@ module.exports = {
    * @return {Object} A webpack config
    * @param {Object} options
    * @param {Object} options.eslintConfig A config object for eslint
+   * @param {Object} options.additionalRules Additional rules to add the webpack config
+   * @param {Object} options.envVariables Environment variables to inject into the build
    */
-  dev(root, { eslintConfig = require('./eslint-server'), envVariables = {} } = {}) {
+  dev(root, { eslintConfig = require('./eslint-server'), envVariables = {}, rules=[] } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
 
     const alias = {
@@ -29,7 +31,7 @@ module.exports = {
       target,
       resolve,
       module: {
-        rules: createLoaders(root, { envName: 'development-server', assetsPath: '../build/assets/pwa', eslintConfig })
+        rules: createLoaders(root, { envName: 'development-server', assetsPath: '../build/assets/pwa', eslintConfig, additionalRules: rules })
       },
       devtool: 'cheap-module-source-map',
       plugins: [

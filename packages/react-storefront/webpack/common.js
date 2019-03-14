@@ -66,6 +66,10 @@ function createLoaders(sourcePath, { envName, assetsPath='.', eslintConfig } = {
       ]
     },
     {
+      test: /\.css$/,
+      use:['style-loader','css-loader']
+    },
+    {
       test: /\.js$/,
       include: /(src|node_modules\/proxy-polyfill)/,
       use: [

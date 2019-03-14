@@ -73,5 +73,7 @@ function parseBody(request) {
     } catch (e) {
       throw new Error('could not parse request body as multipart/form-data: ' + e.message)
     }
+  } else {
+    return body
   }
 }

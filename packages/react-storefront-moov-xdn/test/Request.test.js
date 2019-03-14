@@ -89,4 +89,10 @@ describe('Request', () => {
     global.env.headers = JSON.stringify({ 'content-type': 'application/json' })
     expect(new Request().body).toBeNull()
   })
+
+  it('should default to a string body', () => {
+    global.requestBody = 'test'
+    global.env.headers = JSON.stringify({ 'content-type': 'text/plain;charset=UTF-8' })
+    expect(new Request().body).toBe('test')
+  })
 })
