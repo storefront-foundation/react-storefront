@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.6.1
+
+* Fixed posting from AMP when served from Google cache by adding the correct CORS headers.
+
 ### 6.6.0
 
 * Fixed a bug where `ImageSwitcher`'s `thumbs` class is not applied when rendering AMP.

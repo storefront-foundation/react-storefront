@@ -33,8 +33,10 @@ export default function responseRewriter({ theme, model, App, router, blob, tran
   } else {
     // render the page
     Config.load(blob)
-    const request = new Request()
-    const response = new Response(request)
+
+    const request = env.rsf_request = new Request()
+    const response = env.rsf_response = new Response(request)
+
     new Server({ theme, model, App, router, transform }).serve(request, response)
   }
 

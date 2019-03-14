@@ -37,6 +37,7 @@ export default function responseHeaderTransform({
     }
 
     addSecureHeaders()
+    addCorsHeaders()
 
     // This gives us a mechanism to set cookies on adapt pages
 
@@ -88,6 +89,25 @@ export default function responseHeaderTransform({
   // Doing so would prevent caching as varnish will not cache a response with a set-cookie header.
   if (headers.header('x-moov-cache')) {
     headers.removeAllHeaders('set-cookie')
+  }
+
+}
+
+/**
+ * Adds the Access-Control-Allow-Origin header needed for making requests from AMP
+ * when the page is delivered from Google's cache.
+ * See https://www.ampproject.org/docs/fundamentals/amp-cors-requests
+ */
+function addCorsHeaders() {
+  const { rsf_request: req } = env
+
+  if (req) {
+    const origin = req.headers.get('origin')
+
+    if (origin && origin.endsWith('cdn.ampproject.org')) {
+      headers.addHeader('Access-Control-Allow-Origin', origin) // allow site to make requests when hosted from google's cache
+      headers.addHeader('Access-Control-Allow-Credentials', 'true') // allow cookies to be sent in cross-origin requests
+    }
   }
 
 }

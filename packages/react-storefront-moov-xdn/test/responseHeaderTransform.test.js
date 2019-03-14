@@ -1,6 +1,7 @@
 import headers, { reset } from './headers'
 import responseHeaderTransform from '..//src/responseHeaderTransform'
 import { FAR_FUTURE } from '../src/cache'
+import Request from '../src/Request'
 
 describe('responseHeaderTransform', () => {
   beforeAll(() => {
@@ -191,6 +192,24 @@ describe('responseHeaderTransform', () => {
       responseHeaderTransform({ cacheProxiedAssets: { serverMaxAge: 60 }})
       expect(headers.header('cache-control')).toBe('s-maxage=60')
     })
+  })
+
+  it('should add CORS headers when the origin header ends with cdn.ampproject.org', () => {
+    env.headers = JSON.stringify({
+      origin: 'moovweb-com.cdn.ampproject.org'
+    })
+    global.env.rsf_request = new Request()
+    responseHeaderTransform()
+    expect(headers.header('Access-Control-Allow-Origin')).toBe('moovweb-com.cdn.ampproject.org')
+    expect(headers.header('Access-Control-Allow-Credentials')).toBe('true')
+  })
+
+  it('should not add CORS headers when the origin header does not end with cdn.ampproject.org', () => {
+    env.headers = JSON.stringify({ origin: 'www.foo.com' })
+    global.env.rsf_request = new Request()
+    responseHeaderTransform()
+    expect(headers.header('Access-Control-Allow-Origin')).toBeUndefined()
+    expect(headers.header('Access-Control-Allow-Credentials')).toBeUndefined()
   })
 
   afterAll(() => {
