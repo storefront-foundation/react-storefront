@@ -66,6 +66,13 @@ yarn release
 
 ## Changelog
 
+### 6.7.0
+
+* Changes to `Filter` and `FilterButton`:
+  * adds `LoadMask` into `Filter`'s `facetGroups` block when model is loading
+  * disables clear all button when model is loading
+  * clear all button semantics fixed: use `<button>` instead `<a>` w/o `href` attribute
+
 ### 6.6.2
 
 * Handle `content-type: text/plain` in post bodies.
@@ -139,6 +146,13 @@ yarn release
 * Upgraded to babel 7
 * Upgraded to webpack 4
 * Upgraded to material-ui@3.8.1
+
+### 5.13.0
+
+* Changes to `Filter` and `FilterButton`:
+  * adds `LoadMask` into `Filter`'s `facetGroups` block when model is loading
+  * disables clear all button when model is loading
+  * clear all button semantics fixed: use `<button>` instead `<a>` w/o `href` attribute
 
 ### 5.12.1
 

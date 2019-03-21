@@ -27,9 +27,13 @@ export const styles = theme => ({
   container: {
     height: '100%',
     boxSizing: 'border-box',
+    flexWrap: 'nowrap',
+    display: 'flex',
+    flexDirection: 'column',
   },
 
   content: {
+    flexBasis: '100%',
     overflow: 'auto',
   },
 
