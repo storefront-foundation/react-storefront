@@ -38,6 +38,7 @@
     "react-svg-loader": "^2.1.0",
     "react-transition-group": "^2.5.0",
     "react-universal-component": "3.0.3",
+    "source-map-loader": "^0.2.4",
     "url-loader": "^1.1.2",
     "webpack": "^4.25.1"
   },

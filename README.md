@@ -68,6 +68,7 @@ yarn release
 
 ### 6.7.0
 
+* Browsers that support source maps will now display original react-storefront source code when debugging.
 * Changes to `Filter` and `FilterButton`:
   * adds `LoadMask` into `Filter`'s `facetGroups` block when model is loading
   * disables clear all button when model is loading
