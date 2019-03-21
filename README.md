@@ -59,6 +59,13 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.13.0
+
+* Changes to `Filter` and `FilterButton`:
+  * adds `LoadMask` into `Filter`'s `facetGroups` block when model is loading
+  * disables clear all button when model is loading
+  * clear all button semantics fixed: use `<button>` instead `<a>` w/o `href` attribute
+
 ### 5.12.1
 
 * Fixes a layout issue with the `Drawer` component on iOS <= 10
