@@ -59,6 +59,10 @@ npm link babel-plugin-react-storefront
 
 ## Changelog
 
+### 5.13.1
+
+* Added Google AMP Client ID
+
 ### 5.13.0
 
 * Changes to `Filter` and `FilterButton`:
