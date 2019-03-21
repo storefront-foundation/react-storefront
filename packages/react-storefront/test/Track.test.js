@@ -139,4 +139,42 @@ describe('Track', () => {
       expect(focus).toHaveBeenCalledWith(expect.any(Object))
     })
   })
+
+  it('should add GTM attributes for AMP', () => {
+    configureAnalytics({
+      testEvent(data) {
+        this.send(data)
+      },
+      send() {
+
+      },
+      apiKey: 'GTM-testme',
+      getAmpAnalyticsType() {
+        return "gtm"
+      },
+      getAmpAnalyticsAttributes() {
+        return {
+          config: `https://www.googletagmanager.com/amp.json?id=${this.apiKey}`,
+          'data-credentials': 'include',
+          test: '<< escaping "html" >>'
+        }
+      }
+    })
+
+    const wrapper = mount(
+      <TestProvider app={{ amp: true }}>
+        <Track event="testEvent" foo="bar">
+          <button>Click Me</button>
+        </Track>
+      </TestProvider>
+    )
+
+    expect(renderAmpAnalyticsTags()).toEqual(
+      '<amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-testme" data-credentials="include" test="&lt;&lt; escaping &quot;html&quot; &gt;&gt;">' +
+        '<script type="application/json">' +
+          "{\"triggers\":[{\"on\":\"click\",\"foo\":\"bar\",\"ampData\":{},\"selector\":\"[data-amp-id=\\\"0\\\"]\",\"request\":\"event\"}]}" +
+        '</script>' +
+      '</amp-analytics>'
+    )
+  })
 })

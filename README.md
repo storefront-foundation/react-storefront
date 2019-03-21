@@ -73,6 +73,8 @@ yarn release
   * adds `LoadMask` into `Filter`'s `facetGroups` block when model is loading
   * disables clear all button when model is loading
   * clear all button semantics fixed: use `<button>` instead `<a>` w/o `href` attribute
+* Added AMP analytics when using AnalyticsProvider
+* Added ability to pass amp-analytics attributes
 
 ### 6.6.2
 

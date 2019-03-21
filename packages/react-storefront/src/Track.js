@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import { inject } from 'mobx-react'
 import PropTypes from 'prop-types'
+import escape from 'lodash/escape'
 import analytics, { getTargets } from './analytics'
 
 let nextId = 0
@@ -208,8 +209,15 @@ export function renderAmpAnalyticsTags() {
   const result = []
 
   for (let type in ampAnalyticsTypes) {
+    const target = getTargets().find(t => t.getAmpAnalyticsType() === type)
+    const attributes = (target && target.getAmpAnalyticsAttributes)
+      ? target.getAmpAnalyticsAttributes()
+      : { type }
+    const attributesHtml = Object.keys(attributes)
+      .map(key => `${key}="${escape(attributes[key])}"`)
+      .join(' ')
     result.push(
-      `<amp-analytics${type === 'gtm' ? '' : ` type="${type}"`}>` +
+      `<amp-analytics ${attributesHtml}>` +
         `<script type="application/json">${JSON.stringify(ampAnalyticsTypes[type])}</script>` +
       `</amp-analytics>`
     )
