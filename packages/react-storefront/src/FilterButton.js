@@ -9,12 +9,19 @@ import Filter from './Filter'
 import PropTypes from 'prop-types'
 import Drawer from './Drawer'
 import withStyles from '@material-ui/core/styles/withStyles'
+import classnames from 'classnames'
+import grey from '@material-ui/core/colors/grey'
 import { Hbox } from './Box'
 
 export const styles = theme => ({
   clear: {
+    ...theme.typography.caption,
+    padding: 0,
     marginLeft: '10px',
-    ...theme.typography.caption
+    textDecoration: 'underline'
+  },
+  clearDisabled: {
+    color: grey[400]
   },
   drawer: {
     height: '75vh'
@@ -84,7 +91,7 @@ export default class FilterButton extends Component {
   render() {
     const { classes, app, model, title, drawerProps, hideClearLink, clearLinkText, ...props } = this.props
     const { open, mountDrawer } = this.state
-    const { clear, drawer, ...buttonClasses } = classes
+    const { clear, clearDisabled, drawer, ...buttonClasses } = classes
     const pwaPath = app.location.pathname.replace(/\.amp/, '')
     const pwaSearch = app.location.search || ''
     const queryChar = pwaSearch ? '&' : '?'
@@ -111,7 +118,15 @@ export default class FilterButton extends Component {
               <Hbox justifyContent="center">
                 <div>{title}</div>
                 { hideClearLink || model.filters.length === 0 ? null : (
-                  <a className={clear} onClick={model.clearAllFilters}>{clearLinkText}</a>
+                  <button 
+                    className={classnames({
+                      [clear]: true,
+                      [clearDisabled]: model.loading
+                    })} 
+                    onClick={() => !model.loading && model.clearAllFilters()}
+                  >
+                    {clearLinkText}
+                  </button>
                 )}
               </Hbox>
             } 

@@ -86,30 +86,30 @@ describe('FilterButton', () => {
     expect(wrapper.find('a').prop('href')).toBe('/?openFilter')
   })
 
-  it('should display a clear link when one or more filters is selected', () => {
+  it('should display a clear button when one or more filters is selected', () => {
     const wrapper = mount(
       <Provider>
         <FilterButton model={createModel(['0-100', 'sunburst'])} />
       </Provider>
     )
-    expect(wrapper.find('a').text()).toBe('clear all')
+    expect(wrapper.find('button[className*="clear"]').text()).toBe('clear all')
   })
 
-  it('should hide the clear link when hideClearLink=true', () => {
+  it('should hide the clear button when hideClearLink=true', () => {
     const wrapper = mount(
       <Provider>
         <FilterButton hideClearLink  model={createModel(['0-100', 'sunburst'])} />
       </Provider>
     )
-    expect(wrapper.find('a').length).toBe(0)
+    expect(wrapper.find('button[className*="clear"]').length).toBe(0)
   })
 
-  it('should allow you to change the text of the clear link', () => {
+  it('should allow you to change the text of the clear button', () => {
     const wrapper = mount(
       <Provider>
         <FilterButton clearLinkText="Clear Filters" model={createModel(['0-100', 'sunburst'])} />
       </Provider>
     )
-    expect(wrapper.find('a').text()).toBe("Clear Filters")
+    expect(wrapper.find('button[className*="clear"]').text()).toBe("Clear Filters")
   })
 })

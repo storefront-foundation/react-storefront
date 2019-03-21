@@ -8,6 +8,7 @@ import get from 'lodash/get'
 import { observer, inject } from 'mobx-react'
 import ExpandableSection from './ExpandableSection'
 import Checkbox from '@material-ui/core/Checkbox'
+import LoadMask from './LoadMask'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Button from '@material-ui/core/Button'
@@ -29,7 +30,8 @@ export const styles = theme => ({
   facetGroups: {
     overflow: 'auto',
     overflowX: 'hidden',
-    flex: '1'
+    flex: '1',
+    position: 'relative'
   },
   matches: {
     marginLeft: '5px',
@@ -123,6 +125,7 @@ export default class Filter extends Component {
       <div className={classes.root}>
         { title ? <div className={classes.title}>{title}</div> : null }
         <div className={classes.facetGroups}>
+          <LoadMask show={model.loading} transparent align="top" />
           { get(model, 'facetGroups', []).map((facetGroup, i) => this.renderFacetGroup(facetGroup, i)) }
         </div>
         { model.filtersChanged && (
