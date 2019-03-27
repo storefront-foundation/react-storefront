@@ -1,6 +1,7 @@
 const path = require('path')
 const { createServerConfig, createLoaders, optimization } = require('./common')
 const merge = require('lodash/merge')
+const MoovSlugOptimizationPlugin = require('./MoovSlugOptimzationPlugin')
 
 module.exports = {
 
@@ -44,7 +45,8 @@ module.exports = {
           'process.env.MOOV_RUNTIME': JSON.stringify('server'),
           'process.env.MOOV_ENV': JSON.stringify('development'),
           ...envVariables
-        })
+        }),
+        new MoovSlugOptimizationPlugin()
       ]
     })
   },
