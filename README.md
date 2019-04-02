@@ -100,7 +100,7 @@ yarn release
 * `Menu` now renders children so you can add custom controls.
 * Fixed a bug where an error would be thrown when posting application/json data with ESL enabled or posting an empty body.
 
-### 6.4.0
+### 6.4.0 
 
 * Added `name` prop to `QuantitySelector` to make it easier to submit the value when rendering AMP.
 * Fixed a bug where multipart/form-data requests were not parsed properly.
