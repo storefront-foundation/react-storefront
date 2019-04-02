@@ -91,7 +91,6 @@ yarn release
 * Added ability to add plugins to client webpack bundle
 * Added `minimumTextLength` to `SearchModelBase`
 * Added `AmpModal` component based on `<amp-lightbox>`.
-
 * Added `AnalyticsProvider` for loading analytics on mount
 * Fixes a layout issue with the `Drawer` component on iOS <= 10
 
@@ -162,7 +161,6 @@ yarn release
 * Fixes a layout issue with the `Drawer` component on iOS <= 10
 
 ### 5.12.0
-
 
 * Added `AnalyticsProvider` for loading analytics on mount
 
