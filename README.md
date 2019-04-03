@@ -68,6 +68,7 @@ yarn release
 
 ### 6.8.0
 
+* Removes unnecessary dependency on js-cookie.
 * Added bottom border for selected thumbnail in AMP image carousel
 * Added `className` to `MenuItemModel`.  This allows you to add CSS class names to individual items in the Menu.
 
