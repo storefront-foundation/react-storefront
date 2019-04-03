@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.8.1
+
+* Restored `AnalyticsProvider` accidentally removed in 6.8.0
+
 ### 6.8.0
 
 * Removes unnecessary dependency on js-cookie.
