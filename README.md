@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.8.0
+
+* Added `className` to `MenuItemModel`.  This allows you to add CSS class names to individual items in the Menu.
+
 ### 6.7.0
 
 * Browsers that support source maps will now display original react-storefront source code when debugging.

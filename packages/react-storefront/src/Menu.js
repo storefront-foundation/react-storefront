@@ -27,6 +27,7 @@ export const MenuItemModel = types
     text: types.optional(types.string, ''),
     url: types.maybeNull(types.string),
     state: types.frozen(),
+    className: types.maybeNull(types.string),
     image: types.maybeNull(types.string),
     items: types.maybeNull(types.array(types.late(() => MenuItemModel))),
     root: types.optional(types.boolean, false),
@@ -213,6 +214,10 @@ export const styles = (theme) => ({
 /**
  * The main app menu that slides in from the left when the AppHeader's menu button is clicked.
  * Children are rendered above the list of menu items.
+ * 
+ * In addition to the CSS classes that can be overridden of menu subcomponents, you can also
+ * assign specific classes to individual menu items by specifying a value for the `className`
+ * field on any instance of `MenuItemModel`.
  */
 @withTheme()
 @withStyles(styles, { name: 'RSFMenu' })
@@ -314,7 +319,7 @@ export default class Menu extends Component {
   }
 
   render() {
-    const { app, classes, align, rootHeader, rootFooter, drawerWidth, simple, persistent, children } = this.props
+    const { app, classes, className, align, rootHeader, rootFooter, drawerWidth, simple, persistent, children } = this.props
     const { amp, menu } = app
     const { levels, level } = menu
     const position = -drawerWidth * level;
@@ -338,6 +343,7 @@ export default class Menu extends Component {
           style: { width: `${drawerWidth}px` }
         }}
         classes={{ 
+          root: className,
           paper: classnames(classes.drawer, { 
             [classes.drawerFixed]: persistent, 
           }),
@@ -448,7 +454,7 @@ export default class Menu extends Component {
         divider
         onClick={showExpander ? this.toggleItemExpaned.bind(this, item) : this.slideToItem.bind(this, item, menu)}
         classes={{
-          root: classnames(classes.listItem, {
+          root: classnames(classes.listItem, item.className, {
             [classes.expanded]: item.expanded,
             [classes.expander]: showExpander
           })
@@ -481,7 +487,7 @@ export default class Menu extends Component {
           divider
           selected={location.pathname === item.url.replace(/\?.*/, '')}
           classes={{
-            root: classnames(classes.listItem, classes.leaf)
+            root: classnames(classes.listItem, classes.leaf, item.className)
           }}
         >
           { this.renderItemContents(item, true) }

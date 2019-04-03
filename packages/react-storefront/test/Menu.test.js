@@ -220,4 +220,57 @@ describe('Menu', () => {
     )
     expect(wrapper.find('#child')).toHaveLength(1)
   })
+
+  describe('MenuItem.className', () => {
+    let app
+
+    beforeEach(() => {
+      app = AppModelBase.create({
+        location: {
+          pathname: '/',
+          search: '',
+          hostname: 'localhost'
+        },
+        menu: {
+          levels: [{
+            root: true,
+            items: [{
+              text: "Group 1",
+              className: 'group-1',
+              items: [
+                { text: 'Item 1', url: '/item1', className: 'item-1', items: [
+                  { text: 'Child 1', url: '/item1/child1', className: 'child-1' }
+                ]}
+              ]
+            }]
+          }]
+        }
+      })
+    })
+
+    it('should render item.className in regular mode', () => {
+      const wrapper = mount(
+        <Provider app={app} history={{}}>
+          <Menu useExpanders/>
+        </Provider>
+      )
+      expect(wrapper.exists('.group-1')).toBe(true)
+      wrapper.find('ul').at(0).find('li').at(0).simulate('click')
+      wrapper.update()
+      expect(wrapper.exists('.child-1')).toBe(true)
+      expect(wrapper.exists('.item-1')).toBe(true)
+    })
+
+    it('should render item.className in simple mode', () => {
+      const wrapper = mount(
+        <Provider app={app} history={{}}>
+          <Menu simple/>
+        </Provider>
+      )
+      expect(wrapper.exists('.group-1')).toBe(true)
+      expect(wrapper.exists('.child-1')).toBe(true)
+      expect(wrapper.exists('.item-1')).toBe(true)
+    })
+  })
+
 })

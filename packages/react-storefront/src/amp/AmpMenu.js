@@ -70,6 +70,10 @@ export const styles = theme => ({
 
 /**
  * An AMP-compatible menu based on amp-sidebar.
+ * 
+ * In addition to the CSS classes that can be overridden of menu subcomponents, you can also
+ * assign specific classes to individual menu items by specifying a value for the `className`
+ * field on any instance of `MenuItemModel`.
  */
 @withTheme()
 @withStyles(styles, { name: 'RSFAmpMenu' })
@@ -81,7 +85,7 @@ export default class AmpMenu extends Component {
   }
 
   render() {
-    const { id, menu, classes, drawerWidth, rootHeader, rootFooter, align } = this.props
+    const { id, menu, classes, className, drawerWidth, rootHeader, rootFooter, align } = this.props
     const root = menu.levels.length ? menu.levels[0] : null
 
     return (
@@ -95,7 +99,7 @@ export default class AmpMenu extends Component {
             }
           `}</style>
         </Helmet>
-        <amp-sidebar key="sidebar" id={id} class={classes.root} layout="nodisplay" side={align}>
+        <amp-sidebar key="sidebar" id={id} class={classnames(className, classes.root)} layout="nodisplay" side={align}>
           { rootHeader }
           { this.renderItem(root) }
           { rootFooter }
@@ -126,7 +130,7 @@ export default class AmpMenu extends Component {
           <Typography
             variant="body1"
             component="h3"
-            className={classnames(classes.item, classes.group)}
+            className={classnames(classes.item, classes.group, item.className)}
           >
             {item.text}
             <CollapseIcon className={classnames(classes.toggle, classes.collapse)}/>
@@ -150,7 +154,7 @@ export default class AmpMenu extends Component {
     return (
       <Link
         key={key}
-        className={this.props.classes.item}
+        className={classnames(this.props.classes.item, item.className)}
         to={item.url}
       >{item.text}</Link>
     )
