@@ -68,6 +68,7 @@ function createLoaders(sourcePath, { envName, assetsPath='.', eslintConfig } = {
     {
       test: /\.js$/,
       enforce: 'pre',
+      include: /(src|node_modules\/react-storefront)/,
       use: [
         {
           loader: 'source-map-loader'
