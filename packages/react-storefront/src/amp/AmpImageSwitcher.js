@@ -49,7 +49,7 @@ export const styles = theme => ({
   },
 
   thumbnail: {
-    height: '50px',
+    height: '70px',
     width: '50px',
     position: 'relative',
     margin: '0 2px',
@@ -64,6 +64,14 @@ export const styles = theme => ({
 
   thumbnailSelected: {
     opacity: 1
+  },
+
+  thumbnailSelectedLine: {
+    borderBottom: `3px solid ${theme.palette.secondary.main}`,
+    width: '50px',
+    margin: '0px 2px',
+    position: 'relative',
+    bottom: '4px'
   },
 
   dot: { },
@@ -184,6 +192,7 @@ export default class AmpImageSwitcher extends Component {
                       { [classes.thumbnailSelected]: i === 0 }
                     )}
                   />
+                  {i === 0 && <div className={classes.thumbnailSelectedLine} />}
                 </button>
               ))}
             </div>
