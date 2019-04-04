@@ -164,7 +164,7 @@ export default class Server {
       `
 
       if (typeof this.transform === 'function') {
-        html = this.transform(html, { model, sheetsRegistry, helmet })
+        html = await this.transform(html, { model, sheetsRegistry, helmet })
       }
 
       response.send(html)

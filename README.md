@@ -66,6 +66,12 @@ yarn release
 
 ## Changelog
 
+### 6.9.0
+
+* Added support for `acceptInvalidCerts` option to `fetch`
+* The `tranform` passed into `react-storefront-moov-xdn/index` can now be asynchronous.  The allows `react-storefront-extensions/transformAmpHtml` to fetch heights and widths for images when rendering AMP.
+* Added `utils/batchPromises` for running batches of concurrent promises.
+
 ### 6.8.1
 
 * Restored `AnalyticsProvider` accidentally removed in 6.8.0

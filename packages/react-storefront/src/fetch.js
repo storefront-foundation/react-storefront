@@ -46,9 +46,7 @@ function createRequestOptions(url, fetchOptions, qsOptions) {
     hostname,
     port,
     path,
-    headers,
-    rejectUnauthorized: false,
-    requestCert: true
+    headers
   }
 }
 
@@ -90,10 +88,16 @@ export function fetchWithCookies(url, options = {}, qsOptions) {
  *  const buffer = await fetch('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')
  *    .then(res => res.arrayBuffer())
  * 
+ * In addition to the standard fetch options, you can also specify:
+ * 
+ *  `maxRedirects` - number - The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
+ *  `acceptInvalidCerts` - boolean - Set to true to allow connections to sites with invalid SSL cers.
+ * 
  * @param {String} url 
  * @param {Object} options Options for fetch
  * @param {Object} [options.redirect=manual] "manual", "follow", or "error"
- * @param {Object} [options.maxRedirects=20]
+ * @param {Object} [options.maxRedirects=20] The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
+ * @param {Object} [options.acceptInvalidCerts=20] Set to true to allow connections to sites with invalid SSL cers.
  * @param {String} qsOptions Options for serializing the request body using the qs package
  * @return {Promise}
  */
@@ -146,6 +150,7 @@ export default function fetch(url, options={}, qsOptions) {
 
           const result = {
             status: response.statusCode,
+            statusText: response.statusText,
             ok,
             headers: response.headers,
             arrayBuffer: () => Promise.resolve(data),
@@ -202,24 +207,4 @@ function relaySetCookies(request, domain) {
     cookies[domain] = (cookies[domain] || []).concat(cookie)
     fns.export('MUR_SET_COOKIES', cookies)
   }
-}
-
-/**
- * Returns headers that will allow fetch to ignore servers that don't have a valid certificate.
- * This can be used to connect to servers that use a self signed certificate but should 
- * not be used in production.
- * 
- * Example usage:
- * 
- *  fetch('https://example.com', {
- *    headers: {
- *      ...acceptInvalidCerts(),
- *      // other headers here
- *    }
- *  })
- * 
- * @return {Object} An object to spread onto fetch headers
- */
-export function acceptInvalidCerts() {
-  return { agent: new https.Agent({rejectUnauthorized: false}) }
 }
