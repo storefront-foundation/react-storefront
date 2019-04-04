@@ -1,4 +1,8 @@
 /**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
+/**
  * @param {*} batchSize The number of promises to run concurrently
  * @param {*} thenArr 
  * @param {*} fn 
