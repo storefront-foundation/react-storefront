@@ -66,6 +66,10 @@ yarn release
 
 ## Changelog
 
+### 6.8.2
+
+* Each card in the main menu now scrolls independently.
+
 ### 6.8.1
 
 * Restored `AnalyticsProvider` accidentally removed in 6.8.0

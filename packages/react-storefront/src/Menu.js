@@ -134,6 +134,7 @@ export const styles = (theme) => ({
     flex: 'none', 
     overflowY: 'auto',
     overflowX: 'hidden',
+    maxHeight: '100%',
     padding: 0
   },
 
