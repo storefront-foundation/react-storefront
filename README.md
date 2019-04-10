@@ -68,6 +68,7 @@ yarn release
 
 ### 6.8.2
 
+* Fixes an issue where images sometimes do not show up in `AmpImageSwitcher` due to a bug in `amp-carousel` when rendering in a div with `display: flex`. https://github.com/ampproject/amphtml/issues/14519
 * Fixes styling differences when rendering `ExpandableSection` in AMP.
 * Each card in the main menu now scrolls independently.
 

@@ -13,9 +13,6 @@ export const styles = theme => ({
   root: {
     height: '300px',
     width: '450px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'stretch',
     position: 'relative',
     '& > *': {
       paddingBottom: 'none'
@@ -28,8 +25,16 @@ export const styles = theme => ({
     }
   },
 
+  // This fixes the issue where images do not show up sometimes when amp-carousel is placed in
+  // a div with display: flex.  See https://github.com/ampproject/amphtml/issues/14519
+  rootImportant: {
+    '&$root': {
+      display: 'block',
+    }
+  },
+
   carouselWrap: {
-    flex: 1,
+    height: 'calc(100% - 65px)',
     position: 'relative'
   },
   
@@ -133,7 +138,7 @@ export default class AmpImageSwitcher extends Component {
     const { id } = this
 
     return (
-      <div className={classnames(className, classes.root)}>
+      <div className={classnames(className, classes.root, classes.rootImportant)}>
         <Helmet>
           <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"/>
           <script async custom-element="amp-lightbox-gallery" src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"/>
