@@ -131,18 +131,18 @@ exports[`ExpandableSection should render AmpExpandableSection when amp == true 1
                                 </WithStyles(SvgIcon)>
                               </ExpandMoreIcon>
                             </pure(ExpandMoreIcon)>
-                            <pure(ExpandMoreIcon) className="RSFAmpExpandableSection-toggle-129 RSFAmpExpandableSection-collapse-131">
-                              <ExpandMoreIcon className="RSFAmpExpandableSection-toggle-129 RSFAmpExpandableSection-collapse-131">
+                            <pure(ExpandLessIcon) className="RSFAmpExpandableSection-toggle-129 RSFAmpExpandableSection-collapse-131">
+                              <ExpandLessIcon className="RSFAmpExpandableSection-toggle-129 RSFAmpExpandableSection-collapse-131">
                                 <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-129 RSFAmpExpandableSection-collapse-131">
                                   <SvgIcon className="RSFAmpExpandableSection-toggle-129 RSFAmpExpandableSection-collapse-131" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
                                     <svg className="MuiSvgIcon-root-168 RSFAmpExpandableSection-toggle-129 RSFAmpExpandableSection-collapse-131" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                      <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                      <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
                                       <path fill="none" d="M0 0h24v24H0z" />
                                     </svg>
                                   </SvgIcon>
                                 </WithStyles(SvgIcon)>
-                              </ExpandMoreIcon>
-                            </pure(ExpandMoreIcon)>
+                              </ExpandLessIcon>
+                            </pure(ExpandLessIcon)>
                           </h3>
                         </Typography>
                       </WithStyles(Typography)>
@@ -195,18 +195,18 @@ exports[`ExpandableSection should render expanded when expanded=true 1`] = `
                                 </WithStyles(SvgIcon)>
                               </ExpandMoreIcon>
                             </pure(ExpandMoreIcon)>
-                            <pure(ExpandMoreIcon) className="RSFAmpExpandableSection-toggle-192 RSFAmpExpandableSection-collapse-194">
-                              <ExpandMoreIcon className="RSFAmpExpandableSection-toggle-192 RSFAmpExpandableSection-collapse-194">
+                            <pure(ExpandLessIcon) className="RSFAmpExpandableSection-toggle-192 RSFAmpExpandableSection-collapse-194">
+                              <ExpandLessIcon className="RSFAmpExpandableSection-toggle-192 RSFAmpExpandableSection-collapse-194">
                                 <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-192 RSFAmpExpandableSection-collapse-194">
                                   <SvgIcon className="RSFAmpExpandableSection-toggle-192 RSFAmpExpandableSection-collapse-194" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
                                     <svg className="MuiSvgIcon-root-231 RSFAmpExpandableSection-toggle-192 RSFAmpExpandableSection-collapse-194" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                      <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                      <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
                                       <path fill="none" d="M0 0h24v24H0z" />
                                     </svg>
                                   </SvgIcon>
                                 </WithStyles(SvgIcon)>
-                              </ExpandMoreIcon>
-                            </pure(ExpandMoreIcon)>
+                              </ExpandLessIcon>
+                            </pure(ExpandLessIcon)>
                           </h3>
                         </Typography>
                       </WithStyles(Typography)>

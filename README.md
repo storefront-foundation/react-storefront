@@ -68,6 +68,7 @@ yarn release
 
 ### 6.8.2
 
+* Fixes styling differences when rendering `ExpandableSection` in AMP.
 * Each card in the main menu now scrolls independently.
 
 ### 6.8.1

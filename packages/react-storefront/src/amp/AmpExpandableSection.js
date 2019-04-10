@@ -13,11 +13,11 @@ import classnames from 'classnames'
 
 export const styles = theme => ({
   accordion: {
-    outline: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${theme.palette.divider}` 
   },
   title: {
-    backgroundColor: theme.palette.background.paper,
-    padding: '12px 16px',
+    backgroundColor: 'transparent',
+    padding: '12px 15px',
     borderStyle: 'none',
     outlineWidth: 0
   },
@@ -41,8 +41,8 @@ export const styles = theme => ({
     }
   },
   body: {
-    backgroundColor: theme.palette.background.paper,
-    padding: `${theme.margins.container}px`
+    backgroundColor: 'transparent',
+    padding: `0 ${theme.margins.container}px`
   }
 })
 
@@ -81,7 +81,12 @@ export default class AmpExpandableSection extends Component {
   }
   
   render() {
-    const { classes, expanded, children = [], title, ExpandIcon, CollapseIcon } = this.props
+    let { classes, expanded, children = [], title, ExpandIcon, CollapseIcon } = this.props
+
+    if (ExpandIcon === ExpandMore) {
+      CollapseIcon = ExpandLess
+    }
+
     const sectionAttributes = {}
 
     if (expanded) sectionAttributes.expanded = ""
