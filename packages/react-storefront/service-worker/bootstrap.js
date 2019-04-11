@@ -321,6 +321,19 @@ const matchRuntimePath = context => {
   ) /* Safari has a known issue with service workers and videos: https://adactio.com/journal/14452 */
 }
 
+function offlineResponse() {
+  const offlineData = { page: 'Offline' }
+  const blob = new Blob([JSON.stringify(offlineData, null, 2)], {
+    type: 'application/json',
+  })
+  return new Response(blob, {
+    status: 200,
+    headers: {
+      'Content-Length': blob.size,
+    },
+  })
+}
+
 workbox.routing.registerRoute(matchRuntimePath, async context => {
   try {
     const { url, event } = context
@@ -334,17 +347,21 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
 
     if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
-      return workbox.strategies.networkOnly().handle(context)
+      return workbox.strategies
+        .networkFirst(cacheOptions)
+        .handle(context)
+        .catch(() => offlineResponse())
     } else if (event.request.cache === 'force-cache' /* set by cache and sent by fromServer */) {
       return workbox.strategies.cacheFirst(cacheOptions).handle(context)
     } else {
       // Check the cache for all routes. If the result is not found, get it from the network.
-      return workbox.strategies
-        .cacheOnly(cacheOptions)
-        .handle(context)
-        .then(result => {
-          return result || workbox.strategies.networkOnly().handle(context)
-        })
+      return (
+        workbox.strategies
+          // TODO: Should we use networkFirst here?
+          .cacheFirst(cacheOptions)
+          .handle(context)
+          .catch(() => offlineResponse())
+      )
     }
   } catch (e) {
     // if anything goes wrong, fallback to network

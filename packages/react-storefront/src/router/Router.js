@@ -432,6 +432,17 @@ export default class Router extends EventEmitter {
   }
 
   /**
+   * Runs all client and server handlers for the specified location and returns state
+   */
+  fetchFreshState = location => {
+    const { pathname, search } = location
+    const request = { path: pathname, search, query: qs.parse(search), method: 'GET' }
+    const response = new ClientContext()
+    const options = { initialLoad: false }
+    return this.runAll(request, response, options, location.state)
+  }
+
+  /**
    * Called when the location is changed on the client
    * @param {Function} callback A callback to pass the new state to
    * @param {Object} location The new location

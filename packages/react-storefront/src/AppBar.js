@@ -13,22 +13,28 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import ToolbarButton from './ToolbarButton'
 import MenuIcon from './MenuIcon'
 
-export const styles = (theme) => ({
+export const styles = theme => ({
   root: {
     boxSizing: 'content-box',
     position: 'relative',
-    zIndex: theme.zIndex.modal + 10
+    zIndex: theme.zIndex.modal + 10,
   },
 
   withAmp: {
-    zIndex: theme.zIndex.amp.modal + 1
+    zIndex: theme.zIndex.amp.modal + 1,
+  },
+
+  offline: {
+    textAlign: 'center',
+    backgroundColor: '#f34c4c',
+    color: 'white',
   },
 
   toolBar: {
     height: theme.headerHeight || '64px',
     padding: `0 7px`,
     maxWidth: theme.maxWidth,
-    flex: 1
+    flex: 1,
   },
 
   wrap: {
@@ -61,33 +67,32 @@ export const styles = (theme) => ({
     boxShadow: theme.shadows[2],
     top: 0,
     left: 0,
-    right: 0
+    right: 0,
   },
 
   menuOpen: {
-    boxShadow: 'none'
+    boxShadow: 'none',
   },
 
   link: {
-    textDecoration: 'none'
-  }
-});
+    textDecoration: 'none',
+  },
+})
 
 /**
- * A header that auto hides when the user scrolls down and auto shows when the user 
+ * A header that auto hides when the user scrolls down and auto shows when the user
  * scrolls up. A hamburger button that controls the menu is automatically displayed on
  * the left side of the header.  Children are placed directly to the right of the menu
  * button.
  */
-@inject(({ app }) => ({ menu: app.menu, amp: app.amp }))
-@withStyles(styles, { name: 'RSFAppBar'})
+@inject(({ app }) => ({ menu: app.menu, amp: app.amp, offline: app.offline }))
+@withStyles(styles, { name: 'RSFAppBar' })
 @observer
 export default class Header extends Component {
-
   state = {
     stuck: false,
     hidden: false,
-    animate: false
+    animate: false,
   }
 
   static propTypes = {
@@ -109,27 +114,37 @@ export default class Header extends Component {
     /**
      * Sets the alignment of the menu icon. "right" or "left".
      */
-    menuAlign: PropTypes.oneOf(['left', 'right'])
+    menuAlign: PropTypes.oneOf(['left', 'right']),
   }
 
   static defaultProps = {
     MenuIcon,
     menuIconProps: {},
-    menuAlign: 'left'
+    menuAlign: 'left',
   }
 
   render() {
-    const { MenuIcon, classes, children, fixed, menu, amp, menuAlign, menuIconProps } = this.props
+    const {
+      MenuIcon,
+      classes,
+      children,
+      fixed,
+      menu,
+      amp,
+      menuAlign,
+      menuIconProps,
+      offline,
+    } = this.props
     const items = React.Children.toArray(children)
 
     const menuButton = (
       <Hidden mdUp implementation="css" key="menuButton">
         <a on="tap:moov_menu.toggle" className={classes.link}>
-          <ToolbarButton 
-            aria-label="Menu" 
-            color="inherit" 
+          <ToolbarButton
+            aria-label="Menu"
+            color="inherit"
             onClick={this.onMenuButtonClick}
-            icon={<MenuIcon open={menu.open} {...menuIconProps}/>}
+            icon={<MenuIcon open={menu.open} {...menuIconProps} />}
           />
         </a>
       </Hidden>
@@ -142,19 +157,26 @@ export default class Header extends Component {
     }
 
     return (
-      <div className={classnames({ [classes.root]: true, [classes.withAmp]: amp })}> 
-        <div className={classnames({
-          [classes.wrap]: true,
-          [classes.fixed]: fixed,
-          [classes.hidden]: this.state.hidden || menu.open,
-          [classes.stuck]: (this.state.hidden && this.state.stuck) || menu.open ,
-          [classes.unstuck]: this.state.hidden && !this.state.stuck,
-          [classes.animate]: this.state.animate,
-          [classes.menuOpen]: menu.open
-        })}>
-          <Toolbar disableGutters classes={{ root: classes.toolBar }}>
-            { items }
-          </Toolbar>
+      <div>
+        {offline && (
+          <div className={classes.offline}>Your device lost its internet connection.</div>
+        )}
+        <div className={classnames({ [classes.root]: true, [classes.withAmp]: amp })}>
+          <div
+            className={classnames({
+              [classes.wrap]: true,
+              [classes.fixed]: fixed,
+              [classes.hidden]: this.state.hidden || menu.open,
+              [classes.stuck]: (this.state.hidden && this.state.stuck) || menu.open,
+              [classes.unstuck]: this.state.hidden && !this.state.stuck,
+              [classes.animate]: this.state.animate,
+              [classes.menuOpen]: menu.open,
+            })}
+          >
+            <Toolbar disableGutters classes={{ root: classes.toolBar }}>
+              {items}
+            </Toolbar>
+          </div>
         </div>
       </div>
     )
@@ -179,7 +201,9 @@ export default class Header extends Component {
   }
 
   onScroll = () => {
-    const height = 64, { scrollY } = window, { lastScrollY } = this
+    const height = 64,
+      { scrollY } = window,
+      { lastScrollY } = this
     const { menu } = this.props
 
     if (this.state.hidden) {
@@ -210,6 +234,5 @@ export default class Header extends Component {
     this.sampleScrollSpeed()
   }
 
-  sampleScrollSpeed = throttle(() => this.throttledScrollY = window.scrollY, 100)
-
+  sampleScrollSpeed = throttle(() => (this.throttledScrollY = window.scrollY), 100)
 }

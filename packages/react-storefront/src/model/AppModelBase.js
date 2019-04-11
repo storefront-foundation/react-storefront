@@ -44,6 +44,7 @@ export const LocationModel = types.model({
 const AppModelBase = types
   .model('AppModelBase', {
     amp: false,
+    offline: false,
     initialWidth: 'xs',
     page: types.maybeNull(types.string),
     title: types.maybeNull(types.string),
@@ -107,6 +108,13 @@ const AppModelBase = types
           }
         }
       }
+    },
+
+    /**
+     * Set connection status
+     */
+    setOffline(offline) {
+      self.offline = offline
     },
 
     /**
