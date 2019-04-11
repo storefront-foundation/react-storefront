@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.8.3
+
+* Fixed a bug where a number shows in the `ImageSwitcher` component when rendered in AMP without thumbnails.
+
 ### 6.8.2
 
 * Fixes an issue where images sometimes do not show up in `AmpImageSwitcher` due to a bug in `amp-carousel` when rendering in a div with `display: flex`. https://github.com/ampproject/amphtml/issues/14519

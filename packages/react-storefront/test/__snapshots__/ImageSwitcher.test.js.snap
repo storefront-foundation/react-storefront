@@ -128,7 +128,6 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
                               <amp-img lightbox={true} src="/c.jpg" layout="fill" alt="product" />
                             </amp-carousel>
                           </div>
-                          0
                         </div>
                       </AmpImageSwitcher>
                     </inject-AmpImageSwitcher-with-nextId-ampStateId>

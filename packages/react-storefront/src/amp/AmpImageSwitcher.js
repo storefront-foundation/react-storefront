@@ -187,7 +187,7 @@ export default class AmpImageSwitcher extends Component {
             </div>
           )}
         </div>
-        {thumbnails && thumbnails.length && (
+        {thumbnails && thumbnails.length > 0 && (
           <div className={classes.thumbnails}>
             <div className={classes.thumbnailsWrap}>
               {thumbnails.map(({ src, alt }, i) => (
