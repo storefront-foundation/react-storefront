@@ -26,4 +26,13 @@ describe('CmsSlot', () => {
     expect(mount(component)).toMatchSnapshot()
   })
 
+  it('passes onClick through to the underlying span', () => {
+    const handler = jest.fn()
+
+    mount(<CmsSlot onClick={handler}>{`Test`}</CmsSlot>)
+      .simulate('click')
+
+    expect(handler).toHaveBeenCalled()
+  })
+
 })

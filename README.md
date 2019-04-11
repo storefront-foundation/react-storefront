@@ -79,6 +79,7 @@ yarn release
 * Fixes an issue where images sometimes do not show up in `AmpImageSwitcher` due to a bug in `amp-carousel` when rendering in a div with `display: flex`. https://github.com/ampproject/amphtml/issues/14519
 * Fixes styling differences when rendering `ExpandableSection` in AMP.
 * Each card in the main menu now scrolls independently.
+* `CmsSlot` now spreads props to the underlying `span`.  This fixes an issue where `<Track>` would not fire events when a `CmsSlot` was the child element.
 
 ### 6.8.1
 

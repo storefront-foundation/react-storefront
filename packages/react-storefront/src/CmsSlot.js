@@ -18,7 +18,8 @@ export const styles = theme => ({
 
 /**
  * A container for HTML blob content from a CMS.  Content is dangerously inserted into the DOM.
- * Pass the html as a string as the child of this component.
+ * Pass the html as a string as the child of this component. Additional props are spread to the
+ * rendered span element.
  */
 @withStyles(styles, { name: 'RSFCmsSlot' })
 export default class CmsSlot extends Component {
@@ -29,7 +30,7 @@ export default class CmsSlot extends Component {
     inline: PropTypes.boolean
   }
   render() {
-    const { children, className, classes, inline } = this.props
-    return children ? <span className={classnames(className, { [classes.inline]: inline, [classes.block]: !inline })} dangerouslySetInnerHTML={{ __html: children }} /> : null
+    const { children, className, classes, inline, ...others } = this.props
+    return children ? <span {...others} className={classnames(className, { [classes.inline]: inline, [classes.block]: !inline })} dangerouslySetInnerHTML={{ __html: children }} /> : null
   }
 }
