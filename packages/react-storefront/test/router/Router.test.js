@@ -13,30 +13,36 @@ import Response from '../../../react-storefront-moov-xdn/src/Response'
 
 describe('Router:Node', function() {
   let router, runAll, response
-  const handler = params => Promise.resolve(params);
+  const handler = params => Promise.resolve(params)
 
   beforeEach(function() {
     window.moov = {
-      timing: {}
+      timing: {},
     }
     jest.spyOn(global.console, 'error').mockImplementation()
     process.env.MOOV_RUNTIME = 'server'
     router = new Router()
     global.headers = {
-      header: Function.prototype
+      header: Function.prototype,
     }
     global.env = {
       host: 'localhost',
-      headers: JSON.stringify({})
+      headers: JSON.stringify({}),
     }
     runAll = function(method, path) {
       global.env.path = path
       global.env.method = method
 
-      const [ pathname, search ] = path.split(/\?/)
-      const request = { path: pathname, pathname, query: qs.parse(search), search: search ? `?${search}` : '', method }
+      const [pathname, search] = path.split(/\?/)
+      const request = {
+        path: pathname,
+        pathname,
+        query: qs.parse(search),
+        search: search ? `?${search}` : '',
+        method,
+      }
       jest.spyOn(console, 'warn').mockImplementation()
-      const promise = router.runAll(request, response = new Response())
+      const promise = router.runAll(request, (response = new Response()))
 
       if (promise) {
         return promise
@@ -68,29 +74,25 @@ describe('Router:Node', function() {
 
     it('should support splat', async function() {
       router.get('/products/:id(/*seoText)', handler)
-      expect(await runAll('get', '/products/1/foo')).toEqual({ id: "1", seoText: "foo" })
-      expect(await runAll('get', '/products/1')).toEqual({ id: "1", seoText: undefined })
+      expect(await runAll('get', '/products/1/foo')).toEqual({ id: '1', seoText: 'foo' })
+      expect(await runAll('get', '/products/1')).toEqual({ id: '1', seoText: undefined })
     })
 
     it('should support optional paths', async function() {
       router.get('/products/:id(/foo)', handler)
-      expect(await runAll('get', '/products/1/foo')).toEqual({ id: "1" })
-      expect(await runAll('get', '/products/1')).toEqual({ id: "1" })
+      expect(await runAll('get', '/products/1/foo')).toEqual({ id: '1' })
+      expect(await runAll('get', '/products/1')).toEqual({ id: '1' })
     })
 
     it('should support optional params', async function() {
       router.get('/products/:id(/:foo)', handler)
-      expect(await runAll('get', '/products/1/2')).toEqual({ id: "1", foo: "2" })
-      expect(await runAll('get', '/products/1')).toEqual({ id: "1", foo: undefined })
+      expect(await runAll('get', '/products/1/2')).toEqual({ id: '1', foo: '2' })
+      expect(await runAll('get', '/products/1')).toEqual({ id: '1', foo: undefined })
     })
 
     it('should match based on suffix', async function() {
-      router.get('/users/:id.html',
-        fromServer(() => Promise.resolve({ result: 'html' }))
-      )
-      router.get('/users/:id.json',
-        fromServer(() => Promise.resolve({ result: 'json' }))
-      )
+      router.get('/users/:id.html', fromServer(() => Promise.resolve({ result: 'html' })))
+      router.get('/users/:id.json', fromServer(() => Promise.resolve({ result: 'json' })))
 
       expect(await runAll('get', '/users/1.html')).toEqual({ result: 'html' })
       expect(await runAll('get', '/users/1.json')).toEqual({ result: 'json' })
@@ -103,10 +105,11 @@ describe('Router:Node', function() {
     })
 
     it('should merge the result of multiple handlers', async function() {
-      router.get('/c/:id',
+      router.get(
+        '/c/:id',
         fromClient({ view: 'category' }),
         fromServer(() => Promise.resolve({ name: 'test' })),
-        fromServer(() => ({ url: '/c/1' }))
+        fromServer(() => ({ url: '/c/1' })),
       )
 
       expect(await runAll('get', '/c/1')).toEqual({ view: 'category', name: 'test', url: '/c/1' })
@@ -115,22 +118,18 @@ describe('Router:Node', function() {
     it('should apply params to request', async () => {
       let requestParams
 
-      router.get('/c/:id',
-        fromServer((params, request) => requestParams = request.params)
-      )
+      router.get('/c/:id', fromServer((params, request) => (requestParams = request.params)))
 
       await runAll('get', '/c/1')
-      expect(requestParams).toEqual({ id: "1" })
+      expect(requestParams).toEqual({ id: '1' })
     })
 
     it('should not mutate the provided state', async () => {
-      router.get('/',
-        fromClient({ foo: 'xxx' })
-      )
+      router.get('/', fromClient({ foo: 'xxx' }))
 
       const initialState = { foo: 'bar' }
       const request = { path: '/', search: '', method: 'get' }
-      const result = await router.runAll(request, new Response(), { }, initialState)
+      const result = await router.runAll(request, new Response(), {}, initialState)
 
       expect(result.foo).toEqual('xxx')
       expect(initialState.foo).toEqual('bar')
@@ -138,22 +137,20 @@ describe('Router:Node', function() {
   })
 
   describe('run', function() {
-
     it('should run after handlers on fallback when afterOnly is true', async () => {
       let ran = false
       const response = new Response()
 
-      router
-        .fallback({
-          runOn: {
-            server: true,
-            client: true,
-            after: true
-          },
-          fn: () => {
-            return true
-          }
-        })
+      router.fallback({
+        runOn: {
+          server: true,
+          client: true,
+          after: true,
+        },
+        fn: () => {
+          return true
+        },
+      })
 
       for await (let result of router.run({ path: '/', search: '' }, response)) {
         ran = result
@@ -166,15 +163,18 @@ describe('Router:Node', function() {
       const response = new Response()
 
       router
-        .get('/',
+        .get(
+          '/',
           fromClient({ view: 'home' }),
           fromServer(() => {
             throw new Error('test')
-          })
+          }),
         )
-        .error((path, params, request, response) => Promise.resolve({
-          error: 'Error message'
-        }))
+        .error((path, params, request, response) =>
+          Promise.resolve({
+            error: 'Error message',
+          }),
+        )
 
       const results = []
 
@@ -185,104 +185,110 @@ describe('Router:Node', function() {
       expect(results[0]).toEqual({ view: 'home' })
       expect(results[1]).toEqual({ error: 'Error message' })
       expect(results.length).toEqual(2)
-      expect(await router.runAll({ path: '/', search: '', method: 'GET' }, response)).toEqual({ view: 'home', error: 'Error message' })
+      expect(await router.runAll({ path: '/', search: '', method: 'GET' }, response)).toEqual({
+        view: 'home',
+        error: 'Error message',
+      })
     })
 
     describe('initialLoad', () => {
-      beforeEach(() => process.env.MOOV_RUNTIME = 'client')
+      beforeEach(() => (process.env.MOOV_RUNTIME = 'client'))
       afterEach(() => delete process.env.MOOV_RUNTIME)
 
       it('should cache initial state when run with initialLoad: true', async () => {
-        router
-          .get('/',
-            cache({ client: true }),
-            fromClient({ view: 'home' })
-          )
+        router.get('/', cache({ client: true }), fromClient({ view: 'home' }))
 
         window.initialState = { view: 'home', foo: 'bar' }
-        await router.runAll({ path: '/', search: '', method: 'get' }, new ClientContext(), { initialLoad: true, afterOnly: true })
-        expect(serviceWorker.cache.mock.calls[0]).toEqual(['/', '<!DOCTYPE html>\n<html><head></head><body></body></html>'])
+        await router.runAll({ path: '/', search: '', method: 'get' }, new ClientContext(), {
+          initialLoad: true,
+          afterOnly: true,
+        })
+        expect(serviceWorker.cache.mock.calls[0]).toEqual([
+          '/',
+          '<!DOCTYPE html>\n<html><head></head><body></body></html>',
+        ])
       })
     })
   })
 
   describe('handlers', function() {
-
     it('should run data requests on server side', async function() {
-      router.get('/products.json',
-        fromServer(() => Promise.resolve({
-          products: [{name: 'Dog Toy'}]
-        })),
+      router.get(
+        '/products.json',
+        fromServer(() =>
+          Promise.resolve({
+            products: [{ name: 'Dog Toy' }],
+          }),
+        ),
       )
       expect(await runAll('get', '/products.json')).toEqual({
-        products: [{name: 'Dog Toy'}]
+        products: [{ name: 'Dog Toy' }],
       })
     })
 
     it('should not execute fromClient on data request', async function() {
-      router.get('/c/:id.json', fromClient({ view: 'category' }));
+      router.get('/c/:id.json', fromClient({ view: 'category' }))
       expect((await runAll('get', '/c/1.json')).view).not.toBeDefined()
-     });
+    })
 
     it('should accept static data', async function() {
-      router.get('/c/:id',
-        fromClient({ view: 'category' }),
-      )
+      router.get('/c/:id', fromClient({ view: 'category' }))
 
       expect(await runAll('get', '/c/1')).toEqual({ view: 'category' })
     })
 
     it('should accept static promises', async function() {
-      router.get('/c/:id',
-        fromClient(() => Promise.resolve({ view: 'category' })),
-      )
+      router.get('/c/:id', fromClient(() => Promise.resolve({ view: 'category' })))
 
       expect(await runAll('get', '/c/1')).toEqual({ view: 'category' })
     })
 
     it('should run synchronous functions', async function() {
-      router.get('/c/:id',
-        fromClient(() => ({ view: 'category' })),
-      )
+      router.get('/c/:id', fromClient(() => ({ view: 'category' })))
 
       expect(await runAll('get', '/c/1')).toEqual({ view: 'category' })
     })
 
     it('should handle errors on the client side with default error handler', async function() {
-      router.get('/test/:id',
+      router.get(
+        '/test/:id',
         fromClient(() => {
-          throw new Error('This is an error');
+          throw new Error('This is an error')
         }),
       )
-      const state = await runAll('get', '/test/123');
+      const state = await runAll('get', '/test/123')
       expect(state.error).toEqual('This is an error')
-      expect(state.stack).toBeDefined();
+      expect(state.stack).toBeDefined()
     })
 
     it('should handle errors on the client side with custom error handler', async function() {
-      router.get('/test/:q',
-        fromClient(() => {
-          throw new Error('This is an error');
-        }),
-      ).error((e, params, request, response) => {
-        return {
-          q: params.q,
-          message: e.message
-        }
-      })
+      router
+        .get(
+          '/test/:q',
+          fromClient(() => {
+            throw new Error('This is an error')
+          }),
+        )
+        .error((e, params, request, response) => {
+          return {
+            q: params.q,
+            message: e.message,
+          }
+        })
       expect(await runAll('get', '/test/123')).toEqual({
         q: '123',
-        message: 'This is an error'
+        message: 'This is an error',
       })
     })
 
     it('should handle errors on the server side with default error handler', async function() {
-      router.get('/test',
+      router.get(
+        '/test',
         fromServer(() => {
-          throw new Error('This is an error on the server');
+          throw new Error('This is an error on the server')
         }),
       )
-      const state = await runAll('get', '/test');
+      const state = await runAll('get', '/test')
       expect(state.error).toEqual('This is an error on the server')
       expect(state.stack).toBeDefined()
       expect(state.loading).toBe(false)
@@ -290,30 +296,34 @@ describe('Router:Node', function() {
     })
 
     it('should handle errors on the server side with custom error handler', async function() {
-      router.get('/test/:q',
-        fromServer(() => {
-          throw new Error('This is an error on the server');
-        }),
-      ).error((e, params, request, response) => {
-        return {
-          q: params.q,
-          message: e.message
-        }
-      })
+      router
+        .get(
+          '/test/:q',
+          fromServer(() => {
+            throw new Error('This is an error on the server')
+          }),
+        )
+        .error((e, params, request, response) => {
+          return {
+            q: params.q,
+            message: e.message,
+          }
+        })
       expect(await runAll('get', '/test/123')).toEqual({
         q: '123',
-        message: 'This is an error on the server'
+        message: 'This is an error on the server',
       })
     })
 
     it('should provide params in client handler', async function() {
-      router.get('/c/:id',
-        fromClient((params) => ({ view: 'category', id: params.id, query: params.q }))
+      router.get(
+        '/c/:id',
+        fromClient(params => ({ view: 'category', id: params.id, query: params.q })),
       )
       expect(await runAll('get', '/c/1?q=hello')).toEqual({
         view: 'category',
         query: 'hello',
-        id: '1'
+        id: '1',
       })
     })
 
@@ -321,47 +331,48 @@ describe('Router:Node', function() {
       router.get('/test', fromClient(() => ({ view: 'test' })))
 
       expect(await runAll('get', '/hello')).toEqual({
-        page: '404'
+        page: '404',
       })
     })
 
     it('should handle error in extended 404 properly', async function() {
-      router
-        .get('/test', fromClient(() => ({ view: 'test' })))
-        .fallback(fromServer(() => {
-          throw new Error('This is an error on the server');
-        }))
-      const state = await runAll('get', '/hello');
+      router.get('/test', fromClient(() => ({ view: 'test' }))).fallback(
+        fromServer(() => {
+          throw new Error('This is an error on the server')
+        }),
+      )
+      const state = await runAll('get', '/hello')
       expect(state.error).toEqual('This is an error on the server')
       expect(state.stack).toBeDefined()
     })
 
     it('should handle extended 404 rendering', async function() {
-      router
-        .get('/test', fromClient(() => ({ view: 'test' })))
-        .fallback(
-          fromClient({ view: '404' }),
-          fromServer(() => Promise.resolve({
-            products: [{ name: 'Dog Toy' }, { name: 'Bone' }]
-          }))
-        )
+      router.get('/test', fromClient(() => ({ view: 'test' }))).fallback(
+        fromClient({ view: '404' }),
+        fromServer(() =>
+          Promise.resolve({
+            products: [{ name: 'Dog Toy' }, { name: 'Bone' }],
+          }),
+        ),
+      )
       expect(await runAll('get', '/hello')).toEqual({
         view: '404',
-        products: [{ name: 'Dog Toy' }, { name: 'Bone' }]
+        products: [{ name: 'Dog Toy' }, { name: 'Bone' }],
       })
     })
   })
 
   describe('cache', function() {
-    it('should set response.cache', async function () {
-      router.get('/foo',
+    it('should set response.cache', async function() {
+      router.get(
+        '/foo',
         fromClient({ view: 'Foo' }),
         fromServer(() => ({ foo: 'bar' })),
         cache({
           server: {
-            maxAgeSeconds: 300
-          }
-        })
+            maxAgeSeconds: 300,
+          },
+        }),
       )
 
       expect(await runAll('get', '/foo')).toEqual({ view: 'Foo', foo: 'bar' })
@@ -371,37 +382,38 @@ describe('Router:Node', function() {
 
   describe('use', function() {
     it('match a nested route', async function() {
-      router.use('/products', new Router()
-        .get('/:id', handler)
-      )
+      router.use('/products', new Router().get('/:id', handler))
 
       expect(await runAll('get', '/products/1')).toEqual({ id: '1' })
     })
 
     it('should accept params', async function() {
-      router.use('/products/:id', new Router()
-        .get('/reviews/:reviewId', handler)
-      )
+      router.use('/products/:id', new Router().get('/reviews/:reviewId', handler))
 
       expect(await runAll('get', '/products/1/reviews/2')).toEqual({ id: '1', reviewId: '2' })
-    });
+    })
 
     it('should accept infinite levels of nesting', async function() {
-      router.use('/products', new Router()
-        .get('/:productId', handler)
-        .use('/:productId/reviews', new Router()
-          .get('/:reviewId', handler)
-        )
-      );
+      router.use(
+        '/products',
+        new Router()
+          .get('/:productId', handler)
+          .use('/:productId/reviews', new Router().get('/:reviewId', handler)),
+      )
 
-      expect(await runAll('get', '/products/1/reviews/2')).toEqual({ productId: '1', reviewId: '2' })
+      expect(await runAll('get', '/products/1/reviews/2')).toEqual({
+        productId: '1',
+        reviewId: '2',
+      })
     })
 
     it('should match based on extension', async function() {
-      router.use('/c', new Router()
-        .get('/:id.html', () => Promise.resolve('html'))
-        .get('/:id.json', () => Promise.resolve('json'))
-      );
+      router.use(
+        '/c',
+        new Router()
+          .get('/:id.html', () => Promise.resolve('html'))
+          .get('/:id.json', () => Promise.resolve('json')),
+      )
 
       expect(await runAll('get', '/c/1.html')).toEqual('html')
       expect(await runAll('get', '/c/1.json')).toEqual('json')
@@ -413,7 +425,7 @@ describe('Router:Node', function() {
       const config = {
         cacheName: 'api',
         maxEntries: 200,
-        maxAgeSeconds: 3600
+        maxAgeSeconds: 3600,
       }
       expect(router.configureClientCache(config)).toBe(router)
       expect(serviceWorker.configureCache).toBeCalledWith(config)
@@ -425,79 +437,91 @@ describe('Router:Node', function() {
       const history = createMemoryHistory()
       history.push('/search?filter=test')
 
-      router
-        .watch(history, jest.fn())
-        .applySearch({ sort: 'price' })
+      router.watch(history, jest.fn()).applySearch({ sort: 'price' })
 
-      expect(history.location.pathname + history.location.search).toEqual('/search?filter=test&sort=price')
+      expect(history.location.pathname + history.location.search).toEqual(
+        '/search?filter=test&sort=price',
+      )
     })
 
     it('should swap the existing query param of the same name', () => {
       const history = createMemoryHistory()
       history.push('/search?filter=test&sort=price')
 
-      router
-        .watch(history, jest.fn())
-        .applySearch({ sort: 'name' })
+      router.watch(history, jest.fn()).applySearch({ sort: 'name' })
 
-      expect(history.location.pathname + history.location.search).toEqual('/search?filter=test&sort=name')
+      expect(history.location.pathname + history.location.search).toEqual(
+        '/search?filter=test&sort=name',
+      )
     })
   })
 
   describe('getCacheKey', () => {
     it('should return the defaults when no key function is specified', () => {
-      router.get('/test',
+      router.get(
+        '/test',
         cache({
           server: {
-            maxAgeSeconds: 60
-          }
-        })
+            maxAgeSeconds: 60,
+          },
+        }),
       )
 
-      expect(router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
+      expect(
+        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' }),
+      ).toEqual({ foo: 'bar' })
     })
 
     it('should return the defaults when no server config is specified', () => {
-      router.get('/test',
+      router.get(
+        '/test',
         cache({
-          client: true
-        })
+          client: true,
+        }),
       )
 
-      expect(router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
+      expect(
+        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' }),
+      ).toEqual({ foo: 'bar' })
     })
 
     it('should return the defaults when no cache handler is specified', () => {
-      router.get('/test',
-        fromClient({ a: 'b' })
-      )
+      router.get('/test', fromClient({ a: 'b' }))
 
-      expect(router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })).toEqual({ foo: 'bar' })
+      expect(
+        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' }),
+      ).toEqual({ foo: 'bar' })
     })
 
     it('should call cache.server.key for the matching route', () => {
-      router.get('/test',
+      router.get(
+        '/test',
         cache({
           server: {
-            key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
-          }
-        })
+            key: (request, defaults) => ({ ...defaults, path: request.path + request.search }),
+          },
+        }),
       )
 
-      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({ foo: 'bar', path: '/test' })
+      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({
+        foo: 'bar',
+        path: '/test',
+      })
     })
 
     it('should work on fallback routes', () => {
-      router
-        .fallback(
-          cache({
-            server: {
-              key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
-            }
-          })
-        )
+      router.fallback(
+        cache({
+          server: {
+            key: (request, defaults) => ({ ...defaults, path: request.path + request.search }),
+          },
+        }),
+      )
 
-      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({ foo: 'bar', path: '/test' })
+      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({
+        foo: 'bar',
+        path: '/test',
+      })
     })
   })
 
@@ -507,11 +531,7 @@ describe('Router:Node', function() {
       history.push('/')
       const handler = jest.fn()
 
-      router
-        .watch(history, jest.fn())
-        .get('/search',
-          fromClient(handler)
-        )
+      router.watch(history, jest.fn()).get('/search', fromClient(handler))
 
       history.push('/search')
       expect(handler).toHaveBeenCalled()
@@ -522,11 +542,7 @@ describe('Router:Node', function() {
       history.push('/search')
       const handler = jest.fn()
 
-      router
-        .watch(history, jest.fn())
-        .get('/search',
-          fromClient(handler)
-        )
+      router.watch(history, jest.fn()).get('/search', fromClient(handler))
 
       history.push('/search')
       expect(handler).not.toHaveBeenCalled()
@@ -540,10 +556,7 @@ describe('Router:Node', function() {
       router.watch(history, handler)
       history.goBack()
 
-      expect(handler).toHaveBeenCalledWith(
-        { title: 'Search' },
-        'POP'
-      )
+      expect(handler).toHaveBeenCalledWith({ title: 'Search' }, 'POP')
     })
 
     it('should restore the previous app state on forward', () => {
@@ -555,10 +568,7 @@ describe('Router:Node', function() {
       router.watch(history, handler)
       history.goForward()
 
-      expect(handler).toHaveBeenCalledWith(
-        { title: 'Category #1' },
-        'POP'
-      )
+      expect(handler).toHaveBeenCalledWith({ title: 'Category #1' }, 'POP')
     })
 
     it('should capture routeStart and routeEnd timing data', async () => {
@@ -568,20 +578,18 @@ describe('Router:Node', function() {
       history.push('/')
       expect(window.moov.timing.routeStart)
     })
-    
+
     it('should yield state from clicked Link', () => {
       const handler = jest.fn()
       const history = createMemoryHistory({ initialEntries: ['/'] })
 
-      router
-        .get('/p/:id', fromClient({ foo: 'bar' }))
-        .watch(history, handler)
+      router.get('/p/:id', fromClient({ foo: 'bar' })).watch(history, handler)
 
-      history.push('/p/1', { product: { name: 'Test' }})
+      history.push('/p/1', { product: { name: 'Test' } })
 
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
-          expect(handler).toHaveBeenCalledWith({ product: { name: 'Test' }}, 'PUSH')
+          expect(handler).toHaveBeenCalledWith({ product: { name: 'Test' } }, 'PUSH')
           resolve()
         })
       })
@@ -590,27 +598,23 @@ describe('Router:Node', function() {
 
   describe('willFetchFromUpstream', () => {
     it('should return true if the route has a proxyUpstream handler', () => {
-      const router = new Router()
-        .get('/about', proxyUpstream())
+      const router = new Router().get('/about', proxyUpstream())
 
       expect(router.willFetchFromUpstream({ path: '/about', search: '' })).toBe(true)
     })
 
     it('should return false if the route has no proxyUpstream handler', () => {
-      const router = new Router()
-        .get('/about', proxyUpstream())
+      const router = new Router().get('/about', proxyUpstream())
 
       expect(router.willFetchFromUpstream({ path: '/', search: '' })).toBe(false)
     })
   })
 
   describe('after', function() {
-    it('should be called after all routes', async (done) => {
+    it('should be called after all routes', async done => {
       const history = createMemoryHistory()
 
-      const router = new Router()
-        .get('/foo', fromClient({}))
-        .watch(history, Function.prototype)
+      const router = new Router().get('/foo', fromClient({})).watch(history, Function.prototype)
 
       const onAfter = jest.fn()
       const onBefore = jest.fn()
@@ -619,13 +623,13 @@ describe('Router:Node', function() {
       router.on('before', onBefore)
 
       history.push('/foo')
-      
+
       setTimeout(() => {
         expect(onAfter).toHaveBeenCalled()
         expect(onBefore).toHaveBeenCalled()
         done()
       }, 500)
-    })    
+    })
 
     it('should fire an after event with initialLoad: true', () => {
       const history = createMemoryHistory()
@@ -639,33 +643,38 @@ describe('Router:Node', function() {
 
   describe('Fetching within cacheable route', () => {
     it('should set send cookie ENV variable for fetch', async () => {
-      router.get('/new',
-        cache({ 
-          server: { maxAgeSeconds: 300 }
+      router.get(
+        '/new',
+        cache({
+          server: { maxAgeSeconds: 300 },
         }),
         fromServer(() => {
           return Promise.resolve('NEW PRODUCTS')
-        })          
+        }),
       )
       await runAll('get', '/new')
-      expect(env.shouldSendCookies).toBe(false);
+      expect(env.shouldSendCookies).toBe(false)
     })
   })
 
   describe('Caching and Cookies', () => {
     it('should warn when removing cookies on a cached route', async () => {
-      router.get('/new',
-        cache({ 
-          server: { maxAgeSeconds: 300 }
+      router.get(
+        '/new',
+        cache({
+          server: { maxAgeSeconds: 300 },
         }),
         fromServer((params, request, response) => {
           response.set('set-cookie', 'foo=bar')
           return Promise.resolve({ some: 'data' })
-        })    
+        }),
       )
       const res = await runAll('get', '/new')
-      expect(env.shouldSendCookies).toBe(false);
-      expect(console.warn).toHaveBeenCalledWith('[react-storefront response]', 'Cannot set cookies on cached route')
+      expect(env.shouldSendCookies).toBe(false)
+      expect(console.warn).toHaveBeenCalledWith(
+        '[react-storefront response]',
+        'Cannot set cookies on cached route',
+      )
     })
   })
 

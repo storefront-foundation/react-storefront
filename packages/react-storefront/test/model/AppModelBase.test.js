@@ -5,15 +5,14 @@
 import AppModelBase from '../../src/model/AppModelBase'
 
 describe('AppModelBase', () => {
-
   it('should provide a canonical url for amp pages', () => {
-    const app = AppModelBase.create({ 
+    const app = AppModelBase.create({
       location: {
         pathname: '/foo.amp',
         search: '?bar=1',
         hostname: 'localhost',
-        protocol: 'https:'
-      }
+        protocol: 'https:',
+      },
     })
 
     expect(app.canonicalURL).toBe('https://localhost/foo?bar=1')
@@ -21,7 +20,11 @@ describe('AppModelBase', () => {
 
   describe('uri', () => {
     it('should include hostname and search', () => {
-      expect(AppModelBase.create({ location: { protocol: 'https', pathname: '/foo', search: '?bar=true' }}).uri).toBe('/foo?bar=true')
+      expect(
+        AppModelBase.create({
+          location: { protocol: 'https', pathname: '/foo', search: '?bar=true' },
+        }).uri,
+      ).toBe('/foo?bar=true')
     })
   })
 
@@ -37,11 +40,11 @@ describe('AppModelBase', () => {
     it('should retain cart and user when action = POP', () => {
       const app = AppModelBase.create({
         user: {
-          email: 'user@domain.com'
+          email: 'user@domain.com',
         },
         cart: {
           items: [{ id: '1' }],
-        }
+        },
       })
 
       const user = app.user.toJSON()
@@ -56,9 +59,9 @@ describe('AppModelBase', () => {
     it('should apply all props when action is omitted', () => {
       const app = AppModelBase.create({
         user: {
-          email: 'user@domain.com'
+          email: 'user@domain.com',
         },
-        loading: false
+        loading: false,
       })
 
       app.applyState({ loading: true, user: null })
@@ -67,5 +70,4 @@ describe('AppModelBase', () => {
       expect(app.loading).toBe(true)
     })
   })
-
 })

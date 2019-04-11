@@ -2,11 +2,16 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { injectScriptInHead, injectCodeInHead, removeScriptInHead, removeCodeInHead } from '../../src/utils/scriptInjector'
+import {
+  injectScriptInHead,
+  injectCodeInHead,
+  removeScriptInHead,
+  removeCodeInHead,
+} from '../../src/utils/scriptInjector'
 
 describe('injectScriptInHead', () => {
   beforeEach(() => {
-    document.head.innerHTML = '';
+    document.head.innerHTML = ''
   })
 
   it('should inject script', () => {
@@ -18,7 +23,7 @@ describe('injectScriptInHead', () => {
   it('should inject script with given props', () => {
     const src = 'https://test.com/props.js'
     injectScriptInHead(src, {
-      attrs: { 'data-type': 'test' }
+      attrs: { 'data-type': 'test' },
     })
     expect(document.head.innerHTML).toEqual(`<script src="${src}" data-type="test"></script>`)
   })
@@ -34,17 +39,18 @@ describe('injectScriptInHead', () => {
     const src = 'https://test.com/once.js'
     injectScriptInHead(src, { once: false })
     injectScriptInHead(src, { once: false })
-    expect(document.head.innerHTML).toEqual(`<script src="${src}"></script><script src="${src}"></script>`)
+    expect(document.head.innerHTML).toEqual(
+      `<script src="${src}"></script><script src="${src}"></script>`,
+    )
   })
 
   it('should inject script with promise result', done => {
     const src = 'https://test.com/promise.js'
 
-    injectScriptInHead(src)
-      .then(() => {
-        expect(document.head.innerHTML).toEqual(`<script src="${src}"></script>`)
-        done()
-      })
+    injectScriptInHead(src).then(() => {
+      expect(document.head.innerHTML).toEqual(`<script src="${src}"></script>`)
+      done()
+    })
     document.head.querySelector(`script[src^='${src}']`).onload()
   })
 
@@ -53,11 +59,10 @@ describe('injectScriptInHead', () => {
 
     injectScriptInHead(src)
 
-    injectScriptInHead(src)
-      .then(() => {
-        expect(document.head.innerHTML).toEqual(`<script src="${src}"></script>`)
-        done()
-      })
+    injectScriptInHead(src).then(() => {
+      expect(document.head.innerHTML).toEqual(`<script src="${src}"></script>`)
+      done()
+    })
   })
 })
 
@@ -89,7 +94,7 @@ describe('injectCodeInHead', () => {
 
 describe('removeScriptInHead', () => {
   beforeEach(() => {
-    document.head.innerHTML = '';
+    document.head.innerHTML = ''
   })
 
   it('should insert and remove script', () => {

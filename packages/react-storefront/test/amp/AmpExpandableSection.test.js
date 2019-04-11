@@ -13,8 +13,8 @@ describe('AmpExpandableSection', () => {
       mount(
         <TestProvider>
           <AmpExpandableSection title="Title">Foo</AmpExpandableSection>
-        </TestProvider>
-      )
+        </TestProvider>,
+      ),
     ).toMatchSnapshot()
   })
 
@@ -22,9 +22,11 @@ describe('AmpExpandableSection', () => {
     expect(
       mount(
         <TestProvider>
-          <AmpExpandableSection title="Title" expanded>Foo</AmpExpandableSection>
-        </TestProvider>
-      )
+          <AmpExpandableSection title="Title" expanded>
+            Foo
+          </AmpExpandableSection>
+        </TestProvider>,
+      ),
     ).toMatchSnapshot()
   })
 })

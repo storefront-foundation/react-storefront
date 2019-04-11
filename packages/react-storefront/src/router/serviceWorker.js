@@ -18,7 +18,12 @@ export async function cache(path, cacheData) {
     const { apiVersion } = window.moov
 
     if (cacheData) {
-      navigator.serviceWorker.controller.postMessage({ action: 'cache-state', path, apiVersion, cacheData })
+      navigator.serviceWorker.controller.postMessage({
+        action: 'cache-state',
+        path,
+        apiVersion,
+        cacheData,
+      })
     } else {
       navigator.serviceWorker.controller.postMessage({ action: 'cache-path', path, apiVersion })
     }
@@ -34,14 +39,14 @@ export async function prefetchJsonFor(path, includeSSR) {
     return
   }
   if (path.startsWith('http')) {
-    const url = new URL(path);
-    cache(`${url.origin}${url.pathname}.json${url.search}`);
+    const url = new URL(path)
+    cache(`${url.origin}${url.pathname}.json${url.search}`)
   } else {
-    const url = new URL(`http://z.z${path}`);
-    cache(`${url.pathname}.json${url.search}`);
+    const url = new URL(`http://z.z${path}`)
+    cache(`${url.pathname}.json${url.search}`)
   }
   if (includeSSR) {
-    cache(path)    
+    cache(path)
   }
 }
 
@@ -75,7 +80,7 @@ export async function resumePrefetches() {
 
 /**
  * Configures runtime caching options
- * @param {Object} options 
+ * @param {Object} options
  * @param {Object} options.cacheName The name of the runtime cache
  * @param {Object} options.maxEntries The max number of entries to store in the cache
  * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
@@ -98,7 +103,7 @@ async function waitForServiceWorkerController() {
         return resolve(true)
       }
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        return resolve(true) 
+        return resolve(true)
       })
     })
   })
@@ -110,10 +115,12 @@ async function waitForServiceWorkerController() {
  */
 export async function removeOldCaches() {
   if (await waitForServiceWorkerController()) {
-    navigator.serviceWorker.controller.postMessage({ action: 'remove-old-caches', apiVersion: window.moov.apiVersion })
+    navigator.serviceWorker.controller.postMessage({
+      action: 'remove-old-caches',
+      apiVersion: window.moov.apiVersion,
+    })
   }
 }
-
 
 export default {
   removeOldCaches,

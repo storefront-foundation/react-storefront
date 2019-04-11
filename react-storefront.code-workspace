@@ -1,0 +1,10 @@
+{
+  "folders": [
+    {
+      "path": "packages/react-storefront"
+    },
+  ],
+  "extensions": {
+    "recommendations": ["esbenp.prettier-vscode"]
+  }
+}

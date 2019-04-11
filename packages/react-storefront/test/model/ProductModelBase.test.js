@@ -5,7 +5,6 @@
 import { createTestProduct } from '../fixtures/Product'
 
 describe('ProductModelBase', () => {
-
   let product
 
   beforeEach(() => {
@@ -15,17 +14,17 @@ describe('ProductModelBase', () => {
         options: [
           { id: 'red', text: 'red' },
           { id: 'green', text: 'green' },
-          { id: 'blue', text: 'blue' }
-        ]
-      }
+          { id: 'blue', text: 'blue' },
+        ],
+      },
     })
   })
 
   it('fetches images when the selected color changes', () => {
     global.fetch.mockResponse(
       JSON.stringify({
-        images: ['/1.jpeg', '2.jpeg']
-      })
+        images: ['/1.jpeg', '2.jpeg'],
+      }),
     )
 
     product.color.setSelected(product.color.options[0])
@@ -41,10 +40,7 @@ describe('ProductModelBase', () => {
   })
 
   it('should set loadingImages to false if the fetch call returns an error status', () => {
-    global.fetch.mockResponse([
-      JSON.stringify({ }),
-      { status: 500 }
-    ])
+    global.fetch.mockResponse([JSON.stringify({}), { status: 500 }])
 
     product.color.setSelected(product.color.options[0])
     expect(product.loadingImages).toBe(true)
@@ -80,14 +76,14 @@ describe('ProductModelBase', () => {
 
   it('should apply new state', () => {
     product.apply({
-      images: [ '/foo.jpeg' ]
+      images: ['/foo.jpeg'],
     })
-    expect(product.images).toEqual([ '/foo.jpeg' ])
+    expect(product.images).toEqual(['/foo.jpeg'])
   })
 
   it('should calculate price based on basePrice', () => {
     const product = createTestProduct({
-      basePrice: 99.99
+      basePrice: 99.99,
     })
 
     expect(product.price).toEqual(99.99)
@@ -99,12 +95,11 @@ describe('ProductModelBase', () => {
       size: {
         selected: {
           id: '1',
-          price: 109.99
-        }
-      }
+          price: 109.99,
+        },
+      },
     })
 
     expect(product.price).toEqual(109.99)
   })
-
 })

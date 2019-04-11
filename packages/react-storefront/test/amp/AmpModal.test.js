@@ -18,8 +18,8 @@ describe('AmpModal', () => {
               <div>inner</div>
             </AmpModal>
           </Provider>
-        </TestProvider>
-      )
+        </TestProvider>,
+      ),
     ).toMatchSnapshot()
   })
 
@@ -28,15 +28,16 @@ describe('AmpModal', () => {
       mount(
         <TestProvider>
           <Provider amp={true}>
-            <AmpModal 
-              id="my-modal" 
-              animateIn="fly-in-bottom" 
-              on={`amp-modal-custom-id:AMP.setState({ someStateId: { modalOpened: true }})`}>
+            <AmpModal
+              id="my-modal"
+              animateIn="fly-in-bottom"
+              on={`amp-modal-custom-id:AMP.setState({ someStateId: { modalOpened: true }})`}
+            >
               <div>inner</div>
             </AmpModal>
           </Provider>
-        </TestProvider>
-      )
+        </TestProvider>,
+      ),
     ).toMatchSnapshot()
   })
 })

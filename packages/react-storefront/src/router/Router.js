@@ -59,24 +59,25 @@ import EventEmitter from 'eventemitter3'
  *      sendResponse({ body, htmlparsed: true })
  *    })
  *  }
- * 
+ *
  * Router is an EventEmitting that fires the following events:
- * 
+ *
  * `before`: Fires before a route is run, passing an object containing `request` and `response`.
  * `after`: Fires after a route is run and all handlers have finised, passing an object containing `request` and `response`.
  * `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
  */
 export default class Router extends EventEmitter {
-
   constructor() {
     super()
     this.routes = []
     this.isBrowser = process.env.MOOV_RUNTIME === 'client'
 
-    this.fallbackHandlers = [{
-      runOn: { client: true, server: true },
-      fn: () => ({ page: '404' })
-    }]
+    this.fallbackHandlers = [
+      {
+        runOn: { client: true, server: true },
+        fn: () => ({ page: '404' }),
+      },
+    ]
 
     this.errorHandler = (e, params, request, response) => {
       console.error('Error caught with params', params, ' and with message:', e.message)
@@ -210,7 +211,10 @@ export default class Router extends EventEmitter {
    * @param {Object} request
    */
   cacheInitialState(request) {
-    cache(request.path + qs.stringify(request.query), `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+    cache(
+      request.path + qs.stringify(request.query),
+      `<!DOCTYPE html>\n${document.documentElement.outerHTML}`,
+    )
   }
 
   /**
@@ -251,7 +255,7 @@ export default class Router extends EventEmitter {
       pathname: location.pathname,
       search: location.search,
       hostname: location.hostname,
-      port: location.port
+      port: location.port,
     }
   }
 
@@ -265,7 +269,7 @@ export default class Router extends EventEmitter {
    * @param {Boolean} [options.initialLoad=false] Set to true if this is the initial load of the application.  This will cause the HTML to be cached for the current path
    * @return {Object} Generates state objects
    */
-  async * run(request, response, { initialLoad=false, historyState={} } = {}) {
+  async *run(request, response, { initialLoad = false, historyState = {} } = {}) {
     const { match, params } = this.findMatchingRoute(request)
 
     request.params = params
@@ -280,7 +284,7 @@ export default class Router extends EventEmitter {
       yield {
         loading: willFetchFromServer,
         location: this.createLocation(),
-        ...historyState
+        ...historyState,
       }
     }
 
@@ -289,28 +293,28 @@ export default class Router extends EventEmitter {
         if (typeof handler === 'function') {
           handler = {
             runOn: { server: true, client: true },
-            fn: handler
+            fn: handler,
           }
         }
 
         // skip state handlers on initial hydration - we just need to run cache and track
         if (initialLoad && handler.type !== 'cache') {
-          continue;
+          continue
         }
 
         // skip server handlers when running in the browser
         if (!handler.runOn.client && this.isBrowser) {
-          continue;
+          continue
         }
 
         // skip client handlers when running on server
         if (!handler.runOn.server && !this.isBrowser) {
-          continue;
+          continue
         }
 
         // skip client handlers when serving an AJAX request on the server
         if (request.path.endsWith('.json') && (handler.runOn.server !== true || this.isBrowser)) {
-          continue;
+          continue
         }
 
         if (handler.type === 'fromServer') {
@@ -327,7 +331,7 @@ export default class Router extends EventEmitter {
       if (initialLoad && response.clientCache === 'force-cache') {
         this.cacheInitialState(request, response)
       }
-    } catch(err) {
+    } catch (err) {
       yield this.errorHandler(err, params, request, response)
     }
   }
@@ -342,7 +346,7 @@ export default class Router extends EventEmitter {
    * @param {Object} [state={}] The accumulated state from other handlers
    * @return {Object} The merged result of all handlers
    */
-  async runAll(request, response, options, state={}) {
+  async runAll(request, response, options, state = {}) {
     state = cloneDeep(state) // prevent initial state from being mutated
 
     for await (let result of this.run(request, response, options)) {
@@ -388,25 +392,28 @@ export default class Router extends EventEmitter {
    */
   findMatchingRoute(request) {
     let params
-    let { path, query, method='GET' } = request
+    let { path, query, method = 'GET' } = request
 
     method = method.toUpperCase()
 
     const match = this.routes
       .filter(route => method === route.method)
-      .find(route => params = route.path.match(path))
+      .find(route => (params = route.path.match(path)))
 
-    return { match, params: {...params, ...query }}
+    return { match, params: { ...params, ...query } }
   }
 
   /**
-   * Returns true if the URL points to a route that has a proxyUpstream handler.  
+   * Returns true if the URL points to a route that has a proxyUpstream handler.
    * @param {String} url The url to check
    * @param {String} [method='get']
    * @return {Boolean}
    */
-  willNavigateToUpstream(url, method='get') {
-    const { pathname: path, search } = new URL(url, typeof window !== 'undefined' ? window.location : undefined)
+  willNavigateToUpstream(url, method = 'get') {
+    const { pathname: path, search } = new URL(
+      url,
+      typeof window !== 'undefined' ? window.location : undefined,
+    )
     return this.willFetchFromUpstream({ path, search, method })
   }
 
@@ -501,10 +508,9 @@ export default class Router extends EventEmitter {
 
     const nextParams = qs.stringify({
       ...qs.parse(history.location.search, { ignoreQueryPrefix: true }),
-      ...params
+      ...params,
     })
 
     history.replace(`${history.location.pathname}?${nextParams}`)
   }
-
 }

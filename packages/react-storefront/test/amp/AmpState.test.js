@@ -15,8 +15,8 @@ describe('AmpState', () => {
           <AmpState initialState={{ foo: 'bar' }}>
             <div>inner</div>
           </AmpState>
-        </Provider>
-      )
+        </Provider>,
+      ),
     ).toMatchSnapshot()
   })
   it('should render only children when amp is false', () => {
@@ -26,9 +26,8 @@ describe('AmpState', () => {
           <AmpState>
             <div>inner</div>
           </AmpState>
-        </Provider>
-      )
+        </Provider>,
+      ),
     ).toMatchSnapshot()
   })
 })
-

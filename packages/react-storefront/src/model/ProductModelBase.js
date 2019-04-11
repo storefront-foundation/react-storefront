@@ -2,8 +2,8 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types, onPatch } from "mobx-state-tree"
-import SelectionModelBase from "./SelectionModelBase"
+import { types, onPatch } from 'mobx-state-tree'
+import SelectionModelBase from './SelectionModelBase'
 
 const ProductModelBase = types
   .model('ProductModelBase', {
@@ -21,7 +21,7 @@ const ProductModelBase = types
     images: types.array(types.string),
     thumbnails: types.array(types.string),
     thumbnail: types.maybeNull(types.string),
-    loadingImages: false
+    loadingImages: false,
   })
   .views(self => ({
     shouldApplyPatchOnPop(patch) {
@@ -35,7 +35,7 @@ const ProductModelBase = types
       } else {
         return self.basePrice
       }
-    }
+    },
   }))
   .actions(self => ({
     afterCreate() {
@@ -49,7 +49,7 @@ const ProductModelBase = types
 
     /**
      * Updates the quantity and fires an analytics event
-     * @param {Number} quantity 
+     * @param {Number} quantity
      */
     setQuantity(q) {
       self.quantity = q < 1 ? 1 : q
@@ -58,7 +58,7 @@ const ProductModelBase = types
      * Get images for the selected color
      */
     fetchImages() {
-      const {pathname, search} = window.location
+      const { pathname, search } = window.location
       const selected = self.color.selected
       self.loadingImages = true
 
@@ -71,11 +71,11 @@ const ProductModelBase = types
     },
     /**
      * Update the images based on the response from the images handler
-     * @param {String[]} images 
+     * @param {String[]} images
      */
     apply(state) {
       Object.assign(self, state)
-    }
+    },
   }))
 
 export default ProductModelBase

@@ -6,7 +6,7 @@ import React, { Component, Fragment } from 'react'
 import { inject } from 'mobx-react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import withTheme from '@material-ui/core/styles/withTheme'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import Link from '../Link'
 import Typography from '@material-ui/core/Typography'
 import classnames from 'classnames'
@@ -18,7 +18,7 @@ export const styles = theme => ({
     position: 'relative',
     marginTop: theme.headerHeight,
     height: `calc(100vh - ${theme.headerHeight}px)`,
-    borderTop: `1px solid ${theme.palette.divider}`, 
+    borderTop: `1px solid ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.paper,
     boxShadow: '10px 2px 10px -5px rgba(0, 0, 0, 0.2)',
     paddingBottom: '64px',
@@ -28,15 +28,15 @@ export const styles = theme => ({
     '& section[expanded] > h3': {
       color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.main,
-      borderColor: theme.palette.secondary.main
+      borderColor: theme.palette.secondary.main,
     },
     '& a': {
-      color: theme.typography.body1.color
+      color: theme.typography.body1.color,
     },
     '& ~ div[class*="amphtml-sidebar-mask"]': {
       background: 'rgba(0, 0, 0, 0.5)',
-      opacity: 1
-    }
+      opacity: 1,
+    },
   },
   item: {
     padding: '12px 16px',
@@ -44,10 +44,10 @@ export const styles = theme => ({
     borderWidth: '0 0 1px 0',
     borderStyle: 'solid',
     display: 'block',
-    textDecoration: 'none'
+    textDecoration: 'none',
   },
   group: {
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
   },
   toggle: {
     position: 'absolute',
@@ -57,20 +57,20 @@ export const styles = theme => ({
   expand: {
     display: 'block',
     'section[expanded] > h3 > &': {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   collapse: {
     display: 'none',
     'section[expanded] > h3 > &': {
-      display: 'block'
-    }
-  }
+      display: 'block',
+    },
+  },
 })
 
 /**
  * An AMP-compatible menu based on amp-sidebar.
- * 
+ *
  * In addition to the CSS classes that can be overridden of menu subcomponents, you can also
  * assign specific classes to individual menu items by specifying a value for the `className`
  * field on any instance of `MenuItemModel`.
@@ -79,9 +79,8 @@ export const styles = theme => ({
 @withStyles(styles, { name: 'RSFAmpMenu' })
 @inject(({ app }) => ({ menu: app.menu }))
 export default class AmpMenu extends Component {
-  
   static defaultProps = {
-    id: 'moov_menu'
+    id: 'moov_menu',
   }
 
   render() {
@@ -91,18 +90,32 @@ export default class AmpMenu extends Component {
     return (
       <Fragment>
         <Helmet key="helmet">
-          <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-          <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+          <script
+            async
+            custom-element="amp-sidebar"
+            src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"
+          />
+          <script
+            async
+            custom-element="amp-accordion"
+            src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"
+          />
           <style amp-custom>{`
             #${id} {
               width: ${drawerWidth}px;
             }
           `}</style>
         </Helmet>
-        <amp-sidebar key="sidebar" id={id} class={classnames(className, classes.root)} layout="nodisplay" side={align}>
-          { rootHeader }
-          { this.renderItem(root) }
-          { rootFooter }
+        <amp-sidebar
+          key="sidebar"
+          id={id}
+          class={classnames(className, classes.root)}
+          layout="nodisplay"
+          side={align}
+        >
+          {rootHeader}
+          {this.renderItem(root)}
+          {rootFooter}
         </amp-sidebar>
       </Fragment>
     )
@@ -126,38 +139,37 @@ export default class AmpMenu extends Component {
 
     const section = (
       <section key={key}>
-        { item.text && (
+        {item.text && (
           <Typography
             variant="body1"
             component="h3"
             className={classnames(classes.item, classes.group, item.className)}
           >
             {item.text}
-            <CollapseIcon className={classnames(classes.toggle, classes.collapse)}/>
-            <ExpandIcon className={classnames(classes.toggle, classes.expand)}/>
+            <CollapseIcon className={classnames(classes.toggle, classes.collapse)} />
+            <ExpandIcon className={classnames(classes.toggle, classes.expand)} />
           </Typography>
         )}
-        <div>
-          { item.items.map((item, i) => this.renderItem(item, i)) }
-        </div>
+        <div>{item.items.map((item, i) => this.renderItem(item, i))}</div>
       </section>
     )
 
     if (item.root) {
       return section
     } else {
-      return <amp-accordion key={key} disable-session-states>{ section }</amp-accordion>
+      return (
+        <amp-accordion key={key} disable-session-states>
+          {section}
+        </amp-accordion>
+      )
     }
   }
 
   renderLeaf(item, key) {
     return (
-      <Link
-        key={key}
-        className={classnames(this.props.classes.item, item.className)}
-        to={item.url}
-      >{item.text}</Link>
+      <Link key={key} className={classnames(this.props.classes.item, item.className)} to={item.url}>
+        {item.text}
+      </Link>
     )
   }
-
 }

@@ -4,7 +4,7 @@
  */
 import fetch from 'fetch'
 import debounce from 'lodash/debounce'
-import { types } from "mobx-state-tree"
+import { types } from 'mobx-state-tree'
 import { fetchLatest, StaleResponseError } from '../fetchLatest'
 
 // Ensures that responses are returned in order and that the previous request is canceled when a new request is sent.
@@ -13,29 +13,28 @@ const fetchSearchResults = fetchLatest(fetch)
 /**
  * Represents an individual link within a group
  */
-export const ResultsModel = types
-  .model('ResultsModel', {
-    /**
-     * The link text
-     */
-    text: types.string,
-    /**
-     * The link's target url
-     */
-    url: types.string,
-    /**
-     * A url for a thumbnail image
-     */
-    thumbnail: types.maybeNull(types.string),
-    /**
-     * The thumbnail height
-     */
-    thumbnailHeight: 120,
-    /**
-     * The thumbnail width
-     */
-    thumbnailWidth: 120
-  })
+export const ResultsModel = types.model('ResultsModel', {
+  /**
+   * The link text
+   */
+  text: types.string,
+  /**
+   * The link's target url
+   */
+  url: types.string,
+  /**
+   * A url for a thumbnail image
+   */
+  thumbnail: types.maybeNull(types.string),
+  /**
+   * The thumbnail height
+   */
+  thumbnailHeight: 120,
+  /**
+   * The thumbnail width
+   */
+  thumbnailWidth: 120,
+})
 
 /**
  * Represents a group of links withing the search results
@@ -49,19 +48,19 @@ export const ResultsGroupModel = types
     /**
      * The list of links to display
      */
-    results: types.optional(types.array(ResultsModel), [])
+    results: types.optional(types.array(ResultsModel), []),
   })
   .views(self => ({
     get thumbnails() {
       return self.results.some(r => r.thumbnail != null)
-    }
+    },
   }))
 
 /**
  * The base model for site-wide searches.
  */
 const SearchModelBase = types
-  .model("SearchModelBase", {
+  .model('SearchModelBase', {
     /**
      * The search phrase entered by the user
      */
@@ -81,19 +80,19 @@ const SearchModelBase = types
     /**
      * Minimum search text length for submission
      */
-    minimumTextLength: 1
+    minimumTextLength: 1,
   })
   .actions(self => ({
     /**
      * Set `true` to show the search popup, `false` to hide.
-     * @param {Boolean} show 
+     * @param {Boolean} show
      */
     toggle(show) {
       self.show = show
     },
     /**
      * Update the search text
-     * @param {String} text 
+     * @param {String} text
      */
     setText(text) {
       self.text = text
@@ -106,7 +105,7 @@ const SearchModelBase = types
     },
     /**
      * Set `true` to show the loading spinner, `false` to hide.
-     * @param {Boolean} state 
+     * @param {Boolean} state
      */
     setLoading(loading) {
       self.loading = loading
@@ -116,13 +115,15 @@ const SearchModelBase = types
      * results are received in order.
      * @param {String} keyword
      */
-    submit: debounce(async (keyword) => {
+    submit: debounce(async keyword => {
       if (!keyword) {
         return
       }
 
       try {
-        const state = await fetchSearchResults(`/search/suggest.json?q=${encodeURIComponent(keyword)}`).then(res => res.json())
+        const state = await fetchSearchResults(
+          `/search/suggest.json?q=${encodeURIComponent(keyword)}`,
+        ).then(res => res.json())
         self.setGroups(state.search.groups)
         self.setLoading(false)
       } catch (e) {
@@ -134,11 +135,11 @@ const SearchModelBase = types
     }, 500),
     /**
      * Set the groups to be displayed
-     * @param {ResultsGroupModel[]} groups 
+     * @param {ResultsGroupModel[]} groups
      */
     setGroups(groups) {
       self.groups = groups
-    }
+    },
   }))
 
 export default SearchModelBase

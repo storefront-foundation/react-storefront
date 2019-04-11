@@ -11,36 +11,47 @@ import AppModelBase from '../../src/model/AppModelBase'
 describe('AmpMenu', () => {
   it('should render', () => {
     const menu = {
-      levels: [{
-        root: true,
-        items: [{
-          text: "Category 1",
-          items: [{
-            text: "Subcategory 1",
-            url: "/s/1"
-          }, {
-            text: "Subcategory 2",
-            url: "/s/2"
-          }]
-        }, {
-          text: "Category 2",
-          items: [{
-            text: "Subcategory 1",
-            url: "/s/1"
-          }, {
-            text: "Subcategory 2",
-            url: "/s/2"
-          }]
-        }]
-      }]
+      levels: [
+        {
+          root: true,
+          items: [
+            {
+              text: 'Category 1',
+              items: [
+                {
+                  text: 'Subcategory 1',
+                  url: '/s/1',
+                },
+                {
+                  text: 'Subcategory 2',
+                  url: '/s/2',
+                },
+              ],
+            },
+            {
+              text: 'Category 2',
+              items: [
+                {
+                  text: 'Subcategory 1',
+                  url: '/s/1',
+                },
+                {
+                  text: 'Subcategory 2',
+                  url: '/s/2',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     }
-  
+
     expect(
       mount(
         <TestProvider app={{ menu, amp: true }}>
-          <AmpMenu/>
-        </TestProvider>
-      )
+          <AmpMenu />
+        </TestProvider>,
+      ),
     ).toMatchSnapshot()
   })
 
@@ -49,28 +60,35 @@ describe('AmpMenu', () => {
       location: {
         pathname: '/',
         search: '',
-        hostname: 'localhost'
+        hostname: 'localhost',
       },
       menu: {
-        levels: [{
-          root: true,
-          items: [{
-            text: "Group 1",
-            className: 'group-1',
+        levels: [
+          {
+            root: true,
             items: [
-              { text: 'Item 1', url: '/item1', className: 'item-1', items: [
-                { text: 'Child 1', url: '/item1/child1', className: 'child-1' }
-              ]}
-            ]
-          }]
-        }]
-      }
+              {
+                text: 'Group 1',
+                className: 'group-1',
+                items: [
+                  {
+                    text: 'Item 1',
+                    url: '/item1',
+                    className: 'item-1',
+                    items: [{ text: 'Child 1', url: '/item1/child1', className: 'child-1' }],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     })
 
     const wrapper = mount(
       <TestProvider app={app}>
-        <AmpMenu/>
-      </TestProvider>
+        <AmpMenu />
+      </TestProvider>,
     )
 
     expect(wrapper.exists('.group-1')).toBe(true)

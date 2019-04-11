@@ -2,11 +2,11 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types, clone } from "mobx-state-tree"
+import { types, clone } from 'mobx-state-tree'
 import OptionModelBase from './OptionModelBase'
 
 const SelectionModelBase = types
-  .model("SelectionModelBase", {
+  .model('SelectionModelBase', {
     /**
      * All available options.
      */
@@ -14,7 +14,7 @@ const SelectionModelBase = types
     /**
      * The selected option
      */
-    selected: types.maybeNull(OptionModelBase)
+    selected: types.maybeNull(OptionModelBase),
   })
   .actions(self => ({
     /**
@@ -27,7 +27,7 @@ const SelectionModelBase = types
       } else {
         self.selected = null
       }
-    }
+    },
   }))
 
-export default SelectionModelBase 
+export default SelectionModelBase

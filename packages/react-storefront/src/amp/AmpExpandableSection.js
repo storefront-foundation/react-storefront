@@ -13,16 +13,15 @@ import classnames from 'classnames'
 
 export const styles = theme => ({
   accordion: {
-    borderBottom: `1px solid ${theme.palette.divider}` 
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   title: {
     backgroundColor: 'transparent',
     padding: '12px 15px',
     borderStyle: 'none',
-    outlineWidth: 0
+    outlineWidth: 0,
   },
-  section: {
-  },
+  section: {},
   toggle: {
     position: 'absolute',
     right: '18px',
@@ -31,19 +30,19 @@ export const styles = theme => ({
   expand: {
     display: 'block',
     'section[expanded] &': {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   collapse: {
     display: 'none',
     'section[expanded] &': {
-      display: 'block'
-    }
+      display: 'block',
+    },
   },
   body: {
     backgroundColor: 'transparent',
-    padding: `0 ${theme.margins.container}px`
-  }
+    padding: `0 ${theme.margins.container}px`,
+  },
 })
 
 /**
@@ -51,7 +50,6 @@ export const styles = theme => ({
  */
 @withStyles(styles, { name: 'RSFAmpExpandableSection' })
 export default class AmpExpandableSection extends Component {
-
   static propTypes = {
     /**
      * The title for the header of the expandable section
@@ -71,7 +69,7 @@ export default class AmpExpandableSection extends Component {
     /**
      * The icon to use for expanded groups
      */
-    CollapseIcon: PropTypes.func
+    CollapseIcon: PropTypes.func,
   }
 
   static defaultProps = {
@@ -79,7 +77,7 @@ export default class AmpExpandableSection extends Component {
     ExpandIcon: ExpandMore,
     CollapseIcon: ExpandLess,
   }
-  
+
   render() {
     let { classes, expanded, children = [], title, ExpandIcon, CollapseIcon } = this.props
 
@@ -89,27 +87,28 @@ export default class AmpExpandableSection extends Component {
 
     const sectionAttributes = {}
 
-    if (expanded) sectionAttributes.expanded = ""
+    if (expanded) sectionAttributes.expanded = ''
 
     return (
       <Fragment>
         <Helmet>
-          <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+          <script
+            async
+            custom-element="amp-accordion"
+            src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"
+          />
         </Helmet>
         <amp-accordion disable-session-states class={classes.accordion}>
           <section className={classes.section} {...sectionAttributes}>
             <Typography variant="subtitle1" component="h3" className={classes.title}>
               {title}
-              <ExpandIcon className={classnames(classes.toggle, classes.expand)}/>
-              <CollapseIcon className={classnames(classes.toggle, classes.collapse)}/>
+              <ExpandIcon className={classnames(classes.toggle, classes.expand)} />
+              <CollapseIcon className={classnames(classes.toggle, classes.collapse)} />
             </Typography>
-            <div className={classes.body}>
-              { children }
-            </div>
+            <div className={classes.body}>{children}</div>
           </section>
         </amp-accordion>
       </Fragment>
     )
   }
-
 }

@@ -4,7 +4,7 @@
  */
 /**
  * Strips the protocol and hostname from the URL, returning a relative URL.
- * @param {String} url An absolute or relative URL 
+ * @param {String} url An absolute or relative URL
  * @return {String} A relative URL
  */
 export function relativeURL(url) {
@@ -27,7 +27,7 @@ const cleanProtocol = protocol => (protocol || '').replace(/:/, '')
  */
 export function absoluteURL(url, currentLocation) {
   if (url == null) {
-    return null 
+    return null
   } else if (currentLocation == null) {
     return url
   } else if (url.match(/^(mailto|tel):/)) {
@@ -59,12 +59,12 @@ export function absoluteURL(url, currentLocation) {
 /**
  * Returns true if a URL can be navigated to on the client using history.push
  * @param {String} url The URL to check
- * @param {String} router The router 
+ * @param {String} router The router
  * @return {Boolean}
  */
 export function canUseClientSideNavigation(url, router) {
   if (!url) return false
-  
+
   // return false for non-webpage links
   if (url.match(/^(mailto|tel):/)) return false
 

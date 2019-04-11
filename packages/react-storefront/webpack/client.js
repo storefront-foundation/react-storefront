@@ -1,12 +1,12 @@
-const path = require('path');
-const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin
+const path = require('path')
+const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
-const { GenerateSW } = require('workbox-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin')
 const { createClientConfig, createLoaders, createPlugins, optimization } = require('./common')
 const hash = require('md5-file').sync
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime }) {
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
@@ -15,31 +15,33 @@ function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpT
 
   if (workboxConfig) {
     return [
-      new CopyPlugin([{
-        from: swBootstrap,
-        to: path.join(root, 'build', 'assets', 'pwa', swBootstrapDest),
-        transform: (content) => {
-          const buildTime = new Date().getTime() + (5 * 1000 * 60) // add 5 minutes to give the build time to deploy
+      new CopyPlugin([
+        {
+          from: swBootstrap,
+          to: path.join(root, 'build', 'assets', 'pwa', swBootstrapDest),
+          transform: content => {
+            const buildTime = new Date().getTime() + 5 * 1000 * 60 // add 5 minutes to give the build time to deploy
 
-          return content.toString()
-            .replace('{{version}}', buildTime)
-            .replace('{{deployTime}}', buildTime)
-            .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
-        }
-      }]),
-      new GenerateSW(Object.assign({
-        swDest: path.join(dest, '..', 'service-worker.js'),
-        importScripts: [ `/pwa/${swBootstrapDest}` ],
-        clientsClaim: true,
-        skipWaiting: true,
-        exclude: [
-          /stats\.json/,
-          /\.DS_Store/,
-          /robots\.txt/,
-          /manifest\.json/,
-          /icons\//
-        ]
-      }, workboxConfig)),
+            return content
+              .toString()
+              .replace('{{version}}', buildTime)
+              .replace('{{deployTime}}', buildTime)
+              .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
+          },
+        },
+      ]),
+      new GenerateSW(
+        Object.assign(
+          {
+            swDest: path.join(dest, '..', 'service-worker.js'),
+            importScripts: [`/pwa/${swBootstrapDest}`],
+            clientsClaim: true,
+            skipWaiting: true,
+            exclude: [/stats\.json/, /\.DS_Store/, /robots\.txt/, /manifest\.json/, /icons\//],
+          },
+          workboxConfig,
+        ),
+      ),
     ]
   } else {
     return []
@@ -47,7 +49,6 @@ function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpT
 }
 
 module.exports = {
-
   /**
    * Generates a webpack config for the client development build
    * @param {String} root The path to the root of the project
@@ -59,40 +60,66 @@ module.exports = {
    * @param {Object} options.eslintConfig A config object for eslint
    * @return {Object} A webpack config
    */
-  dev(root, { workboxConfig, entries, additionalPlugins = [], eslintConfig = require('./eslint-client'), prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
+  dev(
+    root,
+    {
+      workboxConfig,
+      entries,
+      additionalPlugins = [],
+      eslintConfig = require('./eslint-client'),
+      prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
+    } = {},
+  ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
-    
+
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+      'react-storefront-stats': path.join(
+        root,
+        'node_modules',
+        'react-storefront',
+        'stats',
+        'getStatsInDev',
+      ),
     }
 
-    return ({ url = 'http://localhost:8080' } = {}) => Object.assign(createClientConfig(root, { entries, alias }), {
-      devtool: 'inline-cheap-module-source-map',
-      mode: 'development',
-      module: {
-        rules: createLoaders(path.resolve(root, 'src'), { envName: 'development-client', eslintConfig })
-      },
-      plugins: [
-        ...createPlugins(root),
-        new webpack.DefinePlugin({
-          'process.env.MOOV_RUNTIME': JSON.stringify('client'),
-          'process.env.MOOV_ENV': JSON.stringify('development'),
-          'process.env.MOOV_SW': JSON.stringify(process.env.MOOV_SW)
-        }),
-        new OpenBrowserPlugin({ url, ignoreErrors: true }),
-        new WriteFilePlugin(),
-        new CopyPlugin([{
-          from: path.join(root, 'public'),
-          to: path.join(root, 'build', 'assets')
-        }]),
-        new StatsWriterPlugin({
-          filename: 'stats.json'
-        }),
-        ...additionalPlugins,
-        ...createServiceWorkerPlugins({ root, dest, workboxConfig: process.env.MOOV_SW ? workboxConfig : null, prefetchRampUpTime })
-      ]
-    })
+    return ({ url = 'http://localhost:8080' } = {}) =>
+      Object.assign(createClientConfig(root, { entries, alias }), {
+        devtool: 'inline-cheap-module-source-map',
+        mode: 'development',
+        module: {
+          rules: createLoaders(path.resolve(root, 'src'), {
+            envName: 'development-client',
+            eslintConfig,
+          }),
+        },
+        plugins: [
+          ...createPlugins(root),
+          new webpack.DefinePlugin({
+            'process.env.MOOV_RUNTIME': JSON.stringify('client'),
+            'process.env.MOOV_ENV': JSON.stringify('development'),
+            'process.env.MOOV_SW': JSON.stringify(process.env.MOOV_SW),
+          }),
+          new OpenBrowserPlugin({ url, ignoreErrors: true }),
+          new WriteFilePlugin(),
+          new CopyPlugin([
+            {
+              from: path.join(root, 'public'),
+              to: path.join(root, 'build', 'assets'),
+            },
+          ]),
+          new StatsWriterPlugin({
+            filename: 'stats.json',
+          }),
+          ...additionalPlugins,
+          ...createServiceWorkerPlugins({
+            root,
+            dest,
+            workboxConfig: process.env.MOOV_SW ? workboxConfig : null,
+            prefetchRampUpTime,
+          }),
+        ],
+      })
   },
 
   /**
@@ -105,48 +132,65 @@ module.exports = {
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @return {Object} A webpack config
    */
-  prod(root, { workboxConfig = {}, additionalPlugins = [], entries, prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */ } = {}) {
+  prod(
+    root,
+    {
+      workboxConfig = {},
+      additionalPlugins = [],
+      entries,
+      prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
+    } = {},
+  ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
-    
+
     const alias = {
-      'react-storefront-stats': path.join(root, 'node_modules', 'react-storefront', 'stats', 'getStatsInDev')
+      'react-storefront-stats': path.join(
+        root,
+        'node_modules',
+        'react-storefront',
+        'stats',
+        'getStatsInDev',
+      ),
     }
 
     if (process.env.ANALYZE === 'true') {
-      additionalPlugins.push(new BundleAnalyzerPlugin({
-        analyzerMode: 'static'
-      }))
+      additionalPlugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+        }),
+      )
     }
 
     return Object.assign(createClientConfig(root, { entries, alias }), {
       mode: 'production',
       optimization,
       module: {
-        rules: createLoaders(path.resolve(root, 'src'), { envName: 'production-client' })
+        rules: createLoaders(path.resolve(root, 'src'), { envName: 'production-client' }),
       },
       plugins: [
         new webpack.LoaderOptionsPlugin({
           minimize: true,
-          debug: false
+          debug: false,
         }),
         new webpack.DefinePlugin({
           'process.env.MOOV_RUNTIME': JSON.stringify('client'),
           'process.env.NODE_ENV': JSON.stringify('production'),
           'process.env.MOOV_ENV': JSON.stringify('production'),
-          'process.env.PUBLIC_URL': JSON.stringify('') // needed for registerServiceWorker.js
+          'process.env.PUBLIC_URL': JSON.stringify(''), // needed for registerServiceWorker.js
         }),
         new StatsWriterPlugin({
-          filename: path.relative(dest, path.join(root, 'scripts', 'build', 'stats.json'))
+          filename: path.relative(dest, path.join(root, 'scripts', 'build', 'stats.json')),
         }),
-        new CopyPlugin([{
-          from: path.join(root, 'public'),
-          to: path.join(root, 'build', 'assets')
-        }]),
+        new CopyPlugin([
+          {
+            from: path.join(root, 'public'),
+            to: path.join(root, 'build', 'assets'),
+          },
+        ]),
         ...additionalPlugins,
-        ...createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime })
-      ].concat(createPlugins(root))
-    });
-  }
-
+        ...createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime }),
+      ].concat(createPlugins(root)),
+    })
+  },
 }

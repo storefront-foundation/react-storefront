@@ -5,6 +5,5 @@
 const fetch = require('fetch').default
 
 module.exports = function getStatsInDev() {
-  return fetch(`http:${env.asset_host}/pwa/stats.json`)
-    .then(res => res.json())
+  return fetch(`http:${env.asset_host}/pwa/stats.json`).then(res => res.json())
 }

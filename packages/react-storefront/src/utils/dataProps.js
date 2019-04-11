@@ -4,7 +4,7 @@
  */
 /**
  * Returns an object containing the values from props corresponding to keys that start with "data-"
- * @param {Object} props 
+ * @param {Object} props
  * @return {Object}
  */
 export default function dataProps(props) {

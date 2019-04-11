@@ -11,6 +11,6 @@ export function createTestProduct(data = {}) {
     brand: 'brand',
     selectedSize: { code: 'S' },
     selectedColor: { code: 'red' },
-    ...data
+    ...data,
   })
 }

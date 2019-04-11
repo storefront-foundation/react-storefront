@@ -3,9 +3,9 @@
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
 /**
- * If the provided object is a string, returns a function that parses the string as JSON, 
+ * If the provided object is a string, returns a function that parses the string as JSON,
  * otherwise returns the provided object.
- * @param {String|Object} state 
+ * @param {String|Object} state
  * @return {Object|Function}
  */
 export function lazyState(state) {
@@ -17,9 +17,9 @@ export function lazyState(state) {
 }
 
 /**
- * If the provided object is a string, parses it as JSON and returns the resulting object, 
+ * If the provided object is a string, parses it as JSON and returns the resulting object,
  * otherwise returns the provided object.
- * @param {*} state 
+ * @param {*} state
  * @return {Object}
  */
 export function parseState(state) {

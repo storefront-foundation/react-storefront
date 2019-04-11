@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types, isAlive, flow } from "mobx-state-tree"
+import { types, isAlive, flow } from 'mobx-state-tree'
 import fetch from 'fetch'
 import ProductModelBase from './ProductModelBase'
 
@@ -26,7 +26,7 @@ export const FacetModelBase = types.model('FacetModelBase', {
   /**
    * The number of items having the value
    */
-  matches: types.maybeNull(types.number)
+  matches: types.maybeNull(types.number),
 })
 
 /**
@@ -41,7 +41,7 @@ export const FacetGroupModelBase = types.model('FacetGroupModelBase', {
   /**
    * The facets in the group
    */
-  facets: types.optional(types.array(FacetModelBase), [])
+  facets: types.optional(types.array(FacetModelBase), []),
 })
 
 /**
@@ -56,7 +56,7 @@ export const SortBase = types.model('SortBase', {
   /**
    * The text displayed in the UI
    */
-  name: types.maybeNull(types.string)
+  name: types.maybeNull(types.string),
 })
 
 /**
@@ -130,7 +130,7 @@ export default types
     /**
      * Sets the layout style on the view.  Can be LAYOUT_LIST or LAYOUT_GRID.  Defaults to LAYOUT_GRID.
      */
-    layout: types.optional(types.enumeration('Layout', [LAYOUT_LIST, LAYOUT_GRID]), LAYOUT_GRID)
+    layout: types.optional(types.enumeration('Layout', [LAYOUT_LIST, LAYOUT_GRID]), LAYOUT_GRID),
   })
   .views(self => ({
     get hasMoreItems() {
@@ -141,7 +141,7 @@ export default types
       } else {
         return false
       }
-    }
+    },
   }))
   .actions(self => ({
     /**
@@ -185,17 +185,18 @@ export default types
     showPage: async function(page) {
       self.page = page
       let { pathname, search } = window.location
-      search += `${search.length ? '&': '?'}page=${self.page}`
+      search += `${search.length ? '&' : '?'}page=${self.page}`
 
       try {
         self.loadingMore = page > 0
-        const results = await fetch(self.getShowMoreURL(`${pathname}.json${search}`)).then(res => res.json())
+        const results = await fetch(self.getShowMoreURL(`${pathname}.json${search}`)).then(res =>
+          res.json(),
+        )
         if (isAlive(self)) {
           self.addItems(results.items)
           self.setTotal(results.total)
         }
-      }
-      finally {
+      } finally {
         if (isAlive(self)) {
           self.endLoadingMore()
         }
@@ -204,7 +205,7 @@ export default types
     /**
      * Fetches the next page from the server.
      */
-    showMore: async function () {
+    showMore: async function() {
       if (!self.loading) {
         await self.showPage(self.page + 1)
       }
@@ -233,9 +234,9 @@ export default types
     },
     /**
      * Sets the total number of matching records
-     * @param {Integer} total 
+     * @param {Integer} total
      */
-    setTotal(total){
+    setTotal(total) {
       self.total = total
     },
     /**
@@ -250,5 +251,5 @@ export default types
      */
     setSort(option) {
       self.sort = option.code
-    }
+    },
   }))

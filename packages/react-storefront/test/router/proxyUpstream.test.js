@@ -29,11 +29,13 @@ describe('proxyUpstream', () => {
       const params = {}
       const request = {}
       const response = new Response(request)
-      expect(await proxyUpstream(handler).fn(params, request, response)).toEqual({ proxyUpstream: true })
+      expect(await proxyUpstream(handler).fn(params, request, response)).toEqual({
+        proxyUpstream: true,
+      })
       expect(handler).toHaveBeenCalledWith(params, request, response)
     })
 
-    it ('work without a callback', async () => {
+    it('work without a callback', async () => {
       const params = {}
       const request = {}
       const response = new Response(request)

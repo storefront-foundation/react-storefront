@@ -17,14 +17,13 @@ describe('withGlobalState', () => {
 
   it('should accept an async function', async () => {
     const request = { path: '/c/1.json' }
-    
-    const cb = (req) => {
+
+    const cb = req => {
       expect(req).toBe(request)
       return Promise.resolve({ global: true })
     }
-    
+
     const result = await withGlobalState(request, cb, { local: true })
     expect(result).toEqual({ local: true })
   })
-
 })

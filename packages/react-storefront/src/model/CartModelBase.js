@@ -2,15 +2,15 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types, clone, detach } from "mobx-state-tree"
+import { types, clone, detach } from 'mobx-state-tree'
 import ProductModelBase from './ProductModelBase'
 
 /**
  * A base model for the shopping cart
  */
 const CartModelBase = types
-  .model("CartModelBase", {
-    items: types.optional(types.array(ProductModelBase), [])
+  .model('CartModelBase', {
+    items: types.optional(types.array(ProductModelBase), []),
   })
   .views(self => ({
     get quantity() {
@@ -19,7 +19,7 @@ const CartModelBase = types
         total += item.quantity
       }
       return total
-    }
+    },
   }))
   .actions(self => ({
     /**
@@ -35,7 +35,7 @@ const CartModelBase = types
      */
     remove(product) {
       detach(product)
-    }
+    },
   }))
 
 export default CartModelBase

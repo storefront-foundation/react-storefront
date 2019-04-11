@@ -6,9 +6,8 @@ import SearchResultsModelBase, { FacetModelBase } from '../../src/model/SearchRe
 import SubcategoryModelBase from '../../src/model/SubcategoryModelBase'
 
 describe('SearchResultsModelBase', () => {
-
   beforeEach(() => {
-    jest.resetModules();
+    jest.resetModules()
   })
 
   describe('toggleFilter', () => {
@@ -22,7 +21,7 @@ describe('SearchResultsModelBase', () => {
 
     it('removes a filter', () => {
       const results = SearchResultsModelBase.create({
-        filters: ['red', 'green']
+        filters: ['red', 'green'],
       })
       const facet = FacetModelBase.create({ name: 'Red', code: 'red' })
       results.toggleFilter(facet)
@@ -48,39 +47,29 @@ describe('SearchResultsModelBase', () => {
 
   describe('addItems', () => {
     it('should replace items when page=0', () => {
-      const results = SubcategoryModelBase.create({ 
+      const results = SubcategoryModelBase.create({
         id: '1',
         loadingMore: true,
         page: 0,
-        items: [
-          { id: '1' }
-        ]
+        items: [{ id: '1' }],
       })
-  
-      results.addItems([
-        { id: '2' },
-        { id: '3' }
-      ])
-  
+
+      results.addItems([{ id: '2' }, { id: '3' }])
+
       expect(results.loadingMore).toBe(false)
       expect(results.items.map(i => i.id)).toEqual(['2', '3'])
     })
 
     it('should append to existing items and set loadingMore to false', () => {
-      const results = SubcategoryModelBase.create({ 
+      const results = SubcategoryModelBase.create({
         id: '1',
         loadingMore: true,
         page: 1,
-        items: [
-          { id: '1' }
-        ]
+        items: [{ id: '1' }],
       })
-  
-      results.addItems([
-        { id: '2' },
-        { id: '3' }
-      ])
-  
+
+      results.addItems([{ id: '2' }, { id: '3' }])
+
       expect(results.loadingMore).toBe(false)
       expect(results.items.map(i => i.id)).toEqual(['1', '2', '3'])
     })
@@ -90,26 +79,21 @@ describe('SearchResultsModelBase', () => {
     it('should fetch more records from the server and add them to existing records', async () => {
       global.fetch.mockResponse(
         JSON.stringify({
-          items: [
-            { id: '2' },
-            { id: '3' }
-          ]
-        })
+          items: [{ id: '2' }, { id: '3' }],
+        }),
       )
 
-      const results = SubcategoryModelBase.create({ 
+      const results = SubcategoryModelBase.create({
         id: '1',
         loadingMore: true,
-        items: [
-          { id: '1' }
-        ]
+        items: [{ id: '1' }],
       })
 
-      global.window = { 
+      global.window = {
         location: {
           pathname: '/s/1',
-          search: '?filters[0]=red'
-        }
+          search: '?filters[0]=red',
+        },
       }
 
       await results.showMore()
@@ -123,11 +107,8 @@ describe('SearchResultsModelBase', () => {
     it('should return true when items.length < total', () => {
       const model = SubcategoryModelBase.create({
         id: '1',
-        items: [
-          { id: '1' },
-          { id: '2' }
-        ],
-        total: 10
+        items: [{ id: '1' }, { id: '2' }],
+        total: 10,
       })
 
       expect(model.hasMoreItems).toBe(true)
@@ -136,7 +117,7 @@ describe('SearchResultsModelBase', () => {
       const model = SubcategoryModelBase.create({
         id: '1',
         page: 1,
-        numberOfPages: 3
+        numberOfPages: 3,
       })
 
       expect(model.hasMoreItems).toBe(true)
@@ -144,11 +125,8 @@ describe('SearchResultsModelBase', () => {
     it('should return false when items.length = total', () => {
       const model = SubcategoryModelBase.create({
         id: '1',
-        items: [
-          { id: '1' },
-          { id: '2' }
-        ],
-        total: 2
+        items: [{ id: '1' }, { id: '2' }],
+        total: 2,
       })
 
       expect(model.hasMoreItems).toBe(false)
@@ -157,7 +135,7 @@ describe('SearchResultsModelBase', () => {
       const model = SubcategoryModelBase.create({
         id: '1',
         page: 1,
-        numberOfPages: 2
+        numberOfPages: 2,
       })
 
       expect(model.hasMoreItems).toBe(false)
@@ -165,7 +143,7 @@ describe('SearchResultsModelBase', () => {
 
     it('should return false when neither total nor numberOfPages are specified', () => {
       const model = SubcategoryModelBase.create({
-        id: '1'
+        id: '1',
       })
 
       expect(model.hasMoreItems).toBe(false)

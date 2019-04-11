@@ -13,25 +13,25 @@ describe('SearchModelBase', () => {
 
   it('should submit when setText is called with a non blank string', () => {
     model.submit = jest.fn()
-    model.setText("foo")
-    expect(model.submit).toHaveBeenCalledWith("foo")
-    expect(model.text).toBe("foo")
+    model.setText('foo')
+    expect(model.submit).toHaveBeenCalledWith('foo')
+    expect(model.text).toBe('foo')
     expect(model.loading).toBe(true)
-    model.setText("")
-    expect(model.submit).not.toHaveBeenCalledWith("")
-    expect(model.text).toBe("")
+    model.setText('')
+    expect(model.submit).not.toHaveBeenCalledWith('')
+    expect(model.text).toBe('')
     expect(model.loading).toBe(false)
   })
 
   it('should submit only when minimum string length is provided', () => {
     model = SearchModelBase.create({ minimumTextLength: 3 })
     model.submit = jest.fn()
-    model.setText("f")
-    expect(model.submit).not.toHaveBeenCalledWith("f")
-    model.setText("fo")
-    expect(model.submit).not.toHaveBeenCalledWith("fo")
-    model.setText("foo")
-    expect(model.submit).toHaveBeenCalledWith("foo")
+    model.setText('f')
+    expect(model.submit).not.toHaveBeenCalledWith('f')
+    model.setText('fo')
+    expect(model.submit).not.toHaveBeenCalledWith('fo')
+    model.setText('foo')
+    expect(model.submit).toHaveBeenCalledWith('foo')
   })
 
   it('should show and hide when toggle is called', () => {
@@ -43,12 +43,18 @@ describe('SearchModelBase', () => {
 
   it('setGroups should set groups', () => {
     const groups = [
-      { 
+      {
         caption: 'Foo',
         results: [
-          { text: 'text', url: 'http://example.com', thumbnail: '/foo/bar.png', thumbnailHeight: 120, thumbnailWidth: 120 }
-        ] 
-      }
+          {
+            text: 'text',
+            url: 'http://example.com',
+            thumbnail: '/foo/bar.png',
+            thumbnailHeight: 120,
+            thumbnailWidth: 120,
+          },
+        ],
+      },
     ]
 
     model.setGroups(groups)
@@ -58,22 +64,18 @@ describe('SearchModelBase', () => {
 
 describe('ResultsGroupModel', () => {
   it('should have thumbnails==true when a result contains a thumbnail', () => {
-    const model = ResultsGroupModel.create({ 
+    const model = ResultsGroupModel.create({
       caption: 'Foo',
-      results: [
-        { text: 'Foo', url: '/foo', thumbnail: '/foo/bar.png' }
-      ]
+      results: [{ text: 'Foo', url: '/foo', thumbnail: '/foo/bar.png' }],
     })
 
     expect(model.thumbnails).toBe(true)
   })
 
   it('should have thumbnails==false when a result contains a thumbnail', () => {
-    const model = ResultsGroupModel.create({ 
+    const model = ResultsGroupModel.create({
       caption: 'Foo',
-      results: [
-        { text: 'Foo', url: '/foo' }
-      ]
+      results: [{ text: 'Foo', url: '/foo' }],
     })
 
     expect(model.thumbnails).toBe(false)

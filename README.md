@@ -56,6 +56,14 @@ Then, in your app's root directory run:
 npm link react-storefront && npm link babel-plugin-react-storefront && npm link react-storefront-moov-xdn && npm link react-storefront-middleware
 ```
 
+### Setup prettier with Visual Studio Code
+
+`prettier-vscode` can be installed using the extension sidebar.
+
+To format on save, just update your `editor.formatOnSave` setting.
+
+*For other editors, https://prettier.io/docs/en/editors.html*
+
 ## Publishing
 
 To publish a release, run:

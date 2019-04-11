@@ -2,11 +2,11 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import createGenerateClassName from "../../src/utils/createGenerateClassName";
+import createGenerateClassName from '../../src/utils/createGenerateClassName'
 
 describe('createGenerateClassName', () => {
   let rule = {}
-  let sheet = { options: { classNamePrefix: 'pwa' }}
+  let sheet = { options: { classNamePrefix: 'pwa' } }
 
   it('should generate short class names for amp', () => {
     const fn = createGenerateClassName({ amp: true })
@@ -27,9 +27,8 @@ describe('createGenerateClassName', () => {
     }
   })
 
-  it ('should use the material-ui default in development', () => {
+  it('should use the material-ui default in development', () => {
     const fn = createGenerateClassName({ amp: false })
     expect(fn({ key: 'my-class' })).toBe('my-class-1')
   })
-  
 })

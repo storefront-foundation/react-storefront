@@ -13,7 +13,6 @@ import { Helmet } from 'react-helmet'
  */
 @inject(({ app }) => ({ amp: app.amp }))
 export default class AmpState extends Component {
-
   static propTypes = {
     /**
      * The initial values for the amp-state.  Defaults to `{}`
@@ -23,12 +22,12 @@ export default class AmpState extends Component {
     /**
      * An id for the root amp state object. Defaults to "moovAmpState".
      */
-    id: PropTypes.string
+    id: PropTypes.string,
   }
 
   static defaultProps = {
     initialState: {},
-    id: 'moovAmpState'
+    id: 'moovAmpState',
   }
 
   render() {
@@ -39,12 +38,20 @@ export default class AmpState extends Component {
         {amp ? (
           <Fragment>
             <Helmet>
-              <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+              <script
+                async
+                custom-element="amp-bind"
+                src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"
+              />
             </Helmet>
             <amp-state id={id}>
               <script
                 type="application/json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(initialState.toJSON ? initialState.toJSON() : initialState) }}
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify(
+                    initialState.toJSON ? initialState.toJSON() : initialState,
+                  ),
+                }}
               />
             </amp-state>
             {children}

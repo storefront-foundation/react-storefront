@@ -5,9 +5,9 @@
 import { StaleResponseError } from '../../src/fetchLatest'
 
 describe('fromServer', () => {
-  let fetch, 
-    fromServer, 
-    oldFetchLatest, 
+  let fetch,
+    fromServer,
+    oldFetchLatest,
     mod = require('../../src/fetchLatest'),
     fetchResult,
     response,
@@ -16,15 +16,16 @@ describe('fromServer', () => {
   beforeEach(() => {
     oldFetchLatest = mod.fetchLatest
     fetchResult = Promise.resolve({
-      json: () => ({ foo: 'bar' })
+      json: () => ({ foo: 'bar' }),
     })
-    mod.fetchLatest = () => fetch = (url) => {
-      fetchURL = url
-      return fetchResult
-    }
+    mod.fetchLatest = () =>
+      (fetch = url => {
+        fetchURL = url
+        return fetchResult
+      })
     global.env = {}
     fromServer = require('../../src/router').fromServer
-    response = new (require('../../../react-storefront-moov-xdn/src/Response').default)()
+    response = new (require('../../../react-storefront-moov-xdn/src/Response')).default()
   })
 
   afterEach(() => {
@@ -32,7 +33,10 @@ describe('fromServer', () => {
   })
 
   it('should return the fetched response', async () => {
-    expect(await fromServer('./foo/bar').fn(null, null, response)).toEqual({ foo: 'bar', loading: false })
+    expect(await fromServer('./foo/bar').fn(null, null, response)).toEqual({
+      foo: 'bar',
+      loading: false,
+    })
   })
 
   it('should run the specified function', async () => {
@@ -50,13 +54,13 @@ describe('fromServer', () => {
   it('should call getURL when present', async () => {
     let calledWith
 
-    const getURL = (url) => {
+    const getURL = url => {
       calledWith = url
       return `/local/us${url}`
     }
-    
+
     await fromServer('./foo', getURL).fn(null, null, response)
-    
+
     expect(calledWith).toBe('/.json')
     expect(fetchURL).toBe('/local/us/.json')
   })
@@ -65,7 +69,7 @@ describe('fromServer', () => {
     const error = new Error()
     fetchResult = Promise.reject(error)
     let thrown
-    
+
     try {
       await fromServer('./foo').fn(null, null, response)
     } catch (e) {
@@ -81,7 +85,7 @@ describe('fromServer', () => {
     it('should be defined', () => {
       expect(fromServerFetch).toBeDefined()
     })
-  
+
     it('should return json', async () => {
       expect(await fromServerFetch('/foo/bar.json')).toEqual({ foo: 'bar', loading: false })
     })
@@ -100,9 +104,7 @@ describe('fromServer', () => {
       global.jsdom.reconfigure({ url: 'http://localhost' })
       fetchResult = Promise.resolve({ redirected: true, url: 'http://example.com/foo' })
       await fromServerFetch('/foo/bar.json')
-      expect(window.location.assign).toHaveBeenCalledWith('http://example.com/foo');
+      expect(window.location.assign).toHaveBeenCalledWith('http://example.com/foo')
     })
-
   })
-
 })

@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types } from "mobx-state-tree"
+import { types } from 'mobx-state-tree'
 import { MenuModel } from '../Menu'
 import { TabsModel } from '../NavTabs'
 import CategoryModelBase from './CategoryModelBase'
@@ -16,34 +16,33 @@ import isEqual from 'lodash/isEqual'
 /**
  * Represents a single breadcrumb
  */
-export const BreadcrumbModel = types
-  .model('BreadcrumbModel', {
-    /**
-     * The URL to link to
-     */
-    url: types.maybeNull(types.string),
+export const BreadcrumbModel = types.model('BreadcrumbModel', {
+  /**
+   * The URL to link to
+   */
+  url: types.maybeNull(types.string),
 
-    /**
-     * The text for the link
-     */
-    text: types.string,
+  /**
+   * The text for the link
+   */
+  text: types.string,
 
-    /**
-     * An object to be applied to the state tree when the breadcrumb is clicked.  The shape should match your AppModel class.
-     */
-    state: types.frozen()
-  })
+  /**
+   * An object to be applied to the state tree when the breadcrumb is clicked.  The shape should match your AppModel class.
+   */
+  state: types.frozen(),
+})
 
 export const LocationModel = types.model({
   protocol: 'https',
   hostname: types.maybeNull(types.string),
   pathname: types.string,
   search: types.string,
-  port: '443'
+  port: '443',
 })
 
 const AppModelBase = types
-  .model("AppModelBase", {
+  .model('AppModelBase', {
     amp: false,
     initialWidth: 'xs',
     page: types.maybeNull(types.string),
@@ -62,9 +61,9 @@ const AppModelBase = types
     loadingCategory: types.maybeNull(CategoryModelBase),
     user: types.maybeNull(UserModelBase),
     location: types.maybeNull(LocationModel),
-    search: types.optional(SearchModelBase, {}), 
+    search: types.optional(SearchModelBase, {}),
     breadcrumbs: types.optional(types.array(BreadcrumbModel), []),
-    cart: types.optional(CartModelBase, {})
+    cart: types.optional(CartModelBase, {}),
   })
   .views(self => ({
     get canonicalURL() {
@@ -73,7 +72,7 @@ const AppModelBase = types
     },
     get uri() {
       return self.location.pathname + self.location.search
-    }
+    },
   }))
   .actions(self => ({
     /**
@@ -102,7 +101,7 @@ const AppModelBase = types
 
         for (let key in patch) {
           const value = patch[key]
-  
+
           if (!isEqual(value, state[key])) {
             self[key] = value
           }
@@ -125,22 +124,22 @@ const AppModelBase = types
 
     /**
      * Sets the user model
-     * @param {UserModelBase} user 
+     * @param {UserModelBase} user
      */
     signIn(user) {
       self.user = user
-    }, 
-    
+    },
+
     /**
      * Cleares the user model
      */
     signOut() {
       self.user = null
     },
-    
+
     /**
      * Restores the user identity
-     * @param {UserModelBase} user 
+     * @param {UserModelBase} user
      */
     setUser(user) {
       self.user = user
@@ -148,22 +147,22 @@ const AppModelBase = types
 
     /**
      * Displays an error state
-     * @param {Error} e 
+     * @param {Error} e
      */
     onError(e) {
       self.page = 'Error'
       self.error = e.message
       self.stack = e.stack
-    }
+    },
   }))
 
 /**
  * Removes values from the patch corresponding to existing values in the model that
  * implement forPage and for which forPage does not match the page being set in the patch.
- * 
+ *
  * This helps minimize react component reconciliation by ensuring that values corresponding to
  * hidden pages are not changed when navigating back.
- * 
+ *
  * @param {AppModelBase} model The app model instance
  * @param {Object} patch The patch to be applied
  */
@@ -171,7 +170,7 @@ function auditPatchOnPop(model, patch) {
   if (patch.page) {
     for (let key in patch) {
       const current = model[key]
-  
+
       if (current && current.shouldApplyPatchOnPop && !current.shouldApplyPatchOnPop(patch)) {
         delete patch[key]
       }

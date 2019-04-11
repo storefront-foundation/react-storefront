@@ -15,14 +15,14 @@ export const styles = theme => ({
     width: '450px',
     position: 'relative',
     '& > *': {
-      paddingBottom: 'none'
+      paddingBottom: 'none',
     },
     '& *[role=button]': {
       borderRadius: '50%',
       opacity: '0.5',
       outline: 'none',
-      backgroundColor: 'rgba(0,0,0,0.3)'
-    }
+      backgroundColor: 'rgba(0,0,0,0.3)',
+    },
   },
 
   // This fixes the issue where images do not show up sometimes when amp-carousel is placed in
@@ -30,27 +30,27 @@ export const styles = theme => ({
   rootImportant: {
     '&$root': {
       display: 'block',
-    }
+    },
   },
 
   carouselWrap: {
     height: 'calc(100% - 65px)',
-    position: 'relative'
+    position: 'relative',
   },
-  
+
   thumbnails: {
     marginTop: '10px',
     whiteSpace: 'nowrap',
     display: 'flex',
     alignItems: 'stretch',
     maxWidth: '100%',
-    overflowX: 'auto'
+    overflowX: 'auto',
   },
 
   thumbnailsWrap: {
     display: 'flex',
     margin: 'auto',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
 
   thumbnail: {
@@ -63,12 +63,12 @@ export const styles = theme => ({
     background: 'none',
     opacity: 0.7,
     '& img': {
-      objectFit: 'contain'
-    }
+      objectFit: 'contain',
+    },
   },
 
   thumbnailSelected: {
-    opacity: 1
+    opacity: 1,
   },
 
   thumbnailSelectedLine: {
@@ -76,18 +76,18 @@ export const styles = theme => ({
     width: '50px',
     margin: '0px 2px',
     position: 'relative',
-    bottom: '4px'
+    bottom: '4px',
   },
 
-  dot: { },
-  dots: { },
+  dot: {},
+  dots: {},
   dotSelected: {},
 
   '@global': {
     'amp-lightbox-gallery div[aria-label="Gallery"]': {
-      display: 'none'
-    }
-  }
+      display: 'none',
+    },
+  },
 })
 
 /**
@@ -96,7 +96,6 @@ export const styles = theme => ({
 @withStyles(styles, { name: 'RSFAmpImageSwitcher' })
 @inject('nextId', 'ampStateId')
 export default class AmpImageSwitcher extends Component {
-
   static propTypes = {
     /**
      * The amp-carousel type.  Can be "slides" or "carousel".  Defaults to "slides".
@@ -116,14 +115,14 @@ export default class AmpImageSwitcher extends Component {
     /**
      * Set to true to display left and right arrows.  Defaults to false
      */
-    arrows: PropTypes.bool
+    arrows: PropTypes.bool,
   }
 
   static defaultProps = {
     type: 'slides',
     indicators: false,
     ampStateProperty: 'selectedImage',
-    controls: false
+    controls: false,
   }
 
   constructor({ id, nextId }) {
@@ -134,68 +133,78 @@ export default class AmpImageSwitcher extends Component {
   }
 
   render() {
-    let { type, arrows, indicators, ampStateId, ampStateProperty, images, thumbnails, classes, className } = this.props
+    let {
+      type,
+      arrows,
+      indicators,
+      ampStateId,
+      ampStateProperty,
+      images,
+      thumbnails,
+      classes,
+      className,
+    } = this.props
     const { id } = this
 
     return (
       <div className={classnames(className, classes.root, classes.rootImportant)}>
         <Helmet>
-          <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"/>
-          <script async custom-element="amp-lightbox-gallery" src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"/>
+          <script
+            async
+            custom-element="amp-carousel"
+            src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"
+          />
+          <script
+            async
+            custom-element="amp-lightbox-gallery"
+            src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"
+          />
         </Helmet>
         <div className={classes.carouselWrap}>
-          <amp-carousel 
+          <amp-carousel
             controls={arrows ? true : undefined}
             id={id}
-            layout="fill" 
+            layout="fill"
             type={type}
             amp-bind={`slide=>${ampStateId}.${ampStateProperty}`}
             on={`slideChange:AMP.setState({ ${ampStateId}: { ${ampStateProperty}: event.index } })`}
           >
             {images.map(({ src, alt }) => (
-              <amp-img 
-                key={src}
-                lightbox
-                src={src}
-                layout="fill"
-                alt={alt}
-              />
+              <amp-img key={src} lightbox src={src} layout="fill" alt={alt} />
             ))}
           </amp-carousel>
           {indicators && (
             <div className={classes.dots}>
               {images.map(({ src }, i) => (
-                <div 
+                <div
                   key={src}
-                  amp-bind={`class=>${ampStateId}.${ampStateProperty} == ${i} ? '${classes.dot} ${classes.dotSelected}' : '${classes.dot}'`}
-                  className={classnames(
-                    classes.dot,
-                    { [classes.dotSelected]: i === 0 }
-                  )}
+                  amp-bind={`class=>${ampStateId}.${ampStateProperty} == ${i} ? '${classes.dot} ${
+                    classes.dotSelected
+                  }' : '${classes.dot}'`}
+                  className={classnames(classes.dot, { [classes.dotSelected]: i === 0 })}
                 />
               ))}
             </div>
           )}
         </div>
-        { thumbnails && thumbnails.length && (
+        {thumbnails && thumbnails.length && (
           <div className={classes.thumbnails}>
             <div className={classes.thumbnailsWrap}>
               {thumbnails.map(({ src, alt }, i) => (
-                <button 
+                <button
                   key={src}
                   type="button"
-                  on={`tap:AMP.setState({ ${ampStateId}: { ${ampStateProperty}: ${i} }})`} 
+                  on={`tap:AMP.setState({ ${ampStateId}: { ${ampStateProperty}: ${i} }})`}
                   className={classes.thumbnail}
                 >
-                  <amp-img 
+                  <amp-img
                     src={src}
                     alt={alt}
                     layout="fill"
-                    amp-bind={`class=>${ampStateId}.${ampStateProperty} == ${i} ? '${classes.thumbnail} ${classes.thumbnailSelected}' : '${classes.thumbnail}'`}
-                    class={classnames(
-                      classes.thumbnail,
-                      { [classes.thumbnailSelected]: i === 0 }
-                    )}
+                    amp-bind={`class=>${ampStateId}.${ampStateProperty} == ${i} ? '${
+                      classes.thumbnail
+                    } ${classes.thumbnailSelected}' : '${classes.thumbnail}'`}
+                    class={classnames(classes.thumbnail, { [classes.thumbnailSelected]: i === 0 })}
                   />
                   {i === 0 && <div className={classes.thumbnailSelectedLine} />}
                 </button>
@@ -206,5 +215,4 @@ export default class AmpImageSwitcher extends Component {
       </div>
     )
   }
-
 }
