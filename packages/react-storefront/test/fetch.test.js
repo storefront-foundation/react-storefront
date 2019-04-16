@@ -310,14 +310,6 @@ describe('fetchWithCookies', () => {
   })
 })
 
-describe('acceptInvalidCerts', () => {
-  it('should return an obejct with agent: https.Agent', () => {
-    const headers = acceptInvalidCerts()
-    expect(headers.agent).toBeInstanceOf(https.Agent)
-    expect(headers.agent.options.rejectUnauthorized).toBe(false)
-  })
-})
-
 describe('redirect', () => {
 
   beforeEach(() => {
