@@ -77,7 +77,7 @@ yarn release
 ### 6.9.0
 
 * Added support for `acceptInvalidCerts` option to `fetch`
-* The `tranform` passed into `react-storefront-moov-xdn/index` can now be asynchronous.  The allows `react-storefront-extensions/transformAmpHtml` to fetch heights and widths for images when rendering AMP.
+* The `transform` passed into `react-storefront-moov-xdn/index` can now be asynchronous.  The allows `react-storefront-extensions/transformAmpHtml` to fetch heights and widths for images when rendering AMP.
 * Added `utils/batchPromises` for running batches of concurrent promises.
 * Added `onImpression` prop to `Link` to help with tracking product impressions using `Track`.
 * Added `currencyCode` to `ProductModelBase`
