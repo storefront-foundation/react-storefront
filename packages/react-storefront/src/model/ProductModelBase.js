@@ -21,6 +21,7 @@ const ProductModelBase = types
     images: types.array(types.string),
     thumbnails: types.array(types.string),
     thumbnail: types.maybeNull(types.string),
+    currencyCode: types.optional(types.string, 'USD'),
     loadingImages: false,
   })
   .views(self => ({

@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.9.0
+
+* Added `currencyCode` to `ProductModelBase`
+
 ### 6.8.3
 
 * Fixed a bug where a number shows in the `ImageSwitcher` component when rendered in AMP without thumbnails.
