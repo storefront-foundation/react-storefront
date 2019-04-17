@@ -62,7 +62,13 @@ export default class Link extends Component {
     /**
      * A function to call when the link becomes visible
      */
-    onVisible: PropTypes.func
+    onVisible: PropTypes.func,
+
+    /**
+     * A function to call when the link becomes visible for the first time.
+     * Use this event to track impressions.
+     */
+    onImpression: PropTypes.func
   }
 
   static defaultProps = {
@@ -71,6 +77,7 @@ export default class Link extends Component {
 
   constructor() {
     super()
+    this.onImpressionFired = false // keep track of when onVisible is fired so we only fire it once
     this.el = React.createRef()
   }
 
@@ -132,7 +139,7 @@ export default class Link extends Component {
   }
 
   onVisibleChange = (visible) => {
-    const { prefetch, onVisible } = this.props
+    const { prefetch, onVisible, onImpression } = this.props
 
     if (visible) {
       const el = this.el.current
@@ -149,6 +156,11 @@ export default class Link extends Component {
         if (onVisible) {
           onVisible()
         }
+
+        if (onImpression && !this.onImpressionFired) {
+          this.onImpressionFired = true
+          onImpression()
+        } 
       }
     }
   }

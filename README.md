@@ -76,6 +76,7 @@ yarn release
 
 ### 6.9.0
 
+* Added `onImpression` prop to `Link` to help with tracking product impressions using `Track`.
 * Added `currencyCode` to `ProductModelBase`
 
 ### 6.8.3
