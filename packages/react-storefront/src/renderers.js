@@ -214,6 +214,8 @@ export function hydrate({
   const state = model.create(window[initialStateProperty] || {})
   const jss = create(jssPreset(), jssNested())
 
+  window._getAppState = () => state.toJSON()
+
   window.addEventListener('online', () => {
     state.setOffline(false)
     // Fetch fresh page data since offline version may not be correct
