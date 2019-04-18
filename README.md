@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.9.1
+
+* Fixed an issue with `Link` where `onImpression` would not fire unless `prefetch="visible"` was also present
+
 ### 6.9.0
 
 * Added support for `acceptInvalidCerts` option to `fetch`
