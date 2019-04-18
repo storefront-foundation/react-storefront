@@ -26,8 +26,19 @@ import PropTypes from 'prop-types'
 }))
 export default class Offline extends Component {
   static propTypes = {
+    /**
+     * Text or an element to display as the heading.
+     */
     heading: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+
+    /**
+     * Text or an element to deplay as the message.
+     */
     message: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+
+    /**
+     * An icon to display.
+     */
     Icon: PropTypes.func,
   }
 
