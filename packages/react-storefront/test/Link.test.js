@@ -230,6 +230,46 @@ describe('Link', () => {
     expect(history.push).not.toHaveBeenCalled()
   })
 
+  it('should watch for visibility when onImpression is present', () => {
+    const sensor = mount(
+      <Provider history={history} app={app}>
+        <Link to="/p/1" anchorProps={{ target: '_blank' }} onImpression={Function.prototype}>Red Shirt</Link>
+      </Provider>
+    ).find('VisibilitySensor')
+
+    expect(sensor.length).toBe(1)
+  })
+
+  it('should watch for visibility when onVisible is present', () => {
+    const sensor = mount(
+      <Provider history={history} app={app}>
+        <Link to="/p/1" anchorProps={{ target: '_blank' }} onVisible={Function.prototype}>Red Shirt</Link>
+      </Provider>
+    ).find('VisibilitySensor')
+
+    expect(sensor.length).toBe(1)
+  })
+
+  it('should watch for visibility when prefetch="visible" is present', () => {
+    const sensor = mount(
+      <Provider history={history} app={app}>
+        <Link to="/p/1" anchorProps={{ target: '_blank' }} prefetch="visible">Red Shirt</Link>
+      </Provider>
+    ).find('VisibilitySensor')
+
+    expect(sensor.length).toBe(1)
+  })
+
+  it('should not watch for visibility by default', () => {
+    const sensor = mount(
+      <Provider history={history} app={app}>
+        <Link to="/p/1" anchorProps={{ target: '_blank' }}>Red Shirt</Link>
+      </Provider>
+    ).find('VisibilitySensor')
+
+    expect(sensor.length).toBe(0)
+  })
+
   afterAll(() => {
     jest.unmock('../src/router/serviceWorker')
   })
