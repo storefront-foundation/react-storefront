@@ -223,6 +223,7 @@ export default class Router extends EventEmitter {
    * @param {Object} request
    */
   cacheCurrentState(request) {
+    if (!window._getAppState) return
     const json = JSON.stringify(window._getAppState())
     const html = document.documentElement.outerHTML.replace(
       /window\.initialState=.*/,
