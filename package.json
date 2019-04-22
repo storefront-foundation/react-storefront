@@ -59,12 +59,13 @@
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.5.0",
     "react-universal-component": "^2.9.0",
+    "sync-files": "^1.0.3",
     "webpack": "^4.25.1"
   },
   "scripts": {
     "build": "cd packages/react-storefront; yarn build; cd ../../; cd packages/react-storefront-moov-xdn; yarn build; cd ../../;",
     "precommit": "yarn add-license && yarn docs",
-    "release": "lerna version --force-publish=*; yarn build; yarn release:rsf; yarn release:moov-xdn; yarn release:middleware; yarn release:babel-plugin", 
+    "release": "lerna version --force-publish=*; yarn build; yarn release:rsf; yarn release:moov-xdn; yarn release:middleware; yarn release:babel-plugin",
     "release:rsf": "cd packages/react-storefront/dist; yarn publish --non-interactive",
     "release:babel-plugin": "cd packages/babel-plugin-react-storefront; yarn publish --non-interactive",
     "release:moov-xdn": "cd packages/react-storefront-moov-xdn/dist; yarn publish --non-interactive",

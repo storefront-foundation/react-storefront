@@ -17,7 +17,9 @@
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
     "build:prep": "yarn run clean && yarn create-indexes && cp package.json dist && cp -r webpack docs dist && cp -r service-worker dist && cp ../../README.md dist",
     "build": "yarn build:prep && NODE_ENV=production babel src --source-maps --out-dir dist --ignore \"webpack/*.js\"",
-    "watch": "yarn build:prep && babel --watch src --source-maps --out-dir dist --ignore \"webpack/*.js\"",
+    "watch": "yarn build:prep && concurrently \"yarn watch:src\" \"yarn watch:bin\"",
+    "watch:src": "babel --watch src --source-maps --out-dir dist --ignore \"webpack/*.js\"",
+    "watch:bin": "sync-files --watch bin dist/bin",
     "docs": "mkdir -p docs/build && NODE_ENV=docs babel-node docs/buildComponentDocs.js"
   },
   "peerDependencies": {
@@ -76,6 +78,7 @@
   "dependencies": {
     "babel-eslint": "^9.0.0",
     "babel-minify-webpack-plugin": "^0.3.1",
+    "chalk": "^2.4.2",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^1.0.0",
     "cookie": "^0.3.1",
@@ -99,6 +102,7 @@
     "mst-middlewares": "^3.10.0",
     "open-browser-webpack-plugin": "^0.0.5",
     "pako": "^1.0.8",
+    "prompts": "^2.0.4",
     "proxy-polyfill": "^0.3.0",
     "qs": "^6.5.2",
     "react-dev-utils": "^5.0.1",
