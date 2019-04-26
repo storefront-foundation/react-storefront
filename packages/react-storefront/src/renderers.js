@@ -214,8 +214,6 @@ export function hydrate({
   const state = model.create(window[initialStateProperty] || {})
   const jss = create(jssPreset(), jssNested())
 
-  window._getAppState = () => state.toJSON()
-
   window.addEventListener('online', () => {
     state.setOffline(false)
     // Fetch fresh page data since offline version may not be correct
@@ -227,6 +225,11 @@ export function hydrate({
   window.addEventListener('offline', () => {
     state.setOffline(true)
   })
+
+  // Fetching new state for offline page
+  if (!navigator.onLine && state.page === null) {
+    providerProps.router.fetchFreshState(document.location).then(state.applyState)
+  }
 
   Object.assign(window.moov, { state, timing: {} }, providerProps)
 

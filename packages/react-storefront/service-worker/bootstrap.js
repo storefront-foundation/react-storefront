@@ -230,15 +230,15 @@ function removeOldRuntimeCaches(currentVersion) {
   })
 }
 
+const isApiRequest = path => path.split(/\?/)[0].match(/\.json$/)
+
 /**
  * Gets the name of the versioned runtime cache
  * @param {String} apiVersion The api version
  * @return {String} A cache name
  */
 function getAPICacheName(apiVersion, path) {
-  const isApiRequest = path.split(/\?/)[0].match(/\.json$/)
-
-  if (isApiRequest && apiVersion) {
+  if (isApiRequest(path) && apiVersion) {
     return `${baseCacheName}-json-${apiVersion}`
   } else {
     return ssrCacheName
@@ -321,17 +321,24 @@ const matchRuntimePath = context => {
   ) /* Safari has a known issue with service workers and videos: https://adactio.com/journal/14452 */
 }
 
-function offlineResponse() {
-  const offlineData = { page: 'Offline' }
-  const blob = new Blob([JSON.stringify(offlineData, null, 2)], {
-    type: 'application/json',
-  })
-  return new Response(blob, {
-    status: 200,
-    headers: {
-      'Content-Length': blob.size,
-    },
-  })
+function offlineResponse(apiVersion, context) {
+  if (isApiRequest(context.url.pathname)) {
+    const offlineData = { page: 'Offline' }
+    const blob = new Blob([JSON.stringify(offlineData, null, 2)], {
+      type: 'application/json',
+    })
+    return new Response(blob, {
+      status: 200,
+      headers: {
+        'Content-Length': blob.size,
+      },
+    })
+  }
+  // If not API request, find and send app shell
+  const path = '/?source=pwa'
+  const cacheName = getAPICacheName(apiVersion, path)
+  const req = new Request(path)
+  return caches.open(cacheName).then(cache => cache.match(req))
 }
 
 workbox.routing.registerRoute(matchRuntimePath, async context => {
@@ -348,20 +355,20 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
 
     if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
       return workbox.strategies
-        .networkFirst(cacheOptions)
+        .networkOnly(cacheOptions)
         .handle(context)
-        .catch(() => offlineResponse())
+        .catch(() => offlineResponse(apiVersion, context))
     } else if (event.request.cache === 'force-cache' /* set by cache and sent by fromServer */) {
       return workbox.strategies.cacheFirst(cacheOptions).handle(context)
     } else {
       // Check the cache for all routes. If the result is not found, get it from the network.
-      return (
-        workbox.strategies
-          // TODO: Should we use networkFirst here?
-          .cacheFirst(cacheOptions)
-          .handle(context)
-          .catch(() => offlineResponse())
-      )
+      return workbox.strategies
+        .cacheOnly(cacheOptions)
+        .handle(context)
+        .then(result => {
+          return result || workbox.strategies.networkOnly().handle(context)
+        })
+        .catch(() => offlineResponse(apiVersion, context))
     }
   } catch (e) {
     // if anything goes wrong, fallback to network

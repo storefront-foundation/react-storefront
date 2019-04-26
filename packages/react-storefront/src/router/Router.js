@@ -218,21 +218,6 @@ export default class Router extends EventEmitter {
   }
 
   /**
-   * @private
-   * Caches the current state and HTML using the service worker.
-   * @param {Object} request
-   */
-  cacheCurrentState(request) {
-    if (!window._getAppState) return
-    const json = JSON.stringify(window._getAppState())
-    const html = document.documentElement.outerHTML.replace(
-      /window\.initialState=.*/,
-      `window.initialState=${json}`,
-    )
-    cache(request.path + qs.stringify(request.query), `<!DOCTYPE html>\n${html}`)
-  }
-
-  /**
    * Configures service worker runtime caching options
    * @param {Object} options
    * @param {Object} options.cacheName The name of the runtime cache
@@ -294,6 +279,15 @@ export default class Router extends EventEmitter {
 
     // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
     // and that the app state's location information is updated.
+
+    // Render app shell
+    if (request.query.source === 'pwa') {
+      yield {
+        loading: true,
+        page: null,
+      }
+      return
+    }
 
     if (this.isBrowser) {
       yield {
@@ -497,11 +491,6 @@ export default class Router extends EventEmitter {
       }
     } else if (state) {
       callback(state, action) // called when restoring history state and applying state from Link components
-    }
-
-    // Cache HTML of visited page
-    if (typeof navigator !== 'undefined' && navigator.onLine) {
-      this.cacheCurrentState(request, context)
     }
 
     this.emit('after', { request, response: context })
