@@ -206,18 +206,6 @@ export default class Router extends EventEmitter {
   }
 
   /**
-   * @private
-   * Caches the initialState (json) and HTML using the service worker.
-   * @param {Object} request
-   */
-  cacheInitialState(request) {
-    cache(
-      request.path + qs.stringify(request.query),
-      `<!DOCTYPE html>\n${document.documentElement.outerHTML}`,
-    )
-  }
-
-  /**
    * Configures service worker runtime caching options
    * @param {Object} options
    * @param {Object} options.cacheName The name of the runtime cache
@@ -335,10 +323,6 @@ export default class Router extends EventEmitter {
         if (result) {
           yield result
         }
-      }
-
-      if (initialLoad && response.clientCache === 'force-cache') {
-        this.cacheInitialState(request, response)
       }
     } catch (err) {
       yield this.errorHandler(err, params, request, response)

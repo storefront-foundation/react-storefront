@@ -11,7 +11,7 @@ import { canUseClientSideNavigation } from './utils/url'
 import delegate from 'delegate'
 import { cache } from './router/serviceWorker'
 import { isSafari } from './utils/browser'
-import { connectReduxDevtools } from "mst-middlewares"
+import { connectReduxDevtools } from 'mst-middlewares'
 import { onSnapshot } from 'mobx-state-tree'
 import debounce from 'lodash/debounce'
 
@@ -25,20 +25,19 @@ export const styles = theme => ({
       overflow: 'hidden',
       position: 'fixed',
       maxWidth: '100vw',
-      maxHeight: '100vh'
+      maxHeight: '100vh',
     },
     'body.moov-blur #root': {
       filter: 'blur(5px)',
-      transition: `filter ${theme.transitions.duration.enteringScreen}ms`
-    }
-  }
-});
+      transition: `filter ${theme.transitions.duration.enteringScreen}ms`,
+    },
+  },
+})
 
 @withStyles(styles)
 @inject(({ app, history, router }) => ({ menu: app.menu, app, history, router, amp: app.amp }))
 @observer
 export default class PWA extends Component {
-  
   _nextId = 0
 
   render() {
@@ -94,13 +93,13 @@ export default class PWA extends Component {
     app.applyState({
       page: 'Error',
       error: error.message,
-      stack: info.componentStack
+      stack: info.componentStack,
     })
   }
 
   componentDidMount() {
-    const { router, app, history } = this.props 
-    
+    const { router, app, history } = this.props
+
     if (router) {
       router.on('fetch', this.resetPage)
       router.watch(history, app.applyState)
@@ -117,10 +116,18 @@ export default class PWA extends Component {
     // cache the launch screen for when the pwa is installed on the desktop
     cache('/?source=pwa')
 
+    // cache the initial page HTML and json
+    const path = app.location.pathname + app.location.query
+    console.log('caching', path)
+    console.log(app.location)
+
+    cache(path + '.json', app.toJSON())
+    cache(path, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+
     this.handleRejections()
 
     if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-      connectReduxDevtools(require("remotedev"), app)
+      connectReduxDevtools(require('remotedev'), app)
     }
   }
 
@@ -135,17 +142,17 @@ export default class PWA extends Component {
       const { pathname, search } = history.location
       history.replace(pathname + search, snapshot)
     }
-  
+
     // record app state in history.state restore it when going back or forward
     // see Router#onLocationChange
     onSnapshot(app, debounce(snapshot => !snapshot.loading && recordState(snapshot), 150))
-  
+
     // record the initial state so that if the user comes back to the initial landing page the app state will be restored correctly.
     recordState(app.toJSON())
   }
 
   /**
-   * When an unhandled rejection occurs, store the error in app state so it 
+   * When an unhandled rejection occurs, store the error in app state so it
    * can be displayed to the developer.
    */
   handleRejections() {
@@ -165,7 +172,7 @@ export default class PWA extends Component {
   /**
    * Returns true if client-side navigation should be forced, otherwise false
    * @param {HTMLElement} linkEl
-   * @return {Boolean} 
+   * @return {Boolean}
    */
   shouldNavigateOnClient(linkEl) {
     const href = linkEl.getAttribute('href')
@@ -209,5 +216,4 @@ export default class PWA extends Component {
     window.scrollTo(0, 0)
     this.props.menu.close()
   }
-
 }
