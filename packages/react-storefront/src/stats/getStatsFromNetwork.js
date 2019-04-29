@@ -4,6 +4,6 @@
  */
 const fetch = require('fetch').default
 
-module.exports = function getStatsInDev() {
+module.exports = function getStatsFromNetwork() {
   return fetch(`http:${env.asset_host}/pwa/stats.json`).then(res => res.json())
 }

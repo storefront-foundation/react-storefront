@@ -12,21 +12,22 @@ module.exports = {
    * @param {Object} options.additionalRules Additional rules to add the webpack config
    * @param {Object} options.envVariables Environment variables to inject into the build
    */
-  dev(root, { eslintConfig = require('./eslint-server'), envVariables = {}, rules = [] } = {}) {
-    const webpack = require(path.join(root, 'node_modules', 'webpack'))
+  dev(root, { eslintConfig = require('./eslint-server'), envVariables = {}, rules = [], } = {}) {
+    return ({ entry, plugins, output, target, resolve, alias = {} } = {}) => {
+      const webpack = require(path.join(root, 'node_modules', 'webpack'))
+  
+      alias = {
+        'react-storefront-stats': path.join(
+          root,
+          'node_modules',
+          'react-storefront',
+          'stats',
+          'getStatsFromNetwork',
+        ),
+        ...alias,
+      }
 
-    const alias = {
-      'react-storefront-stats': path.join(
-        root,
-        'node_modules',
-        'react-storefront',
-        'stats',
-        'getStatsInDev',
-      ),
-    }
-
-    return ({ entry, plugins, output, target, resolve }) =>
-      merge(createServerConfig(root, alias), {
+      return merge(createServerConfig(root, alias), {
         entry,
         mode: 'development',
         output: merge(output, {
@@ -56,6 +57,7 @@ module.exports = {
           }),
         ],
       })
+    }
   },
 
   /**

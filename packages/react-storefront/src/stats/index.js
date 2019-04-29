@@ -6,5 +6,6 @@
 // @create-index
 
 export { default as getStats } from './getStats.js';
-export { default as getStatsInDev } from './getStatsInDev.js';
+export { default as getStatsFromFileSystem } from './getStatsFromFileSystem.js';
+export { default as getStatsFromNetwork } from './getStatsFromNetwork.js';
 
