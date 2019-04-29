@@ -214,23 +214,6 @@ export function hydrate({
   const state = model.create(window[initialStateProperty] || {})
   const jss = create(jssPreset(), jssNested())
 
-  window.addEventListener('online', () => {
-    state.setOffline(false)
-    // Fetch fresh page data since offline version may not be correct
-    if (providerProps.router) {
-      providerProps.router.fetchFreshState(document.location).then(state.applyState)
-    }
-  })
-
-  window.addEventListener('offline', () => {
-    state.setOffline(true)
-  })
-
-  // Fetching new state for offline page
-  if (!navigator.onLine && state.page === null) {
-    providerProps.router.fetchFreshState(document.location).then(state.applyState)
-  }
-
   Object.assign(window.moov, { state, timing: {} }, providerProps)
 
   // skip jss insertion if we are hydrating SSR cached by the service worker because it has already been mounted

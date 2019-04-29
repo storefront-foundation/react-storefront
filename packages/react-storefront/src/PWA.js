@@ -113,16 +113,35 @@ export default class PWA extends Component {
     // put os class on body for platform-specific styling
     this.addDeviceClassesToBody()
 
-    // cache the launch screen for when the pwa is installed on the desktop
-    cache('/?source=pwa')
+    // set initial offline status
+    app.setOffline(!navigator.onLine)
 
-    // cache the initial page HTML and json
-    const path = app.location.pathname + app.location.query
-    console.log('caching', path)
-    console.log(app.location)
+    window.addEventListener('online', () => {
+      app.setOffline(false)
+      // Fetch fresh page data since offline version may not be correct
+      if (router) {
+        router.fetchFreshState(document.location).then(app.applyState)
+      }
+    })
 
-    cache(path + '.json', app.toJSON())
-    cache(path, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+    window.addEventListener('offline', () => {
+      app.setOffline(true)
+    })
+
+    // Fetching new app state for offline page
+    if (!navigator.onLine && app.page === null) {
+      router.fetchFreshState(document.location).then(app.applyState)
+    }
+
+    // only cache app shell and page if online
+    if (navigator.onLine) {
+      // cache the launch screen for when the pwa is installed on the desktop
+      cache('/?source=pwa')
+      // cache the initial page HTML and json
+      const path = app.location.pathname + app.location.search
+      cache(path + '.json', app.toJSON())
+      cache(path, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+    }
 
     this.handleRejections()
 
