@@ -47,31 +47,38 @@ export default class PWA extends Component {
     return (
       <Provider nextId={this.nextId}>
         <Fragment>
-          <CssBaseline/>
+          <CssBaseline />
           <Helmet>
-            <html lang="en"/>
-            <meta charset="utf-8"/>
-            <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"/>
-            <meta name="theme-color" content="#000000"/>
-            { app.description ? <meta name="description" content={app.description} /> : null }
-            { app.canonicalURL ? <link rel="canonical" href={app.canonicalURL}/> : null }
-            <link rel="manifest" href="/manifest.json"/>
+            <html lang="en" />
+            <meta charset="utf-8" />
+            <meta
+              name="viewport"
+              content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
+            />
+            <meta name="theme-color" content="#000000" />
+            {app.description ? <meta name="description" content={app.description} /> : null}
+            {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
+            <link rel="manifest" href="/manifest.json" />
             <title>{app.title}</title>
           </Helmet>
-          { amp && (
+          {amp && (
             <Helmet>
-              <script async src="https://cdn.ampproject.org/v0.js"></script>
-              <script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
+              <script async src="https://cdn.ampproject.org/v0.js" />
+              <script
+                async
+                custom-element="amp-install-serviceworker"
+                src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
+              />
             </Helmet>
           )}
-          { amp && (
+          {amp && (
             <amp-install-serviceworker
-              src={`https://${app.location.hostname}/service-worker.js`}
-              data-iframe-src={`https://${app.location.hostname}/pwa/install-service-worker.html`}
-              layout="nodisplay">
-            </amp-install-serviceworker>
+              src={`${app.location.urlBase}/service-worker.js`}
+              data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
+              layout="nodisplay"
+            />
           )}
-            {this.props.children}
+          {this.props.children}
         </Fragment>
       </Provider>
     )

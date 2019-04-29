@@ -33,13 +33,19 @@ export const BreadcrumbModel = types.model('BreadcrumbModel', {
   state: types.frozen(),
 })
 
-export const LocationModel = types.model({
-  protocol: 'https',
-  hostname: types.maybeNull(types.string),
-  pathname: types.string,
-  search: types.string,
-  port: '443',
-})
+export const LocationModel = types
+  .model({
+    protocol: 'https',
+    hostname: types.maybeNull(types.string),
+    pathname: types.string,
+    search: types.string,
+    port: '443',
+  })
+  .views(self => ({
+    get urlBase() {
+      return self.protocol + '//' + self.hostname + (['443', '80'].includes(self.port) ? '' : `:${self.port}`)
+    }
+  }))
 
 const AppModelBase = types
   .model('AppModelBase', {

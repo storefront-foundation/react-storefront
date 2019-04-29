@@ -95,7 +95,9 @@ export async function configureCache(options) {
  * Resolves when the service worker has been installed
  */
 async function waitForServiceWorkerController() {
-  if (!navigator.serviceWorker || !navigator.serviceWorker.controller) return false
+  if (!navigator.serviceWorker || !navigator.serviceWorker.ready) {
+    return false
+  }
 
   return new Promise(resolve => {
     navigator.serviceWorker.ready.then(() => {
