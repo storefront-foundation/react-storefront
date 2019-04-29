@@ -269,7 +269,7 @@ export default class Router extends EventEmitter {
     // and that the app state's location information is updated.
 
     // Render app shell
-    if (request.query.source === 'pwa') {
+    if (request.query && request.query.source === 'pwa') {
       yield {
         loading: true,
         page: null,

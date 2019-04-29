@@ -190,25 +190,6 @@ describe('Router:Node', function() {
         error: 'Error message',
       })
     })
-
-    describe('initialLoad', () => {
-      beforeEach(() => (process.env.MOOV_RUNTIME = 'client'))
-      afterEach(() => delete process.env.MOOV_RUNTIME)
-
-      it('should cache initial state when run with initialLoad: true', async () => {
-        router.get('/', cache({ client: true }), fromClient({ view: 'home' }))
-
-        window.initialState = { view: 'home', foo: 'bar' }
-        await router.runAll({ path: '/', search: '', method: 'get' }, new ClientContext(), {
-          initialLoad: true,
-          afterOnly: true,
-        })
-        expect(serviceWorker.cache.mock.calls[0]).toEqual([
-          '/',
-          '<!DOCTYPE html>\n<html><head></head><body></body></html>',
-        ])
-      })
-    })
   })
 
   describe('handlers', function() {

@@ -43,8 +43,13 @@ export const LocationModel = types
   })
   .views(self => ({
     get urlBase() {
-      return self.protocol + '//' + self.hostname + (['443', '80'].includes(self.port) ? '' : `:${self.port}`)
-    }
+      return (
+        self.protocol +
+        '//' +
+        self.hostname +
+        (['443', '80'].includes(self.port) ? '' : `:${self.port}`)
+      )
+    },
   }))
 
 const AppModelBase = types
