@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.11.0
+
+- Gracefully handle when `history.replace` fails due to the state object being too large.  This was happening on Firefox for apps with large state trees as Firefox imposes a limit of 640kB on the state object.  When history.replace fails, history.state will simply be cleared out and the app
+will get the state from the network if the user navigates back or forward.
+
 ### 6.10.0
 
 - Removed `onImpression` from `Link`. We decided this logic was better handled in `CommerceAnalyticsTarget` in `react-storefront-extensions`.
