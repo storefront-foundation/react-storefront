@@ -14,8 +14,8 @@ export const styles = theme => ({
   root: {
     height: '56px',
     [theme.breakpoints.up('md')]: {
-      minWidth: '130px'
-    }
+      minWidth: '130px',
+    },
   },
   clickEl: {
     position: 'absolute',
@@ -23,28 +23,27 @@ export const styles = theme => ({
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 1
+    zIndex: 1,
   },
   label: {
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
   },
   link: {
     display: 'block',
     height: '100%',
-    fontSize: theme.typography.body1.fontSize
+    fontSize: theme.typography.body1.fontSize,
   },
   menu: {
-    padding: `${theme.margins.container}px`
+    padding: `${theme.margins.container}px`,
   },
   menuItem: {
-    padding: `1em ${theme.margins.container}px`
-  }
+    padding: `1em ${theme.margins.container}px`,
+  },
 })
 
 @withStyles(styles, { name: 'RSFNavTab' })
 @observer
 export default class NavTab extends Component {
-
   render() {
     const { classes, state, url, prefetch, text, item } = this.props
 
@@ -59,14 +58,14 @@ export default class NavTab extends Component {
           anchorProps={{
             onMouseEnter: this.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,
-            "data-th": "topNavClicked"
+            'data-th': 'topNavClicked',
           }}
         >
           <Tab
             className={classes.root}
             label={text}
             classes={{
-              label: classes.label
+              label: classes.label,
             }}
           />
         </Link>
@@ -74,10 +73,10 @@ export default class NavTab extends Component {
     )
   }
 
-  onMouseEnter = (e) => {
+  onMouseEnter = e => {
     this.props.onMouseEnter({
       target: e.currentTarget,
-      menu: this.getMenu()
+      menu: this.getMenu(),
     })
   }
 
@@ -87,11 +86,13 @@ export default class NavTab extends Component {
     if (children) {
       return children
     } else if (item.items && item.items.length) {
-      return  (
+      return (
         <div className={classes.menu}>
           {item.items.map((item, i) => (
             <div key={i} className={classes.menuItem}>
-              <Link to={item.url} onClick={onItemClick}>{item.text}</Link>
+              <Link to={item.url} onClick={onItemClick}>
+                {item.text}
+              </Link>
             </div>
           ))}
         </div>
@@ -100,5 +101,4 @@ export default class NavTab extends Component {
       return null
     }
   }
-
 }

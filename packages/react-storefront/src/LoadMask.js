@@ -28,19 +28,19 @@ export const styles = theme => ({
     'body.moov-amp &': {
       position: 'fixed',
       marginTop: 0,
-      opacity: 0.8
-    }
+      opacity: 0.8,
+    },
   },
   transparent: {
-    backgroundColor: 'rgba(255,255,255,0.5)'
+    backgroundColor: 'rgba(255,255,255,0.5)',
   },
   alignTop: {
     alignItems: 'flex-start',
-    paddingTop: '200px'
+    paddingTop: '200px',
   },
   show: {
-    display: 'flex'
-  }
+    display: 'flex',
+  },
 })
 
 /**
@@ -48,7 +48,6 @@ export const styles = theme => ({
  */
 @withStyles(styles, { name: 'RSFLoadMask' })
 export default class LoadMask extends Component {
-
   static propTypes = {
     /**
      * Set to true to display the load mask, otherwise it will be hidden.
@@ -70,13 +69,13 @@ export default class LoadMask extends Component {
     /**
      * Set to top to show the spinner near the top. Defaults to 'center'
      */
-    align: PropTypes.oneOf(['center', 'top'])
+    align: PropTypes.oneOf(['center', 'top']),
   }
 
   static defaultProps = {
-    show: false, 
+    show: false,
     fullscreen: false,
-    align: 'center'
+    align: 'center',
   }
 
   componentDidUpdate() {
@@ -101,20 +100,16 @@ export default class LoadMask extends Component {
     const { classes, show, style, className, children, fullscreen, transparent, align } = this.props
 
     return (
-      <div style={style} 
-        className={
-          classnames(
-            classes.root, 
-            className,
-            { 
-              [classes.show]: show,
-              [classes.fullscreen]: fullscreen,
-              [classes.transparent]: transparent,
-              [classes.alignTop]: align === 'top'
-            }
-          )
-        }>
-        { children || <CircularProgress className={classes.progress} color="secondary"/> }
+      <div
+        style={style}
+        className={classnames(classes.root, className, {
+          [classes.show]: show,
+          [classes.fullscreen]: fullscreen,
+          [classes.transparent]: transparent,
+          [classes.alignTop]: align === 'top',
+        })}
+      >
+        {children || <CircularProgress className={classes.progress} color="secondary" />}
       </div>
     )
   }
@@ -122,5 +117,4 @@ export default class LoadMask extends Component {
   componentWillUnmount() {
     document.body.style.overflow = 'visible'
   }
-
 }

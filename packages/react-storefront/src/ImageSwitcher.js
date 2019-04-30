@@ -24,7 +24,7 @@ const paletteIconTextColor = '#77726D'
 
 const imagePropType = PropTypes.shape({
   src: PropTypes.string.isRequired,
-  alt: PropTypes.string
+  alt: PropTypes.string,
 })
 
 export const styles = theme => ({
@@ -34,8 +34,8 @@ export const styles = theme => ({
     position: 'relative',
 
     '& img': {
-      display: 'block'
-    }
+      display: 'block',
+    },
   },
 
   swipeWrap: {
@@ -43,8 +43,8 @@ export const styles = theme => ({
     overflow: 'hidden',
     flex: 1,
     '& .react-swipeable-view-container, & > div:first-child': {
-      height: '100%'
-    }
+      height: '100%',
+    },
   },
 
   imageWrap: {
@@ -56,8 +56,8 @@ export const styles = theme => ({
     '& img': {
       maxHeight: '100%',
       maxWidth: '100%',
-      objectFit: 'contain'
-    }
+      objectFit: 'contain',
+    },
   },
 
   thumbsTitle: {
@@ -69,11 +69,11 @@ export const styles = theme => ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
   },
 
   thumbs: {
-    marginTop: `${theme.margins.container}px`
+    marginTop: `${theme.margins.container}px`,
   },
 
   thumbnail: {
@@ -81,29 +81,29 @@ export const styles = theme => ({
     margin: '0 2px',
     boxSizing: 'content-box',
     height: '50px',
-    width: '50px'
+    width: '50px',
   },
 
   activeThumbs: {
     position: 'absolute',
     width: '100%',
-    bottom: '20px'
+    bottom: '20px',
   },
 
   selected: {
-    borderColor: '#D0D0D0'
+    borderColor: '#D0D0D0',
   },
 
   arrows: {
     [theme.breakpoints.down('xs')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
 
   arrow: {
     position: 'absolute',
     top: '50%',
-    marginTop: '-24px'
+    marginTop: '-24px',
   },
 
   leftArrow: {
@@ -116,7 +116,7 @@ export const styles = theme => ({
 
   icon: {
     height: '30px',
-    width: '30px'
+    width: '30px',
   },
 
   dot: {
@@ -130,18 +130,18 @@ export const styles = theme => ({
     display: 'inline-block',
     margin: '0 2px',
     // Same duration as SwipeableViews animation
-    transitionDuration: '0.35s'
+    transitionDuration: '0.35s',
   },
 
   dotSelected: {
-    backgroundColor: theme.palette.text.primary
+    backgroundColor: theme.palette.text.primary,
   },
 
   dots: {
     position: 'absolute',
     bottom: '5px',
     textAlign: 'center',
-    width: '100%'
+    width: '100%',
   },
 
   viewerToggle: {
@@ -154,11 +154,11 @@ export const styles = theme => ({
     width: '100px',
     height: '100px',
     transitionDuration: '0.5s',
-    '-webkit-tap-highlight-color': 'rgba(0, 0, 0, 0)'
+    '-webkit-tap-highlight-color': 'rgba(0, 0, 0, 0)',
   },
 
   viewerActive: {
-    transform: 'scale(0.4) rotateZ(45deg)'
+    transform: 'scale(0.4) rotateZ(45deg)',
   },
 
   viewerOverlay: {
@@ -175,17 +175,17 @@ export const styles = theme => ({
     '& img': {
       margin: 'auto',
       maxHeight: '100%',
-      maxWidth: '100%'
+      maxWidth: '100%',
     },
     // Hack to fix root div height of pan/zoom/pinch container
     '& > div:first-child': {
       height: '100%',
-    }
+    },
   },
 
   viewerOverlayActive: {
     transform: 'translateY(0%)',
-    visibility: 'visible'
+    visibility: 'visible',
   },
 
   tabsRowRoot: {
@@ -194,30 +194,27 @@ export const styles = theme => ({
 
   tabScroller: {
     [theme.breakpoints.down('xs')]: {
-      padding: `0 ${theme.margins.container}px`
-    }
+      padding: `0 ${theme.margins.container}px`,
+    },
   },
 
   indicator: {
-    display: 'none'
+    display: 'none',
   },
 
   mask: {
-    opacity: '0.8'
-  }
-
+    opacity: '0.8',
+  },
 })
 
-/** 
+/**
  * A swipeable image selector suitable for PDPs
  */
 @withStyles(styles, { name: 'RSFImageSwitcher' })
 @inject('app')
 @observer
 export default class ImageSwitcher extends Component {
-
   static propTypes = {
-
     /**
      * If specified, then the image_switched analytics event will be
      * fired when an image is selected and the product's images and thumbnails will
@@ -234,7 +231,10 @@ export default class ImageSwitcher extends Component {
      * An array of thumbnails to display below the main image.  You can also
      * specify `false` to hide the thumbnails entirely.
      */
-    thumbnails: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, imagePropType]))]),
+    thumbnails: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, imagePropType])),
+    ]),
 
     /**
      * Display left/right arrows for navigating through images
@@ -279,8 +279,8 @@ export default class ImageSwitcher extends Component {
       onPinchStart: PropTypes.func,
       onPinchStop: PropTypes.func,
       initialScale: PropTypes.number,
-      maxScale: PropTypes.number
-    })
+      maxScale: PropTypes.number,
+    }),
   }
 
   static defaultProps = {
@@ -291,17 +291,20 @@ export default class ImageSwitcher extends Component {
     indicators: false,
     loadingThumbnailProps: {},
     reactPinchZoomPanOptions: {
-      maxScale: 3
-    }
+      maxScale: 3,
+    },
   }
 
   state = {
     selectedIndex: 0,
-    viewerActive: false
+    viewerActive: false,
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof nextProps.selectedIndex === 'number' && nextProps.selectedIndex !== prevState.selectedIndex) {
+    if (
+      typeof nextProps.selectedIndex === 'number' &&
+      nextProps.selectedIndex !== prevState.selectedIndex
+    ) {
       return { selectedIndex: nextProps.selectedIndex }
     }
     return null
@@ -311,14 +314,16 @@ export default class ImageSwitcher extends Component {
     return (
       <div
         onClick={() => this.toggleViewer()}
-        className={classnames(this.props.classes.viewerToggle, { [this.props.classes.viewerActive]: this.state.viewerActive })}
+        className={classnames(this.props.classes.viewerToggle, {
+          [this.props.classes.viewerActive]: this.state.viewerActive,
+        })}
       >
         <svg width="100" height="100" viewBox="0 0 100 100">
           <line x1="50" y1="25" x2="50" y2="75" strokeWidth="4" stroke="white" />
           <line x1="25" y1="50" x2="75" y2="50" strokeWidth="4" stroke="white" />
         </svg>
       </div>
-    );
+    )
   }
 
   toggleViewer() {
@@ -327,22 +332,22 @@ export default class ImageSwitcher extends Component {
     } else {
       document.body.classList.add('moov-modal')
     }
-    
-    this.setState({ viewerActive: !this.state.viewerActive });
+
+    this.setState({ viewerActive: !this.state.viewerActive })
   }
 
   renderDot(index) {
-    const classes = classnames(
-      this.props.classes.dot,
-      { [this.props.classes.dotSelected]: index === this.state.selectedIndex }
-    );
+    const classes = classnames(this.props.classes.dot, {
+      [this.props.classes.dotSelected]: index === this.state.selectedIndex,
+    })
     return <div key={index} className={classes} />
   }
 
   get thumbnails() {
     const { thumbnails, product } = this.props
     if (thumbnails === false) return []
-    const _thumbnails = thumbnails && thumbnails.length ? thumbnails : product && product.thumbnails || []
+    const _thumbnails =
+      thumbnails && thumbnails.length ? thumbnails : (product && product.thumbnails) || []
     return _thumbnails.map(e => {
       return typeof e === 'string' ? { src: e, alt: 'thumbnail' } : e
     })
@@ -350,7 +355,7 @@ export default class ImageSwitcher extends Component {
 
   get images() {
     const { images, product } = this.props
-    const _images = images && images.length ? images : product && product.images || []
+    const _images = images && images.length ? images : (product && product.images) || []
     return _images.map(e => {
       return typeof e === 'string' ? { src: e, alt: 'product' } : e
     })
@@ -362,54 +367,81 @@ export default class ImageSwitcher extends Component {
     const modifiedThumbs = thumbnails && thumbnails.map(({ src, alt }) => ({ imageUrl: src, alt }))
     const { viewerActive, selectedIndex } = this.state
 
-    return thumbnails && thumbnails.length > 0 && (
-      <div className={classnames(classes.thumbs, { [classes.activeThumbs]: viewerActive })}>
-        <div className="field">
-          <label className={classes.thumbsTitle}>{thumbnailsTitle}</label>
+    return (
+      thumbnails &&
+      thumbnails.length > 0 && (
+        <div className={classnames(classes.thumbs, { [classes.activeThumbs]: viewerActive })}>
+          <div className="field">
+            <label className={classes.thumbsTitle}>{thumbnailsTitle}</label>
+          </div>
+          <TabsRow
+            classes={{
+              scroller: classes.tabScroller,
+              root: classes.tabsRowRoot,
+            }}
+            imageProps={{
+              className: classes.thumbnail,
+              notFoundSrc,
+              fill: true,
+            }}
+            centered
+            initialSelectedIdx={selectedIndex}
+            onTabChange={(e, selectedIndex) => this.setState({ selectedIndex })}
+            items={modifiedThumbs}
+          />
         </div>
-        <TabsRow
-          classes={{
-            scroller: classes.tabScroller,
-            root: classes.tabsRowRoot
-          }}
-          imageProps={{
-            className: classes.thumbnail,
-            notFoundSrc,
-            fill: true
-          }}
-          centered
-          initialSelectedIdx={selectedIndex}
-          onTabChange={(e, selectedIndex) => this.setState({ selectedIndex })}
-          items={modifiedThumbs}
-        />
-      </div>
+      )
     )
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState && 
-        prevState.selectedIndex && 
-        prevState.selectedIndex !== this.state.selectedIndex && 
-        this.props.product) {
-      analytics.fire('imageSwitched', { product: this.props.product, imageUrl: this.props.images[this.state.selectedIndex] })
+    if (
+      prevState &&
+      prevState.selectedIndex &&
+      prevState.selectedIndex !== this.state.selectedIndex &&
+      this.props.product
+    ) {
+      analytics.fire('imageSwitched', {
+        product: this.props.product,
+        imageUrl: this.props.images[this.state.selectedIndex],
+      })
     }
   }
 
   render() {
-    let { app, product, classes, className, arrows, indicators, style, reactPinchZoomPanOptions, loadingThumbnailProps, viewerThumbnailsOnly, notFoundSrc } = this.props
+    let {
+      app,
+      product,
+      classes,
+      className,
+      arrows,
+      indicators,
+      style,
+      reactPinchZoomPanOptions,
+      loadingThumbnailProps,
+      viewerThumbnailsOnly,
+      notFoundSrc,
+    } = this.props
     const { images, thumbnails } = this
 
-    if (app.amp) return (
-      <AmpImageSwitcher 
-        images={images}
-        thumbnails={thumbnails} 
-        className={className} 
-        classes={{ root: classes.root, dot: classes.dot, dots: classes.dots, dotSelected: classes.dotSelected, thumbnails: classes.thumbs }}
-        arrows={arrows}
-        indicators={indicators}
-        thumbnails={viewerThumbnailsOnly ? null : this.thumbnails}
-      />
-    )
+    if (app.amp)
+      return (
+        <AmpImageSwitcher
+          images={images}
+          thumbnails={thumbnails}
+          className={className}
+          classes={{
+            root: classes.root,
+            dot: classes.dot,
+            dots: classes.dots,
+            dotSelected: classes.dotSelected,
+            thumbnails: classes.thumbs,
+          }}
+          arrows={arrows}
+          indicators={indicators}
+          thumbnails={viewerThumbnailsOnly ? null : this.thumbnails}
+        />
+      )
 
     const { selectedIndex, viewerActive } = this.state
     const selectedImage = images[selectedIndex]
@@ -418,23 +450,22 @@ export default class ImageSwitcher extends Component {
       <div className={classnames(className, classes.root)} style={style}>
         {/* Full Size Images */}
         <div className={classes.swipeWrap}>
-          <SwipeableViews index={selectedIndex} onChangeIndex={i => this.setState({ selectedIndex: i })}>
+          <SwipeableViews
+            index={selectedIndex}
+            onChangeIndex={i => this.setState({ selectedIndex: i })}
+          >
             {images.map(({ src, alt }, i) => (
               <div key={i} className={classes.imageWrap}>
-                { app.amp ? (
-                  <amp-img 
-                    src={src} 
-                    alt="product" 
-                    layout="fill"
-                  />
+                {app.amp ? (
+                  <amp-img src={src} alt="product" layout="fill" />
                 ) : (
                   <Image
-                    key={src} 
-                    notFoundSrc={notFoundSrc} 
-                    src={i===0 && app.loading ? null : src} // need to clear src when app.loading is true so that the onLoad event will fire and the loading thumbnail will be removed
-                    alt={alt || "product"} 
-                    onLoad={i === 0 ? this.clearLoadingProduct : null} 
-                  /> 
+                    key={src}
+                    notFoundSrc={notFoundSrc}
+                    src={i === 0 && app.loading ? null : src} // need to clear src when app.loading is true so that the onLoad event will fire and the loading thumbnail will be removed
+                    alt={alt || 'product'}
+                    onLoad={i === 0 ? this.clearLoadingProduct : null}
+                  />
                 )}
               </div>
             ))}
@@ -443,12 +474,18 @@ export default class ImageSwitcher extends Component {
           {arrows && (
             <div className={classes.arrows}>
               {selectedIndex !== 0 && (
-                <IconButton className={classnames(classes.arrow, classes.leftArrow)} onClick={() => this.setState({ selectedIndex: selectedIndex - 1 })}>
+                <IconButton
+                  className={classnames(classes.arrow, classes.leftArrow)}
+                  onClick={() => this.setState({ selectedIndex: selectedIndex - 1 })}
+                >
                   <ChevronLeft classes={{ root: classes.icon }} />
                 </IconButton>
               )}
               {selectedIndex !== images.length - 1 && (
-                <IconButton className={classnames(classes.arrow, classes.rightArrow)} onClick={() => this.setState({ selectedIndex: selectedIndex + 1 })}>
+                <IconButton
+                  className={classnames(classes.arrow, classes.rightArrow)}
+                  onClick={() => this.setState({ selectedIndex: selectedIndex + 1 })}
+                >
                   <ChevronRight classes={{ root: classes.icon }} />
                 </IconButton>
               )}
@@ -456,47 +493,61 @@ export default class ImageSwitcher extends Component {
           )}
 
           {indicators && (
-            <div className={classes.dots}>
-              {images.map((_, index) => this.renderDot(index))}
-            </div>
+            <div className={classes.dots}>{images.map((_, index) => this.renderDot(index))}</div>
           )}
 
-          {product && (
-            <LoadMask show={product.loadingImages} className={classes.mask}/>
-          )}
+          {product && <LoadMask show={product.loadingImages} className={classes.mask} />}
 
           {product && app.loadingProduct && app.loadingProduct.thumbnail && (
-            <Image src={app.loadingProduct.thumbnail} className={classes.productThumb} {...loadingThumbnailProps} fill/>
+            <Image
+              src={app.loadingProduct.thumbnail}
+              className={classes.productThumb}
+              {...loadingThumbnailProps}
+              fill
+            />
           )}
 
           <Portal>
-            <div className={classnames(classes.viewerOverlay, { [classes.viewerOverlayActive]: viewerActive })}>
-              <ReactPinchZoomPan {...reactPinchZoomPanOptions} render={obj => {
-                return (
-                  <div style={{
-                    overflow: 'hidden',
-                    position: 'relative',
-                    height: '100%'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      height: '100%'
-                    }}>
-                      { selectedImage && (
-                        <img
-                          src={selectedImage.src}
-                          alt={selectedImage.alt}
-                          style={{
-                            width: '100%',
-                            height: 'auto',
-                            transform: `scale(${obj.scale}) translateY(${obj.y}px) translateX(${obj.x}px)`
-                          }} 
-                        />
-                      )}
+            <div
+              className={classnames(classes.viewerOverlay, {
+                [classes.viewerOverlayActive]: viewerActive,
+              })}
+            >
+              <ReactPinchZoomPan
+                {...reactPinchZoomPanOptions}
+                render={obj => {
+                  return (
+                    <div
+                      style={{
+                        overflow: 'hidden',
+                        position: 'relative',
+                        height: '100%',
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: 'flex',
+                          height: '100%',
+                        }}
+                      >
+                        {selectedImage && (
+                          <img
+                            src={selectedImage.src}
+                            alt={selectedImage.alt}
+                            style={{
+                              width: '100%',
+                              height: 'auto',
+                              transform: `scale(${obj.scale}) translateY(${obj.y}px) translateX(${
+                                obj.x
+                              }px)`,
+                            }}
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )
-              }} />
+                  )
+                }}
+              />
               {viewerActive && this.renderViewerToggle()}
               {viewerActive && this.renderThumbnails()}
             </div>
@@ -507,11 +558,9 @@ export default class ImageSwitcher extends Component {
         {!viewerActive && !viewerThumbnailsOnly && this.renderThumbnails()}
       </div>
     )
-
   }
 
   clearLoadingProduct = () => {
     this.props.app.applyState({ loadingProduct: null })
   }
-
 }

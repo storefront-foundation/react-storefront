@@ -24,14 +24,13 @@ export const styles = theme => ({
     bottom: 0,
     width: '100%',
     zIndex: 1,
-    borderRadius: '0'
-  }
-});
+    borderRadius: '0',
+  },
+})
 
 @withStyles(styles, { name: 'RSFCheckoutButton' })
 @inject('history')
 export default class CheckoutButton extends Component {
-
   static propTypes = {
     /**
      * The URL for checkout.  Defaults to "/checkout"
@@ -41,28 +40,28 @@ export default class CheckoutButton extends Component {
     /**
      * Set to true to dock the button at the bottom of the viewport so that it is always visible
      */
-    docked: PropTypes.bool
+    docked: PropTypes.bool,
   }
 
   static defaultProps = {
     url: '/checkout',
-    docked: false
+    docked: false,
   }
 
   render() {
     const { classes, className, url, children, docked, ...others } = this.props
 
     return (
-      <Button 
-        size="large" 
+      <Button
+        size="large"
         color="secondary"
         onClick={this.onClick}
         variant="contained"
         {...others}
         classes={{ root: classes.root }}
-        className={classnames(className, { [classes.docked]: docked })} 
+        className={classnames(className, { [classes.docked]: docked })}
       >
-        { children || "Checkout" }
+        {children || 'Checkout'}
       </Button>
     )
   }
@@ -75,7 +74,5 @@ export default class CheckoutButton extends Component {
     } else {
       history.push(url)
     }
-
   }
-
 }

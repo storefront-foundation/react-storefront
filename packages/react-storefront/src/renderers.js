@@ -15,16 +15,17 @@ import { MuiThemeProvider } from '@material-ui/core/styles'
 import createGenerateClassName from './utils/createGenerateClassName'
 
 // Escape <\ in a closing script tag to avoid untimely script closing
-const getSanitizedModelJson = state => JSON.stringify(state.toJSON()).replace(/<\/script/gi, '<\\/script')
+const getSanitizedModelJson = state =>
+  JSON.stringify(state.toJSON()).replace(/<\/script/gi, '<\\/script')
 
 /**
- * Get javascript asset filename by chunk name 
+ * Get javascript asset filename by chunk name
  * @param  {Object} stats Webpack generated stats
  * @param  {String} chunk Chunk name
  * @return {String}       Asset filename
  */
 export function getJS(stats, chunk) {
-	let assets = stats.assetsByChunkName[chunk]
+  let assets = stats.assetsByChunkName[chunk]
   if (!assets) {
     return null
   } else if (Array.isArray(assets)) {
@@ -41,17 +42,17 @@ export function getJS(stats, chunk) {
  * @return {String[]}
  */
 function getSources(stats, chunk) {
-	return Object.keys(stats.assetsByChunkName)
-		.filter(key => {
-			// render any that have `chunk` in the name, split by ~
-			// when webpack sees two or more chunks that share some vendor libs, it can decide
-			// to create a separate chunk just for the libs those two chunks share.
-			// for example: vendors~component-Component~guide-Guide
-			return key.split('~').some(page => page === chunk)
-		})
-		.map(key => {
-			return stats.assetsByChunkName[key]
-		})
+  return Object.keys(stats.assetsByChunkName)
+    .filter(key => {
+      // render any that have `chunk` in the name, split by ~
+      // when webpack sees two or more chunks that share some vendor libs, it can decide
+      // to create a separate chunk just for the libs those two chunks share.
+      // for example: vendors~component-Component~guide-Guide
+      return key.split('~').some(page => page === chunk)
+    })
+    .map(key => {
+      return stats.assetsByChunkName[key]
+    })
 }
 
 /**
@@ -63,16 +64,20 @@ function getSources(stats, chunk) {
  * @param  {Object} options.cssPrefix          A prefix to apply to css classes
  * @return {String}                            HTML
  */
-export function renderHtml({ component, providers, registry, theme, cssPrefix='jss' }) {
-	return renderToString(
-	  <Provider {...providers}>
-	    <JssProvider classNamePrefix={cssPrefix} registry={registry} generateClassName={createGenerateClassName()}>
-	      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
-	      	{component}
-	      </MuiThemeProvider>
-	    </JssProvider>
-	  </Provider>
-	)
+export function renderHtml({ component, providers, registry, theme, cssPrefix = 'jss' }) {
+  return renderToString(
+    <Provider {...providers}>
+      <JssProvider
+        classNamePrefix={cssPrefix}
+        registry={registry}
+        generateClassName={createGenerateClassName()}
+      >
+        <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+          {component}
+        </MuiThemeProvider>
+      </JssProvider>
+    </Provider>,
+  )
 }
 
 /**
@@ -82,8 +87,8 @@ export function renderHtml({ component, providers, registry, theme, cssPrefix='j
  * @param  {String} options.initialStateProperty  Property name on window object
  * @return {String}                               Script HTML
  */
-export function renderInitialStateScript({ state, defer, initialStateProperty = 'initialState' }) {	
-	return `<script type="text/javascript" ${defer ? 'defer': ''}>
+export function renderInitialStateScript({ state, defer, initialStateProperty = 'initialState' }) {
+  return `<script type="text/javascript" ${defer ? 'defer' : ''}>
 		window.moov = { apiVersion: ${JSON.stringify(__webpack_hash__)} }
 		window.${initialStateProperty}=Object.freeze(${getSanitizedModelJson(state)})
 	</script>`
@@ -97,11 +102,16 @@ export function renderInitialStateScript({ state, defer, initialStateProperty = 
  * @return {String}                 Script HTML
  */
 export function renderScript({ stats, chunk, defer }) {
-	const assetPathBase = process.env.ASSET_PATH_BASE || '';
+  const assetPathBase = process.env.ASSET_PATH_BASE || ''
 
-	return getSources(stats, chunk)
-		.map(src => `<script type="text/javascript" ${defer ? 'defer': ''} src="${assetPathBase}/pwa/${src}"></script>`)
-		.join('')
+  return getSources(stats, chunk)
+    .map(
+      src =>
+        `<script type="text/javascript" ${
+          defer ? 'defer' : ''
+        } src="${assetPathBase}/pwa/${src}"></script>`,
+    )
+    .join('')
 }
 
 /**
@@ -111,7 +121,7 @@ export function renderScript({ stats, chunk, defer }) {
  * @return {String}                   Style HTML
  */
 export function renderStyle({ registry, id = 'ssr-css' }) {
-	return `<style id="${id}">${registry.toString()}</style>`
+  return `<style id="${id}">${registry.toString()}</style>`
 }
 
 /**
@@ -120,12 +130,12 @@ export function renderStyle({ registry, id = 'ssr-css' }) {
  * @return {Object}     Location Object
  */
 function getLocation(env) {
-	const [pathname, search] = env.path.split('?');
+  const [pathname, search] = env.path.split('?')
   return {
-		protocol: env.secure ? 'https' : 'http',
-		hostname: env.host,
-		pathname,
-		search: search || ''  
+    protocol: env.secure ? 'https' : 'http',
+    hostname: env.host,
+    pathname,
+    search: search || '',
   }
 }
 
@@ -141,35 +151,44 @@ function getLocation(env) {
  * @param  {String} options.cssPrefix 						A prefix to apply to css class names
  * @return {Object}                               Components for SSR
  */
-export function render({ component, state, theme, stats, clientChunk, initialStateProperty, injectAssets=true, cssPrefix }) {
+export function render({
+  component,
+  state,
+  theme,
+  stats,
+  clientChunk,
+  initialStateProperty,
+  injectAssets = true,
+  cssPrefix,
+}) {
   const registry = new SheetsRegistry()
 
-	state.applyState({ location: getLocation(env) }, 'REPLACE')
+  state.applyState({ location: getLocation(env) }, 'REPLACE')
 
-	const html = renderHtml({
-  	component,
-  	providers: { app: state },
-  	registry,
-		theme,
-		cssPrefix
+  const html = renderHtml({
+    component,
+    providers: { app: state },
+    registry,
+    theme,
+    cssPrefix,
   })
 
-	const result = {
-		html,
-		style: renderStyle({ registry }),
-		initialStateScript: renderInitialStateScript({ state, defer: false, initialStateProperty }),
-		bootstrapScript: renderScript({ stats, chunk: 'bootstrap' }),
-		componentScript: renderScript({ stats, chunk: clientChunk })
-	}
+  const result = {
+    html,
+    style: renderStyle({ registry }),
+    initialStateScript: renderInitialStateScript({ state, defer: false, initialStateProperty }),
+    bootstrapScript: renderScript({ stats, chunk: 'bootstrap' }),
+    componentScript: renderScript({ stats, chunk: clientChunk }),
+  }
 
-	if (injectAssets) {
-		$head.append(result.style)
-		$body.append(result.initialStateScript)
-		$body.append(result.bootstrapScript)
-		$body.append(result.componentScript)
-	}
+  if (injectAssets) {
+    $head.append(result.style)
+    $body.append(result.initialStateScript)
+    $body.append(result.bootstrapScript)
+    $body.append(result.componentScript)
+  }
 
-	return result
+  return result
 }
 
 /**
@@ -177,49 +196,55 @@ export function render({ component, state, theme, stats, clientChunk, initialSta
  * @param  {React.Component} options.component    Component to be rendered
  * @param  {Model} options.model                  MobX Model
  * @param  {Object} options.theme                 MUI Theme
- * @param  {String} options.target                Selector for rendering target 
+ * @param  {String} options.target                Selector for rendering target
  * @param  {String} options.providerProps         Props to add the to <Provider/> element
  * @param  {String} options.initialStateProperty  Optional window property name for initial state
  * @return {Object} The app state
  */
-export function hydrate({ component, model, theme, target, providerProps={}, initialStateProperty = 'initialState', cssPrefix='jss' }) {
-	const generateClassName = createGenerateClassName()
+export function hydrate({
+  component,
+  model,
+  theme,
+  target,
+  providerProps = {},
+  initialStateProperty = 'initialState',
+  cssPrefix = 'jss',
+}) {
+  const generateClassName = createGenerateClassName()
   const state = model.create(window[initialStateProperty] || {})
   const jss = create(jssPreset(), jssNested())
-	
-	Object.assign(window.moov, { state, timing: {} }, providerProps)
-	
-	// skip jss insertion if we are hydrating SSR cached by the service worker because it has already been mounted
-	if (!document.body.hasAttribute('data-jss-inserted')) {
-		const styleNode = document.createComment("jss-insertion-point");
-		document.head.insertBefore(styleNode, document.head.firstChild);
-		jss.options.insertionPoint = 'jss-insertion-point'
-		document.body.setAttribute('data-jss-inserted', 'on')
-	}
 
-	ReactDOM.hydrate(
+  Object.assign(window.moov, { state, timing: {} }, providerProps)
+
+  // skip jss insertion if we are hydrating SSR cached by the service worker because it has already been mounted
+  if (!document.body.hasAttribute('data-jss-inserted')) {
+    const styleNode = document.createComment('jss-insertion-point')
+    document.head.insertBefore(styleNode, document.head.firstChild)
+    jss.options.insertionPoint = 'jss-insertion-point'
+    document.body.setAttribute('data-jss-inserted', 'on')
+  }
+
+  ReactDOM.hydrate(
     <Provider app={state} {...providerProps}>
       <JssProvider classNamePrefix={cssPrefix} jss={jss} generateClassName={generateClassName}>
-        <MuiThemeProvider theme={theme}>
-          {component}
-        </MuiThemeProvider>
+        <MuiThemeProvider theme={theme}>{component}</MuiThemeProvider>
       </JssProvider>
     </Provider>,
-		target,
-		removeSSRStyles
-	)
+    target,
+    removeSSRStyles,
+  )
 
-	return state
+  return state
 }
 
 /**
- * Removes the style tag rendered on the server so that components are styled correctly 
+ * Removes the style tag rendered on the server so that components are styled correctly
  * after hydration.
  */
 function removeSSRStyles() {
-	const jssStyles = document.getElementById('ssr-css')
+  const jssStyles = document.getElementById('ssr-css')
 
-	if (jssStyles && jssStyles.parentNode) {
-		jssStyles.parentNode.removeChild(jssStyles)
-	}
+  if (jssStyles && jssStyles.parentNode) {
+    jssStyles.parentNode.removeChild(jssStyles)
+  }
 }

@@ -14,12 +14,11 @@ import dataProps from './utils/dataProps'
 
 export const styles = {
   root: {},
-};
+}
 
 @withStyles(styles, { name: 'RSFLink' })
 @inject(({ history, router, app }) => ({ history, router, location: app.location }))
 export default class Link extends Component {
-
   prefetched = false
 
   static propTypes = {
@@ -39,7 +38,7 @@ export default class Link extends Component {
     server: PropTypes.bool,
 
     /**
-     * Set to "visible" to prefetch linked page data when the link is scrolled into view.  
+     * Set to "visible" to prefetch linked page data when the link is scrolled into view.
      * Set to "always" to prefetch even when the link is hidden.
      */
     prefetch: PropTypes.oneOf(['always', 'visible']),
@@ -68,11 +67,11 @@ export default class Link extends Component {
      * A function to call when the link becomes visible for the first time.
      * Use this event to track impressions.
      */
-    onImpression: PropTypes.func
+    onImpression: PropTypes.func,
   }
 
   static defaultProps = {
-    anchorProps: {}
+    anchorProps: {},
   }
 
   constructor() {
@@ -108,7 +107,18 @@ export default class Link extends Component {
   }
 
   render() {
-    const { anchorProps, className, style, children, prefetch, to, location, onVisible, onImpression, ...others } = this.props
+    const {
+      anchorProps,
+      className,
+      style,
+      children,
+      prefetch,
+      to,
+      location,
+      onVisible,
+      onImpression,
+      ...others
+    } = this.props
 
     const props = {
       ...anchorProps,
@@ -118,11 +128,11 @@ export default class Link extends Component {
       ref: this.el,
       style,
       onClick: this.onClick,
-      href: absoluteURL(to, location) // we always render absolute URLs for SEO purposes
+      href: absoluteURL(to, location), // we always render absolute URLs for SEO purposes
     }
 
     if (prefetch) {
-      props['data-moov-rel'] = 'prefetch';
+      props['data-moov-rel'] = 'prefetch'
     }
 
     const link = <a {...props}>{children}</a>
@@ -138,14 +148,14 @@ export default class Link extends Component {
     }
   }
 
-  onVisibleChange = (visible) => {
+  onVisibleChange = visible => {
     const { prefetch, onVisible, onImpression } = this.props
 
     if (visible) {
       const el = this.el.current
 
       // Will get here if the link is on a hidden page
-      // for some reason the visibility sensor fires for all links on a page right after 
+      // for some reason the visibility sensor fires for all links on a page right after
       // that page has been hidden.  We check el.offsetParent to make sure the link is truly visible
       // see https://stackoverflow.com/questions/19669786/check-if-element-is-visible-in-dom for more info on this method
       if (el.offsetParent != null) {
@@ -160,14 +170,14 @@ export default class Link extends Component {
         if (onImpression && !this.onImpressionFired) {
           this.onImpressionFired = true
           onImpression()
-        } 
+        }
       }
     }
   }
 
   onClick = e => {
     let { server, onClick, to, state, history } = this.props
-    
+
     if (onClick) {
       onClick(e)
     }
@@ -182,7 +192,7 @@ export default class Link extends Component {
       e.preventDefault()
 
       if (url === history.location.pathname + history.location.search) {
-        // return immediately if the url isn't changing.  Pushing the existing URL onto state will override the 
+        // return immediately if the url isn't changing.  Pushing the existing URL onto state will override the
         // current state and going forward then back will yield a broken page.
         return
       }
@@ -195,5 +205,4 @@ export default class Link extends Component {
       }
     }
   }
-
 }

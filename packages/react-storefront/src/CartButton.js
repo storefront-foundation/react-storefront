@@ -22,12 +22,10 @@ export const styles = theme => ({
     borderRadius: '50%',
     position: 'absolute',
     top: '3px',
-    right: '5px'
+    right: '5px',
   },
-  icon: {
-
-  }
-});
+  icon: {},
+})
 
 @withStyles(styles, { name: 'RSFCartButton' })
 @inject(({ app }) => ({ cart: app.cart }))
@@ -52,31 +50,27 @@ export default class CartButton extends Component {
     /**
      * Optional Custom cart icon
      */
-    icon: PropTypes.element
+    icon: PropTypes.element,
   }
 
   static defaultProps = {
-    path: '/cart'
+    path: '/cart',
   }
 
   render() {
     const { classes, cart, path, server, onClick, icon, ...buttonProps } = this.props
-    const cartIcon = icon ? icon : <Cart className={classes.icon}/>
+    const cartIcon = icon ? icon : <Cart className={classes.icon} />
 
     return (
       <Track event="cartClicked">
         <Link to={path} server={server} onClick={onClick}>
-          <ToolbarButton
-            aria-label="Cart"
-            color="inherit"
-            icon={cartIcon}
-            {...buttonProps}
-          >
-            {cart && cart.quantity > 0 && <div className={classes.cartQuantity}>{cart.quantity}</div>}
+          <ToolbarButton aria-label="Cart" color="inherit" icon={cartIcon} {...buttonProps}>
+            {cart && cart.quantity > 0 && (
+              <div className={classes.cartQuantity}>{cart.quantity}</div>
+            )}
           </ToolbarButton>
         </Link>
       </Track>
     )
   }
-
 }

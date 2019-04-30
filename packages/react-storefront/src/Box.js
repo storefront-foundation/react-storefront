@@ -12,17 +12,16 @@ import PropTypes from 'prop-types'
  */
 export const styles = theme => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   split: {
     justifyContent: 'space-between',
-    alignItems: 'center'
-  }
-});
+    alignItems: 'center',
+  },
+})
 
 @withStyles(styles, { name: 'RSFBox' })
 export default class Box extends Component {
-
   static propTypes = {
     /**
      * CSS classes to apply
@@ -32,31 +31,30 @@ export default class Box extends Component {
     /**
      * True to split items on opposite sides of the box by applying justify-content: 'space-between'
      */
-    split: PropTypes.bool
+    split: PropTypes.bool,
   }
 
   render() {
-    const { className, classes, split=false, children, style, ...other } = this.props
+    const { className, classes, split = false, children, style, ...other } = this.props
 
     return (
-      <div 
-        className={classnames(classes.root, className, { [classes.split]: split })} 
+      <div
+        className={classnames(classes.root, className, { [classes.split]: split })}
         style={{ ...other, ...style }}
       >
         {children}
       </div>
     )
   }
-
-} 
+}
 
 /**
- * A flex container with horizontal layout. All additional props are spread to the style 
+ * A flex container with horizontal layout. All additional props are spread to the style
  * of the underlying div.
  */
 export function Hbox(props) {
-  props = {...props, flexDirection: 'row'}
-  return <Box alignItems="center" {...props}/>
+  props = { ...props, flexDirection: 'row' }
+  return <Box alignItems="center" {...props} />
 }
 
 Hbox.propTypes = {
@@ -68,16 +66,16 @@ Hbox.propTypes = {
   /**
    * True to split items on opposite sides of the box by applying justify-content: 'space-between'
    */
-  split: PropTypes.bool
+  split: PropTypes.bool,
 }
 
 /**
- * A flex container with vertical layout. All additional props are spread to 
+ * A flex container with vertical layout. All additional props are spread to
  * the style of the underlying div.
  */
 export function Vbox(props) {
-  props = {...props, flexDirection: 'column'}
-  return <Box {...props}/>
+  props = { ...props, flexDirection: 'column' }
+  return <Box {...props} />
 }
 
 Vbox.propTypes = {
@@ -89,5 +87,5 @@ Vbox.propTypes = {
   /**
    * True to split items on opposite sides of the box by applying justify-content: 'space-between'
    */
-  split: PropTypes.bool
+  split: PropTypes.bool,
 }

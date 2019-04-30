@@ -14,7 +14,7 @@ export const styles = theme => ({
   close: {
     width: theme.spacing.unit * 4,
     height: theme.spacing.unit * 4,
-  }
+  },
 })
 
 /**
@@ -24,9 +24,8 @@ export const styles = theme => ({
  */
 @withStyles(styles, { name: 'RSFUpdateNotification' })
 export default class UpdateNotification extends Component {
-
   state = {
-    notifyUpdate: false
+    notifyUpdate: false,
   }
 
   static propTypes = {
@@ -38,12 +37,12 @@ export default class UpdateNotification extends Component {
     /**
      * The text for the reload button.
      */
-    reloadButtonText: PropTypes.string
+    reloadButtonText: PropTypes.string,
   }
 
   static defaultProps = {
     message: 'An new version of this app is available.',
-    reloadButtonText: 'RELOAD'
+    reloadButtonText: 'RELOAD',
   }
 
   render() {
@@ -67,14 +66,14 @@ export default class UpdateNotification extends Component {
             className={classes.close}
             onClick={this.handleNotifyClose}
           >
-            <CloseIcon/>
-          </IconButton>
+            <CloseIcon />
+          </IconButton>,
         ]}
         {...others}
       />
     )
   }
-  
+
   componentDidMount() {
     // published in registerServiceWorker.js
     document.addEventListener('moov-update-available', () => {

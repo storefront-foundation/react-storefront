@@ -16,23 +16,22 @@ let ampAnalyticsTypes = {}
  * Used to reset the id for repeatable test results.
  */
 export function resetId() {
-  nextId = 0 
+  nextId = 0
 }
 
 /**
  * Fires an analytics event when the user interacts with the child component.  By default this fires when the user
  * clicks on the child component, but this can be overriden using the `trigger` prop.  The value of trigger should
  * be the name of the event prop to bind to. All additional props will be passed as options along with the event.
- * 
+ *
  * Example:
- * 
+ *
  * <Track event="addedToCart" product={this.props.product}>
  *  <Button>Add to Cart</Button>
  * </Track>
  */
 @inject('app')
 export default class Track extends Component {
-  
   constructor() {
     super()
     this.id = (nextId++).toString()
@@ -58,13 +57,13 @@ export default class Track extends Component {
     /**
      * Additional data to send when tracking events in AMP.
      */
-    ampData: PropTypes.object
+    ampData: PropTypes.object,
   }
 
   static defaultProps = {
     trigger: 'onClick',
     onSuccess: Function.prototype,
-    ampData: {}
+    ampData: {},
   }
 
   componentWillMount() {
@@ -79,7 +78,7 @@ export default class Track extends Component {
   }
 
   /**
-   * Fires the analytics event asynchronously using setImmediate so as not to 
+   * Fires the analytics event asynchronously using setImmediate so as not to
    * block the render loop.
    * @param {String} e The event to fire
    */
@@ -107,7 +106,10 @@ export default class Track extends Component {
    * @return {React.Element}
    */
   attachEvent() {
-    let { app: { amp }, children: el } = this.props
+    let {
+      app: { amp },
+      children: el,
+    } = this.props
 
     if (el) {
       const triggers = this.getTriggers()
@@ -119,14 +121,14 @@ export default class Track extends Component {
 
       const props = {
         ...el.props,
-        ...triggerHandlers
+        ...triggerHandlers,
       }
 
       if (amp) {
         props['data-amp-id'] = this.id
         props['data-vars-moov-test'] = 'foo'
       }
-  
+
       return React.cloneElement(el, props)
     } else {
       return null
@@ -134,12 +136,12 @@ export default class Track extends Component {
   }
 
   /**
-   * Returns the value of the trigger prop normalized to an object.  If trigger is a string, 
+   * Returns the value of the trigger prop normalized to an object.  If trigger is a string,
    * this function will return { [trigger]: event }
    */
   getTriggers() {
     let { event, trigger } = this.props
-    
+
     if (typeof trigger === 'string') {
       return { [trigger]: event }
     } else {
@@ -161,7 +163,7 @@ export default class Track extends Component {
         let eventData
 
         // Override send to capture the data that would be send instead of trying to send it
-        target.send = data => eventData = data
+        target.send = data => (eventData = data)
 
         // Call the method corresponding to the event name, this should result in a call to send
         handler.call(target, data)
@@ -172,15 +174,19 @@ export default class Track extends Component {
             // an example of this is pageview events
             eventData.selector = `[data-amp-id="${this.id}"]`
           }
-  
+
           this.configureAmpEvent(type, {
             on: eventData.selector ? 'click' : 'visible',
             ...eventData,
             request: 'event',
-            ...ampData
+            ...ampData,
           })
         } else {
-          console.log(`WARNING: No data will be sent for the ${event} event when running in AMP because ${target.constructor.name} didn't return any data for this event.`)
+          console.log(
+            `WARNING: No data will be sent for the ${event} event when running in AMP because ${
+              target.constructor.name
+            } didn't return any data for this event.`,
+          )
         }
       }
     }
@@ -196,13 +202,12 @@ export default class Track extends Component {
 
     if (!config) {
       config = ampAnalyticsTypes[type] = {
-        triggers: []
+        triggers: [],
       }
     }
 
     config.triggers.push(trigger)
   }
-
 }
 
 export function renderAmpAnalyticsTags() {
@@ -210,19 +215,18 @@ export function renderAmpAnalyticsTags() {
 
   for (let type in ampAnalyticsTypes) {
     const target = getTargets().find(t => t.getAmpAnalyticsType() === type)
-    const attributes = (target && target.getAmpAnalyticsAttributes)
-      ? target.getAmpAnalyticsAttributes()
-      : { type }
+    const attributes =
+      target && target.getAmpAnalyticsAttributes ? target.getAmpAnalyticsAttributes() : { type }
     const attributesHtml = Object.keys(attributes)
       .map(key => `${key}="${escape(attributes[key])}"`)
       .join(' ')
     result.push(
       `<amp-analytics ${attributesHtml}>` +
         `<script type="application/json">${JSON.stringify(ampAnalyticsTypes[type])}</script>` +
-      `</amp-analytics>`
+        `</amp-analytics>`,
     )
   }
-  
+
   ampAnalyticsTypes = {}
 
   return result.join('\n')

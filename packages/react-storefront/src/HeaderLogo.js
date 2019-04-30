@@ -21,47 +21,46 @@ export const styles = theme => ({
 
     '& svg': {
       width: '100%',
-      height: '100%'
+      height: '100%',
     },
-    
+
     [theme.breakpoints.up('md')]: {
       position: 'relative',
       left: 0,
-      marginLeft: 10
-    }
+      marginLeft: 10,
+    },
   },
 
   altText: {
     visibility: 'collapse',
     position: 'absolute',
-  }
+  },
 })
 
 /**
  * A wrapper for the logo in the app header which automatically links to the home page and fires
  * the logo_clicked analytics event
- * 
+ *
  * Usage:
- * 
+ *
  *  import MyLogo from '/path/to/logo.svg'
- * 
+ *
  *  <HeaderLogo>
  *    <MyLogo/>
  *  </HeaderLogo>
- * 
+ *
  */
 @withStyles(styles, { name: 'RSFHeaderLogo' })
 export default class HeaderLogo extends Component {
-
   static propTypes = {
     /**
      * The alt text to use for accessibility.  Defaults to "brand logo"
      */
-    alt: PropTypes.string
+    alt: PropTypes.string,
   }
 
   static defaultProps = {
-    alt: 'brand logo'
+    alt: 'brand logo',
   }
 
   render() {
@@ -71,10 +70,9 @@ export default class HeaderLogo extends Component {
       <Track event="logoClicked">
         <Link to="/" className={classnames(classes.logoWrap)}>
           <span className={classes.altText}>{alt}</span>
-          { children }
+          {children}
         </Link>
       </Track>
     )
   }
-
 }

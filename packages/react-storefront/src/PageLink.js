@@ -12,7 +12,6 @@ import { isAlive } from 'mobx-state-tree'
  * This component wraps react-storefront/Link and supports all of its props.
  */
 export default class PageLink extends Component {
-
   static propTypes = {
     /**
      * An instance of a mobx-state-tree Model to link to
@@ -22,7 +21,7 @@ export default class PageLink extends Component {
     /**
      * The page to display when clicked.
      */
-    page: PropTypes.string.isRequired
+    page: PropTypes.string.isRequired,
   }
 
   render() {
@@ -39,16 +38,16 @@ export default class PageLink extends Component {
       } else if (typeof model.toJSON === 'function') {
         model = model.toJSON()
       }
-  
+
       return {
-        page, 
-        // setting loading to true here speeds up page transitions because it eliminates the reconciliation cycle that 
+        page,
+        // setting loading to true here speeds up page transitions because it eliminates the reconciliation cycle that
         // would otherwise follow when the router decides it needs to fetch data from the srver
-        loading: true, 
+        loading: true,
         [`loading${page}`]: {
           id: model.id + '-loading',
-          ...model
-        }
+          ...model,
+        },
       }
     }
   }

@@ -22,14 +22,13 @@ export const styles = theme => ({
     boxShadow: 'none',
     width: 'calc(50% - 15px)',
     margin: '0 15px 15px 0',
-  }
-});
+  },
+})
 
 @withStyles(styles, { name: 'RSFSort' })
 @inject('router')
 @observer
 export default class Sort extends Component {
-  
   static propTypes = {
     /**
      * A function to call when a sort option is selected.  The option and event are passed.
@@ -51,13 +50,13 @@ export default class Sort extends Component {
     /**
      * Controls how sort options are displayed.  Can be "menu-items" or "buttons".  Defaults to "buttons"
      */
-    variant: PropTypes.oneOf(['menu-items', 'buttons'])
+    variant: PropTypes.oneOf(['menu-items', 'buttons']),
   }
 
   static defaultProps = {
     onSelect: Function.prototype,
     queryParam: 'sort',
-    variant: 'buttons'
+    variant: 'buttons',
   }
 
   render() {
@@ -80,17 +79,18 @@ export default class Sort extends Component {
 
     return (
       <div className={classes.container} onClick={this.handleSort}>
-        {options && options.map((option, i) => (
-          <Button
-            className={classes.option}
-            color={model.sort === option.code ? 'primary' : 'default'}
-            variant="contained"
-            onClick={this.onClick.bind(this, option)}
-            key={i}
-          >
-            {option.name}
-          </Button>
-        ))}
+        {options &&
+          options.map((option, i) => (
+            <Button
+              className={classes.option}
+              color={model.sort === option.code ? 'primary' : 'default'}
+              variant="contained"
+              onClick={this.onClick.bind(this, option)}
+              key={i}
+            >
+              {option.name}
+            </Button>
+          ))}
       </div>
     )
   }
@@ -101,11 +101,12 @@ export default class Sort extends Component {
 
     return (
       <Fragment>
-        { options && options.map((option, i) => ( 
-          <MenuItem key={i} onClick={this.onClick.bind(this, option)}>
-            {option.name}
-          </MenuItem>
-        ))}
+        {options &&
+          options.map((option, i) => (
+            <MenuItem key={i} onClick={this.onClick.bind(this, option)}>
+              {option.name}
+            </MenuItem>
+          ))}
       </Fragment>
     )
   }
@@ -120,5 +121,4 @@ export default class Sort extends Component {
       model.refresh()
     }
   }
-
 }

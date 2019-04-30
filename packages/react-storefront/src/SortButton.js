@@ -18,7 +18,6 @@ import Menu from '@material-ui/core/Menu'
 @inject('app')
 @observer
 export default class SortButton extends Component {
-
   static propTypes = {
     /**
      * A instance of SearchResultsModelBase
@@ -43,13 +42,13 @@ export default class SortButton extends Component {
     /**
      * Text for the button label and the drawer header.  Defaults to "Sort".
      */
-    title: PropTypes.string
+    title: PropTypes.string,
   }
 
   static defaultProps = {
     title: 'Sort',
     variant: 'drawer',
-    drawerProps: {}
+    drawerProps: {},
   }
 
   constructor({ app, variant }) {
@@ -60,7 +59,7 @@ export default class SortButton extends Component {
     this.state = {
       open,
       mountDrawer: open,
-      anchorEl: null
+      anchorEl: null,
     }
   }
 
@@ -71,36 +70,34 @@ export default class SortButton extends Component {
 
     return (
       <Fragment>
-        <ActionButton 
+        <ActionButton
           key="button"
-          href={ app.amp ? `${app.location.pathname.replace(/\.amp/, '')}?openSort` : null }
+          href={app.amp ? `${app.location.pathname.replace(/\.amp/, '')}?openSort` : null}
           label={title}
-          value={selectedOption && selectedOption.name} 
-          {...props} 
+          value={selectedOption && selectedOption.name}
+          {...props}
           onClick={this.onClick}
         />
         {!app.amp && variant === 'drawer' && (
           <Hidden smUp>
-            <Drawer 
+            <Drawer
               ModalProps={{
-                keepMounted: true
+                keepMounted: true,
               }}
               key="drawer"
               anchor="bottom"
-              title={title} 
-              open={open} 
-              onRequestClose={this.toggleOpen.bind(this, false)} 
+              title={title}
+              open={open}
+              onRequestClose={this.toggleOpen.bind(this, false)}
             >
-              {mountDrawer && (
-                <Sort model={model} onSelect={this.onSelect} {...drawerProps}/>
-              )}
-            </Drawer>               
+              {mountDrawer && <Sort model={model} onSelect={this.onSelect} {...drawerProps} />}
+            </Drawer>
           </Hidden>
         )}
         {!app.amp && variant === 'menu' && (
           <Hidden xsDown>
             <Menu open={open} anchorEl={anchorEl} onClose={this.close}>
-              <Sort variant="menu-items" model={model} onSelect={this.onSelect}/>
+              <Sort variant="menu-items" model={model} onSelect={this.onSelect} />
             </Menu>
           </Hidden>
         )}
@@ -108,13 +105,13 @@ export default class SortButton extends Component {
     )
   }
 
-  onClick = (e) => {
+  onClick = e => {
     if (this.props.onClick) {
       this.props.onClick(e)
     }
 
     if (!e.defaultPrevented) {
-      this.toggleOpen(true, e.currentTarget) 
+      this.toggleOpen(true, e.currentTarget)
     }
   }
 
@@ -133,6 +130,4 @@ export default class SortButton extends Component {
   onSelect = () => {
     this.toggleOpen(false)
   }
-
 }
-

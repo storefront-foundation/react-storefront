@@ -15,44 +15,44 @@ import Link from './Link'
 export const styles = theme => ({
   indicator: {
     height: '3px',
-    transition: 'left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
+    transition: 'left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   },
   noSelection: {
-    visibility: 'hidden'
+    visibility: 'hidden',
   },
   root: {
     '& a': {
       textDecoration: 'none',
-      color: 'inherit'
-    }
+      color: 'inherit',
+    },
   },
   tab: {
     fontWeight: 300,
     height: '100%',
     minWidth: '20px',
-    position: 'relative'
+    position: 'relative',
   },
   selectedTab: {
     fontWeight: 500,
-    opacity: 1
+    opacity: 1,
   },
   scroller: {
     '&::-webkit-scrollbar': {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   link: {
     display: 'block',
     height: '100%',
-    fontSize: theme.typography.body1.fontSize
+    fontSize: theme.typography.body1.fontSize,
   },
   centered: {
     '&::before,&::after': {
       display: 'block',
       content: "''",
-      flex: 1
-    }
-  }
+      flex: 1,
+    },
+  },
 })
 
 /**
@@ -62,13 +62,12 @@ export const styles = theme => ({
 @inject('app')
 @observer
 export default class TabsRow extends Component {
-
   static propTypes = {
     /**
      * Index of tab that should be selected by default
      */
     initialSelectedIdx: PropTypes.number,
-    
+
     /**
      * Overridable classes object to allow customization of component
      */
@@ -77,11 +76,13 @@ export default class TabsRow extends Component {
     /**
      * Array of items that should be rendered
      */
-    items: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.shape({
-      imageUrl: PropTypes.string,
-      alt: PropTypes.string,
-      text: PropTypes.string,
-    })).isRequired,
+    items: MobxPropTypes.arrayOrObservableArrayOf(
+      PropTypes.shape({
+        imageUrl: PropTypes.string,
+        alt: PropTypes.string,
+        text: PropTypes.string,
+      }),
+    ).isRequired,
 
     /**
      * Props for displayed images. See <Image /> component for details
@@ -104,16 +105,16 @@ export default class TabsRow extends Component {
     centered: PropTypes.bool,
 
     /**
-     * A function to override the default rendering of each tab's label.  The function is passed the MenuItem model 
+     * A function to override the default rendering of each tab's label.  The function is passed the MenuItem model
      * corresponding to the item to be rendered.
      */
-    tabRenderer: PropTypes.func
+    tabRenderer: PropTypes.func,
   }
 
   static defaultProps = {
     items: [],
     variant: 'scrollable',
-    centered: false
+    centered: false,
   }
 
   constructor(props) {
@@ -124,28 +125,43 @@ export default class TabsRow extends Component {
   }
 
   handleChange = (event, newValue) => {
-    this.setState({
-      selectedIdx: newValue,
-    }, () => {
-      if (this.props.onTabChange) {
-        this.props.onTabChange(event, newValue)
-      }
-    })
+    this.setState(
+      {
+        selectedIdx: newValue,
+      },
+      () => {
+        if (this.props.onTabChange) {
+          this.props.onTabChange(event, newValue)
+        }
+      },
+    )
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.initialSelectedIdx !== this.initialSelectedIdx) {
       this.setState({
-        selectedIdx: nextProps.initialSelectedIdx
+        selectedIdx: nextProps.initialSelectedIdx,
       })
     }
   }
 
   render() {
-    const { app, tabRenderer, centered, items, classes, imageProps, scrollable, initialSelectedIdx, onTabChange, elevation, ...tabsProps } = this.props
+    const {
+      app,
+      tabRenderer,
+      centered,
+      items,
+      classes,
+      imageProps,
+      scrollable,
+      initialSelectedIdx,
+      onTabChange,
+      elevation,
+      ...tabsProps
+    } = this.props
     const { selectedIdx } = this.state
 
-    return (  
+    return (
       <Tabs
         value={selectedIdx == null ? false : selectedIdx}
         onChange={this.handleChange}
@@ -156,65 +172,64 @@ export default class TabsRow extends Component {
           root: classes.root,
           indicator: classnames(classes.indicator, { [classes.noSelection]: selectedIdx == null }),
           flexContainer: classnames({ [classes.centered]: centered }),
-          scroller: classes.scroller
+          scroller: classes.scroller,
         }}
         {...tabsProps}
       >
-        { items.map((item, i) => {
-            let icon;
-            if (item.imageUrl) {
-              icon = (
-                <Image
-                  src={item.imageUrl}
-                  alt={item.alt}
-                  {...imageProps}
-                />
-              )
+        {items.map((item, i) => {
+          let icon
+          if (item.imageUrl) {
+            icon = <Image src={item.imageUrl} alt={item.alt} {...imageProps} />
 
-              if (app.amp && item.url) {
-                icon = <Link to={item.url}>{icon}</Link>
-              }
+            if (app.amp && item.url) {
+              icon = <Link to={item.url}>{icon}</Link>
             }
+          }
 
-            if (tabRenderer) {
-              const itemWithClasses = {
-                ...item,
-                classes: {
-                  root: classes.tab
-                }
-              }
-              return tabRenderer(itemWithClasses, i)
-            } else {
-              return (
-                <Tab
-                  key={i}
-                  label={this.renderLabel(item)}
-                  icon={icon}
-                  classes={{
-                    root: classes.tab,
-                    selected: classes.selectedTab
-                  }}
-                />
-              )
+          if (tabRenderer) {
+            const itemWithClasses = {
+              ...item,
+              classes: {
+                root: classes.tab,
+              },
             }
-          })
-        }
+            return tabRenderer(itemWithClasses, i)
+          } else {
+            return (
+              <Tab
+                key={i}
+                label={this.renderLabel(item)}
+                icon={icon}
+                classes={{
+                  root: classes.tab,
+                  selected: classes.selectedTab,
+                }}
+              />
+            )
+          }
+        })}
       </Tabs>
     )
   }
 
   renderLabel = item => {
     const { classes } = this.props
-    
+
     return item.url ? (
-      <Link className={classes.link} to={item.url} prefetch={item.prefetch} onClick={this.onLinkClick}>{item.text}</Link>
+      <Link
+        className={classes.link}
+        to={item.url}
+        prefetch={item.prefetch}
+        onClick={this.onLinkClick}
+      >
+        {item.text}
+      </Link>
     ) : (
       item.text
     )
   }
 
-  onLinkClick = (e) => {
+  onLinkClick = e => {
     e.preventDefault()
   }
-
 }

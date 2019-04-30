@@ -9,29 +9,31 @@ import Search from '@material-ui/icons/Search'
 export const styles = theme => ({
   input: {
     paddingTop: '10px',
-    paddingBottom: '10px'
-  }
+    paddingBottom: '10px',
+  },
 })
 
 @withStyles(styles, { name: 'RSFSearchField' })
 export default class SearchField extends Component {
-
   render() {
     const { classes, ...others } = this.props
 
     return (
-      <TextField 
-        variant="outlined" 
-        type="search" 
+      <TextField
+        variant="outlined"
+        type="search"
         placeholder="Search"
         InputProps={{
-          startAdornment: <InputAdornment position="start"><Search/></InputAdornment>,
+          startAdornment: (
+            <InputAdornment position="start">
+              <Search />
+            </InputAdornment>
+          ),
           margin: 'dense',
-          classes
+          classes,
         }}
         {...others}
       />
     )
   }
-
 }

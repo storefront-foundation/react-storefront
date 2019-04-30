@@ -21,28 +21,22 @@ export const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     '& > *': {
-      flex: 1
-    }
-  }
-});
+      flex: 1,
+    },
+  },
+})
 
 @withStyles(styles, { name: 'RSFBottomDrawer' })
 export default class BottomDrawer extends Component {
-
   static propTypes = {
     /**
      * CSS classes to apply
      */
-    classes: PropTypes.object
-  }
-  
-  render() {
-    const { classes, children } = this.props
-    return (
-      <Card className={classes.root}>
-        {children}
-      </Card>
-    )
+    classes: PropTypes.object,
   }
 
+  render() {
+    const { classes, children } = this.props
+    return <Card className={classes.root}>{children}</Card>
+  }
 }

@@ -11,12 +11,12 @@ import Typography from '@material-ui/core/Typography'
 export const styles = theme => ({
   raised: {
     boxShadow: 'none',
-    backgroundColor: '#F4F2F1'
+    backgroundColor: '#F4F2F1',
   },
   label: {
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    textTransform: 'none'
+    textTransform: 'none',
   },
   caption: {
     textTransform: 'none',
@@ -26,8 +26,8 @@ export const styles = theme => ({
     color: theme.palette.text.primary,
     whiteSpace: 'nowrap',
     textOverflow: 'ellipses',
-    marginLeft: '10px'
-  }
+    marginLeft: '10px',
+  },
 })
 
 /**
@@ -38,8 +38,12 @@ function ActionButton({ label, value, children, classes, ...props }) {
 
   return (
     <Button variant="contained" classes={otherClasses} {...props}>
-      <Typography variant="button" className={captionClass}>{ label }</Typography>
-      <Typography variant="caption" className={valueClass}>{value}</Typography>
+      <Typography variant="button" className={captionClass}>
+        {label}
+      </Typography>
+      <Typography variant="caption" className={valueClass}>
+        {value}
+      </Typography>
     </Button>
   )
 }

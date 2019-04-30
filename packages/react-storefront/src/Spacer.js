@@ -12,13 +12,13 @@ import withStyles from '@material-ui/core/styles/withStyles'
  */
 export const styles = theme => ({
   root: {
-    flex: 1
-  }
-});
+    flex: 1,
+  },
+})
 
 @withStyles(styles, { name: 'RSFSpacer' })
 export default class Spacer extends Component {
   render() {
-    return <div className={this.props.classes.root}/>
+    return <div className={this.props.classes.root} />
   }
 }

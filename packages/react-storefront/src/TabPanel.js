@@ -12,25 +12,24 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({
-  root: {
-  },
+  root: {},
   panel: {
-    margin: `${theme.margins.container}px 0`
+    margin: `${theme.margins.container}px 0`,
   },
   hidden: {
-    display: 'none'
+    display: 'none',
   },
   ampSelector: {
     '& [option][selected]': {
       outline: 'none',
-      cursor: 'inherit'
-    }
+      cursor: 'inherit',
+    },
   },
   ampPanel: {
     display: 'none',
     '&[selected]': {
       display: 'block',
-    }
+    },
   },
   ampTab: {
     opacity: 1,
@@ -41,23 +40,23 @@ export const styles = theme => ({
     },
     '& .selected': {
       borderBottom: `2px solid ${theme.palette.secondary.main}`,
-      opacity: 1
-    }
+      opacity: 1,
+    },
   },
   ampTabLabelContainer: {
-    padding: 0
+    padding: 0,
   },
   ampTabIndicator: {
-    display: 'none'
-  }
+    display: 'none',
+  },
 })
 
 /**
- * A simple tab panel that is AMP-compatible.  Tab names are pull from the label prop of the child elements.  
+ * A simple tab panel that is AMP-compatible.  Tab names are pull from the label prop of the child elements.
  * Any type of element can be a child.
- * 
+ *
  * Example:
- * 
+ *
  *  <TabPanel>
  *    <div label="Description">
  *      Description here
@@ -70,11 +69,10 @@ export const styles = theme => ({
 @withStyles(styles, { name: 'RSFTabPanel' })
 @inject('app', 'ampStateId')
 export default class TabPanel extends Component {
-  
   constructor(props) {
     super(props)
     this.state = {
-      selected: props.selected
+      selected: props.selected,
     }
   }
 
@@ -97,12 +95,12 @@ export default class TabPanel extends Component {
     ampStateId: 'moovAmpState',
     ampStateProperty: 'selectedTab',
     variant: 'scrollable',
-    selected: 0
+    selected: 0,
   }
 
   componentWillReceiveProps(nextProps) {
     if (typeof nextProps.selected === 'number') {
-      this.setState({ selected: nextProps.selected });
+      this.setState({ selected: nextProps.selected })
     }
   }
 
@@ -115,13 +113,12 @@ export default class TabPanel extends Component {
     const tabs = []
 
     React.Children.forEach(children, (child, i) => {
-
       let { label } = child.props
 
       if (amp) {
         label = (
-          <div 
-            className={classnames('label', { selected: selected === i })} 
+          <div
+            className={classnames('label', { selected: selected === i })}
             amp-bind={`class=>${ampStateId}.${ampStateProperty} == "tab${i}" ? 'label selected' : 'label'`}
           >
             {label}
@@ -130,39 +127,37 @@ export default class TabPanel extends Component {
       }
 
       tabs.push(
-        <Tab 
+        <Tab
           key={i}
           label={label}
           on={`tap:AMP.setState({ ${ampStateId}: { ${ampStateProperty}: 'tab${i}' }})`}
           classes={{
             root: classnames({ [classes.ampTab]: amp }),
-            labelContainer: classnames({ [classes.ampTabLabelContainer]: amp })
+            labelContainer: classnames({ [classes.ampTabLabelContainer]: amp }),
           }}
-        />
+        />,
       )
-      
+
       panels.push(
-        <div 
+        <div
           key={i}
-          role="tabpanel" 
-          option={`tab${i}`} 
-          selected={i===selected}
-          className={
-            classnames(classes.panel, { 
-              [classes.hidden]: !amp && i !== selected,
-              [classes.ampPanel]: amp
-            })
-          }
+          role="tabpanel"
+          option={`tab${i}`}
+          selected={i === selected}
+          className={classnames(classes.panel, {
+            [classes.hidden]: !amp && i !== selected,
+            [classes.ampPanel]: amp,
+          })}
         >
-          { React.cloneElement(child, { label: null }) }
-        </div>
+          {React.cloneElement(child, { label: null })}
+        </div>,
       )
     })
 
     if (amp) {
       panels = (
-        <amp-selector 
-          role="tablist" 
+        <amp-selector
+          role="tablist"
           amp-bind={`selected=>${ampStateId}.${ampStateProperty}`}
           class={classes.ampSelector}
         >
@@ -173,23 +168,31 @@ export default class TabPanel extends Component {
 
     return (
       <div className={classes.root}>
-        { amp && (
+        {amp && (
           <Helmet>
-            <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
-            <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+            <script
+              async
+              custom-element="amp-selector"
+              src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"
+            />
+            <script
+              async
+              custom-element="amp-bind"
+              src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"
+            />
           </Helmet>
         )}
-        <Tabs 
+        <Tabs
           variant={scrollable ? 'scrollable' : null}
-          value={selected} 
+          value={selected}
           onChange={this.onChange}
           classes={{
-            indicator: classnames({ [classes.ampTabIndicator]: amp })
+            indicator: classnames({ [classes.ampTabIndicator]: amp }),
           }}
         >
-          { tabs }
+          {tabs}
         </Tabs>
-        { panels }
+        {panels}
       </div>
     )
   }
@@ -202,5 +205,4 @@ export default class TabPanel extends Component {
       onChange(selected)
     }
   }
-
 }

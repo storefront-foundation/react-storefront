@@ -12,23 +12,23 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/core/styles/withStyles'
 import AmpExpandableSection from './amp/AmpExpandableSection'
-import { inject } from 'mobx-react';
+import { inject } from 'mobx-react'
 import withTheme from '@material-ui/core/styles/withTheme'
 
-export const styles = (theme) => ({
+export const styles = theme => ({
   root: {
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
     background: 'transparent',
 
     '&::before': {
-      display: 'none'
+      display: 'none',
     },
 
     '& > *:first-child': {
       padding: '0',
-      minHeight: '0'
-    }
+      minHeight: '0',
+    },
   },
 
   margins: {
@@ -36,21 +36,21 @@ export const styles = (theme) => ({
   },
 
   caption: {
-    transition: 'opacity .2s linear'
+    transition: 'opacity .2s linear',
   },
 
   expandedCaption: {
-    opacity: 0
+    opacity: 0,
   },
 
   largeTitle: {
     fontSize: '18px',
     fontWeight: 'bold',
-    color: '#444'
+    color: '#444',
   },
 
   details: {
-    padding: 0
+    padding: 0,
   },
 
   summary: {
@@ -58,31 +58,30 @@ export const styles = (theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     '[aria-expanded=true] > &': {
-      margin: '12px 0 !important'
-    }
+      margin: '12px 0 !important',
+    },
   },
 
   withCollapseIcon: {
-    transform: 'translateY(-50%) rotate(0deg) !important'
+    transform: 'translateY(-50%) rotate(0deg) !important',
   },
 
   summaryIconWrap: {
-    right: `-${theme.margins.container}px`
+    right: `-${theme.margins.container}px`,
   },
 
   expandedPanel: {
-    margin: 0
+    margin: 0,
   },
 
-  expandIcon: { },
-  collapseIcon: { }
-});
+  expandIcon: {},
+  collapseIcon: {},
+})
 
 @withStyles(styles, { name: 'RSFExpandableSection' })
 @withTheme()
 @inject(({ app }) => ({ amp: app.amp }))
 export default class ExpandableSection extends Component {
-
   static propTypes = {
     /**
      * The title for the header of the expandable section
@@ -109,14 +108,14 @@ export default class ExpandableSection extends Component {
      */
     margins: PropTypes.bool,
 
-    /** 
+    /**
      * Controls the expanded state.  Defaults to false
      */
-    expanded: PropTypes.bool
+    expanded: PropTypes.bool,
   }
 
   static defaultProps = {
-    margins: true
+    margins: true,
   }
 
   static getDerivedStateFromProps({ expanded }) {
@@ -132,50 +131,70 @@ export default class ExpandableSection extends Component {
 
     this.ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMoreIcon
     this.CollapseIcon = CollapseIcon || theme.CollapseIcon || this.ExpandIcon
-  
-    this.state = {	
-      expanded	
+
+    this.state = {
+      expanded,
     }
   }
 
   render() {
-    let { amp, classes, theme, children = [], title, caption, expanded, ExpandIcon: ei, CollapseIcon: ci, margins, ...others } = this.props
+    let {
+      amp,
+      classes,
+      theme,
+      children = [],
+      title,
+      caption,
+      expanded,
+      ExpandIcon: ei,
+      CollapseIcon: ci,
+      margins,
+      ...others
+    } = this.props
 
     const { ExpandIcon, CollapseIcon } = this
 
     if (amp) {
-      return <AmpExpandableSection ExpandIcon={ExpandIcon} CollapseIcon={CollapseIcon} title={title}>{children}</AmpExpandableSection>
+      return (
+        <AmpExpandableSection ExpandIcon={ExpandIcon} CollapseIcon={CollapseIcon} title={title}>
+          {children}
+        </AmpExpandableSection>
+      )
     } else {
       return (
-        <ExpansionPanel 
-          classes={{ 
+        <ExpansionPanel
+          classes={{
             root: classnames({
               [classes.root]: true,
               [classes.margins]: margins,
-              [classes.expandedPanel]: true
-            }) 
+              [classes.expandedPanel]: true,
+            }),
           }}
-          expanded={expanded} 
-          {...others} 
+          expanded={expanded}
+          {...others}
           onChange={this.onChange}
         >
-          <ExpansionPanelSummary 
+          <ExpansionPanelSummary
             expandIcon={
-              this.state.expanded ? <CollapseIcon className={classes.collapseIcon}/> : <ExpandIcon className={classes.expandIcon}/>
-            } 
+              this.state.expanded ? (
+                <CollapseIcon className={classes.collapseIcon} />
+              ) : (
+                <ExpandIcon className={classes.expandIcon} />
+              )
+            }
             classes={this.getSummaryClasses()}
           >
             <Typography variant="subtitle1">{title}</Typography>
-            { caption && (
-              <Typography 
-                variant="caption" 
+            {caption && (
+              <Typography
+                variant="caption"
                 className={classnames({
                   [classes.caption]: true,
-                  [classes.expandedCaption]: expanded
+                  [classes.expandedCaption]: expanded,
                 })}
               >
                 {caption}
-              </Typography> 
+              </Typography>
             )}
           </ExpansionPanelSummary>
           <ExpansionPanelDetails classes={{ root: classes.details }}>
@@ -184,12 +203,11 @@ export default class ExpandableSection extends Component {
         </ExpansionPanel>
       )
     }
-
   }
 
   /**
    * Gets the classes for the ExpansionPanelSummary
-   * Here we add a class to remove the rotate transform if we're using a 
+   * Here we add a class to remove the rotate transform if we're using a
    * separate icon for the collapse state.
    */
   getSummaryClasses() {
@@ -197,7 +215,7 @@ export default class ExpandableSection extends Component {
 
     const result = {
       content: classes.summary,
-      expandIcon: classes.summaryIconWrap
+      expandIcon: classes.summaryIconWrap,
     }
 
     if (this.CollapseIcon !== this.ExpandIcon) {
@@ -213,5 +231,4 @@ export default class ExpandableSection extends Component {
     }
     this.setState({ expanded })
   }
-
 }

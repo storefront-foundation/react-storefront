@@ -20,33 +20,33 @@ export const styles = theme => ({
 
     '& .rsf-menu-icon-enter': {
       opacity: 0.01,
-      transform: 'scale(0) rotate(45deg)'
+      transform: 'scale(0) rotate(45deg)',
     },
 
     '& .rsf-menu-icon-enter.rsf-menu-icon-enter-active': {
       opacity: 1,
       transform: 'scale(1) rotate(0deg)',
-      transition: 'all 250ms ease-out'
+      transition: 'all 250ms ease-out',
     },
 
     '& .rsf-menu-icon-exit': {
       opacity: 1,
-      transform: 'scale(1) rotate(0deg)'
+      transform: 'scale(1) rotate(0deg)',
     },
 
     '& .rsf-menu-icon-exit.rsf-menu-icon-exit-active': {
       opacity: 0.01,
       transform: 'scale(0) rotate(45deg)',
-      transition: 'all 250ms ease-in'
-    }
+      transition: 'all 250ms ease-in',
+    },
   },
 
   icon: {
     color: theme.palette.action.active,
     position: 'absolute',
     top: 0,
-    left: 0
-  }
+    left: 0,
+  },
 })
 
 /**
@@ -54,7 +54,6 @@ export const styles = theme => ({
  */
 @withStyles(styles, { name: 'RSFMenuIcon' })
 export default class MenuIcon extends PureComponent {
-
   static propTypes = {
     /**
      * Set to true when the menu is open, otherwise false
@@ -69,23 +68,23 @@ export default class MenuIcon extends PureComponent {
     /**
      * The icon to display when the menu is closed
      */
-    OpenIcon: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
+    OpenIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 
     /**
      * The icon to display when the menu is open
      */
-    CloseIcon: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ])
+    CloseIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
 
   static defaultProps = {
     open: false,
     label: true,
-    CloseIcon: Close
+    CloseIcon: Close,
   }
 
   state = {
     OpenIcon: null,
-    CloseIcon: null
+    CloseIcon: null,
   }
 
   cssProps = { classNames: 'rsf-menu-icon', timeout: 300 }
@@ -93,7 +92,7 @@ export default class MenuIcon extends PureComponent {
   static getDerivedStateFromProps = props => {
     return {
       OpenIcon: props.OpenIcon || (props.label ? OpenWithLabel : Open),
-      CloseIcon: props.CloseIcon
+      CloseIcon: props.CloseIcon,
     }
   }
 
@@ -121,5 +120,4 @@ export default class MenuIcon extends PureComponent {
       </div>
     )
   }
-
 }

@@ -18,7 +18,7 @@ export const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
   },
   error: {
     background: red[800],
@@ -29,8 +29,8 @@ export const styles = theme => ({
     right: 0,
     bottom: 0,
     zIndex: 999999,
-    overflow: 'auto'
-  }
+    overflow: 'auto',
+  },
 })
 
 /**
@@ -38,31 +38,37 @@ export const styles = theme => ({
  * component that is displayed.
  */
 @withStyles(styles, { name: 'RSFPages' })
-@inject(({ app, router, history }) => ({ app, page: app.page, loading: app.loading, uri: app.uri, router, history }))
+@inject(({ app, router, history }) => ({
+  app,
+  page: app.page,
+  loading: app.loading,
+  uri: app.uri,
+  router,
+  history,
+}))
 @observer
 export default class Pages extends Component {
-  
   static propTypes = {
     /**
      * An object which serves as a map of page name to component to display.  When the value of `page`
      * in `AppModelBase` matches a key in this object, the corresponding component will be displayed.
      */
-    components: PropTypes.oneOfType([ PropTypes.object, PropTypes.func ]).isRequired,
+    components: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 
     /**
      * An object which serves as a map of page name to mask to display when the page is loading.  When the value of `page`
      * in `AppModelBase` matches a key in this object, the corresponding mask will be displayed.
      */
-    loadMasks: PropTypes.object
+    loadMasks: PropTypes.object,
   }
 
   static defaultProps = {
     loadMasks: {},
-    components: {}
+    components: {},
   }
 
-  state = { 
-    loadingComponent: false
+  state = {
+    loadingComponent: false,
   }
 
   mounted = false
@@ -98,12 +104,12 @@ export default class Pages extends Component {
    * @param {React.Component} comp The component to make lazy
    * @return {React.Component}
    */
-  createUniversalComponent = (comp) => {
+  createUniversalComponent = comp => {
     return universal(comp, {
       loading: this.componentLoadMask,
       onLoad: this.onLoad,
       onError: this.onError,
-      error: this.errorView
+      error: this.errorView,
     })
   }
 
@@ -114,7 +120,13 @@ export default class Pages extends Component {
 
     if (Comp) {
       this.cache[page] = {
-        element: <Comp key={page} onBefore={this.onStartLoadingComponent} onAfter={this.onEndLoadingComponent}/>
+        element: (
+          <Comp
+            key={page}
+            onBefore={this.onStartLoadingComponent}
+            onAfter={this.onEndLoadingComponent}
+          />
+        ),
       }
     }
   }
@@ -128,16 +140,20 @@ export default class Pages extends Component {
       const entry = this.cache[page]
 
       elements.push(
-        <div key={page} data-page={page} style={{ display: page === app.page && !loading ? 'block' : 'none' }}>
+        <div
+          key={page}
+          data-page={page}
+          style={{ display: page === app.page && !loading ? 'block' : 'none' }}
+        >
           {entry.element}
-        </div>
+        </div>,
       )
     }
 
     return (
       <div className={classes.root}>
-        { this.renderLoadMask() }
-        { elements }
+        {this.renderLoadMask()}
+        {elements}
       </div>
     )
   }
@@ -162,11 +178,11 @@ export default class Pages extends Component {
     const { loadMasks, page } = this.props
     const Mask = loadMasks[page]
     const loading = this.isLoading()
-    
+
     if (Mask) {
-      return loading ? <Mask/> : null
+      return loading ? <Mask /> : null
     } else {
-      return <LoadMask show={loading} fullscreen/>
+      return <LoadMask show={loading} fullscreen />
     }
   }
 
@@ -190,16 +206,15 @@ export default class Pages extends Component {
     } else {
       return (
         <Container className={classes.error}>
-          <pre>{ error.stack }</pre>
+          <pre>{error.stack}</pre>
         </Container>
       )
     }
   }
 
-  onError = (e) => {
+  onError = e => {
     if (e.message.match(/chunk/i)) {
       window.location.reload()
     }
   }
-
 }

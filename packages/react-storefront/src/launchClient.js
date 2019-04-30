@@ -16,20 +16,29 @@ import PWA from './PWA'
  * @param {Object} options.model A mobx-state-tree model class
  * @param {HTMLElement} options.target The DOM element to mount onto
  */
-export default function launchClient({ App, theme, model, router, target = document.getElementById('root') }) {
+export default function launchClient({
+  App,
+  theme,
+  model,
+  router,
+  target = document.getElementById('root'),
+}) {
   const history = createBrowserHistory()
 
   hydrate({
-    component: <PWA><App/></PWA>,
-    model, 
+    component: (
+      <PWA>
+        <App />
+      </PWA>
+    ),
+    model,
     theme,
     target,
     providerProps: {
-      history, 
-      router
-    }
+      history,
+      router,
+    },
   })
-  
+
   registerServiceWorker()
 }
-

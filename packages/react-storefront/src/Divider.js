@@ -10,20 +10,19 @@ import classnames from 'classnames'
 export const styles = theme => ({
   root: {
     background: theme.palette.divider,
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
   },
   vertical: {
     height: '100%',
-    width: '1px'
+    width: '1px',
   },
   horizontal: {
-    height: '1px'
-  }
-});
+    height: '1px',
+  },
+})
 
 @withStyles(styles, { name: 'RSFDivider' })
 export default class Divider extends Component {
-
   static propTypes = {
     /**
      * True to display a vertical divider
@@ -38,7 +37,7 @@ export default class Divider extends Component {
     /**
      * CSS classes to apply
      */
-    classes: PropTypes.object
+    classes: PropTypes.object,
   }
 
   render() {
@@ -47,20 +46,13 @@ export default class Divider extends Component {
     if (!vertical && !horizontal) horizontal = true
 
     return (
-      <div 
-        className={
-          classnames(
-            className, 
-            classes.root,
-            { 
-              [classes.vertical]: vertical, 
-              [classes.horizontal]: horizontal
-            }
-          )
-        } 
+      <div
+        className={classnames(className, classes.root, {
+          [classes.vertical]: vertical,
+          [classes.horizontal]: horizontal,
+        })}
         {...rest}
       />
     )
   }
-
 }
