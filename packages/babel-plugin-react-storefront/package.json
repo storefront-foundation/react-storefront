@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-storefront",
-  "version": "6.10.0",
+  "version": "6.11.0",
   "main": "src/index.js",
   "author": "Moovweb",
   "license": "UNLICENSED",
