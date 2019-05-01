@@ -99,7 +99,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a GET route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   get(path, ...handlers) {
@@ -109,7 +109,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a POST route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   post(path, ...handlers) {
@@ -119,7 +119,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a PATCH route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   patch(path, ...handlers) {
@@ -129,7 +129,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a PUT route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   put(path, ...handlers) {
@@ -139,7 +139,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a DELETE route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   delete(path, ...handlers) {
@@ -149,7 +149,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers an OPTIONS route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   options(path, ...handlers) {
@@ -164,6 +164,17 @@ export default class Router extends EventEmitter {
   fallback(...handlers) {
     this.fallbackHandlers = handlers
     return this
+  }
+
+  /**
+   * Defines the handler for the app-shell.  Generally this should be a single fromServer handler that return
+   * the global data for menus and navigation and sets loading: true.  The app-shell is used in offline mode
+   * during initial landing on an uncached SSR result.
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
+   * @return {Router} this
+   */
+  appShell(...handlers) {
+    return this.get('/.app-shell', ...handlers)
   }
 
   /**
