@@ -335,7 +335,7 @@ function offlineResponse(apiVersion, context) {
     })
   }
   // If not API request, find and send app shell
-  const path = '/?source=pwa'
+  const path = '/app-shell'
   const cacheName = getAPICacheName(apiVersion, path)
   const req = new Request(path)
   return caches.open(cacheName).then(cache => cache.match(req))
