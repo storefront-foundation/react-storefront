@@ -333,12 +333,13 @@ function offlineResponse(apiVersion, context) {
         'Content-Length': blob.size,
       },
     })
+  } else {
+    // If not API request, find and send app shell
+    const path = '/.app-shell'
+    const cacheName = getAPICacheName(apiVersion, path)
+    const req = new Request(path)
+    return caches.open(cacheName).then(cache => cache.match(req))
   }
-  // If not API request, find and send app shell
-  const path = '/.app-shell'
-  const cacheName = getAPICacheName(apiVersion, path)
-  const req = new Request(path)
-  return caches.open(cacheName).then(cache => cache.match(req))
 }
 
 workbox.routing.registerRoute(matchRuntimePath, async context => {

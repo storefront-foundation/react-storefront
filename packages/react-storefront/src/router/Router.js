@@ -279,15 +279,6 @@ export default class Router extends EventEmitter {
     // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
     // and that the app state's location information is updated.
 
-    // Render app shell
-    if (request.query && request.query.source === 'pwa') {
-      yield {
-        loading: true,
-        page: null,
-      }
-      return
-    }
-
     if (this.isBrowser) {
       yield {
         loading: willFetchFromServer,

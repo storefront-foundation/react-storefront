@@ -115,12 +115,18 @@ export default class Header extends Component {
      * Sets the alignment of the menu icon. "right" or "left".
      */
     menuAlign: PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * String or Element to render within the offline warning container at the top of the app
+     */
+    offlineWarning: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   }
 
   static defaultProps = {
     MenuIcon,
     menuIconProps: {},
     menuAlign: 'left',
+    offlineWarning: 'Your device lost its internet connection.',
   }
 
   render() {
@@ -134,6 +140,7 @@ export default class Header extends Component {
       menuAlign,
       menuIconProps,
       offline,
+      offlineWarning,
     } = this.props
     const items = React.Children.toArray(children)
 
@@ -158,9 +165,7 @@ export default class Header extends Component {
 
     return (
       <div>
-        {offline && (
-          <div className={classes.offline}>Your device lost its internet connection.</div>
-        )}
+        {offline && <div className={classes.offline}>{offlineWarning}</div>}
         <div className={classnames({ [classes.root]: true, [classes.withAmp]: amp })}>
           <div
             className={classnames({

@@ -44,6 +44,7 @@ export const LocationModel = types
   .views(self => ({
     get urlBase() {
       return (
+        // Since protocols sometimes have a colon at the end, we remove it if it exists and add it back manually
         self.protocol.replace(/:/, '') +
         '://' +
         self.hostname +
