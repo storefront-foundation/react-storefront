@@ -33,17 +33,30 @@ export const BreadcrumbModel = types.model('BreadcrumbModel', {
   state: types.frozen(),
 })
 
-export const LocationModel = types.model({
-  protocol: 'https',
-  hostname: types.maybeNull(types.string),
-  pathname: types.string,
-  search: types.string,
-  port: '443',
-})
+export const LocationModel = types
+  .model({
+    protocol: 'https',
+    hostname: types.maybeNull(types.string),
+    pathname: types.string,
+    search: types.string,
+    port: '443',
+  })
+  .views(self => ({
+    get urlBase() {
+      return (
+        // Since protocols sometimes have a colon at the end, we remove it if it exists and add it back manually
+        self.protocol.replace(/:/, '') +
+        '://' +
+        self.hostname +
+        (['443', '80'].includes(self.port) ? '' : `:${self.port}`)
+      )
+    },
+  }))
 
 const AppModelBase = types
   .model('AppModelBase', {
     amp: false,
+    offline: false,
     initialWidth: 'xs',
     page: types.maybeNull(types.string),
     title: types.maybeNull(types.string),
@@ -111,6 +124,13 @@ const AppModelBase = types
           }
         }
       }
+    },
+
+    /**
+     * Set connection status
+     */
+    setOffline(offline) {
+      self.offline = offline
     },
 
     /**

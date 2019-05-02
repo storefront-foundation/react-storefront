@@ -67,27 +67,28 @@ import EventEmitter from 'eventemitter3'
  * `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
  */
 export default class Router extends EventEmitter {
-  constructor() {
-    super()
-    this.routes = []
-    this.isBrowser = process.env.MOOV_RUNTIME === 'client'
+  
+  routes = []
 
-    this.fallbackHandlers = [
-      {
-        runOn: { client: true, server: true },
-        fn: () => ({ page: '404' }),
-      },
-    ]
+  appShellConfigured = false
+  
+  isBrowser = process.env.MOOV_RUNTIME === 'client'
 
-    this.errorHandler = (e, params, request, response) => {
-      console.error('Error caught with params', params, ' and with message:', e.message)
+  fallbackHandlers = [
+    {
+      runOn: { client: true, server: true },
+      fn: () => ({ page: '404' }),
+    },
+  ]
 
-      if (response && response.status) {
-        response.status(500, 'error')
-      }
+  errorHandler = (e, params, request, response) => {
+    console.error('Error caught with params', params, ' and with message:', e.message)
 
-      return { page: 'Error', error: e.message, stack: e.stack, loading: false }
+    if (response && response.status) {
+      response.status(500, 'error')
     }
+
+    return { page: 'Error', error: e.message, stack: e.stack, loading: false }
   }
 
   pushRoute(method, path, handlers) {
@@ -99,7 +100,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a GET route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   get(path, ...handlers) {
@@ -109,7 +110,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a POST route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   post(path, ...handlers) {
@@ -119,7 +120,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a PATCH route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   patch(path, ...handlers) {
@@ -129,7 +130,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a PUT route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   put(path, ...handlers) {
@@ -139,7 +140,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers a DELETE route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   delete(path, ...handlers) {
@@ -149,7 +150,7 @@ export default class Router extends EventEmitter {
   /**
    * Registers an OPTIONS route
    * @param {String} path A path pattern
-   * @param {Function} callback A function that is passed the params as an object and returns a promise that resolves to the content to return
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
    * @return {Router} this
    */
   options(path, ...handlers) {
@@ -164,6 +165,26 @@ export default class Router extends EventEmitter {
   fallback(...handlers) {
     this.fallbackHandlers = handlers
     return this
+  }
+
+  /**
+   * Defines the handler for the app-shell.  Generally this should be a single fromServer handler that return
+   * the global data for menus and navigation and sets loading: true.  The app-shell is used in offline mode
+   * during initial landing on an uncached SSR result.
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
+   * @return {Router} this
+   */
+  appShell(...handlers) {
+    this.appShellConfigured = true
+    return this.get('/.app-shell', ...handlers)
+  }
+
+  /**
+   * Returns `true` if `appShell` has been called to configure an appShell route, otherwise `false`.
+   * @return {Boolean}
+   */
+  isAppShellConfigured() {
+    return this.appShellConfigured
   }
 
   /**
@@ -203,18 +224,6 @@ export default class Router extends EventEmitter {
       this.routes.push({ path: new Route(path + routePath.spec), ...rest })
     }
     return this
-  }
-
-  /**
-   * @private
-   * Caches the initialState (json) and HTML using the service worker.
-   * @param {Object} request
-   */
-  cacheInitialState(request) {
-    cache(
-      request.path + qs.stringify(request.query),
-      `<!DOCTYPE html>\n${document.documentElement.outerHTML}`,
-    )
   }
 
   /**
@@ -327,10 +336,6 @@ export default class Router extends EventEmitter {
           yield result
         }
       }
-
-      if (initialLoad && response.clientCache === 'force-cache') {
-        this.cacheInitialState(request, response)
-      }
     } catch (err) {
       yield this.errorHandler(err, params, request, response)
     }
@@ -429,6 +434,17 @@ export default class Router extends EventEmitter {
     const { match } = this.findMatchingRoute(request)
     let handlers = match ? match.handlers : this.fallbackHandlers
     return handlers.some(handler => handler.type === 'proxyUpstream')
+  }
+
+  /**
+   * Runs all client and server handlers for the specified location and returns state
+   */
+  fetchFreshState = location => {
+    const { pathname, search } = location
+    const request = { path: pathname, search, query: qs.parse(search), method: 'GET' }
+    const response = new ClientContext()
+    const options = { initialLoad: false }
+    return this.runAll(request, response, options, location.state)
   }
 
   /**

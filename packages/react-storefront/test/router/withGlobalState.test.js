@@ -26,4 +26,16 @@ describe('withGlobalState', () => {
     const result = await withGlobalState(request, cb, { local: true })
     expect(result).toEqual({ local: true })
   })
+
+  it('should accept an async function when the URL does not have a json suffix', async () => {
+    const request = { path: '/c/1' }
+
+    const cb = req => {
+      expect(req).toBe(request)
+      return Promise.resolve({ global: true })
+    }
+
+    const result = await withGlobalState(request, cb, { local: true })
+    expect(result).toEqual({ global: true, local: true })
+  })
 })

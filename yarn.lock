@@ -11775,15 +11775,15 @@ mobx-react@^5.0.0:
     hoist-non-react-statics "^3.0.0"
     react-lifecycles-compat "^3.0.2"
 
-mobx-state-tree@^3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-3.10.0.tgz#92b893e2c85339e246779d19928b6d69b798a813"
-  integrity sha512-CEOZRx8wOSwEI7cYiD+kvPrAtpDB5VNpWVWL11mCXljx8WE9Ec6nwL/xZRYMZVFRvxvAoSFS9VqmVDiUHAZ1LA==
+mobx-state-tree@^3.14.0:
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-3.14.0.tgz#8611051b93a71439db161b8ec855870cfd7e678d"
+  integrity sha512-obQ+LPCff4LqX86ghQpYIVAtCmps7ewCxIds/EmSxBULj9+7Qs2v4YEbvUeWymp/Sj3dPcvDjIMMdIRz6sUE5Q==
 
-mobx@^4.1.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.8.0.tgz#6059feb9e0d3440acca5ae192daad63198b1180f"
-  integrity sha512-uR6FnrK50UEbV+zTXkOI+R0pAMb7xA5mkAWnKTMBcN6hAh57qAa9r0XMvsiPgpb8dS3Kw1x0sNhrrUNUcM+Pug==
+mobx@^4.9.4:
+  version "4.9.4"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.9.4.tgz#bb37a0e4e05f0b02be89ced9d23445cad73377ad"
+  integrity sha512-RaEpydw7D1ebp1pdFHrEMZcLk4nALAZyHAroCPQpqLzuIXIxJpLmMIe5PUZwYHqvlcWL6DVqDYCANZpPOi9iXA==
 
 mocha@^5.1.1:
   version "5.2.0"

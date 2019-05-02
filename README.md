@@ -74,6 +74,46 @@ yarn release
 
 ## Changelog
 
+### 6.12.0
+
+- Improved offline support.  
+- Users will now be able to navigate back to any page they have previously visited when offline.
+- The `AppBar` component now displays "Your device lost its internet connection" when offline.  This message is configurable via AppBar's `offlineWarning` prop.
+- Added an `Offline` component to be displayed as the main body of the app when the user attempts to navigate to a page that isn't cached when offline.
+- Added `appShell` configuration method to `Router`.  Configure the appShell with a `fromServer`handler that returns global data to display in the app shell when the user attempts to load the site while offline.
+
+To add offline support to your app, upgrade to 6.12.0, then:
+
+- Add an `appShell` configuration to your router definition:
+
+```js
+// src/routes.js
+
+new Router()
+  // ...
+  .appShell(
+    // returns only the global data needed to build the app-shell for offline support
+    fromServer('./app-shell/app-shell-handler')
+  )
+```
+
+- Add the `Offline` component to your `Pages` element in `App.js`.
+
+```js
+// src/App.js
+
+import Offline from 'react-storefront/Offline'
+
+// then in the render method...
+
+<Pages
+  components={universal => ({
+    // ...
+    Offline
+  })}
+/>
+```
+
 ### 6.11.0
 
 - Gracefully handle when `history.replace` fails due to the state object being too large.  This was happening on Firefox for apps with large state trees as Firefox imposes a limit of 640kB on the state object.  When history.replace fails, history.state will simply be cleared out and the app

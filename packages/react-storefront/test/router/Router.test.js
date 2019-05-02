@@ -190,25 +190,6 @@ describe('Router:Node', function() {
         error: 'Error message',
       })
     })
-
-    describe('initialLoad', () => {
-      beforeEach(() => (process.env.MOOV_RUNTIME = 'client'))
-      afterEach(() => delete process.env.MOOV_RUNTIME)
-
-      it('should cache initial state when run with initialLoad: true', async () => {
-        router.get('/', cache({ client: true }), fromClient({ view: 'home' }))
-
-        window.initialState = { view: 'home', foo: 'bar' }
-        await router.runAll({ path: '/', search: '', method: 'get' }, new ClientContext(), {
-          initialLoad: true,
-          afterOnly: true,
-        })
-        expect(serviceWorker.cache.mock.calls[0]).toEqual([
-          '/',
-          '<!DOCTYPE html>\n<html><head></head><body></body></html>',
-        ])
-      })
-    })
   })
 
   describe('handlers', function() {
@@ -675,6 +656,34 @@ describe('Router:Node', function() {
         '[react-storefront response]',
         'Cannot set cookies on cached route',
       )
+    })
+  })
+
+  describe('appShell', () => {
+    it('should add a get handler for /.app-shell', async () => {
+      router.appShell(
+        fromServer(() => {
+          return { loading: true }
+        })
+      )
+      const res = await runAll('get', '/.app-shell')
+      expect(res).toEqual({ loading: true })
+    })
+  })
+
+  describe('isAppShellConfigured', () => {
+    it('should return false if appShell has not been called', () => {
+      expect(router.isAppShellConfigured()).toBe(false)
+    })
+
+    it('should return true if appShell has been called', () => {
+      router.appShell(
+        fromServer(() => {
+          return { loading: true }
+        })
+      )
+
+      expect(router.isAppShellConfigured()).toBe(true)
     })
   })
 
