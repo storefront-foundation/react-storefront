@@ -67,27 +67,28 @@ import EventEmitter from 'eventemitter3'
  * `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
  */
 export default class Router extends EventEmitter {
-  constructor() {
-    super()
-    this.routes = []
-    this.isBrowser = process.env.MOOV_RUNTIME === 'client'
+  
+  routes = []
 
-    this.fallbackHandlers = [
-      {
-        runOn: { client: true, server: true },
-        fn: () => ({ page: '404' }),
-      },
-    ]
+  appShellConfigured = false
+  
+  isBrowser = process.env.MOOV_RUNTIME === 'client'
 
-    this.errorHandler = (e, params, request, response) => {
-      console.error('Error caught with params', params, ' and with message:', e.message)
+  fallbackHandlers = [
+    {
+      runOn: { client: true, server: true },
+      fn: () => ({ page: '404' }),
+    },
+  ]
 
-      if (response && response.status) {
-        response.status(500, 'error')
-      }
+  errorHandler = (e, params, request, response) => {
+    console.error('Error caught with params', params, ' and with message:', e.message)
 
-      return { page: 'Error', error: e.message, stack: e.stack, loading: false }
+    if (response && response.status) {
+      response.status(500, 'error')
     }
+
+    return { page: 'Error', error: e.message, stack: e.stack, loading: false }
   }
 
   pushRoute(method, path, handlers) {
@@ -174,7 +175,16 @@ export default class Router extends EventEmitter {
    * @return {Router} this
    */
   appShell(...handlers) {
+    this.appShellConfigured = true
     return this.get('/.app-shell', ...handlers)
+  }
+
+  /**
+   * Returns `true` if `appShell` has been called to configure an appShell route, otherwise `false`.
+   * @return {Boolean}
+   */
+  isAppShellConfigured() {
+    return this.appShellConfigured
   }
 
   /**

@@ -135,8 +135,11 @@ export default class PWA extends Component {
 
     // only cache app shell and page if online
     if (navigator.onLine) {
-      // cache the launch screen for when the pwa is installed on the desktop
-      cache('/.app-shell')
+      // cache the app shell so that we can load pages when offline when we don't have a cached SSR response
+      if (router && router.isAppShellConfigured()) {
+        cache('/.app-shell')
+      }
+
       // cache the initial page HTML and json
       const path = app.location.pathname + app.location.search
       cache(path + '.json', app.toJSON())

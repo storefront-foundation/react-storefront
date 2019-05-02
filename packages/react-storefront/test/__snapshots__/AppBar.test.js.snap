@@ -6,7 +6,7 @@ exports[`AppBar should render 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(Header)>
         <WithStyles(Header) menu={{...}} amp={false} offline={false}>
-          <Header menu={{...}} amp={false} offline={false} classes={{...}} MenuIcon={[Function: WithStyles]} menuIconProps={{...}} menuAlign="left">
+          <Header menu={{...}} amp={false} offline={false} classes={{...}} MenuIcon={[Function: WithStyles]} menuIconProps={{...}} menuAlign="left" offlineWarning="Your device lost its internet connection.">
             <div>
               <div className="RSFAppBar-root-1">
                 <div className="RSFAppBar-wrap-5">

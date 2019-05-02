@@ -659,6 +659,34 @@ describe('Router:Node', function() {
     })
   })
 
+  describe('appShell', () => {
+    it('should add a get handler for /.app-shell', async () => {
+      router.appShell(
+        fromServer(() => {
+          return { loading: true }
+        })
+      )
+      const res = await runAll('get', '/.app-shell')
+      expect(res).toEqual({ loading: true })
+    })
+  })
+
+  describe('isAppShellConfigured', () => {
+    it('should return false if appShell has not been called', () => {
+      expect(router.isAppShellConfigured()).toBe(false)
+    })
+
+    it('should return true if appShell has been called', () => {
+      router.appShell(
+        fromServer(() => {
+          return { loading: true }
+        })
+      )
+
+      expect(router.isAppShellConfigured()).toBe(true)
+    })
+  })
+
   afterAll(() => {
     jest.unmock('../../src/router/serviceWorker')
   })

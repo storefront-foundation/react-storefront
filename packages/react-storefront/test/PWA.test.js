@@ -2,6 +2,8 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+jest.mock('../src/router/serviceWorker')
+
 import React from 'react'
 import { mount } from 'enzyme'
 import { Provider } from 'mobx-react'
@@ -11,6 +13,7 @@ import simulant from 'simulant'
 import { clearTestCache } from '../src/utils/browser'
 import { Router, proxyUpstream } from '../src/router';
 import { createMemoryHistory } from 'history'
+import * as serviceWorker from '../src/router/serviceWorker'
 
 describe('PWA', () => {
   let history, app, userAgent, location
@@ -284,4 +287,34 @@ describe('PWA', () => {
       done()
     }, 200) // because state recording is debounced so it's async
   })
+
+  describe('caching the app shell', () => {
+    it ('should cache the app shell when one is configured in the router', () => {
+      const router = new Router()
+        .appShell(() => ({ loading: true }))
+        
+      mount(
+        <Provider history={history} app={app} router={router}>
+          <PWA/>
+        </Provider>
+      )
+  
+      expect(serviceWorker.cache).toHaveBeenCalledWith('/.app-shell')
+    })
+  
+    it('should not cache the app shell when one is not configured in the router', () => {
+      const router = new Router()
+        
+      mount(
+        <Provider history={history} app={app} router={router}>
+          <PWA/>
+        </Provider>
+      )
+  
+      expect(serviceWorker.cache).not.toHaveBeenCalledWith('/.app-shell')
+    })
+  })
+
+  afterEach(() => jest.resetAllMocks())
+  afterAll(() => jest.unmock('../src/router/serviceWorker'))
 })
