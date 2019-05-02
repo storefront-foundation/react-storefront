@@ -105,7 +105,11 @@ const AppModelBase = types
         // the user clicked the browser's back button
         patch = self.retainStateOnHistoryPop(patch) // ensure that state not corresponding to the URL is retained, for example the user and cart
         auditPatchOnPop(self, patch) // ensure that data for other pages is not changed.  This minimizes component reconciliation to boost performance
-        self.page = patch.page // apply the page change first so the UI swaps to the previous page immediately
+
+        if (patch.hasOwnProperty('page')) {
+          self.page = patch.page // apply the page change first so the UI swaps to the previous page immediately
+        }
+
         self.loading = false // if we're still loading the current page, we can hide the load mask immediately because we're going back to the previous page
         setImmediate(() => self.applyState(patch)) // apply the rest of the state change
       } else {

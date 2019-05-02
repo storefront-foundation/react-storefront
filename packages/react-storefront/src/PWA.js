@@ -159,7 +159,18 @@ export default class PWA extends Component {
 
     const recordState = snapshot => {
       const { pathname, search } = history.location
-      history.replace(pathname + search, snapshot)
+      
+      try {
+        history.replace(pathname + search, snapshot)
+      } catch (e) {
+        // If recording the app state fails, clear out the history state
+        // we don't want the app restoring a stale state if the user navigates back/forward.
+        // Browsers impose a limit on the size of the state object.  Firefox's is the smallest
+        // at 640kB, IE11 is 1MB, and Chrome is at least 10MB. Exceeding this limit is the most
+        // likely reason for history.replace to fail.
+        history.replace(pathname + search, null)
+        console.warn('Could not record app state in history.  Will fall back to fetching state from the server when navigating back and forward.')
+      }
     }
 
     // record app state in history.state restore it when going back or forward

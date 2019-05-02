@@ -10,6 +10,7 @@ import PWA from '../src/PWA'
 import simulant from 'simulant'
 import { clearTestCache } from '../src/utils/browser'
 import { Router, proxyUpstream } from '../src/router';
+import { createMemoryHistory } from 'history'
 
 describe('PWA', () => {
   let history, app, userAgent, location
@@ -246,6 +247,40 @@ describe('PWA', () => {
 
     setTimeout(() => {
       expect(history.replace).toHaveBeenCalledWith(location.pathname + location.search, app.toJSON()) 
+      done()
+    }, 200) // because state recording is debounced so it's async
+  })
+
+  it('should catch errors that occur when attempting to record app state to history', (done) => {
+    const history = createMemoryHistory({ initialEntries: ['/'] })
+
+    // The reason for this test is to ensure that if a browser blocks storing of history state because
+    // a value is too large, the app should catch the error clear out the history state
+    const mockHistory = {
+      replace(path, state) {
+        if (state) {
+          throw new Error('Simulating error recording state in history')
+        } else {
+          history.replace(path, state)
+        }
+      },
+      location: history.location
+    }
+
+    history.replace({ pathname: history.location.pathname, state: { page: 'Test' }})
+
+    expect(history.location.state).toEqual({ page: 'Test' })
+
+    mount(
+      <Provider history={mockHistory} app={app}>
+        <PWA/>
+      </Provider>
+    )
+
+    app.applyState({ title: 'updated' })
+
+    setTimeout(() => {
+      expect(history.location.state).toEqual(null) 
       done()
     }, 200) // because state recording is debounced so it's async
   })

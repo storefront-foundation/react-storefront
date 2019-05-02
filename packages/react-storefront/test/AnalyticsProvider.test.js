@@ -9,7 +9,6 @@ import AnalyticsProvider from '../src/AnalyticsProvider'
 import TestProvider from './TestProvider'
 
 describe('AnalyticsProvider', () => {
-
   beforeEach(() => {
     window.__nativePromise = false
   })
@@ -19,7 +18,7 @@ describe('AnalyticsProvider', () => {
     mount(
       <AnalyticsProvider targets={() => [1, 2, 3]}>
         <div>Hello</div>
-      </AnalyticsProvider>
+      </AnalyticsProvider>,
     )
     expect(spy).toHaveBeenCalledWith(1, 2, 3)
     spy.mockRestore()
@@ -29,7 +28,7 @@ describe('AnalyticsProvider', () => {
     const wrapper = mount(
       <AnalyticsProvider targets={() => []}>
         <div className="hello">Hello</div>
-      </AnalyticsProvider>
+      </AnalyticsProvider>,
     )
     expect(wrapper.find('.hello').text()).toEqual('Hello')
   })
@@ -40,9 +39,20 @@ describe('AnalyticsProvider', () => {
         <AnalyticsProvider targets={() => []}>
           <div className="hello">Hello</div>
         </AnalyticsProvider>
-      </TestProvider>
+      </TestProvider>,
     )
     expect(wrapper.find('.hello').text()).toEqual('Hello')
   })
-  
+
+  it('should call setHistory on all targets', () => {
+    const target = { setHistory: jest.fn() }
+
+    mount(
+      <AnalyticsProvider targets={() => [target]}>
+        <div className="hello">Hello</div>
+      </AnalyticsProvider>,
+    )
+
+    expect(target.setHistory).toHaveBeenCalledTimes(1)
+  })
 })
