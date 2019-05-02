@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.12.1
+
+- Update peerDependencies for mobx, mobx-react, and mobx-state-tree to more stable versions.
+
 ### 6.12.0
 
 - Improved offline support.  
