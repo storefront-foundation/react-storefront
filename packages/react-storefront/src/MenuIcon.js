@@ -54,7 +54,6 @@ export const styles = theme => ({
  */
 @withStyles(styles, { name: 'RSFMenuIcon' })
 export default class MenuIcon extends PureComponent {
-
   static propTypes = {
     /**
      * Set to true when the menu is open, otherwise false
@@ -69,12 +68,12 @@ export default class MenuIcon extends PureComponent {
     /**
      * The icon to display when the menu is closed
      */
-    OpenIcon: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
+    OpenIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 
     /**
      * The icon to display when the menu is open
      */
-    CloseIcon: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ])
+    CloseIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
   }
 
   static defaultProps = {
@@ -121,5 +120,4 @@ export default class MenuIcon extends PureComponent {
       </div>
     )
   }
-
 }

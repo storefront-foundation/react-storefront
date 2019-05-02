@@ -27,8 +27,8 @@ export async function fetch(url, { cache = 'default' } = {}) {
       credentials: 'include',
       headers: {
         'x-react-storefront': 'true', // allows back end handlers to quickly identify PWA API requests,
-        'x-moov-api-version': apiVersion, // needed for the service worker to determine the correct runtime cache name and ensure that we're not getting a cached response from a previous api version
-      },
+        'x-moov-api-version': apiVersion // needed for the service worker to determine the correct runtime cache name and ensure that we're not getting a cached response from a previous api version
+      }
     }).then(response => {
       const { redirected, url } = response
 
@@ -125,7 +125,7 @@ export default function fromServer(handlerPath, getURL) {
     type: 'fromServer',
     runOn: {
       server: true,
-      client: true, // fromServer handlers run on the client too - we make an ajax request to get the state from the server
+      client: true // fromServer handlers run on the client too - we make an ajax request to get the state from the server
     },
     fn: async function(params, request, response) {
       if (typeof handlerPath === 'string') {
@@ -140,7 +140,7 @@ export default function fromServer(handlerPath, getURL) {
       } else {
         if (handlerPath == null)
           throw new Error(
-            'You must provide a path to a handler in fromServer().  Please check your routes.',
+            'You must provide a path to a handler in fromServer().  Please check your routes.'
           )
 
         // indicate handler path and asset class in a response header so we can track it in logs
@@ -150,6 +150,6 @@ export default function fromServer(handlerPath, getURL) {
         // handler path has been transpiled to a function
         return handlerPath(params, request, response)
       }
-    },
+    }
   }
 }

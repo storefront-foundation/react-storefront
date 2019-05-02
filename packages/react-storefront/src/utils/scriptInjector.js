@@ -23,7 +23,7 @@ function isCodeInjected(code) {
     return false
   }
   const injectedCodes = [...document.head.getElementsByTagName('script')].filter(
-    el => el.innerHTML === code,
+    el => el.innerHTML === code
   )
   return injectedCodes.length > 0
 }
@@ -85,7 +85,7 @@ export function injectCodeInHead(code, { once = true } = {}) {
  */
 export function removeScriptInHead(src) {
   ;[...document.querySelectorAll(`script[src^="${src}"]`)].forEach(el =>
-    el.parentNode.removeChild(el),
+    el.parentNode.removeChild(el)
   )
 }
 
@@ -103,6 +103,6 @@ const scriptInjector = {
   injectScriptInHead,
   injectCodeInHead,
   removeScriptInHead,
-  removeCodeInHead,
+  removeCodeInHead
 }
 export default scriptInjector

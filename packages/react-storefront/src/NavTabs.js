@@ -5,7 +5,7 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { types, getParent } from "mobx-state-tree"
+import { types, getParent } from 'mobx-state-tree'
 import { MenuItemModel } from './Menu'
 import TabsRow from './TabsRow'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -15,14 +15,14 @@ import { Fade, Paper, Popper, Hidden } from '@material-ui/core'
 import { parseState } from './utils/state'
 
 /**
- * Scrollable navigation tabs for the top of the app. All extra props are spread to the 
+ * Scrollable navigation tabs for the top of the app. All extra props are spread to the
  * underlying Material UI Tabs element.  When a tab is clicked, the "top_nav_clicked" analytics
  * event is fired.
  */
 export const styles = theme => ({
   tabs: {
     maxWidth: theme.maxWidth,
-    flex: 1,
+    flex: 1
   },
   root: {
     zIndex: theme.zIndex.appBar - 1,
@@ -37,8 +37,9 @@ export const styles = theme => ({
       width: '15px',
       height: 'calc(100% - 3px)',
       position: 'absolute',
-      background: 'linear-gradient(to right, rgba(255, 255, 255, 1.0) 0%, rgba(255, 255, 255, 0.0) 100%)',
-      zIndex: 1,
+      background:
+        'linear-gradient(to right, rgba(255, 255, 255, 1.0) 0%, rgba(255, 255, 255, 0.0) 100%)',
+      zIndex: 1
     },
     '&::after': {
       content: "''",
@@ -47,25 +48,25 @@ export const styles = theme => ({
       width: '15px',
       height: 'calc(100% - 3px)',
       position: 'absolute',
-      background: 'linear-gradient(to left, rgba(255, 255, 255, 1.0) 0%, rgba(255, 255, 255, 0.0) 100%)',
-      zIndex: 1,
+      background:
+        'linear-gradient(to left, rgba(255, 255, 255, 1.0) 0%, rgba(255, 255, 255, 0.0) 100%)',
+      zIndex: 1
     }
   },
   menu: {
-    zIndex: theme.zIndex.appBar,
+    zIndex: theme.zIndex.appBar
   },
   menuPaper: {
     borderRadius: '0',
     position: 'relative',
     top: '1px'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFNavTabs' })
 @inject(({ app, history }) => ({ tabs: app.tabs, history }))
 @observer
 export default class NavTabs extends Component {
-
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string),
 
@@ -112,22 +113,17 @@ export default class NavTabs extends Component {
             {...tabsProps}
           />
         </Paper>
-        { !menu ? null : (
+        {!menu ? null : (
           <Hidden xsDown>
-            <Popper
-              className={classes.menu}
-              open={open}
-              anchorEl={anchorEl}
-              transition
-            >
+            <Popper className={classes.menu} open={open} anchorEl={anchorEl} transition>
               {({ TransitionProps }) => (
                 <Fade {...TransitionProps} timeout={350}>
-                  <Paper 
-                    onMouseEnter={this.onMenuEnter} 
+                  <Paper
+                    onMouseEnter={this.onMenuEnter}
                     onMouseLeave={this.onMenuLeave}
                     className={classes.menuPaper}
                   >
-                    { menu }
+                    {menu}
                   </Paper>
                 </Fade>
               )}
@@ -140,10 +136,10 @@ export default class NavTabs extends Component {
 
   renderTab = (item, i) => {
     return (
-      <NavTab 
+      <NavTab
         {...item}
-        key={i} 
-        item={item} 
+        key={i}
+        item={item}
         onMouseEnter={this.showMenu}
         onMouseLeave={this.onTabLeave}
         onItemClick={this.onItemClick}
@@ -187,11 +183,10 @@ export default class NavTabs extends Component {
       window.location.href = url
     }
   }
-
 }
 
 export const TabsModel = types
-  .model("TabsModel", {
+  .model('TabsModel', {
     items: types.array(MenuItemModel)
   })
   .views(self => ({

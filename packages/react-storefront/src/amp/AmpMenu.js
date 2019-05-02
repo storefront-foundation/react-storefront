@@ -23,20 +23,20 @@ export const styles = theme => ({
     boxShadow: '10px 2px 10px -5px rgba(0, 0, 0, 0.2)',
     paddingBottom: '64px',
     '& h3': {
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.paper
     },
     '& section[expanded] > h3': {
       color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.main,
-      borderColor: theme.palette.secondary.main,
+      borderColor: theme.palette.secondary.main
     },
     '& a': {
-      color: theme.typography.body1.color,
+      color: theme.typography.body1.color
     },
     '& ~ div[class*="amphtml-sidebar-mask"]': {
       background: 'rgba(0, 0, 0, 0.5)',
-      opacity: 1,
-    },
+      opacity: 1
+    }
   },
   item: {
     padding: '12px 16px',
@@ -44,28 +44,28 @@ export const styles = theme => ({
     borderWidth: '0 0 1px 0',
     borderStyle: 'solid',
     display: 'block',
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
   group: {
-    textTransform: 'uppercase',
+    textTransform: 'uppercase'
   },
   toggle: {
     position: 'absolute',
     right: '18px',
-    top: '10px',
+    top: '10px'
   },
   expand: {
     display: 'block',
     'section[expanded] > h3 > &': {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
   collapse: {
     display: 'none',
     'section[expanded] > h3 > &': {
-      display: 'block',
-    },
-  },
+      display: 'block'
+    }
+  }
 })
 
 /**
@@ -80,7 +80,7 @@ export const styles = theme => ({
 @inject(({ app }) => ({ menu: app.menu }))
 export default class AmpMenu extends Component {
   static defaultProps = {
-    id: 'moov_menu',
+    id: 'moov_menu'
   }
 
   render() {

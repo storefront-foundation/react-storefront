@@ -67,18 +67,17 @@ import EventEmitter from 'eventemitter3'
  * `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
  */
 export default class Router extends EventEmitter {
-  
   routes = []
 
   appShellConfigured = false
-  
+
   isBrowser = process.env.MOOV_RUNTIME === 'client'
 
   fallbackHandlers = [
     {
       runOn: { client: true, server: true },
-      fn: () => ({ page: '404' }),
-    },
+      fn: () => ({ page: '404' })
+    }
   ]
 
   errorHandler = (e, params, request, response) => {
@@ -264,7 +263,7 @@ export default class Router extends EventEmitter {
       pathname: location.pathname,
       search: location.search,
       hostname: location.hostname,
-      port: location.port,
+      port: location.port
     }
   }
 
@@ -293,7 +292,7 @@ export default class Router extends EventEmitter {
       yield {
         loading: willFetchFromServer,
         location: this.createLocation(),
-        ...historyState,
+        ...historyState
       }
     }
 
@@ -302,7 +301,7 @@ export default class Router extends EventEmitter {
         if (typeof handler === 'function') {
           handler = {
             runOn: { server: true, client: true },
-            fn: handler,
+            fn: handler
           }
         }
 
@@ -417,7 +416,7 @@ export default class Router extends EventEmitter {
   willNavigateToUpstream(url, method = 'get') {
     const { pathname: path, search } = new URL(
       url,
-      typeof window !== 'undefined' ? window.location : undefined,
+      typeof window !== 'undefined' ? window.location : undefined
     )
     return this.willFetchFromUpstream({ path, search, method })
   }
@@ -524,7 +523,7 @@ export default class Router extends EventEmitter {
 
     const nextParams = qs.stringify({
       ...qs.parse(history.location.search, { ignoreQueryPrefix: true }),
-      ...params,
+      ...params
     })
 
     history.replace(`${history.location.pathname}?${nextParams}`)

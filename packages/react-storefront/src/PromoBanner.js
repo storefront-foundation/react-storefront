@@ -22,7 +22,7 @@ export const styles = theme => ({
     height: '100%',
     zIndex: theme.zIndex.appBar - 1
   }
-});
+})
 
 /**
  * A promo banner that automatically fires the promo_banner_clicked analytics event.
@@ -30,7 +30,6 @@ export const styles = theme => ({
  */
 @withStyles(styles, { name: 'RSFPromoBanner' })
 export default class PromoBanner extends Component {
-  
   static propTypes = {
     /**
      * A css class to apply
@@ -71,7 +70,7 @@ export default class PromoBanner extends Component {
   static defaultProps = {
     name: 'promo',
     alt: 'promo',
-    imgProps: {},
+    imgProps: {}
   }
 
   render() {
@@ -79,11 +78,15 @@ export default class PromoBanner extends Component {
 
     return (
       <Track event="promoBannerClicked" name={name} imageUrl={src}>
-        <Link {...others} to={href} className={classnames(className, classes.root)} onClick={onClick}>
-          <Image className={classes.img} src={src} alt={alt} contain {...imgProps}/>
+        <Link
+          {...others}
+          to={href}
+          className={classnames(className, classes.root)}
+          onClick={onClick}
+        >
+          <Image className={classes.img} src={src} alt={alt} contain {...imgProps} />
         </Link>
       </Track>
     )
   }
-
 }

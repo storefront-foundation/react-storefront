@@ -44,7 +44,6 @@ export const styles = theme => ({
 @withStyles(styles, { name: 'RSFNavTab' })
 @observer
 export default class NavTab extends Component {
-
   render() {
     const { classes, state, url, prefetch, text, item } = this.props
 
@@ -59,7 +58,7 @@ export default class NavTab extends Component {
           anchorProps={{
             onMouseEnter: this.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,
-            "data-th": "topNavClicked"
+            'data-th': 'topNavClicked'
           }}
         >
           <Tab
@@ -74,7 +73,7 @@ export default class NavTab extends Component {
     )
   }
 
-  onMouseEnter = (e) => {
+  onMouseEnter = e => {
     this.props.onMouseEnter({
       target: e.currentTarget,
       menu: this.getMenu()
@@ -87,11 +86,13 @@ export default class NavTab extends Component {
     if (children) {
       return children
     } else if (item.items && item.items.length) {
-      return  (
+      return (
         <div className={classes.menu}>
           {item.items.map((item, i) => (
             <div key={i} className={classes.menuItem}>
-              <Link to={item.url} onClick={onItemClick}>{item.text}</Link>
+              <Link to={item.url} onClick={onItemClick}>
+                {item.text}
+              </Link>
             </div>
           ))}
         </div>
@@ -100,5 +101,4 @@ export default class NavTab extends Component {
       return null
     }
   }
-
 }

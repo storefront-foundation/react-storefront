@@ -26,18 +26,18 @@ import { Hbox } from './Box'
  * A modal search UI that displays a single text search field and grouped results.  The
  * data for this component is defined in react-storefront/model/SearchModelBase.  In most cases, you can
  * add this component to your PWA simply by adding it to App.js without any props:
- * 
+ *
  *  <SearchDrawer/>
- * 
+ *
  * When the user enters text in the search field, SearchModelBase calls /search/suggest, which by default is mapped to
  * src/search/suggest-handler.js in the starter app.
- * 
+ *
  * See https://github.com/moovweb/react-storefront-boilerplate/tree/master/src/search/suggest-handler.js for
  * the placeholder implementation of the suggestion API.
- * 
+ *
  * When the user taps the search icon or types the enter key in the search field, the drawer closes and the url
- * is set to /search?q=(the user's search text).  
- * 
+ * is set to /search?q=(the user's search text).
+ *
  * See src/routes.js to edit the mappings for /search and /search/suggest.
  */
 export const styles = theme => ({
@@ -45,7 +45,7 @@ export const styles = theme => ({
     zIndex: 9999
   },
   paper: {
-    backgroundColor: 'rgba(255, 255, 255, .7)',
+    backgroundColor: 'rgba(255, 255, 255, .7)'
   },
   paperAnchorBottom: {
     top: '0'
@@ -140,14 +140,13 @@ export const styles = theme => ({
 @inject(({ app: { search }, history, theme }) => ({ search, history, theme }))
 @observer
 export default class SearchDrawer extends Component {
-
   static propTypes = {
     /**
      * The placeholder text for the input.  Defaults to "Search..."
      */
     placeholder: PropTypes.string,
     /**
-     * Set this prop to use a text button instead of an icon for the close button.  If set, CloseButtonIcon 
+     * Set this prop to use a text button instead of an icon for the close button.  If set, CloseButtonIcon
      * will be ignored
      */
     closeButtonText: PropTypes.string,
@@ -160,7 +159,7 @@ export default class SearchDrawer extends Component {
      */
     blurBackground: PropTypes.bool,
     /**
-     * Set to "icon" to display the search button as an icon in the search input. 
+     * Set to "icon" to display the search button as an icon in the search input.
      * Set to "fab" to display the search button as a separate floating action button to the right of the search input when
      * the user enters text.
      */
@@ -173,7 +172,7 @@ export default class SearchDrawer extends Component {
 
   static defaultProps = {
     placeholder: 'Search...',
-    CloseButtonIcon: () => <ClearIcon/>,
+    CloseButtonIcon: () => <ClearIcon />,
     blurBackground: true,
     searchButtonVariant: 'fab',
     showClearButton: true
@@ -181,7 +180,7 @@ export default class SearchDrawer extends Component {
 
   constructor({ search }) {
     super()
-    this.inputRef = input => this.input = input 
+    this.inputRef = input => (this.input = input)
     onPatch(search, this.onSearchPatch)
   }
 
@@ -201,13 +200,20 @@ export default class SearchDrawer extends Component {
   }
 
   render() {
-    const { classes, search, placeholder, blurBackground, searchButtonVariant, showClearButton } = this.props
+    const {
+      classes,
+      search,
+      placeholder,
+      blurBackground,
+      searchButtonVariant,
+      showClearButton
+    } = this.props
     const loading = search.loading
     const contentReady = this.props.search.text && !loading
 
     return (
-      <Drawer 
-        open={search.show} 
+      <Drawer
+        open={search.show}
         anchor="bottom"
         className={classes.root}
         classes={{
@@ -220,7 +226,7 @@ export default class SearchDrawer extends Component {
       >
         <div className={classes.wrap}>
           <form className={classes.header} onSubmit={this.onSearchFormSubmit}>
-            { this.renderCloseButton() }
+            {this.renderCloseButton()}
             <Hbox>
               <Input
                 type="text"
@@ -236,42 +242,40 @@ export default class SearchDrawer extends Component {
                 }}
                 endAdornment={
                   search.text && showClearButton ? (
-                    <IconButton 
-                      onClick={this.clearSearch}
-                      className={classes.searchReset}
-                    >
-                      <ClearIcon rel="clear"/>
+                    <IconButton onClick={this.clearSearch} className={classes.searchReset}>
+                      <ClearIcon rel="clear" />
                     </IconButton>
-                  ) : searchButtonVariant === 'icon' && (
-                    <IconButton
-                      onClick={this.onSearchSubmit}
-                      className={classes.searchButton}
-                    >
-                      <SearchIcon rel="search"/>
-                    </IconButton>
+                  ) : (
+                    searchButtonVariant === 'icon' && (
+                      <IconButton onClick={this.onSearchSubmit} className={classes.searchButton}>
+                        <SearchIcon rel="search" />
+                      </IconButton>
+                    )
                   )
                 }
               />
-              { searchButtonVariant === 'fab' && search.text.length > 0 && (
+              {searchButtonVariant === 'fab' && search.text.length > 0 && (
                 <Button variant="fab" className={classes.searchFab} onClick={this.onSearchSubmit}>
-                  <SearchIcon rel="search"/>
+                  <SearchIcon rel="search" />
                 </Button>
               )}
             </Hbox>
           </form>
           {loading && (
             <div className={classes.loading}>
-              <CircularProgress /> 
+              <CircularProgress />
             </div>
           )}
-          {contentReady && <div className={classes.results}>
-            { this.props.search.groups.map((group) => (
-              <Container key={group.caption}>
-                <Typography className={classes.groupCaption}>{group.caption}</Typography>
-                { this.renderGroup(group) }
-              </Container>
-            ))}
-          </div>}
+          {contentReady && (
+            <div className={classes.results}>
+              {this.props.search.groups.map(group => (
+                <Container key={group.caption}>
+                  <Typography className={classes.groupCaption}>{group.caption}</Typography>
+                  {this.renderGroup(group)}
+                </Container>
+              ))}
+            </div>
+          )}
         </div>
       </Drawer>
     )
@@ -291,7 +295,7 @@ export default class SearchDrawer extends Component {
         color="primary"
         onClick={this.hide}
       >
-        { closeButtonText || <CloseButtonIcon/> }
+        {closeButtonText || <CloseButtonIcon />}
       </ButtonElement>
     )
   }
@@ -300,14 +304,16 @@ export default class SearchDrawer extends Component {
     const { classes } = this.props
 
     return (
-      <ul className={classnames({
-        [classes.group]: !group.thumbnails,
-        [classes.thumbnailGroup]: group.thumbnails
-      })}>
-        { group.results.map((result, i) => (
+      <ul
+        className={classnames({
+          [classes.group]: !group.thumbnails,
+          [classes.thumbnailGroup]: group.thumbnails
+        })}
+      >
+        {group.results.map((result, i) => (
           <li key={i}>
             <Link to={result.url} onClick={this.hide}>
-              { group.thumbnails ? this.renderThumbnail(result) : this.renderLinkText(result) }
+              {group.thumbnails ? this.renderThumbnail(result) : this.renderLinkText(result)}
             </Link>
           </li>
         ))}
@@ -325,11 +331,20 @@ export default class SearchDrawer extends Component {
 
   renderThumbnail(result) {
     const { classes } = this.props
-    
+
     return (
       <Fragment>
-        <div><Image className={classes.thumbnail} src={result.thumbnail} height={result.thumbnailHeight} width={result.thumbnailWidth}/></div>
-        <div><Typography>{result.text}</Typography></div>
+        <div>
+          <Image
+            className={classes.thumbnail}
+            src={result.thumbnail}
+            height={result.thumbnailHeight}
+            width={result.thumbnailWidth}
+          />
+        </div>
+        <div>
+          <Typography>{result.text}</Typography>
+        </div>
       </Fragment>
     )
   }
@@ -344,8 +359,8 @@ export default class SearchDrawer extends Component {
   /**
    * Clears the search text
    */
-  clearSearch = () => { 
-    this.onChangeSearchText('') 
+  clearSearch = () => {
+    this.onChangeSearchText('')
   }
 
   /**
@@ -366,7 +381,7 @@ export default class SearchDrawer extends Component {
   /**
    * Listener to enable submitting the search by hitting enter
    */
-  onSearchFormSubmit = (e) => {
+  onSearchFormSubmit = e => {
     e.preventDefault()
     this.onSearchSubmit()
   }
@@ -384,5 +399,4 @@ export default class SearchDrawer extends Component {
       document.body.classList.remove('moov-blur')
     }
   }
-
 }

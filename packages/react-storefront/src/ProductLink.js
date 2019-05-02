@@ -7,12 +7,11 @@ import PropTypes from 'prop-types'
 import PageLink from './PageLink'
 
 /**
- * A link to the PDP which reuses the thumbnail image from the Subcategory page.  
+ * A link to the PDP which reuses the thumbnail image from the Subcategory page.
  * The product prop accepts an instance of ProductModelBase or any model that implements createLinkState().
  * This component wraps react-storefront/Link and supports all of its props.
  */
 export default class ProductLink extends Component {
-
   static propTypes = {
     /**
      * An instance of ProductModelBase or a model that implements createLinkState()
@@ -22,7 +21,6 @@ export default class ProductLink extends Component {
 
   render() {
     const { product, ...others } = this.props
-    return <PageLink page="Product" model={product} {...others}/> 
+    return <PageLink page="Product" model={product} {...others} />
   }
-
 }

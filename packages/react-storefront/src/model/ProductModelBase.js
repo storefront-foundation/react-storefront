@@ -22,7 +22,7 @@ const ProductModelBase = types
     thumbnails: types.array(types.string),
     thumbnail: types.maybeNull(types.string),
     currencyCode: types.optional(types.string, 'USD'),
-    loadingImages: false,
+    loadingImages: false
   })
   .views(self => ({
     shouldApplyPatchOnPop(patch) {
@@ -36,7 +36,7 @@ const ProductModelBase = types
       } else {
         return self.basePrice
       }
-    },
+    }
   }))
   .actions(self => ({
     afterCreate() {
@@ -76,7 +76,7 @@ const ProductModelBase = types
      */
     apply(state) {
       Object.assign(self, state)
-    },
+    }
   }))
 
 export default ProductModelBase

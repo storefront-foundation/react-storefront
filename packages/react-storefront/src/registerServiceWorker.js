@@ -19,10 +19,8 @@ const isLocalhost = Boolean(
     // [::1] is the IPv6 localhost address.
     window.location.hostname === '[::1]' ||
     // 127.0.0.1/8 is considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
-);
+    window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+)
 
 /**
  * Returns true if this is a private window in safari
@@ -30,12 +28,12 @@ const isLocalhost = Boolean(
  */
 function isSafariPrivateWindow() {
   if (!isSafari()) return false
-  
+
   try {
-    window.openDatabase(null, null, null, null);
-    return false;
+    window.openDatabase(null, null, null, null)
+    return false
   } catch (_) {
-    return true;
+    return true
   }
 }
 
@@ -54,23 +52,23 @@ export default function register() {
 
   if (installSW && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
+    const publicUrl = new URL(process.env.PUBLIC_URL, window.location)
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
       // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
-      return;
+      return
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL || ''}/service-worker.js`;
+      const swUrl = `${process.env.PUBLIC_URL || ''}/service-worker.js`
 
       if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl);
+        checkValidServiceWorker(swUrl)
       } else {
         // Is not local host. Just register service worker
-        registerValidSW(swUrl);
+        registerValidSW(swUrl)
       }
     })
   }
@@ -83,7 +81,7 @@ function registerValidSW(swUrl) {
       removeOldCaches()
 
       registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
+        const installingWorker = registration.installing
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
@@ -96,15 +94,15 @@ function registerValidSW(swUrl) {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
+              console.log('Content is cached for offline use.')
             }
           }
-        };
-      };
+        }
+      }
     })
     .catch(error => {
-      console.error('Error during service worker registration:', error);
-    });
+      console.error('Error during service worker registration:', error)
+    })
 }
 
 function checkValidServiceWorker(swUrl) {
@@ -116,25 +114,23 @@ function checkValidServiceWorker(swUrl) {
         // No service worker found. Probably a different app. Reload the page.
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
-            window.location.reload();
-          });
-        });
+            window.location.reload()
+          })
+        })
       } else {
         // Service worker found. Proceed as normal.
-        registerValidSW(swUrl);
+        registerValidSW(swUrl)
       }
     })
     .catch(() => {
-      console.log(
-        'No internet connection found. App is running in offline mode.'
-      );
-    });
+      console.log('No internet connection found. App is running in offline mode.')
+    })
 }
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
-    });
+      registration.unregister()
+    })
   }
 }

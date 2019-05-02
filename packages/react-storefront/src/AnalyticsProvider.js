@@ -59,7 +59,7 @@ export default class AnalyticsProvider extends Component {
     /**
      * Function which should return desired analytics targets to configure.
      */
-    targets: PropTypes.func.isRequired,
+    targets: PropTypes.func.isRequired
   }
 
   constructor(props) {

@@ -39,7 +39,7 @@ export default function cache({ server, client }) {
     server,
     runOn: {
       server: true,
-      client: true,
+      client: true
     },
     fn: (params, request, response) => {
       if (
@@ -50,7 +50,7 @@ export default function cache({ server, client }) {
         throw new Error(
           `Invalid use of cache handler for ${
             request.method
-          } request. Only GET requests can be cached.`,
+          } request. Only GET requests can be cached.`
         )
       }
 
@@ -66,6 +66,6 @@ export default function cache({ server, client }) {
           response.cacheOnServer(server.maxAgeSeconds)
         }
       }
-    },
+    }
   }
 }

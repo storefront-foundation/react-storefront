@@ -14,7 +14,7 @@ const SelectionModelBase = types
     /**
      * The selected option
      */
-    selected: types.maybeNull(OptionModelBase),
+    selected: types.maybeNull(OptionModelBase)
   })
   .actions(self => ({
     /**
@@ -27,7 +27,7 @@ const SelectionModelBase = types
       } else {
         self.selected = null
       }
-    },
+    }
   }))
 
 export default SelectionModelBase

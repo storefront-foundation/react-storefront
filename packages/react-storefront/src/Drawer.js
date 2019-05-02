@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 import MUIDrawer from '@material-ui/core/Drawer'
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
 import Close from '@material-ui/icons/Close'
 import Fab from '@material-ui/core/Fab'
 import PropTypes from 'prop-types'
@@ -29,12 +29,12 @@ export const styles = theme => ({
     boxSizing: 'border-box',
     flexWrap: 'nowrap',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
 
   content: {
     flexBasis: '100%',
-    overflow: 'auto',
+    overflow: 'auto'
   },
 
   paper: {
@@ -55,12 +55,11 @@ export const styles = theme => ({
   ampClosed: {
     display: 'none'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFDrawer' })
 @inject(({ app, ampStateId }) => ({ amp: app && app.amp, ampStateId }))
 export default class Drawer extends Component {
-
   static propTypes = {
     /**
      * Set to false to hide the close button. Defaults to true
@@ -75,7 +74,7 @@ export default class Drawer extends Component {
     /**
      * The title to display at the top of the drawer
      */
-    title: PropTypes.oneOfType([ PropTypes.string, PropTypes.element ]),
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 
     /**
      * Set to true to automatically add padding to the body when the drawer
@@ -102,12 +101,26 @@ export default class Drawer extends Component {
   }
 
   constructor() {
-    super();
+    super()
     this.drawer = React.createRef()
   }
 
   render() {
-    const { amp, ampStateId, ampBindClosed, variant, closeButtonProps, showCloseButton, open, onRequestClose, title, children, classes, autoAdjustBodyPadding, ...rest } = this.props
+    const {
+      amp,
+      ampStateId,
+      ampBindClosed,
+      variant,
+      closeButtonProps,
+      showCloseButton,
+      open,
+      onRequestClose,
+      title,
+      children,
+      classes,
+      autoAdjustBodyPadding,
+      ...rest
+    } = this.props
 
     return (
       <MUIDrawer
@@ -118,36 +131,40 @@ export default class Drawer extends Component {
             [classes.ampClosed]: amp && !open
           })
         }}
-        amp-bind={ampBindClosed ? `class=>${ampStateId}.${ampBindClosed} ? '${classes.ampClosed}' : null` : null}
-        open={(amp && variant === "temporary") || open}
+        amp-bind={
+          ampBindClosed
+            ? `class=>${ampStateId}.${ampBindClosed} ? '${classes.ampClosed}' : null`
+            : null
+        }
+        open={(amp && variant === 'temporary') || open}
         variant={variant}
         {...rest}
       >
         <div className={classes.container} ref={this.drawer}>
-          { title && (
-            <Typography
-              className={classes.title}
-              variant="h6"
-              component="div"
-            >
+          {title && (
+            <Typography className={classes.title} variant="h6" component="div">
               {title}
             </Typography>
           )}
 
-          { showCloseButton && (
+          {showCloseButton && (
             <Fab
               color="primary"
               className={classes.closeButton}
               onClick={this.closeDrawer}
               style={{ display: open ? '' : 'none' }}
-              on={ampBindClosed ? `tap:AMP.setState({ ${ampStateId}: { ${ampBindClosed}: true }})` : null}
+              on={
+                ampBindClosed
+                  ? `tap:AMP.setState({ ${ampStateId}: { ${ampBindClosed}: true }})`
+                  : null
+              }
               {...closeButtonProps}
             >
-              <Close/>
+              <Close />
             </Fab>
           )}
 
-          <div className={classes.content}>{ children }</div>
+          <div className={classes.content}>{children}</div>
         </div>
       </MUIDrawer>
     )
@@ -178,9 +195,9 @@ export default class Drawer extends Component {
   // if value of open property changes, recalcuate drawer height/body padding
   componentWillReceiveProps(nextProps) {
     if (nextProps.open && !this.props.open) {
-        this.setPadding()
+      this.setPadding()
     } else if (this.props.open && !nextProps.open) {
-        this.closeDrawer()
+      this.closeDrawer()
     }
   }
 
@@ -198,5 +215,4 @@ export default class Drawer extends Component {
     onRequestClose()
     document.body.style.paddingBottom = 0
   }
-
 }

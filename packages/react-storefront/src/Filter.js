@@ -21,7 +21,7 @@ import { Hbox } from './Box'
  * FilterButton to automatically display this component in a drawer that slides up from the bottom of the viewport.
  */
 export const styles = theme => ({
-  root: { 
+  root: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -42,7 +42,7 @@ export const styles = theme => ({
     padding: '12px 20px',
     color: 'white',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   itemsFound: {
     color: theme.palette.secondary.contrastText
@@ -58,13 +58,12 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'center'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFFilter' })
 @inject('router')
 @observer
 export default class Filter extends Component {
-
   static propTypes = {
     /**
      * An instance of `SearchResultModelBase`
@@ -123,15 +122,26 @@ export default class Filter extends Component {
 
     return (
       <div className={classes.root}>
-        { title ? <div className={classes.title}>{title}</div> : null }
+        {title ? <div className={classes.title}>{title}</div> : null}
         <div className={classes.facetGroups}>
           <LoadMask show={model.loading} transparent align="top" />
-          { get(model, 'facetGroups', []).map((facetGroup, i) => this.renderFacetGroup(facetGroup, i)) }
+          {get(model, 'facetGroups', []).map((facetGroup, i) =>
+            this.renderFacetGroup(facetGroup, i)
+          )}
         </div>
-        { model.filtersChanged && (
+        {model.filtersChanged && (
           <Hbox className={classes.footer} split>
-            <Typography variant="subtitle1" className={classes.itemsFound}>{model.filters.length || 'No'} filter{model.filters.length === 1 ? '' : 's'} selected</Typography>
-            <Button variant="contained" size="large" color="default" onClick={this.onViewResultsClick}>View Results</Button>
+            <Typography variant="subtitle1" className={classes.itemsFound}>
+              {model.filters.length || 'No'} filter{model.filters.length === 1 ? '' : 's'} selected
+            </Typography>
+            <Button
+              variant="contained"
+              size="large"
+              color="default"
+              onClick={this.onViewResultsClick}
+            >
+              View Results
+            </Button>
           </Hbox>
         )}
       </div>
@@ -145,7 +155,7 @@ export default class Filter extends Component {
 
     const formGroup = (
       <FormGroup key={key}>
-        { group.facets.map((facet, i) => {
+        {group.facets.map((facet, i) => {
           let checked = false
 
           if (get(model, 'filters', []).indexOf(facet.code) !== -1) {
@@ -159,7 +169,9 @@ export default class Filter extends Component {
               label={
                 <div className={classes.groupLabel}>
                   <span>{facet.name}</span>
-                  <Typography variant="caption" className={classes.matches} component="span">({facet.matches})</Typography>
+                  <Typography variant="caption" className={classes.matches} component="span">
+                    ({facet.matches})
+                  </Typography>
                 </div>
               }
               control={
@@ -189,7 +201,9 @@ export default class Filter extends Component {
         title={group.name}
         caption={caption}
         expanded={expanded[group.name]}
-        onChange={(e, expanded) => this.setState({ expanded: { ...this.state.expanded, [group.name]: expanded }})}
+        onChange={(e, expanded) =>
+          this.setState({ expanded: { ...this.state.expanded, [group.name]: expanded } })
+        }
         margins={margins}
       >
         {formGroup}
@@ -197,15 +211,15 @@ export default class Filter extends Component {
     )
   }
 
-  onToggleFilter = (facet) => {
+  onToggleFilter = facet => {
     this.props.model.toggleFilter(facet)
 
-    if(this.props.refreshOnChange) {
+    if (this.props.refreshOnChange) {
       this.refresh()
     }
   }
 
-  onViewResultsClick = (e) => {
+  onViewResultsClick = e => {
     this.props.onViewResultsClick(e)
 
     if (!e.isDefaultPrevented()) {
@@ -233,5 +247,4 @@ export default class Filter extends Component {
 
     return state
   }
-
 }

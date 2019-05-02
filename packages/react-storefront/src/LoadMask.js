@@ -19,7 +19,7 @@ export const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     background: theme.palette.background.default,
-    zIndex: 1,
+    zIndex: 1
   },
   fullscreen: {
     height: `calc(100vh - ${theme.headerHeight}px)`,
@@ -48,7 +48,6 @@ export const styles = theme => ({
  */
 @withStyles(styles, { name: 'RSFLoadMask' })
 export default class LoadMask extends Component {
-
   static propTypes = {
     /**
      * Set to true to display the load mask, otherwise it will be hidden.
@@ -74,7 +73,7 @@ export default class LoadMask extends Component {
   }
 
   static defaultProps = {
-    show: false, 
+    show: false,
     fullscreen: false,
     align: 'center'
   }
@@ -101,20 +100,16 @@ export default class LoadMask extends Component {
     const { classes, show, style, className, children, fullscreen, transparent, align } = this.props
 
     return (
-      <div style={style} 
-        className={
-          classnames(
-            classes.root, 
-            className,
-            { 
-              [classes.show]: show,
-              [classes.fullscreen]: fullscreen,
-              [classes.transparent]: transparent,
-              [classes.alignTop]: align === 'top'
-            }
-          )
-        }>
-        { children || <CircularProgress className={classes.progress} color="secondary"/> }
+      <div
+        style={style}
+        className={classnames(classes.root, className, {
+          [classes.show]: show,
+          [classes.fullscreen]: fullscreen,
+          [classes.transparent]: transparent,
+          [classes.alignTop]: align === 'top'
+        })}
+      >
+        {children || <CircularProgress className={classes.progress} color="secondary" />}
       </div>
     )
   }
@@ -122,5 +117,4 @@ export default class LoadMask extends Component {
   componentWillUnmount() {
     document.body.style.overflow = 'visible'
   }
-
 }

@@ -22,7 +22,7 @@ export async function cache(path, cacheData) {
         action: 'cache-state',
         path,
         apiVersion,
-        cacheData,
+        cacheData
       })
     } else {
       navigator.serviceWorker.controller.postMessage({ action: 'cache-path', path, apiVersion })
@@ -119,7 +119,7 @@ export async function removeOldCaches() {
   if (await waitForServiceWorkerController()) {
     navigator.serviceWorker.controller.postMessage({
       action: 'remove-old-caches',
-      apiVersion: window.moov.apiVersion,
+      apiVersion: window.moov.apiVersion
     })
   }
 }
@@ -132,5 +132,5 @@ export default {
   abortPrefetches,
   prefetch,
   prefetchJsonFor,
-  cache,
+  cache
 }

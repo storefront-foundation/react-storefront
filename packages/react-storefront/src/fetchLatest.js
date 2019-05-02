@@ -5,21 +5,21 @@
 /**
  * Creates a fetch function with an internal incrementing request counter that ensures that out of order
  * responses result in a StaleResponseError.
- * 
+ *
  * Example usage:
- *  
+ *
  *  import { fetchLatest, StaleResponseError } from 'react-storefront/fetch'
- * 
+ *
  *  const fetch = fetchLatest()
- * 
+ *
  *  try {
  *    const response = await fetch('/some/url')
  *  } catch (e) {
- *    if (!StaleResponseError.is(e)) { 
+ *    if (!StaleResponseError.is(e)) {
  *      throw e // just ignore stale responses, rethrow all other errors
  *    }
  *  }
- * 
+ *
  * @return {Function}
  */
 export function fetchLatest(fetch) {
@@ -30,12 +30,12 @@ export function fetchLatest(fetch) {
     controller && controller.abort()
 
     if (typeof AbortController !== 'undefined') {
-      return controller = new AbortController()
+      return (controller = new AbortController())
     } else {
       return { signal: null }
     }
   }
-  
+
   return (url, options) => {
     let id = ++nextId
     const signal = abort().signal
@@ -48,7 +48,7 @@ export function fetchLatest(fetch) {
         return response
       })
       .catch(error => {
-        // For browsers that support AbortController, ensure that the behavior is the same as browsers that don't - 
+        // For browsers that support AbortController, ensure that the behavior is the same as browsers that don't -
         // StaleResponseError should be thrown in either case
         if (error.name === 'AbortError') {
           throw new StaleResponseError()

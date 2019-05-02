@@ -14,9 +14,9 @@ export const styles = theme => ({
   mask: {
     display: 'none',
     '.amp-form-submitting &, .moov-amp-form-mask &': {
-      display: 'flex',
-    },
-  },
+      display: 'flex'
+    }
+  }
 })
 
 /**
@@ -45,13 +45,13 @@ export default class AmpForm extends Component {
     /**
      * Set to false to not show the mask when submitting.  Defaults to true.
      */
-    mask: PropTypes.bool,
+    mask: PropTypes.bool
   }
 
   static defaultProps = {
     target: '_top',
     method: 'get',
-    mask: true,
+    mask: true
   }
 
   constructor({ id, nextId }) {
@@ -100,7 +100,7 @@ export default class AmpForm extends Component {
             method={method}
             target={target}
             {...{
-              [method === 'post' ? 'action-xhr' : 'action']: action,
+              [method === 'post' ? 'action-xhr' : 'action']: action
             }}
             {...others}
             on={on}

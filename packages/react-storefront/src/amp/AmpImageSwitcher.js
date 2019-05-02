@@ -15,27 +15,27 @@ export const styles = theme => ({
     width: '450px',
     position: 'relative',
     '& > *': {
-      paddingBottom: 'none',
+      paddingBottom: 'none'
     },
     '& *[role=button]': {
       borderRadius: '50%',
       opacity: '0.5',
       outline: 'none',
-      backgroundColor: 'rgba(0,0,0,0.3)',
-    },
+      backgroundColor: 'rgba(0,0,0,0.3)'
+    }
   },
 
   // This fixes the issue where images do not show up sometimes when amp-carousel is placed in
   // a div with display: flex.  See https://github.com/ampproject/amphtml/issues/14519
   rootImportant: {
     '&$root': {
-      display: 'block',
-    },
+      display: 'block'
+    }
   },
 
   carouselWrap: {
     height: 'calc(100% - 65px)',
-    position: 'relative',
+    position: 'relative'
   },
 
   thumbnails: {
@@ -44,13 +44,13 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'stretch',
     maxWidth: '100%',
-    overflowX: 'auto',
+    overflowX: 'auto'
   },
 
   thumbnailsWrap: {
     display: 'flex',
     margin: 'auto',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-start'
   },
 
   thumbnail: {
@@ -63,12 +63,12 @@ export const styles = theme => ({
     background: 'none',
     opacity: 0.7,
     '& img': {
-      objectFit: 'contain',
-    },
+      objectFit: 'contain'
+    }
   },
 
   thumbnailSelected: {
-    opacity: 1,
+    opacity: 1
   },
 
   thumbnailSelectedLine: {
@@ -76,7 +76,7 @@ export const styles = theme => ({
     width: '50px',
     margin: '0px 2px',
     position: 'relative',
-    bottom: '4px',
+    bottom: '4px'
   },
 
   dot: {},
@@ -85,9 +85,9 @@ export const styles = theme => ({
 
   '@global': {
     'amp-lightbox-gallery div[aria-label="Gallery"]': {
-      display: 'none',
-    },
-  },
+      display: 'none'
+    }
+  }
 })
 
 /**
@@ -115,14 +115,14 @@ export default class AmpImageSwitcher extends Component {
     /**
      * Set to true to display left and right arrows.  Defaults to false
      */
-    arrows: PropTypes.bool,
+    arrows: PropTypes.bool
   }
 
   static defaultProps = {
     type: 'slides',
     indicators: false,
     ampStateProperty: 'selectedImage',
-    controls: false,
+    controls: false
   }
 
   constructor({ id, nextId }) {
@@ -142,7 +142,7 @@ export default class AmpImageSwitcher extends Component {
       images,
       thumbnails,
       classes,
-      className,
+      className
     } = this.props
     const { id } = this
 

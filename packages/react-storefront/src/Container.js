@@ -14,16 +14,15 @@ import classnames from 'classnames'
 export const styles = theme => ({
   root: {
     margin: `0 auto`,
-    maxWidth: theme.maxWidth || '100vw',
+    maxWidth: theme.maxWidth || '100vw'
   },
   inset: {
     padding: `0 ${theme.margins && theme.margins.container}px`
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFContainer' })
 export default class Container extends Component {
-
   static propTypes = {
     /**
      * CSS classes to apply
@@ -44,13 +43,9 @@ export default class Container extends Component {
     const { classes, className, children, inset, ...rest } = this.props
 
     return (
-      <div 
-        className={classnames(classes.root, className, { [classes.inset]: inset })} 
-        {...rest}
-      >
+      <div className={classnames(classes.root, className, { [classes.inset]: inset })} {...rest}>
         {children}
       </div>
     )
   }
-  
 }

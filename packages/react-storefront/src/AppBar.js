@@ -17,24 +17,24 @@ export const styles = theme => ({
   root: {
     boxSizing: 'content-box',
     position: 'relative',
-    zIndex: theme.zIndex.modal + 10,
+    zIndex: theme.zIndex.modal + 10
   },
 
   withAmp: {
-    zIndex: theme.zIndex.amp.modal + 1,
+    zIndex: theme.zIndex.amp.modal + 1
   },
 
   offline: {
     textAlign: 'center',
     backgroundColor: '#f34c4c',
-    color: 'white',
+    color: 'white'
   },
 
   toolBar: {
     height: theme.headerHeight || '64px',
     padding: `0 7px`,
     maxWidth: theme.maxWidth,
-    flex: 1,
+    flex: 1
   },
 
   wrap: {
@@ -46,19 +46,19 @@ export const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     zIndex: theme.zIndex.modal + 10,
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   stuck: {
-    transform: 'translateY(0)',
+    transform: 'translateY(0)'
   },
 
   unstuck: {
-    transform: 'translateY(-100%)',
+    transform: 'translateY(-100%)'
   },
 
   animate: {
-    transition: 'transform .15s ease-in',
+    transition: 'transform .15s ease-in'
   },
 
   hidden: {
@@ -67,16 +67,16 @@ export const styles = theme => ({
     boxShadow: theme.shadows[2],
     top: 0,
     left: 0,
-    right: 0,
+    right: 0
   },
 
   menuOpen: {
-    boxShadow: 'none',
+    boxShadow: 'none'
   },
 
   link: {
-    textDecoration: 'none',
-  },
+    textDecoration: 'none'
+  }
 })
 
 /**
@@ -92,7 +92,7 @@ export default class Header extends Component {
   state = {
     stuck: false,
     hidden: false,
-    animate: false,
+    animate: false
   }
 
   static propTypes = {
@@ -119,14 +119,14 @@ export default class Header extends Component {
     /**
      * String or Element to render within the offline warning container at the top of the app
      */
-    offlineWarning: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    offlineWarning: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
   }
 
   static defaultProps = {
     MenuIcon,
     menuIconProps: {},
     menuAlign: 'left',
-    offlineWarning: 'Your device lost its internet connection.',
+    offlineWarning: 'Your device lost its internet connection.'
   }
 
   render() {
@@ -140,7 +140,7 @@ export default class Header extends Component {
       menuAlign,
       menuIconProps,
       offline,
-      offlineWarning,
+      offlineWarning
     } = this.props
     const items = React.Children.toArray(children)
 
@@ -175,7 +175,7 @@ export default class Header extends Component {
               [classes.stuck]: (this.state.hidden && this.state.stuck) || menu.open,
               [classes.unstuck]: this.state.hidden && !this.state.stuck,
               [classes.animate]: this.state.animate,
-              [classes.menuOpen]: menu.open,
+              [classes.menuOpen]: menu.open
             })}
           >
             <Toolbar disableGutters classes={{ root: classes.toolBar }}>

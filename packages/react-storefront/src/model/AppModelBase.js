@@ -30,7 +30,7 @@ export const BreadcrumbModel = types.model('BreadcrumbModel', {
   /**
    * An object to be applied to the state tree when the breadcrumb is clicked.  The shape should match your AppModel class.
    */
-  state: types.frozen(),
+  state: types.frozen()
 })
 
 export const LocationModel = types
@@ -39,7 +39,7 @@ export const LocationModel = types
     hostname: types.maybeNull(types.string),
     pathname: types.string,
     search: types.string,
-    port: '443',
+    port: '443'
   })
   .views(self => ({
     get urlBase() {
@@ -50,7 +50,7 @@ export const LocationModel = types
         self.hostname +
         (['443', '80'].includes(self.port) ? '' : `:${self.port}`)
       )
-    },
+    }
   }))
 
 const AppModelBase = types
@@ -76,7 +76,7 @@ const AppModelBase = types
     location: types.maybeNull(LocationModel),
     search: types.optional(SearchModelBase, {}),
     breadcrumbs: types.optional(types.array(BreadcrumbModel), []),
-    cart: types.optional(CartModelBase, {}),
+    cart: types.optional(CartModelBase, {})
   })
   .views(self => ({
     get canonicalURL() {
@@ -85,7 +85,7 @@ const AppModelBase = types
     },
     get uri() {
       return self.location.pathname + self.location.search
-    },
+    }
   }))
   .actions(self => ({
     /**
@@ -177,7 +177,7 @@ const AppModelBase = types
       self.page = 'Error'
       self.error = e.message
       self.stack = e.stack
-    },
+    }
   }))
 
 /**

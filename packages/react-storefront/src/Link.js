@@ -14,7 +14,7 @@ import dataProps from './utils/dataProps'
 import { autorun } from 'mobx'
 
 export const styles = {
-  root: {},
+  root: {}
 }
 
 @withStyles(styles, { name: 'RSFLink' })
@@ -62,11 +62,11 @@ export default class Link extends Component {
     /**
      * A function to call when the link becomes visible
      */
-    onVisible: PropTypes.func,
+    onVisible: PropTypes.func
   }
 
   static defaultProps = {
-    anchorProps: {},
+    anchorProps: {}
   }
 
   constructor() {
@@ -123,7 +123,7 @@ export default class Link extends Component {
       ref: this.el,
       style,
       onClick: this.onClick,
-      href: absoluteURL(to, location), // we always render absolute URLs for SEO purposes
+      href: absoluteURL(to, location) // we always render absolute URLs for SEO purposes
     }
 
     if (prefetch) {

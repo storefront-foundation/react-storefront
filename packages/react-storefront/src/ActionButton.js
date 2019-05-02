@@ -20,7 +20,7 @@ export const styles = theme => ({
   },
   caption: {
     textTransform: 'none',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   value: {
     color: theme.palette.text.primary,
@@ -38,8 +38,12 @@ function ActionButton({ label, value, children, classes, ...props }) {
 
   return (
     <Button variant="contained" classes={otherClasses} {...props}>
-      <Typography variant="button" className={captionClass}>{ label }</Typography>
-      <Typography variant="caption" className={valueClass}>{value}</Typography>
+      <Typography variant="button" className={captionClass}>
+        {label}
+      </Typography>
+      <Typography variant="caption" className={valueClass}>
+        {value}
+      </Typography>
     </Button>
   )
 }
@@ -53,7 +57,7 @@ ActionButton.propTypes = {
   /**
    * The value to display on the right side of the button
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 }
 
 export default withStyles(styles, { name: 'RSFActionButton' })(ActionButton)

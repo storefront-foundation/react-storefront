@@ -2,9 +2,9 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { types } from "mobx-state-tree"
+import { types } from 'mobx-state-tree'
 import React, { Component, Fragment } from 'react'
-import { observer, inject } from "mobx-react"
+import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import Drawer from '@material-ui/core/Drawer'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -17,13 +17,13 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import Collapse from '@material-ui/core/Collapse'
-import Link from './Link' 
+import Link from './Link'
 import classnames from 'classnames'
 import AmpMenu from './amp/AmpMenu'
 import withTheme from '@material-ui/core/styles/withTheme'
 
 export const MenuItemModel = types
-  .model("MenuItemModel", {
+  .model('MenuItemModel', {
     text: types.optional(types.string, ''),
     url: types.maybeNull(types.string),
     state: types.frozen(),
@@ -45,13 +45,12 @@ export const MenuItemModel = types
   }))
 
 export const MenuModel = types
-  .model("MenuModel", {
+  .model('MenuModel', {
     open: false,
     levels: types.optional(types.array(MenuItemModel), []),
     level: types.optional(types.number, 0)
   })
   .actions(self => ({
-
     /**
      * Closes the menu
      */
@@ -68,7 +67,7 @@ export const MenuModel = types
 
     /**
      * Updates the root node
-     * @param {Object} root 
+     * @param {Object} root
      */
     setRoot(root) {
       self.levels[0] = MenuItemModel.create(root)
@@ -81,7 +80,7 @@ export const MenuModel = types
      */
     setSelected(item, options = {}) {
       item = MenuItemModel.create(item.toJSON())
-      
+
       self.level++
       if (self.levels.length <= self.level) {
         self.levels.push(item)
@@ -114,10 +113,9 @@ export const MenuModel = types
         }
       }, 200)
     }
-
   }))
 
-export const styles = (theme) => ({
+export const styles = theme => ({
   drawer: {
     zIndex: theme.zIndex.modal + 20,
     display: 'flex',
@@ -131,7 +129,7 @@ export const styles = (theme) => ({
   },
 
   list: {
-    flex: 'none', 
+    flex: 'none',
     overflowY: 'auto',
     overflowX: 'hidden',
     maxHeight: '100%',
@@ -187,7 +185,7 @@ export const styles = (theme) => ({
   },
 
   expander: {
-    backgroundColor: `${theme.palette.primary.paper} !important`,
+    backgroundColor: `${theme.palette.primary.paper} !important`
   },
 
   leaf: {
@@ -215,7 +213,7 @@ export const styles = (theme) => ({
 /**
  * The main app menu that slides in from the left when the AppHeader's menu button is clicked.
  * Children are rendered above the list of menu items.
- * 
+ *
  * In addition to the CSS classes that can be overridden of menu subcomponents, you can also
  * assign specific classes to individual menu items by specifying a value for the `className`
  * field on any instance of `MenuItemModel`.
@@ -225,7 +223,6 @@ export const styles = (theme) => ({
 @inject('app')
 @observer
 export default class Menu extends Component {
-
   static propTypes = {
     menu: PropTypes.object,
 
@@ -297,14 +294,14 @@ export default class Menu extends Component {
 
     /**
      * A function to render the contents of a menu item.  It is passed the following arguments:
-     * 
-     * 1.) item - the MenuItemModel instance. 
+     *
+     * 1.) item - the MenuItemModel instance.
      * 2.) leaf - `true` when the item is a leaf node, otherwise `false`
-     * 
+     *
      * Return undefined to render the default contents
-     * 
+     *
      * Example:
-     * 
+     *
      *  itemRenderer={(item, leaf) => {
      *    return leaf ? <ListItemText primary={item.text}/> : undefined
      *  }}
@@ -320,22 +317,33 @@ export default class Menu extends Component {
   }
 
   render() {
-    const { app, classes, className, align, rootHeader, rootFooter, drawerWidth, simple, persistent, children } = this.props
+    const {
+      app,
+      classes,
+      className,
+      align,
+      rootHeader,
+      rootFooter,
+      drawerWidth,
+      simple,
+      persistent,
+      children
+    } = this.props
     const { amp, menu } = app
     const { levels, level } = menu
-    const position = -drawerWidth * level;
+    const position = -drawerWidth * level
 
     if (!menu) {
       return null
     } else if (amp) {
-      return <AmpMenu {...this.props}/>
+      return <AmpMenu {...this.props} />
     }
 
     return (
-      <Drawer 
-        variant={persistent ? 'persistent' : 'temporary' } 
-        open={menu.open || persistent} 
-        onClose={menu.close} 
+      <Drawer
+        variant={persistent ? 'persistent' : 'temporary'}
+        open={menu.open || persistent}
+        onClose={menu.close}
         anchor={align}
         ModalProps={{
           keepMounted: true
@@ -343,19 +351,25 @@ export default class Menu extends Component {
         PaperProps={{
           style: { width: `${drawerWidth}px` }
         }}
-        classes={{ 
+        classes={{
           root: className,
-          paper: classnames(classes.drawer, { 
-            [classes.drawerFixed]: persistent, 
+          paper: classnames(classes.drawer, {
+            [classes.drawerFixed]: persistent
           }),
-          modal: classes.modal 
+          modal: classes.modal
         }}
       >
-        { children }
-        { simple ? this.renderSimple() : (
+        {children}
+        {simple ? (
+          this.renderSimple()
+        ) : (
           <div className={classes.hbox} style={{ transform: `translateX(${position}px)`, flex: 1 }}>
             {levels.map((list, depth) => (
-              <MenuList style={{ width: `${drawerWidth}px` }} classes={{ root: classes.list, padding: classes.padding }} key={depth}>
+              <MenuList
+                style={{ width: `${drawerWidth}px` }}
+                classes={{ root: classes.list, padding: classes.padding }}
+                key={depth}
+              >
                 {list.root && rootHeader}
                 {!list.root && (
                   <MenuItem divider button onClick={this.goBack}>
@@ -374,8 +388,8 @@ export default class Menu extends Component {
             ))}
           </div>
         )}
-        { this.renderLinksForSEO() }
-      </Drawer> 
+        {this.renderLinksForSEO()}
+      </Drawer>
     )
   }
 
@@ -389,15 +403,20 @@ export default class Menu extends Component {
     const root = levels.length && levels[0]
 
     if (!root) return null
-    
-    let links = [], key = 0
+
+    let links = [],
+      key = 0
 
     const findLinks = ({ items }) => {
-      for (let i=0; i<items.length; i++) {
+      for (let i = 0; i < items.length; i++) {
         const item = items[i]
 
         if (item.url) {
-          links.push(<li key={key++}><Link to={item.url}>{item.text}</Link></li>)
+          links.push(
+            <li key={key++}>
+              <Link to={item.url}>{item.text}</Link>
+            </li>
+          )
         }
 
         if (item.items) {
@@ -408,7 +427,11 @@ export default class Menu extends Component {
 
     findLinks(root)
 
-    return <noscript><ul>{links}</ul></noscript>
+    return (
+      <noscript>
+        <ul>{links}</ul>
+      </noscript>
+    )
   }
 
   /**
@@ -416,16 +439,21 @@ export default class Menu extends Component {
    * @return {MenuList}
    */
   renderSimple() {
-    const { rootHeader, rootFooter, app: { menu }, classes } = this.props
+    const {
+      rootHeader,
+      rootFooter,
+      app: { menu },
+      classes
+    } = this.props
     const root = menu && menu.levels && menu.levels[0]
 
     if (!root) return null
 
     return (
       <MenuList classes={{ padding: classes.list }}>
-        { rootHeader }
-        { root.items.map((item, i) => this.renderItem(1, item, i)) }
-        { rootFooter }
+        {rootHeader}
+        {root.items.map((item, i) => this.renderItem(1, item, i))}
+        {rootFooter}
       </MenuList>
     )
   }
@@ -441,11 +469,16 @@ export default class Menu extends Component {
     if (item.items) {
       return this.renderGroup(depth, item, key)
     }
-    return this.renderLeaf(item, key)    
+    return this.renderLeaf(item, key)
   }
 
   renderGroup(depth, item, key) {
-    let { app: { menu }, classes, useExpanders, simple } = this.props
+    let {
+      app: { menu },
+      classes,
+      useExpanders,
+      simple
+    } = this.props
     const showExpander = simple || (depth > 0 && useExpanders)
 
     const elements = [
@@ -453,7 +486,11 @@ export default class Menu extends Component {
         key={key}
         button
         divider
-        onClick={showExpander ? this.toggleItemExpaned.bind(this, item) : this.slideToItem.bind(this, item, menu)}
+        onClick={
+          showExpander
+            ? this.toggleItemExpaned.bind(this, item)
+            : this.slideToItem.bind(this, item, menu)
+        }
         classes={{
           root: classnames(classes.listItem, item.className, {
             [classes.expanded]: item.expanded,
@@ -461,7 +498,7 @@ export default class Menu extends Component {
           })
         }}
       >
-        { this.renderItemContents(item, false, showExpander) }
+        {this.renderItemContents(item, false, showExpander)}
       </MenuItem>
     ]
 
@@ -479,10 +516,19 @@ export default class Menu extends Component {
   }
 
   renderLeaf(item, key) {
-    const { classes, app: { location } } = this.props    
+    const {
+      classes,
+      app: { location }
+    } = this.props
 
     return (
-      <Link key={key} to={item.url} className={classes.link} server={item.server} state={item.state ? () => JSON.parse(item.state) : null}>
+      <Link
+        key={key}
+        to={item.url}
+        className={classes.link}
+        server={item.server}
+        state={item.state ? () => JSON.parse(item.state) : null}
+      >
         <MenuItem
           button
           divider
@@ -491,21 +537,21 @@ export default class Menu extends Component {
             root: classnames(classes.listItem, classes.leaf, item.className)
           }}
         >
-          { this.renderItemContents(item, true) }
+          {this.renderItemContents(item, true)}
         </MenuItem>
       </Link>
-    );
+    )
   }
 
   renderItemContents(item, leaf, showExpander) {
     let { itemRenderer, classes, ExpandIcon, CollapseIcon, theme } = this.props
 
     let contents
-    
+
     if (itemRenderer) {
       contents = itemRenderer(item, leaf)
-    } 
-    
+    }
+
     if (contents) {
       return contents
     } else if (leaf) {
@@ -516,16 +562,13 @@ export default class Menu extends Component {
               <img className={classes.listItemImage} alt={item.text} src={item.image} />
             </ListItemIcon>
           )}
-          <ListItemText
-            primary={item.text}
-            disableTypography
-          />
+          <ListItemText primary={item.text} disableTypography />
         </Fragment>
       )
     } else {
       ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMore
       CollapseIcon = CollapseIcon || theme.CollapseIcon || ExpandLess
-  
+
       return (
         <Fragment>
           {item.image && (
@@ -533,13 +576,14 @@ export default class Menu extends Component {
               <img className={classes.listItemImage} alt={item.text} src={item.image} />
             </ListItemIcon>
           )}
-          <ListItemText
-            primary={item.text}
-            disableTypography
-          />
+          <ListItemText primary={item.text} disableTypography />
           <ListItemIcon className={classes.listItemIcon}>
             {showExpander ? (
-              item.expanded ? <CollapseIcon className={classes.icon} /> : <ExpandIcon className={classes.icon} />
+              item.expanded ? (
+                <CollapseIcon className={classes.icon} />
+              ) : (
+                <ExpandIcon className={classes.icon} />
+              )
             ) : (
               <ChevronRight className={classes.icon} />
             )}
@@ -558,8 +602,7 @@ export default class Menu extends Component {
     this.props.app.menu.goBack()
   }
 
-  toggleItemExpaned = (item) => {
+  toggleItemExpaned = item => {
     item.toggle()
   }
-
 }

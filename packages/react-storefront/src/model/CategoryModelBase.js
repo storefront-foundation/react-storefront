@@ -11,12 +11,12 @@ const CategoryModelBase = types
     url: types.maybeNull(types.string),
     name: types.maybeNull(types.string),
     description: types.maybeNull(types.string),
-    subcategories: types.optional(types.array(SubcategoryModelBase), []),
+    subcategories: types.optional(types.array(SubcategoryModelBase), [])
   })
   .views(self => ({
     shouldApplyPatchOnPop(patch) {
       return patch.page === 'Category'
-    },
+    }
   }))
 
 export default CategoryModelBase

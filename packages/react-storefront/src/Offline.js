@@ -15,14 +15,14 @@ import PropTypes from 'prop-types'
     width: '100%',
     alignItems: 'center',
     marginTop: '40px',
-    color: '#999',
+    color: '#999'
   },
   icon: {
     fontSize: 60,
-    color: '#999',
+    color: '#999'
   },
   heading: {},
-  message: {},
+  message: {}
 }))
 export default class Offline extends Component {
   static propTypes = {
@@ -39,13 +39,13 @@ export default class Offline extends Component {
     /**
      * An icon to display.
      */
-    Icon: PropTypes.func,
+    Icon: PropTypes.func
   }
 
   static defaultProps = {
     heading: "You're offline",
     message: 'Please check your internet connection',
-    Icon: CloseOffIcon,
+    Icon: CloseOffIcon
   }
 
   render() {

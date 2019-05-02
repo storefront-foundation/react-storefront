@@ -25,13 +25,13 @@ export const styles = theme => ({
       overflow: 'hidden',
       position: 'fixed',
       maxWidth: '100vw',
-      maxHeight: '100vh',
+      maxHeight: '100vh'
     },
     'body.moov-blur #root': {
       filter: 'blur(5px)',
-      transition: `filter ${theme.transitions.duration.enteringScreen}ms`,
-    },
-  },
+      transition: `filter ${theme.transitions.duration.enteringScreen}ms`
+    }
+  }
 })
 
 @withStyles(styles)
@@ -93,7 +93,7 @@ export default class PWA extends Component {
     app.applyState({
       page: 'Error',
       error: error.message,
-      stack: info.componentStack,
+      stack: info.componentStack
     })
   }
 
@@ -165,7 +165,7 @@ export default class PWA extends Component {
 
     const recordState = snapshot => {
       const { pathname, search } = history.location
-      
+
       try {
         history.replace(pathname + search, snapshot)
       } catch (e) {
@@ -175,7 +175,9 @@ export default class PWA extends Component {
         // at 640kB, IE11 is 1MB, and Chrome is at least 10MB. Exceeding this limit is the most
         // likely reason for history.replace to fail.
         history.replace(pathname + search, null)
-        console.warn('Could not record app state in history.  Will fall back to fetching state from the server when navigating back and forward.')
+        console.warn(
+          'Could not record app state in history.  Will fall back to fetching state from the server when navigating back and forward.'
+        )
       }
     }
 

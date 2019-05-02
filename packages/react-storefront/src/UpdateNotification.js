@@ -13,7 +13,7 @@ import CloseIcon from '@material-ui/icons/Close'
 export const styles = theme => ({
   close: {
     width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
+    height: theme.spacing.unit * 4
   }
 })
 
@@ -24,7 +24,6 @@ export const styles = theme => ({
  */
 @withStyles(styles, { name: 'RSFUpdateNotification' })
 export default class UpdateNotification extends Component {
-
   state = {
     notifyUpdate: false
   }
@@ -67,14 +66,14 @@ export default class UpdateNotification extends Component {
             className={classes.close}
             onClick={this.handleNotifyClose}
           >
-            <CloseIcon/>
+            <CloseIcon />
           </IconButton>
         ]}
         {...others}
       />
     )
   }
-  
+
   componentDidMount() {
     // published in registerServiceWorker.js
     document.addEventListener('moov-update-available', () => {

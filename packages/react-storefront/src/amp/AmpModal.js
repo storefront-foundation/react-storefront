@@ -10,8 +10,8 @@ import PropTypes from 'prop-types'
 export const styles = theme => ({
   root: {
     zIndex: theme.zIndex.amp.modal + 2, // zIndex of AppBar's withAmp + 1
-    backgroundColor: 'rgba(255, 255, 255, .8)',
-  },
+    backgroundColor: 'rgba(255, 255, 255, .8)'
+  }
 })
 
 /**
@@ -47,11 +47,11 @@ export default class AmpModal extends Component {
      * Do not rely on transforming the amp-lightbox element directly.
      * If you need to apply a transform, set it on a nested element instead.
      */
-    animateIn: PropTypes.string,
+    animateIn: PropTypes.string
   }
 
   static defaultProps = {
-    animateIn: 'fade-in',
+    animateIn: 'fade-in'
   }
 
   render() {

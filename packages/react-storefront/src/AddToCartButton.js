@@ -18,9 +18,7 @@ import Link from './Link'
  * A button that when clicked adds the specified product to the cart
  */
 export const styles = theme => ({
-  root: {
-
-  },
+  root: {},
   docked: {
     fontSize: theme.typography.subheading.fontSize,
     padding: `${theme.margins.container}px`,
@@ -37,13 +35,12 @@ export const styles = theme => ({
   cartLink: {
     color: 'white'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFAddToCartButton' })
 @inject(({ app, ampFormId }) => ({ cart: app.cart, ampFormId }))
 @observer
 export default class AddToCartButton extends Component {
-
   static propTypes = {
     /**
      * The product to add to the cart
@@ -69,10 +66,7 @@ export default class AddToCartButton extends Component {
      * A message to display when an item is added to the cart.
      * Could be a string or react component
      */
-    confirmation: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object,
-    ]),
+    confirmation: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /**
      * Props to be applied to the Snackbar element in which the confirmation message is displayed.
@@ -92,23 +86,36 @@ export default class AddToCartButton extends Component {
   }
 
   render() {
-    const { product, ampFormId, children, classes, className, cart, docked, confirmation, snackbarProps, cartURL, cartLinkText, ...other } = this.props
+    const {
+      product,
+      ampFormId,
+      children,
+      classes,
+      className,
+      cart,
+      docked,
+      confirmation,
+      snackbarProps,
+      cartURL,
+      cartLinkText,
+      ...other
+    } = this.props
 
     return (
       <Fragment>
         <Track event="addedToCart" product={product}>
-          <Button 
+          <Button
             key="button"
-            variant="contained" 
+            variant="contained"
             color="secondary"
             size="large"
-            {...other} 
+            {...other}
             on={`tap:${ampFormId}.submit`}
             onClick={this.onClick}
             classes={{ root: classes.root }}
             className={classnames(className, { [classes.docked]: docked })}
           >
-            { children || "Add to Cart" }
+            {children || 'Add to Cart'}
           </Button>
         </Track>
         <Snackbar
@@ -118,7 +125,9 @@ export default class AddToCartButton extends Component {
           onClose={this.handleClose}
           message={<div className={classes.confirmation}>{confirmation}</div>}
           action={[
-            <Link to={cartURL} className={classes.cartLink}>{cartLinkText}</Link>,
+            <Link to={cartURL} className={classes.cartLink}>
+              {cartLinkText}
+            </Link>,
             <IconButton
               key="close"
               aria-label="Close"
@@ -126,7 +135,7 @@ export default class AddToCartButton extends Component {
               className={classes.close}
               onClick={this.handleClose}
             >
-              <CloseIcon/>
+              <CloseIcon />
             </IconButton>
           ]}
           {...snackbarProps}
@@ -138,9 +147,9 @@ export default class AddToCartButton extends Component {
   handleClose = (event, reason) => {
     if (reason === 'clickaway') return
     this.setState({ messageOpen: false })
-  };
+  }
 
-  onClick = (e) => {
+  onClick = e => {
     const { onClick } = this.props
 
     if (onClick) {
@@ -154,5 +163,4 @@ export default class AddToCartButton extends Component {
       this.props.cart.add(this.props.product)
     }
   }
-
 }

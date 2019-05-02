@@ -22,12 +22,12 @@ export default class AmpState extends Component {
     /**
      * An id for the root amp state object. Defaults to "moovAmpState".
      */
-    id: PropTypes.string,
+    id: PropTypes.string
   }
 
   static defaultProps = {
     initialState: {},
-    id: 'moovAmpState',
+    id: 'moovAmpState'
   }
 
   render() {
@@ -48,9 +48,7 @@ export default class AmpState extends Component {
               <script
                 type="application/json"
                 dangerouslySetInnerHTML={{
-                  __html: JSON.stringify(
-                    initialState.toJSON ? initialState.toJSON() : initialState,
-                  ),
+                  __html: JSON.stringify(initialState.toJSON ? initialState.toJSON() : initialState)
                 }}
               />
             </amp-state>

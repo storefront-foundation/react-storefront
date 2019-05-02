@@ -76,7 +76,7 @@ export function renderHtml({ component, providers, registry, theme, cssPrefix = 
           {component}
         </MuiThemeProvider>
       </JssProvider>
-    </Provider>,
+    </Provider>
   )
 }
 
@@ -109,7 +109,7 @@ export function renderScript({ stats, chunk, defer }) {
       src =>
         `<script type="text/javascript" ${
           defer ? 'defer' : ''
-        } src="${assetPathBase}/pwa/${src}"></script>`,
+        } src="${assetPathBase}/pwa/${src}"></script>`
     )
     .join('')
 }
@@ -135,7 +135,7 @@ function getLocation(env) {
     protocol: env.secure ? 'https' : 'http',
     hostname: env.host,
     pathname,
-    search: search || '',
+    search: search || ''
   }
 }
 
@@ -159,7 +159,7 @@ export function render({
   clientChunk,
   initialStateProperty,
   injectAssets = true,
-  cssPrefix,
+  cssPrefix
 }) {
   const registry = new SheetsRegistry()
 
@@ -170,7 +170,7 @@ export function render({
     providers: { app: state },
     registry,
     theme,
-    cssPrefix,
+    cssPrefix
   })
 
   const result = {
@@ -178,7 +178,7 @@ export function render({
     style: renderStyle({ registry }),
     initialStateScript: renderInitialStateScript({ state, defer: false, initialStateProperty }),
     bootstrapScript: renderScript({ stats, chunk: 'bootstrap' }),
-    componentScript: renderScript({ stats, chunk: clientChunk }),
+    componentScript: renderScript({ stats, chunk: clientChunk })
   }
 
   if (injectAssets) {
@@ -208,7 +208,7 @@ export function hydrate({
   target,
   providerProps = {},
   initialStateProperty = 'initialState',
-  cssPrefix = 'jss',
+  cssPrefix = 'jss'
 }) {
   const generateClassName = createGenerateClassName()
   const state = model.create(window[initialStateProperty] || {})
@@ -231,7 +231,7 @@ export function hydrate({
       </JssProvider>
     </Provider>,
     target,
-    removeSSRStyles,
+    removeSSRStyles
   )
 
   return state

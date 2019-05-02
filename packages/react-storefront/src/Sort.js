@@ -16,20 +16,19 @@ import Hidden from '@material-ui/core/Hidden'
  */
 export const styles = theme => ({
   container: {
-    padding: '15px 0 0 15px',
+    padding: '15px 0 0 15px'
   },
   option: {
     boxShadow: 'none',
     width: 'calc(50% - 15px)',
-    margin: '0 15px 15px 0',
+    margin: '0 15px 15px 0'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFSort' })
 @inject('router')
 @observer
 export default class Sort extends Component {
-  
   static propTypes = {
     /**
      * A function to call when a sort option is selected.  The option and event are passed.
@@ -80,17 +79,18 @@ export default class Sort extends Component {
 
     return (
       <div className={classes.container} onClick={this.handleSort}>
-        {options && options.map((option, i) => (
-          <Button
-            className={classes.option}
-            color={model.sort === option.code ? 'primary' : 'default'}
-            variant="contained"
-            onClick={this.onClick.bind(this, option)}
-            key={i}
-          >
-            {option.name}
-          </Button>
-        ))}
+        {options &&
+          options.map((option, i) => (
+            <Button
+              className={classes.option}
+              color={model.sort === option.code ? 'primary' : 'default'}
+              variant="contained"
+              onClick={this.onClick.bind(this, option)}
+              key={i}
+            >
+              {option.name}
+            </Button>
+          ))}
       </div>
     )
   }
@@ -101,11 +101,12 @@ export default class Sort extends Component {
 
     return (
       <Fragment>
-        { options && options.map((option, i) => ( 
-          <MenuItem key={i} onClick={this.onClick.bind(this, option)}>
-            {option.name}
-          </MenuItem>
-        ))}
+        {options &&
+          options.map((option, i) => (
+            <MenuItem key={i} onClick={this.onClick.bind(this, option)}>
+              {option.name}
+            </MenuItem>
+          ))}
       </Fragment>
     )
   }
@@ -120,5 +121,4 @@ export default class Sort extends Component {
       model.refresh()
     }
   }
-
 }
