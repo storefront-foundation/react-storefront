@@ -129,6 +129,10 @@
       "./test/snapshotSerializer"
     ],
     "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!**/index.js"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|svg)$": "../test/config/assetMock.js"
     }

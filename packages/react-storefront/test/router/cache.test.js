@@ -63,8 +63,25 @@ describe('cache', () => {
       }
 
       expect(error.message).toBe(
-        'Invalid use of cache handler for POST request. Only GET requests can be cached.',
+        'Invalid use of cache handler for POST request. Only GET requests can be cached.'
       )
     })
+  })
+
+  describe('validation', () => {
+    it('should only support get requests', () => {
+      process.env.MOOV_RUNTIME = 'server'
+      process.env.MOOV_ENV = 'development'
+      const request = { method: 'post' }
+      const cache = require('../../src/router').cache
+      expect(() => cache({ server: {}, client: true }).fn({}, request)).toThrowError(
+        /Only GET requests/
+      )
+    })
+  })
+
+  afterEach(() => {
+    delete process.env.MOOV_RUNTIME
+    delete process.env.MOOV_ENV
   })
 })

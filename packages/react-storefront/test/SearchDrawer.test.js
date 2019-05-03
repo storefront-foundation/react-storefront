@@ -7,8 +7,6 @@ import SearchDrawer from '../src/SearchDrawer'
 import { mount } from 'enzyme'
 import Provider from './TestProvider'
 import AppModelBase from '../src/model/AppModelBase'
-import createTheme from '../src/createTheme'
-import { MuiThemeProvider } from '@material-ui/core'
 
 describe('SearchDrawer', () => {
   let TestContext, app
@@ -18,39 +16,44 @@ describe('SearchDrawer', () => {
 
     TestContext = ({ children }) => (
       <div id="root">
-        <Provider app={app}>
-          { children }
-        </Provider>
+        <Provider app={app}>{children}</Provider>
       </div>
     )
   })
 
   it('should render with no props', () => {
-    expect(mount(
-      <TestContext>
-        <SearchDrawer/>
-      </TestContext>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <TestContext>
+          <SearchDrawer />
+        </TestContext>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should set input placeholder text when props.placeholder is set', () => {
     const wrapper = mount(
       <TestContext>
-        <SearchDrawer placeholder="foo"/>
+        <SearchDrawer placeholder="foo" />
       </TestContext>
     )
-    
+
     expect(wrapper.find('input').props().placeholder).toBe('foo')
   })
 
   it('should use a text button when closeButtonText is set', () => {
     const wrapper = mount(
       <TestContext>
-        <SearchDrawer closeButtonText="foo"/>
+        <SearchDrawer closeButtonText="foo" />
       </TestContext>
     )
-    
-    expect(wrapper.find('button').first().text()).toBe('foo')
+
+    expect(
+      wrapper
+        .find('button')
+        .first()
+        .text()
+    ).toBe('foo')
   })
 
   it('should blur the background by default', () => {
@@ -59,12 +62,12 @@ describe('SearchDrawer', () => {
 
     mount(
       <TestContext>
-        <SearchDrawer/>
+        <SearchDrawer />
       </TestContext>
     )
 
     app.search.toggle(true)
-    
+
     expect(document.body.classList.contains('moov-blur')).toBe(true)
   })
 
@@ -74,12 +77,12 @@ describe('SearchDrawer', () => {
 
     mount(
       <TestContext>
-        <SearchDrawer blurBackground={false}/>
+        <SearchDrawer blurBackground={false} />
       </TestContext>
     )
 
     app.search.toggle(true)
-    
+
     expect(document.body.classList.contains('moov-blur')).toBe(false)
   })
 
@@ -88,10 +91,10 @@ describe('SearchDrawer', () => {
       it('should render the search button as a separate fab when text is entered', () => {
         const wrapper = mount(
           <TestContext>
-            <SearchDrawer searchButtonVariant="fab"/>
+            <SearchDrawer searchButtonVariant="fab" />
           </TestContext>
         )
-        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
         expect(wrapper.find({ rel: 'search' }).exists()).toBe(true)
         expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
       })
@@ -100,19 +103,19 @@ describe('SearchDrawer', () => {
       it('should not show the clear button when showClearButton is false and text is entered', () => {
         const wrapper = mount(
           <TestContext>
-            <SearchDrawer showClearButton={false} searchButtonVariant="icon"/>
+            <SearchDrawer showClearButton={false} searchButtonVariant="icon" />
           </TestContext>
         )
-        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
         expect(wrapper.find({ rel: 'clear' }).exists()).toBe(false)
       })
       it('should show the clear text is entered', () => {
         const wrapper = mount(
           <TestContext>
-            <SearchDrawer searchButtonVariant="icon"/>
+            <SearchDrawer searchButtonVariant="icon" />
           </TestContext>
         )
-        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
         expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
         expect(wrapper.find({ rel: 'search' }).exists()).toBe(false)
       })
@@ -124,10 +127,10 @@ describe('SearchDrawer', () => {
       it('should render the search button as a separate fab when text is entered', () => {
         const wrapper = mount(
           <TestContext>
-            <SearchDrawer searchButtonVariant="fab"/>
+            <SearchDrawer searchButtonVariant="fab" />
           </TestContext>
         )
-        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
         expect(wrapper.find({ rel: 'search' }).exists()).toBe(true)
         expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
       })
@@ -136,19 +139,19 @@ describe('SearchDrawer', () => {
       it('should not show the clear button when showClearButton is false and text is entered', () => {
         const wrapper = mount(
           <TestContext>
-            <SearchDrawer showClearButton={false} searchButtonVariant="icon"/>
+            <SearchDrawer showClearButton={false} searchButtonVariant="icon" />
           </TestContext>
         )
-        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
         expect(wrapper.find({ rel: 'clear' }).exists()).toBe(false)
       })
       it('should show the clear text is entered', () => {
         const wrapper = mount(
           <TestContext>
-            <SearchDrawer searchButtonVariant="icon"/>
+            <SearchDrawer searchButtonVariant="icon" />
           </TestContext>
         )
-        wrapper.find('input').simulate('change', {target: {value: 'My new value'}})
+        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
         expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
         expect(wrapper.find({ rel: 'search' }).exists()).toBe(false)
       })

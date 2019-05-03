@@ -121,6 +121,12 @@ function redirectTo(url) {
  * @return {Function}
  */
 export default function fromServer(handlerPath, getURL) {
+  if (handlerPath == null) {
+    throw new Error(
+      'You must provide a path to a handler in fromServer().  Please check your routes.'
+    )
+  }
+
   return {
     type: 'fromServer',
     runOn: {
@@ -138,11 +144,6 @@ export default function fromServer(handlerPath, getURL) {
         // handler path has not been transpiled, fetch the data from the server and return the result.
         return fetch(url, { cache: response.clientCache })
       } else {
-        if (handlerPath == null)
-          throw new Error(
-            'You must provide a path to a handler in fromServer().  Please check your routes.'
-          )
-
         // indicate handler path and asset class in a response header so we can track it in logs
         response.set('x-rsf-handler', handlerPath.path)
         response.set('x-rsf-response-type', request.path.endsWith('.json') ? 'json' : 'ssr')

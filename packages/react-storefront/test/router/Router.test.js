@@ -17,17 +17,17 @@ describe('Router:Node', function() {
 
   beforeEach(function() {
     window.moov = {
-      timing: {},
+      timing: {}
     }
     jest.spyOn(global.console, 'error').mockImplementation()
     process.env.MOOV_RUNTIME = 'server'
     router = new Router()
     global.headers = {
-      header: Function.prototype,
+      header: Function.prototype
     }
     global.env = {
       host: 'localhost',
-      headers: JSON.stringify({}),
+      headers: JSON.stringify({})
     }
     runAll = function(method, path) {
       global.env.path = path
@@ -39,7 +39,7 @@ describe('Router:Node', function() {
         pathname,
         query: qs.parse(search),
         search: search ? `?${search}` : '',
-        method,
+        method
       }
       jest.spyOn(console, 'warn').mockImplementation()
       const promise = router.runAll(request, (response = new Response()))
@@ -65,6 +65,36 @@ describe('Router:Node', function() {
 
       expect(await runAll('get', '/products')).toEqual({ method: 'get' })
       expect(await runAll('post', '/products')).toEqual({ method: 'post' })
+    })
+
+    it('should support GET', async () => {
+      router.get('/', fromClient({ foo: 'bar' }))
+      expect(await runAll('get', '/')).toEqual({ foo: 'bar' })
+    })
+
+    it('should support POST', async () => {
+      router.post('/', fromClient({ foo: 'bar' }))
+      expect(await runAll('post', '/')).toEqual({ foo: 'bar' })
+    })
+
+    it('should support PATCH', async () => {
+      router.patch('/', fromClient({ foo: 'bar' }))
+      expect(await runAll('patch', '/')).toEqual({ foo: 'bar' })
+    })
+
+    it('should support PUT', async () => {
+      router.put('/', fromClient({ foo: 'bar' }))
+      expect(await runAll('put', '/')).toEqual({ foo: 'bar' })
+    })
+
+    it('should support options', async () => {
+      router.options('/', fromClient({ foo: 'bar' }))
+      expect(await runAll('options', '/')).toEqual({ foo: 'bar' })
+    })
+
+    it('should support DELETE', async () => {
+      router.delete('/', fromClient({ foo: 'bar' }))
+      expect(await runAll('delete', '/')).toEqual({ foo: 'bar' })
     })
 
     it('should parse query params', async () => {
@@ -109,7 +139,7 @@ describe('Router:Node', function() {
         '/c/:id',
         fromClient({ view: 'category' }),
         fromServer(() => Promise.resolve({ name: 'test' })),
-        fromServer(() => ({ url: '/c/1' })),
+        fromServer(() => ({ url: '/c/1' }))
       )
 
       expect(await runAll('get', '/c/1')).toEqual({ view: 'category', name: 'test', url: '/c/1' })
@@ -134,6 +164,21 @@ describe('Router:Node', function() {
       expect(result.foo).toEqual('xxx')
       expect(initialState.foo).toEqual('bar')
     })
+
+    it('should skip client only handlers when running on the server', async () => {
+      const handler = jest.fn()
+
+      router.get('/', {
+        runOn: {
+          server: false
+        },
+        fn: handler
+      })
+
+      await runAll('get', '/')
+
+      expect(handler).not.toHaveBeenCalled()
+    })
   })
 
   describe('run', function() {
@@ -145,11 +190,11 @@ describe('Router:Node', function() {
         runOn: {
           server: true,
           client: true,
-          after: true,
+          after: true
         },
         fn: () => {
           return true
-        },
+        }
       })
 
       for await (let result of router.run({ path: '/', search: '' }, response)) {
@@ -168,12 +213,12 @@ describe('Router:Node', function() {
           fromClient({ view: 'home' }),
           fromServer(() => {
             throw new Error('test')
-          }),
+          })
         )
         .error((path, params, request, response) =>
           Promise.resolve({
-            error: 'Error message',
-          }),
+            error: 'Error message'
+          })
         )
 
       const results = []
@@ -187,7 +232,38 @@ describe('Router:Node', function() {
       expect(results.length).toEqual(2)
       expect(await router.runAll({ path: '/', search: '', method: 'GET' }, response)).toEqual({
         view: 'home',
-        error: 'Error message',
+        error: 'Error message'
+      })
+    })
+
+    it('should yield loading: true when running on the client', async () => {
+      const response = new Response()
+      const results = []
+      const historyState = { foo: 'bar' }
+      process.env.MOOV_RUNTIME = 'client'
+
+      const router = new Router().get('/', {
+        runOn: {
+          server: true
+        },
+        type: 'fromServer',
+        fn: () => ({ page: 'Home' })
+      })
+
+      for await (let result of router.run({ path: '/', search: '' }, response, { historyState })) {
+        results.push(result)
+      }
+
+      expect(results[0]).toEqual({
+        loading: true,
+        location: {
+          pathname: '/',
+          search: '',
+          hostname: 'localhost',
+          port: '',
+          protocol: 'http'
+        },
+        foo: 'bar'
       })
     })
   })
@@ -198,12 +274,12 @@ describe('Router:Node', function() {
         '/products.json',
         fromServer(() =>
           Promise.resolve({
-            products: [{ name: 'Dog Toy' }],
-          }),
-        ),
+            products: [{ name: 'Dog Toy' }]
+          })
+        )
       )
       expect(await runAll('get', '/products.json')).toEqual({
-        products: [{ name: 'Dog Toy' }],
+        products: [{ name: 'Dog Toy' }]
       })
     })
 
@@ -235,7 +311,7 @@ describe('Router:Node', function() {
         '/test/:id',
         fromClient(() => {
           throw new Error('This is an error')
-        }),
+        })
       )
       const state = await runAll('get', '/test/123')
       expect(state.error).toEqual('This is an error')
@@ -248,17 +324,17 @@ describe('Router:Node', function() {
           '/test/:q',
           fromClient(() => {
             throw new Error('This is an error')
-          }),
+          })
         )
         .error((e, params, request, response) => {
           return {
             q: params.q,
-            message: e.message,
+            message: e.message
           }
         })
       expect(await runAll('get', '/test/123')).toEqual({
         q: '123',
-        message: 'This is an error',
+        message: 'This is an error'
       })
     })
 
@@ -267,7 +343,7 @@ describe('Router:Node', function() {
         '/test',
         fromServer(() => {
           throw new Error('This is an error on the server')
-        }),
+        })
       )
       const state = await runAll('get', '/test')
       expect(state.error).toEqual('This is an error on the server')
@@ -282,29 +358,29 @@ describe('Router:Node', function() {
           '/test/:q',
           fromServer(() => {
             throw new Error('This is an error on the server')
-          }),
+          })
         )
         .error((e, params, request, response) => {
           return {
             q: params.q,
-            message: e.message,
+            message: e.message
           }
         })
       expect(await runAll('get', '/test/123')).toEqual({
         q: '123',
-        message: 'This is an error on the server',
+        message: 'This is an error on the server'
       })
     })
 
     it('should provide params in client handler', async function() {
       router.get(
         '/c/:id',
-        fromClient(params => ({ view: 'category', id: params.id, query: params.q })),
+        fromClient(params => ({ view: 'category', id: params.id, query: params.q }))
       )
       expect(await runAll('get', '/c/1?q=hello')).toEqual({
         view: 'category',
         query: 'hello',
-        id: '1',
+        id: '1'
       })
     })
 
@@ -312,7 +388,7 @@ describe('Router:Node', function() {
       router.get('/test', fromClient(() => ({ view: 'test' })))
 
       expect(await runAll('get', '/hello')).toEqual({
-        page: '404',
+        page: '404'
       })
     })
 
@@ -320,7 +396,7 @@ describe('Router:Node', function() {
       router.get('/test', fromClient(() => ({ view: 'test' }))).fallback(
         fromServer(() => {
           throw new Error('This is an error on the server')
-        }),
+        })
       )
       const state = await runAll('get', '/hello')
       expect(state.error).toEqual('This is an error on the server')
@@ -332,13 +408,13 @@ describe('Router:Node', function() {
         fromClient({ view: '404' }),
         fromServer(() =>
           Promise.resolve({
-            products: [{ name: 'Dog Toy' }, { name: 'Bone' }],
-          }),
-        ),
+            products: [{ name: 'Dog Toy' }, { name: 'Bone' }]
+          })
+        )
       )
       expect(await runAll('get', '/hello')).toEqual({
         view: '404',
-        products: [{ name: 'Dog Toy' }, { name: 'Bone' }],
+        products: [{ name: 'Dog Toy' }, { name: 'Bone' }]
       })
     })
   })
@@ -351,9 +427,9 @@ describe('Router:Node', function() {
         fromServer(() => ({ foo: 'bar' })),
         cache({
           server: {
-            maxAgeSeconds: 300,
-          },
-        }),
+            maxAgeSeconds: 300
+          }
+        })
       )
 
       expect(await runAll('get', '/foo')).toEqual({ view: 'Foo', foo: 'bar' })
@@ -379,12 +455,12 @@ describe('Router:Node', function() {
         '/products',
         new Router()
           .get('/:productId', handler)
-          .use('/:productId/reviews', new Router().get('/:reviewId', handler)),
+          .use('/:productId/reviews', new Router().get('/:reviewId', handler))
       )
 
       expect(await runAll('get', '/products/1/reviews/2')).toEqual({
         productId: '1',
-        reviewId: '2',
+        reviewId: '2'
       })
     })
 
@@ -393,7 +469,7 @@ describe('Router:Node', function() {
         '/c',
         new Router()
           .get('/:id.html', () => Promise.resolve('html'))
-          .get('/:id.json', () => Promise.resolve('json')),
+          .get('/:id.json', () => Promise.resolve('json'))
       )
 
       expect(await runAll('get', '/c/1.html')).toEqual('html')
@@ -406,7 +482,7 @@ describe('Router:Node', function() {
       const config = {
         cacheName: 'api',
         maxEntries: 200,
-        maxAgeSeconds: 3600,
+        maxAgeSeconds: 3600
       }
       expect(router.configureClientCache(config)).toBe(router)
       expect(serviceWorker.configureCache).toBeCalledWith(config)
@@ -421,7 +497,7 @@ describe('Router:Node', function() {
       router.watch(history, jest.fn()).applySearch({ sort: 'price' })
 
       expect(history.location.pathname + history.location.search).toEqual(
-        '/search?filter=test&sort=price',
+        '/search?filter=test&sort=price'
       )
     })
 
@@ -432,7 +508,7 @@ describe('Router:Node', function() {
       router.watch(history, jest.fn()).applySearch({ sort: 'name' })
 
       expect(history.location.pathname + history.location.search).toEqual(
-        '/search?filter=test&sort=name',
+        '/search?filter=test&sort=name'
       )
     })
   })
@@ -443,13 +519,13 @@ describe('Router:Node', function() {
         '/test',
         cache({
           server: {
-            maxAgeSeconds: 60,
-          },
-        }),
+            maxAgeSeconds: 60
+          }
+        })
       )
 
       expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' }),
+        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
       ).toEqual({ foo: 'bar' })
     })
 
@@ -457,12 +533,12 @@ describe('Router:Node', function() {
       router.get(
         '/test',
         cache({
-          client: true,
-        }),
+          client: true
+        })
       )
 
       expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' }),
+        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
       ).toEqual({ foo: 'bar' })
     })
 
@@ -470,7 +546,7 @@ describe('Router:Node', function() {
       router.get('/test', fromClient({ a: 'b' }))
 
       expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' }),
+        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
       ).toEqual({ foo: 'bar' })
     })
 
@@ -479,14 +555,14 @@ describe('Router:Node', function() {
         '/test',
         cache({
           server: {
-            key: (request, defaults) => ({ ...defaults, path: request.path + request.search }),
-          },
-        }),
+            key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
+          }
+        })
       )
 
       expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({
         foo: 'bar',
-        path: '/test',
+        path: '/test'
       })
     })
 
@@ -494,14 +570,14 @@ describe('Router:Node', function() {
       router.fallback(
         cache({
           server: {
-            key: (request, defaults) => ({ ...defaults, path: request.path + request.search }),
-          },
-        }),
+            key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
+          }
+        })
       )
 
       expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({
         foo: 'bar',
-        path: '/test',
+        path: '/test'
       })
     })
   })
@@ -627,11 +703,11 @@ describe('Router:Node', function() {
       router.get(
         '/new',
         cache({
-          server: { maxAgeSeconds: 300 },
+          server: { maxAgeSeconds: 300 }
         }),
         fromServer(() => {
           return Promise.resolve('NEW PRODUCTS')
-        }),
+        })
       )
       await runAll('get', '/new')
       expect(env.shouldSendCookies).toBe(false)
@@ -643,18 +719,18 @@ describe('Router:Node', function() {
       router.get(
         '/new',
         cache({
-          server: { maxAgeSeconds: 300 },
+          server: { maxAgeSeconds: 300 }
         }),
         fromServer((params, request, response) => {
           response.set('set-cookie', 'foo=bar')
           return Promise.resolve({ some: 'data' })
-        }),
+        })
       )
       const res = await runAll('get', '/new')
       expect(env.shouldSendCookies).toBe(false)
       expect(console.warn).toHaveBeenCalledWith(
         '[react-storefront response]',
-        'Cannot set cookies on cached route',
+        'Cannot set cookies on cached route'
       )
     })
   })
@@ -684,6 +760,29 @@ describe('Router:Node', function() {
       )
 
       expect(router.isAppShellConfigured()).toBe(true)
+    })
+  })
+
+  describe('fetchFreshState', () => {
+    it('should run the route', async () => {
+      router.get('/', {
+        runOn: {
+          client: true,
+          server: true
+        },
+        fn: () => ({
+          page: 'Home'
+        })
+      })
+      const result = await router.fetchFreshState({ pathname: '/', search: '' })
+      expect(result).toEqual({ page: 'Home' })
+    })
+  })
+
+  describe('willNavigateToUpstream', () => {
+    it('should return true if the route points to a proxyUpstream handler', () => {
+      router.get('/', proxyUpstream(() => null))
+      expect(router.willNavigateToUpstream('/')).toBe(true)
     })
   })
 
