@@ -63,6 +63,7 @@ export { default as Track } from './Track.js';
 export { default as UpdateNotification } from './UpdateNotification.js';
 export { default as analytics } from './analytics.js';
 export { default as createTheme } from './createTheme.js';
+export { default as environment } from './environment.js';
 export { default as fetch } from './fetch.js';
 export { default as fetchLatest } from './fetchLatest.js';
 export { default as format } from './format.js';

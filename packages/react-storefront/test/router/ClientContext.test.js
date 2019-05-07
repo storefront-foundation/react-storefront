@@ -30,4 +30,12 @@ describe('ClientContext', () => {
       expect(() => context.cacheOnClient()).toThrow()
     })
   })
+
+  it('should stub response methods', () => {
+    expect(context.get()).toBeUndefined()
+    expect(context.set()).toBeUndefined()
+    expect(context.status()).toBeUndefined()
+    expect(context.cookie()).toBeUndefined()
+    expect(context.redirect()).toBeUndefined()
+  })
 })
