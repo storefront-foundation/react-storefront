@@ -8,13 +8,12 @@ import { redirectTo, redirectToHttps } from './redirect'
 /**
  * Run this in moov_response_header_transform.js
  */
-export default function responseHeaderTransform({ 
-  cacheProxiedAssets={ serverMaxAge: ONE_DAY } 
+export default function responseHeaderTransform({
+  cacheProxiedAssets = { serverMaxAge: ONE_DAY }
 } = {}) {
-
   if (env.__static_origin_path__) {
     headers.header('x-rsf-response-type', 'static')
-    
+
     // It is important that the client never caches the servce-worker so that it always goes to the network
     // to check for a new one.
     if (env.path.startsWith('/service-worker.js')) {
@@ -33,7 +32,7 @@ export default function responseHeaderTransform({
     // Always redirect on non-secure requests.
 
     if (env.secure !== 'true') {
-      return redirectToHttps()   
+      return redirectToHttps()
     }
 
     addSecureHeaders()
@@ -42,7 +41,7 @@ export default function responseHeaderTransform({
     // This gives us a mechanism to set cookies on adapt pages
 
     if (env.SET_COOKIE) {
-      headers.addHeader("set-cookie", env.SET_COOKIE)
+      headers.addHeader('set-cookie', env.SET_COOKIE)
     }
 
     headers.addHeader('x-moov-api-version', __webpack_hash__)
@@ -53,7 +52,7 @@ export default function responseHeaderTransform({
 
     if (response) {
       headers.statusCode = response.statusCode
-      
+
       if (response.statusText) {
         headers.statusText = response.statusText
       }
@@ -72,7 +71,7 @@ export default function responseHeaderTransform({
       for (let cookie of response.cookies) {
         headers.addHeader('set-cookie', cookie)
       }
-      
+
       // handle redirects
       if (response.redirectTo) {
         redirectTo(response.redirectTo, headers.statusCode)
@@ -85,12 +84,17 @@ export default function responseHeaderTransform({
     headers.removeAllHeaders('cache-control')
   }
 
-  // Never send a set-cookie header when x-moov-cache is set to true.  
+  // The browser should never cache rejected prefetches, otherwise it has the effect of
+  // prefetching and storing an error.  The user will never be able to load that page.
+  if (headers.statusCode == 544) {
+    headers.header('cache-control', 'private, no-store, no-cache')
+  }
+
+  // Never send a set-cookie header when x-moov-cache is set to true.
   // Doing so would prevent caching as varnish will not cache a response with a set-cookie header.
   if (headers.header('x-moov-cache')) {
     headers.removeAllHeaders('set-cookie')
   }
-
 }
 
 /**
@@ -109,7 +113,6 @@ function addCorsHeaders() {
       headers.addHeader('Access-Control-Allow-Credentials', 'true') // allow cookies to be sent in cross-origin requests
     }
   }
-
 }
 
 function addSecureHeaders() {

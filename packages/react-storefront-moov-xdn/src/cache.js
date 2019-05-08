@@ -13,16 +13,16 @@ export function cache({ serverMaxAge, browserMaxAge }) {
   const cacheControl = []
 
   if (browserMaxAge === 0) {
-    cacheControl.push(`no-cache`)
+    cacheControl.push('private, no-store, no-cache')
   } else if (browserMaxAge != null) {
     cacheControl.push(`maxage=${browserMaxAge}`)
   }
 
   if (serverMaxAge) {
     // remove these headers so varnish caching works correctly
-    headers.removeAllHeaders("Age")
-    headers.removeAllHeaders("Via")
-    headers.removeAllHeaders("Expires")
+    headers.removeAllHeaders('Age')
+    headers.removeAllHeaders('Via')
+    headers.removeAllHeaders('Expires')
     headers.header('X-Moov-Cache', 'true')
     cacheControl.push(`s-maxage=${serverMaxAge}`)
   }
@@ -34,7 +34,7 @@ export function cache({ serverMaxAge, browserMaxAge }) {
 
 /**
  * Sets a cache time of one day for all image and font assets which are proxied from upstream.
- * @param {String} pathname 
+ * @param {String} pathname
  */
 export function cacheProxiedAssets(pathname, { serverMaxAge }) {
   if (pathname.match(/(jpeg|jpg|png|gif|svg|woff2?|ttf|otf)$/)) {

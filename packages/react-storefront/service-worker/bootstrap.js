@@ -2,6 +2,8 @@ console.log('[react-storefront service worker]', 'Using Moov PWA Service Worker 
 
 workbox.loadModule('workbox-strategies')
 
+const PREFETCH_CACHE_MISS = 544
+
 let runtimeCacheOptions = {},
   baseCacheName,
   ssrCacheName
@@ -20,7 +22,7 @@ try {
 
 console.log(
   '[react-storefront service worker]',
-  `deployTime: ${deployTime}, prefetchFullRampUpTime: ${prefetchFullRampUpTime}`,
+  `deployTime: ${deployTime}, prefetchFullRampUpTime: ${prefetchFullRampUpTime}`
 )
 
 /**
@@ -33,7 +35,7 @@ console.log(
 function configureRuntimeCaching({
   cacheName = 'runtime',
   maxEntries = 200,
-  maxAgeSeconds = 3600,
+  maxAgeSeconds = 3600
 } = {}) {
   baseCacheName = cacheName
   ssrCacheName = `${cacheName}-html-{{version}}`
@@ -42,9 +44,9 @@ function configureRuntimeCaching({
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries,
-        maxAgeSeconds,
-      }),
-    ],
+        maxAgeSeconds
+      })
+    ]
   }
 }
 
@@ -59,7 +61,7 @@ function precacheLinks(response) {
     const matches = html.match(/href="([^"]+)"\sdata-moov-rel="prefetch"/g)
     if (matches) {
       return Promise.all(
-        matches.map(match => match.match(/href="([^"]+)"/)[1]).map(path => cachePath({ path })),
+        matches.map(match => match.match(/href="([^"]+)"/)[1]).map(path => cachePath({ path }))
       )
     }
     return Promise.resolve()
@@ -99,7 +101,7 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         if (!isPrefetchRampedUp()) {
           console.log(
             '[react-storefront service worker]',
-            `skipping prefetch of ${path}, not yet ramped up.`,
+            `skipping prefetch of ${path}, not yet ramped up.`
           )
           return
         }
@@ -119,15 +121,26 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
           credentials: 'include',
           signal: abort.signal,
           headers: {
-            'x-rsf-prefetch': '1',
-          },
+            'x-rsf-prefetch': '1'
+          }
         })
           .then(response => {
-            return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve())
-              .then(() => cache.put(decodeURIComponent(path), response))
-              .then(() => abortControllers.delete(abort))
-              .then(() => console.log('[react-storefront service worker]', 'prefetched', path))
+            return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
+              if (response.status === 200) {
+                cache.put(decodeURIComponent(path), response)
+                console.log(`[react-storefront service worker] ${path} was prefetched.`)
+              } else if (response.status === PREFETCH_CACHE_MISS) {
+                console.log(`[react-storefront service worker] ${path} was throttled.`)
+              } else {
+                console.log(
+                  `[react-storefront service worker] ${path} was not prefetched, returned status ${
+                    response.status
+                  }.`
+                )
+              }
+            })
           })
+          .then(() => abortControllers.delete(abort))
           .catch(error => {
             console.log('[react-storefront service worker] aborted prefetch for', path)
           })
@@ -180,8 +193,8 @@ function cacheState({ path, cacheData, apiVersion } = {}) {
     const res = new Response(blob, {
       status: 200,
       headers: {
-        'Content-Length': blob.size,
-      },
+        'Content-Length': blob.size
+      }
     })
 
     console.log('[react-storefront service worker]', `caching ${path}`)
@@ -252,7 +265,7 @@ self.addEventListener('install', event => {
     // Cache non-amp version of pages when users land on AMP page
     clients
       .matchAll({
-        includeUncontrolled: true,
+        includeUncontrolled: true
       })
       .then(allClients => {
         allClients
@@ -325,13 +338,13 @@ function offlineResponse(apiVersion, context) {
   if (isApiRequest(context.url.pathname)) {
     const offlineData = { page: 'Offline' }
     const blob = new Blob([JSON.stringify(offlineData, null, 2)], {
-      type: 'application/json',
+      type: 'application/json'
     })
     return new Response(blob, {
       status: 200,
       headers: {
-        'Content-Length': blob.size,
-      },
+        'Content-Length': blob.size
+      }
     })
   } else {
     // If not API request, find and send app shell
