@@ -116,13 +116,17 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
 
         abortControllers.add(abort)
 
+        const headers = { 'x-rsf-prefetch': '1' }
+
+        if ('{{forcePrefetch}}' === 'true') {
+          headers['x-rsf-prefetch-force'] = '1'
+        }
+
         // We connect the fetch with the abort controller here with the signal
         fetch(path, {
           credentials: 'include',
           signal: abort.signal,
-          headers: {
-            'x-rsf-prefetch': '1'
-          }
+          headers
         })
           .then(response => {
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
