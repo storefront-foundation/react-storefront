@@ -118,8 +118,8 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
 
         const headers = { 'x-rsf-prefetch': '1' }
 
-        if ('{{forcePrefetch}}' === 'true') {
-          headers['x-rsf-prefetch-force'] = '1'
+        if ('{{allowPrefetchThrottling}}' === 'true') {
+          headers['cache-control'] = 'only-if-cached'
         }
 
         // We connect the fetch with the abort controller here with the signal

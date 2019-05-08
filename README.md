@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.15.0
+
+- Added support for prefetch throttling.
+
 ### 6.13.0
 
 - Added `environment` module with `isClient` and `isServer` functions that allows you to detect whether your code is running on the client or the server.
@@ -102,8 +106,8 @@ new Router()
   // ...
   .appShell(
     // returns only the global data needed to build the app-shell for offline support
-    fromServer("./app-shell/app-shell-handler")
-  );
+    fromServer('./app-shell/app-shell-handler')
+  )
 ```
 
 - Add the `Offline` component to your `Pages` element in `App.js`.
@@ -111,16 +115,16 @@ new Router()
 ```js
 // src/App.js
 
-import Offline from "react-storefront/Offline";
+import Offline from 'react-storefront/Offline'
 
 // then in the render method...
 
-<Pages
+;<Pages
   components={universal => ({
     // ...
     Offline
   })}
-/>;
+/>
 ```
 
 ### 6.11.0

@@ -13,7 +13,7 @@ function createServiceWorkerPlugins({
   dest,
   workboxConfig,
   prefetchRampUpTime,
-  forcePrefetch = false
+  allowPrefetchThrottling = false
 }) {
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
   const swHash = hash(path.join(swBootstrap))
@@ -33,7 +33,7 @@ function createServiceWorkerPlugins({
               .replace('{{version}}', buildTime)
               .replace('{{deployTime}}', buildTime)
               .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
-              .replace('{{forcePrefetch}}', forcePrefetch)
+              .replace('{{allowPrefetchThrottling}}', allowPrefetchThrottling)
           }
         }
       ]),
@@ -64,7 +64,7 @@ module.exports = {
    * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
-   * @param {Number} options.forcePrefetch Set to true to force prefetch requests to be served even on cache miss
+   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
    * @param {Object} options.eslintConfig A config object for eslint
    * @return {Object} A webpack config
    */
@@ -76,7 +76,7 @@ module.exports = {
       additionalPlugins = [],
       eslintConfig = require('./eslint-client'),
       prefetchRampUpTime = -5000, // compensate for the 5 minute buffer for deployments so that there is no ramp up time
-      forcePrefetch = false
+      allowPrefetchThrottling = false
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -126,7 +126,7 @@ module.exports = {
             dest,
             workboxConfig: process.env.MOOV_SW ? workboxConfig : null,
             prefetchRampUpTime,
-            forcePrefetch
+            allowPrefetchThrottling
           })
         ]
       })
@@ -140,7 +140,7 @@ module.exports = {
    * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
-   * @param {Number} options.forcePrefetch Set to true to force prefetch requests to be served even on cache miss
+   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
    * @return {Object} A webpack config
    */
   prod(
@@ -150,7 +150,7 @@ module.exports = {
       additionalPlugins = [],
       entries,
       prefetchRampUpTime = 0,
-      forcePrefetch = false
+      allowPrefetchThrottling = false
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -206,7 +206,7 @@ module.exports = {
           dest,
           workboxConfig,
           prefetchRampUpTime,
-          forcePrefetch
+          allowPrefetchThrottling
         })
       ].concat(createPlugins(root))
     })
