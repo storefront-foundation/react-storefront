@@ -111,22 +111,18 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         // Create an abort controller so we can abort the prefetch if a more important
         // request is sent.
         const abort = new AbortController()
+
         // Save prefetching arguments if we need to resume a cancelled request
         abort.args = [{ path, apiVersion }, cacheLinks]
-
         abortControllers.add(abort)
-
-        const headers = { 'x-rsf-prefetch': '1' }
-
-        if ('{{allowPrefetchThrottling}}' === 'true') {
-          headers['cache-control'] = 'only-if-cached'
-        }
 
         // We connect the fetch with the abort controller here with the signal
         fetch(path, {
           credentials: 'include',
           signal: abort.signal,
-          headers
+          headers: {
+            'x-rsf-prefetch': '{{allowPrefetchThrottling}}' === 'true' ? 'only-if-cached' : '1'
+          }
         })
           .then(response => {
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
