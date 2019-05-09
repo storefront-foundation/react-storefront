@@ -15,13 +15,13 @@ describe('responseHeaderTransform', () => {
       host: 'example.com',
       path: '/foo/bar'
     }
-    global.__webpack_hash__ = 'ABC123'
+    global.__build_timestamp__ = new Date().getTime().toString()
     reset()
   })
 
   it('should remove set-cookie headers when caching on the server is set to true', () => {
     headers.header('set-cookie', 'foo=bar')
-    
+
     global.env.MOOV_PWA_RESPONSE = {
       cache: {
         serverMaxAge: 300
@@ -55,7 +55,7 @@ describe('responseHeaderTransform', () => {
     responseHeaderTransform()
 
     expect(headers.header('set-cookie')).toBe('foo=bar')
-  }) 
+  })
 
   it('should redirect to https when http is used', () => {
     global.env.secure = 'false'
@@ -159,7 +159,7 @@ describe('responseHeaderTransform', () => {
   })
 
   it('should cache proxied images automatically', () => {
-    [
+    ;[
       '/images/foo.jpeg',
       '/images/foo.jpg',
       '/images/foo.png',
@@ -177,7 +177,7 @@ describe('responseHeaderTransform', () => {
   })
 
   it('should cache proxied images based on a configurable time', () => {
-    [
+    ;[
       '/images/foo.jpeg',
       '/images/foo.jpg',
       '/images/foo.png',
@@ -189,7 +189,7 @@ describe('responseHeaderTransform', () => {
     ].map(path => {
       reset()
       global.env.path = path
-      responseHeaderTransform({ cacheProxiedAssets: { serverMaxAge: 60 }})
+      responseHeaderTransform({ cacheProxiedAssets: { serverMaxAge: 60 } })
       expect(headers.header('cache-control')).toBe('s-maxage=60')
     })
   })
@@ -215,7 +215,6 @@ describe('responseHeaderTransform', () => {
   afterAll(() => {
     delete global.headers
     delete global.env
-    delete global.__webpack_hash__
+    delete global.__build_timestamp__
   })
-
 })

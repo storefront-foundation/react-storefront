@@ -89,7 +89,6 @@ export function renderHtml({ component, providers, registry, theme, cssPrefix = 
  */
 export function renderInitialStateScript({ state, defer, initialStateProperty = 'initialState' }) {
   return `<script type="text/javascript" ${defer ? 'defer' : ''}>
-		window.moov = { apiVersion: ${JSON.stringify(__webpack_hash__)} }
 		window.${initialStateProperty}=Object.freeze(${getSanitizedModelJson(state)})
 	</script>`
 }
@@ -214,6 +213,7 @@ export function hydrate({
   const state = model.create(window[initialStateProperty] || {})
   const jss = create(jssPreset(), jssNested())
 
+  window.moov = window.moov || {}
   Object.assign(window.moov, { state, timing: {} }, providerProps)
 
   // skip jss insertion if we are hydrating SSR cached by the service worker because it has already been mounted

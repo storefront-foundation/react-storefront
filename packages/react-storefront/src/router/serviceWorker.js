@@ -15,7 +15,7 @@
  */
 export async function cache(path, cacheData) {
   if (await waitForServiceWorkerController()) {
-    const { apiVersion } = window.moov
+    const { apiVersion } = window.moov || {}
 
     if (cacheData) {
       navigator.serviceWorker.controller.postMessage({
@@ -94,7 +94,7 @@ export async function configureCache(options) {
 /**
  * Resolves when the service worker has been installed
  */
-async function waitForServiceWorkerController() {
+export async function waitForServiceWorkerController() {
   if (!navigator.serviceWorker || !navigator.serviceWorker.ready) {
     return false
   }
@@ -117,10 +117,12 @@ async function waitForServiceWorkerController() {
  */
 export async function removeOldCaches() {
   if (await waitForServiceWorkerController()) {
-    navigator.serviceWorker.controller.postMessage({
-      action: 'remove-old-caches',
-      apiVersion: window.moov.apiVersion
-    })
+    if (window.moov && window.moov.apiVersion) {
+      navigator.serviceWorker.controller.postMessage({
+        action: 'remove-old-caches',
+        apiVersion: window.moov.apiVersion
+      })
+    }
   }
 }
 

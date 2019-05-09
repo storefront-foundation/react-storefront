@@ -14,6 +14,14 @@
 import { removeOldCaches } from './router/serviceWorker'
 import { isSafari } from './utils/browser'
 
+if (!window.moov) {
+  window.moov = {}
+}
+
+// The service worker derives the cache name from this, which is sent as the x-moov-api-version
+// request header in router/fromServer
+window.moov.apiVersion = __build_timestamp__
+
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
