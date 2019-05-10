@@ -29,6 +29,15 @@ describe('createGenerateClassName', () => {
 
   it('should use the material-ui default in development', () => {
     const fn = createGenerateClassName({ amp: false })
-    expect(fn({ key: 'my-class' })).toBe('my-class-1')
+    const rule = {
+      key: 'root'
+    }
+    const sheet = {
+      options: {
+        name: 'MyClass',
+        classNamePrefix: 'RSF'
+      }
+    }
+    expect(fn(rule, sheet)).toBe('RSF-MyClass-root-0')
   })
 })

@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.13.2
+
+- Improved JSS class name generation in development
+
 ### 6.13.1
 
 - Fixed a bug where links in the main menu were not rendered properly for SEO.
