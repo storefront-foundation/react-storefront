@@ -17,6 +17,7 @@ export default function createGenerateClassName({ amp = false } = {}) {
   if (amp || process.env.MOOV_ENV === 'production') {
     return (_rule, sheet) => `${sheet.options.classNamePrefix}${nextId++}`
   } else {
-    return muiCreateGenerateClassName()
+    return (_rule, sheet) =>
+      `${sheet.options.classNamePrefix}-${_rule.key}-${sheet.options.name}-${nextId++}`
   }
 }
