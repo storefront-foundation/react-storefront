@@ -1,6 +1,6 @@
 {
   "name": "react-storefront-moov-xdn",
-  "version": "6.14.0",
+  "version": "6.14.1",
   "description": "Extension for running React Storefront apps on Moovweb's XDN platform.",
   "author": "Moovweb",
   "license": "UNLICENSED",
