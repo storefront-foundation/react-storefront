@@ -219,3 +219,21 @@ module.exports = {
     })
   }
 }
+
+function createPlugins(root) {
+  return [
+    injectBuildTimestamp(),
+    new CleanWebpackPlugin(
+      [path.join(root, 'build', 'assets'), path.join(root, 'scripts', 'build')],
+      {
+        allowExternal: true,
+        verbose: false
+      }
+    ),
+    new HtmlWebpackPlugin({
+      filename: 'install-service-worker.html',
+      title: 'Installing Service Worker...',
+      chunks: ['bootstrap', 'installServiceWorker']
+    })
+  ]
+}

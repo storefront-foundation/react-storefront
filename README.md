@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.14.1
+
+- Fix bug in client webpack config due to a bad merge that would prevent apps from starting.
+
 ### 6.14.0
 
 - Added support for prefetch throttling.
