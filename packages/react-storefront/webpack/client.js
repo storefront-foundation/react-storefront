@@ -156,7 +156,7 @@ module.exports = {
       workboxConfig = {},
       additionalPlugins = [],
       entries,
-      prefetchRampUpTime = 0,
+      prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
       allowPrefetchThrottling = true
     } = {}
   ) {
