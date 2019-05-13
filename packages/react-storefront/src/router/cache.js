@@ -2,6 +2,9 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+
+import { SURROGATE_KEY } from './headers'
+
 /**
  * Specifies that the result of a route should be cached.  This handler must come before fromServer.
  *
@@ -64,6 +67,10 @@ export default function cache({ server, client }) {
           env.shouldSendCookies = false
           response.relayUpstreamCookies(false)
           response.cacheOnServer(server.maxAgeSeconds)
+        }
+
+        if (typeof server.surrogateKey === 'function') {
+          response.set(SURROGATE_KEY, server.surrogateKey(params, request))
         }
       }
     }

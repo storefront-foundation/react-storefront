@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet'
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
 import getStats from 'react-storefront-stats'
 import { renderAmpAnalyticsTags } from './Track'
+import { ROUTES } from './router/headers'
 
 export default class Server {
   /**
@@ -43,15 +44,11 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    if (request.headers['x-rsf-routes']) {
+    if (request.headers[ROUTES]) {
       return response.json(this.router.routes.map(route => route.path.spec))
     }
 
     try {
-      // indicate to the XDN that we want to to add set the x-moov-cache-hit cookie so we can differentiate
-      // cache hits and misses when tracking performance
-      response.set('x-rsf-track-cache-hit', 'true')
-
       const state = await this.router.runAll(request, response)
 
       if (!state.proxyUpstream && !response.headersSent) {

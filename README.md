@@ -74,6 +74,24 @@ yarn release
 
 ## Changelog
 
+### 6.17.0
+
+- You can now define a surrogate key for each route using:
+
+```js
+new Router().get(
+  "/p/:1",
+  cache({
+    server: {
+      surrogateKey: (params, request) => {
+        return "product";
+      }
+    }
+  }),
+  fromServer("./path/to/handler")
+);
+```
+
 ### 6.16.1
 
 - Updated mobx-react to correct peerDependency ^5.4.3

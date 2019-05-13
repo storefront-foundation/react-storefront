@@ -57,6 +57,32 @@ describe('fromServer', () => {
     )
   })
 
+  it('should set the handler path as x-moov-surrogate-key', async () => {
+    const handler = jest.fn()
+    handler.path = './test'
+    await fromServer(handler).fn({}, { path: '/' }, response)
+    expect(response.get('x-moov-surrogate-key')).toBe('./test')
+  })
+
+  it('should set x-rsf-handler', async () => {
+    const handler = jest.fn()
+    handler.path = './test'
+    await fromServer(handler).fn({}, { path: '/' }, response)
+    expect(response.get('x-rsf-handler')).toBe('./test')
+  })
+
+  it('should set x-rsf-response-type to json', async () => {
+    const handler = jest.fn()
+    await fromServer(handler).fn({}, { path: '/.json' }, response)
+    expect(response.get('x-rsf-response-type')).toBe('json')
+  })
+
+  it('should set x-rsf-response-type to ssr', async () => {
+    const handler = jest.fn()
+    await fromServer(handler).fn({}, { path: '/' }, response)
+    expect(response.get('x-rsf-response-type')).toBe('ssr')
+  })
+
   it('should call getURL when present', async () => {
     let calledWith
 

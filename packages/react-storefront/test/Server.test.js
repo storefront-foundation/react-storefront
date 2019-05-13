@@ -21,18 +21,18 @@ describe('Server', () => {
     exported = {}
     Helmet.canUseDOM = false // otherwise Helmet throws an error about calling rewind on the client
     App = () => <div>App</div>
-    ;(model = AppModelBase),
-      (router = new Router().get('/test', fromServer(() => ({ page: 'Test' }))))
+    model = AppModelBase
+    router = new Router().get('/test', fromServer(() => ({ page: 'Test' })))
     theme = createTheme()
     blob = {}
     global.__build_timestamp__ = new Date().getTime().toString()
     global.sendResponse = jest.fn()
     global.requestBody = ''
-    ;(global.$ = $),
-      (global.fns = {
-        export: (key, value) => (exported[key] = value),
-        init$: html => ({ $: $.load(html) })
-      })
+    global.$ = $
+    global.fns = {
+      export: (key, value) => (exported[key] = value),
+      init$: html => ({ $: $.load(html) })
+    }
     global.env = {
       node_env: 'production',
       requestBody: '',
@@ -59,7 +59,6 @@ describe('Server', () => {
     it('should send an html response', async () => {
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
-      expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('text/html')
     })
 
@@ -103,7 +102,6 @@ describe('Server', () => {
       global.env.path = '/test.amp'
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
-      expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
     })
 
     it('should send a json response if the path ends with .json', async () => {
@@ -113,7 +111,6 @@ describe('Server', () => {
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const body = JSON.parse(global.sendResponse.mock.calls[0][0].body)
       expect(body.page).toBe('Test')
-      expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
     })
 
     it('should catch errors and render the error view', async () => {

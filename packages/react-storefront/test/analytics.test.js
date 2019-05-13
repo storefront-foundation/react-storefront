@@ -5,10 +5,9 @@
 import analytics, { configureAnalytics, getTargets } from '../src/analytics'
 
 describe('AnalyticsProvider', () => {
-
   it('calls all targets', () => {
-    const targets = [1,2,3].map(i => ({ testMethod: jest.fn() }))
-    
+    const targets = [1, 2, 3].map(i => ({ testMethod: jest.fn() }))
+
     configureAnalytics(...targets)
     const data = { search: { keywords: 'red shirt' } }
     analytics.testMethod(data)
@@ -19,8 +18,8 @@ describe('AnalyticsProvider', () => {
   })
 
   it('supports fire(event, ...params)', () => {
-    const targets = [1,2,3].map(i => ({ testMethod: jest.fn() }))
-    
+    const targets = [1, 2, 3].map(i => ({ testMethod: jest.fn() }))
+
     configureAnalytics(...targets)
     const data = { search: { keywords: 'red shirt' } }
     analytics.fire('testMethod', data)
@@ -50,4 +49,8 @@ describe('AnalyticsProvider', () => {
     expect(rest.length).toBe(0)
   })
 
+  it('should return AnalyticsProxy from toString()', () => {
+    configureAnalytics({})
+    expect(analytics.toString()).toBe('AnalyticsProxy')
+  })
 })

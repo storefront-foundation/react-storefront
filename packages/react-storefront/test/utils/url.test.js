@@ -17,6 +17,10 @@ describe('url', () => {
       expect(absoluteURL(undefined)).toBe(null)
     })
 
+    it('should return the given url when no location is provided', () => {
+      expect(absoluteURL('https://domain.com/foo')).toBe('https://domain.com/foo')
+    })
+
     it('should add protocol and hostname', () => {
       expect(absoluteURL('/foo/bar', currentLocation)).toBe('https://example.com/foo/bar')
     })
@@ -36,6 +40,27 @@ describe('url', () => {
     it('should handle protocol with colon if given', () => {
       currentLocation.protocol = 'https:'
       expect(absoluteURL('/foo/bar', currentLocation)).toBe('https://example.com/foo/bar')
+    })
+
+    it('should add the protocol when the url starts with //', () => {
+      expect(absoluteURL('//domain.com/foo', { protocol: 'https' })).toBe('https://domain.com/foo')
+    })
+
+    it('should convert relative urls to absolute', () => {
+      expect(
+        absoluteURL('bar', {
+          protocol: 'https',
+          hostname: 'domain.com',
+          pathname: '/foo',
+          port: '443'
+        })
+      ).toBe('https://domain.com/foo/bar')
+    })
+
+    it('should return absolute URLs unaltered', () => {
+      expect(absoluteURL('https://domain.com/foo', { protocol: 'https' })).toBe(
+        'https://domain.com/foo'
+      )
     })
   })
 

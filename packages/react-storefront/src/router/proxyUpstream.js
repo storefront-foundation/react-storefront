@@ -2,6 +2,8 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+import { RESPONSE_TYPE, HANDLER } from './headers'
+
 // The default callback used when none is provided.  Simply returns the upstream HTML unaltered.
 const perfectProxy = (_params, _request, response) => response.send()
 
@@ -36,8 +38,8 @@ export default function proxyUpstream(cb = perfectProxy) {
             'You must provide a path to a handler in proxyUpstream().  Please check your routes.'
           )
         // indicate handler path and asset class in a response header so we can track it in logs
-        response.set('x-rsf-handler', cb.path)
-        response.set('x-rsf-response-type', 'proxy')
+        response.set(HANDLER, cb.path)
+        response.set(RESPONSE_TYPE, 'proxy')
         return (await cb(params, request, response)) || { proxyUpstream: true }
       }
     }
