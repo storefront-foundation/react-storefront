@@ -1,5 +1,10 @@
 const path = require('path')
-const { createServerConfig, createLoaders, optimization } = require('./common')
+const {
+  createServerConfig,
+  createLoaders,
+  optimization,
+  injectBuildTimestamp
+} = require('./common')
 const merge = require('lodash/merge')
 
 module.exports = {
@@ -21,8 +26,8 @@ module.exports = {
         'node_modules',
         'react-storefront',
         'stats',
-        'getStatsInDev',
-      ),
+        'getStatsInDev'
+      )
     }
 
     return ({ entry, plugins, output, target, resolve }) =>
@@ -30,7 +35,7 @@ module.exports = {
         entry,
         mode: 'development',
         output: merge(output, {
-          devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+          devtoolModuleFilenameTemplate: '[absolute-resource-path]'
         }),
         target,
         resolve,
@@ -39,22 +44,23 @@ module.exports = {
             envName: 'development-server',
             assetsPath: '../build/assets/pwa',
             eslintConfig,
-            additionalRules: rules,
-          }),
+            additionalRules: rules
+          })
         },
         devtool: 'cheap-module-source-map',
         plugins: [
           ...plugins,
+          injectBuildTimestamp(),
           new webpack.ExtendedAPIPlugin(),
           new webpack.optimize.LimitChunkCountPlugin({
-            maxChunks: 1,
+            maxChunks: 1
           }),
           new webpack.DefinePlugin({
             'process.env.MOOV_RUNTIME': JSON.stringify('server'),
             'process.env.MOOV_ENV': JSON.stringify('development'),
-            ...envVariables,
-          }),
-        ],
+            ...envVariables
+          })
+        ]
       })
   },
 
@@ -73,8 +79,8 @@ module.exports = {
         'node_modules',
         'react-storefront',
         'stats',
-        'getStats',
-      ),
+        'getStats'
+      )
     }
 
     return ({ entry, plugins, output, target, resolve }) =>
@@ -88,21 +94,22 @@ module.exports = {
         module: {
           rules: createLoaders(root, {
             envName: 'production-server',
-            eslintConfig: './eslint-server',
-          }),
+            eslintConfig: './eslint-server'
+          })
         },
         plugins: [
           ...plugins,
+          injectBuildTimestamp(),
           new webpack.ExtendedAPIPlugin(),
           new webpack.optimize.LimitChunkCountPlugin({
-            maxChunks: 1,
+            maxChunks: 1
           }),
           new webpack.DefinePlugin({
             'process.env.MOOV_RUNTIME': JSON.stringify('server'),
             'process.env.MOOV_ENV': JSON.stringify('production'),
-            ...envVariables,
-          }),
-        ],
+            ...envVariables
+          })
+        ]
       })
-  },
+  }
 }

@@ -10,6 +10,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import { configureCache, cache } from './serviceWorker'
 import ClientContext from './ClientContext'
 import EventEmitter from 'eventemitter3'
+import powerLinkHandler from './powerLinkHandler'
 
 /**
  * Provides routing for MUR-based applications and PWAs.  This class is inspired by express and uses https://github.com/rcs/route-parser,
@@ -79,6 +80,14 @@ export default class Router extends EventEmitter {
       fn: () => ({ page: '404' })
     }
   ]
+
+  constructor() {
+    super()
+    this.get('/.powerlinks.js', {
+      runOn: { server: true },
+      fn: powerLinkHandler
+    })
+  }
 
   errorHandler = (e, params, request, response) => {
     console.error('Error caught with params', params, ' and with message:', e.message)

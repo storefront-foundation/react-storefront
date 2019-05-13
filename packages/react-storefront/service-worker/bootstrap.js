@@ -314,7 +314,11 @@ function isAmp(url) {
  * @return {Boolean}
  */
 function shouldServeHTMLFromCache(url, event) {
-  return isAmp({ pathname: event.request.referrer }) || /\?source=pwa/.test(url.search)
+  return (
+    isAmp({ pathname: event.request.referrer }) ||
+    /\?source=pwa/.test(url.search) ||
+    /(\?|&)powerlink/.test(url.search)
+  )
 }
 
 /**

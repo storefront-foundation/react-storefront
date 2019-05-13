@@ -15,7 +15,7 @@ describe('responseHeaderTransform', () => {
       host: 'example.com',
       path: '/foo/bar'
     }
-    global.__webpack_hash__ = 'ABC123'
+    global.__build_timestamp__ = new Date().getTime().toString()
     reset()
   })
 
@@ -230,6 +230,6 @@ describe('responseHeaderTransform', () => {
   afterAll(() => {
     delete global.headers
     delete global.env
-    delete global.__webpack_hash__
+    delete global.__build_timestamp__
   })
 })

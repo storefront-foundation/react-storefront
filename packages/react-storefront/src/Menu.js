@@ -340,56 +340,61 @@ export default class Menu extends Component {
     }
 
     return (
-      <Drawer
-        variant={persistent ? 'persistent' : 'temporary'}
-        open={menu.open || persistent}
-        onClose={menu.close}
-        anchor={align}
-        ModalProps={{
-          keepMounted: true
-        }}
-        PaperProps={{
-          style: { width: `${drawerWidth}px` }
-        }}
-        classes={{
-          root: className,
-          paper: classnames(classes.drawer, {
-            [classes.drawerFixed]: persistent
-          }),
-          modal: classes.modal
-        }}
-      >
-        {children}
-        {simple ? (
-          this.renderSimple()
-        ) : (
-          <div className={classes.hbox} style={{ transform: `translateX(${position}px)`, flex: 1 }}>
-            {levels.map((list, depth) => (
-              <MenuList
-                style={{ width: `${drawerWidth}px` }}
-                classes={{ root: classes.list, padding: classes.padding }}
-                key={depth}
-              >
-                {list.root && rootHeader}
-                {!list.root && (
-                  <MenuItem divider button onClick={this.goBack}>
-                    <ListItemIcon classes={{ root: classes.header }}>
-                      <ChevronLeft className={classes.icon} />
-                    </ListItemIcon>
-                    <ListItemText
-                      classes={{ root: classes.headerText }}
-                      primary={<div className={classes.headerText}>{list.text} </div>}
-                    />
-                  </MenuItem>
-                )}
-                {list.items && list.items.map((item, key) => this.renderItem(depth, item, key))}
-                {list.root && rootFooter}
-              </MenuList>
-            ))}
-          </div>
-        )}
+      <Fragment>
+        <Drawer
+          variant={persistent ? 'persistent' : 'temporary'}
+          open={menu.open || persistent}
+          onClose={menu.close}
+          anchor={align}
+          ModalProps={{
+            keepMounted: true
+          }}
+          PaperProps={{
+            style: { width: `${drawerWidth}px` }
+          }}
+          classes={{
+            root: className,
+            paper: classnames(classes.drawer, {
+              [classes.drawerFixed]: persistent
+            }),
+            modal: classes.modal
+          }}
+        >
+          {children}
+          {simple ? (
+            this.renderSimple()
+          ) : (
+            <div
+              className={classes.hbox}
+              style={{ transform: `translateX(${position}px)`, flex: 1 }}
+            >
+              {levels.map((list, depth) => (
+                <MenuList
+                  style={{ width: `${drawerWidth}px` }}
+                  classes={{ root: classes.list, padding: classes.padding }}
+                  key={depth}
+                >
+                  {list.root && rootHeader}
+                  {!list.root && (
+                    <MenuItem divider button onClick={this.goBack}>
+                      <ListItemIcon classes={{ root: classes.header }}>
+                        <ChevronLeft className={classes.icon} />
+                      </ListItemIcon>
+                      <ListItemText
+                        classes={{ root: classes.headerText }}
+                        primary={<div className={classes.headerText}>{list.text} </div>}
+                      />
+                    </MenuItem>
+                  )}
+                  {list.items && list.items.map((item, key) => this.renderItem(depth, item, key))}
+                  {list.root && rootFooter}
+                </MenuList>
+              ))}
+            </div>
+          )}
+        </Drawer>
         {this.renderLinksForSEO()}
-      </Drawer>
+      </Fragment>
     )
   }
 
@@ -428,9 +433,19 @@ export default class Menu extends Component {
     findLinks(root)
 
     return (
-      <noscript>
-        <ul>{links}</ul>
-      </noscript>
+      <Fragment>
+        {/* 
+        React doesn't execute the children of a noscript on the client, 
+        therefore the style rules for Link will get written out of order
+        unless we force a Link to render here.
+        */}
+        <div style={{ display: 'none' }}>
+          <Link />
+        </div>
+        <noscript>
+          <ul>{links}</ul>
+        </noscript>
+      </Fragment>
     )
   }
 

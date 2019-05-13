@@ -4,9 +4,16 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
-const { createClientConfig, createLoaders, createPlugins, optimization } = require('./common')
+const {
+  createClientConfig,
+  createLoaders,
+  optimization,
+  injectBuildTimestamp
+} = require('./common')
 const hash = require('md5-file').sync
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 function createServiceWorkerPlugins({
   root,
@@ -150,7 +157,7 @@ module.exports = {
       additionalPlugins = [],
       entries,
       prefetchRampUpTime = 0,
-      allowPrefetchThrottling = false
+      allowPrefetchThrottling = true
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
