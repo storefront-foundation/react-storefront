@@ -7,10 +7,11 @@ import isFunction from 'lodash/isFunction'
 import qs from 'qs'
 import merge from 'lodash/merge'
 import cloneDeep from 'lodash/cloneDeep'
-import { configureCache, cache } from './serviceWorker'
+import { configureCache } from './serviceWorker'
 import ClientContext from './ClientContext'
 import EventEmitter from 'eventemitter3'
 import powerLinkHandler from './powerLinkHandler'
+import fromServer from './fromServer'
 
 /**
  * Provides routing for MUR-based applications and PWAs.  This class is inspired by express and uses https://github.com/rcs/route-parser,
@@ -83,10 +84,8 @@ export default class Router extends EventEmitter {
 
   constructor() {
     super()
-    this.get('/.powerlinks.js', {
-      runOn: { server: true },
-      fn: powerLinkHandler
-    })
+
+    this.get('/.powerlinks.js', fromServer(powerLinkHandler))
   }
 
   errorHandler = (e, params, request, response) => {

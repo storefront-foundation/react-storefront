@@ -38,12 +38,6 @@ export default function responseHeaderTransform({
     addSecureHeaders()
     addCorsHeaders()
 
-    // This gives us a mechanism to set cookies on adapt pages
-
-    if (env.SET_COOKIE) {
-      headers.addHeader('set-cookie', env.SET_COOKIE)
-    }
-
     headers.addHeader('x-moov-api-version', __build_timestamp__)
 
     // set headers and status from Response object
@@ -64,6 +58,7 @@ export default function responseHeaderTransform({
 
       // send headers
       for (let name in response.headers) {
+        headers.removeAllHeaders(name)
         headers.addHeader(name, response.headers[name])
       }
 
@@ -76,6 +71,12 @@ export default function responseHeaderTransform({
       if (response.redirectTo) {
         redirectTo(response.redirectTo, headers.statusCode)
       }
+    }
+
+    // This gives us a mechanism to set cookies on adapt pages
+
+    if (env.SET_COOKIE) {
+      headers.addHeader('set-cookie', env.SET_COOKIE)
     }
   }
 

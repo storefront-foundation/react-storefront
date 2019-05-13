@@ -74,6 +74,16 @@ yarn release
 
 ## Changelog
 
+### 6.15.0
+
+- New "PowerLinks" feature allows you link to a React Storefront app with `<a data-rsf-power-link="on" href="https://my.domain.com">Visit My Store</a>` and have the link prefetched and cached so that navigation is instant. Just add this to the site containing the link:
+
+```js
+<script src="http://my.domain.com/.powerlinks.js" defer />
+```
+
+- Added the ability to overwrite `cache()` route handler with `response.set('cache-control', '...')`.
+
 ### 6.14.1
 
 - Fix bug in client webpack config due to a bad merge that would prevent apps from starting.
