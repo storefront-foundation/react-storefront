@@ -3607,6 +3607,13 @@ babel-plugin-react-docgen@^2.0.0:
     lodash "^4.17.10"
     react-docgen "^3.0.0-rc.1"
 
+babel-plugin-react-storefront@^6.0.3:
+  version "6.16.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-storefront/-/babel-plugin-react-storefront-6.16.0.tgz#89ab5bac351e91ca1d52d871063533c1d54101bd"
+  integrity sha512-+igECJ58qRy9mUB+kFakNeTSc+vimpIc7b794yBejoPdcSMEgClVhnW/eAQuByvelp1b2pFluv7PMjzz6n+dMQ==
+  dependencies:
+    babel-core "^6.26.0"
+
 babel-plugin-syntax-object-rest-spread@^6.13.0, babel-plugin-syntax-object-rest-spread@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
@@ -11772,7 +11779,7 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
-mobx-react@^5.0.0:
+mobx-react@^5.4.3:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-5.4.3.tgz#6709b7dd89670c40e9815914ac2ca49cc02bfb47"
   integrity sha512-WC8yFlwvJ91hy8j6CrydAuFteUafcuvdITFQeHl3LRIf5ayfT/4W3M/byhEYD2BcJWejeXr8y4Rh2H26RunCRQ==

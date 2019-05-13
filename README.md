@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.16.1
+
+- Updated mobx-react to correct peerDependency ^5.4.3
+
 ### 6.16.0
 
 - Added `trackSelected` prop to `Menu`. Set to `true` to indicate the item corresponding to the current page
