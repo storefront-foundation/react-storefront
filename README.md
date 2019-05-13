@@ -80,17 +80,19 @@ yarn release
 
 ```js
 new Router().get(
-  "/p/:1",
+  '/p/:1',
   cache({
     server: {
       surrogateKey: (params, request) => {
-        return "product";
+        return 'product'
       }
     }
   }),
-  fromServer("./path/to/handler")
-);
+  fromServer('./path/to/handler')
+)
 ```
+
+- Fixed bug in converting relative URLs to absolute URLs in Link that was introduced in 6.16.0
 
 ### 6.16.1
 

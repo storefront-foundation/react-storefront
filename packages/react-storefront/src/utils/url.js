@@ -28,20 +28,25 @@ const cleanProtocol = protocol => (protocol || '').replace(/:/, '')
 export function absoluteURL(url, { protocol, hostname, port, pathname } = {}) {
   if (url == null) {
     return null
-  } else if (hostname == null) {
-    return url
   } else if (url.match(/^(mailto|tel):/)) {
     return url
   } else if (url.match(/^\/\//)) {
     // URL with hostname but no protocol (starting with //)
-    return `${cleanProtocol(currentLocation.protocol)}:${url}`
+    return `${cleanProtocol(protocol)}:${url}`
   } else if (!url.match(/^https?:/)) {
-    // relative URL
-    if (!url.match(/^\//)) {
-      return pathname ? `${pathname}/${url}` : url
+    if (hostname == null) {
+      return url
     }
 
-    if (port === '80' || port === '443') {
+    // relative URL
+    if (!url.match(/^\//)) {
+      if (!pathname) {
+        return url
+      }
+      url = `${pathname}/${url}`
+    }
+
+    if (port === '80' || port === '443' || port == null) {
       port = ''
     } else {
       port = ':' + port

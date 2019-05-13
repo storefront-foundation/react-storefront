@@ -62,6 +62,23 @@ describe('url', () => {
         'https://domain.com/foo'
       )
     })
+
+    it('should return the original url when the hostname is null', () => {
+      expect(absoluteURL('/foo')).toBe('/foo')
+    })
+
+    it('should return the original URL if the pathname is null and the URL is relative', () => {
+      expect(absoluteURL('foo', { protocol: 'https', hostname: 'domain.com' })).toBe('foo')
+    })
+
+    it('should normalize the protocol', () => {
+      expect(absoluteURL('/foo', { protocol: 'https', hostname: 'domain.com' })).toBe(
+        'https://domain.com/foo'
+      )
+      expect(absoluteURL('/foo', { protocol: 'http', hostname: 'domain.com' })).toBe(
+        'http://domain.com/foo'
+      )
+    })
   })
 
   describe('relativeURL', () => {
@@ -112,6 +129,16 @@ describe('url', () => {
       expect(canUseClientSideNavigation('/foo')).toBe(true)
       expect(canUseClientSideNavigation('/foo/bar')).toBe(true)
       expect(canUseClientSideNavigation('foo/bar')).toBe(true)
+    })
+
+    it('should return false if router.willNavigateToUpstream returns true', () => {
+      const router = { willNavigateToUpstream: jest.fn(() => true) }
+      expect(canUseClientSideNavigation('/foo', router)).toBe(false)
+      expect(router.willNavigateToUpstream).toHaveBeenCalledWith('/foo')
+    })
+
+    it('should return false if the url is omitted', () => {
+      expect(canUseClientSideNavigation(null)).toBe(false)
     })
   })
 })
