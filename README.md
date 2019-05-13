@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.16.0
+
+- Added `trackSelected` prop to `Menu`. Set to `true` to indicate the item corresponding to the current page
+- Improved the performance of `Menu` by eliminating excessive rendering.
+
 ### 6.15.0
 
 - New "PowerLinks" feature allows you link to a React Storefront app with `<a data-rsf-power-link="on" href="https://my.domain.com">Visit My Store</a>` and have the link prefetched and cached so that navigation is instant. Just add this to the site containing the link:
