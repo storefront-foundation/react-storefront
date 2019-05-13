@@ -74,7 +74,7 @@ yarn release
 
 ## Changelog
 
-### 6.15.0
+### 6.14.0
 
 - Added support for prefetch throttling.
 
@@ -118,7 +118,6 @@ new Router()
 import Offline from 'react-storefront/Offline'
 
 // then in the render method...
-
 ;<Pages
   components={universal => ({
     // ...
