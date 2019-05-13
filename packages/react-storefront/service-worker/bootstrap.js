@@ -2,6 +2,8 @@ console.log('[react-storefront service worker]', 'Using Moov PWA Service Worker 
 
 workbox.loadModule('workbox-strategies')
 
+const PREFETCH_CACHE_MISS = 544
+
 let runtimeCacheOptions = {},
   baseCacheName,
   ssrCacheName
@@ -109,9 +111,9 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         // Create an abort controller so we can abort the prefetch if a more important
         // request is sent.
         const abort = new AbortController()
+
         // Save prefetching arguments if we need to resume a cancelled request
         abort.args = [{ path, apiVersion }, cacheLinks]
-
         abortControllers.add(abort)
 
         // We connect the fetch with the abort controller here with the signal
@@ -119,15 +121,26 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
           credentials: 'include',
           signal: abort.signal,
           headers: {
-            'x-rsf-prefetch': '1'
+            'x-rsf-prefetch': '{{allowPrefetchThrottling}}' === 'true' ? 'only-if-cached' : '1'
           }
         })
           .then(response => {
-            return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve())
-              .then(() => cache.put(decodeURIComponent(path), response))
-              .then(() => abortControllers.delete(abort))
-              .then(() => console.log('[react-storefront service worker]', 'prefetched', path))
+            return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
+              if (response.status === 200) {
+                cache.put(decodeURIComponent(path), response)
+                console.log(`[react-storefront service worker] ${path} was prefetched.`)
+              } else if (response.status === PREFETCH_CACHE_MISS) {
+                console.log(`[react-storefront service worker] ${path} was throttled.`)
+              } else {
+                console.log(
+                  `[react-storefront service worker] ${path} was not prefetched, returned status ${
+                    response.status
+                  }.`
+                )
+              }
+            })
           })
+          .then(() => abortControllers.delete(abort))
           .catch(error => {
             console.log('[react-storefront service worker] aborted prefetch for', path)
           })

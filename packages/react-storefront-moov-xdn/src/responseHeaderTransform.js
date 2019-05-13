@@ -84,6 +84,12 @@ export default function responseHeaderTransform({
     headers.removeAllHeaders('cache-control')
   }
 
+  // The browser should never cache rejected prefetches, otherwise it has the effect of
+  // prefetching and storing an error.  The user will never be able to load that page.
+  if (headers.statusCode == 544) {
+    headers.header('cache-control', 'private, no-store, no-cache')
+  }
+
   // Never send a set-cookie header when x-moov-cache is set to true.
   // Doing so would prevent caching as varnish will not cache a response with a set-cookie header.
   if (headers.header('x-moov-cache')) {

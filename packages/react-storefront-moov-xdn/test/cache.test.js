@@ -14,7 +14,10 @@ describe('cache', () => {
 
   it('should send no-cache when browserMaxAge is 0', () => {
     cache({ browserMaxAge: 0 })
-    expect(global.headers.header).toHaveBeenCalledWith('Cache-Control', 'no-cache')
+    expect(global.headers.header).toHaveBeenCalledWith(
+      'Cache-Control',
+      'private, no-store, no-cache'
+    )
   })
 
   it('should send maxage when browserMaxAge is greater than 0', () => {
@@ -23,7 +26,7 @@ describe('cache', () => {
   })
 
   it('should send no cache-control header when neither browserMaxAge or serverMaxAge is specified', () => {
-    cache({ })
+    cache({})
     expect(global.headers.header).not.toHaveBeenCalled()
   })
 
@@ -39,6 +42,9 @@ describe('cache', () => {
 
   it('should not send no-cache when serverMaxAge is 0 and browserMaxAge is 0', () => {
     cache({ serverMaxAge: 0, browserMaxAge: 0 })
-    expect(global.headers.header).toHaveBeenCalledWith('Cache-Control', 'no-cache')
+    expect(global.headers.header).toHaveBeenCalledWith(
+      'Cache-Control',
+      'private, no-store, no-cache'
+    )
   })
 })

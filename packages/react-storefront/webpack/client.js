@@ -15,7 +15,13 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime }) {
+function createServiceWorkerPlugins({
+  root,
+  dest,
+  workboxConfig,
+  prefetchRampUpTime,
+  allowPrefetchThrottling = false
+}) {
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
   const swHash = hash(path.join(swBootstrap))
   const swBootstrapDest = `serviceWorkerBootstrap.${swHash}.js`
@@ -34,6 +40,7 @@ function createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpT
               .replace('{{version}}', buildTime)
               .replace('{{deployTime}}', buildTime)
               .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
+              .replace('{{allowPrefetchThrottling}}', allowPrefetchThrottling)
           }
         }
       ]),
@@ -64,6 +71,7 @@ module.exports = {
    * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
+   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
    * @param {Object} options.eslintConfig A config object for eslint
    * @return {Object} A webpack config
    */
@@ -74,7 +82,8 @@ module.exports = {
       entries,
       additionalPlugins = [],
       eslintConfig = require('./eslint-client'),
-      prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */
+      prefetchRampUpTime = -5000, // compensate for the 5 minute buffer for deployments so that there is no ramp up time
+      allowPrefetchThrottling = false
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -123,7 +132,8 @@ module.exports = {
             root,
             dest,
             workboxConfig: process.env.MOOV_SW ? workboxConfig : null,
-            prefetchRampUpTime
+            prefetchRampUpTime,
+            allowPrefetchThrottling
           })
         ]
       })
@@ -137,6 +147,7 @@ module.exports = {
    * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
+   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
    * @return {Object} A webpack config
    */
   prod(
@@ -145,7 +156,8 @@ module.exports = {
       workboxConfig = {},
       additionalPlugins = [],
       entries,
-      prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */
+      prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
+      allowPrefetchThrottling = true
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -196,26 +208,14 @@ module.exports = {
           }
         ]),
         ...additionalPlugins,
-        ...createServiceWorkerPlugins({ root, dest, workboxConfig, prefetchRampUpTime })
+        ...createServiceWorkerPlugins({
+          root,
+          dest,
+          workboxConfig,
+          prefetchRampUpTime,
+          allowPrefetchThrottling
+        })
       ].concat(createPlugins(root))
     })
   }
-}
-
-function createPlugins(root) {
-  return [
-    injectBuildTimestamp(),
-    new CleanWebpackPlugin(
-      [path.join(root, 'build', 'assets'), path.join(root, 'scripts', 'build')],
-      {
-        allowExternal: true,
-        verbose: false
-      }
-    ),
-    new HtmlWebpackPlugin({
-      filename: 'install-service-worker.html',
-      title: 'Installing Service Worker...',
-      chunks: ['bootstrap', 'installServiceWorker']
-    })
-  ]
 }

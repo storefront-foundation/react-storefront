@@ -68,14 +68,18 @@ describe('responseHeaderTransform', () => {
     global.env.__static_origin_path__ = true
     global.env.path = '/service-worker.js'
     responseHeaderTransform()
-    expect(headers.header('cache-control')).toBe(`no-cache, s-maxage=${FAR_FUTURE}`)
+    expect(headers.header('cache-control')).toBe(
+      `private, no-store, no-cache, s-maxage=${FAR_FUTURE}`
+    )
   })
 
   it('should cache the service worker on the server', () => {
     global.env.__static_origin_path__ = true
     global.env.path = '/service-worker.js'
     responseHeaderTransform()
-    expect(headers.header('cache-control')).toBe(`no-cache, s-maxage=${FAR_FUTURE}`)
+    expect(headers.header('cache-control')).toBe(
+      `private, no-store, no-cache, s-maxage=${FAR_FUTURE}`
+    )
   })
 
   it('should cache pwa static assets on the client and server', () => {
@@ -156,6 +160,17 @@ describe('responseHeaderTransform', () => {
     responseHeaderTransform()
 
     expect(headers.header('cache-control')).not.toBeDefined()
+  })
+
+  it('should set cache-control: private, no-store, no-cache when simulating a prefetch rejection', () => {
+    global.env.MOOV_PWA_RESPONSE = {
+      cookies: [],
+      statusCode: 544
+    }
+
+    responseHeaderTransform()
+
+    expect(headers.header('cache-control')).toBe('private, no-store, no-cache')
   })
 
   it('should cache proxied images automatically', () => {
