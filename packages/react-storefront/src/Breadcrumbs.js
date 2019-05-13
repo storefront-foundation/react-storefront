@@ -27,7 +27,7 @@ export const styles = theme => ({
   separator: {
     height: '12px',
     position: 'relative',
-    top: '3px',
+    top: '2px',
     width: '16px'
   },
 

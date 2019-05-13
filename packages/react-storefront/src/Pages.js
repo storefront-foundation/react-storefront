@@ -38,13 +38,10 @@ export const styles = theme => ({
  * component that is displayed.
  */
 @withStyles(styles, { name: 'RSFPages' })
-@inject(({ app, router, history }) => ({
+@inject(({ app }) => ({
   app,
   page: app.page,
-  loading: app.loading,
-  uri: app.uri,
-  router,
-  history
+  loading: app.loading
 }))
 @observer
 export default class Pages extends Component {
@@ -171,7 +168,7 @@ export default class Pages extends Component {
   }
 
   isLoading = () => {
-    return this.props.loading || this.state.loadingComponent
+    return this.props.app.loading || this.state.loadingComponent
   }
 
   renderLoadMask = () => {
