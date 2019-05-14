@@ -14,14 +14,13 @@ global.http = http
 global.https = https
 
 describe('fetch', () => {
-
   beforeEach(() => {
-    global.https = https;
+    global.https = https
     global.fns = {
       export: (key, value) => {
         global.env[key] = value
       }
-    };
+    }
     global.env = {}
   })
 
@@ -30,10 +29,10 @@ describe('fetch', () => {
   it('should respond with simple text', async () => {
     nock('https://www.google.com')
       .get('/')
-      .reply(200, '<!doctype html>', { "content-type": 'html/text' })
+      .reply(200, '<!doctype html>', { 'content-type': 'html/text' })
 
-    const html = await fetch('https://www.google.com').then(res => res.text());
-    expect(html).toContain('<!doctype html>');
+    const html = await fetch('https://www.google.com').then(res => res.text())
+    expect(html).toContain('<!doctype html>')
   })
 
   it('should respond with json', async () => {
@@ -41,10 +40,9 @@ describe('fetch', () => {
       .get('/')
       .reply(200, { title: 'test' })
 
-    const data = await fetch('https://api.com')
-      .then(res => res.json());
-      
-    expect(data).toHaveProperty('title');
+    const data = await fetch('https://api.com').then(res => res.json())
+
+    expect(data).toHaveProperty('title')
   })
 
   it('should respond with a buffer', async () => {
@@ -52,10 +50,9 @@ describe('fetch', () => {
       .get('/')
       .reply(200, { title: 'test' })
 
-    const data = await fetch('https://api.com/')
-      .then(res => res.arrayBuffer());
+    const data = await fetch('https://api.com/').then(res => res.arrayBuffer())
 
-    expect(JSON.parse(data.toString('utf8'))).toHaveProperty('title');
+    expect(JSON.parse(data.toString('utf8'))).toHaveProperty('title')
   })
 
   it('should POST string data verbatim', async () => {
@@ -72,11 +69,11 @@ describe('fetch', () => {
     const data = await fetch('https://api.com/posts', {
       body,
       headers: {
-        "content-type": "application/json"
+        'content-type': 'application/json'
       }
-    }).then(res => res.json());
-      
-    expect(data).toEqual({ success: true });
+    }).then(res => res.json())
+
+    expect(data).toEqual({ success: true })
   })
 
   it('should stringify and then POST non-stringified JSON', async () => {
@@ -90,28 +87,29 @@ describe('fetch', () => {
       .post('/posts', JSON.stringify(body))
       .reply(200, { success: true })
 
-    const data = await fetch('https://api.com/posts', { body })
-      .then(res => res.json());
+    const data = await fetch('https://api.com/posts', { body }).then(res => res.json())
 
     expect(data).toEqual({ success: true })
   })
 
   it('should send custom headers', async () => {
-    nock('https://api.com', { reqheaders: { 'Testheader': 'Sent' }})
+    nock('https://api.com', { reqheaders: { Testheader: 'Sent' } })
       .get('/anything')
       .reply(200, { success: true })
-      
+
     const data = await fetch('https://api.com/anything', {
       headers: {
-        'Testheader': 'Sent'
+        Testheader: 'Sent'
       }
-    }).then(res => res.json());
+    }).then(res => res.json())
 
     expect(data).toEqual({ success: true })
   })
 
   it('should send x-www-form-urlencoded data', async () => {
-    nock('https://api.com', { reqheaders: { 'content-type': 'application/x-www-form-urlencoded', 'content-length': 7 }})
+    nock('https://api.com', {
+      reqheaders: { 'content-type': 'application/x-www-form-urlencoded', 'content-length': 7 }
+    })
       .post('/anything', 'a=1&b=2')
       .reply(200, { success: true })
 
@@ -120,22 +118,28 @@ describe('fetch', () => {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
       }
-    }).then(res => res.json());
+    }).then(res => res.json())
 
     expect(data).toEqual({ success: true })
   })
 
   it('should send x-www-form-urlencoded data with custom qs settings', async () => {
-    nock('https://api.com', { reqheaders: { 'content-type': 'application/x-www-form-urlencoded', 'content-length': 11 }})
-      .post('/anything', "a[]=1&a[]=2")
+    nock('https://api.com', {
+      reqheaders: { 'content-type': 'application/x-www-form-urlencoded', 'content-length': 11 }
+    })
+      .post('/anything', 'a[]=1&a[]=2')
       .reply(200, { success: true })
 
-    const data = await fetch('https://api.com/anything', {
-      body: { a: [1,2] },
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded'
-      }
-    }, { arrayFormat: 'brackets', encode: false }).then(res => res.json());
+    const data = await fetch(
+      'https://api.com/anything',
+      {
+        body: { a: [1, 2] },
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded'
+        }
+      },
+      { arrayFormat: 'brackets', encode: false }
+    ).then(res => res.json())
 
     expect(data).toEqual({ success: true })
   })
@@ -145,16 +149,17 @@ describe('fetch', () => {
       title: 'foo',
       body: 'bar',
       userId: 1
-    };
+    }
 
-    const contentLength = Buffer.byteLength(JSON.stringify(body));
+    const contentLength = Buffer.byteLength(JSON.stringify(body))
 
-    nock('https://api.com', { reqheaders: { 'content-type': 'application/json', 'content-length': contentLength }})
+    nock('https://api.com', {
+      reqheaders: { 'content-type': 'application/json', 'content-length': contentLength }
+    })
       .post('/anything', JSON.stringify(body))
       .reply(200, { success: true })
 
-    const data = await fetch('https://api.com/anything', { body })
-      .then(res => res.json());
+    const data = await fetch('https://api.com/anything', { body }).then(res => res.json())
 
     expect(data).toEqual({ success: true })
   })
@@ -168,7 +173,7 @@ describe('fetch', () => {
 
     try {
       await fetch('https://api.com/error')
-    } catch(e) {
+    } catch (e) {
       error = e
     }
 
@@ -177,13 +182,12 @@ describe('fetch', () => {
 
   it('should reject if the request throws an error', async () => {
     let rejected = false
-    
+
     nock('https://api.com')
       .get('/error')
       .reply(404)
 
-    await fetch('https://api.com/error')
-      .catch(() => rejected = true)  
+    await fetch('https://api.com/error').catch(() => (rejected = true))
 
     expect(rejected).toBe(true)
   })
@@ -194,8 +198,8 @@ describe('fetch', () => {
       .reply(200, { success: true }, { 'set-cookie': 'foo=bar' })
 
     await fetch('https://api.com/cookie')
-      
-    expect(global.env.MUR_SET_COOKIES["api.com"].length).toEqual(1);
+
+    expect(global.env.MUR_SET_COOKIES['api.com'].length).toEqual(1)
   })
 
   it('should decode gzip text responses', async () => {
@@ -224,7 +228,7 @@ describe('fetch', () => {
   it('should handle errors', async () => {
     nock('https://www.example.com')
       .get('/error')
-      .replyWithError({code: 'ETIMEDOUT'})
+      .replyWithError({ code: 'ETIMEDOUT' })
 
     let error = null
 
@@ -259,7 +263,7 @@ describe('fetchWithCookies', () => {
   })
 
   it('should not add cookies if "shouldSendCookies" is false', async () => {
-    nock('https://api.com', { reqheaders: { } })
+    nock('https://api.com', { reqheaders: {} })
       .get('/posts/1')
       .reply(200, { cookies: false })
 
@@ -269,7 +273,7 @@ describe('fetchWithCookies', () => {
   })
 
   it('should not add a cookie if env.cookie is undefined', async () => {
-    nock('https://api.com', { reqheaders: { } })
+    nock('https://api.com', { reqheaders: {} })
       .get('/posts/1')
       .reply(200, { cookies: false })
 
@@ -279,13 +283,13 @@ describe('fetchWithCookies', () => {
   })
 
   it('should add headers.cookie to any existing headers', async () => {
-    nock('https://api.com', { reqheaders: { cookie: env.cookie, "x-api-key": "foobar" } })
+    nock('https://api.com', { reqheaders: { cookie: env.cookie, 'x-api-key': 'foobar' } })
       .get('/posts/1')
       .reply(200, { cookies: true })
 
     const result = await fetchWithCookies('https://api.com/posts/1', {
       headers: {
-        "x-api-key": "foobar"
+        'x-api-key': 'foobar'
       }
     }).then(res => res.json())
 
@@ -299,36 +303,47 @@ describe('fetchWithCookies', () => {
       userId: 1
     }
 
-    nock('https://api.com', { reqheaders: { cookie: env.cookie, "content-type": "application/json", "content-length": 39 } })
+    nock('https://api.com', {
+      reqheaders: { cookie: env.cookie, 'content-type': 'application/json', 'content-length': 39 }
+    })
       .post('/posts/1', JSON.stringify(body))
       .reply(200, { success: true })
 
-    const result = await fetchWithCookies('https://api.com/posts/1', { body})
-      .then(res => res.json())
+    const result = await fetchWithCookies('https://api.com/posts/1', { body }).then(res =>
+      res.json()
+    )
 
     expect(result).toEqual({ success: true })
   })
 })
 
 describe('redirect', () => {
-
   beforeEach(() => {
     const scope = nock('https://www.example.com')
 
-    for (let i=1; i<=30; i++) {
-      scope.get(`/redirect${i}`).reply(302, undefined, { "Location": `/redirect${i-1}` })
+    for (let i = 1; i <= 30; i++) {
+      scope
+        .get(`/redirect${i}`)
+        .reply(302, undefined, { Location: `https://www.example.com/redirect${i - 1}` })
     }
 
     scope.get(`/redirect0`).reply(200, { success: true })
-    nock('https://target.redirect.com').get('/').reply(302, undefined, { "Location": 'https://source.redirect.com/' })
-    nock('https://source.redirect.com').get('/').reply(200, { success: true })
+
+    nock('https://target.redirect.com')
+      .get('/')
+      .reply(302, undefined, { Location: 'https://source.redirect.com/' })
+
+    nock('https://source.redirect.com')
+      .get('/')
+      .reply(200, { success: true })
   })
 
   describe('follow', () => {
     it('should follow up to 20 redirects by default', async () => {
-      const result = await fetch('https://www.example.com/redirect20', { redirect: 'follow' })
-        .then(res => res.json())
-
+      const response = await fetch('https://www.example.com/redirect20', { redirect: 'follow' })
+      expect(response.redirected).toBe(true)
+      expect(response.url).toBe('https://www.example.com/redirect0')
+      const result = await response.json()
       expect(result).toEqual({ success: true })
     })
 
@@ -336,17 +351,22 @@ describe('redirect', () => {
       let error
 
       try {
-        await fetch('https://www.example.com/redirect21', { redirect: 'follow' })
-          .then(res => res.json())
+        await fetch('https://www.example.com/redirect21', { redirect: 'follow' }).then(res =>
+          res.json()
+        )
       } catch (e) {
         error = e
       }
 
-      expect(error.message).toEqual("The maximum number of redirects has been reached while using fetch.")
+      expect(error.message).toEqual(
+        'The maximum number of redirects has been reached while using fetch.'
+      )
     })
 
     it('should follow to other domains', async () => {
-      const result = await fetch('https://target.redirect.com/', { redirect: 'follow' }).then(res => res.json())
+      const result = await fetch('https://target.redirect.com/', { redirect: 'follow' }).then(res =>
+        res.json()
+      )
       expect(result).toEqual({ success: true })
     })
   })
@@ -356,29 +376,32 @@ describe('redirect', () => {
       let error
 
       try {
-        await fetch('https://www.example.com/redirect1', { redirect: 'error' })
-          .then(res => res.json())
+        await fetch('https://www.example.com/redirect1', { redirect: 'error' }).then(res =>
+          res.json()
+        )
       } catch (e) {
         error = e
       }
 
-      expect(error.message).toEqual("fetch received a redirect response status 302 and options.redirect was set to \"error\".")
+      expect(error.message).toEqual(
+        'fetch received a redirect response status 302 and options.redirect was set to "error".'
+      )
     })
   })
 
   describe('manual', () => {
     it('should return a redirect object', async () => {
-      const result = await fetch('https://www.example.com/redirect1', { redirect: 'manual' })
-        .then(res => res.json())
-
-      expect(result).toEqual({ redirect: '/redirect0' })
+      const res = await fetch('https://www.example.com/redirect1', { redirect: 'manual' })
+      expect(res.redirected).toBe(true)
+      expect(res.url).toBe('https://www.example.com/redirect0')
+      const result = await res.json()
+      expect(result).toEqual({ redirect: 'https://www.example.com/redirect0' })
     })
     it('should return a redirect object, stringified', async () => {
-      const result = await fetch('https://www.example.com/redirect1', { redirect: 'manual' })
-        .then(res => res.text())
-
-      expect(result).toEqual(JSON.stringify({ redirect: '/redirect0' }))
+      const result = await fetch('https://www.example.com/redirect1', { redirect: 'manual' }).then(
+        res => res.text()
+      )
+      expect(result).toEqual(JSON.stringify({ redirect: 'https://www.example.com/redirect0' }))
     })
   })
-
 })

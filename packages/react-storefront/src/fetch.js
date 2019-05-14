@@ -131,7 +131,9 @@ export default function fetch(url, options = {}, qsOptions) {
           if (options.redirect === 'follow') {
             if (maxRedirects > 0) {
               const redirectURL = URL.resolve(url, response.headers.location)
-              return resolve(fetch(redirectURL, { ...options, maxRedirects: maxRedirects - 1 }))
+              return resolve(
+                fetch(redirectURL, { ...options, maxRedirects: maxRedirects - 1, redirected: true })
+              )
             } else {
               return reject(
                 new Error('The maximum number of redirects has been reached while using fetch.')
@@ -149,6 +151,8 @@ export default function fetch(url, options = {}, qsOptions) {
             const redirectData = { redirect: response.headers.location }
 
             return resolve({
+              redirected: true,
+              url: response.headers.location,
               status: response.statusCode,
               ok: true,
               headers: response.headers,
@@ -161,6 +165,8 @@ export default function fetch(url, options = {}, qsOptions) {
           const ok = response.statusCode >= 200 && response.statusCode <= 299
 
           const result = {
+            redirected: options.redirected || false,
+            url,
             status: response.statusCode,
             statusText: response.statusText,
             ok,
