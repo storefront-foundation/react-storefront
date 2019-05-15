@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.19.0
+
+- Improved `MenuIcon` with better animation. Note: MenuIcon's `OpenIcon` and `CloseIcon` props have been removed.
+
 ### 6.18.0
 
 - Fetch now implements the standard `redirected` and `url` properties on the `Response` object. See https://developer.mozilla.org/en-US/docs/Web/API/Response#Properties.

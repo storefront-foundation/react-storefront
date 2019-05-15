@@ -19,6 +19,7 @@ export { default as CheckoutButton } from './CheckoutButton.js';
 export { default as CmsSlot } from './CmsSlot.js';
 export { default as Config } from './Config.js';
 export { default as Container } from './Container.js';
+export { default as DefaultMenuIcon } from './DefaultMenuIcon.js';
 export { default as DialogClose } from './DialogClose.js';
 export { default as Divider } from './Divider.js';
 export { default as Drawer } from './Drawer.js';
