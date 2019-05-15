@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`powerLinkHandler powerLinkHandler should set service worker path in body 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "body": "
+    var links = Array.from(document.querySelectorAll('a[data-rsf-power-link]')).map(function(link) {
+      var powerlink = link.getAttribute('href');
+      powerlink += (powerlink.indexOf('?') === -1 ? '?' : '&') + 'powerlink'
+      link.setAttribute('href', powerlink);
+      return link.getAttribute('href')
+    });
+
+    var el = document.createElement('iframe');
+
+    el.setAttribute('src', 'https://test.com/pwa/install-service-worker.html?preload=' + encodeURIComponent(JSON.stringify(links)));
+    el.setAttribute('style', 'height:1px;width:1px;');
+    el.setAttribute('frameborder', '0');
+    
+    document.body.appendChild(el);
+  ",
+        "htmlparsed": true,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
