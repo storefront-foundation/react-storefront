@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.20.1
+
+- Fixes UI styling in cases where the last breadcrumb is a link.
+
 ### 6.20.0
 
 - Added `serveSSRFromCache` option to the client webpack build. Set to `true` to allow the sevice worker to serve from the cache when a user initially lands on your app. Defaults to `false`.
