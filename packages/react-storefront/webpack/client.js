@@ -20,7 +20,8 @@ function createServiceWorkerPlugins({
   dest,
   workboxConfig,
   prefetchRampUpTime,
-  allowPrefetchThrottling = false
+  allowPrefetchThrottling = false,
+  serveSSRFromCache = false
 }) {
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
   const swHash = hash(path.join(swBootstrap))
@@ -41,6 +42,7 @@ function createServiceWorkerPlugins({
               .replace('{{deployTime}}', buildTime)
               .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
               .replace('{{allowPrefetchThrottling}}', allowPrefetchThrottling)
+              .replace('{{serveSSRFromCache}}', serveSSRFromCache)
           }
         }
       ]),
@@ -83,7 +85,8 @@ module.exports = {
       additionalPlugins = [],
       eslintConfig = require('./eslint-client'),
       prefetchRampUpTime = -5000, // compensate for the 5 minute buffer for deployments so that there is no ramp up time
-      allowPrefetchThrottling = false
+      allowPrefetchThrottling = false,
+      serveSSRFromCache = false
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -133,7 +136,8 @@ module.exports = {
             dest,
             workboxConfig: process.env.MOOV_SW ? workboxConfig : null,
             prefetchRampUpTime,
-            allowPrefetchThrottling
+            allowPrefetchThrottling,
+            serveSSRFromCache
           })
         ]
       })
@@ -157,7 +161,8 @@ module.exports = {
       additionalPlugins = [],
       entries,
       prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
-      allowPrefetchThrottling = true
+      allowPrefetchThrottling = true,
+      serveSSRFromCache = false
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -213,7 +218,8 @@ module.exports = {
           dest,
           workboxConfig,
           prefetchRampUpTime,
-          allowPrefetchThrottling
+          allowPrefetchThrottling,
+          serveSSRFromCache
         })
       ].concat(createPlugins(root))
     })

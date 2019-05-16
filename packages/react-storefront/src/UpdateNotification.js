@@ -3,26 +3,17 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React, { Component } from 'react'
-import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types'
 import Snackbar from '@material-ui/core/Snackbar'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 
-export const styles = theme => ({
-  close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4
-  }
-})
-
 /**
  * A snackbar that automatically displays when a new version of the service worker is available.
  * By default the component only shows when the app is launched from the user's homescreen on android devices.
  * Additonal props are spread to the underlying material-ui Snackbar component
  */
-@withStyles(styles, { name: 'RSFUpdateNotification' })
 export default class UpdateNotification extends Component {
   state = {
     notifyUpdate: false
@@ -46,7 +37,7 @@ export default class UpdateNotification extends Component {
   }
 
   render() {
-    const { message, classes, reloadButtonText, ...others } = this.props
+    const { message, reloadButtonText, ...others } = this.props
     const { notifyUpdate } = this.state
 
     return (
@@ -63,7 +54,6 @@ export default class UpdateNotification extends Component {
             key="close"
             aria-label="Close"
             color="inherit"
-            className={classes.close}
             onClick={this.handleNotifyClose}
           >
             <CloseIcon />

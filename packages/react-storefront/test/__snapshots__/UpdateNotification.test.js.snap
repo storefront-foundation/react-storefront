@@ -4,102 +4,100 @@ exports[`UpdateNotification should accept a custom message 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
     <MuiThemeProviderOld theme={{...}}>
-      <WithStyles(UpdateNotification) message="Update available">
-        <UpdateNotification message="Update available" classes={{...}} reloadButtonText="RELOAD">
-          <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="Update available" action={{...}}>
-            <Snackbar open={true} autoHideDuration={6000} onClose={[Function]} message="Update available" action={{...}} classes={{...}} anchorOrigin={{...}} disableWindowBlurListener={false} TransitionComponent={[Function: WithTheme]} transitionDuration={{...}}>
-              <ClickAwayListener onClickAway={[Function]} mouseEvent="onMouseUp" touchEvent="onTouchEnd">
-                <div className="MuiSnackbar-root-10 MuiSnackbar-anchorOriginBottomCenter-12" onMouseEnter={[Function]} onMouseLeave={[Function]}>
-                  <EventListener target="window" onFocus={[Function]} onBlur={[Function]} />
-                  <WithTheme(Slide) appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
-                    <Slide theme={{...}} appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
-                      <EventListener target="window" onResize={[Function: debounced]}>
-                        <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={true} style={{...}} in={true} onEntered={[Function: noop]} onExiting={[Function: noop]} timeout={{...}} direction="up" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true}>
-                          <WithStyles(SnackbarContent) message="Update available" action={{...}} style={{...}} direction="up">
-                            <SnackbarContent message="Update available" action={{...}} style={{...}} direction="up" classes={{...}}>
-                              <WithStyles(Paper) component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-133" style={{...}} direction="up">
-                                <Paper component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-133" style={{...}} direction="up" classes={{...}}>
-                                  <WithStyles(Typography) className="MuiPaper-root-136 MuiPaper-elevation6-144 MuiSnackbarContent-root-133" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up">
-                                    <Typography className="MuiPaper-root-136 MuiPaper-elevation6-144 MuiSnackbarContent-root-133" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} noWrap={false} paragraph={false}>
-                                      <div className="MuiTypography-root-163 MuiTypography-body2-171 MuiPaper-root-136 MuiPaper-elevation6-144 MuiSnackbarContent-root-133" role="alertdialog" style={{...}} direction="up">
-                                        <div className="MuiSnackbarContent-message-134">
-                                          Update available
-                                        </div>
-                                        <div className="MuiSnackbarContent-action-135">
-                                          <WithStyles(Button) color="secondary" size="small" onClick={[Function]}>
-                                            <Button color="secondary" size="small" onClick={[Function]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} type="button" variant="text">
-                                              <WithStyles(ButtonBase) className="MuiButton-root-198 MuiButton-text-200 MuiButton-textSecondary-202 MuiButton-flat-203 MuiButton-flatSecondary-205 MuiButton-sizeSmall-221" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-217" onClick={[Function]} component="button" type="button">
-                                                <ButtonBase className="MuiButton-root-198 MuiButton-text-200 MuiButton-textSecondary-202 MuiButton-flat-203 MuiButton-flatSecondary-205 MuiButton-sizeSmall-221" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-217" onClick={[Function]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-                                                  <button className="MuiButtonBase-root-224 MuiButton-root-198 MuiButton-text-200 MuiButton-textSecondary-202 MuiButton-flat-203 MuiButton-flatSecondary-205 MuiButton-sizeSmall-221" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]}>
-                                                    <span className="MuiButton-label-199">
-                                                      RELOAD
-                                                    </span>
-                                                    <NoSsr defer={false} fallback={{...}}>
-                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                        <TouchRipple center={false} classes={{...}}>
-                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-242" childFactory={[Function: childFactory]}>
-                                                            <span className="MuiTouchRipple-root-242" />
-                                                          </TransitionGroup>
-                                                        </TouchRipple>
-                                                      </WithStyles(TouchRipple)>
-                                                    </NoSsr>
-                                                  </button>
-                                                </ButtonBase>
-                                              </WithStyles(ButtonBase)>
-                                            </Button>
-                                          </WithStyles(Button)>
-                                          <WithStyles(IconButton) aria-label="Close" color="inherit" className="RSFUpdateNotification-close-9" onClick={[Function]}>
-                                            <IconButton aria-label="Close" color="inherit" className="RSFUpdateNotification-close-9" onClick={[Function]} classes={{...}} disabled={false}>
-                                              <WithStyles(ButtonBase) className="MuiIconButton-root-227 MuiIconButton-colorInherit-228 RSFUpdateNotification-close-9" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]}>
-                                                <ButtonBase className="MuiIconButton-root-227 MuiIconButton-colorInherit-228 RSFUpdateNotification-close-9" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                                  <button className="MuiButtonBase-root-224 MuiIconButton-root-227 MuiIconButton-colorInherit-228 RSFUpdateNotification-close-9" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Close" onClick={[Function]}>
-                                                    <span className="MuiIconButton-label-232">
-                                                      <pure(CloseIcon)>
-                                                        <CloseIcon>
-                                                          <WithStyles(SvgIcon)>
-                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                              <svg className="MuiSvgIcon-root-233" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                                                <path fill="none" d="M0 0h24v24H0z" />
-                                                              </svg>
-                                                            </SvgIcon>
-                                                          </WithStyles(SvgIcon)>
-                                                        </CloseIcon>
-                                                      </pure(CloseIcon)>
-                                                    </span>
-                                                    <NoSsr defer={false} fallback={{...}}>
-                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                        <TouchRipple center={true} classes={{...}}>
-                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-242" childFactory={[Function: childFactory]}>
-                                                            <span className="MuiTouchRipple-root-242" />
-                                                          </TransitionGroup>
-                                                        </TouchRipple>
-                                                      </WithStyles(TouchRipple)>
-                                                    </NoSsr>
-                                                  </button>
-                                                </ButtonBase>
-                                              </WithStyles(ButtonBase)>
-                                            </IconButton>
-                                          </WithStyles(IconButton)>
-                                        </div>
+      <UpdateNotification message="Update available" reloadButtonText="RELOAD">
+        <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="Update available" action={{...}}>
+          <Snackbar open={true} autoHideDuration={6000} onClose={[Function]} message="Update available" action={{...}} classes={{...}} anchorOrigin={{...}} disableWindowBlurListener={false} TransitionComponent={[Function: WithTheme]} transitionDuration={{...}}>
+            <ClickAwayListener onClickAway={[Function]} mouseEvent="onMouseUp" touchEvent="onTouchEnd">
+              <div className="MuiSnackbar-root-8 MuiSnackbar-anchorOriginBottomCenter-10" onMouseEnter={[Function]} onMouseLeave={[Function]}>
+                <EventListener target="window" onFocus={[Function]} onBlur={[Function]} />
+                <WithTheme(Slide) appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
+                  <Slide theme={{...}} appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
+                    <EventListener target="window" onResize={[Function: debounced]}>
+                      <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={true} style={{...}} in={true} onEntered={[Function: noop]} onExiting={[Function: noop]} timeout={{...}} direction="up" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true}>
+                        <WithStyles(SnackbarContent) message="Update available" action={{...}} style={{...}} direction="up">
+                          <SnackbarContent message="Update available" action={{...}} style={{...}} direction="up" classes={{...}}>
+                            <WithStyles(Paper) component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-131" style={{...}} direction="up">
+                              <Paper component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-131" style={{...}} direction="up" classes={{...}}>
+                                <WithStyles(Typography) className="MuiPaper-root-134 MuiPaper-elevation6-142 MuiSnackbarContent-root-131" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up">
+                                  <Typography className="MuiPaper-root-134 MuiPaper-elevation6-142 MuiSnackbarContent-root-131" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} noWrap={false} paragraph={false}>
+                                    <div className="MuiTypography-root-161 MuiTypography-body2-169 MuiPaper-root-134 MuiPaper-elevation6-142 MuiSnackbarContent-root-131" role="alertdialog" style={{...}} direction="up">
+                                      <div className="MuiSnackbarContent-message-132">
+                                        Update available
                                       </div>
-                                    </Typography>
-                                  </WithStyles(Typography)>
-                                </Paper>
-                              </WithStyles(Paper)>
-                            </SnackbarContent>
-                          </WithStyles(SnackbarContent)>
-                        </Transition>
-                      </EventListener>
-                    </Slide>
-                  </WithTheme(Slide)>
-                </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
-              </ClickAwayListener>
-            </Snackbar>
-          </WithStyles(Snackbar)>
-        </UpdateNotification>
-      </WithStyles(UpdateNotification)>
+                                      <div className="MuiSnackbarContent-action-133">
+                                        <WithStyles(Button) color="secondary" size="small" onClick={[Function]}>
+                                          <Button color="secondary" size="small" onClick={[Function]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} type="button" variant="text">
+                                            <WithStyles(ButtonBase) className="MuiButton-root-196 MuiButton-text-198 MuiButton-textSecondary-200 MuiButton-flat-201 MuiButton-flatSecondary-203 MuiButton-sizeSmall-219" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-215" onClick={[Function]} component="button" type="button">
+                                              <ButtonBase className="MuiButton-root-196 MuiButton-text-198 MuiButton-textSecondary-200 MuiButton-flat-201 MuiButton-flatSecondary-203 MuiButton-sizeSmall-219" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-215" onClick={[Function]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                                                <button className="MuiButtonBase-root-222 MuiButton-root-196 MuiButton-text-198 MuiButton-textSecondary-200 MuiButton-flat-201 MuiButton-flatSecondary-203 MuiButton-sizeSmall-219" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]}>
+                                                  <span className="MuiButton-label-197">
+                                                    RELOAD
+                                                  </span>
+                                                  <NoSsr defer={false} fallback={{...}}>
+                                                    <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                      <TouchRipple center={false} classes={{...}}>
+                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-240" childFactory={[Function: childFactory]}>
+                                                          <span className="MuiTouchRipple-root-240" />
+                                                        </TransitionGroup>
+                                                      </TouchRipple>
+                                                    </WithStyles(TouchRipple)>
+                                                  </NoSsr>
+                                                </button>
+                                              </ButtonBase>
+                                            </WithStyles(ButtonBase)>
+                                          </Button>
+                                        </WithStyles(Button)>
+                                        <WithStyles(IconButton) aria-label="Close" color="inherit" onClick={[Function]}>
+                                          <IconButton aria-label="Close" color="inherit" onClick={[Function]} classes={{...}} disabled={false}>
+                                            <WithStyles(ButtonBase) className="MuiIconButton-root-225 MuiIconButton-colorInherit-226" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]}>
+                                              <ButtonBase className="MuiIconButton-root-225 MuiIconButton-colorInherit-226" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                <button className="MuiButtonBase-root-222 MuiIconButton-root-225 MuiIconButton-colorInherit-226" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Close" onClick={[Function]}>
+                                                  <span className="MuiIconButton-label-230">
+                                                    <pure(CloseIcon)>
+                                                      <CloseIcon>
+                                                        <WithStyles(SvgIcon)>
+                                                          <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                            <svg className="MuiSvgIcon-root-231" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                              <path fill="none" d="M0 0h24v24H0z" />
+                                                            </svg>
+                                                          </SvgIcon>
+                                                        </WithStyles(SvgIcon)>
+                                                      </CloseIcon>
+                                                    </pure(CloseIcon)>
+                                                  </span>
+                                                  <NoSsr defer={false} fallback={{...}}>
+                                                    <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                      <TouchRipple center={true} classes={{...}}>
+                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-240" childFactory={[Function: childFactory]}>
+                                                          <span className="MuiTouchRipple-root-240" />
+                                                        </TransitionGroup>
+                                                      </TouchRipple>
+                                                    </WithStyles(TouchRipple)>
+                                                  </NoSsr>
+                                                </button>
+                                              </ButtonBase>
+                                            </WithStyles(ButtonBase)>
+                                          </IconButton>
+                                        </WithStyles(IconButton)>
+                                      </div>
+                                    </div>
+                                  </Typography>
+                                </WithStyles(Typography)>
+                              </Paper>
+                            </WithStyles(Paper)>
+                          </SnackbarContent>
+                        </WithStyles(SnackbarContent)>
+                      </Transition>
+                    </EventListener>
+                  </Slide>
+                </WithTheme(Slide)>
+              </div>
+              <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
+            </ClickAwayListener>
+          </Snackbar>
+        </WithStyles(Snackbar)>
+      </UpdateNotification>
     </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
@@ -109,102 +107,100 @@ exports[`UpdateNotification should accept custom text for the reload button 1`] 
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
     <MuiThemeProviderOld theme={{...}}>
-      <WithStyles(UpdateNotification) reloadButtonText="REFRESH">
-        <UpdateNotification reloadButtonText="REFRESH" classes={{...}} message="An new version of this app is available.">
-          <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
-            <Snackbar open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}} classes={{...}} anchorOrigin={{...}} disableWindowBlurListener={false} TransitionComponent={[Function: WithTheme]} transitionDuration={{...}}>
-              <ClickAwayListener onClickAway={[Function]} mouseEvent="onMouseUp" touchEvent="onTouchEnd">
-                <div className="MuiSnackbar-root-250 MuiSnackbar-anchorOriginBottomCenter-252" onMouseEnter={[Function]} onMouseLeave={[Function]}>
-                  <EventListener target="window" onFocus={[Function]} onBlur={[Function]} />
-                  <WithTheme(Slide) appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
-                    <Slide theme={{...}} appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
-                      <EventListener target="window" onResize={[Function: debounced]}>
-                        <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={true} style={{...}} in={true} onEntered={[Function: noop]} onExiting={[Function: noop]} timeout={{...}} direction="up" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true}>
-                          <WithStyles(SnackbarContent) message="An new version of this app is available." action={{...}} style={{...}} direction="up">
-                            <SnackbarContent message="An new version of this app is available." action={{...}} style={{...}} direction="up" classes={{...}}>
-                              <WithStyles(Paper) component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-257" style={{...}} direction="up">
-                                <Paper component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-257" style={{...}} direction="up" classes={{...}}>
-                                  <WithStyles(Typography) className="MuiPaper-root-260 MuiPaper-elevation6-268 MuiSnackbarContent-root-257" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up">
-                                    <Typography className="MuiPaper-root-260 MuiPaper-elevation6-268 MuiSnackbarContent-root-257" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} noWrap={false} paragraph={false}>
-                                      <div className="MuiTypography-root-287 MuiTypography-body2-295 MuiPaper-root-260 MuiPaper-elevation6-268 MuiSnackbarContent-root-257" role="alertdialog" style={{...}} direction="up">
-                                        <div className="MuiSnackbarContent-message-258">
-                                          An new version of this app is available.
-                                        </div>
-                                        <div className="MuiSnackbarContent-action-259">
-                                          <WithStyles(Button) color="secondary" size="small" onClick={[Function]}>
-                                            <Button color="secondary" size="small" onClick={[Function]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} type="button" variant="text">
-                                              <WithStyles(ButtonBase) className="MuiButton-root-322 MuiButton-text-324 MuiButton-textSecondary-326 MuiButton-flat-327 MuiButton-flatSecondary-329 MuiButton-sizeSmall-345" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-341" onClick={[Function]} component="button" type="button">
-                                                <ButtonBase className="MuiButton-root-322 MuiButton-text-324 MuiButton-textSecondary-326 MuiButton-flat-327 MuiButton-flatSecondary-329 MuiButton-sizeSmall-345" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-341" onClick={[Function]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-                                                  <button className="MuiButtonBase-root-348 MuiButton-root-322 MuiButton-text-324 MuiButton-textSecondary-326 MuiButton-flat-327 MuiButton-flatSecondary-329 MuiButton-sizeSmall-345" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]}>
-                                                    <span className="MuiButton-label-323">
-                                                      REFRESH
-                                                    </span>
-                                                    <NoSsr defer={false} fallback={{...}}>
-                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                        <TouchRipple center={false} classes={{...}}>
-                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-366" childFactory={[Function: childFactory]}>
-                                                            <span className="MuiTouchRipple-root-366" />
-                                                          </TransitionGroup>
-                                                        </TouchRipple>
-                                                      </WithStyles(TouchRipple)>
-                                                    </NoSsr>
-                                                  </button>
-                                                </ButtonBase>
-                                              </WithStyles(ButtonBase)>
-                                            </Button>
-                                          </WithStyles(Button)>
-                                          <WithStyles(IconButton) aria-label="Close" color="inherit" className="RSFUpdateNotification-close-249" onClick={[Function]}>
-                                            <IconButton aria-label="Close" color="inherit" className="RSFUpdateNotification-close-249" onClick={[Function]} classes={{...}} disabled={false}>
-                                              <WithStyles(ButtonBase) className="MuiIconButton-root-351 MuiIconButton-colorInherit-352 RSFUpdateNotification-close-249" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]}>
-                                                <ButtonBase className="MuiIconButton-root-351 MuiIconButton-colorInherit-352 RSFUpdateNotification-close-249" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                                  <button className="MuiButtonBase-root-348 MuiIconButton-root-351 MuiIconButton-colorInherit-352 RSFUpdateNotification-close-249" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Close" onClick={[Function]}>
-                                                    <span className="MuiIconButton-label-356">
-                                                      <pure(CloseIcon)>
-                                                        <CloseIcon>
-                                                          <WithStyles(SvgIcon)>
-                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                              <svg className="MuiSvgIcon-root-357" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                                                <path fill="none" d="M0 0h24v24H0z" />
-                                                              </svg>
-                                                            </SvgIcon>
-                                                          </WithStyles(SvgIcon)>
-                                                        </CloseIcon>
-                                                      </pure(CloseIcon)>
-                                                    </span>
-                                                    <NoSsr defer={false} fallback={{...}}>
-                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                        <TouchRipple center={true} classes={{...}}>
-                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-366" childFactory={[Function: childFactory]}>
-                                                            <span className="MuiTouchRipple-root-366" />
-                                                          </TransitionGroup>
-                                                        </TouchRipple>
-                                                      </WithStyles(TouchRipple)>
-                                                    </NoSsr>
-                                                  </button>
-                                                </ButtonBase>
-                                              </WithStyles(ButtonBase)>
-                                            </IconButton>
-                                          </WithStyles(IconButton)>
-                                        </div>
+      <UpdateNotification reloadButtonText="REFRESH" message="An new version of this app is available.">
+        <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
+          <Snackbar open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}} classes={{...}} anchorOrigin={{...}} disableWindowBlurListener={false} TransitionComponent={[Function: WithTheme]} transitionDuration={{...}}>
+            <ClickAwayListener onClickAway={[Function]} mouseEvent="onMouseUp" touchEvent="onTouchEnd">
+              <div className="MuiSnackbar-root-247 MuiSnackbar-anchorOriginBottomCenter-249" onMouseEnter={[Function]} onMouseLeave={[Function]}>
+                <EventListener target="window" onFocus={[Function]} onBlur={[Function]} />
+                <WithTheme(Slide) appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
+                  <Slide theme={{...}} appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
+                    <EventListener target="window" onResize={[Function: debounced]}>
+                      <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={true} style={{...}} in={true} onEntered={[Function: noop]} onExiting={[Function: noop]} timeout={{...}} direction="up" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true}>
+                        <WithStyles(SnackbarContent) message="An new version of this app is available." action={{...}} style={{...}} direction="up">
+                          <SnackbarContent message="An new version of this app is available." action={{...}} style={{...}} direction="up" classes={{...}}>
+                            <WithStyles(Paper) component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-254" style={{...}} direction="up">
+                              <Paper component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-254" style={{...}} direction="up" classes={{...}}>
+                                <WithStyles(Typography) className="MuiPaper-root-257 MuiPaper-elevation6-265 MuiSnackbarContent-root-254" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up">
+                                  <Typography className="MuiPaper-root-257 MuiPaper-elevation6-265 MuiSnackbarContent-root-254" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} noWrap={false} paragraph={false}>
+                                    <div className="MuiTypography-root-284 MuiTypography-body2-292 MuiPaper-root-257 MuiPaper-elevation6-265 MuiSnackbarContent-root-254" role="alertdialog" style={{...}} direction="up">
+                                      <div className="MuiSnackbarContent-message-255">
+                                        An new version of this app is available.
                                       </div>
-                                    </Typography>
-                                  </WithStyles(Typography)>
-                                </Paper>
-                              </WithStyles(Paper)>
-                            </SnackbarContent>
-                          </WithStyles(SnackbarContent)>
-                        </Transition>
-                      </EventListener>
-                    </Slide>
-                  </WithTheme(Slide)>
-                </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
-              </ClickAwayListener>
-            </Snackbar>
-          </WithStyles(Snackbar)>
-        </UpdateNotification>
-      </WithStyles(UpdateNotification)>
+                                      <div className="MuiSnackbarContent-action-256">
+                                        <WithStyles(Button) color="secondary" size="small" onClick={[Function]}>
+                                          <Button color="secondary" size="small" onClick={[Function]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} type="button" variant="text">
+                                            <WithStyles(ButtonBase) className="MuiButton-root-319 MuiButton-text-321 MuiButton-textSecondary-323 MuiButton-flat-324 MuiButton-flatSecondary-326 MuiButton-sizeSmall-342" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-338" onClick={[Function]} component="button" type="button">
+                                              <ButtonBase className="MuiButton-root-319 MuiButton-text-321 MuiButton-textSecondary-323 MuiButton-flat-324 MuiButton-flatSecondary-326 MuiButton-sizeSmall-342" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-338" onClick={[Function]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                                                <button className="MuiButtonBase-root-345 MuiButton-root-319 MuiButton-text-321 MuiButton-textSecondary-323 MuiButton-flat-324 MuiButton-flatSecondary-326 MuiButton-sizeSmall-342" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]}>
+                                                  <span className="MuiButton-label-320">
+                                                    REFRESH
+                                                  </span>
+                                                  <NoSsr defer={false} fallback={{...}}>
+                                                    <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                      <TouchRipple center={false} classes={{...}}>
+                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-363" childFactory={[Function: childFactory]}>
+                                                          <span className="MuiTouchRipple-root-363" />
+                                                        </TransitionGroup>
+                                                      </TouchRipple>
+                                                    </WithStyles(TouchRipple)>
+                                                  </NoSsr>
+                                                </button>
+                                              </ButtonBase>
+                                            </WithStyles(ButtonBase)>
+                                          </Button>
+                                        </WithStyles(Button)>
+                                        <WithStyles(IconButton) aria-label="Close" color="inherit" onClick={[Function]}>
+                                          <IconButton aria-label="Close" color="inherit" onClick={[Function]} classes={{...}} disabled={false}>
+                                            <WithStyles(ButtonBase) className="MuiIconButton-root-348 MuiIconButton-colorInherit-349" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]}>
+                                              <ButtonBase className="MuiIconButton-root-348 MuiIconButton-colorInherit-349" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                <button className="MuiButtonBase-root-345 MuiIconButton-root-348 MuiIconButton-colorInherit-349" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Close" onClick={[Function]}>
+                                                  <span className="MuiIconButton-label-353">
+                                                    <pure(CloseIcon)>
+                                                      <CloseIcon>
+                                                        <WithStyles(SvgIcon)>
+                                                          <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                            <svg className="MuiSvgIcon-root-354" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                              <path fill="none" d="M0 0h24v24H0z" />
+                                                            </svg>
+                                                          </SvgIcon>
+                                                        </WithStyles(SvgIcon)>
+                                                      </CloseIcon>
+                                                    </pure(CloseIcon)>
+                                                  </span>
+                                                  <NoSsr defer={false} fallback={{...}}>
+                                                    <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                      <TouchRipple center={true} classes={{...}}>
+                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-363" childFactory={[Function: childFactory]}>
+                                                          <span className="MuiTouchRipple-root-363" />
+                                                        </TransitionGroup>
+                                                      </TouchRipple>
+                                                    </WithStyles(TouchRipple)>
+                                                  </NoSsr>
+                                                </button>
+                                              </ButtonBase>
+                                            </WithStyles(ButtonBase)>
+                                          </IconButton>
+                                        </WithStyles(IconButton)>
+                                      </div>
+                                    </div>
+                                  </Typography>
+                                </WithStyles(Typography)>
+                              </Paper>
+                            </WithStyles(Paper)>
+                          </SnackbarContent>
+                        </WithStyles(SnackbarContent)>
+                      </Transition>
+                    </EventListener>
+                  </Slide>
+                </WithTheme(Slide)>
+              </div>
+              <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
+            </ClickAwayListener>
+          </Snackbar>
+        </WithStyles(Snackbar)>
+      </UpdateNotification>
     </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
@@ -214,13 +210,11 @@ exports[`UpdateNotification should render without any props 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
     <MuiThemeProviderOld theme={{...}}>
-      <WithStyles(UpdateNotification)>
-        <UpdateNotification classes={{...}} message="An new version of this app is available." reloadButtonText="RELOAD">
-          <WithStyles(Snackbar) open={false} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
-            <Snackbar open={false} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}} classes={{...}} anchorOrigin={{...}} disableWindowBlurListener={false} TransitionComponent={[Function: WithTheme]} transitionDuration={{...}} />
-          </WithStyles(Snackbar)>
-        </UpdateNotification>
-      </WithStyles(UpdateNotification)>
+      <UpdateNotification message="An new version of this app is available." reloadButtonText="RELOAD">
+        <WithStyles(Snackbar) open={false} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
+          <Snackbar open={false} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}} classes={{...}} anchorOrigin={{...}} disableWindowBlurListener={false} TransitionComponent={[Function: WithTheme]} transitionDuration={{...}} />
+        </WithStyles(Snackbar)>
+      </UpdateNotification>
     </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
@@ -230,102 +224,100 @@ exports[`UpdateNotification should show when moov-update-available is dispatched
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}}>
     <MuiThemeProviderOld theme={{...}}>
-      <WithStyles(UpdateNotification)>
-        <UpdateNotification classes={{...}} message="An new version of this app is available." reloadButtonText="RELOAD">
-          <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
-            <Snackbar open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}} classes={{...}} anchorOrigin={{...}} disableWindowBlurListener={false} TransitionComponent={[Function: WithTheme]} transitionDuration={{...}}>
-              <ClickAwayListener onClickAway={[Function]} mouseEvent="onMouseUp" touchEvent="onTouchEnd">
-                <div className="MuiSnackbar-root-374 MuiSnackbar-anchorOriginBottomCenter-376" onMouseEnter={[Function]} onMouseLeave={[Function]}>
-                  <EventListener target="window" onFocus={[Function]} onBlur={[Function]} />
-                  <WithTheme(Slide) appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
-                    <Slide theme={{...}} appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
-                      <EventListener target="window" onResize={[Function: debounced]}>
-                        <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={true} style={{...}} in={true} onEntered={[Function: noop]} onExiting={[Function: noop]} timeout={{...}} direction="up" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true}>
-                          <WithStyles(SnackbarContent) message="An new version of this app is available." action={{...}} style={{...}} direction="up">
-                            <SnackbarContent message="An new version of this app is available." action={{...}} style={{...}} direction="up" classes={{...}}>
-                              <WithStyles(Paper) component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-381" style={{...}} direction="up">
-                                <Paper component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-381" style={{...}} direction="up" classes={{...}}>
-                                  <WithStyles(Typography) className="MuiPaper-root-384 MuiPaper-elevation6-392 MuiSnackbarContent-root-381" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up">
-                                    <Typography className="MuiPaper-root-384 MuiPaper-elevation6-392 MuiSnackbarContent-root-381" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} noWrap={false} paragraph={false}>
-                                      <div className="MuiTypography-root-411 MuiTypography-body2-419 MuiPaper-root-384 MuiPaper-elevation6-392 MuiSnackbarContent-root-381" role="alertdialog" style={{...}} direction="up">
-                                        <div className="MuiSnackbarContent-message-382">
-                                          An new version of this app is available.
-                                        </div>
-                                        <div className="MuiSnackbarContent-action-383">
-                                          <WithStyles(Button) color="secondary" size="small" onClick={[Function]}>
-                                            <Button color="secondary" size="small" onClick={[Function]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} type="button" variant="text">
-                                              <WithStyles(ButtonBase) className="MuiButton-root-446 MuiButton-text-448 MuiButton-textSecondary-450 MuiButton-flat-451 MuiButton-flatSecondary-453 MuiButton-sizeSmall-469" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-465" onClick={[Function]} component="button" type="button">
-                                                <ButtonBase className="MuiButton-root-446 MuiButton-text-448 MuiButton-textSecondary-450 MuiButton-flat-451 MuiButton-flatSecondary-453 MuiButton-sizeSmall-469" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-465" onClick={[Function]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-                                                  <button className="MuiButtonBase-root-472 MuiButton-root-446 MuiButton-text-448 MuiButton-textSecondary-450 MuiButton-flat-451 MuiButton-flatSecondary-453 MuiButton-sizeSmall-469" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]}>
-                                                    <span className="MuiButton-label-447">
-                                                      RELOAD
-                                                    </span>
-                                                    <NoSsr defer={false} fallback={{...}}>
-                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                        <TouchRipple center={false} classes={{...}}>
-                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-490" childFactory={[Function: childFactory]}>
-                                                            <span className="MuiTouchRipple-root-490" />
-                                                          </TransitionGroup>
-                                                        </TouchRipple>
-                                                      </WithStyles(TouchRipple)>
-                                                    </NoSsr>
-                                                  </button>
-                                                </ButtonBase>
-                                              </WithStyles(ButtonBase)>
-                                            </Button>
-                                          </WithStyles(Button)>
-                                          <WithStyles(IconButton) aria-label="Close" color="inherit" className="RSFUpdateNotification-close-373" onClick={[Function]}>
-                                            <IconButton aria-label="Close" color="inherit" className="RSFUpdateNotification-close-373" onClick={[Function]} classes={{...}} disabled={false}>
-                                              <WithStyles(ButtonBase) className="MuiIconButton-root-475 MuiIconButton-colorInherit-476 RSFUpdateNotification-close-373" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]}>
-                                                <ButtonBase className="MuiIconButton-root-475 MuiIconButton-colorInherit-476 RSFUpdateNotification-close-373" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                                  <button className="MuiButtonBase-root-472 MuiIconButton-root-475 MuiIconButton-colorInherit-476 RSFUpdateNotification-close-373" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Close" onClick={[Function]}>
-                                                    <span className="MuiIconButton-label-480">
-                                                      <pure(CloseIcon)>
-                                                        <CloseIcon>
-                                                          <WithStyles(SvgIcon)>
-                                                            <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                              <svg className="MuiSvgIcon-root-481" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                                                <path fill="none" d="M0 0h24v24H0z" />
-                                                              </svg>
-                                                            </SvgIcon>
-                                                          </WithStyles(SvgIcon)>
-                                                        </CloseIcon>
-                                                      </pure(CloseIcon)>
-                                                    </span>
-                                                    <NoSsr defer={false} fallback={{...}}>
-                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                        <TouchRipple center={true} classes={{...}}>
-                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-490" childFactory={[Function: childFactory]}>
-                                                            <span className="MuiTouchRipple-root-490" />
-                                                          </TransitionGroup>
-                                                        </TouchRipple>
-                                                      </WithStyles(TouchRipple)>
-                                                    </NoSsr>
-                                                  </button>
-                                                </ButtonBase>
-                                              </WithStyles(ButtonBase)>
-                                            </IconButton>
-                                          </WithStyles(IconButton)>
-                                        </div>
+      <UpdateNotification message="An new version of this app is available." reloadButtonText="RELOAD">
+        <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
+          <Snackbar open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}} classes={{...}} anchorOrigin={{...}} disableWindowBlurListener={false} TransitionComponent={[Function: WithTheme]} transitionDuration={{...}}>
+            <ClickAwayListener onClickAway={[Function]} mouseEvent="onMouseUp" touchEvent="onTouchEnd">
+              <div className="MuiSnackbar-root-370 MuiSnackbar-anchorOriginBottomCenter-372" onMouseEnter={[Function]} onMouseLeave={[Function]}>
+                <EventListener target="window" onFocus={[Function]} onBlur={[Function]} />
+                <WithTheme(Slide) appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
+                  <Slide theme={{...}} appear={true} in={true} onEnter={[undefined]} onEntered={[undefined]} onEntering={[undefined]} onExit={[undefined]} onExited={[Function: chainedFunction]} onExiting={[undefined]} timeout={{...}} direction="up">
+                    <EventListener target="window" onResize={[Function: debounced]}>
+                      <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={true} style={{...}} in={true} onEntered={[Function: noop]} onExiting={[Function: noop]} timeout={{...}} direction="up" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true}>
+                        <WithStyles(SnackbarContent) message="An new version of this app is available." action={{...}} style={{...}} direction="up">
+                          <SnackbarContent message="An new version of this app is available." action={{...}} style={{...}} direction="up" classes={{...}}>
+                            <WithStyles(Paper) component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-377" style={{...}} direction="up">
+                              <Paper component={[Function: WithStyles]} headlineMapping={{...}} role="alertdialog" square={true} elevation={6} className="MuiSnackbarContent-root-377" style={{...}} direction="up" classes={{...}}>
+                                <WithStyles(Typography) className="MuiPaper-root-380 MuiPaper-elevation6-388 MuiSnackbarContent-root-377" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up">
+                                  <Typography className="MuiPaper-root-380 MuiPaper-elevation6-388 MuiSnackbarContent-root-377" headlineMapping={{...}} role="alertdialog" style={{...}} direction="up" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} noWrap={false} paragraph={false}>
+                                    <div className="MuiTypography-root-407 MuiTypography-body2-415 MuiPaper-root-380 MuiPaper-elevation6-388 MuiSnackbarContent-root-377" role="alertdialog" style={{...}} direction="up">
+                                      <div className="MuiSnackbarContent-message-378">
+                                        An new version of this app is available.
                                       </div>
-                                    </Typography>
-                                  </WithStyles(Typography)>
-                                </Paper>
-                              </WithStyles(Paper)>
-                            </SnackbarContent>
-                          </WithStyles(SnackbarContent)>
-                        </Transition>
-                      </EventListener>
-                    </Slide>
-                  </WithTheme(Slide)>
-                </div>
-                <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
-              </ClickAwayListener>
-            </Snackbar>
-          </WithStyles(Snackbar)>
-        </UpdateNotification>
-      </WithStyles(UpdateNotification)>
+                                      <div className="MuiSnackbarContent-action-379">
+                                        <WithStyles(Button) color="secondary" size="small" onClick={[Function]}>
+                                          <Button color="secondary" size="small" onClick={[Function]} classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} type="button" variant="text">
+                                            <WithStyles(ButtonBase) className="MuiButton-root-442 MuiButton-text-444 MuiButton-textSecondary-446 MuiButton-flat-447 MuiButton-flatSecondary-449 MuiButton-sizeSmall-465" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-461" onClick={[Function]} component="button" type="button">
+                                              <ButtonBase className="MuiButton-root-442 MuiButton-text-444 MuiButton-textSecondary-446 MuiButton-flat-447 MuiButton-flatSecondary-449 MuiButton-sizeSmall-465" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-461" onClick={[Function]} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                                                <button className="MuiButtonBase-root-468 MuiButton-root-442 MuiButton-text-444 MuiButton-textSecondary-446 MuiButton-flat-447 MuiButton-flatSecondary-449 MuiButton-sizeSmall-465" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]}>
+                                                  <span className="MuiButton-label-443">
+                                                    RELOAD
+                                                  </span>
+                                                  <NoSsr defer={false} fallback={{...}}>
+                                                    <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                      <TouchRipple center={false} classes={{...}}>
+                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-486" childFactory={[Function: childFactory]}>
+                                                          <span className="MuiTouchRipple-root-486" />
+                                                        </TransitionGroup>
+                                                      </TouchRipple>
+                                                    </WithStyles(TouchRipple)>
+                                                  </NoSsr>
+                                                </button>
+                                              </ButtonBase>
+                                            </WithStyles(ButtonBase)>
+                                          </Button>
+                                        </WithStyles(Button)>
+                                        <WithStyles(IconButton) aria-label="Close" color="inherit" onClick={[Function]}>
+                                          <IconButton aria-label="Close" color="inherit" onClick={[Function]} classes={{...}} disabled={false}>
+                                            <WithStyles(ButtonBase) className="MuiIconButton-root-471 MuiIconButton-colorInherit-472" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]}>
+                                              <ButtonBase className="MuiIconButton-root-471 MuiIconButton-colorInherit-472" centerRipple={true} focusRipple={true} disabled={false} aria-label="Close" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                <button className="MuiButtonBase-root-468 MuiIconButton-root-471 MuiIconButton-colorInherit-472" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Close" onClick={[Function]}>
+                                                  <span className="MuiIconButton-label-476">
+                                                    <pure(CloseIcon)>
+                                                      <CloseIcon>
+                                                        <WithStyles(SvgIcon)>
+                                                          <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                            <svg className="MuiSvgIcon-root-477" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                              <path fill="none" d="M0 0h24v24H0z" />
+                                                            </svg>
+                                                          </SvgIcon>
+                                                        </WithStyles(SvgIcon)>
+                                                      </CloseIcon>
+                                                    </pure(CloseIcon)>
+                                                  </span>
+                                                  <NoSsr defer={false} fallback={{...}}>
+                                                    <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                      <TouchRipple center={true} classes={{...}}>
+                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-486" childFactory={[Function: childFactory]}>
+                                                          <span className="MuiTouchRipple-root-486" />
+                                                        </TransitionGroup>
+                                                      </TouchRipple>
+                                                    </WithStyles(TouchRipple)>
+                                                  </NoSsr>
+                                                </button>
+                                              </ButtonBase>
+                                            </WithStyles(ButtonBase)>
+                                          </IconButton>
+                                        </WithStyles(IconButton)>
+                                      </div>
+                                    </div>
+                                  </Typography>
+                                </WithStyles(Typography)>
+                              </Paper>
+                            </WithStyles(Paper)>
+                          </SnackbarContent>
+                        </WithStyles(SnackbarContent)>
+                      </Transition>
+                    </EventListener>
+                  </Slide>
+                </WithTheme(Slide)>
+              </div>
+              <EventListener target="document" onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} />
+            </ClickAwayListener>
+          </Snackbar>
+        </WithStyles(Snackbar)>
+      </UpdateNotification>
     </MuiThemeProviderOld>
   </Provider>
 </TestProvider>
