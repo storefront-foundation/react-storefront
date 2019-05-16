@@ -46,6 +46,9 @@ export const styles = theme => ({
 @observer
 export default class Breadcrumbs extends Component {
   static propTypes = {
+    /**
+     * The items to display, each with url, text, and state.
+     */
     items: PropTypes.arrayOf(PropTypes.objectOf)
   }
 
@@ -70,21 +73,23 @@ export default class Breadcrumbs extends Component {
 
   renderBreadcrumb = (item, i) => {
     const { classes } = this.props
+    const arrow = i > 0 ? <ArrowRight className={classes.separator} /> : null
 
     if (item.url) {
       return (
         <span key={i}>
+          {arrow}
           <Track event="breadcrumbClicked" breadcrumb={item}>
             <Link to={item.url} state={item.state}>
               {item.text}
             </Link>
           </Track>
-          <ArrowRight className={classes.separator} />
         </span>
       )
     } else {
       return (
         <span key={i} className={classes.current}>
+          {arrow}
           {item.text}
         </span>
       )
