@@ -76,8 +76,8 @@ yarn release
 
 ### 6.21.0
 
--  Adds `sortProps` to `SortButton`, which allows your to pass props to the underlying `Sort` component.
-
+- Fixes UI styling in cases where the last breadcrumb is a link.
+- Adds `sortProps` to `SortButton`, which allows your to pass props to the underlying `Sort` component.
 
 ### 6.20.0
 
