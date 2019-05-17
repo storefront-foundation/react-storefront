@@ -50,8 +50,8 @@ export const REACT_STOREFRONT = 'x-react-storefront'
 export const XDN_VERSION = 'x-moov-xdn-version'
 
 /**
- * Request header that when present will make RSF return a JSON summary of the routes.
+ * The declared path of the route that was run
  */
-export const ROUTES = 'x-rsf-routes'
+export const ROUTE = 'x-rsf-route'
 
 export default null

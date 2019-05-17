@@ -4,7 +4,7 @@
  */
 import { fetchLatest, StaleResponseError } from '../fetchLatest'
 import { abortPrefetches, resumePrefetches } from './serviceWorker'
-import { HANDLER, RESPONSE_TYPE, SURROGATE_KEY, REACT_STOREFRONT, API_VERSION } from './headers'
+import { HANDLER, RESPONSE_TYPE, ROUTE, REACT_STOREFRONT, API_VERSION } from './headers'
 
 let doFetch
 
@@ -128,35 +128,34 @@ export default function fromServer(handlerPath, getURL) {
     )
   }
 
+  const fn = async function(params, request, response, { route } = {}) {
+    if (typeof handlerPath === 'string') {
+      let url = `${location.pathname}.json${location.search}`
+
+      if (getURL) {
+        url = getURL(url)
+      }
+
+      // handler path has not been transpiled, fetch the data from the server and return the result.
+      return fetch(url, { cache: response.clientCache })
+    } else {
+      // indicate handler path and asset class in a response header so we can track it in logs
+      response.set(HANDLER, handlerPath.path)
+      response.set(RESPONSE_TYPE, request.path.endsWith('.json') ? 'json' : 'ssr')
+      if (route) response.set(ROUTE, route.declaredPath)
+
+      // handler path has been transpiled to a function
+      return handlerPath(params, request, response)
+    }
+  }
+
   return {
     type: 'fromServer',
+    path: typeof handlerPath === 'string' ? handlerPath : handlerPath.path,
     runOn: {
       server: true,
       client: true // fromServer handlers run on the client too - we make an ajax request to get the state from the server
     },
-    fn: async function(params, request, response) {
-      if (typeof handlerPath === 'string') {
-        let url = `${location.pathname}.json${location.search}`
-
-        if (getURL) {
-          url = getURL(url)
-        }
-
-        // handler path has not been transpiled, fetch the data from the server and return the result.
-        return fetch(url, { cache: response.clientCache })
-      } else {
-        // indicate handler path and asset class in a response header so we can track it in logs
-        response.set(HANDLER, handlerPath.path)
-        response.set(RESPONSE_TYPE, request.path.endsWith('.json') ? 'json' : 'ssr')
-
-        // use the handler path as the surrogate cache key if one has not already been set by cache#surrogateKey
-        if (!response.get(SURROGATE_KEY)) {
-          response.set(SURROGATE_KEY, handlerPath.path)
-        }
-
-        // handler path has been transpiled to a function
-        return handlerPath(params, request, response)
-      }
-    }
+    fn
   }
 }

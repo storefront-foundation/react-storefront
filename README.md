@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.21.0
+
+- Adds support for displaying surrogate keys in the Moovweb Developer Console.
+- Adds `x-rsf-route` response handler containing the route path.
+
 ### 6.20.1
 
 - Fixes UI styling in cases where the last breadcrumb is a link.

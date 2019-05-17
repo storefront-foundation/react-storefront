@@ -786,6 +786,52 @@ describe('Router:Node', function() {
     })
   })
 
+  describe('/.routes.json', () => {
+    it('should return an object describing the routes', async () => {
+      const cachedRouteHander = () => {}
+      cachedRouteHander.path = './test/cachedRouteHandler'
+
+      router
+        .get(
+          '/cached-with-surrogate-key',
+          cache({
+            server: {
+              maxAgeSeconds: 10,
+              surrogateKey: 'cached-route'
+            }
+          }),
+          fromServer(cachedRouteHander)
+        )
+        .get(
+          '/cached-with-implicit-key',
+          cache({
+            server: {
+              maxAgeSeconds: 10
+            }
+          }),
+          fromServer(cachedRouteHander)
+        )
+        .get('/not-cached', fromServer(cachedRouteHander))
+
+      const result = await runAll('get', '/.routes.json')
+
+      expect(result).toEqual({
+        '/cached-with-surrogate-key': {
+          surrogateKey: 'cached-route',
+          handler: './test/cachedRouteHandler'
+        },
+        '/cached-with-implicit-key': {
+          surrogateKey: '/cached-with-implicit-key',
+          handler: './test/cachedRouteHandler'
+        },
+        '/not-cached': {
+          handler: './test/cachedRouteHandler',
+          surrogateKey: null
+        }
+      })
+    })
+  })
+
   afterAll(() => {
     jest.unmock('../../src/router/serviceWorker')
   })

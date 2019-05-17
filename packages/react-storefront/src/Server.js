@@ -12,7 +12,6 @@ import { Helmet } from 'react-helmet'
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
 import getStats from 'react-storefront-stats'
 import { renderAmpAnalyticsTags } from './Track'
-import { ROUTES } from './router/headers'
 
 export default class Server {
   /**
@@ -43,10 +42,6 @@ export default class Server {
   serve = async (request, response) => {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
-
-    if (request.headers[ROUTES]) {
-      return response.json(this.router.routes.map(route => route.path.spec))
-    }
 
     try {
       const state = await this.router.runAll(request, response)

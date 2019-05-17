@@ -36,6 +36,14 @@ import { SURROGATE_KEY } from './headers'
  * @return {Object}
  */
 export default function cache({ server, client }) {
+  const getSurrogateKey = route => {
+    if (typeof server.surrogateKey === 'string') {
+      return server.surrogateKey
+    } else if (route) {
+      return route.declaredPath
+    }
+  }
+
   return {
     type: 'cache',
     client,
@@ -44,7 +52,8 @@ export default function cache({ server, client }) {
       server: true,
       client: true
     },
-    fn: (params, request, response) => {
+    getSurrogateKey,
+    fn: (params, request, response, { route } = {}) => {
       if (
         process.env.MOOV_RUNTIME === 'server' &&
         process.env.MOOV_ENV === 'development' &&
@@ -69,8 +78,10 @@ export default function cache({ server, client }) {
           response.cacheOnServer(server.maxAgeSeconds)
         }
 
-        if (typeof server.surrogateKey === 'function') {
-          response.set(SURROGATE_KEY, server.surrogateKey(params, request))
+        const surrogateKey = getSurrogateKey(route)
+
+        if (surrogateKey) {
+          response.set(SURROGATE_KEY, surrogateKey)
         }
       }
     }

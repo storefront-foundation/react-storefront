@@ -12,6 +12,7 @@ import ClientContext from './ClientContext'
 import EventEmitter from 'eventemitter3'
 import powerLinkHandler from './powerLinkHandler'
 import fromServer from './fromServer'
+import routeMetaDataHandler from './routeMetaDataHandler'
 
 /**
  * Provides routing for MUR-based applications and PWAs.  This class is inspired by express and uses https://github.com/rcs/route-parser,
@@ -84,8 +85,8 @@ export default class Router extends EventEmitter {
 
   constructor() {
     super()
-
     this.get('/.powerlinks.js', fromServer(powerLinkHandler))
+    this.get('/.routes.json', fromServer(routeMetaDataHandler.bind(null, this)))
   }
 
   errorHandler = (e, params, request, response) => {
@@ -98,9 +99,16 @@ export default class Router extends EventEmitter {
     return { page: 'Error', error: e.message, stack: e.stack, loading: false }
   }
 
-  pushRoute(method, path, handlers) {
-    this.routes.push({ path: new Route(path + '.:format'), method, handlers })
-    this.routes.push({ path: new Route(path), method, handlers })
+  pushRoute(method, path, handlers, metadata = {}) {
+    const declaredPath = path
+    this.routes.push({
+      path: new Route(path + '.:format'),
+      method,
+      handlers,
+      declaredPath,
+      metadata
+    })
+    this.routes.push({ path: new Route(path), method, handlers, declaredPath, metadata })
     return this
   }
 
@@ -337,7 +345,7 @@ export default class Router extends EventEmitter {
           this.emit('fetch')
         }
 
-        const result = await this.toPromise(handler.fn, params, request, response)
+        const result = await this.toPromise(handler.fn, params, request, response, { route: match })
 
         if (result) {
           yield result
@@ -377,12 +385,13 @@ export default class Router extends EventEmitter {
    * @param {Function/Object} callback A function that returns a Promise that
    *  resolves to the new state, a function that returns the new state, or the new state itself.
    * @param {Object} params The request parameters
-   * @param {Object} request The request object with body and headers
+   * @param {Request} request The request object with body and headers
    * @param {Response} response The response object
+   * @param {Object} route The route being run
    */
-  toPromise(callback, params, request, response) {
+  toPromise(callback, params, request, response, context) {
     if (isFunction(callback)) {
-      const result = callback(params, request, response)
+      const result = callback(params, request, response, context)
 
       if (result && result.then) {
         // callback returned a promise

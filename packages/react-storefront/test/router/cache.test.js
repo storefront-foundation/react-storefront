@@ -70,11 +70,21 @@ describe('cache', () => {
       )
     })
 
-    it('should send x-moov-surrogate-key', () => {
-      const response = new Response()
-      const cache = require('../../src/router').cache
-      cache({ server: { surrogateKey: () => 'test' } }).fn({}, { method: 'POST' }, response)
-      expect(response.get('x-moov-surrogate-key')).toBe('test')
+    describe('surrogateKey', () => {
+      it('should send x-moov-surrogate-key', () => {
+        const response = new Response()
+        const cache = require('../../src/router').cache
+        cache({ server: { surrogateKey: 'test' } }).fn({}, { method: 'POST' }, response)
+        expect(response.get('x-moov-surrogate-key')).toBe('test')
+      })
+      it('should default to the route declared path', () => {
+        const response = new Response()
+        const cache = require('../../src/router').cache
+        cache({ server: {} }).fn({}, { method: 'POST' }, response, {
+          route: { declaredPath: '/p/:id' }
+        })
+        expect(response.get('x-moov-surrogate-key')).toBe('/p/:id')
+      })
     })
   })
 
