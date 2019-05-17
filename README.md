@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.21.0
+
+-  Adds `sortProps` to `SortButton`, which allows your to pass props to the underlying `Sort` component.
+
+
 ### 6.20.0
 
 - Added `serveSSRFromCache` option to the client webpack build. Set to `true` to allow the sevice worker to serve from the cache when a user initially lands on your app. Defaults to `false`.

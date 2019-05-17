@@ -35,9 +35,14 @@ export default class SortButton extends Component {
     variant: PropTypes.oneOf(['drawer', 'menu']),
 
     /**
-     * Props to pass to the underlying `Sort` component.
+     * Props to pass to the underlying `Drawer` component.
      */
     drawerProps: PropTypes.object,
+
+    /**
+     * Props to pass to the underlying `Sort` component.
+     */
+    sortProps: PropTypes.object,
 
     /**
      * Text for the button label and the drawer header.  Defaults to "Sort".
@@ -48,7 +53,8 @@ export default class SortButton extends Component {
   static defaultProps = {
     title: 'Sort',
     variant: 'drawer',
-    drawerProps: {}
+    drawerProps: {},
+    sortProps: {}
   }
 
   constructor({ app, variant }) {
@@ -64,7 +70,7 @@ export default class SortButton extends Component {
   }
 
   render() {
-    const { app, variant, model, title, drawerProps, ...props } = this.props
+    const { app, variant, model, title, drawerProps, sortProps, ...props } = this.props
     const { open, mountDrawer, anchorEl } = this.state
     const selectedOption = model.sortOptions.find(o => model.sort === o.code)
 
@@ -89,15 +95,16 @@ export default class SortButton extends Component {
               title={title}
               open={open}
               onRequestClose={this.toggleOpen.bind(this, false)}
+              {...drawerProps}
             >
-              {mountDrawer && <Sort model={model} onSelect={this.onSelect} {...drawerProps} />}
+              {mountDrawer && <Sort model={model} onSelect={this.onSelect} {...sortProps} />}
             </Drawer>
           </Hidden>
         )}
         {!app.amp && variant === 'menu' && (
           <Hidden xsDown>
             <Menu open={open} anchorEl={anchorEl} onClose={this.close}>
-              <Sort variant="menu-items" model={model} onSelect={this.onSelect} />
+              <Sort variant="menu-items" model={model} onSelect={this.onSelect} {...sortProps} />
             </Menu>
           </Hidden>
         )}
