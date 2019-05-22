@@ -297,20 +297,29 @@ export default class ImageSwitcher extends Component {
 
   state = {
     selectedIndex: 0,
+    productId: null,
     viewerActive: false
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
+    const { product } = nextProps
+    const { productId } = prevState
+
     if (
       typeof nextProps.selectedIndex === 'number' &&
       nextProps.selectedIndex !== prevState.selectedIndex
     ) {
+      // update the selectedIndex state if a new prop value is passed in
       return { selectedIndex: nextProps.selectedIndex }
+    } else if (product && product.id !== productId) {
+      // reset the selectedIndex state if the product changes
+      return { productId: product.id, selectedIndex: 0 }
+    } else {
+      return null
     }
-    return null
   }
 
-  renderViewerToggle(withClose) {
+  renderViewerToggle() {
     return (
       <div
         onClick={() => this.toggleViewer()}

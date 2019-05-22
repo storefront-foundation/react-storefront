@@ -76,6 +76,7 @@ yarn release
 
 ### 6.21.1
 
+- Fixes an issue where `ImageSwitcher` would not reset its `selectedIndex` after switching products.
 - If an analytics target throws an error it will now be caught so that other targets have a chance to fire.
 
 ### 6.21.0
