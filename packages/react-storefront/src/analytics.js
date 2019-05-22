@@ -44,7 +44,11 @@ function fire(event, ...args) {
     const fn = target[event]
 
     if (fn) {
-      fn.apply(target, args)
+      try {
+        fn.apply(target, args)
+      } catch (e) {
+        console.warn('Error thrown by analytics target, event=', event, 'target=', target, 'args=', args, e)
+      }
     } else {
       if (typeof event === 'string') {
         console.warn(`${target.constructor.name} does not support ${event}`)

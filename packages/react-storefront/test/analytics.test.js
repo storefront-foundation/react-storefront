@@ -53,4 +53,19 @@ describe('AnalyticsProvider', () => {
     configureAnalytics({})
     expect(analytics.toString()).toBe('AnalyticsProxy')
   })
+
+  it('should catch errors and allow other targets to be called', () => {
+    const errorTarget = {
+      test: jest.fn(() => { throw new Error('test')})
+    }
+
+    const successTarget = {
+      test: jest.fn()
+    }
+
+    configureAnalytics(errorTarget, successTarget)
+    analytics.fire('test', {})
+    expect(errorTarget.test).toHaveBeenCalled()
+    expect(successTarget.test).toHaveBeenCalled()
+  })
 })

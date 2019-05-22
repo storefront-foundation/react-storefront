@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.21.1
+
+- If an analytics target throws an error it will now be caught so that other targets have a chance to fire.
+
 ### 6.21.0
 
 - Fixes UI styling in cases where the last breadcrumb is a link.
