@@ -31,7 +31,7 @@ exports[`AppBar should render 1`] = `
                                                       <WithStyles(MenuIcon) open={false} app={{...}}>
                                                         <MenuIcon open={false} app={{...}} classes={{...}} label={true}>
                                                           <div className="RSFMenuIcon-root-41 RSFMenuIcon-withLabel-43">
-                                                            <div className="rsf-hamburger" type="button">
+                                                            <div className="rsf-hamburger">
                                                               <span className="rsf-hamburger-box">
                                                                 <span className="rsf-hamburger-inner" />
                                                               </span>

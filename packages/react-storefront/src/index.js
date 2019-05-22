@@ -34,6 +34,7 @@ export { default as Menu } from './Menu.js';
 export { default as MenuIcon } from './MenuIcon.js';
 export { default as NavTab } from './NavTab.js';
 export { default as NavTabs } from './NavTabs.js';
+export { default as NoScript } from './NoScript.js';
 export { default as Offline } from './Offline.js';
 export { default as PWA } from './PWA.js';
 export { default as PageLink } from './PageLink.js';

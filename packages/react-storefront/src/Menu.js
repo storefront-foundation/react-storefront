@@ -13,6 +13,7 @@ import withTheme from '@material-ui/core/styles/withTheme'
 import Body from './menu/Body'
 import SEOLinks from './menu/SEOLinks'
 import MenuContext from './menu/MenuContext'
+import AmpSimpleMenu from './amp/AmpSimpleMenu'
 
 export { MenuModel, MenuItemModel } from './model/MenuModel'
 
@@ -267,17 +268,30 @@ export default class Menu extends Component {
   }
 
   render() {
-    const { app, classes, className, align, drawerWidth, persistent, ...others } = this.props
+    const {
+      app,
+      classes,
+      className,
+      align,
+      drawerWidth,
+      persistent,
+      simple,
+      ...others
+    } = this.props
     const { amp, menu } = app
 
     if (!menu) {
       return null
     } else if (amp) {
-      return (
-        <MenuContext.Provider value={this.menuContext}>
-          <AmpMenu {...this.props} />
-        </MenuContext.Provider>
-      )
+      if (simple) {
+        return <AmpSimpleMenu {...this.props} />
+      } else {
+        return (
+          <MenuContext.Provider value={this.menuContext}>
+            <AmpMenu {...this.props} />
+          </MenuContext.Provider>
+        )
+      }
     } else {
       return (
         <Fragment>
@@ -301,7 +315,7 @@ export default class Menu extends Component {
             }}
           >
             <MenuContext.Provider value={this.menuContext}>
-              <Body drawerWidth={drawerWidth} {...others} />
+              <Body drawerWidth={drawerWidth} simple={simple} {...others} />
             </MenuContext.Provider>
           </Drawer>
           <SEOLinks />

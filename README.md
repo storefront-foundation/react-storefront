@@ -74,8 +74,9 @@ yarn release
 
 ## Changelog
 
-### 6.21.1
+### 6.22.0
 
+- The `Menu` component now looks the same when rendering in AMP and React.
 - Fixed bug where links in the menu main were not rendered properly for SEO introduced in 6.16.0
 - Fixes an issue where `ImageSwitcher` would not reset its `selectedIndex` after switching products.
 - If an analytics target throws an error it will now be caught so that other targets have a chance to fire.
