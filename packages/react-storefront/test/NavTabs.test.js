@@ -81,16 +81,16 @@ describe('NavTabs', () => {
 
     return waitForAnalytics(() => expect(topNavClicked).toHaveBeenCalledWith({
       "item": {
-        "classes": {"root": "RSFTabsRow-tab-195"},
+        "classes": {"root": "RSFTabsRow-tab-198 RSFNavTabs-tab-167"},
         "className": null,
-        "expanded": false, 
-        "image": null, 
-        "items": null, 
-        "prefetch": null, 
-        "root": false, 
-        "server": false, 
-        "state": "{\"page\":\"product\"}", 
-        "text": "Tab 1", 
+        "expanded": false,
+        "image": null,
+        "items": null,
+        "prefetch": null,
+        "root": false,
+        "server": false,
+        "state": "{\"page\":\"product\"}",
+        "text": "Tab 1",
         "url": "/1"
       }
     }))
@@ -119,6 +119,16 @@ describe('NavTabs', () => {
     ).find('a').at(0).getDOMNode().getAttribute('href')
 
     expect(href).toEqual('https://example.com/1')
+  })
+
+  it('should have all the necessary classes configured to prevent MUI warnings', () => {
+    const component = (
+      <Provider app={app}>
+        <NavTabs />
+      </Provider>
+    )
+
+    expect(mount(component).render().find('[class*="RSFNavTabs-tab-"]').length).toBeGreaterThan(0)
   })
 
   it('does not require history', () => {

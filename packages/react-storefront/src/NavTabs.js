@@ -60,7 +60,8 @@ export const styles = theme => ({
     borderRadius: '0',
     position: 'relative',
     top: '1px'
-  }
+  },
+  tab: {} // prevents MUI warning about overriding classes.tab prop
 })
 
 @withStyles(styles, { name: 'RSFNavTabs' })
