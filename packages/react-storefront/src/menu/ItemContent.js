@@ -5,11 +5,9 @@
 import React, { Component, Fragment } from 'react'
 import { observer, inject } from 'mobx-react'
 import ListItemText from '@material-ui/core/ListItemText'
-import ChevronRight from '@material-ui/icons/ChevronRight'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import ExpandMore from '@material-ui/icons/ExpandMore'
 import MenuContext from './MenuContext'
+import ExpanderIcon from './ExpanderIcon'
 
 @inject('app')
 @observer
@@ -17,7 +15,7 @@ export default class ItemContent extends Component {
   static contextType = MenuContext
 
   render() {
-    let { itemRenderer, ExpandIcon, CollapseIcon, theme, item, leaf, showExpander } = this.props
+    let { itemRenderer, item, leaf } = this.props
 
     const { classes } = this.context
 
@@ -41,9 +39,6 @@ export default class ItemContent extends Component {
         </Fragment>
       )
     } else {
-      ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMore
-      CollapseIcon = CollapseIcon || theme.CollapseIcon || ExpandLess
-
       return (
         <Fragment>
           {item.image && (
@@ -51,17 +46,9 @@ export default class ItemContent extends Component {
               <img className={classes.listItemImage} alt={item.text} src={item.image} />
             </ListItemIcon>
           )}
-          <ListItemText primary={item.text} disableTypography />
+          <ListItemText className={classes.listItem} primary={item.text} disableTypography />
           <ListItemIcon className={classes.listItemIcon}>
-            {showExpander ? (
-              item.expanded ? (
-                <CollapseIcon className={classes.icon} />
-              ) : (
-                <ExpandIcon className={classes.icon} />
-              )
-            ) : (
-              <ChevronRight className={classes.icon} />
-            )}
+            <ExpanderIcon {...this.props} />
           </ListItemIcon>
         </Fragment>
       )

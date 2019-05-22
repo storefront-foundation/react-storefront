@@ -7,11 +7,8 @@ import { inject } from 'mobx-react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import withTheme from '@material-ui/core/styles/withTheme'
 import { Helmet } from 'react-helmet'
-import Link from '../Link'
-import Typography from '@material-ui/core/Typography'
+import MenuBody from '../menu/MenuBody'
 import classnames from 'classnames'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 
 export const styles = theme => ({
   root: {
@@ -25,10 +22,13 @@ export const styles = theme => ({
     '& h3': {
       backgroundColor: theme.palette.background.paper
     },
-    '& section[expanded] > h3': {
+    '& .expanded > .menu-item': {
       color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.main,
-      borderColor: theme.palette.secondary.main
+      borderColor: theme.palette.secondary.main,
+      '& svg': {
+        fill: theme.palette.secondary.contrastText
+      }
     },
     '& a': {
       color: theme.typography.body1.color
@@ -36,34 +36,6 @@ export const styles = theme => ({
     '& ~ div[class*="amphtml-sidebar-mask"]': {
       background: 'rgba(0, 0, 0, 0.5)',
       opacity: 1
-    }
-  },
-  item: {
-    padding: '12px 16px',
-    borderColor: theme.palette.divider,
-    borderWidth: '0 0 1px 0',
-    borderStyle: 'solid',
-    display: 'block',
-    textDecoration: 'none'
-  },
-  group: {
-    textTransform: 'uppercase'
-  },
-  toggle: {
-    position: 'absolute',
-    right: '18px',
-    top: '10px'
-  },
-  expand: {
-    display: 'block',
-    'section[expanded] > h3 > &': {
-      display: 'none'
-    }
-  },
-  collapse: {
-    display: 'none',
-    'section[expanded] > h3 > &': {
-      display: 'block'
     }
   }
 })
@@ -84,8 +56,60 @@ export default class AmpMenu extends Component {
   }
 
   render() {
-    const { id, menu, classes, className, drawerWidth, rootHeader, rootFooter, align } = this.props
-    const root = menu.levels.length ? menu.levels[0] : null
+    const {
+      id,
+      menu,
+      classes,
+      theme,
+      className,
+      drawerWidth,
+      rootHeader,
+      rootFooter,
+      ExpandIcon,
+      CollapseIcon,
+      align
+    } = this.props
+
+    const root = menu.levels[0]
+
+    const bodies = [
+      <MenuBody
+        rootHeader={rootHeader}
+        rootFooter={rootFooter}
+        drawerWidth={drawerWidth}
+        ExpandIcon={ExpandIcon}
+        CollapseIcon={CollapseIcon}
+        root={root}
+        depth={0}
+        path={[]}
+        classes={classes}
+        theme={theme}
+        // Force expanders in AMP
+        useExpanders
+      />
+    ]
+
+    // Build first level menu screens
+    root.items.forEach((node, index) => {
+      if (node.items) {
+        bodies.push(
+          <MenuBody
+            rootHeader={rootHeader}
+            rootFooter={rootFooter}
+            drawerWidth={drawerWidth}
+            ExpandIcon={ExpandIcon}
+            CollapseIcon={CollapseIcon}
+            root={node}
+            depth={1}
+            path={[index]}
+            classes={classes}
+            theme={theme}
+            // Force expanders in AMP
+            useExpanders
+          />
+        )
+      }
+    })
 
     return (
       <Fragment>
@@ -97,8 +121,8 @@ export default class AmpMenu extends Component {
           />
           <script
             async
-            custom-element="amp-accordion"
-            src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"
+            custom-element="amp-bind"
+            src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"
           />
           <style amp-custom>{`
             #${id} {
@@ -112,64 +136,11 @@ export default class AmpMenu extends Component {
           class={classnames(className, classes.root)}
           layout="nodisplay"
           side={align}
+          on="sidebarClose:AMP.setState({ menuOpen: false })"
         >
-          {rootHeader}
-          {this.renderItem(root)}
-          {rootFooter}
+          {bodies}
         </amp-sidebar>
       </Fragment>
-    )
-  }
-
-  renderItem(item, key) {
-    if (item == null) {
-      return null
-    } else if (item.items) {
-      return this.renderGroup(item, key)
-    } else {
-      return this.renderLeaf(item, key)
-    }
-  }
-
-  renderGroup(item, key) {
-    let { classes, ExpandIcon, CollapseIcon, theme } = this.props
-
-    ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMoreIcon
-    CollapseIcon = CollapseIcon || theme.CollapseIcon || ExpandLessIcon
-
-    const section = (
-      <section key={key}>
-        {item.text && (
-          <Typography
-            variant="body1"
-            component="h3"
-            className={classnames(classes.item, classes.group, item.className)}
-          >
-            {item.text}
-            <CollapseIcon className={classnames(classes.toggle, classes.collapse)} />
-            <ExpandIcon className={classnames(classes.toggle, classes.expand)} />
-          </Typography>
-        )}
-        <div>{item.items.map((item, i) => this.renderItem(item, i))}</div>
-      </section>
-    )
-
-    if (item.root) {
-      return section
-    } else {
-      return (
-        <amp-accordion key={key} disable-session-states>
-          {section}
-        </amp-accordion>
-      )
-    }
-  }
-
-  renderLeaf(item, key) {
-    return (
-      <Link key={key} className={classnames(this.props.classes.item, item.className)} to={item.url}>
-        {item.text}
-      </Link>
     )
   }
 }

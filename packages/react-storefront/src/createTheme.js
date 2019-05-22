@@ -38,6 +38,9 @@ export default function createTheme(values = {}) {
       // The height of the app header
       headerHeight: 64,
 
+      // Width of Menu Drawer - this property is used to render the AMP version of the menu correctly
+      drawerWidth: 330,
+
       // Override the icon for all expanders in collapsed state - this should be a React component class, for example @material-ui/icons/Add
       ExpandIcon: null,
 

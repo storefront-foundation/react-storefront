@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AmpMenu should render 1`] = `
+exports[`AmpMenu should render AMP menu 1`] = `
 <TestProvider app={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
     <MuiThemeProviderOld theme={{...}}>
@@ -13,121 +13,310 @@ exports[`AmpMenu should render 1`] = `
                   <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} style={{...}} />
                 </SideEffect(NullComponent)>
               </HelmetWrapper>
-              <amp-sidebar id="moov_menu" class="RSFAmpMenu-root-52" layout="nodisplay" side={[undefined]}>
-                <section>
-                  <div>
-                    <amp-accordion disable-session-states={true}>
-                      <section>
-                        <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpMenu-item-53 RSFAmpMenu-group-54">
-                          <Typography variant="body1" component="h3" className="RSFAmpMenu-item-53 RSFAmpMenu-group-54" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                            <h3 className="MuiTypography-root-58 MuiTypography-body1-67 RSFAmpMenu-item-53 RSFAmpMenu-group-54">
-                              Category 1
-                              <pure(ExpandLessIcon) className="RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57">
-                                <ExpandLessIcon className="RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57">
-                                  <WithStyles(SvgIcon) className="RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57">
-                                    <SvgIcon className="RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                      <svg className="MuiSvgIcon-root-93 RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                        <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                      </svg>
-                                    </SvgIcon>
-                                  </WithStyles(SvgIcon)>
-                                </ExpandLessIcon>
-                              </pure(ExpandLessIcon)>
-                              <pure(ExpandMoreIcon) className="RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56">
-                                <ExpandMoreIcon className="RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56">
-                                  <WithStyles(SvgIcon) className="RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56">
-                                    <SvgIcon className="RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                      <svg className="MuiSvgIcon-root-93 RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                      </svg>
-                                    </SvgIcon>
-                                  </WithStyles(SvgIcon)>
-                                </ExpandMoreIcon>
-                              </pure(ExpandMoreIcon)>
-                            </h3>
-                          </Typography>
-                        </WithStyles(Typography)>
-                        <div>
-                          <WithStyles(inject-Link) className="RSFAmpMenu-item-53" to="/s/1">
-                            <inject-Link className="RSFAmpMenu-item-53" to="/s/1" classes={{...}}>
-                              <Link className="RSFAmpMenu-item-53" to="/s/1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                                <a data-moov-link="on" className="RSFLink-root-102 RSFAmpMenu-item-53" style={[undefined]} onClick={[Function]} href="https://localhost/s/1">
-                                  Subcategory 1
-                                </a>
-                              </Link>
-                            </inject-Link>
-                          </WithStyles(inject-Link)>
-                          <WithStyles(inject-Link) className="RSFAmpMenu-item-53" to="/s/2">
-                            <inject-Link className="RSFAmpMenu-item-53" to="/s/2" classes={{...}}>
-                              <Link className="RSFAmpMenu-item-53" to="/s/2" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                                <a data-moov-link="on" className="RSFLink-root-102 RSFAmpMenu-item-53" style={[undefined]} onClick={[Function]} href="https://localhost/s/2">
-                                  Subcategory 2
-                                </a>
-                              </Link>
-                            </inject-Link>
-                          </WithStyles(inject-Link)>
-                        </div>
-                      </section>
-                    </amp-accordion>
-                    <amp-accordion disable-session-states={true}>
-                      <section>
-                        <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpMenu-item-53 RSFAmpMenu-group-54">
-                          <Typography variant="body1" component="h3" className="RSFAmpMenu-item-53 RSFAmpMenu-group-54" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                            <h3 className="MuiTypography-root-58 MuiTypography-body1-67 RSFAmpMenu-item-53 RSFAmpMenu-group-54">
-                              Category 2
-                              <pure(ExpandLessIcon) className="RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57">
-                                <ExpandLessIcon className="RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57">
-                                  <WithStyles(SvgIcon) className="RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57">
-                                    <SvgIcon className="RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                      <svg className="MuiSvgIcon-root-93 RSFAmpMenu-toggle-55 RSFAmpMenu-collapse-57" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                        <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                      </svg>
-                                    </SvgIcon>
-                                  </WithStyles(SvgIcon)>
-                                </ExpandLessIcon>
-                              </pure(ExpandLessIcon)>
-                              <pure(ExpandMoreIcon) className="RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56">
-                                <ExpandMoreIcon className="RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56">
-                                  <WithStyles(SvgIcon) className="RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56">
-                                    <SvgIcon className="RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                      <svg className="MuiSvgIcon-root-93 RSFAmpMenu-toggle-55 RSFAmpMenu-expand-56" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                      </svg>
-                                    </SvgIcon>
-                                  </WithStyles(SvgIcon)>
-                                </ExpandMoreIcon>
-                              </pure(ExpandMoreIcon)>
-                            </h3>
-                          </Typography>
-                        </WithStyles(Typography)>
-                        <div>
-                          <WithStyles(inject-Link) className="RSFAmpMenu-item-53" to="/s/1">
-                            <inject-Link className="RSFAmpMenu-item-53" to="/s/1" classes={{...}}>
-                              <Link className="RSFAmpMenu-item-53" to="/s/1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                                <a data-moov-link="on" className="RSFLink-root-102 RSFAmpMenu-item-53" style={[undefined]} onClick={[Function]} href="https://localhost/s/1">
-                                  Subcategory 1
-                                </a>
-                              </Link>
-                            </inject-Link>
-                          </WithStyles(inject-Link)>
-                          <WithStyles(inject-Link) className="RSFAmpMenu-item-53" to="/s/2">
-                            <inject-Link className="RSFAmpMenu-item-53" to="/s/2" classes={{...}}>
-                              <Link className="RSFAmpMenu-item-53" to="/s/2" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                                <a data-moov-link="on" className="RSFLink-root-102 RSFAmpMenu-item-53" style={[undefined]} onClick={[Function]} href="https://localhost/s/2">
-                                  Subcategory 2
-                                </a>
-                              </Link>
-                            </inject-Link>
-                          </WithStyles(inject-Link)>
-                        </div>
-                      </section>
-                    </amp-accordion>
+              <amp-sidebar id="moov_menu" class="RSFAmpMenu-root-1" layout="nodisplay" side={[undefined]} on="sidebarClose:AMP.setState({ menuOpen: false })">
+                <MenuBody rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true}>
+                  <div className="" amp-bind="class=>list == \\'@\\'  ? \\'\\' : \\'\\'">
+                    <MenuList classes={{...}}>
+                      <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}}>
+                        <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                          <ul className="MuiList-root-2 MuiList-padding-3" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                            <inject-Item-with-app rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0}>
+                              <Item rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0} app={{...}}>
+                                <inject-Branch-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={0} useExpanders={true} simple={[undefined]}>
+                                  <Branch expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={0} useExpanders={true} simple={[undefined]} app={{...}}>
+                                    <div amp-bind="class=>sublist == \\'0.0\\' ? \\'expanded\\' : \\'\\'">
+                                      <WithStyles(MenuItem) className="menu-item" button={true} divider={true} on="tap:AMP.setState({ list: \\'@0\\' })" depth={0} index={0}>
+                                        <MenuItem className="menu-item" button={true} divider={true} on="tap:AMP.setState({ list: \\'@0\\' })" depth={0} index={0} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                          <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" divider={true} on="tap:AMP.setState({ list: \\'@0\\' })" depth={0} index={0}>
+                                            <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" divider={true} on="tap:AMP.setState({ list: \\'@0\\' })" depth={0} index={0} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false}>
+                                              <MergeListContext dense={false} alignItems="center">
+                                                <WithStyles(ButtonBase) className="MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" disabled={false} role="menuitem" tabIndex={-1} on="tap:AMP.setState({ list: \\'@0\\' })" depth={0} index={0} component="li" focusVisibleClassName="MuiListItem-focusVisible-11">
+                                                  <ButtonBase className="MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" disabled={false} role="menuitem" tabIndex={-1} on="tap:AMP.setState({ list: \\'@0\\' })" depth={0} index={0} component="li" focusVisibleClassName="MuiListItem-focusVisible-11" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                    <li className="MuiButtonBase-root-21 MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem" on="tap:AMP.setState({ list: \\'@0\\' })" depth={0} index={0}>
+                                                      <inject-ItemContent-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={false} sublist="0.0">
+                                                        <ItemContent expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={false} sublist="0.0" app={{...}}>
+                                                          <WithStyles(ListItemText) className={[undefined]} primary="Group 1" disableTypography={true}>
+                                                            <ListItemText className={[undefined]} primary="Group 1" disableTypography={true} classes={{...}} inset={false}>
+                                                              <div className="MuiListItemText-root-24">
+                                                                Group 1
+                                                              </div>
+                                                            </ListItemText>
+                                                          </WithStyles(ListItemText)>
+                                                          <WithStyles(ListItemIcon) className={[undefined]}>
+                                                            <ListItemIcon className={[undefined]} classes={{...}}>
+                                                              <div className="MuiListItemIcon-root-30">
+                                                                <inject-ExpanderIcon-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={false} sublist="0.0" app={{...}}>
+                                                                  <ExpanderIcon expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={false} sublist="0.0" app={{...}}>
+                                                                    <pure(ChevronRightIcon) className={[undefined]}>
+                                                                      <ChevronRightIcon className={[undefined]}>
+                                                                        <WithStyles(SvgIcon) className={[undefined]}>
+                                                                          <SvgIcon className={[undefined]} classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                            <svg className="MuiSvgIcon-root-31" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                                                              <path fill="none" d="M0 0h24v24H0z" />
+                                                                            </svg>
+                                                                          </SvgIcon>
+                                                                        </WithStyles(SvgIcon)>
+                                                                      </ChevronRightIcon>
+                                                                    </pure(ChevronRightIcon)>
+                                                                  </ExpanderIcon>
+                                                                </inject-ExpanderIcon-with-app>
+                                                              </div>
+                                                            </ListItemIcon>
+                                                          </WithStyles(ListItemIcon)>
+                                                        </ItemContent>
+                                                      </inject-ItemContent-with-app>
+                                                      <NoSsr defer={false} fallback={{...}}>
+                                                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                          <TouchRipple center={false} classes={{...}}>
+                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-80" childFactory={[Function: childFactory]}>
+                                                              <span className="MuiTouchRipple-root-80" />
+                                                            </TransitionGroup>
+                                                          </TouchRipple>
+                                                        </WithStyles(TouchRipple)>
+                                                      </NoSsr>
+                                                    </li>
+                                                  </ButtonBase>
+                                                </WithStyles(ButtonBase)>
+                                              </MergeListContext>
+                                            </ListItem>
+                                          </WithStyles(ListItem)>
+                                        </MenuItem>
+                                      </WithStyles(MenuItem)>
+                                    </div>
+                                  </Branch>
+                                </inject-Branch-with-app>
+                              </Item>
+                            </inject-Item-with-app>
+                          </ul>
+                        </List>
+                      </WithStyles(List)>
+                    </MenuList>
                   </div>
-                </section>
+                </MenuBody>
+                <MenuBody rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true}>
+                  <div className="undefined" amp-bind="class=>list == \\'@0\\'  ? \\'\\' : \\'undefined\\'">
+                    <MenuList classes={{...}}>
+                      <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}}>
+                        <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}} component="ul" dense={false} disablePadding={false}>
+                          <ul className="MuiList-root-2 MuiList-padding-3" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                            <WithStyles(MenuItem) divider={true} button={true} on="tap:AMP.setState({ list: \\'@\\' })" tabIndex={-1} onFocus={[Function]}>
+                              <MenuItem divider={true} button={true} on="tap:AMP.setState({ list: \\'@\\' })" tabIndex={-1} onFocus={[Function]} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-6 MuiMenuItem-gutters-7" divider={true} on="tap:AMP.setState({ list: \\'@\\' })" onFocus={[Function]}>
+                                  <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-6 MuiMenuItem-gutters-7" divider={true} on="tap:AMP.setState({ list: \\'@\\' })" onFocus={[Function]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false}>
+                                    <MergeListContext dense={false} alignItems="center">
+                                      <WithStyles(ButtonBase) className="MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7" disabled={false} role="menuitem" tabIndex={-1} on="tap:AMP.setState({ list: \\'@\\' })" onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-11">
+                                        <ButtonBase className="MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7" disabled={false} role="menuitem" tabIndex={-1} on="tap:AMP.setState({ list: \\'@\\' })" onFocus={[Function]} component="li" focusVisibleClassName="MuiListItem-focusVisible-11" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                          <li className="MuiButtonBase-root-21 MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem" on="tap:AMP.setState({ list: \\'@\\' })">
+                                            <WithStyles(ListItemIcon) classes={{...}}>
+                                              <ListItemIcon classes={{...}}>
+                                                <div className="MuiListItemIcon-root-30">
+                                                  <pure(ChevronLeftIcon) className={[undefined]}>
+                                                    <ChevronLeftIcon className={[undefined]}>
+                                                      <WithStyles(SvgIcon) className={[undefined]}>
+                                                        <SvgIcon className={[undefined]} classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                          <svg className="MuiSvgIcon-root-31" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                                                            <path fill="none" d="M0 0h24v24H0z" />
+                                                          </svg>
+                                                        </SvgIcon>
+                                                      </WithStyles(SvgIcon)>
+                                                    </ChevronLeftIcon>
+                                                  </pure(ChevronLeftIcon)>
+                                                </div>
+                                              </ListItemIcon>
+                                            </WithStyles(ListItemIcon)>
+                                            <WithStyles(ListItemText) classes={{...}} primary={{...}}>
+                                              <ListItemText primary={{...}} classes={{...}} disableTypography={false} inset={false}>
+                                                <div className="MuiListItemText-root-24">
+                                                  <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-27" component="span">
+                                                    <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-27" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                      <span className="MuiTypography-root-40 MuiTypography-subtitle1-58 MuiListItemText-primary-27">
+                                                        <div className={[undefined]}>
+                                                          Group 1
+                                                           
+                                                        </div>
+                                                      </span>
+                                                    </Typography>
+                                                  </WithStyles(Typography)>
+                                                </div>
+                                              </ListItemText>
+                                            </WithStyles(ListItemText)>
+                                            <NoSsr defer={false} fallback={{...}}>
+                                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                <TouchRipple center={false} classes={{...}}>
+                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-80" childFactory={[Function: childFactory]}>
+                                                    <span className="MuiTouchRipple-root-80" />
+                                                  </TransitionGroup>
+                                                </TouchRipple>
+                                              </WithStyles(TouchRipple)>
+                                            </NoSsr>
+                                          </li>
+                                        </ButtonBase>
+                                      </WithStyles(ButtonBase)>
+                                    </MergeListContext>
+                                  </ListItem>
+                                </WithStyles(ListItem)>
+                              </MenuItem>
+                            </WithStyles(MenuItem)>
+                            <inject-Item-with-app rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0}>
+                              <Item rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0} app={{...}}>
+                                <inject-Branch-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={1} useExpanders={true} simple={[undefined]}>
+                                  <Branch expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={1} useExpanders={true} simple={[undefined]} app={{...}}>
+                                    <div amp-bind="class=>sublist == \\'1.0\\' ? \\'expanded\\' : \\'\\'">
+                                      <WithStyles(MenuItem) className="menu-item" button={true} divider={true} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" depth={1} index={0}>
+                                        <MenuItem className="menu-item" button={true} divider={true} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" depth={1} index={0} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                          <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" divider={true} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" depth={1} index={0}>
+                                            <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" divider={true} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" depth={1} index={0} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false}>
+                                              <MergeListContext dense={false} alignItems="center">
+                                                <WithStyles(ButtonBase) className="MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" disabled={false} role="menuitem" tabIndex={-1} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" depth={1} index={0} component="li" focusVisibleClassName="MuiListItem-focusVisible-11">
+                                                  <ButtonBase className="MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" disabled={false} role="menuitem" tabIndex={-1} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" depth={1} index={0} component="li" focusVisibleClassName="MuiListItem-focusVisible-11" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                    <li className="MuiButtonBase-root-21 MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem" on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" depth={1} index={0}>
+                                                      <inject-ItemContent-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.0">
+                                                        <ItemContent expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.0" app={{...}}>
+                                                          <WithStyles(ListItemText) className={[undefined]} primary="Item 1" disableTypography={true}>
+                                                            <ListItemText className={[undefined]} primary="Item 1" disableTypography={true} classes={{...}} inset={false}>
+                                                              <div className="MuiListItemText-root-24">
+                                                                Item 1
+                                                              </div>
+                                                            </ListItemText>
+                                                          </WithStyles(ListItemText)>
+                                                          <WithStyles(ListItemIcon) className={[undefined]}>
+                                                            <ListItemIcon className={[undefined]} classes={{...}}>
+                                                              <div className="MuiListItemIcon-root-30">
+                                                                <inject-ExpanderIcon-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.0" app={{...}}>
+                                                                  <ExpanderIcon expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.0" app={{...}}>
+                                                                    <pure(ExpandLessIcon) className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                      <ExpandLessIcon className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                        <WithStyles(SvgIcon) className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                          <SvgIcon className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                            <svg className="MuiSvgIcon-root-31" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                              <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+                                                                              <path fill="none" d="M0 0h24v24H0z" />
+                                                                            </svg>
+                                                                          </SvgIcon>
+                                                                        </WithStyles(SvgIcon)>
+                                                                      </ExpandLessIcon>
+                                                                    </pure(ExpandLessIcon)>
+                                                                    <pure(ExpandMoreIcon) className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                      <ExpandMoreIcon className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                        <WithStyles(SvgIcon) className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                          <SvgIcon className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                            <svg className="MuiSvgIcon-root-31" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                                                              <path fill="none" d="M0 0h24v24H0z" />
+                                                                            </svg>
+                                                                          </SvgIcon>
+                                                                        </WithStyles(SvgIcon)>
+                                                                      </ExpandMoreIcon>
+                                                                    </pure(ExpandMoreIcon)>
+                                                                  </ExpanderIcon>
+                                                                </inject-ExpanderIcon-with-app>
+                                                              </div>
+                                                            </ListItemIcon>
+                                                          </WithStyles(ListItemIcon)>
+                                                        </ItemContent>
+                                                      </inject-ItemContent-with-app>
+                                                      <NoSsr defer={false} fallback={{...}}>
+                                                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                          <TouchRipple center={false} classes={{...}}>
+                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-80" childFactory={[Function: childFactory]}>
+                                                              <span className="MuiTouchRipple-root-80" />
+                                                            </TransitionGroup>
+                                                          </TouchRipple>
+                                                        </WithStyles(TouchRipple)>
+                                                      </NoSsr>
+                                                    </li>
+                                                  </ButtonBase>
+                                                </WithStyles(ButtonBase)>
+                                              </MergeListContext>
+                                            </ListItem>
+                                          </WithStyles(ListItem)>
+                                        </MenuItem>
+                                      </WithStyles(MenuItem)>
+                                    </div>
+                                    <WithStyles(Collapse) in={true} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" timeout="auto">
+                                      <Collapse in={true} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" timeout="auto" theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
+                                        <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={true} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                          <div className="MuiCollapse-container-75 MuiCollapse-entered-76" style={{...}} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'">
+                                            <div className="MuiCollapse-wrapper-77">
+                                              <div className="MuiCollapse-wrapperInner-78">
+                                                <MenuList component="div" classes={{...}}>
+                                                  <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}}>
+                                                    <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} component="div" classes={{...}} dense={false} disablePadding={false}>
+                                                      <div className="MuiList-root-2 MuiList-padding-3" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
+                                                        <inject-Item-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={2} useExpanders={true} simple={[undefined]} app={{...}} tabIndex={0} onFocus={[Function]}>
+                                                          <Item expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={2} useExpanders={true} simple={[undefined]} app={{...}} tabIndex={0} onFocus={[Function]}>
+                                                            <inject-Leaf-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={2} useExpanders={true} simple={[undefined]}>
+                                                              <Leaf expandFirstItem={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={2} useExpanders={true} simple={[undefined]} app={{...}}>
+                                                                <WithStyles(inject-Link) to="/item1/child1" className={[undefined]} server={false} state={{...}} onClick={[Function]}>
+                                                                  <inject-Link to="/item1/child1" className={[undefined]} server={false} state={{...}} onClick={[Function]} classes={{...}}>
+                                                                    <Link to="/item1/child1" className={[undefined]} server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                      <a data-moov-link="on" className="RSFLink-root-79" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                                        <WithStyles(MenuItem) button={true} divider={true} selected={[undefined]} classes={{...}}>
+                                                                          <MenuItem button={true} divider={true} selected={[undefined]} classes={{...}} component="li" disableGutters={false} role="menuitem">
+                                                                            <WithStyles(ListItem) button={true} role="menuitem" tabIndex={-1} component="li" selected={[undefined]} disableGutters={false} className="MuiMenuItem-root-6 MuiMenuItem-gutters-7" divider={true}>
+                                                                              <ListItem button={true} role="menuitem" tabIndex={-1} component="li" selected={false} disableGutters={false} className="MuiMenuItem-root-6 MuiMenuItem-gutters-7" divider={true} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false}>
+                                                                                <MergeListContext dense={false} alignItems="center">
+                                                                                  <WithStyles(ButtonBase) className="MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-11">
+                                                                                    <ButtonBase className="MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7" disabled={false} role="menuitem" tabIndex={-1} component="li" focusVisibleClassName="MuiListItem-focusVisible-11" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} type="button">
+                                                                                      <li className="MuiButtonBase-root-21 MuiListItem-root-9 MuiListItem-default-12 MuiListItem-gutters-17 MuiListItem-divider-16 MuiListItem-button-18 MuiMenuItem-root-6 MuiMenuItem-gutters-7" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex={-1} role="menuitem">
+                                                                                        <inject-ItemContent-with-app expandFirstItem={[undefined]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={0} depth={2} useExpanders={true} simple={[undefined]} item={{...}} showExpander={false} leaf={true}>
+                                                                                          <ItemContent expandFirstItem={[undefined]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={0} depth={2} useExpanders={true} simple={[undefined]} item={{...}} showExpander={false} leaf={true} app={{...}}>
+                                                                                            <WithStyles(ListItemText) primary="Child 1" disableTypography={true}>
+                                                                                              <ListItemText primary="Child 1" disableTypography={true} classes={{...}} inset={false}>
+                                                                                                <div className="MuiListItemText-root-24">
+                                                                                                  Child 1
+                                                                                                </div>
+                                                                                              </ListItemText>
+                                                                                            </WithStyles(ListItemText)>
+                                                                                          </ItemContent>
+                                                                                        </inject-ItemContent-with-app>
+                                                                                        <NoSsr defer={false} fallback={{...}}>
+                                                                                          <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                            <TouchRipple center={false} classes={{...}}>
+                                                                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-80" childFactory={[Function: childFactory]}>
+                                                                                                <span className="MuiTouchRipple-root-80" />
+                                                                                              </TransitionGroup>
+                                                                                            </TouchRipple>
+                                                                                          </WithStyles(TouchRipple)>
+                                                                                        </NoSsr>
+                                                                                      </li>
+                                                                                    </ButtonBase>
+                                                                                  </WithStyles(ButtonBase)>
+                                                                                </MergeListContext>
+                                                                              </ListItem>
+                                                                            </WithStyles(ListItem)>
+                                                                          </MenuItem>
+                                                                        </WithStyles(MenuItem)>
+                                                                      </a>
+                                                                    </Link>
+                                                                  </inject-Link>
+                                                                </WithStyles(inject-Link)>
+                                                              </Leaf>
+                                                            </inject-Leaf-with-app>
+                                                          </Item>
+                                                        </inject-Item-with-app>
+                                                      </div>
+                                                    </List>
+                                                  </WithStyles(List)>
+                                                </MenuList>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </Transition>
+                                      </Collapse>
+                                    </WithStyles(Collapse)>
+                                  </Branch>
+                                </inject-Branch-with-app>
+                              </Item>
+                            </inject-Item-with-app>
+                          </ul>
+                        </List>
+                      </WithStyles(List)>
+                    </MenuList>
+                  </div>
+                </MenuBody>
               </amp-sidebar>
             </AmpMenu>
           </inject-AmpMenu>

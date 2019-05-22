@@ -28,6 +28,8 @@ export default class Item extends Component {
         CollapseIcon={this.props.CollapseIcon}
         theme={this.props.theme}
         item={item}
+        index={this.props.index}
+        depth={this.props.depth}
         useExpanders={this.props.useExpanders}
         simple={this.props.simple}
         depth={this.props.depth}

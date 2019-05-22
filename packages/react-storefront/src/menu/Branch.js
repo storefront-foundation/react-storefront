@@ -19,10 +19,11 @@ export default class Branch extends Component {
 
   render() {
     let {
-      app: { menu },
+      app: { menu, amp },
       useExpanders,
       simple,
       depth,
+      index,
       item,
       ...others
     } = this.props
@@ -30,30 +31,54 @@ export default class Branch extends Component {
     const { classes } = this.context
     const showExpander = simple || (depth > 0 && useExpanders)
 
+    const interactionProps = {
+      onClick: showExpander
+        ? this.toggleItemExpaned.bind(this, item)
+        : this.slideToItem.bind(this, item, menu),
+      classes: {
+        root: classnames(classes.listItem, item.className, {
+          [classes.expanded]: item.expanded,
+          [classes.expander]: showExpander
+        })
+      }
+    }
+
+    const sublist = `${depth}.${index}`
+
+    const ampProps = {
+      on:
+        depth === 0
+          ? `tap:AMP.setState({ list: '@${index}' })`
+          : `tap:AMP.setState({ sublist: sublist == '${sublist}' ? null : '${sublist}' })`,
+      depth,
+      index
+    }
+
     const elements = [
-      <MenuItem
-        key="item"
-        button
-        divider
-        onClick={
-          showExpander
-            ? this.toggleItemExpaned.bind(this, item)
-            : this.slideToItem.bind(this, item, menu)
-        }
-        classes={{
-          root: classnames(classes.listItem, item.className, {
-            [classes.expanded]: item.expanded,
-            [classes.expander]: showExpander
-          })
-        }}
-      >
-        <ItemContent {...others} item={item} leaf={false} showExpander={showExpander} />
-      </MenuItem>
+      <div key="item" amp-bind={`class=>sublist == '${sublist}' ? 'expanded' : ''`}>
+        <MenuItem className="menu-item" button divider {...(amp ? ampProps : interactionProps)}>
+          <ItemContent
+            {...others}
+            item={item}
+            leaf={false}
+            showExpander={showExpander}
+            sublist={sublist}
+          />
+        </MenuItem>
+      </div>
     ]
 
     if (showExpander) {
+      const props = amp
+        ? {
+            in: true,
+            'amp-bind': `class=>sublist == '${sublist}' ? '${classes.visible}' : '${
+              classes.hidden
+            }'`
+          }
+        : { in: item.expanded }
       elements.push(
-        <Collapse in={item.expanded} timeout="auto" key="collapse">
+        <Collapse {...props} timeout="auto" key="collapse">
           <MenuList component="div" classes={{ root: classes.list }}>
             {item.items &&
               item.items.map((item, i) => (

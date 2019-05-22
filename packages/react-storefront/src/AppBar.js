@@ -146,7 +146,10 @@ export default class Header extends Component {
 
     const menuButton = (
       <Hidden mdUp implementation="css" key="menuButton">
-        <a on="tap:moov_menu.toggle" className={classes.link}>
+        <a
+          on="tap:AMP.setState({ menuOpen: !menuOpen, list: '@' }),moov_menu.toggle"
+          className={classes.link}
+        >
           <ToolbarButton
             aria-label="Menu"
             color="inherit"

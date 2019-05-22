@@ -1,52 +1,142 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MenuIcon should render AMP version of closed menu icon 1`] = `
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <inject-WithStyles(MenuIcon)-with-app>
+        <WithStyles(MenuIcon) app={{...}}>
+          <MenuIcon app={{...}} classes={{...}} open={false} label={true}>
+            <div amp-bind="class=>menuOpen == false ? \\'RSFMenuIcon-visible-23\\' : \\'RSFMenuIcon-hidden-22\\'">
+              <div className="RSFMenuIcon-root-19">
+                <div className="rsf-hamburger" type="button">
+                  <span className="rsf-hamburger-box">
+                    <span className="rsf-hamburger-inner" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="RSFMenuIcon-hidden-22" amp-bind="class=>menuOpen == true ? \\'RSFMenuIcon-visible-23\\' : \\'RSFMenuIcon-hidden-22\\'">
+              <div className="RSFMenuIcon-root-19 RSFMenuIcon-active-20">
+                <div className="rsf-hamburger" type="button">
+                  <span className="rsf-hamburger-box">
+                    <span className="rsf-hamburger-inner" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </MenuIcon>
+        </WithStyles(MenuIcon)>
+      </inject-WithStyles(MenuIcon)-with-app>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
+`;
+
+exports[`MenuIcon should render AMP version of open menu icon 1`] = `
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <inject-WithStyles(MenuIcon)-with-app open={true}>
+        <WithStyles(MenuIcon) open={true} app={{...}}>
+          <MenuIcon open={true} app={{...}} classes={{...}} label={true}>
+            <div amp-bind="class=>menuOpen == false ? \\'RSFMenuIcon-visible-29\\' : \\'RSFMenuIcon-hidden-28\\'">
+              <div className="RSFMenuIcon-root-25">
+                <div className="rsf-hamburger" type="button">
+                  <span className="rsf-hamburger-box">
+                    <span className="rsf-hamburger-inner" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="RSFMenuIcon-hidden-28" amp-bind="class=>menuOpen == true ? \\'RSFMenuIcon-visible-29\\' : \\'RSFMenuIcon-hidden-28\\'">
+              <div className="RSFMenuIcon-root-25 RSFMenuIcon-active-26">
+                <div className="rsf-hamburger" type="button">
+                  <span className="rsf-hamburger-box">
+                    <span className="rsf-hamburger-inner" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </MenuIcon>
+        </WithStyles(MenuIcon)>
+      </inject-WithStyles(MenuIcon)-with-app>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
+`;
+
 exports[`MenuIcon should render a label 1`] = `
-<WithStyles(MenuIcon) label={true}>
-  <MenuIcon label={true} classes={{...}} open={false}>
-    <div className="RSFMenuIcon-root-1 RSFMenuIcon-withLabel-3">
-      <div className="rsf-hamburger" type="button">
-        <span className="rsf-hamburger-box">
-          <span className="rsf-hamburger-inner" />
-        </span>
-      </div>
-      <div className="RSFMenuIcon-label-4">
-        menu
-      </div>
-    </div>
-  </MenuIcon>
-</WithStyles(MenuIcon)>
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <inject-WithStyles(MenuIcon)-with-app label={true}>
+        <WithStyles(MenuIcon) label={true} app={{...}}>
+          <MenuIcon label={true} app={{...}} classes={{...}} open={false}>
+            <div className="RSFMenuIcon-root-13 RSFMenuIcon-withLabel-15">
+              <div className="rsf-hamburger" type="button">
+                <span className="rsf-hamburger-box">
+                  <span className="rsf-hamburger-inner" />
+                </span>
+              </div>
+              <div className="RSFMenuIcon-label-18">
+                menu
+              </div>
+            </div>
+          </MenuIcon>
+        </WithStyles(MenuIcon)>
+      </inject-WithStyles(MenuIcon)-with-app>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
 `;
 
 exports[`MenuIcon should show the close icon when opened 1`] = `
-<WithStyles(MenuIcon) open={true}>
-  <MenuIcon open={true} classes={{...}} label={true}>
-    <div className="RSFMenuIcon-root-1 RSFMenuIcon-active-2 RSFMenuIcon-withLabel-3">
-      <div className="rsf-hamburger" type="button">
-        <span className="rsf-hamburger-box">
-          <span className="rsf-hamburger-inner" />
-        </span>
-      </div>
-      <div className="RSFMenuIcon-label-4">
-        menu
-      </div>
-    </div>
-  </MenuIcon>
-</WithStyles(MenuIcon)>
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <inject-WithStyles(MenuIcon)-with-app open={true}>
+        <WithStyles(MenuIcon) open={true} app={{...}}>
+          <MenuIcon open={true} app={{...}} classes={{...}} label={true}>
+            <div className="RSFMenuIcon-root-7 RSFMenuIcon-active-8 RSFMenuIcon-withLabel-9">
+              <div className="rsf-hamburger" type="button">
+                <span className="rsf-hamburger-box">
+                  <span className="rsf-hamburger-inner" />
+                </span>
+              </div>
+              <div className="RSFMenuIcon-label-12">
+                menu
+              </div>
+            </div>
+          </MenuIcon>
+        </WithStyles(MenuIcon)>
+      </inject-WithStyles(MenuIcon)-with-app>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
 `;
 
 exports[`MenuIcon should show the open icon when closed 1`] = `
-<WithStyles(MenuIcon)>
-  <MenuIcon classes={{...}} open={false} label={true}>
-    <div className="RSFMenuIcon-root-1 RSFMenuIcon-withLabel-3">
-      <div className="rsf-hamburger" type="button">
-        <span className="rsf-hamburger-box">
-          <span className="rsf-hamburger-inner" />
-        </span>
-      </div>
-      <div className="RSFMenuIcon-label-4">
-        menu
-      </div>
-    </div>
-  </MenuIcon>
-</WithStyles(MenuIcon)>
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <inject-WithStyles(MenuIcon)-with-app>
+        <WithStyles(MenuIcon) app={{...}}>
+          <MenuIcon app={{...}} classes={{...}} open={false} label={true}>
+            <div className="RSFMenuIcon-root-1 RSFMenuIcon-withLabel-3">
+              <div className="rsf-hamburger" type="button">
+                <span className="rsf-hamburger-box">
+                  <span className="rsf-hamburger-inner" />
+                </span>
+              </div>
+              <div className="RSFMenuIcon-label-6">
+                menu
+              </div>
+            </div>
+          </MenuIcon>
+        </WithStyles(MenuIcon)>
+      </inject-WithStyles(MenuIcon)-with-app>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
 `;

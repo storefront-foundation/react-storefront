@@ -37,6 +37,35 @@ export const styles = theme => ({
     padding: 0
   },
 
+  ampList: {
+    flex: 'none',
+    overflowX: 'hidden',
+    padding: 0
+  },
+
+  ampBody: {
+    overflowY: 'auto',
+    height: '100%',
+    left: 0,
+    top: 0,
+    position: 'absolute',
+    width: '100%',
+    flex: '1 1 0%',
+    transition: 'transform ease-out .2s'
+  },
+
+  hiddenLeft: {
+    transform: `translateX(-${theme.drawerWidth}px)`
+  },
+
+  hiddenRight: {
+    transform: `translateX(${theme.drawerWidth}px)`
+  },
+
+  inFocus: {
+    transform: 'translateX(0px)'
+  },
+
   listPadding: {
     padding: 0
   },
@@ -48,7 +77,8 @@ export const styles = theme => ({
   },
 
   icon: {
-    marginRight: '0'
+    marginRight: '0',
+    width: 24
   },
 
   headerText: {
@@ -62,6 +92,14 @@ export const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     transition: 'all ease-out .2s'
+  },
+
+  hidden: {
+    display: 'none'
+  },
+
+  visible: {
+    display: 'block'
   },
 
   listItem: {
@@ -235,36 +273,40 @@ export default class Menu extends Component {
     if (!menu) {
       return null
     } else if (amp) {
-      return <AmpMenu {...this.props} />
+      return (
+        <MenuContext.Provider value={this.menuContext}>
+          <AmpMenu {...this.props} />
+        </MenuContext.Provider>
+      )
+    } else {
+      return (
+        <Fragment>
+          <Drawer
+            variant={persistent ? 'persistent' : 'temporary'}
+            open={menu.open || persistent}
+            onClose={menu.close}
+            anchor={align}
+            ModalProps={{
+              keepMounted: true
+            }}
+            PaperProps={{
+              style: { width: `${drawerWidth}px` }
+            }}
+            classes={{
+              root: className,
+              paper: classnames(classes.drawer, {
+                [classes.drawerFixed]: persistent
+              }),
+              modal: classes.modal
+            }}
+          >
+            <MenuContext.Provider value={this.menuContext}>
+              <Body drawerWidth={drawerWidth} {...others} />
+            </MenuContext.Provider>
+          </Drawer>
+          <SEOLinks />
+        </Fragment>
+      )
     }
-
-    return (
-      <Fragment>
-        <Drawer
-          variant={persistent ? 'persistent' : 'temporary'}
-          open={menu.open || persistent}
-          onClose={menu.close}
-          anchor={align}
-          ModalProps={{
-            keepMounted: true
-          }}
-          PaperProps={{
-            style: { width: `${drawerWidth}px` }
-          }}
-          classes={{
-            root: className,
-            paper: classnames(classes.drawer, {
-              [classes.drawerFixed]: persistent
-            }),
-            modal: classes.modal
-          }}
-        >
-          <MenuContext.Provider value={this.menuContext}>
-            <Body drawerWidth={drawerWidth} {...others} />
-          </MenuContext.Provider>
-        </Drawer>
-        <SEOLinks />
-      </Fragment>
-    )
   }
 }

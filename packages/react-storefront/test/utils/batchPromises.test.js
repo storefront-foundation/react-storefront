@@ -16,6 +16,6 @@ describe('batchPromises', () => {
       })
     })
 
-    expect(executionTimes[2] - executionTimes[1]).toBeGreaterThanOrEqual(100)
+    expect(executionTimes[2] - executionTimes[1]).toBeGreaterThanOrEqual(99)
   })
 })

@@ -6,7 +6,7 @@ exports[`AppBar should render 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(Header)>
         <WithStyles(Header) menu={{...}} amp={false} offline={false}>
-          <Header menu={{...}} amp={false} offline={false} classes={{...}} MenuIcon={[Function: WithStyles]} menuIconProps={{...}} menuAlign="left" offlineWarning="Your device lost its internet connection.">
+          <Header menu={{...}} amp={false} offline={false} classes={{...}} MenuIcon={[Function: Injector]} menuIconProps={{...}} menuAlign="left" offlineWarning="Your device lost its internet connection.">
             <div>
               <div className="RSFAppBar-root-1">
                 <div className="RSFAppBar-wrap-5">
@@ -17,7 +17,7 @@ exports[`AppBar should render 1`] = `
                           <WithStyles(HiddenCss) mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
                             <HiddenCss mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false} classes={{...}}>
                               <div className="MuiPrivateHiddenCss-mdUp-23">
-                                <a on="tap:moov_menu.toggle" className="RSFAppBar-link-11">
+                                <a on="tap:AMP.setState({ menuOpen: !menuOpen, list: \\'@\\' }),moov_menu.toggle" className="RSFAppBar-link-11">
                                   <WithStyles(ToolbarButton) aria-label="Menu" color="inherit" onClick={[Function]} icon={{...}}>
                                     <ToolbarButton aria-label="Menu" color="inherit" onClick={[Function]} icon={{...}} classes={{...}}>
                                       <WithStyles(IconButton) classes={{...}} aria-label="Menu" color="inherit" onClick={[Function]}>
@@ -27,28 +27,30 @@ exports[`AppBar should render 1`] = `
                                               <button className="MuiButtonBase-root-38 MuiIconButton-root-32 MuiIconButton-colorInherit-33" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Menu" onClick={[Function]}>
                                                 <span className="MuiIconButton-label-37">
                                                   <div className="RSFToolbarButton-wrap-31">
-                                                    <WithStyles(MenuIcon) open={false}>
-                                                      <MenuIcon open={false} classes={{...}} label={true}>
-                                                        <div className="RSFMenuIcon-root-41 RSFMenuIcon-withLabel-43">
-                                                          <div className="rsf-hamburger" type="button">
-                                                            <span className="rsf-hamburger-box">
-                                                              <span className="rsf-hamburger-inner" />
-                                                            </span>
+                                                    <inject-WithStyles(MenuIcon)-with-app open={false}>
+                                                      <WithStyles(MenuIcon) open={false} app={{...}}>
+                                                        <MenuIcon open={false} app={{...}} classes={{...}} label={true}>
+                                                          <div className="RSFMenuIcon-root-41 RSFMenuIcon-withLabel-43">
+                                                            <div className="rsf-hamburger" type="button">
+                                                              <span className="rsf-hamburger-box">
+                                                                <span className="rsf-hamburger-inner" />
+                                                              </span>
+                                                            </div>
+                                                            <div className="RSFMenuIcon-label-46">
+                                                              menu
+                                                            </div>
                                                           </div>
-                                                          <div className="RSFMenuIcon-label-44">
-                                                            menu
-                                                          </div>
-                                                        </div>
-                                                      </MenuIcon>
-                                                    </WithStyles(MenuIcon)>
+                                                        </MenuIcon>
+                                                      </WithStyles(MenuIcon)>
+                                                    </inject-WithStyles(MenuIcon)-with-app>
                                                     <div />
                                                   </div>
                                                 </span>
                                                 <NoSsr defer={false} fallback={{...}}>
                                                   <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
                                                     <TouchRipple center={true} classes={{...}}>
-                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-45" childFactory={[Function: childFactory]}>
-                                                        <span className="MuiTouchRipple-root-45" />
+                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-47" childFactory={[Function: childFactory]}>
+                                                        <span className="MuiTouchRipple-root-47" />
                                                       </TransitionGroup>
                                                     </TouchRipple>
                                                   </WithStyles(TouchRipple)>

@@ -2,7 +2,8 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
+import { observer, inject } from 'mobx-react'
 import { withStyles } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
@@ -96,6 +97,14 @@ export const styles = theme => ({
     }
   },
 
+  hidden: {
+    display: 'none'
+  },
+
+  visible: {
+    display: 'block'
+  },
+
   label: {
     fontSize: '9px',
     lineHeight: '9px',
@@ -109,6 +118,8 @@ export const styles = theme => ({
 /**
  * A menu icon that animates transitions between open and closed states.
  */
+@inject('app')
+@observer
 @withStyles(styles, { name: 'RSFMenuIcon' })
 export default class MenuIcon extends PureComponent {
   static propTypes = {
@@ -128,9 +139,8 @@ export default class MenuIcon extends PureComponent {
     label: true
   }
 
-  render() {
-    const { open, classes, label } = this.props
-
+  renderIcon = (open, label) => {
+    const { classes } = this.props
     return (
       <div
         className={classnames({
@@ -147,5 +157,32 @@ export default class MenuIcon extends PureComponent {
         {label && <div className={classes.label}>menu</div>}
       </div>
     )
+  }
+
+  render() {
+    const {
+      open,
+      classes,
+      label,
+      app: { amp }
+    } = this.props
+
+    if (amp) {
+      return (
+        <Fragment>
+          <div amp-bind={`class=>menuOpen == false ? '${classes.visible}' : '${classes.hidden}'`}>
+            {this.renderIcon(false)}
+          </div>
+          <div
+            className={classes.hidden}
+            amp-bind={`class=>menuOpen == true ? '${classes.visible}' : '${classes.hidden}'`}
+          >
+            {this.renderIcon(true)}
+          </div>
+        </Fragment>
+      )
+    }
+
+    return this.renderIcon(open, label)
   }
 }
