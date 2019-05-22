@@ -76,6 +76,7 @@ yarn release
 
 ### 6.21.1
 
+- Fixed bug where links in the menu main were not rendered properly for SEO introduced in 6.16.0
 - Fixes an issue where `ImageSwitcher` would not reset its `selectedIndex` after switching products.
 - If an analytics target throws an error it will now be caught so that other targets have a chance to fire.
 
@@ -151,7 +152,7 @@ new Router().get(
 
 ## 6.13.1
 
-- Fixed a bug where links in the main menu were not rendered properly for SEO. - Fixed a bug where links in the main menu were not rendered properly for SEO.
+- Fixed a bug where links in the main menu were not rendered properly for SEO.
 
 ### 6.13.0
 

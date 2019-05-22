@@ -352,9 +352,39 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                       </inject-Link>
                     </WithStyles(inject-Link)>
                   </div>
-                  <noscript>
-                    <ul />
-                  </noscript>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-735" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-735" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/leaf">
+                          <inject-Link to="/leaf" classes={{...}}>
+                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-735" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                Leaf
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
                 </SEOLinks>
               </inject-SEOLinks-with-app>
             </Menu>
@@ -718,9 +748,39 @@ exports[`Menu should call a custom itemRenderer 1`] = `
                       </inject-Link>
                     </WithStyles(inject-Link)>
                   </div>
-                  <noscript>
-                    <ul />
-                  </noscript>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-844" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-844" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/leaf">
+                          <inject-Link to="/leaf" classes={{...}}>
+                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-844" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                Leaf
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
                 </SEOLinks>
               </inject-SEOLinks-with-app>
             </Menu>
@@ -1024,9 +1084,39 @@ exports[`Menu should call a custom itemRenderer 2`] = `
                       </inject-Link>
                     </WithStyles(inject-Link)>
                   </div>
-                  <noscript>
-                    <ul />
-                  </noscript>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-953" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-953" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/leaf">
+                          <inject-Link to="/leaf" classes={{...}}>
+                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-953" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                Leaf
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
                 </SEOLinks>
               </inject-SEOLinks-with-app>
             </Menu>
@@ -1180,9 +1270,30 @@ exports[`Menu should render in complex mode by default 1`] = `
                       </inject-Link>
                     </WithStyles(inject-Link)>
                   </div>
-                  <noscript>
-                    <ul />
-                  </noscript>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-140" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-140" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
                 </SEOLinks>
               </inject-SEOLinks-with-app>
             </Menu>
@@ -1336,9 +1447,30 @@ exports[`Menu should render in complex mode by default 2`] = `
                       </inject-Link>
                     </WithStyles(inject-Link)>
                   </div>
-                  <noscript>
-                    <ul />
-                  </noscript>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-245" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-245" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
                 </SEOLinks>
               </inject-SEOLinks-with-app>
             </Menu>
@@ -1650,9 +1782,30 @@ exports[`Menu should render in simple mode 1`] = `
                       </inject-Link>
                     </WithStyles(inject-Link)>
                   </div>
-                  <noscript>
-                    <ul />
-                  </noscript>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-31" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-31" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
                 </SEOLinks>
               </inject-SEOLinks-with-app>
             </Menu>
@@ -1941,9 +2094,30 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                       </inject-Link>
                     </WithStyles(inject-Link)>
                   </div>
-                  <noscript>
-                    <ul />
-                  </noscript>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-595" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-595" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
                 </SEOLinks>
               </inject-SEOLinks-with-app>
             </Menu>
@@ -2097,9 +2271,30 @@ exports[`Menu should use custom icons 1`] = `
                       </inject-Link>
                     </WithStyles(inject-Link)>
                   </div>
-                  <noscript>
-                    <ul />
-                  </noscript>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-350" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-350" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
                 </SEOLinks>
               </inject-SEOLinks-with-app>
             </Menu>

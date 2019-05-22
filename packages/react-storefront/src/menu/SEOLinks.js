@@ -5,6 +5,7 @@
 import React, { Component, Fragment } from 'react'
 import { observer, inject } from 'mobx-react'
 import Link from '../Link'
+import NoScript from '../NoScript'
 
 @inject('app')
 @observer
@@ -23,7 +24,11 @@ export default class SEOLinks extends Component {
         const item = items[i]
 
         if (item.url) {
-          links.push(<li key={key++}>{/* <Link to={item.url}>{item.text}</Link> */}</li>)
+          links.push(
+            <Link key={key++} to={item.url}>
+              {item.text}
+            </Link>
+          )
         }
 
         if (item.items) {
@@ -44,9 +49,20 @@ export default class SEOLinks extends Component {
         <div style={{ display: 'none' }}>
           <Link />
         </div>
-        <noscript>
-          <ul>{links}</ul>
-        </noscript>
+        <NoScript>
+          <nav
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              height: '1px',
+              width: '1px',
+              overflow: 'hidden'
+            }}
+          >
+            {links}
+          </nav>
+        </NoScript>
       </Fragment>
     )
   }
