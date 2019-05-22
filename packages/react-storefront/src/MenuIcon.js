@@ -149,7 +149,7 @@ export default class MenuIcon extends PureComponent {
           [classes.withLabel]: label
         })}
       >
-        <div className="rsf-hamburger" type="button">
+        <div className="rsf-hamburger">
           <span className="rsf-hamburger-box">
             <span className="rsf-hamburger-inner" />
           </span>

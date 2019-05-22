@@ -4,12 +4,12 @@
  */
 import React from 'react'
 import { mount } from 'enzyme'
-import Menu from '../../src/amp/AmpMenu'
+import Menu from '../../src/Menu'
 import MenuContext from '../../src/menu/MenuContext'
 import Provider from '../TestProvider'
 import AppModelBase from '../../src/model/AppModelBase'
 
-describe('AmpMenu', () => {
+describe('AmpSimpleMenu', () => {
   let app
 
   beforeEach(() => {
@@ -35,6 +35,17 @@ describe('AmpMenu', () => {
                     items: [{ text: 'Child 1', url: '/item1/child1' }]
                   }
                 ]
+              },
+              {
+                text: 'Group 2',
+                className: 'group-2',
+                items: [
+                  {
+                    text: 'Item 2',
+                    url: '/item2',
+                    items: [{ text: 'Child 2', url: '/item2/child2' }]
+                  }
+                ]
               }
             ]
           }
@@ -43,36 +54,24 @@ describe('AmpMenu', () => {
     })
   })
 
-  it('should render full AMP menu', () => {
+  it('should render simple AMP menu', () => {
     const wrapper = mount(
       <Provider app={app}>
-        <MenuContext.Provider value={{ classes: {} }}>
-          <Menu />
-        </MenuContext.Provider>
+        <Menu simple />
       </Provider>
     )
 
+    expect(wrapper.find('AmpSimpleMenu').length).toBe(1)
+
+    expect(wrapper.find('amp-accordion').length).toBe(4)
+  })
+
+  it('should match simple AMP menu snap', () => {
+    const wrapper = mount(
+      <Provider app={app}>
+        <Menu simple />
+      </Provider>
+    )
     expect(wrapper).toMatchSnapshot()
-
-    expect(
-      wrapper
-        .find('ItemContent')
-        .at(0)
-        .text()
-    ).toBe('Group 1')
-
-    expect(
-      wrapper
-        .find('ItemContent')
-        .at(1)
-        .text()
-    ).toBe('Item 1')
-
-    expect(
-      wrapper
-        .find('ItemContent')
-        .at(2)
-        .text()
-    ).toBe('Child 1')
   })
 })

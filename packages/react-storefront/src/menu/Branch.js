@@ -49,9 +49,7 @@ export default class Branch extends Component {
       on:
         depth === 0
           ? `tap:AMP.setState({ list: '@${index}' })`
-          : `tap:AMP.setState({ sublist: sublist == '${sublist}' ? null : '${sublist}' })`,
-      depth,
-      index
+          : `tap:AMP.setState({ sublist: sublist == '${sublist}' ? null : '${sublist}' })`
     }
 
     const elements = [

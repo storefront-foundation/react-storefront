@@ -34,14 +34,14 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                                       <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-772 RSFMenu-drawer-747 MuiDrawer-paperAnchorLeft-773" style={{...}} direction="right" role="document" tabIndex="-1">
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-772 RSFMenu-drawer-747 MuiDrawer-paperAnchorLeft-773" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-787 MuiPaper-elevation16-805 MuiDrawer-paper-772 RSFMenu-drawer-747 MuiDrawer-paperAnchorLeft-773" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                            <inject-Body-with-app drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}}>
                                                 <MenuList classes={{...}}>
                                                   <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}}>
                                                     <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-814 MuiList-padding-815 RSFMenu-list-748" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
-                                                        <inject-Item-with-app drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                          <Item drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                        <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <Item drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                               <Branch expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                 <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -268,8 +268,8 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                                                             </inject-Branch-with-app>
                                                           </Item>
                                                         </inject-Item-with-app>
-                                                        <inject-Item-with-app drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                          <Item drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                        <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <Item drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
                                                             <inject-Leaf-with-app expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                               <Leaf expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                 <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-762" server={false} state={{...}} onClick={[Function]}>
@@ -358,7 +358,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
                             <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-735" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                              <a data-moov-link="on" className="RSFLink-root-784" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
                             </Link>
@@ -367,7 +367,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
                             <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-735" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                              <a data-moov-link="on" className="RSFLink-root-784" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
                             </Link>
@@ -376,7 +376,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                         <WithStyles(inject-Link) to="/leaf">
                           <inject-Link to="/leaf" classes={{...}}>
                             <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-735" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                              <a data-moov-link="on" className="RSFLink-root-784" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                 Leaf
                               </a>
                             </Link>
@@ -430,14 +430,14 @@ exports[`Menu should call a custom itemRenderer 1`] = `
                                       <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-888 RSFMenu-drawer-863 MuiDrawer-paperAnchorLeft-889" style={{...}} direction="right" role="document" tabIndex="-1">
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-888 RSFMenu-drawer-863 MuiDrawer-paperAnchorLeft-889" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-903 MuiPaper-elevation16-921 MuiDrawer-paper-888 RSFMenu-drawer-863 MuiDrawer-paperAnchorLeft-889" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                            <inject-Body-with-app drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}}>
                                                 <MenuList classes={{...}}>
                                                   <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}}>
                                                     <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-930 MuiList-padding-931 RSFMenu-list-864" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
-                                                        <inject-Item-with-app drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                          <Item drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                        <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <Item drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                               <Branch expandFirstItem={false} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                 <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -664,8 +664,8 @@ exports[`Menu should call a custom itemRenderer 1`] = `
                                                             </inject-Branch-with-app>
                                                           </Item>
                                                         </inject-Item-with-app>
-                                                        <inject-Item-with-app drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                          <Item drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                        <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <Item drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
                                                             <inject-Leaf-with-app expandFirstItem={false} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                               <Leaf expandFirstItem={false} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                 <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-878" server={false} state={{...}} onClick={[Function]}>
@@ -754,7 +754,7 @@ exports[`Menu should call a custom itemRenderer 1`] = `
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
                             <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-844" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                              <a data-moov-link="on" className="RSFLink-root-900" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
                             </Link>
@@ -763,7 +763,7 @@ exports[`Menu should call a custom itemRenderer 1`] = `
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
                             <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-844" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                              <a data-moov-link="on" className="RSFLink-root-900" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
                             </Link>
@@ -772,7 +772,7 @@ exports[`Menu should call a custom itemRenderer 1`] = `
                         <WithStyles(inject-Link) to="/leaf">
                           <inject-Link to="/leaf" classes={{...}}>
                             <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-844" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                              <a data-moov-link="on" className="RSFLink-root-900" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                 Leaf
                               </a>
                             </Link>
@@ -826,14 +826,14 @@ exports[`Menu should call a custom itemRenderer 2`] = `
                                       <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-1004 RSFMenu-drawer-979 MuiDrawer-paperAnchorLeft-1005" style={{...}} direction="right" role="document" tabIndex="-1">
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-1004 RSFMenu-drawer-979 MuiDrawer-paperAnchorLeft-1005" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-1019 MuiPaper-elevation16-1037 MuiDrawer-paper-1004 RSFMenu-drawer-979 MuiDrawer-paperAnchorLeft-1005" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                            <inject-Body-with-app drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}}>
                                                 <MenuList classes={{...}}>
                                                   <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}}>
                                                     <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-1046 MuiList-padding-1047 RSFMenu-list-980" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
-                                                        <inject-Item-with-app drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                          <Item drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                        <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <Item drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemRenderer={[Function: renderer]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                               <Branch expandFirstItem={false} itemRenderer={[Function: renderer]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                 <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -1004,8 +1004,8 @@ exports[`Menu should call a custom itemRenderer 2`] = `
                                                             </inject-Branch-with-app>
                                                           </Item>
                                                         </inject-Item-with-app>
-                                                        <inject-Item-with-app drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                          <Item drawerWidth={330} theme={{...}} simple={true} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                        <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <Item drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: renderer]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
                                                             <inject-Leaf-with-app expandFirstItem={false} itemRenderer={[Function: renderer]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                               <Leaf expandFirstItem={false} itemRenderer={[Function: renderer]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                 <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-994" server={false} state={{...}} onClick={[Function]}>
@@ -1090,7 +1090,7 @@ exports[`Menu should call a custom itemRenderer 2`] = `
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
                             <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-953" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                              <a data-moov-link="on" className="RSFLink-root-1016" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
                             </Link>
@@ -1099,7 +1099,7 @@ exports[`Menu should call a custom itemRenderer 2`] = `
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
                             <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-953" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                              <a data-moov-link="on" className="RSFLink-root-1016" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
                             </Link>
@@ -1108,7 +1108,7 @@ exports[`Menu should call a custom itemRenderer 2`] = `
                         <WithStyles(inject-Link) to="/leaf">
                           <inject-Link to="/leaf" classes={{...}}>
                             <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-953" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                              <a data-moov-link="on" className="RSFLink-root-1016" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                 Leaf
                               </a>
                             </Link>
@@ -1162,15 +1162,15 @@ exports[`Menu should render in complex mode by default 1`] = `
                                       <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-142 RSFMenu-drawer-117 MuiDrawer-paperAnchorLeft-143" style={{...}} direction="right" role="document" tabIndex="-1">
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-142 RSFMenu-drawer-117 MuiDrawer-paperAnchorLeft-143" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-157 MuiPaper-elevation16-175 MuiDrawer-paper-142 RSFMenu-drawer-117 MuiDrawer-paperAnchorLeft-143" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} theme={{...}} simple={false} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} theme={{...}} simple={false} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                            <inject-Body-with-app drawerWidth={330} simple={false} theme={{...}} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={false} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}}>
                                                 <div className="RSFMenu-hbox-128" style={{...}}>
                                                   <MenuList style={{...}} classes={{...}}>
                                                     <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
                                                       <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                         <ul className="MuiList-root-184 RSFMenu-list-118 MuiList-padding-185" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
-                                                          <inject-Item-with-app drawerWidth={330} theme={{...}} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                            <Item drawerWidth={330} theme={{...}} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <inject-Item-with-app drawerWidth={330} simple={false} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                            <Item drawerWidth={330} simple={false} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                               <inject-Branch-with-app expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false}>
                                                                 <Branch expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false} app={{...}}>
                                                                   <div amp-bind="class=>sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -1276,7 +1276,7 @@ exports[`Menu should render in complex mode by default 1`] = `
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
                             <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-140" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                              <a data-moov-link="on" className="RSFLink-root-154" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
                             </Link>
@@ -1285,7 +1285,7 @@ exports[`Menu should render in complex mode by default 1`] = `
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
                             <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-140" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                              <a data-moov-link="on" className="RSFLink-root-154" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
                             </Link>
@@ -1339,15 +1339,15 @@ exports[`Menu should render in complex mode by default 2`] = `
                                       <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-254 RSFMenu-drawer-229 MuiDrawer-paperAnchorLeft-255" style={{...}} direction="right" role="document" tabIndex="-1">
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-254 RSFMenu-drawer-229 MuiDrawer-paperAnchorLeft-255" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-269 MuiPaper-elevation16-287 MuiDrawer-paper-254 RSFMenu-drawer-229 MuiDrawer-paperAnchorLeft-255" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                            <inject-Body-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}}>
                                                 <div className="RSFMenu-hbox-240" style={{...}}>
                                                   <MenuList style={{...}} classes={{...}}>
                                                     <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
                                                       <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                         <ul className="MuiList-root-296 RSFMenu-list-230 MuiList-padding-297" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
-                                                          <inject-Item-with-app drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                            <Item drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <inject-Item-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                            <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                               <inject-Branch-with-app expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false}>
                                                                 <Branch expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false} app={{...}}>
                                                                   <div amp-bind="class=>sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -1453,7 +1453,7 @@ exports[`Menu should render in complex mode by default 2`] = `
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
                             <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-245" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                              <a data-moov-link="on" className="RSFLink-root-266" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
                             </Link>
@@ -1462,7 +1462,7 @@ exports[`Menu should render in complex mode by default 2`] = `
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
                             <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-245" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                              <a data-moov-link="on" className="RSFLink-root-266" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
                             </Link>
@@ -1516,14 +1516,14 @@ exports[`Menu should render in simple mode 1`] = `
                                       <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-26 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-27" style={{...}} direction="right" role="document" tabIndex="-1">
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-26 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-27" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-41 MuiPaper-elevation16-59 MuiDrawer-paper-26 RSFMenu-drawer-1 MuiDrawer-paperAnchorLeft-27" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                            <inject-Body-with-app drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}}>
                                                 <MenuList classes={{...}}>
                                                   <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}}>
                                                     <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-68 MuiList-padding-69 RSFMenu-list-2" role="menu" onKeyDown={[Function]} onBlur={[Function]}>
-                                                        <inject-Item-with-app drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                          <Item drawerWidth={330} theme={{...}} simple={true} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                        <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <Item drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}} tabIndex={-1} onFocus={[Function]}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                               <Branch expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                 <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -1788,7 +1788,7 @@ exports[`Menu should render in simple mode 1`] = `
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
                             <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-31" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                              <a data-moov-link="on" className="RSFLink-root-38" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
                             </Link>
@@ -1797,7 +1797,7 @@ exports[`Menu should render in simple mode 1`] = `
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
                             <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-31" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                              <a data-moov-link="on" className="RSFLink-root-38" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
                             </Link>
@@ -1851,15 +1851,15 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                       <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-625 RSFMenu-drawer-600 MuiDrawer-paperAnchorLeft-626" style={{...}} direction="right" role="document" tabIndex="-1">
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-625 RSFMenu-drawer-600 MuiDrawer-paperAnchorLeft-626" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-640 MuiPaper-elevation16-658 MuiDrawer-paper-625 RSFMenu-drawer-600 MuiDrawer-paperAnchorLeft-626" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                            <inject-Body-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}}>
                                                 <div className="RSFMenu-hbox-611" style={{...}}>
                                                   <MenuList style={{...}} classes={{...}}>
                                                     <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
                                                       <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                         <ul className="MuiList-root-667 RSFMenu-list-601 MuiList-padding-668" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
-                                                          <inject-Item-with-app drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                            <Item drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <inject-Item-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                            <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                               <inject-Branch-with-app expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false}>
                                                                 <Branch expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false} app={{...}}>
                                                                   <div amp-bind="class=>sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -1993,8 +1993,8 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                                               </WithStyles(ListItem)>
                                                             </MenuItem>
                                                           </WithStyles(MenuItem)>
-                                                          <inject-Item-with-app drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={1} classes={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                            <Item drawerWidth={330} theme={{...}} useexpanders={true} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={1} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <inject-Item-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={1} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                            <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={1} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                               <inject-Branch-with-app expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={false}>
                                                                 <Branch expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={false} app={{...}}>
                                                                   <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -2100,7 +2100,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
                             <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-595" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                              <a data-moov-link="on" className="RSFLink-root-637" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
                             </Link>
@@ -2109,7 +2109,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
                             <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-595" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                              <a data-moov-link="on" className="RSFLink-root-637" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
                             </Link>
@@ -2163,15 +2163,15 @@ exports[`Menu should use custom icons 1`] = `
                                       <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-366 RSFMenu-drawer-341 MuiDrawer-paperAnchorLeft-367" style={{...}} direction="right" role="document" tabIndex="-1">
                                         <Paper elevation={16} square={true} className="MuiDrawer-paper-366 RSFMenu-drawer-341 MuiDrawer-paperAnchorLeft-367" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
                                           <div className="MuiPaper-root-381 MuiPaper-elevation16-399 MuiDrawer-paper-366 RSFMenu-drawer-341 MuiDrawer-paperAnchorLeft-367" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} simple={false} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} simple={false} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                            <inject-Body-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={false} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} expandFirstItem={false} trackSelected={false} app={{...}}>
                                                 <div className="RSFMenu-hbox-352" style={{...}}>
                                                   <MenuList style={{...}} classes={{...}}>
                                                     <WithStyles(List) role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}}>
                                                       <List role="menu" className={[undefined]} onKeyDown={[Function]} onBlur={[Function]} style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                         <ul className="MuiList-root-408 RSFMenu-list-342 MuiList-padding-409" role="menu" onKeyDown={[Function]} onBlur={[Function]} style={{...}}>
-                                                          <inject-Item-with-app drawerWidth={330} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
-                                                            <Item drawerWidth={330} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} simple={false} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                          <inject-Item-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
+                                                            <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}} tabIndex={-1} onFocus={[Function]}>
                                                               <inject-Branch-with-app expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false}>
                                                                 <Branch expandFirstItem={false} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false} app={{...}}>
                                                                   <div amp-bind="class=>sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
@@ -2277,7 +2277,7 @@ exports[`Menu should use custom icons 1`] = `
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
                             <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-350" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                              <a data-moov-link="on" className="RSFLink-root-378" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
                             </Link>
@@ -2286,7 +2286,7 @@ exports[`Menu should use custom icons 1`] = `
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
                             <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-350" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                              <a data-moov-link="on" className="RSFLink-root-378" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
                             </Link>
