@@ -49,7 +49,11 @@ export default class ErrorReporter extends Component {
   }
 
   componentWillMount() {
-    this.reportError()
+    if (isServer()) {
+      // here we only report errors on the server so they aren't duplicated
+      // when the app mounts on the client.
+      this.reportError()
+    }
   }
 
   reportError = () => {
@@ -64,6 +68,7 @@ export default class ErrorReporter extends Component {
     return null
   }
 
+  // call reportError whenever app.error changes
   @disposeOnUnmount
   disposer = reaction(() => this.props.app.error, this.reportError)
 }
