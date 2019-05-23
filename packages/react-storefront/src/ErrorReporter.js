@@ -1,0 +1,68 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { inject, observer, disposeOnUnmount } from 'mobx-react'
+import { reaction } from 'mobx'
+import { isServer } from 'react-storefront/environment'
+
+/**
+ * Use this component to report errors to the error logging service of your choice.
+ * Any time an error occurs in your app, the function you pass to `onError` prop will
+ * be called.  This includes errors that occur in handlers on the server as well
+ * as react rendering on both client and server.  Errors that occur on the server
+ * will be reported from the server.  Errors that occur on the client will be reported
+ * from the client.
+ *
+ * Example usage:
+ *
+ *  import React, { Component } from 'react'
+ *  import ErrorReporter from 'react-storefront/ErrorReporter'
+ *
+ *  class App extends Component {
+ *
+ *    render() {
+ *      return (
+ *        <div>
+ *          <ErrorReporter onError={this.reportError}/>
+ *          // ... the rest of your app goes here
+ *        </div>
+ *      )
+ *    }
+ *
+ *    reportError = ({ error, stack }) => {
+ *      // send error to some error reporting service
+ *    }
+ *
+ *  }
+ */
+@inject('app')
+@observer
+export default class ErrorReporter extends Component {
+  static propTypes = {
+    /**
+     * A function to call whenever an error occurs.  The function is passed an
+     * object with `error` (the error message) and `stack` (the stack trace as a string).
+     */
+    onError: PropTypes.func.isRequired
+  }
+
+  componentWillMount() {
+    if (isServer()) {
+      this.reportError()
+    }
+  }
+
+  reportError = () => {
+    const { error, stack } = this.props.app
+
+    if (error) {
+      this.props.onError({ error, stack })
+    }
+  }
+
+  render() {
+    return null
+  }
+
+  @disposeOnUnmount
+  disposer = reaction(() => this.props.app.error, this.reportError)
+}
