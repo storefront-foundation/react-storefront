@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 // see https://html.spec.whatwg.org/multipage/forms.html#autofill-field
 export default {
   // Location based autocomplete

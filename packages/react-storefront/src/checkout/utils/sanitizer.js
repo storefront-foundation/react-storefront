@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 // Remove spaces
 // See this SO post for why this is the fastest way:
 // http://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript

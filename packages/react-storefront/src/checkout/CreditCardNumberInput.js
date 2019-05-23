@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 import PropTypes from 'prop-types'
 import React from 'react'
 import MaskedInput from 'react-text-mask'

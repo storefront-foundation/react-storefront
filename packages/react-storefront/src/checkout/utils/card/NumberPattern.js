@@ -1,4 +1,8 @@
 /**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
+/**
  * NumberPattern for formatting numbers
  */
 class NumberPattern {
