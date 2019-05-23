@@ -16,6 +16,7 @@ import CartButton from '../src/CartButton'
 import CheckoutButton from '../src/CheckoutButton'
 import CmsSlot from '../src/CmsSlot'
 import Container from '../src/Container'
+import CreditCardNumberInput from '../src/checkout/CreditCardNumberInput'
 import DialogClose from '../src/DialogClose'
 import Divider from '../src/Divider'
 import Drawer from '../src/Drawer'
@@ -332,6 +333,11 @@ storiesOf('Container', module).addWithJSX('with default props', () => (
     <Container>{'<h1>Title</h1>'}</Container>
   </div>
 ))
+
+storiesOf('CreditCardNumberInput', module)
+  .addWithJSX('with empty card', () => <CreditCardNumberInput defaultValue="" />)
+  .addWithJSX('with visa cc', () => <CreditCardNumberInput defaultValue="4111" />)
+  .addWithJSX('with amex cc', () => <CreditCardNumberInput defaultValue="340522251982429" />)
 
 storiesOf('DialogClose', module)
   .addDecorator(wrapWithProvider())

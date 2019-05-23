@@ -108,6 +108,7 @@
     "react-highlighter": "^0.4.2",
     "react-pinch-zoom-pan": "^1.4.5",
     "react-swipeable-views": "^0.13.0",
+    "react-text-mask": "^5.4.3",
     "react-visibility-sensor": "^3.14.0",
     "redbox-react": "^1.6.0",
     "remotedev": "^0.2.7",
