@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer, disposeOnUnmount } from 'mobx-react'
