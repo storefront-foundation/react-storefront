@@ -6,7 +6,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer, disposeOnUnmount } from 'mobx-react'
 import { reaction } from 'mobx'
-import { isServer } from 'react-storefront/environment'
 
 /**
  * Use this component to report errors to the error logging service of your choice.
@@ -50,9 +49,7 @@ export default class ErrorReporter extends Component {
   }
 
   componentWillMount() {
-    if (isServer()) {
-      this.reportError()
-    }
+    this.reportError()
   }
 
   reportError = () => {
