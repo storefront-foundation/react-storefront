@@ -11,7 +11,7 @@ import PWA from './PWA'
 /**
  * Bootstraps the PWA react application.
  * @param {options} options
- * @param {React.Element} options.app The root app element
+ * @param {React.Element} options.App The root app element
  * @param {Object} options.theme A material-ui theme
  * @param {Object} options.model A mobx-state-tree model class
  * @param {HTMLElement} options.target The DOM element to mount onto

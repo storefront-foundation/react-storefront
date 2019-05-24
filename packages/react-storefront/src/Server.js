@@ -50,7 +50,6 @@ export default class Server {
 
     try {
       const state = await this.router.runAll(request, response)
-
       if (!state.proxyUpstream && !response.headersSent) {
         await this.renderPWA({ request, response, state })
       }
@@ -183,6 +182,7 @@ export default class Server {
    * Renders an error response, either as JSON or SSR HTML, depending on the suffix
    * on the request path.
    * @param {Error} e
+   * @param {Request} request
    * @param {Response} response
    */
   renderError(e, request, response) {
