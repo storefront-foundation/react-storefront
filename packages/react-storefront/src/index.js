@@ -22,6 +22,7 @@ export { default as Container } from './Container.js';
 export { default as DialogClose } from './DialogClose.js';
 export { default as Divider } from './Divider.js';
 export { default as Drawer } from './Drawer.js';
+export { default as ErrorReporter } from './ErrorReporter.js';
 export { default as ExpandableSection } from './ExpandableSection.js';
 export { default as Filter } from './Filter.js';
 export { default as FilterButton } from './FilterButton.js';
