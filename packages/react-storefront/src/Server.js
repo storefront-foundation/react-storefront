@@ -153,7 +153,11 @@ export default class Server {
               amp
                 ? ''
                 : `
-              ${renderInitialStateScript({ state: model, defer: this.deferScripts })}
+              ${renderInitialStateScript({
+                state: model,
+                routeData: state,
+                defer: this.deferScripts
+              })}
               ${renderScript({ stats, chunk: 'bootstrap', defer: this.deferScripts })}
               ${this.getScripts(stats)}
               ${renderScript({ stats, chunk: 'main', defer: this.deferScripts })}
@@ -188,14 +192,20 @@ export default class Server {
   renderError(e, request, response) {
     response.status(500, 'error')
 
-    return this.renderPWA({
+    const state = {
+      page: 'Error',
+      error: e.message,
+      stack: process.env.MOOV_ENV === 'production' ? null : e.stack
+    }
+
+    if (request.path.endsWith('.json')) {
+      response.send(state)
+    }
+
+    this.renderPWA({
       request,
       response,
-      state: {
-        page: 'Error',
-        error: e.message,
-        stack: process.env.MOOV_ENV === 'production' ? null : e.stack
-      }
+      state
     })
   }
 
