@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
@@ -212,6 +213,7 @@ module.exports = {
             to: path.join(root, 'build', 'assets')
           }
         ]),
+        new webpack.IgnorePlugin(/Amp/),
         ...additionalPlugins,
         ...createServiceWorkerPlugins({
           root,

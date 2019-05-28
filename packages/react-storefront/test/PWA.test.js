@@ -11,7 +11,7 @@ import AppModelBase from '../src/model/AppModelBase'
 import PWA from '../src/PWA'
 import simulant from 'simulant'
 import { clearTestCache } from '../src/utils/browser'
-import { Router, proxyUpstream } from '../src/router';
+import { Router, proxyUpstream } from '../src/router'
 import { createMemoryHistory } from 'history'
 import * as serviceWorker from '../src/router/serviceWorker'
 
@@ -28,7 +28,13 @@ describe('PWA', () => {
 
   it('should render amp-install-service worker when amp==true', () => {
     const wrapper = mount(
-      <Provider history={history} app={AppModelBase.create({ amp: true, location: { hostname: 'localhost', pathname: '/', search: '' } })}>
+      <Provider
+        history={history}
+        app={AppModelBase.create({
+          amp: true,
+          location: { hostname: 'localhost', pathname: '/', search: '' }
+        })}
+      >
         <PWA>
           <div>Foo</div>
         </PWA>
@@ -44,8 +50,9 @@ describe('PWA', () => {
         <PWA>
           <a href="/foo">Foo</a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
@@ -56,10 +63,13 @@ describe('PWA', () => {
     const wrapper = mount(
       <Provider history={history} app={app}>
         <PWA>
-          <a href="/foo" target="_blank">Foo</a>
+          <a href="/foo" target="_blank">
+            Foo
+          </a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
@@ -70,10 +80,13 @@ describe('PWA', () => {
     const wrapper = mount(
       <Provider history={history} app={app}>
         <PWA>
-          <a href="/foo"><p id="target">Foo</p></a>
+          <a href="/foo">
+            <p id="target">Foo</p>
+          </a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     simulant.fire(document.body.querySelector('#target'), 'click')
 
@@ -86,8 +99,9 @@ describe('PWA', () => {
         <PWA>
           <a href="mailto:user@domain.com">Foo</a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
@@ -100,8 +114,9 @@ describe('PWA', () => {
         <PWA>
           <a href="tel:1111111111">Foo</a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
@@ -112,10 +127,13 @@ describe('PWA', () => {
     const wrapper = mount(
       <Provider history={history} app={app}>
         <PWA>
-          <a href="/foo" target="_self">Foo</a>
+          <a href="/foo" target="_self">
+            Foo
+          </a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
@@ -126,12 +144,19 @@ describe('PWA', () => {
     const wrapper = mount(
       <Provider history={history} app={app}>
         <PWA>
-          <a id="link1" href="http://www.google.com">Google 1</a>
-          <a id="link2" href="https://www.google.com">Google 2</a>
-          <a id="link3" href="//www.google.com">Google 3</a>
+          <a id="link1" href="http://www.google.com">
+            Google 1
+          </a>
+          <a id="link2" href="https://www.google.com">
+            Google 2
+          </a>
+          <a id="link3" href="//www.google.com">
+            Google 3
+          </a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     document.body.querySelectorAll('a').forEach(a => simulant.fire(a, 'click'))
 
@@ -139,16 +164,16 @@ describe('PWA', () => {
   })
 
   it('should not call history.push when a link points to a route with a proxyUpstream handler', () => {
-    const router = new Router()
-      .get('/proxy', proxyUpstream('./proxyHandler'))
-      
+    const router = new Router().get('/proxy', proxyUpstream('./proxyHandler'))
+
     const wrapper = mount(
       <Provider history={history} app={app} router={router}>
         <PWA>
           <a href="/proxy">proxyUpstream</a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     document.body.querySelectorAll('a').forEach(a => simulant.fire(a, 'click'))
 
@@ -156,23 +181,28 @@ describe('PWA', () => {
   })
 
   it('should render children', () => {
-    expect(mount(
-      <Provider history={history} app={app}>
-        <PWA>
-          <div>foo</div>
-        </PWA>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider history={history} app={app}>
+          <PWA>
+            <div>foo</div>
+          </PWA>
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should reload the page when data-reload="on"', () => {
     const wrapper = mount(
       <Provider history={history} app={app}>
         <PWA>
-          <a href="/foo" data-reload="on">Foo</a>
+          <a href="/foo" data-reload="on">
+            Foo
+          </a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
@@ -183,10 +213,13 @@ describe('PWA', () => {
     const wrapper = mount(
       <Provider history={history} app={app}>
         <PWA>
-          <a href="/foo" data-reload="true">Foo</a>
+          <a href="/foo" data-reload="true">
+            Foo
+          </a>
         </PWA>
-      </Provider>
-    , { attachTo: document.body })
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
@@ -196,13 +229,15 @@ describe('PWA', () => {
   it('should add the moov-safari class to the body when in safari', () => {
     clearTestCache()
     document.body.classList.remove('moov-safari')
-    userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1"
+    userAgent =
+      'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
 
     mount(
       <Provider history={history} app={app}>
-        <PWA/>
-      </Provider>
-    , { attachTo: document.body })
+        <PWA />
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     expect(document.body.classList.contains('moov-safari')).toBe(true)
   })
@@ -210,51 +245,56 @@ describe('PWA', () => {
   it('should not add the moov-safari class to the body when not in safari', () => {
     clearTestCache()
     document.body.classList.remove('moov-safari')
-    userAgent = "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Mobile Safari/537.36"
+    userAgent =
+      'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Mobile Safari/537.36'
 
     mount(
       <Provider history={history} app={app}>
-        <PWA/>
-      </Provider>
-    , { attachTo: document.body })
+        <PWA />
+      </Provider>,
+      { attachTo: document.body }
+    )
 
     expect(document.body.classList.contains('moov-safari')).toBe(false)
   })
 
   it('should catch errors during rendering and display the error view', () => {
     const RenderError = () => {
-      throw new Error("Error during rendering")
+      throw new Error('Error during rendering')
     }
 
     mount(
       <Provider history={history} app={app}>
         <PWA>
-          <RenderError/>
+          <RenderError />
         </PWA>
       </Provider>
     )
 
-    expect(app.error).toBe("Error during rendering")
+    expect(app.error).toBe('Error during rendering')
     expect(app.stack).not.toBeNull()
     expect(app.page).toBe('Error')
   })
 
-  it('should record app state in history.state', (done) => {
+  it('should record app state in history.state', done => {
     mount(
       <Provider history={history} app={app}>
-        <PWA/>
+        <PWA />
       </Provider>
     )
 
     app.applyState({ title: 'updated' })
 
     setTimeout(() => {
-      expect(history.replace).toHaveBeenCalledWith(location.pathname + location.search, app.toJSON()) 
+      expect(history.replace).toHaveBeenCalledWith(
+        location.pathname + location.search,
+        app.toJSON()
+      )
       done()
     }, 200) // because state recording is debounced so it's async
   })
 
-  it('should catch errors that occur when attempting to record app state to history', (done) => {
+  it('should catch errors that occur when attempting to record app state to history', done => {
     const history = createMemoryHistory({ initialEntries: ['/'] })
 
     // The reason for this test is to ensure that if a browser blocks storing of history state because
@@ -270,47 +310,79 @@ describe('PWA', () => {
       location: history.location
     }
 
-    history.replace({ pathname: history.location.pathname, state: { page: 'Test' }})
+    history.replace({ pathname: history.location.pathname, state: { page: 'Test' } })
 
     expect(history.location.state).toEqual({ page: 'Test' })
 
     mount(
       <Provider history={mockHistory} app={app}>
-        <PWA/>
+        <PWA />
       </Provider>
     )
 
     app.applyState({ title: 'updated' })
 
     setTimeout(() => {
-      expect(history.location.state).toEqual(null) 
+      expect(history.location.state).toEqual(null)
       done()
     }, 200) // because state recording is debounced so it's async
   })
 
-  describe('caching the app shell', () => {
-    it ('should cache the app shell when one is configured in the router', () => {
-      const router = new Router()
-        .appShell(() => ({ loading: true }))
-        
+  describe('caching SSR', () => {
+    it('should cache the initialRouteData as json', () => {
+      window.initialRouteData = {
+        page: 'Test'
+      }
+
       mount(
-        <Provider history={history} app={app} router={router}>
-          <PWA/>
+        <Provider history={history} app={app}>
+          <PWA />
         </Provider>
       )
-  
+
+      expect(serviceWorker.cache).toHaveBeenCalledWith('/.json', window.initialRouteData)
+    })
+
+    it('should cache the html', () => {
+      window.initialRouteData = {
+        page: 'Test'
+      }
+
+      mount(
+        <Provider history={history} app={app}>
+          <PWA />
+        </Provider>
+      )
+
+      expect(serviceWorker.cache).toHaveBeenCalledWith(
+        '/',
+        `<!DOCTYPE html>\n${document.documentElement.outerHTML}`
+      )
+    })
+  })
+
+  describe('caching the app shell', () => {
+    it('should cache the app shell when one is configured in the router', () => {
+      const router = new Router().appShell(() => ({ loading: true }))
+
+      mount(
+        <Provider history={history} app={app} router={router}>
+          <PWA />
+        </Provider>
+      )
+
       expect(serviceWorker.cache).toHaveBeenCalledWith('/.app-shell')
     })
-  
+
     it('should not cache the app shell when one is not configured in the router', () => {
       const router = new Router()
-        
+
       mount(
         <Provider history={history} app={app} router={router}>
-          <PWA/>
+          <PWA />
         </Provider>
       )
-  
+
       expect(serviceWorker.cache).not.toHaveBeenCalledWith('/.app-shell')
     })
   })

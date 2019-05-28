@@ -74,6 +74,12 @@ yarn release
 
 ## Changelog
 
+### 6.23.0
+
+- You can now pass options to control how Router's `applySearch` function stringifies params. For example, `router.applySearch({ colors: ['red', 'green'] }, { arrayFormat: 'brackets' })`
+- AMP-specific components are now left out of the client build as they are only needed during server side rendering. This helps reduce client bundle size.
+- The JSON that is cached by the service worker during the initial app load is now raw JSON returned from the router, not the serialized model. This brings it in line with how JSON returned from `fromServer` during client-side navigation is cached.
+
 ### 6.22.0
 
 - The `Menu` component now looks the same when rendering in AMP and React.

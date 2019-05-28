@@ -145,7 +145,7 @@ export default class PWA extends Component {
 
       // cache the initial page HTML and json
       const path = app.location.pathname + app.location.search
-      cache(path + '.json', app.toJSON())
+      cache(path + '.json', window.initialRouteData)
       cache(path, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
     }
 

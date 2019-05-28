@@ -14,9 +14,11 @@ import jssNested from 'jss-nested'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import createGenerateClassName from './utils/createGenerateClassName'
 
+// Convert mobx-state-tree model to json and escape <\ in a closing script tag to avoid untimely script closing.
+const getSanitizedModelJson = state => sanitizeJsonForScript(state.toJSON())
+
 // Escape <\ in a closing script tag to avoid untimely script closing
-const getSanitizedModelJson = state =>
-  JSON.stringify(state.toJSON()).replace(/<\/script/gi, '<\\/script')
+const sanitizeJsonForScript = state => JSON.stringify(state).replace(/<\/script/gi, '<\\/script')
 
 /**
  * Get javascript asset filename by chunk name
@@ -83,15 +85,24 @@ export function renderHtml({ component, providers, registry, theme, cssPrefix = 
 
 /**
  * Renders initial state for client side hydration
- * @param  {options} options
- * @param  {Object} options.state                 Model instance
+ * @param  {options} options                      Model instance
+ * @param  {Object} options.state                 The initial app state needed for hydration
+ * @param  {Object} options.routeData             The data that resulted from the route being run.  This is needed for creating a cache
+ *                                                entry for the equivalend .json request if the user navigates back to this page.
  * @param  {Boolean} options.defer                Should defer execution
  * @param  {String} options.initialStateProperty  Property name on window object
  * @return {String}                               Script HTML
  */
-export function renderInitialStateScript({ state, defer, initialStateProperty = 'initialState' }) {
+export function renderInitialStateScript({
+  state,
+  routeData,
+  defer,
+  initialStateProperty = 'initialState',
+  initialRouteDataProperty = 'initialRouteData'
+}) {
   return `<script type="text/javascript" ${defer ? 'defer' : ''}>
-		window.${initialStateProperty}=Object.freeze(${getSanitizedModelJson(state)})
+    window.${initialStateProperty}=Object.freeze(${getSanitizedModelJson(state)})
+    window.${initialRouteDataProperty}=Object.freeze(${sanitizeJsonForScript(routeData)})
 	</script>`
 }
 
