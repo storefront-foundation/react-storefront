@@ -76,6 +76,7 @@ yarn release
 
 ### 6.23.0
 
+- AMP-specific components are now left out of the client build as they are only needed during server side rendering. This helps reduce client bundle size.
 - The JSON that is cached by the service worker during the initial app load is now raw JSON returned from the router, not the serialized model. This brings it in line with how JSON returned from `fromServer` during client-side navigation is cached.
 
 ### 6.22.0
