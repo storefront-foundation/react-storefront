@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.23.0
+
+- The JSON that is cached by the service worker during the initial app load is now raw JSON returned from the router, not the serialized model. This brings it in line with how JSON returned from `fromServer` during client-side navigation is cached.
+
 ### 6.22.0
 
 - The `Menu` component now looks the same when rendering in AMP and React.
