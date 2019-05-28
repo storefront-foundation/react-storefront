@@ -525,14 +525,15 @@ export default class Router extends EventEmitter {
    * Provides an easy way to navigate by changing some but not all of the query params.  Any keys
    * included in the params object are applied as new query param values.  All other query params are preserved.
    * @param {Object} params Key/value pairs to apply to the query string.  Specifying a value of undefined or null will remove that parameter from the query string
+   * @param {Object} [stringifyOptions={}] Options of stringifying all query params.  Applied for `qs.stringify`: https://github.com/ljharb/qs#stringifying
    */
-  applySearch(params) {
+  applySearch(params, stringifyOptions = {}) {
     const { history } = this
 
     const nextParams = qs.stringify({
       ...qs.parse(history.location.search, { ignoreQueryPrefix: true }),
       ...params
-    })
+    }, stringifyOptions)
 
     history.replace(`${history.location.pathname}?${nextParams}`)
   }

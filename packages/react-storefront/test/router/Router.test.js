@@ -511,6 +511,20 @@ describe('Router:Node', function() {
         '/search?filter=test&sort=name'
       )
     })
+
+    it('should change behaviour if custom stringifyOptions specified', () => {
+      const history = createMemoryHistory()
+      history.push('/search?sort=price')
+
+      router.watch(history, jest.fn()).applySearch({ filter: ['f1', 'f2'] }, { 
+        arrayFormat: 'brackets',
+        encode: false,
+      })
+
+      expect(history.location.pathname + history.location.search).toEqual(
+        '/search?sort=price&filter[]=f1&filter[]=f2'
+      )
+    })
   })
 
   describe('getCacheKey', () => {
