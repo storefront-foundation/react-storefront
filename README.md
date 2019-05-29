@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.24.0
+
+- You can now specify webpack `optimization` options in the client build config.
+
 ### 6.23.1
 
 - Rolled back optimization to exclude AMP components in the client build that was added in 6.23.0 as it was causing issues in some apps.

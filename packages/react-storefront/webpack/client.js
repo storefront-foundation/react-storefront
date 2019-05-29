@@ -5,12 +5,8 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
-const {
-  createClientConfig,
-  createLoaders,
-  optimization,
-  injectBuildTimestamp
-} = require('./common')
+const { createClientConfig, createLoaders, injectBuildTimestamp } = require('./common')
+const createOptimization = require('./optimization')
 const hash = require('md5-file').sync
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -76,6 +72,7 @@ module.exports = {
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
    * @param {Object} options.eslintConfig A config object for eslint
+   * @param {Boolean} options.optimization Configuration for the webpack optimzation object
    * @return {Object} A webpack config
    */
   dev(
@@ -87,7 +84,8 @@ module.exports = {
       eslintConfig = require('./eslint-client'),
       prefetchRampUpTime = -5000, // compensate for the 5 minute buffer for deployments so that there is no ramp up time
       allowPrefetchThrottling = false,
-      serveSSRFromCache = false
+      serveSSRFromCache = false,
+      optimization
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -107,6 +105,7 @@ module.exports = {
       Object.assign(createClientConfig(root, { entries, alias }), {
         devtool: 'inline-cheap-module-source-map',
         mode: 'development',
+        optimization: createOptimization({ overrides: optimization }),
         module: {
           rules: createLoaders(path.resolve(root, 'src'), {
             envName: 'development-client',
@@ -153,6 +152,7 @@ module.exports = {
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
+   * @param {Boolean} options.optimization Configuration for the webpack optimzation object
    * @return {Object} A webpack config
    */
   prod(
@@ -163,7 +163,8 @@ module.exports = {
       entries,
       prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
       allowPrefetchThrottling = true,
-      serveSSRFromCache = false
+      serveSSRFromCache = false,
+      optimization
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -189,7 +190,7 @@ module.exports = {
 
     return Object.assign(createClientConfig(root, { entries, alias }), {
       mode: 'production',
-      optimization,
+      optimization: createOptimization({ production: true, overrides: optimization }),
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { envName: 'production-client' })
       },
