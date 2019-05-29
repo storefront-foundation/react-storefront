@@ -10,7 +10,7 @@ import ProductModelBase from './ProductModelBase'
  */
 const CartModelBase = types
   .model('CartModelBase', {
-    items: types.optional(types.array(ProductModelBase), []),
+    items: types.optional(types.array(ProductModelBase), [])
   })
   .views(self => ({
     get quantity() {
@@ -19,7 +19,7 @@ const CartModelBase = types
         total += item.quantity
       }
       return total
-    },
+    }
   }))
   .actions(self => ({
     /**
@@ -35,7 +35,7 @@ const CartModelBase = types
      */
     remove(product) {
       detach(product)
-    },
+    }
   }))
 
 export default CartModelBase

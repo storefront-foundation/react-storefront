@@ -64,36 +64,40 @@ export function fetchWithCookies(url, options = {}, qsOptions) {
     headers.cookie = env.cookie
   }
 
-  return fetch(url, merge(options, {
-    credentials: "include",
-    headers
-  }), qsOptions)
+  return fetch(
+    url,
+    merge(options, {
+      credentials: 'include',
+      headers
+    }),
+    qsOptions
+  )
 }
 
 /**
  * An implementation of the standard fetch API.  See https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API for options
- * 
+ *
  * This function is commonly used to fetch json data:
- * 
+ *
  *  const data = await fetch('https://jsonplaceholder.typicode.com/todos/1')
  *    .then(res => res.json())
- * 
+ *
  * ... or string data:
- * 
+ *
  *  const text = await fetch('https://jsonplaceholder.typicode.com/todos/1')
  *    .then(res => res.text())
  *
  * ... but you can also use it to fetch binary data:
- * 
+ *
  *  const buffer = await fetch('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')
  *    .then(res => res.arrayBuffer())
- * 
+ *
  * In addition to the standard fetch options, you can also specify:
- * 
+ *
  *  `maxRedirects` - number - The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
  *  `acceptInvalidCerts` - boolean - Set to true to allow connections to sites with invalid SSL cers.
- * 
- * @param {String} url 
+ *
+ * @param {String} url
  * @param {Object} options Options for fetch
  * @param {Object} [options.redirect=manual] "manual", "follow", or "error"
  * @param {Object} [options.maxRedirects=20] The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
@@ -101,7 +105,7 @@ export function fetchWithCookies(url, options = {}, qsOptions) {
  * @param {String} qsOptions Options for serializing the request body using the qs package
  * @return {Promise}
  */
-export default function fetch(url, options={}, qsOptions) {
+export default function fetch(url, options = {}, qsOptions) {
   return new Promise((resolve, reject) => {
     const protocol = url.match(/^https/) ? global.https : global.http
     const { body, ...requestOptions } = createRequestOptions(url, options, qsOptions)
@@ -122,26 +126,38 @@ export default function fetch(url, options={}, qsOptions) {
 
         if ([301, 302].includes(response.statusCode) && response.headers.location) {
           // redirects
-          const { maxRedirects=20 } = options
+          const { maxRedirects = 20 } = options
 
           if (options.redirect === 'follow') {
             if (maxRedirects > 0) {
               const redirectURL = URL.resolve(url, response.headers.location)
-              return resolve(fetch(redirectURL, { ...options, maxRedirects: maxRedirects - 1 }))
+              return resolve(
+                fetch(redirectURL, { ...options, maxRedirects: maxRedirects - 1, redirected: true })
+              )
             } else {
-              return reject(new Error('The maximum number of redirects has been reached while using fetch.'))
+              return reject(
+                new Error('The maximum number of redirects has been reached while using fetch.')
+              )
             }
           } else if (options.redirect === 'error') {
-            return reject(new Error(`fetch received a redirect response status ${response.statusCode} and options.redirect was set to "error".`))
+            return reject(
+              new Error(
+                `fetch received a redirect response status ${
+                  response.statusCode
+                } and options.redirect was set to "error".`
+              )
+            )
           } else {
             const redirectData = { redirect: response.headers.location }
-            
+
             return resolve({
+              redirected: true,
+              url: response.headers.location,
               status: response.statusCode,
               ok: true,
               headers: response.headers,
               text: () => Promise.resolve(JSON.stringify(redirectData)),
-              json: () => Promise.resolve(redirectData),
+              json: () => Promise.resolve(redirectData)
             })
           }
         } else {
@@ -149,6 +165,8 @@ export default function fetch(url, options={}, qsOptions) {
           const ok = response.statusCode >= 200 && response.statusCode <= 299
 
           const result = {
+            redirected: options.redirected || false,
+            url,
             status: response.statusCode,
             statusText: response.statusText,
             ok,
@@ -157,14 +175,14 @@ export default function fetch(url, options={}, qsOptions) {
             text: () => Promise.resolve(extractString(response, data)),
             json: () => Promise.resolve(JSON.parse(extractString(response, data)))
           }
-  
+
           if (!ok) {
             const error = new Error(`${response.statusCode}: ${data.toString('utf8')}`)
             error.response = result
             reject(error)
             return
           }
-  
+
           // Recreating simple API similar to Fetch
           // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
           resolve(result)
@@ -181,13 +199,13 @@ export default function fetch(url, options={}, qsOptions) {
       req.write(body)
     }
 
-    req.end()    
+    req.end()
   })
 }
 
 function extractString(response, data) {
   if (response.headers['content-encoding'] === 'gzip') {
-    return pako.inflate(data, { to: 'string' });
+    return pako.inflate(data, { to: 'string' })
   } else {
     return data.toString('utf8')
   }
@@ -201,7 +219,7 @@ function extractString(response, data) {
  */
 function relaySetCookies(request, domain) {
   const cookie = request.headers['set-cookie']
-  
+
   if (cookie) {
     const cookies = env.MUR_SET_COOKIES || {}
     cookies[domain] = (cookies[domain] || []).concat(cookie)

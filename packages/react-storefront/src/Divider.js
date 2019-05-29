@@ -19,11 +19,10 @@ export const styles = theme => ({
   horizontal: {
     height: '1px'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFDivider' })
 export default class Divider extends Component {
-
   static propTypes = {
     /**
      * True to display a vertical divider
@@ -47,20 +46,13 @@ export default class Divider extends Component {
     if (!vertical && !horizontal) horizontal = true
 
     return (
-      <div 
-        className={
-          classnames(
-            className, 
-            classes.root,
-            { 
-              [classes.vertical]: vertical, 
-              [classes.horizontal]: horizontal
-            }
-          )
-        } 
+      <div
+        className={classnames(className, classes.root, {
+          [classes.vertical]: vertical,
+          [classes.horizontal]: horizontal
+        })}
         {...rest}
       />
     )
   }
-
 }

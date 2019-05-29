@@ -15,12 +15,12 @@ export default class DialogClose extends Component {
     const { style = {}, onClick, ...props } = this.props
 
     return (
-      <IconButton 
-        onClick={onClick} 
+      <IconButton
+        onClick={onClick}
         style={{ position: 'absolute', top: 0, right: 0, ...style }}
         {...props}
       >
-        <Close/>
+        <Close />
       </IconButton>
     )
   }

@@ -74,6 +74,152 @@ yarn release
 
 ## Changelog
 
+### 6.23.0
+
+- You can now pass options to control how Router's `applySearch` function stringifies params. For example, `router.applySearch({ colors: ['red', 'green'] }, { arrayFormat: 'brackets' })`
+- AMP-specific components are now left out of the client build as they are only needed during server side rendering. This helps reduce client bundle size.
+- The JSON that is cached by the service worker during the initial app load is now raw JSON returned from the router, not the serialized model. This brings it in line with how JSON returned from `fromServer` during client-side navigation is cached.
+
+### 6.22.0
+
+- The `Menu` component now looks the same when rendering in AMP and React.
+- Fixed bug where links in the menu main were not rendered properly for SEO introduced in 6.16.0
+- Fixes an issue where `ImageSwitcher` would not reset its `selectedIndex` after switching products.
+- If an analytics target throws an error it will now be caught so that other targets have a chance to fire.
+
+### 6.21.0
+
+- Fixes UI styling in cases where the last breadcrumb is a link.
+- Adds `sortProps` to `SortButton`, which allows your to pass props to the underlying `Sort` component.
+
+### 6.20.0
+
+- Added `serveSSRFromCache` option to the client webpack build. Set to `true` to allow the sevice worker to serve from the cache when a user initially lands on your app. Defaults to `false`.
+
+- Fixed the padding of the close button in the `UpdateNotification` component.
+
+### 6.19.0
+
+- Improved `MenuIcon` with better animation. Note: MenuIcon's `OpenIcon` and `CloseIcon` props have been removed.
+
+### 6.18.0
+
+- Fetch now implements the standard `redirected` and `url` properties on the `Response` object. See https://developer.mozilla.org/en-US/docs/Web/API/Response#Properties.
+
+### 6.17.0
+
+- You can now define a surrogate key for each route using:
+
+```js
+new Router().get(
+  '/p/:1',
+  cache({
+    server: {
+      surrogateKey: (params, request) => {
+        return 'product'
+      }
+    }
+  }),
+  fromServer('./path/to/handler')
+)
+```
+
+- Fixed bug in converting relative URLs to absolute URLs in Link that was introduced in 6.16.0
+
+### 6.16.1
+
+- Updated mobx-react to correct peerDependency ^5.4.3
+
+### 6.16.0
+
+- Added `trackSelected` prop to `Menu`. Set to `true` to indicate the item corresponding to the current page
+- Improved the performance of `Menu` by eliminating excessive rendering.
+
+### 6.15.0
+
+- New "PowerLinks" feature allows you link to a React Storefront app with `<a data-rsf-power-link="on" href="https://my.domain.com">Visit My Store</a>` and have the link prefetched and cached so that navigation is instant. Just add this to the site containing the link:
+
+```js
+<script src="http://my.domain.com/.powerlinks.js" defer />
+```
+
+- Added the ability to overwrite `cache()` route handler with `response.set('cache-control', '...')`.
+
+### 6.14.1
+
+- Fix bug in client webpack config due to a bad merge that would prevent apps from starting.
+
+### 6.14.0
+
+- Added support for prefetch throttling.
+
+### 6.13.2
+
+- Improved JSS class name generation in development
+
+## 6.13.1
+
+- Fixed a bug where links in the main menu were not rendered properly for SEO.
+
+### 6.13.0
+
+- Added `environment` module with `isClient` and `isServer` functions that allows you to detect whether your code is running on the client or the server.
+- Stub out Response's `set`, `get`, `status`, `cookie`, and `redirect` methods on the client.
+
+### 6.12.1
+
+- Update peerDependencies for mobx, mobx-react, and mobx-state-tree to more stable versions.
+
+### 6.12.0
+
+- Improved offline support.
+- Users will now be able to navigate back to any page they have previously visited when offline.
+- The `AppBar` component now displays "Your device lost its internet connection" when offline. This message is configurable via AppBar's `offlineWarning` prop.
+- Added an `Offline` component to be displayed as the main body of the app when the user attempts to navigate to a page that isn't cached when offline.
+- Added `appShell` configuration method to `Router`. Configure the appShell with a `fromServer`handler that returns global data to display in the app shell when the user attempts to load the site while offline.
+
+To add offline support to your app, upgrade to 6.12.0, then:
+
+- Add an `appShell` configuration to your router definition:
+
+```js
+// src/routes.js
+
+new Router()
+  // ...
+  .appShell(
+    // returns only the global data needed to build the app-shell for offline support
+    fromServer('./app-shell/app-shell-handler')
+  )
+```
+
+- Add the `Offline` component to your `Pages` element in `App.js`.
+
+```js
+// src/App.js
+
+import Offline from 'react-storefront/Offline'
+
+// then in the render method...
+class App extends Component {
+  render() {
+    return (
+      <Pages
+        components={universal => ({
+          // ...
+          Offline
+        })}
+      />
+    )
+  }
+}
+```
+
+### 6.11.0
+
+- Gracefully handle when `history.replace` fails due to the state object being too large. This was happening on Firefox for apps with large state trees as Firefox imposes a limit of 640kB on the state object. When history.replace fails, history.state will simply be cleared out and the app
+  will get the state from the network if the user navigates back or forward.
+
 ### 6.10.0
 
 - Removed `onImpression` from `Link`. We decided this logic was better handled in `CommerceAnalyticsTarget` in `react-storefront-extensions`.

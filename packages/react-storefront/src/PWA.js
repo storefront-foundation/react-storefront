@@ -11,7 +11,7 @@ import { canUseClientSideNavigation } from './utils/url'
 import delegate from 'delegate'
 import { cache } from './router/serviceWorker'
 import { isSafari } from './utils/browser'
-import { connectReduxDevtools } from "mst-middlewares"
+import { connectReduxDevtools } from 'mst-middlewares'
 import { onSnapshot } from 'mobx-state-tree'
 import debounce from 'lodash/debounce'
 
@@ -32,13 +32,12 @@ export const styles = theme => ({
       transition: `filter ${theme.transitions.duration.enteringScreen}ms`
     }
   }
-});
+})
 
 @withStyles(styles)
 @inject(({ app, history, router }) => ({ menu: app.menu, app, history, router, amp: app.amp }))
 @observer
 export default class PWA extends Component {
-  
   _nextId = 0
 
   render() {
@@ -47,31 +46,38 @@ export default class PWA extends Component {
     return (
       <Provider nextId={this.nextId}>
         <Fragment>
-          <CssBaseline/>
+          <CssBaseline />
           <Helmet>
-            <html lang="en"/>
-            <meta charset="utf-8"/>
-            <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"/>
-            <meta name="theme-color" content="#000000"/>
-            { app.description ? <meta name="description" content={app.description} /> : null }
-            { app.canonicalURL ? <link rel="canonical" href={app.canonicalURL}/> : null }
-            <link rel="manifest" href="/manifest.json"/>
+            <html lang="en" />
+            <meta charset="utf-8" />
+            <meta
+              name="viewport"
+              content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
+            />
+            <meta name="theme-color" content="#000000" />
+            {app.description ? <meta name="description" content={app.description} /> : null}
+            {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
+            <link rel="manifest" href="/manifest.json" />
             <title>{app.title}</title>
           </Helmet>
-          { amp && (
+          {amp && (
             <Helmet>
-              <script async src="https://cdn.ampproject.org/v0.js"></script>
-              <script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
+              <script async src="https://cdn.ampproject.org/v0.js" />
+              <script
+                async
+                custom-element="amp-install-serviceworker"
+                src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
+              />
             </Helmet>
           )}
-          { amp && (
+          {amp && (
             <amp-install-serviceworker
-              src={`https://${app.location.hostname}/service-worker.js`}
-              data-iframe-src={`https://${app.location.hostname}/pwa/install-service-worker.html`}
-              layout="nodisplay">
-            </amp-install-serviceworker>
+              src={`${app.location.urlBase}/service-worker.js`}
+              data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
+              layout="nodisplay"
+            />
           )}
-            {this.props.children}
+          {this.props.children}
         </Fragment>
       </Provider>
     )
@@ -92,8 +98,8 @@ export default class PWA extends Component {
   }
 
   componentDidMount() {
-    const { router, app, history } = this.props 
-    
+    const { router, app, history } = this.props
+
     if (router) {
       router.on('fetch', this.resetPage)
       router.watch(history, app.applyState)
@@ -107,13 +113,46 @@ export default class PWA extends Component {
     // put os class on body for platform-specific styling
     this.addDeviceClassesToBody()
 
-    // cache the launch screen for when the pwa is installed on the desktop
-    cache('/?source=pwa')
+    // set initial offline status
+    app.setOffline(!navigator.onLine)
+
+    window.addEventListener('online', () => {
+      app.setOffline(false)
+      // Fetch fresh page data since offline version may not be correct
+      if (router) {
+        router.fetchFreshState(document.location).then(app.applyState)
+      }
+    })
+
+    window.addEventListener('offline', () => {
+      app.setOffline(true)
+    })
+
+    // Fetching new app state for offline page
+    if (!navigator.onLine && app.page === null) {
+      router.fetchFreshState(document.location).then(state => {
+        state.offline = true
+        app.applyState(state)
+      })
+    }
+
+    // only cache app shell and page if online
+    if (navigator.onLine) {
+      // cache the app shell so that we can load pages when offline when we don't have a cached SSR response
+      if (router && router.isAppShellConfigured()) {
+        cache('/.app-shell')
+      }
+
+      // cache the initial page HTML and json
+      const path = app.location.pathname + app.location.search
+      cache(path + '.json', window.initialRouteData)
+      cache(path, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
+    }
 
     this.handleRejections()
 
     if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-      connectReduxDevtools(require("remotedev"), app)
+      connectReduxDevtools(require('remotedev'), app)
     }
   }
 
@@ -126,19 +165,32 @@ export default class PWA extends Component {
 
     const recordState = snapshot => {
       const { pathname, search } = history.location
-      history.replace(pathname + search, snapshot)
+
+      try {
+        history.replace(pathname + search, snapshot)
+      } catch (e) {
+        // If recording the app state fails, clear out the history state
+        // we don't want the app restoring a stale state if the user navigates back/forward.
+        // Browsers impose a limit on the size of the state object.  Firefox's is the smallest
+        // at 640kB, IE11 is 1MB, and Chrome is at least 10MB. Exceeding this limit is the most
+        // likely reason for history.replace to fail.
+        history.replace(pathname + search, null)
+        console.warn(
+          'Could not record app state in history.  Will fall back to fetching state from the server when navigating back and forward.'
+        )
+      }
     }
-  
+
     // record app state in history.state restore it when going back or forward
     // see Router#onLocationChange
     onSnapshot(app, debounce(snapshot => !snapshot.loading && recordState(snapshot), 150))
-  
+
     // record the initial state so that if the user comes back to the initial landing page the app state will be restored correctly.
     recordState(app.toJSON())
   }
 
   /**
-   * When an unhandled rejection occurs, store the error in app state so it 
+   * When an unhandled rejection occurs, store the error in app state so it
    * can be displayed to the developer.
    */
   handleRejections() {
@@ -158,7 +210,7 @@ export default class PWA extends Component {
   /**
    * Returns true if client-side navigation should be forced, otherwise false
    * @param {HTMLElement} linkEl
-   * @return {Boolean} 
+   * @return {Boolean}
    */
   shouldNavigateOnClient(linkEl) {
     const href = linkEl.getAttribute('href')
@@ -202,5 +254,4 @@ export default class PWA extends Component {
     window.scrollTo(0, 0)
     this.props.menu.close()
   }
-
 }

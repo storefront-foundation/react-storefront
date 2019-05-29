@@ -16,7 +16,7 @@ describe('fromServer', () => {
   beforeEach(() => {
     oldFetchLatest = mod.fetchLatest
     fetchResult = Promise.resolve({
-      json: () => ({ foo: 'bar' }),
+      json: () => ({ foo: 'bar' })
     })
     mod.fetchLatest = () =>
       (fetch = url => {
@@ -35,7 +35,7 @@ describe('fromServer', () => {
   it('should return the fetched response', async () => {
     expect(await fromServer('./foo/bar').fn(null, null, response)).toEqual({
       foo: 'bar',
-      loading: false,
+      loading: false
     })
   })
 
@@ -49,6 +49,38 @@ describe('fromServer', () => {
     fetchResult = Promise.reject(new StaleResponseError())
     const result = await fromServer('./foo').fn(null, null, response)
     expect(result).toBe(null)
+  })
+
+  it('should throw an Error when no handler path is specified', () => {
+    expect(() => fromServer()).toThrowError(
+      'You must provide a path to a handler in fromServer().  Please check your routes.'
+    )
+  })
+
+  it('should set the handler path as x-moov-surrogate-key', async () => {
+    const handler = jest.fn()
+    handler.path = './test'
+    await fromServer(handler).fn({}, { path: '/' }, response)
+    expect(response.get('x-moov-surrogate-key')).toBe('./test')
+  })
+
+  it('should set x-rsf-handler', async () => {
+    const handler = jest.fn()
+    handler.path = './test'
+    await fromServer(handler).fn({}, { path: '/' }, response)
+    expect(response.get('x-rsf-handler')).toBe('./test')
+  })
+
+  it('should set x-rsf-response-type to json', async () => {
+    const handler = jest.fn()
+    await fromServer(handler).fn({}, { path: '/.json' }, response)
+    expect(response.get('x-rsf-response-type')).toBe('json')
+  })
+
+  it('should set x-rsf-response-type to ssr', async () => {
+    const handler = jest.fn()
+    await fromServer(handler).fn({}, { path: '/' }, response)
+    expect(response.get('x-rsf-response-type')).toBe('ssr')
   })
 
   it('should call getURL when present', async () => {
@@ -105,6 +137,21 @@ describe('fromServer', () => {
       fetchResult = Promise.resolve({ redirected: true, url: 'http://example.com/foo' })
       await fromServerFetch('/foo/bar.json')
       expect(window.location.assign).toHaveBeenCalledWith('http://example.com/foo')
+    })
+
+    it('should raise an error if redirected wihout a location header', async () => {
+      window.location.assign = jest.fn()
+      global.jsdom.reconfigure({ url: 'http://localhost' })
+      fetchResult = Promise.resolve({ redirected: true })
+      let error
+
+      try {
+        await fromServerFetch('/foo/bar.json')
+      } catch (e) {
+        error = e
+      }
+
+      expect(error.message).toBe('Received a redirect without a location header.')
     })
   })
 })

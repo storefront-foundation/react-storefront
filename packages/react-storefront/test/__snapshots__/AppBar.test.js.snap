@@ -5,80 +5,72 @@ exports[`AppBar should render 1`] = `
   <Provider router={{...}} app={{...}} history={{...}}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(Header)>
-        <WithStyles(Header) menu={{...}} amp={false}>
-          <Header menu={{...}} amp={false} classes={{...}} MenuIcon={[Function: WithStyles]} menuIconProps={{...}} menuAlign="left">
-            <div className="RSFAppBar-root-1">
-              <div className="RSFAppBar-wrap-4">
-                <WithStyles(Toolbar) disableGutters={true} classes={{...}}>
-                  <Toolbar disableGutters={true} classes={{...}} variant="regular">
-                    <div className="MuiToolbar-root-11 RSFAppBar-toolBar-3 MuiToolbar-regular-13">
-                      <Hidden mdUp={true} implementation="css" lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
-                        <WithStyles(HiddenCss) mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
-                          <HiddenCss mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false} classes={{...}}>
-                            <div className="MuiPrivateHiddenCss-mdUp-22">
-                              <a on="tap:moov_menu.toggle" className="RSFAppBar-link-10">
-                                <WithStyles(ToolbarButton) aria-label="Menu" color="inherit" onClick={[Function]} icon={{...}}>
-                                  <ToolbarButton aria-label="Menu" color="inherit" onClick={[Function]} icon={{...}} classes={{...}}>
-                                    <WithStyles(IconButton) classes={{...}} aria-label="Menu" color="inherit" onClick={[Function]}>
-                                      <IconButton aria-label="Menu" color="inherit" onClick={[Function]} classes={{...}} disabled={false}>
-                                        <WithStyles(ButtonBase) className="MuiIconButton-root-31 MuiIconButton-colorInherit-32" centerRipple={true} focusRipple={true} disabled={false} aria-label="Menu" onClick={[Function]}>
-                                          <ButtonBase className="MuiIconButton-root-31 MuiIconButton-colorInherit-32" centerRipple={true} focusRipple={true} disabled={false} aria-label="Menu" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                            <button className="MuiButtonBase-root-37 MuiIconButton-root-31 MuiIconButton-colorInherit-32" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Menu" onClick={[Function]}>
-                                              <span className="MuiIconButton-label-36">
-                                                <div className="RSFToolbarButton-wrap-30">
-                                                  <WithStyles(MenuIcon) open={false}>
-                                                    <MenuIcon open={false} classes={{...}} label={true} CloseIcon={[Function: ShouldUpdate]}>
-                                                      <div className="RSFMenuIcon-root-40">
-                                                        <TransitionGroup component="div" childFactory={[Function: childFactory]}>
-                                                          <div>
-                                                            <CSSTransition classNames="rsf-menu-icon" timeout={300} onExited={[Function: bound bound handleExited]} in={true} appear={[undefined]} enter={[undefined]} exit={[undefined]}>
-                                                              <Transition timeout={300} onExited={[Function]} in={true} appear={false} enter={true} exit={true} onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} mountOnEnter={false} unmountOnExit={false}>
-                                                                <WithStyles(SvgIcon) className="RSFMenuIcon-icon-41">
-                                                                  <SvgIcon className="RSFMenuIcon-icon-41" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                    <svg className="MuiSvgIcon-root-42 RSFMenuIcon-icon-41" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                      <OpenWithLabel>
-                                                                        <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 31.7 31.7">
-                                                                          <path id="Shape" d="M0.9,17.7h29.8v-2.8H0.9V17.7L0.9,17.7z M0.9,10.8h29.8V8.1H0.9V10.8L0.9,10.8z M0.9,1.2v2.8h29.8V1.2H0.9 L0.9,1.2z" />
-                                                                          <path id="menu" d="M0.4,24h1.1v1h0c0-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.3-0.3,0.4-0.4c0.2-0.1,0.4-0.2,0.6-0.3s0.5-0.1,0.8-0.1 c0.5,0,0.9,0.1,1.2,0.3c0.3,0.2,0.6,0.5,0.8,0.9c0.2-0.4,0.5-0.7,0.9-0.9s0.7-0.3,1.1-0.3c0.5,0,0.9,0.1,1.2,0.2 c0.3,0.2,0.6,0.4,0.7,0.6c0.2,0.3,0.3,0.6,0.4,0.9c0.1,0.3,0.1,0.7,0.1,1v3.7H8.7v-3.5c0-0.2,0-0.5,0-0.7c0-0.2-0.1-0.4-0.2-0.6 c-0.1-0.2-0.2-0.3-0.4-0.4S7.6,25,7.3,25c-0.6,0-1,0.2-1.2,0.5s-0.4,0.8-0.4,1.4v3.4H4.5v-3.3c0-0.3,0-0.6,0-0.8 c0-0.2-0.1-0.5-0.2-0.6c-0.1-0.2-0.2-0.3-0.4-0.4C3.7,25.1,3.5,25,3.2,25c-0.2,0-0.4,0-0.6,0.1c-0.2,0.1-0.4,0.2-0.5,0.4 c-0.2,0.2-0.3,0.4-0.4,0.6c-0.1,0.3-0.1,0.6-0.1,0.9v3.3H0.4V24z M12.3,27.6c0,0.3,0.1,0.5,0.2,0.8c0.1,0.2,0.3,0.4,0.5,0.6 c0.2,0.2,0.4,0.3,0.7,0.4c0.3,0.1,0.5,0.1,0.8,0.1c0.4,0,0.7-0.1,1-0.3s0.5-0.4,0.8-0.7l0.9,0.7c-0.7,0.9-1.6,1.3-2.8,1.3 c-0.5,0-0.9-0.1-1.3-0.3c-0.4-0.2-0.7-0.4-1-0.7c-0.3-0.3-0.5-0.6-0.6-1c-0.2-0.4-0.2-0.8-0.2-1.3c0-0.5,0.1-0.9,0.2-1.3 c0.2-0.4,0.4-0.8,0.7-1c0.3-0.3,0.6-0.5,1-0.7c0.4-0.2,0.8-0.3,1.3-0.3c0.6,0,1,0.1,1.4,0.3c0.4,0.2,0.7,0.4,1,0.8 c0.2,0.3,0.4,0.7,0.5,1.1c0.1,0.4,0.2,0.8,0.2,1.2v0.4H12.3z M16.1,26.7c0-0.3-0.1-0.5-0.1-0.7c-0.1-0.2-0.2-0.4-0.3-0.6 c-0.2-0.2-0.3-0.3-0.6-0.4c-0.2-0.1-0.5-0.1-0.8-0.1c-0.3,0-0.6,0.1-0.8,0.2c-0.2,0.1-0.4,0.3-0.6,0.4s-0.3,0.4-0.4,0.6 c-0.1,0.2-0.1,0.4-0.1,0.6H16.1z M18.6,24h1.2v1h0c0.2-0.3,0.4-0.6,0.8-0.8c0.4-0.2,0.8-0.3,1.3-0.3c0.3,0,0.6,0,0.9,0.1 c0.3,0.1,0.5,0.2,0.7,0.4c0.2,0.2,0.4,0.4,0.5,0.8c0.1,0.3,0.2,0.7,0.2,1.1v4.1H23v-3.7c0-0.3,0-0.5-0.1-0.8 c-0.1-0.2-0.2-0.4-0.3-0.5c-0.1-0.1-0.3-0.2-0.5-0.3C21.9,25,21.7,25,21.5,25c-0.2,0-0.5,0-0.7,0.1c-0.2,0.1-0.4,0.2-0.6,0.4 s-0.3,0.4-0.4,0.7c-0.1,0.3-0.1,0.6-0.1,0.9v3.2h-1.2V24z M31.3,30.3h-1.2v-1h0c-0.2,0.3-0.4,0.6-0.8,0.8c-0.4,0.2-0.8,0.3-1.3,0.3 c-0.3,0-0.6,0-0.9-0.1c-0.3-0.1-0.5-0.2-0.7-0.4c-0.2-0.2-0.4-0.4-0.5-0.8c-0.1-0.3-0.2-0.7-0.2-1.1V24h1.2v3.7c0,0.3,0,0.5,0.1,0.8 c0.1,0.2,0.2,0.4,0.3,0.5c0.1,0.1,0.3,0.2,0.5,0.3s0.4,0.1,0.5,0.1c0.2,0,0.5,0,0.7-0.1c0.2-0.1,0.4-0.2,0.6-0.4 c0.2-0.2,0.3-0.4,0.4-0.7s0.1-0.6,0.1-0.9V24h1.2V30.3z" />
-                                                                        </svg>
-                                                                      </OpenWithLabel>
-                                                                    </svg>
-                                                                  </SvgIcon>
-                                                                </WithStyles(SvgIcon)>
-                                                              </Transition>
-                                                            </CSSTransition>
+        <WithStyles(Header) menu={{...}} amp={false} offline={false}>
+          <Header menu={{...}} amp={false} offline={false} classes={{...}} MenuIcon={[Function: Injector]} menuIconProps={{...}} menuAlign="left" offlineWarning="Your device lost its internet connection.">
+            <div>
+              <div className="RSFAppBar-root-1">
+                <div className="RSFAppBar-wrap-5">
+                  <WithStyles(Toolbar) disableGutters={true} classes={{...}}>
+                    <Toolbar disableGutters={true} classes={{...}} variant="regular">
+                      <div className="MuiToolbar-root-12 RSFAppBar-toolBar-4 MuiToolbar-regular-14">
+                        <Hidden mdUp={true} implementation="css" lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
+                          <WithStyles(HiddenCss) mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
+                            <HiddenCss mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false} classes={{...}}>
+                              <div className="MuiPrivateHiddenCss-mdUp-23">
+                                <a on="tap:AMP.setState({ menuOpen: !menuOpen, list: \\'@\\' }),moov_menu.toggle" className="RSFAppBar-link-11">
+                                  <WithStyles(ToolbarButton) aria-label="Menu" color="inherit" onClick={[Function]} icon={{...}}>
+                                    <ToolbarButton aria-label="Menu" color="inherit" onClick={[Function]} icon={{...}} classes={{...}}>
+                                      <WithStyles(IconButton) classes={{...}} aria-label="Menu" color="inherit" onClick={[Function]}>
+                                        <IconButton aria-label="Menu" color="inherit" onClick={[Function]} classes={{...}} disabled={false}>
+                                          <WithStyles(ButtonBase) className="MuiIconButton-root-32 MuiIconButton-colorInherit-33" centerRipple={true} focusRipple={true} disabled={false} aria-label="Menu" onClick={[Function]}>
+                                            <ButtonBase className="MuiIconButton-root-32 MuiIconButton-colorInherit-33" centerRipple={true} focusRipple={true} disabled={false} aria-label="Menu" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                              <button className="MuiButtonBase-root-38 MuiIconButton-root-32 MuiIconButton-colorInherit-33" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} aria-label="Menu" onClick={[Function]}>
+                                                <span className="MuiIconButton-label-37">
+                                                  <div className="RSFToolbarButton-wrap-31">
+                                                    <inject-WithStyles(MenuIcon)-with-app open={false}>
+                                                      <WithStyles(MenuIcon) open={false} app={{...}}>
+                                                        <MenuIcon open={false} app={{...}} classes={{...}} label={true}>
+                                                          <div className="RSFMenuIcon-root-41 RSFMenuIcon-withLabel-43">
+                                                            <div className="rsf-hamburger">
+                                                              <span className="rsf-hamburger-box">
+                                                                <span className="rsf-hamburger-inner" />
+                                                              </span>
+                                                            </div>
+                                                            <div className="RSFMenuIcon-label-46">
+                                                              menu
+                                                            </div>
                                                           </div>
-                                                        </TransitionGroup>
-                                                      </div>
-                                                    </MenuIcon>
-                                                  </WithStyles(MenuIcon)>
-                                                  <div />
-                                                </div>
-                                              </span>
-                                              <NoSsr defer={false} fallback={{...}}>
-                                                <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                  <TouchRipple center={true} classes={{...}}>
-                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-51" childFactory={[Function: childFactory]}>
-                                                      <span className="MuiTouchRipple-root-51" />
-                                                    </TransitionGroup>
-                                                  </TouchRipple>
-                                                </WithStyles(TouchRipple)>
-                                              </NoSsr>
-                                            </button>
-                                          </ButtonBase>
-                                        </WithStyles(ButtonBase)>
-                                      </IconButton>
-                                    </WithStyles(IconButton)>
-                                  </ToolbarButton>
-                                </WithStyles(ToolbarButton)>
-                              </a>
-                            </div>
-                          </HiddenCss>
-                        </WithStyles(HiddenCss)>
-                      </Hidden>
-                    </div>
-                  </Toolbar>
-                </WithStyles(Toolbar)>
+                                                        </MenuIcon>
+                                                      </WithStyles(MenuIcon)>
+                                                    </inject-WithStyles(MenuIcon)-with-app>
+                                                    <div />
+                                                  </div>
+                                                </span>
+                                                <NoSsr defer={false} fallback={{...}}>
+                                                  <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                    <TouchRipple center={true} classes={{...}}>
+                                                      <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-47" childFactory={[Function: childFactory]}>
+                                                        <span className="MuiTouchRipple-root-47" />
+                                                      </TransitionGroup>
+                                                    </TouchRipple>
+                                                  </WithStyles(TouchRipple)>
+                                                </NoSsr>
+                                              </button>
+                                            </ButtonBase>
+                                          </WithStyles(ButtonBase)>
+                                        </IconButton>
+                                      </WithStyles(IconButton)>
+                                    </ToolbarButton>
+                                  </WithStyles(ToolbarButton)>
+                                </a>
+                              </div>
+                            </HiddenCss>
+                          </WithStyles(HiddenCss)>
+                        </Hidden>
+                      </div>
+                    </Toolbar>
+                  </WithStyles(Toolbar)>
+                </div>
               </div>
             </div>
           </Header>

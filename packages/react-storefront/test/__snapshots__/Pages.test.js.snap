@@ -6,7 +6,7 @@ exports[`Pages can display no page at all 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
-          <Pages components={{...}} classes={{...}} app={{...}} page="Foo" loading={false} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
+          <Pages components={{...}} classes={{...}} app={{...}} page="Foo" loading={false} loadMasks={{...}}>
             <div className="RSFPages-root-18">
               <WithStyles(LoadMask) show={false} fullscreen={true}>
                 <LoadMask show={false} fullscreen={true} classes={{...}} align="center">
@@ -38,7 +38,7 @@ exports[`Pages displays a custom default loading component 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) loading={[Function: loading]} components={{...}}>
         <inject-Pages loading={[Function: loading]} components={{...}} classes={{...}}>
-          <Pages loading={true} components={{...}} classes={{...}} app={{...}} page="Product" uri="/" router={{...}} history={{...}} loadMasks={{...}}>
+          <Pages loading={true} components={{...}} classes={{...}} app={{...}} page="Product" loadMasks={{...}}>
             <div className="RSFPages-root-35">
               <WithStyles(LoadMask) show={true} fullscreen={true}>
                 <LoadMask show={true} fullscreen={true} classes={{...}} align="center">
@@ -77,7 +77,7 @@ exports[`Pages displays the correct page 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
-          <Pages components={{...}} classes={{...}} app={{...}} page="Category" loading={false} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
+          <Pages components={{...}} classes={{...}} app={{...}} page="Category" loading={false} loadMasks={{...}}>
             <div className="RSFPages-root-1">
               <WithStyles(LoadMask) show={false} fullscreen={true}>
                 <LoadMask show={false} fullscreen={true} classes={{...}} align="center">
@@ -116,7 +116,7 @@ exports[`Pages displays the default loading component 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
-          <Pages components={{...}} classes={{...}} app={{...}} page="Product" loading={true} uri="/" router={{...}} history={{...}} loadMasks={{...}}>
+          <Pages components={{...}} classes={{...}} app={{...}} page="Product" loading={true} loadMasks={{...}}>
             <div className="RSFPages-root-52">
               <WithStyles(LoadMask) show={true} fullscreen={true}>
                 <LoadMask show={true} fullscreen={true} classes={{...}} align="center">

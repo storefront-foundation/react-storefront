@@ -37,7 +37,7 @@ import SearchPopup, {
   SuggestedSearch,
   CategorySearches,
   ProductSuggestions,
-  SearchPopupModel,
+  SearchPopupModel
 } from '../src/SearchPopup'
 import SearchDrawer from '../src/SearchDrawer'
 import ShowMore from '../src/ShowMore'
@@ -46,7 +46,7 @@ import {
   FacebookShareButton,
   TwitterShareButton,
   GooglePlusShareButton,
-  PinterestShareButton,
+  PinterestShareButton
 } from '../src/SocialShareButtons'
 import SortButton from '../src/SortButton'
 import Sort from '../src/Sort'
@@ -67,7 +67,7 @@ import OptionModelBase from '../src/model/OptionModelBase'
 import SearchResultsModelBase, {
   FacetGroupModelBase,
   FacetModelBase,
-  SortBase,
+  SortBase
 } from '../src/model/SearchResultsModelBase'
 import { BreadcrumbModel } from '../src/model/AppModelBase'
 import { Provider, observer } from 'mobx-react'
@@ -105,7 +105,7 @@ const wrapWithProvider = (extraState, themeOverrides) => story => {
     breadcrumbs: [
       BreadcrumbModel.create({ url: '/', text: 'Home' }),
       BreadcrumbModel.create({ url: '/tools', text: 'Tool Storage' }),
-      BreadcrumbModel.create({ text: 'Tool Carts' }),
+      BreadcrumbModel.create({ text: 'Tool Carts' })
     ],
     cart: CartModelBase.create(),
     menu: MenuModel.create({
@@ -119,25 +119,33 @@ const wrapWithProvider = (extraState, themeOverrides) => story => {
               text: 'Categories',
               url: '#',
               items: [
-                MenuItemModel.create({ text: 'Color', url: '#' }),
                 MenuItemModel.create({ text: 'Size', url: '#' }),
-                MenuItemModel.create({ text: 'Age', url: '#' }),
-              ],
+                MenuItemModel.create({
+                  text: 'Color',
+                  url: '#',
+                  items: [
+                    MenuItemModel.create({ text: 'Red', url: '#' }),
+                    MenuItemModel.create({ text: 'Green', url: '#' }),
+                    MenuItemModel.create({ text: 'Blue', url: '#' })
+                  ]
+                }),
+                MenuItemModel.create({ text: 'Age', url: '#' })
+              ]
             }),
-            MenuItemModel.create({ text: 'Search', url: '#' }),
-          ],
-        }),
-      ],
+            MenuItemModel.create({ text: 'Search', url: '#' })
+          ]
+        })
+      ]
     }),
     tabs: TabsModel.create({
       items: [
         MenuItemModel.create({ text: 'Tab 1', url: '#' }),
         MenuItemModel.create({ text: 'Tab 2', url: '#' }),
-        MenuItemModel.create({ text: 'Tab 3', url: '#' }),
-      ],
+        MenuItemModel.create({ text: 'Tab 3', url: '#' })
+      ]
     }),
     searchPopup: SearchPopupModel.create({ opened: true }),
-    search: SearchModelBase.create(),
+    search: SearchModelBase.create()
   }
 
   const theme = createTheme(themeOverrides)
@@ -168,10 +176,10 @@ storiesOf('AddToCartButton', module)
       {},
       {
         palette: {
-          secondary: green,
-        },
-      },
-    ),
+          secondary: green
+        }
+      }
+    )
   )
   .addWithJSX('with custom theme', () => <AddToCartButton confirmation="Added to cart" />)
 
@@ -218,7 +226,7 @@ storiesOf('Breadcrumbs', module)
       items={[
         { url: '#', text: 'Home' },
         { url: '#', text: 'Tool Storage' },
-        { url: '#', text: 'Tool Carts' },
+        { url: '#', text: 'Tool Carts' }
       ]}
     />
   ))
@@ -227,39 +235,39 @@ const selectionModelWithImages = SelectionModelBase.create({
   options: [
     OptionModelBase.create({ id: 'big', image: 'http://via.placeholder.com/35/d32f2f/d32f2f' }),
     OptionModelBase.create({ id: 'medium', image: 'http://via.placeholder.com/35/388E3C/388E3C' }),
-    OptionModelBase.create({ id: 'small', image: 'http://via.placeholder.com/35/1565c0/1565c0' }),
+    OptionModelBase.create({ id: 'small', image: 'http://via.placeholder.com/35/1565c0/1565c0' })
   ],
   selected: OptionModelBase.create({
     id: 'medium',
-    image: 'http://via.placeholder.com/35/388E3C/388E3C',
-  }),
+    image: 'http://via.placeholder.com/35/388E3C/388E3C'
+  })
 })
 
 const selectionModelWithText = SelectionModelBase.create({
   options: [
     OptionModelBase.create({ id: 'large', text: 'Large' }),
     OptionModelBase.create({ id: 'medium', text: 'Medium' }),
-    OptionModelBase.create({ id: 'small', text: 'Small' }),
+    OptionModelBase.create({ id: 'small', text: 'Small' })
   ],
-  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' }),
+  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
 })
 
 const selectionModelWithColors = SelectionModelBase.create({
   options: [
     OptionModelBase.create({ id: 'large', color: '#ff0000' }),
     OptionModelBase.create({ id: 'medium', color: '#00ff00' }),
-    OptionModelBase.create({ id: 'small', color: 'rgb(0, 0, 255)' }),
+    OptionModelBase.create({ id: 'small', color: 'rgb(0, 0, 255)' })
   ],
-  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' }),
+  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
 })
 
 const selectionModelWithDisabled = SelectionModelBase.create({
   options: [
     OptionModelBase.create({ id: 'large', color: '#ff0000' }),
     OptionModelBase.create({ id: 'medium', color: '#00ff00' }),
-    OptionModelBase.create({ id: 'small', disabled: true, color: 'rgb(0, 0, 255)' }),
+    OptionModelBase.create({ id: 'small', disabled: true, color: 'rgb(0, 0, 255)' })
   ],
-  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' }),
+  selected: OptionModelBase.create({ id: 'medium', text: 'Medium' })
 })
 
 storiesOf('ButtonSelector', module)
@@ -364,24 +372,24 @@ const filterModel = SearchResultsModelBase.create({
       facets: [
         FacetModelBase.create({ code: 'red', name: 'Red', matches: 20 }),
         FacetModelBase.create({ name: 'Green', matches: 10 }),
-        FacetModelBase.create({ name: 'Blue', matches: 5 }),
-      ],
+        FacetModelBase.create({ name: 'Blue', matches: 5 })
+      ]
     }),
     FacetGroupModelBase.create({
       name: 'Size',
       facets: [
         FacetModelBase.create({ name: 'Large', matches: 3 }),
         FacetModelBase.create({ code: 'medium', name: 'Medium', matches: 7 }),
-        FacetModelBase.create({ name: 'Small', matches: 1 }),
-      ],
-    }),
+        FacetModelBase.create({ name: 'Small', matches: 1 })
+      ]
+    })
   ],
   sort: 'price',
   sortOptions: [
     SortBase.create({ code: 'name', name: 'Name' }),
     SortBase.create({ code: 'price', name: 'Price' }),
-    SortBase.create({ code: 'size', name: 'Size' }),
-  ],
+    SortBase.create({ code: 'size', name: 'Size' })
+  ]
 })
 
 storiesOf('FilterButton', module)
@@ -422,12 +430,12 @@ storiesOf('ImageSwitcher', module)
       images={[
         'https://via.placeholder.com/200?text=1',
         'https://via.placeholder.com/200?text=2',
-        'https://via.placeholder.com/200?text=3',
+        'https://via.placeholder.com/200?text=3'
       ]}
       thumbnails={[
         'https://via.placeholder.com/200?text=1',
         'https://via.placeholder.com/200?text=2',
-        'https://via.placeholder.com/200?text=3',
+        'https://via.placeholder.com/200?text=3'
       ]}
     />
   ))
@@ -447,6 +455,10 @@ storiesOf('LoadMask', module)
 
 storiesOf('Menu', module)
   .addDecorator(wrapWithProvider())
+  .addWithJSX('with default props', () => <Menu />)
+
+storiesOf('AMP Menu', module)
+  .addDecorator(wrapWithProvider({ amp: true }))
   .addWithJSX('with default props', () => <Menu />)
 
 storiesOf('NavTabs', module)
@@ -514,23 +526,23 @@ storiesOf('SearchDrawer', module)
               ResultsModel.create({
                 text: 'Goto A',
                 url: '/#a',
-                thumbnail: 'https://placehold.it/300?text=A',
+                thumbnail: 'https://placehold.it/300?text=A'
               }),
               ResultsModel.create({
                 text: 'Goto B',
                 url: '/#b',
-                thumbnail: 'https://placehold.it/300?text=B',
+                thumbnail: 'https://placehold.it/300?text=B'
               }),
               ResultsModel.create({
                 text: 'Goto C',
                 url: '/#c',
-                thumbnail: 'https://placehold.it/300?text=C',
-              }),
-            ],
-          }),
-        ],
-      }),
-    }),
+                thumbnail: 'https://placehold.it/300?text=C'
+              })
+            ]
+          })
+        ]
+      })
+    })
   )
   .addWithJSX('with default props', () => <SearchDrawer />)
   .addWithJSX('with searchButtonVariant="icon"', () => <SearchDrawer searchButtonVariant="icon" />)
@@ -542,7 +554,7 @@ storiesOf('ShowMore', module)
   .addDecorator(wrapWithProvider())
   .addWithJSX('with button', () => {
     const model = SearchResultsModelBase.create({
-      numberOfPages: 7,
+      numberOfPages: 7
     })
     return (
       <PaginationContainer model={model}>
@@ -552,7 +564,7 @@ storiesOf('ShowMore', module)
   })
   .addWithJSX('with infinite scroll', () => {
     const model = SearchResultsModelBase.create({
-      numberOfPages: 7,
+      numberOfPages: 7
     })
     return (
       <PaginationContainer model={model}>

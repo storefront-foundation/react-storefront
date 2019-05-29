@@ -8,8 +8,8 @@ import withStyles from '@material-ui/core/styles/withStyles'
 
 export const styles = {
   hidden: {
-    display: 'none',
-  },
+    display: 'none'
+  }
 }
 
 /**
@@ -31,12 +31,12 @@ export default class AmpHidden extends Component {
     /**
      * Set to true to hide the component on initial render
      */
-    hidden: PropTypes.bool,
+    hidden: PropTypes.bool
   }
 
   static defaultProps = {
     component: 'div',
-    hidden: false,
+    hidden: false
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class AmpHidden extends Component {
     return React.createElement(component, {
       'amp-bind': `class=>${bind} ? '${classes.hidden}' : null`,
       className: hidden ? classes.hidden : null,
-      ...others,
+      ...others
     })
   }
 }

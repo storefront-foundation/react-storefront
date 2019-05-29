@@ -12,8 +12,7 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({
-  root: {
-  },
+  root: {},
   panel: {
     margin: `${theme.margins.container}px 0`
   },
@@ -29,7 +28,7 @@ export const styles = theme => ({
   ampPanel: {
     display: 'none',
     '&[selected]': {
-      display: 'block',
+      display: 'block'
     }
   },
   ampTab: {
@@ -37,7 +36,7 @@ export const styles = theme => ({
     '& .label': {
       borderBottom: `2px solid transparent`,
       opacity: 0.7,
-      padding: '15px 12px 14px 12px',
+      padding: '15px 12px 14px 12px'
     },
     '& .selected': {
       borderBottom: `2px solid ${theme.palette.secondary.main}`,
@@ -53,11 +52,11 @@ export const styles = theme => ({
 })
 
 /**
- * A simple tab panel that is AMP-compatible.  Tab names are pull from the label prop of the child elements.  
+ * A simple tab panel that is AMP-compatible.  Tab names are pull from the label prop of the child elements.
  * Any type of element can be a child.
- * 
+ *
  * Example:
- * 
+ *
  *  <TabPanel>
  *    <div label="Description">
  *      Description here
@@ -70,7 +69,6 @@ export const styles = theme => ({
 @withStyles(styles, { name: 'RSFTabPanel' })
 @inject('app', 'ampStateId')
 export default class TabPanel extends Component {
-  
   constructor(props) {
     super(props)
     this.state = {
@@ -90,7 +88,7 @@ export default class TabPanel extends Component {
     /**
      * On change callback
      */
-    onChange: PropTypes.func,
+    onChange: PropTypes.func
   }
 
   static defaultProps = {
@@ -102,7 +100,7 @@ export default class TabPanel extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (typeof nextProps.selected === 'number') {
-      this.setState({ selected: nextProps.selected });
+      this.setState({ selected: nextProps.selected })
     }
   }
 
@@ -115,13 +113,12 @@ export default class TabPanel extends Component {
     const tabs = []
 
     React.Children.forEach(children, (child, i) => {
-
       let { label } = child.props
 
       if (amp) {
         label = (
-          <div 
-            className={classnames('label', { selected: selected === i })} 
+          <div
+            className={classnames('label', { selected: selected === i })}
             amp-bind={`class=>${ampStateId}.${ampStateProperty} == "tab${i}" ? 'label selected' : 'label'`}
           >
             {label}
@@ -130,7 +127,7 @@ export default class TabPanel extends Component {
       }
 
       tabs.push(
-        <Tab 
+        <Tab
           key={i}
           label={label}
           on={`tap:AMP.setState({ ${ampStateId}: { ${ampStateProperty}: 'tab${i}' }})`}
@@ -140,29 +137,27 @@ export default class TabPanel extends Component {
           }}
         />
       )
-      
+
       panels.push(
-        <div 
+        <div
           key={i}
-          role="tabpanel" 
-          option={`tab${i}`} 
-          selected={i===selected}
-          className={
-            classnames(classes.panel, { 
-              [classes.hidden]: !amp && i !== selected,
-              [classes.ampPanel]: amp
-            })
-          }
+          role="tabpanel"
+          option={`tab${i}`}
+          selected={i === selected}
+          className={classnames(classes.panel, {
+            [classes.hidden]: !amp && i !== selected,
+            [classes.ampPanel]: amp
+          })}
         >
-          { React.cloneElement(child, { label: null }) }
+          {React.cloneElement(child, { label: null })}
         </div>
       )
     })
 
     if (amp) {
       panels = (
-        <amp-selector 
-          role="tablist" 
+        <amp-selector
+          role="tablist"
           amp-bind={`selected=>${ampStateId}.${ampStateProperty}`}
           class={classes.ampSelector}
         >
@@ -173,23 +168,31 @@ export default class TabPanel extends Component {
 
     return (
       <div className={classes.root}>
-        { amp && (
+        {amp && (
           <Helmet>
-            <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
-            <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+            <script
+              async
+              custom-element="amp-selector"
+              src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"
+            />
+            <script
+              async
+              custom-element="amp-bind"
+              src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"
+            />
           </Helmet>
         )}
-        <Tabs 
+        <Tabs
           variant={scrollable ? 'scrollable' : null}
-          value={selected} 
+          value={selected}
           onChange={this.onChange}
           classes={{
             indicator: classnames({ [classes.ampTabIndicator]: amp })
           }}
         >
-          { tabs }
+          {tabs}
         </Tabs>
-        { panels }
+        {panels}
       </div>
     )
   }
@@ -202,5 +205,4 @@ export default class TabPanel extends Component {
       onChange(selected)
     }
   }
-
 }

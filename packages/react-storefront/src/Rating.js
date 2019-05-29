@@ -35,11 +35,10 @@ export const styles = theme => ({
   reviewsLabel: {
     marginLeft: '3px'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFRating' })
 export default class Rating extends Component {
-
   static propTypes = {
     /**
      * CSS classes to apply
@@ -59,7 +58,7 @@ export default class Rating extends Component {
 
     /**
      * A function that returns the label displayed to the right of the review count.
-     * For example: `<Rating label={reviewCount => <span> {reviewCount == 1 ? 'review' : 'reviews'}</span>}/>`.  
+     * For example: `<Rating label={reviewCount => <span> {reviewCount == 1 ? 'review' : 'reviews'}</span>}/>`.
      * This value used in this example is the default.
      */
     label: PropTypes.func,
@@ -96,8 +95,18 @@ export default class Rating extends Component {
   }
 
   render() {
-    let { iconFull, iconHalf, iconEmpty, classes, value,
-      label, reviewCount, className, product, fillEmpty } = this.props
+    let {
+      iconFull,
+      iconHalf,
+      iconEmpty,
+      classes,
+      value,
+      label,
+      reviewCount,
+      className,
+      product,
+      fillEmpty
+    } = this.props
     let stars = []
 
     if (product) {
@@ -108,26 +117,29 @@ export default class Rating extends Component {
     const IconFull = iconFull || Star
     const IconHalf = iconHalf || StarHalf
     const IconEmpty = iconEmpty || StarBorder
-  
-    for (let i=1; i<=5; i++) {
+
+    for (let i = 1; i <= 5; i++) {
       if (value == null || value >= i) {
         stars.push(<IconFull key={i} />)
       } else if (value >= i - 0.5) {
-        stars.push(<IconHalf key={i}/>)
+        stars.push(<IconHalf key={i} />)
       } else if (fillEmpty) {
         stars.push(<IconFull className={classes.filledEmpty} key={i} />)
       } else {
         stars.push(<IconEmpty key={i} />)
       }
     }
-  
+
     return (
       <Hbox>
         <div className={classnames(classes.root, className, { [classes.blank]: value == null })}>
           {stars}
         </div>
-        { reviewCount ? (
-          <div className={classes.reviewsLabel}>({reviewCount}{label(reviewCount)})</div>
+        {reviewCount ? (
+          <div className={classes.reviewsLabel}>
+            ({reviewCount}
+            {label(reviewCount)})
+          </div>
         ) : null}
       </Hbox>
     )

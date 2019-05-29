@@ -45,10 +45,18 @@ describe('SortButton', () => {
     )).toMatchSnapshot()
   })
 
-  it('passes drawerProps to the underlying Sort component', () => {
+  it('passes drawerProps to the underlying Drawer component', () => {
     expect(mount(
       <Provider>
-        <SortButton title="Sort By" model={createModel('price-asc')} drawerProps={{ queryParam: 'soryBy' }}/>
+        <SortButton title="Sort By" model={createModel('price-asc')} drawerProps={{ autoAdjustBodyPadding: true }}/>
+      </Provider>
+    )).toMatchSnapshot()
+  })
+
+  it('passes sortProps to the underlying Sort component', () => {
+    expect(mount(
+      <Provider>
+        <SortButton title="Sort By" model={createModel('price-asc')} sortProps={{ queryParam: 'sortBy' }}/>
       </Provider>
     )).toMatchSnapshot()
   })

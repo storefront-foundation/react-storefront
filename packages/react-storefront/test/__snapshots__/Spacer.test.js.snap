@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spacer renders 1`] = `
+<WithStyles(Spacer)>
+  <Spacer classes={{...}}>
+    <div className="RSFSpacer-root-1" />
+  </Spacer>
+</WithStyles(Spacer)>
+`;

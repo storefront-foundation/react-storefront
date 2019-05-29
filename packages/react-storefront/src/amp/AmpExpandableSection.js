@@ -13,36 +13,36 @@ import classnames from 'classnames'
 
 export const styles = theme => ({
   accordion: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${theme.palette.divider}`
   },
   title: {
     backgroundColor: 'transparent',
     padding: '12px 15px',
     borderStyle: 'none',
-    outlineWidth: 0,
+    outlineWidth: 0
   },
   section: {},
   toggle: {
     position: 'absolute',
     right: '18px',
-    top: '13px',
+    top: '13px'
   },
   expand: {
     display: 'block',
     'section[expanded] &': {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
   collapse: {
     display: 'none',
     'section[expanded] &': {
-      display: 'block',
-    },
+      display: 'block'
+    }
   },
   body: {
     backgroundColor: 'transparent',
-    padding: `0 ${theme.margins.container}px`,
-  },
+    padding: `0 ${theme.margins.container}px`
+  }
 })
 
 /**
@@ -69,13 +69,13 @@ export default class AmpExpandableSection extends Component {
     /**
      * The icon to use for expanded groups
      */
-    CollapseIcon: PropTypes.func,
+    CollapseIcon: PropTypes.func
   }
 
   static defaultProps = {
     expanded: false,
     ExpandIcon: ExpandMore,
-    CollapseIcon: ExpandLess,
+    CollapseIcon: ExpandLess
   }
 
   render() {

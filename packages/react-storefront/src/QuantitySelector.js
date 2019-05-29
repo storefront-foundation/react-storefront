@@ -39,7 +39,7 @@ export const styles = theme => ({
     '&::before': {
       display: 'none'
     }
-  },
+  }
 })
 
 /**
@@ -50,7 +50,6 @@ export const styles = theme => ({
 @withStyles(styles, { name: 'RSFQuantitySelector' })
 @observer
 export default class QuantitySelector extends Component {
-
   static propTypes = {
     /**
      * The name to apply to the input when rendering AMP.
@@ -139,10 +138,10 @@ export default class QuantitySelector extends Component {
 
     const bindProps = {
       inputProps: {
-        "aria-label": ariaLabel,
+        'aria-label': ariaLabel,
         name,
         ...inputProps,
-        "amp-bind": `value=>${ampStateId}.quantity`
+        'amp-bind': `value=>${ampStateId}.quantity`
       },
       [app.amp ? 'readOnly' : 'disabled']: true
     }
@@ -158,7 +157,7 @@ export default class QuantitySelector extends Component {
               aria-label={`add one ${ariaLabel}`}
               on={`tap:AMP.setState({ ${ampStateId}: { quantity: max(${minValue}, (${ampStateId}.quantity || ${value}) - 1) } })`}
             >
-              {subtractIcon || <Remove classes={{ root: icon }}/>}
+              {subtractIcon || <Remove classes={{ root: icon }} />}
             </IconButton>
           }
           endAdornment={
@@ -169,7 +168,7 @@ export default class QuantitySelector extends Component {
               aria-label={`subtract one ${ariaLabel}`}
               on={`tap:AMP.setState({ ${ampStateId}: { quantity: min(${maxValue}, (${ampStateId}.quantity || ${value}) + 1) } })`}
             >
-              {addIcon || <Add classes={{ root: icon }}/>}
+              {addIcon || <Add classes={{ root: icon }} />}
             </IconButton>
           }
           onChange={this.onChange}
@@ -196,5 +195,4 @@ export default class QuantitySelector extends Component {
       }
     }
   }
-
 }

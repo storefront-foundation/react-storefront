@@ -33,6 +33,11 @@ describe('cache', () => {
 
     beforeEach(() => {
       Response = require('../../../react-storefront-moov-xdn/src/Response').default
+      process.env.MOOV_RUNTIME = 'server'
+    })
+
+    afterEach(() => {
+      delete process.env.MOOV_RUNTIME
     })
 
     it('should set response.cache', () => {
@@ -46,7 +51,6 @@ describe('cache', () => {
 
     it('should throw an error for non-get requests', () => {
       const response = new Response()
-      process.env.MOOV_RUNTIME = 'server'
       process.env.MOOV_ENV = 'development'
 
       let error
@@ -58,13 +62,36 @@ describe('cache', () => {
       } catch (e) {
         error = e
       } finally {
-        delete process.env.MOOV_RUNTIME
         delete process.env.MOOV_ENV
       }
 
       expect(error.message).toBe(
-        'Invalid use of cache handler for POST request. Only GET requests can be cached.',
+        'Invalid use of cache handler for POST request. Only GET requests can be cached.'
       )
     })
+
+    it('should send x-moov-surrogate-key', () => {
+      const response = new Response()
+      const cache = require('../../src/router').cache
+      cache({ server: { surrogateKey: () => 'test' } }).fn({}, { method: 'POST' }, response)
+      expect(response.get('x-moov-surrogate-key')).toBe('test')
+    })
+  })
+
+  describe('validation', () => {
+    it('should only support get requests', () => {
+      process.env.MOOV_RUNTIME = 'server'
+      process.env.MOOV_ENV = 'development'
+      const request = { method: 'post' }
+      const cache = require('../../src/router').cache
+      expect(() => cache({ server: {}, client: true }).fn({}, request)).toThrowError(
+        /Only GET requests/
+      )
+    })
+  })
+
+  afterEach(() => {
+    delete process.env.MOOV_RUNTIME
+    delete process.env.MOOV_ENV
   })
 })

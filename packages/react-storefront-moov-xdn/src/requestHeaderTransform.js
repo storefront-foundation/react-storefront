@@ -3,6 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import Request from './Request'
+import { XDN_VERSION } from 'react-storefront/router/headers'
 
 /**
  * Helper for moov_request_header_transform.js
@@ -21,7 +22,7 @@ export default function requestHeaderTransform({ router, hostDomains=[] }) {
   } else {
     const request = new Request()
     fns.export('headers', JSON.stringify(request.headers))
-    fns.export('behindOuterEdge', process.env.MOOV_ENV === 'development' || request.headers['x-moov-xdn-version'] == null ? 'false' : 'true') // needed in edgeResponseTransform.js
+    fns.export('behindOuterEdge', process.env.MOOV_ENV === 'development' || request.headers[XDN_VERSION] == null ? 'false' : 'true') // needed in edgeResponseTransform.js
   
     if (router.willFetchFromUpstream(request)) {
       // Adapt route

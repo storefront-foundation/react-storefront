@@ -11,10 +11,9 @@ import VisibilitySensor from 'react-visibility-sensor'
 import withStyles from '@material-ui/core/styles/withStyles'
 import classnames from 'classnames'
 import dataProps from './utils/dataProps'
-import { autorun } from 'mobx'
 
 export const styles = {
-  root: {},
+  root: {}
 }
 
 @withStyles(styles, { name: 'RSFLink' })
@@ -62,11 +61,11 @@ export default class Link extends Component {
     /**
      * A function to call when the link becomes visible
      */
-    onVisible: PropTypes.func,
+    onVisible: PropTypes.func
   }
 
   static defaultProps = {
-    anchorProps: {},
+    anchorProps: {}
   }
 
   constructor() {
@@ -115,6 +114,16 @@ export default class Link extends Component {
       ...others
     } = this.props
 
+    // Here we don't provide the pathname on purpose.  Doing so would cause every link to rerender
+    // We used to do that and it caused a noticeable lag in the UI.
+    const href = location
+      ? absoluteURL(to, {
+          protocol: location.protocol,
+          hostname: location.hostname,
+          port: location.port
+        })
+      : to
+
     const props = {
       ...anchorProps,
       ...dataProps(others),
@@ -123,7 +132,7 @@ export default class Link extends Component {
       ref: this.el,
       style,
       onClick: this.onClick,
-      href: absoluteURL(to, location), // we always render absolute URLs for SEO purposes
+      href
     }
 
     if (prefetch) {

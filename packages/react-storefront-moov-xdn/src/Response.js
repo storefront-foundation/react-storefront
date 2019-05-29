@@ -12,14 +12,13 @@ import Cookie from 'cookie'
 /**
  * The standard cache-control header value sent for all resources that are not to be cached.
  */
-export const NO_CACHE_HEADER = 'no-cache'
+export const NO_CACHE_HEADER = 'private, no-store, no-cache'
 
 /**
  * Represents the response sent back from fromServer handlers.  Use this class to set headers, status,
  * and other response metadata.
  */
 export default class Response {
-
   /**
    * When set, this determines the value of the location header
    */
@@ -83,7 +82,7 @@ export default class Response {
       statusCode: this.statusCode,
       statusText: this.statusText,
       redirectTo: this.redirectTo,
-      headers: this.headers, 
+      headers: this.headers,
       cookies: this.cookies,
       cache: this.cache
     })
@@ -99,9 +98,7 @@ export default class Response {
    * @return {Response} this
    */
   json(body) {
-    return this
-      .set('content-type', this.JSON)
-      .send(JSON.stringify(body))
+    return this.set('content-type', this.JSON).send(JSON.stringify(body))
   }
 
   /**
@@ -114,7 +111,7 @@ export default class Response {
   }
 
   /**
-   * Relays all set-cookie headers received from fetch requests back to the browser, 
+   * Relays all set-cookie headers received from fetch requests back to the browser,
    * translating each to the current domain.
    * @private
    */
@@ -134,7 +131,7 @@ export default class Response {
       }
     }
   }
-  
+
   /**
    * Sets a response header
    * @param {String} name
@@ -152,7 +149,7 @@ export default class Response {
 
   /**
    * Gets the value of a header by name (case insensitive)
-   * @param {String} name 
+   * @param {String} name
    * @return {String} The header value
    */
   get(name) {
@@ -161,8 +158,8 @@ export default class Response {
 
   /**
    * Sets the response status
-   * @param {String} code 
-   * @param {String} text 
+   * @param {String} code
+   * @param {String} text
    * @return {Response} this
    */
   status(code, text) {
@@ -177,8 +174,9 @@ export default class Response {
    * @return {Response} this
    */
   cacheOnServer(maxAgeSeconds) {
-    if (maxAgeSeconds == null) throw new Error('maxAgeSeconds cannot be null in call to response.cacheOnServer')
-    
+    if (maxAgeSeconds == null)
+      throw new Error('maxAgeSeconds cannot be null in call to response.cacheOnServer')
+
     this.cache = {
       serverMaxAge: maxAgeSeconds,
       browserMaxAge: 0
@@ -193,7 +191,7 @@ export default class Response {
    * @param {Number} status The http status code to send
    * @return {Response} this
    */
-  redirect(url, status=301) {
+  redirect(url, status = 301) {
     if (url == null) throw new Error('url cannot be null in call to response.redirect')
     this.redirectTo = url
     this.statusCode = status
@@ -203,27 +201,32 @@ export default class Response {
 
   /**
    * Sets cookie name to value.
-   * @param  {String} name  
+   * @param  {String} name
    * @param  {String} value
    * @param  {Object} options
-   * @return {Response} this      
+   * @return {Response} this
    */
   cookie(name, value, options) {
     const cookies = Cookie.parse(this.headers['set-cookie'] || '')
     // Restructure for easier serialization
-    Object.keys(cookies).forEach(name => cookies[name] = `${name}=${cookies[name]}`)
+    Object.keys(cookies).forEach(name => (cookies[name] = `${name}=${cookies[name]}`))
     // Add or replace cookie
     cookies[name] = Cookie.serialize(name, value, options)
-    this.set('set-cookie', Object.keys(cookies).map(name => cookies[name]).join(';'))
+    this.set(
+      'set-cookie',
+      Object.keys(cookies)
+        .map(name => cookies[name])
+        .join(';')
+    )
     return this
   }
 }
 
 /**
  * Injects a domain into a set-cookie header
- * @param {String} cookie 
+ * @param {String} cookie
  * @param {String} domain
- * @return {String} 
+ * @return {String}
  */
 function injectDomain(cookie, domain) {
   const idx = cookie.indexOf(';') + 1

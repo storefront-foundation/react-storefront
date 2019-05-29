@@ -16,7 +16,7 @@ import classnames from 'classnames'
 export const styles = theme => ({
   root: {
     fontSize: theme.typography.subheading.fontSize,
-    padding: `${theme.margins.container}px`,
+    padding: `${theme.margins.container}px`
   },
   docked: {
     position: 'fixed',
@@ -26,12 +26,11 @@ export const styles = theme => ({
     zIndex: 1,
     borderRadius: '0'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFCheckoutButton' })
 @inject('history')
 export default class CheckoutButton extends Component {
-
   static propTypes = {
     /**
      * The URL for checkout.  Defaults to "/checkout"
@@ -53,16 +52,16 @@ export default class CheckoutButton extends Component {
     const { classes, className, url, children, docked, ...others } = this.props
 
     return (
-      <Button 
-        size="large" 
+      <Button
+        size="large"
         color="secondary"
         onClick={this.onClick}
         variant="contained"
         {...others}
         classes={{ root: classes.root }}
-        className={classnames(className, { [classes.docked]: docked })} 
+        className={classnames(className, { [classes.docked]: docked })}
       >
-        { children || "Checkout" }
+        {children || 'Checkout'}
       </Button>
     )
   }
@@ -75,7 +74,5 @@ export default class CheckoutButton extends Component {
     } else {
       history.push(url)
     }
-
   }
-
 }

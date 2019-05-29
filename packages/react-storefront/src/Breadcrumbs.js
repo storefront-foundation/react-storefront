@@ -27,7 +27,7 @@ export const styles = theme => ({
   separator: {
     height: '12px',
     position: 'relative',
-    top: '3px',
+    top: '2px',
     width: '16px'
   },
 
@@ -45,20 +45,26 @@ export const styles = theme => ({
 @inject('app')
 @observer
 export default class Breadcrumbs extends Component {
-
   static propTypes = {
+    /**
+     * The items to display, each with url, text, and state.
+     */
     items: PropTypes.arrayOf(PropTypes.objectOf)
   }
 
   render() {
-    let { app: { breadcrumbs }, items, classes } = this.props
+    let {
+      app: { breadcrumbs },
+      items,
+      classes
+    } = this.props
 
     breadcrumbs = items || breadcrumbs
 
     return (
       <Typography className={classes.breadcrumbs} variant="caption">
         <Container>
-          { breadcrumbs && breadcrumbs.map(this.renderBreadcrumb) }
+          {breadcrumbs && breadcrumbs.map(this.renderBreadcrumb)}
           <span>&nbsp;</span>
         </Container>
       </Typography>
@@ -67,21 +73,26 @@ export default class Breadcrumbs extends Component {
 
   renderBreadcrumb = (item, i) => {
     const { classes } = this.props
-    
+    const arrow = i > 0 ? <ArrowRight className={classes.separator} /> : null
+
     if (item.url) {
       return (
         <span key={i}>
+          {arrow}
           <Track event="breadcrumbClicked" breadcrumb={item}>
-            <Link to={item.url} state={item.state}>{item.text}</Link>
+            <Link to={item.url} state={item.state}>
+              {item.text}
+            </Link>
           </Track>
-          <ArrowRight className={classes.separator}/>
         </span>
       )
     } else {
       return (
-        <span key={i} className={classes.current}>{item.text}</span>
+        <span key={i} className={classes.current}>
+          {arrow}
+          {item.text}
+        </span>
       )
     }
   }
-
 }

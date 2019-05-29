@@ -13,7 +13,6 @@ import withStyles from '@material-ui/core/styles/withStyles'
  * This component commonly used in product listings and search results.
  */
 export default class ResponsiveTiles extends Component {
-
   constructor(props) {
     super(props)
     this.Tiles = createInner(props)
@@ -31,7 +30,7 @@ export default class ResponsiveTiles extends Component {
      *    xl: 5
      *  }}
      * ```
-     * 
+     *
      * The amounts shown in the example above are the defaults.
      */
     cols: PropTypes.object,
@@ -56,15 +55,14 @@ export default class ResponsiveTiles extends Component {
   render() {
     const { Tiles } = this
     const { cols, spacing, ...others } = this.props
-    return <Tiles {...others}/>
+    return <Tiles {...others} />
   }
-
 }
 
 function createInner({ spacing, cols }) {
   const styles = theme => {
     let breakpoints = {}
-  
+
     // Breakpoints MUST be set in order from smallest to largest
     Object.keys(cols)
       .map(width => {
@@ -76,9 +74,9 @@ function createInner({ spacing, cols }) {
       })
       .sort((a, b) => a.value - b.value)
       .forEach(({ key, width }) => {
-        breakpoints[theme.breakpoints.up(key)] = { width }  
+        breakpoints[theme.breakpoints.up(key)] = { width }
       })
-  
+
     return {
       root: {
         display: 'flex',
@@ -87,7 +85,7 @@ function createInner({ spacing, cols }) {
         listStyle: 'none',
         padding: 0,
         margin: `-${spacing / 2}px`,
-        WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+        WebkitOverflowScrolling: 'touch' // Add iOS momentum scrolling.
       },
       tile: {
         ...breakpoints,
@@ -100,18 +98,15 @@ function createInner({ spacing, cols }) {
   const ResponsiveTilesInner = class extends Component {
     render() {
       const { className, classes, children, ...other } = this.props
-  
+
       return (
-        <ul
-          className={classnames(className, classes.root)}
-          {...other}
-        >
+        <ul className={classnames(className, classes.root)} {...other}>
           {React.Children.map(children, (child, i) => {
             if (!React.isValidElement(child)) {
               return null
             }
             return (
-              <GridListTile key={i} classes={{ root: classes.tile }} >
+              <GridListTile key={i} classes={{ root: classes.tile }}>
                 {child}
               </GridListTile>
             )
@@ -121,5 +116,5 @@ function createInner({ spacing, cols }) {
     }
   }
 
-  return withStyles(styles, { name: 'RSFResponsiveTiles'})(ResponsiveTilesInner)
+  return withStyles(styles, { name: 'RSFResponsiveTiles' })(ResponsiveTilesInner)
 }

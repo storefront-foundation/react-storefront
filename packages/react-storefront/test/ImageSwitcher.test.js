@@ -8,10 +8,9 @@ import ImageSwitcher from '../src/ImageSwitcher'
 import Provider from './TestProvider'
 import AppModelBase from '../src/model/AppModelBase'
 import AmpState from '../src/amp/AmpState'
+import TestProvider from './TestProvider'
 
 describe('ImageSwitcher', () => {
-
-
   it('only shows images by default, no bells and whistles', () => {
     expect(
       mount(
@@ -39,10 +38,7 @@ describe('ImageSwitcher', () => {
     expect(
       mount(
         <Provider>
-          <ImageSwitcher
-            images={['/a.jpg', '/b.jpg', '/c.jpg']}
-            arrows
-          />
+          <ImageSwitcher images={['/a.jpg', '/b.jpg', '/c.jpg']} arrows />
         </Provider>
       )
     ).toMatchSnapshot()
@@ -52,10 +48,7 @@ describe('ImageSwitcher', () => {
     expect(
       mount(
         <Provider>
-          <ImageSwitcher
-            images={['/a.jpg', '/b.jpg', '/c.jpg']}
-            showIndicators
-          />
+          <ImageSwitcher images={['/a.jpg', '/b.jpg', '/c.jpg']} showIndicators />
         </Provider>
       )
     ).toMatchSnapshot()
@@ -79,7 +72,12 @@ describe('ImageSwitcher', () => {
         <ImageSwitcher images={[{ src: 'test.jpg', alt: 'test' }]} />
       </Provider>
     )
-    expect(wrapper.find('img').first().prop('alt')).toBe('test')
+    expect(
+      wrapper
+        .find('img')
+        .first()
+        .prop('alt')
+    ).toBe('test')
   })
 
   it('should accept image objects and use given props in AMP', () => {
@@ -90,7 +88,45 @@ describe('ImageSwitcher', () => {
         </AmpState>
       </Provider>
     )
-    expect(wrapper.find('amp-img').first().prop('alt')).toBe('test')
-  });
+    expect(
+      wrapper
+        .find('amp-img')
+        .first()
+        .prop('alt')
+    ).toBe('test')
+  })
 
+  it('should reset the image when the product changes', () => {
+    function Test({ product }) {
+      return (
+        <TestProvider>
+          <ImageSwitcher product={product} selectedIndex={1} />
+        </TestProvider>
+      )
+    }
+
+    const wrapper = mount(
+      <Test
+        product={{
+          id: '1',
+          images: [
+            'http://localhost/1/1.png',
+            'http://localhost/1/2.png',
+            'http://localhost/1/3.png'
+          ]
+        }}
+      />
+    )
+
+    expect(wrapper.find('ReactSwipableView').prop('index')).toBe(1)
+
+    wrapper.setProps({
+      product: {
+        id: '2',
+        images: ['http://localhost/2/1.png', 'http://localhost/2/2.png', 'http://localhost/2/3.png']
+      }
+    })
+
+    expect(wrapper.find('ReactSwipableView').prop('index')).toBe(0)
+  })
 })

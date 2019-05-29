@@ -62,13 +62,12 @@ export const styles = theme => ({
 @inject('app')
 @observer
 export default class TabsRow extends Component {
-
   static propTypes = {
     /**
      * Index of tab that should be selected by default
      */
     initialSelectedIdx: PropTypes.number,
-    
+
     /**
      * Overridable classes object to allow customization of component
      */
@@ -77,11 +76,13 @@ export default class TabsRow extends Component {
     /**
      * Array of items that should be rendered
      */
-    items: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.shape({
-      imageUrl: PropTypes.string,
-      alt: PropTypes.string,
-      text: PropTypes.string,
-    })).isRequired,
+    items: MobxPropTypes.arrayOrObservableArrayOf(
+      PropTypes.shape({
+        imageUrl: PropTypes.string,
+        alt: PropTypes.string,
+        text: PropTypes.string
+      })
+    ).isRequired,
 
     /**
      * Props for displayed images. See <Image /> component for details
@@ -104,7 +105,7 @@ export default class TabsRow extends Component {
     centered: PropTypes.bool,
 
     /**
-     * A function to override the default rendering of each tab's label.  The function is passed the MenuItem model 
+     * A function to override the default rendering of each tab's label.  The function is passed the MenuItem model
      * corresponding to the item to be rendered.
      */
     tabRenderer: PropTypes.func
@@ -119,18 +120,21 @@ export default class TabsRow extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedIdx: props.initialSelectedIdx,
+      selectedIdx: props.initialSelectedIdx
     }
   }
 
   handleChange = (event, newValue) => {
-    this.setState({
-      selectedIdx: newValue,
-    }, () => {
-      if (this.props.onTabChange) {
-        this.props.onTabChange(event, newValue)
+    this.setState(
+      {
+        selectedIdx: newValue
+      },
+      () => {
+        if (this.props.onTabChange) {
+          this.props.onTabChange(event, newValue)
+        }
       }
-    })
+    )
   }
 
   componentWillReceiveProps(nextProps) {
@@ -142,10 +146,22 @@ export default class TabsRow extends Component {
   }
 
   render() {
-    const { app, tabRenderer, centered, items, classes, imageProps, scrollable, initialSelectedIdx, onTabChange, elevation, ...tabsProps } = this.props
+    const {
+      app,
+      tabRenderer,
+      centered,
+      items,
+      classes,
+      imageProps,
+      scrollable,
+      initialSelectedIdx,
+      onTabChange,
+      elevation,
+      ...tabsProps
+    } = this.props
     const { selectedIdx } = this.state
 
-    return (  
+    return (
       <Tabs
         value={selectedIdx == null ? false : selectedIdx}
         onChange={this.handleChange}
@@ -160,61 +176,60 @@ export default class TabsRow extends Component {
         }}
         {...tabsProps}
       >
-        { items.map((item, i) => {
-            let icon;
-            if (item.imageUrl) {
-              icon = (
-                <Image
-                  src={item.imageUrl}
-                  alt={item.alt}
-                  {...imageProps}
-                />
-              )
+        {items.map((item, i) => {
+          let icon
+          if (item.imageUrl) {
+            icon = <Image src={item.imageUrl} alt={item.alt} {...imageProps} />
 
-              if (app.amp && item.url) {
-                icon = <Link to={item.url}>{icon}</Link>
+            if (app.amp && item.url) {
+              icon = <Link to={item.url}>{icon}</Link>
+            }
+          }
+
+          if (tabRenderer) {
+            const itemWithClasses = {
+              ...item,
+              classes: {
+                root: classes.tab
               }
             }
-
-            if (tabRenderer) {
-              const itemWithClasses = {
-                ...item,
-                classes: {
-                  root: classes.tab
-                }
-              }
-              return tabRenderer(itemWithClasses, i)
-            } else {
-              return (
-                <Tab
-                  key={i}
-                  label={this.renderLabel(item)}
-                  icon={icon}
-                  classes={{
-                    root: classes.tab,
-                    selected: classes.selectedTab
-                  }}
-                />
-              )
-            }
-          })
-        }
+            return tabRenderer(itemWithClasses, i)
+          } else {
+            return (
+              <Tab
+                key={i}
+                label={this.renderLabel(item)}
+                icon={icon}
+                classes={{
+                  root: classes.tab,
+                  selected: classes.selectedTab
+                }}
+              />
+            )
+          }
+        })}
       </Tabs>
     )
   }
 
   renderLabel = item => {
     const { classes } = this.props
-    
+
     return item.url ? (
-      <Link className={classes.link} to={item.url} prefetch={item.prefetch} onClick={this.onLinkClick}>{item.text}</Link>
+      <Link
+        className={classes.link}
+        to={item.url}
+        prefetch={item.prefetch}
+        onClick={this.onLinkClick}
+      >
+        {item.text}
+      </Link>
     ) : (
       item.text
     )
   }
 
-  onLinkClick = (e) => {
+  onLinkClick = e => {
     e.preventDefault()
   }
-
 }

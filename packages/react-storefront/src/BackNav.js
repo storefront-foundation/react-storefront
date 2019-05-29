@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography'
 import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { LAYOUT_LIST,  LAYOUT_GRID } from './model/SearchResultsModelBase'
+import { LAYOUT_LIST, LAYOUT_GRID } from './model/SearchResultsModelBase'
 import Paper from '@material-ui/core/Paper'
 
 /**
@@ -31,7 +31,7 @@ export const styles = theme => ({
 
     '& a': {
       color: theme.palette.text.primary,
-      textDecoration: 'none',
+      textDecoration: 'none'
     }
   },
   label: {
@@ -73,7 +73,6 @@ export const styles = theme => ({
 @inject('history')
 @observer
 export default class BackNav extends Component {
-
   static propTypes = {
     /**
      * The text to display representing the previous location.
@@ -90,11 +89,11 @@ export default class BackNav extends Component {
      * and this component will allow you to switch between grid and list views.
      */
     searchResults: PropTypes.shape({
-      layout: PropTypes.string.isRequired,
+      layout: PropTypes.string.isRequired
     })
   }
 
-  switchLayout = (layout) => {
+  switchLayout = layout => {
     const { searchResults } = this.props
     searchResults.switchLayout(layout)
   }
@@ -105,16 +104,24 @@ export default class BackNav extends Component {
 
     return searchResults ? (
       <span className={classes.switchButtonsWrapper}>
-        <span className={classnames(classes.switchButton, {[classes.selectedSwitchButton]: layout === LAYOUT_GRID})}>
+        <span
+          className={classnames(classes.switchButton, {
+            [classes.selectedSwitchButton]: layout === LAYOUT_GRID
+          })}
+        >
           <GridViewIcon
             color={layout === LAYOUT_GRID ? 'secondary' : 'primary'}
-            onClick={() => (this.switchLayout(LAYOUT_GRID))}
+            onClick={() => this.switchLayout(LAYOUT_GRID)}
           />
         </span>
-        <span className={classnames(classes.switchButton, {[classes.selectedSwitchButton]: layout === LAYOUT_LIST})}>
+        <span
+          className={classnames(classes.switchButton, {
+            [classes.selectedSwitchButton]: layout === LAYOUT_LIST
+          })}
+        >
           <ListViewIcon
             color={layout === LAYOUT_LIST ? 'secondary' : 'primary'}
-            onClick={() => (this.switchLayout(LAYOUT_LIST))}
+            onClick={() => this.switchLayout(LAYOUT_LIST)}
           />
         </span>
       </span>
@@ -125,13 +132,18 @@ export default class BackNav extends Component {
     const { text, classes } = this.props
 
     return (
-      <Paper className={classes.root} >
+      <Paper className={classes.root}>
         <Typography variant="caption">
-          <span onClick={() => {this.onBack()}} className={classes.backButtonWrapper}>
+          <span
+            onClick={() => {
+              this.onBack()
+            }}
+            className={classes.backButtonWrapper}
+          >
             <ArrowLeft />
           </span>
           <span className={classes.label}>{text}</span>
-          { this.renderViewToggle() }
+          {this.renderViewToggle()}
         </Typography>
       </Paper>
     )
@@ -146,5 +158,4 @@ export default class BackNav extends Component {
       history.goBack()
     }
   }
-
 }

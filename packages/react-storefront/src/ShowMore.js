@@ -20,10 +20,10 @@ export const styles = theme => ({
     display: 'flex',
     justifyContent: 'center'
   }
-});
+})
 
 /**
- * The ShowMore component controls pagination for views that display a SearchResultsModelBase (specified via the model prop).  
+ * The ShowMore component controls pagination for views that display a SearchResultsModelBase (specified via the model prop).
  * This component uses either the total or numberOfPages fields on SearchResultsModelBase to determine whether or not
  * to trigger show more. The default variant is a button with text/contents can be changed by specifying a child (string or components).
  * Or this component can be configured to use infinite scrolling for triggering another page.
@@ -32,7 +32,6 @@ export const styles = theme => ({
 @inject('app')
 @observer
 export default class ShowMore extends Component {
-
   static propTypes = {
     /**
      * A renderer for the loading icon.  Uses CircularPropgress by default
@@ -61,7 +60,7 @@ export default class ShowMore extends Component {
   }
 
   static defaultProps = {
-    Loading: () => <CircularProgress/>,
+    Loading: () => <CircularProgress />,
     offset: 100
   }
 
@@ -74,13 +73,22 @@ export default class ShowMore extends Component {
   }
 
   render() {
-    const { app, Loading, model, classes,className, children,
-      infiniteScroll, offset, ...others } = this.props
+    const {
+      app,
+      Loading,
+      model,
+      classes,
+      className,
+      children,
+      infiniteScroll,
+      offset,
+      ...others
+    } = this.props
 
     if (model.loadingMore) {
       return (
         <div className={classnames(classes.loading, classes.root)}>
-          <Loading/>
+          <Loading />
         </div>
       )
     } else if (model.hasMoreItems) {
@@ -93,23 +101,26 @@ export default class ShowMore extends Component {
           >
             <div style={{ width: 1, height: 1 }} />
           </VisibilitySensor>
-        );
+        )
       }
       return (
-        <Button 
-          variant="contained" 
-          color="primary" 
-          href={app.amp ? `${app.location.pathname.replace(/\.amp/, '')}?page=1#item-${model.pageSize}` : null}
+        <Button
+          variant="contained"
+          color="primary"
+          href={
+            app.amp
+              ? `${app.location.pathname.replace(/\.amp/, '')}?page=1#item-${model.pageSize}`
+              : null
+          }
           className={classnames(classes.root, className)}
           onClick={model.showMore}
           {...others}
         >
-          { children || "Show More" }
+          {children || 'Show More'}
         </Button>
       )
     } else {
       return null
     }
   }
-
 }

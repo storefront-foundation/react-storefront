@@ -11,7 +11,6 @@ import ExpandIcon from '@material-ui/icons/Add'
 import CollapseIcon from '@material-ui/icons/Remove'
 
 describe('Menu', () => {
-
   let app
 
   beforeEach(() => {
@@ -22,51 +21,65 @@ describe('Menu', () => {
         hostname: 'localhost'
       },
       menu: {
-        levels: [{
-          root: true,
-          items: [{
-            text: "Group 1",
+        levels: [
+          {
+            root: true,
             items: [
-              { text: 'Item 1', url: '/item1', items: [
-                { text: 'Child 1', url: '/item1/child1' }
-              ]}
+              {
+                text: 'Group 1',
+                items: [
+                  {
+                    text: 'Item 1',
+                    url: '/item1',
+                    items: [{ text: 'Child 1', url: '/item1/child1' }]
+                  }
+                ]
+              }
             ]
-          }]
-        }]
+          }
+        ]
       }
     })
   })
 
   it('should render in simple mode', () => {
-    expect(mount(
-      <Provider app={app} history={{}}>
-        <Menu simple/>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={app} history={{}}>
+          <Menu simple />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should render in complex mode by default', () => {
-    expect(mount(
-      <Provider app={app} history={{}}>
-        <Menu/>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={app} history={{}}>
+          <Menu />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should render in complex mode by default', () => {
-    expect(mount(
-      <Provider app={app} history={{}}>
-        <Menu useexpanders/>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={app} history={{}}>
+          <Menu useexpanders />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should use custom icons', () => {
-    expect(mount(
-      <Provider app={app} history={{}}>
-        <Menu useexpanders ExpandIcon={ExpandIcon} CollapseIcon={CollapseIcon}/>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={app} history={{}}>
+          <Menu useexpanders ExpandIcon={ExpandIcon} CollapseIcon={CollapseIcon} />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should render with expand first not root item by default', () => {
@@ -75,13 +88,21 @@ describe('Menu', () => {
         <Menu useexpanders expandFirstItem />
       </Provider>
     )
-    const rootItem = component.find('ul').at(0).find('li').at(0)
+    const rootItem = component
+      .find('ul')
+      .at(0)
+      .find('li')
+      .at(0)
 
     rootItem.simulate('click')
     component.update()
 
-    const expandableItem = component.find('ul').at(1).find('li').at(1)
-    
+    const expandableItem = component
+      .find('ul')
+      .at(1)
+      .find('li')
+      .at(1)
+
     expect(expandableItem.html()).toMatch(/RSFMenu-expanded-/)
   })
 
@@ -91,12 +112,20 @@ describe('Menu', () => {
         <Menu useexpanders />
       </Provider>
     )
-    const rootItem = component.find('ul').at(0).find('li').at(0)
+    const rootItem = component
+      .find('ul')
+      .at(0)
+      .find('li')
+      .at(0)
 
     rootItem.simulate('click')
     component.update()
 
-    const expandableItem = component.find('ul').at(1).find('li').at(1)
+    const expandableItem = component
+      .find('ul')
+      .at(1)
+      .find('li')
+      .at(1)
     expect(expandableItem.hasClass('RSFMenu-expanded-13')).toEqual(false)
 
     expect(component).toMatchSnapshot()
@@ -110,27 +139,36 @@ describe('Menu', () => {
         hostname: 'localhost'
       },
       menu: {
-        levels: [{
-          root: true,
-          items: [{
-            text: "Group 1",
+        levels: [
+          {
+            root: true,
             items: [
-              { text: 'Item 1', url: '/item1', items: [
-                { text: 'Child 1', url: '/item1/child1' }
-              ]}
+              {
+                text: 'Group 1',
+                items: [
+                  {
+                    text: 'Item 1',
+                    url: '/item1',
+                    items: [{ text: 'Child 1', url: '/item1/child1' }]
+                  }
+                ]
+              },
+              {
+                text: 'Leaf',
+                url: '/leaf'
+              }
             ]
-          }, {
-            text: 'Leaf',
-            url: '/leaf'
-          }]
-        }]
+          }
+        ]
       }
     })
-    expect(mount(
-      <Provider app={appWithTopLevelLeaf} history={{}}>
-        <Menu simple />
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={appWithTopLevelLeaf} history={{}}>
+          <Menu simple />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
   it('should call a custom itemRenderer', () => {
     let appWithTopLevelLeaf = AppModelBase.create({
@@ -140,30 +178,41 @@ describe('Menu', () => {
         hostname: 'localhost'
       },
       menu: {
-        levels: [{
-          root: true,
-          items: [{
-            text: "Group 1",
+        levels: [
+          {
+            root: true,
             items: [
-              { text: 'Item 1', url: '/item1', items: [
-                { text: 'Child 1', url: '/item1/child1' }
-              ]}
+              {
+                text: 'Group 1',
+                items: [
+                  {
+                    text: 'Item 1',
+                    url: '/item1',
+                    items: [{ text: 'Child 1', url: '/item1/child1' }]
+                  }
+                ]
+              },
+              {
+                text: 'Leaf',
+                url: '/leaf'
+              }
             ]
-          }, {
-            text: 'Leaf',
-            url: '/leaf'
-          }]
-        }]
+          }
+        ]
       }
     })
 
-    const renderer = jest.fn()
+    const renderer = jest.fn(item => {
+      console.log(item.text)
+    })
 
-    expect(mount(
-      <Provider app={appWithTopLevelLeaf} history={{}}>
-        <Menu simple itemRenderer={renderer}/>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={appWithTopLevelLeaf} history={{}}>
+          <Menu simple itemRenderer={renderer} />
+        </Provider>
+      )
+    ).toMatchSnapshot()
 
     expect(renderer.mock.calls.length).toBe(4)
     expect(renderer.mock.calls[0][0].text).toEqual('Group 1')
@@ -184,30 +233,39 @@ describe('Menu', () => {
         hostname: 'localhost'
       },
       menu: {
-        levels: [{
-          root: true,
-          items: [{
-            text: "Group 1",
+        levels: [
+          {
+            root: true,
             items: [
-              { text: 'Item 1', url: '/item1', items: [
-                { text: 'Child 1', url: '/item1/child1' }
-              ]}
+              {
+                text: 'Group 1',
+                items: [
+                  {
+                    text: 'Item 1',
+                    url: '/item1',
+                    items: [{ text: 'Child 1', url: '/item1/child1' }]
+                  }
+                ]
+              },
+              {
+                text: 'Leaf',
+                url: '/leaf'
+              }
             ]
-          }, {
-            text: 'Leaf',
-            url: '/leaf'
-          }]
-        }]
+          }
+        ]
       }
     })
 
-    const renderer = (item) => <div>{item.text}</div>
+    const renderer = item => <div>{item.text}</div>
 
-    expect(mount(
-      <Provider app={appWithTopLevelLeaf} history={{}}>
-        <Menu simple itemRenderer={renderer}/>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={appWithTopLevelLeaf} history={{}}>
+          <Menu simple itemRenderer={renderer} />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should render children', () => {
@@ -232,18 +290,25 @@ describe('Menu', () => {
           hostname: 'localhost'
         },
         menu: {
-          levels: [{
-            root: true,
-            items: [{
-              text: "Group 1",
-              className: 'group-1',
+          levels: [
+            {
+              root: true,
               items: [
-                { text: 'Item 1', url: '/item1', className: 'item-1', items: [
-                  { text: 'Child 1', url: '/item1/child1', className: 'child-1' }
-                ]}
+                {
+                  text: 'Group 1',
+                  className: 'group-1',
+                  items: [
+                    {
+                      text: 'Item 1',
+                      url: '/item1',
+                      className: 'item-1',
+                      items: [{ text: 'Child 1', url: '/item1/child1', className: 'child-1' }]
+                    }
+                  ]
+                }
               ]
-            }]
-          }]
+            }
+          ]
         }
       })
     })
@@ -251,11 +316,16 @@ describe('Menu', () => {
     it('should render item.className in regular mode', () => {
       const wrapper = mount(
         <Provider app={app} history={{}}>
-          <Menu useExpanders/>
+          <Menu useExpanders />
         </Provider>
       )
       expect(wrapper.exists('.group-1')).toBe(true)
-      wrapper.find('ul').at(0).find('li').at(0).simulate('click')
+      wrapper
+        .find('ul')
+        .at(0)
+        .find('li')
+        .at(0)
+        .simulate('click')
       wrapper.update()
       expect(wrapper.exists('.child-1')).toBe(true)
       expect(wrapper.exists('.item-1')).toBe(true)
@@ -264,7 +334,7 @@ describe('Menu', () => {
     it('should render item.className in simple mode', () => {
       const wrapper = mount(
         <Provider app={app} history={{}}>
-          <Menu simple/>
+          <Menu simple />
         </Provider>
       )
       expect(wrapper.exists('.group-1')).toBe(true)
@@ -272,5 +342,4 @@ describe('Menu', () => {
       expect(wrapper.exists('.item-1')).toBe(true)
     })
   })
-
 })

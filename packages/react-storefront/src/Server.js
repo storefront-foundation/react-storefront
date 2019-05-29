@@ -8,13 +8,13 @@ import { SheetsRegistry } from 'react-jss/lib/jss'
 import { flushChunkNames } from 'react-universal-component/server'
 import PWA from './PWA'
 import createMemoryHistory from 'history/createMemoryHistory'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
 import getStats from 'react-storefront-stats'
 import { renderAmpAnalyticsTags } from './Track'
+import { ROUTES } from './router/headers'
 
 export default class Server {
-
   /**
    * @param {Object} config
    * @param {Object} config.theme A material-UI theme
@@ -24,13 +24,13 @@ export default class Server {
    * @param {Boolean} [config.deferScripts=true] Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
    * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
    */
-  constructor({ theme, model, App, router, deferScripts=true, transform }) {
+  constructor({ theme, model, App, router, deferScripts = true, transform }) {
     console.error = console.warn = console.log
 
     Object.assign(this, {
-      theme, 
-      model, 
-      App, 
+      theme,
+      model,
+      App,
       router,
       deferScripts,
       transform
@@ -43,16 +43,12 @@ export default class Server {
   serve = async (request, response) => {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
-  
-    if (request.headers['x-rsf-routes']) {
+
+    if (request.headers[ROUTES]) {
       return response.json(this.router.routes.map(route => route.path.spec))
     }
 
     try {
-      // indicate to the XDN that we want to to add set the x-moov-cache-hit cookie so we can differentiate
-      // cache hits and misses when tracking performance
-      response.set('x-rsf-track-cache-hit', 'true')
-
       const state = await this.router.runAll(request, response)
 
       if (!state.proxyUpstream && !response.headersSent) {
@@ -65,8 +61,8 @@ export default class Server {
 
   /**
    * Sets the content type to application/json for json URLs, text/html for all others
-   * @param {Object} request 
-   * @param {Response} response 
+   * @param {Object} request
+   * @param {Response} response
    */
   setContentType(request, response) {
     if (response.get('content-type') == null) {
@@ -98,7 +94,7 @@ export default class Server {
     }
 
     const amp = path.endsWith('.amp')
-    const { App, theme }  = this
+    const { App, theme } = this
     const sheetsRegistry = new SheetsRegistry()
     const history = createMemoryHistory({ initialEntries: [path + search] })
 
@@ -122,7 +118,7 @@ export default class Server {
       let html = renderHtml({
         component: (
           <PWA>
-            <App/>
+            <App />
           </PWA>
         ),
         providers: {
@@ -148,17 +144,25 @@ export default class Server {
             ${helmet.script.toString()}
           </head>
           <body ${helmet.bodyAttributes.toString()}>
-            ${ renderStyle({ registry: sheetsRegistry, id: 'ssr-css' }) }
+            ${renderStyle({ registry: sheetsRegistry, id: 'ssr-css' })}
             <noscript>
               You need to enable JavaScript to run this app.
             </noscript>
             <div id="root">${html}</div>
-            ${ amp ? '' : `
-              ${renderInitialStateScript({ state: model, defer: this.deferScripts })}
+            ${
+              amp
+                ? ''
+                : `
+              ${renderInitialStateScript({
+                state: model,
+                routeData: state,
+                defer: this.deferScripts
+              })}
               ${renderScript({ stats, chunk: 'bootstrap', defer: this.deferScripts })}
               ${this.getScripts(stats)}
               ${renderScript({ stats, chunk: 'main', defer: this.deferScripts })}
-            `}
+            `
+            }
           </body>
         </html>
       `
@@ -176,39 +180,44 @@ export default class Server {
       renderAmpAnalyticsTags()
 
       throw e
-    } 
+    }
   }
 
   /**
    * Renders an error response, either as JSON or SSR HTML, depending on the suffix
    * on the request path.
-   * @param {Error} e 
-   * @param {Response} response 
+   * @param {Error} e
+   * @param {Response} response
    */
   renderError(e, request, response) {
     response.status(500, 'error')
 
-    return this.renderPWA({ 
-      request, 
-      response, 
-      state: { 
-        page: 'Error', 
-        error: e.message, 
-        stack: process.env.MOOV_ENV === 'production' ? null : e.stack 
-      }
+    const state = {
+      page: 'Error',
+      error: e.message,
+      stack: process.env.MOOV_ENV === 'production' ? null : e.stack
+    }
+
+    if (request.path.endsWith('.json')) {
+      response.send(state)
+    }
+
+    this.renderPWA({
+      request,
+      response,
+      state
     })
   }
 
   /**
    * Gets the script tags that should added to the document based on the chunks used
    * to render the current request.
-   * @param {Object} stats 
+   * @param {Object} stats
    * @return {String[]}
    */
-  getScripts(stats) {    
+  getScripts(stats) {
     return flushChunkNames(stats)
       .map(chunk => renderScript({ stats, chunk, defer: this.deferScripts }))
       .filter(e => !!e)
   }
 }
-

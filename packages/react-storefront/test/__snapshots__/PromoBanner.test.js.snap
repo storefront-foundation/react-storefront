@@ -9,7 +9,7 @@ exports[`PromoBanner renders 1`] = `
           <WithStyles(inject-Link) to={[undefined]} className="RSFPromoBanner-root-1" onClick={[Function]}>
             <inject-Link to={[undefined]} className="RSFPromoBanner-root-1" onClick={[Function]} classes={{...}}>
               <Link to={[undefined]} className="RSFPromoBanner-root-1" onClick={[Function]} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-                <a data-moov-link="on" className="RSFLink-root-3 RSFPromoBanner-root-1" style={[undefined]} onClick={[Function]} href={{...}}>
+                <a data-moov-link="on" className="RSFLink-root-3 RSFPromoBanner-root-1" style={[undefined]} onClick={[Function]} href={[undefined]}>
                   <WithStyles(inject-Image) className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true}>
                     <inject-Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true} classes={{...}}>
                       <Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true} classes={{...}} amp={false} quality={{...}} fill={false} lazy={false} lazyOffset={100}>

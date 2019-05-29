@@ -25,32 +25,34 @@ const cleanProtocol = protocol => (protocol || '').replace(/:/, '')
  * @param {LocationModel} currentLocation The current browser location
  * @return {String} An absolute URL
  */
-export function absoluteURL(url, currentLocation) {
+export function absoluteURL(url, { protocol, hostname, port, pathname } = {}) {
   if (url == null) {
     return null
-  } else if (currentLocation == null) {
-    return url
   } else if (url.match(/^(mailto|tel):/)) {
     return url
   } else if (url.match(/^\/\//)) {
     // URL with hostname but no protocol (starting with //)
-    return `${cleanProtocol(currentLocation.protocol)}:${url}`
+    return `${cleanProtocol(protocol)}:${url}`
   } else if (!url.match(/^https?:/)) {
-    // relative URL
-    if (!url.match(/^\//)) {
-      // URL is relative to current path
-      url = `${currentLocation.pathname}/${url}`
+    if (hostname == null) {
+      return url
     }
 
-    let { port } = currentLocation
+    // relative URL
+    if (!url.match(/^\//)) {
+      if (!pathname) {
+        return url
+      }
+      url = `${pathname}/${url}`
+    }
 
-    if (port === '80' || port === '443') {
+    if (port === '80' || port === '443' || port == null) {
       port = ''
     } else {
       port = ':' + port
     }
 
-    return `${cleanProtocol(currentLocation.protocol)}://${currentLocation.hostname}${port}${url}`
+    return `${cleanProtocol(protocol)}://${hostname}${port}${url}`
   } else {
     return url
   }

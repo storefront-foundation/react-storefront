@@ -12,7 +12,6 @@ import { configureAnalytics } from '../src/analytics'
 import TestProvider from './TestProvider'
 
 describe('Breadcrumbs', () => {
-
   it('renders', () => {
     const app = AppModelBase.create({
       breadcrumbs: [
@@ -21,42 +20,52 @@ describe('Breadcrumbs', () => {
         { text: 'Subcategory 1' }
       ]
     })
-    expect(mount(
-      <Provider app={app}>
-        <Breadcrumbs/>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={app}>
+          <Breadcrumbs />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('renders blank when no breadcrumbs are provided', () => {
-    const app = AppModelBase.create({ })
-    expect(mount(
-      <Provider app={app}>
-        <Breadcrumbs/>
-      </Provider>
-    )).toMatchSnapshot()
+    const app = AppModelBase.create({})
+    expect(
+      mount(
+        <Provider app={app}>
+          <Breadcrumbs />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('renders blank when an empty array of breadcrumbs is provided', () => {
     const app = AppModelBase.create({ breadcrumbs: [] })
-    expect(mount(
-      <Provider app={app}>
-        <Breadcrumbs/>
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={app}>
+          <Breadcrumbs />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('includes state in the link', () => {
-    const app = AppModelBase.create({ breadcrumbs: [
-      { url: '/', text: 'Home' },
-      { url: '/c/1', text: 'Category 1', state: { loadingCategory: { title: 'Category 1' }} },
-      { text: 'Subcategory 1', state: { loadingSubcategory: { title: 'Subcategory 1' }} }
-    ] })
-    expect(mount(
-      <Provider app={app}>
-        <Breadcrumbs/>
-      </Provider>
-    )).toMatchSnapshot()
+    const app = AppModelBase.create({
+      breadcrumbs: [
+        { url: '/', text: 'Home' },
+        { url: '/c/1', text: 'Category 1', state: { loadingCategory: { title: 'Category 1' } } },
+        { text: 'Subcategory 1', state: { loadingSubcategory: { title: 'Subcategory 1' } } }
+      ]
+    })
+    expect(
+      mount(
+        <Provider app={app}>
+          <Breadcrumbs />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should fire a breadcrumb_clicked event when clicked', () => {
@@ -74,22 +83,23 @@ describe('Breadcrumbs', () => {
 
     const wrapper = mount(
       <TestProvider app={app}>
-        <Breadcrumbs/>
+        <Breadcrumbs />
       </TestProvider>
     )
 
-    wrapper.find('a').at(0).simulate('click')
+    wrapper
+      .find('a')
+      .at(0)
+      .simulate('click')
 
     waitForAnalytics(() => {
       expect(breadcrumbClicked).toHaveBeenCalledWith({
-        "breadcrumb": {
-          "text":  "Home",
-          "url": "/",
-          "state": undefined
+        breadcrumb: {
+          text: 'Home',
+          url: '/',
+          state: undefined
         }
       })
     })
-
   })
-
 })

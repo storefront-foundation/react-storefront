@@ -1,17 +1,17 @@
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const { merge } = require('lodash')
 const path = require('path')
 const TerserPlugin = require('terser-webpack-plugin')
+const webpack = require('webpack')
+const buildTimestamp = new Date().getTime().toString()
 
 function createClientConfig(
   root,
   {
     // This is where the developer will add additional entries for adapt components.
     entries = {},
-    alias = {},
-  },
+    alias = {}
+  }
 ) {
   return {
     name: 'client',
@@ -25,23 +25,23 @@ function createClientConfig(
           'node_modules',
           'react-storefront',
           'amp',
-          'installServiceWorker',
-        ),
+          'installServiceWorker'
+        )
       },
-      entries,
+      entries
     ),
     resolve: {
       alias: Object.assign({}, createAliases(root), alias, {
-        fetch: 'isomorphic-unfetch',
-      }),
+        fetch: 'isomorphic-unfetch'
+      })
     },
     output: {
       filename: '[name].[hash].js',
       chunkFilename: '[name].[hash].js',
       path: path.join(root, 'build', 'assets', 'pwa'),
       publicPath: '/pwa/',
-      devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-    },
+      devtoolModuleFilenameTemplate: '[absolute-resource-path]'
+    }
   }
 }
 
@@ -51,9 +51,9 @@ function createServerConfig(root, alias) {
     context: path.join(root, 'src'),
     resolve: {
       alias: Object.assign({}, createAliases(root), alias, {
-        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch'),
-      }),
-    },
+        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch')
+      })
+    }
   })
 }
 
@@ -69,10 +69,10 @@ function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } =
           options: {
             formatter: eslintFormatter,
             eslintPath: require.resolve('eslint'),
-            baseConfig: eslintConfig,
-          },
-        },
-      ],
+            baseConfig: eslintConfig
+          }
+        }
+      ]
     },
     {
       test: /\.js$/,
@@ -80,18 +80,18 @@ function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } =
       include: /(src|node_modules\/react-storefront)/,
       use: [
         {
-          loader: 'source-map-loader',
-        },
-      ],
+          loader: 'source-map-loader'
+        }
+      ]
     },
     {
       test: /\.css$/,
-      use: ['style-loader', 'css-loader'],
+      use: ['style-loader', 'css-loader']
     },
     {
       test: /\.js$/,
       include: /(src|node_modules\/proxy-polyfill)/,
-      use: [{ loader: 'babel-loader', options: { envName } }],
+      use: [{ loader: 'babel-loader', options: { envName } }]
     },
     {
       test: /\.(png|jpg|gif|otf|woff|ttf)$/,
@@ -105,37 +105,26 @@ function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } =
             limit: 8192,
             fallback: 'file-loader',
             outputPath: assetsPath,
-            publicPath: '/pwa',
-          },
-        },
-      ],
+            publicPath: '/pwa'
+          }
+        }
+      ]
     },
     {
       test: /\.svg$/,
-      use: [{ loader: 'babel-loader', options: { envName } }, { loader: 'react-svg-loader' }],
+      use: [{ loader: 'babel-loader', options: { envName } }, { loader: 'react-svg-loader' }]
     },
     {
       test: /\.(md|html)$/,
-      use: 'raw-loader',
-    },
+      use: 'raw-loader'
+    }
   ]
 }
 
-function createPlugins(root) {
-  return [
-    new CleanWebpackPlugin(
-      [path.join(root, 'build', 'assets'), path.join(root, 'scripts', 'build')],
-      {
-        allowExternal: true,
-        verbose: false,
-      },
-    ),
-    new HtmlWebpackPlugin({
-      filename: 'install-service-worker.html',
-      title: 'Installing Service Worker...',
-      chunks: ['bootstrap', 'installServiceWorker'],
-    }),
-  ]
+function injectBuildTimestamp() {
+  return new webpack.DefinePlugin({
+    __build_timestamp__: JSON.stringify(buildTimestamp)
+  })
 }
 
 function createAliases(root) {
@@ -147,7 +136,7 @@ function createAliases(root) {
     'react-helmet': path.join(root, 'node_modules', 'react-helmet'),
     '@material-ui/core': path.join(root, 'node_modules', '@material-ui/core'),
     'react-universal-component': path.join(root, 'node_modules', 'react-universal-component'),
-    'react-transition-group': path.join(root, 'node_modules', 'react-transition-group'),
+    'react-transition-group': path.join(root, 'node_modules', 'react-transition-group')
   }
 }
 
@@ -159,26 +148,26 @@ const optimization = {
         warnings: false,
         ie8: false,
         compress: {
-          comparisons: false,
+          comparisons: false
         },
         parse: {},
         mangle: true,
         output: {
           comments: false,
-          ascii_only: true,
-        },
+          ascii_only: true
+        }
       },
       parallel: true,
       cache: true,
-      sourceMap: true,
-    }),
-  ],
+      sourceMap: true
+    })
+  ]
 }
 
 module.exports = {
   createClientConfig,
   createServerConfig,
-  createPlugins,
   createLoaders,
   optimization,
+  injectBuildTimestamp
 }

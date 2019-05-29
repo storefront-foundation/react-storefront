@@ -49,14 +49,13 @@ export const styles = theme => ({
 })
 
 /**
- * Provide amp-compatible mobile-optimized images that can be made to auto-scale to fit the parent element 
+ * Provide amp-compatible mobile-optimized images that can be made to auto-scale to fit the parent element
  * by setting the `fill` prop, or grow/shrink while maintaining a given aspect ratio
  * by setting the `aspectRatio` prop.
  */
 @withStyles(styles, { name: 'RSFImage' })
 @inject(({ app }) => ({ amp: app.amp }))
 export default class Image extends Component {
-
   static propTypes = {
     /**
      * The URL for the image
@@ -69,7 +68,7 @@ export default class Image extends Component {
     notFoundSrc: PropTypes.string,
 
     /**
-     * The ratio of height/width as a float.  For example: 1 when the height and width match, 
+     * The ratio of height/width as a float.  For example: 1 when the height and width match,
      * 0.5 when height is half of the width.
      */
     aspectRatio: PropTypes.number,
@@ -123,18 +122,34 @@ export default class Image extends Component {
 
   componentDidMount() {
     const img = this.ref.current
-    
+
     if (img && img.complete && img.naturalWidth === 0) {
       this.handleNotFound()
     }
   }
 
   render() {
-    let { lazy, lazyOffset, notFoundSrc, height, width, quality, amp, fill, contain, classes, className, aspectRatio, alt, src, ...imgAttributes } = this.props
+    let {
+      lazy,
+      lazyOffset,
+      notFoundSrc,
+      height,
+      width,
+      quality,
+      amp,
+      fill,
+      contain,
+      classes,
+      className,
+      aspectRatio,
+      alt,
+      src,
+      ...imgAttributes
+    } = this.props
     const { loaded, primaryNotFound } = this.state
 
     contain = contain || aspectRatio
-    
+
     // Overiding `src` prop if `quality` was set
     src = this.getOptimizedSrc()
 
@@ -145,7 +160,7 @@ export default class Image extends Component {
     const assignedAttributes = {
       src,
       key: src,
-      [ amp ? 'class' : 'className']: classnames({ 
+      [amp ? 'class' : 'className']: classnames({
         [classes.fit]: aspectRatio != null
       }),
       layout: amp ? this.ampLayout() : null,
@@ -155,27 +170,34 @@ export default class Image extends Component {
     }
 
     let result = (
-      <div 
-        className={classnames(className, { 
+      <div
+        className={classnames(className, {
           [classes.root]: true,
           [classes.contain]: contain,
           [classes.fill]: fill
-        })
-      }>
-        { aspectRatio && <div style={{ paddingTop: `${aspectRatio}%` }}></div> }
-        { amp ? (
-          <amp-img {...assignedAttributes}/>
+        })}
+      >
+        {aspectRatio && <div style={{ paddingTop: `${aspectRatio}%` }} />}
+        {amp ? (
+          <amp-img {...assignedAttributes} />
         ) : (
-          loaded && <img ref={this.ref} {...assignedAttributes} {...imgAttributes} onError={this.handleNotFound} />
+          loaded && (
+            <img
+              ref={this.ref}
+              {...assignedAttributes}
+              {...imgAttributes}
+              onError={this.handleNotFound}
+            />
+          )
         )}
       </div>
     )
 
     if (!amp && lazy) {
       result = (
-        <VisibilitySensor 
-          active={!loaded} 
-          onChange={this.lazyLoad} 
+        <VisibilitySensor
+          active={!loaded}
+          onChange={this.lazyLoad}
           partialVisibility
           offset={{ top: -lazyOffset, bottom: -lazyOffset }}
         >
@@ -196,12 +218,12 @@ export default class Image extends Component {
       return 'intrinsic'
     }
   }
-  
+
   handleNotFound = () => {
     this.setState({ primaryNotFound: true })
   }
 
-  lazyLoad = (visible) => {
+  lazyLoad = visible => {
     if (!this.state.loaded && visible) {
       this.setState({ loaded: true })
     }
@@ -211,10 +233,11 @@ export default class Image extends Component {
     const { src, quality } = this.props
 
     if (quality) {
-      return `https://opt.moovweb.net/?quality=${encodeURIComponent(quality)}&img=${encodeURIComponent(src)}`
+      return `https://opt.moovweb.net/?quality=${encodeURIComponent(
+        quality
+      )}&img=${encodeURIComponent(src)}`
     } else {
       return src
     }
   }
-
 }

@@ -25,6 +25,8 @@ exports[`Breadcrumbs includes state in the link 1`] = `
                           </WithStyles(inject-Link)>
                         </Track>
                       </inject-Track-with-app>
+                    </span>
+                    <span>
                       <pure(KeyboardArrowRightIcon) className="RSFBreadcrumbs-separator-2">
                         <KeyboardArrowRightIcon className="RSFBreadcrumbs-separator-2">
                           <WithStyles(SvgIcon) className="RSFBreadcrumbs-separator-2">
@@ -37,8 +39,6 @@ exports[`Breadcrumbs includes state in the link 1`] = `
                           </WithStyles(SvgIcon)>
                         </KeyboardArrowRightIcon>
                       </pure(KeyboardArrowRightIcon)>
-                    </span>
-                    <span>
                       <inject-Track-with-app event="breadcrumbClicked" breadcrumb={{...}}>
                         <Track event="breadcrumbClicked" breadcrumb={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                           <WithStyles(inject-Link) to="/c/1" state={{...}} onClick={[Function]}>
@@ -52,6 +52,8 @@ exports[`Breadcrumbs includes state in the link 1`] = `
                           </WithStyles(inject-Link)>
                         </Track>
                       </inject-Track-with-app>
+                    </span>
+                    <span className="RSFBreadcrumbs-current-3">
                       <pure(KeyboardArrowRightIcon) className="RSFBreadcrumbs-separator-2">
                         <KeyboardArrowRightIcon className="RSFBreadcrumbs-separator-2">
                           <WithStyles(SvgIcon) className="RSFBreadcrumbs-separator-2">
@@ -64,8 +66,6 @@ exports[`Breadcrumbs includes state in the link 1`] = `
                           </WithStyles(SvgIcon)>
                         </KeyboardArrowRightIcon>
                       </pure(KeyboardArrowRightIcon)>
-                    </span>
-                    <span className="RSFBreadcrumbs-current-3">
                       Subcategory 1
                     </span>
                     <span>
@@ -108,6 +108,8 @@ exports[`Breadcrumbs renders 1`] = `
                           </WithStyles(inject-Link)>
                         </Track>
                       </inject-Track-with-app>
+                    </span>
+                    <span>
                       <pure(KeyboardArrowRightIcon) className="RSFBreadcrumbs-separator-2">
                         <KeyboardArrowRightIcon className="RSFBreadcrumbs-separator-2">
                           <WithStyles(SvgIcon) className="RSFBreadcrumbs-separator-2">
@@ -120,8 +122,6 @@ exports[`Breadcrumbs renders 1`] = `
                           </WithStyles(SvgIcon)>
                         </KeyboardArrowRightIcon>
                       </pure(KeyboardArrowRightIcon)>
-                    </span>
-                    <span>
                       <inject-Track-with-app event="breadcrumbClicked" breadcrumb={{...}}>
                         <Track event="breadcrumbClicked" breadcrumb={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                           <WithStyles(inject-Link) to="/c/1" state={[undefined]} onClick={[Function]}>
@@ -135,6 +135,8 @@ exports[`Breadcrumbs renders 1`] = `
                           </WithStyles(inject-Link)>
                         </Track>
                       </inject-Track-with-app>
+                    </span>
+                    <span className="RSFBreadcrumbs-current-3">
                       <pure(KeyboardArrowRightIcon) className="RSFBreadcrumbs-separator-2">
                         <KeyboardArrowRightIcon className="RSFBreadcrumbs-separator-2">
                           <WithStyles(SvgIcon) className="RSFBreadcrumbs-separator-2">
@@ -147,8 +149,6 @@ exports[`Breadcrumbs renders 1`] = `
                           </WithStyles(SvgIcon)>
                         </KeyboardArrowRightIcon>
                       </pure(KeyboardArrowRightIcon)>
-                    </span>
-                    <span className="RSFBreadcrumbs-current-3">
                       Subcategory 1
                     </span>
                     <span>

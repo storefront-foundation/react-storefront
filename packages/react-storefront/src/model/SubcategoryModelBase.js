@@ -12,13 +12,13 @@ const SubcategoryModelBase = types.compose(
       id: types.identifier,
       url: types.maybeNull(types.string),
       name: types.maybeNull(types.string),
-      description: types.maybeNull(types.string),
+      description: types.maybeNull(types.string)
     })
     .views(self => ({
       shouldApplyPatchOnPop(patch) {
         return patch.page === 'Subcategory'
-      },
-    })),
+      }
+    }))
 )
 
 export default SubcategoryModelBase

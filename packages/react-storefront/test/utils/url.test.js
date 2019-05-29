@@ -17,6 +17,10 @@ describe('url', () => {
       expect(absoluteURL(undefined)).toBe(null)
     })
 
+    it('should return the given url when no location is provided', () => {
+      expect(absoluteURL('https://domain.com/foo')).toBe('https://domain.com/foo')
+    })
+
     it('should add protocol and hostname', () => {
       expect(absoluteURL('/foo/bar', currentLocation)).toBe('https://example.com/foo/bar')
     })
@@ -36,6 +40,44 @@ describe('url', () => {
     it('should handle protocol with colon if given', () => {
       currentLocation.protocol = 'https:'
       expect(absoluteURL('/foo/bar', currentLocation)).toBe('https://example.com/foo/bar')
+    })
+
+    it('should add the protocol when the url starts with //', () => {
+      expect(absoluteURL('//domain.com/foo', { protocol: 'https' })).toBe('https://domain.com/foo')
+    })
+
+    it('should convert relative urls to absolute', () => {
+      expect(
+        absoluteURL('bar', {
+          protocol: 'https',
+          hostname: 'domain.com',
+          pathname: '/foo',
+          port: '443'
+        })
+      ).toBe('https://domain.com/foo/bar')
+    })
+
+    it('should return absolute URLs unaltered', () => {
+      expect(absoluteURL('https://domain.com/foo', { protocol: 'https' })).toBe(
+        'https://domain.com/foo'
+      )
+    })
+
+    it('should return the original url when the hostname is null', () => {
+      expect(absoluteURL('/foo')).toBe('/foo')
+    })
+
+    it('should return the original URL if the pathname is null and the URL is relative', () => {
+      expect(absoluteURL('foo', { protocol: 'https', hostname: 'domain.com' })).toBe('foo')
+    })
+
+    it('should normalize the protocol', () => {
+      expect(absoluteURL('/foo', { protocol: 'https', hostname: 'domain.com' })).toBe(
+        'https://domain.com/foo'
+      )
+      expect(absoluteURL('/foo', { protocol: 'http', hostname: 'domain.com' })).toBe(
+        'http://domain.com/foo'
+      )
     })
   })
 
@@ -87,6 +129,16 @@ describe('url', () => {
       expect(canUseClientSideNavigation('/foo')).toBe(true)
       expect(canUseClientSideNavigation('/foo/bar')).toBe(true)
       expect(canUseClientSideNavigation('foo/bar')).toBe(true)
+    })
+
+    it('should return false if router.willNavigateToUpstream returns true', () => {
+      const router = { willNavigateToUpstream: jest.fn(() => true) }
+      expect(canUseClientSideNavigation('/foo', router)).toBe(false)
+      expect(router.willNavigateToUpstream).toHaveBeenCalledWith('/foo')
+    })
+
+    it('should return false if the url is omitted', () => {
+      expect(canUseClientSideNavigation(null)).toBe(false)
     })
   })
 })

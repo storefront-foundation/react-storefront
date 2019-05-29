@@ -16,7 +16,7 @@ export const styles = theme => ({
   buttons: {
     display: 'flex',
     flexWrap: 'wrap',
-    margin: '-4px',
+    margin: '-4px'
   },
   button: {
     position: 'relative',
@@ -73,7 +73,7 @@ export const styles = theme => ({
     backgroundColor: '#f2f2f2',
     color: '#999',
     '& img': {
-      opacity: .5
+      opacity: 0.5
     }
   },
   selectedName: {
@@ -93,10 +93,10 @@ export const styles = theme => ({
 })
 
 /**
- * A selector for product options rendered as a set of buttons. Buttons can either have 
+ * A selector for product options rendered as a set of buttons. Buttons can either have
  * text or an image. The text for the selected option can optionally be displayed below
  * the buttons.
- * 
+ *
  * This component supports AMP.
  */
 @inject(({ app, ampStateId }) => ({ amp: app.amp, ampStateId }))
@@ -168,24 +168,22 @@ export default class ButtonSelector extends Component {
     return (
       <div className={classes.root}>
         {amp && (
-          <input 
-            type="hidden" 
-            name={name} 
+          <input
+            type="hidden"
+            name={name}
             value={model.selected ? model.selected.id : ''}
             amp-bind={`value=>${ampStateId}.${name}.selected.id`}
           />
         )}
-        <div className={classes.buttons}>
-          { model.options.map(this.renderButton) }
-        </div>
-        { showSelectedText && (
-          <Typography 
-            variant="caption" 
+        <div className={classes.buttons}>{model.options.map(this.renderButton)}</div>
+        {showSelectedText && (
+          <Typography
+            variant="caption"
             component="div"
             className={classes.selectedName}
             amp-bind={`text=>${ampStateId}.${name}.selected.text`}
           >
-            { model.selected && model.selected.text }
+            {model.selected && model.selected.text}
           </Typography>
         )}
       </div>
@@ -205,39 +203,66 @@ export default class ButtonSelector extends Component {
   }
 
   renderButton = (option, i) => {
-    const { classes, strikeThroughDisabled, strikeThroughAngle, imageProps, buttonProps, model, ampStateId, name } = this.props
+    const {
+      classes,
+      strikeThroughDisabled,
+      strikeThroughAngle,
+      imageProps,
+      buttonProps,
+      model,
+      ampStateId,
+      name
+    } = this.props
     const selected = model.selected && model.selected.id === option.id
 
     let children = option.text
 
     if (option.image) {
-      children = <Image src={option.image} className={classes.image} fill { ...imageProps } alt={option.alt || option.text}/>
+      children = (
+        <Image
+          src={option.image}
+          className={classes.image}
+          fill
+          {...imageProps}
+          alt={option.alt || option.text}
+        />
+      )
     } else if (option.color) {
-      children = <div className={classes.image} style={{ backgroundColor: option.color }}/>
+      children = <div className={classes.image} style={{ backgroundColor: option.color }} />
     }
 
     return (
-      <div 
+      <div
         key={option.id}
         className={this.createButtonClass(selected, option)}
-        amp-bind={`class=>${ampStateId}.${name}.selected.id=="${option.id}" ? "${this.createButtonClass(true, option)}" : "${this.createButtonClass(false, option)}"`}
+        amp-bind={`class=>${ampStateId}.${name}.selected.id=="${
+          option.id
+        }" ? "${this.createButtonClass(true, option)}" : "${this.createButtonClass(
+          false,
+          option
+        )}"`}
       >
         <Button
-          onClick={(e) => this.handleClick(e, option, i)}
+          onClick={e => this.handleClick(e, option, i)}
           aria-label={option.text}
           href={option.url}
           disabled={option.disabled}
-          on={`tap:AMP.setState({ ${ampStateId}: { ${name}: { selected: ${JSON.stringify(option.toJSON())} }}})`}
+          on={`tap:AMP.setState({ ${ampStateId}: { ${name}: { selected: ${JSON.stringify(
+            option.toJSON()
+          )} }}})`}
           classes={{
             label: option.image || option.color ? classes.imageLabel : null,
             disabled: classes.disabled
           }}
-          { ...buttonProps }
+          {...buttonProps}
         >
           {children}
         </Button>
-        { option.disabled && strikeThroughDisabled && (
-          <div className={classes.strikeThrough} style={{ transform: `rotate(${strikeThroughAngle}deg)` }}/>
+        {option.disabled && strikeThroughDisabled && (
+          <div
+            className={classes.strikeThrough}
+            style={{ transform: `rotate(${strikeThroughAngle}deg)` }}
+          />
         )}
       </div>
     )
@@ -245,7 +270,7 @@ export default class ButtonSelector extends Component {
 
   handleClick = (e, item, index) => {
     const { onSelectionChange, model } = this.props
-    
+
     if (onSelectionChange) {
       onSelectionChange(e, item, index)
 
@@ -256,5 +281,4 @@ export default class ButtonSelector extends Component {
 
     model.setSelected(item)
   }
-
 }

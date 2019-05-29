@@ -4,6 +4,7 @@
  */
 import { fetchLatest, StaleResponseError } from '../fetchLatest'
 import { abortPrefetches, resumePrefetches } from './serviceWorker'
+import { HANDLER, RESPONSE_TYPE, SURROGATE_KEY, REACT_STOREFRONT, API_VERSION } from './headers'
 
 let doFetch
 
@@ -26,9 +27,9 @@ export async function fetch(url, { cache = 'default' } = {}) {
       cache: cache || 'default',
       credentials: 'include',
       headers: {
-        'x-react-storefront': 'true', // allows back end handlers to quickly identify PWA API requests,
-        'x-moov-api-version': apiVersion, // needed for the service worker to determine the correct runtime cache name and ensure that we're not getting a cached response from a previous api version
-      },
+        [REACT_STOREFRONT]: 'true', // allows back end handlers to quickly identify PWA API requests,
+        [API_VERSION]: apiVersion // needed for the service worker to determine the correct runtime cache name and ensure that we're not getting a cached response from a previous api version
+      }
     }).then(response => {
       const { redirected, url } = response
 
@@ -121,11 +122,17 @@ function redirectTo(url) {
  * @return {Function}
  */
 export default function fromServer(handlerPath, getURL) {
+  if (handlerPath == null) {
+    throw new Error(
+      'You must provide a path to a handler in fromServer().  Please check your routes.'
+    )
+  }
+
   return {
     type: 'fromServer',
     runOn: {
       server: true,
-      client: true, // fromServer handlers run on the client too - we make an ajax request to get the state from the server
+      client: true // fromServer handlers run on the client too - we make an ajax request to get the state from the server
     },
     fn: async function(params, request, response) {
       if (typeof handlerPath === 'string') {
@@ -138,18 +145,18 @@ export default function fromServer(handlerPath, getURL) {
         // handler path has not been transpiled, fetch the data from the server and return the result.
         return fetch(url, { cache: response.clientCache })
       } else {
-        if (handlerPath == null)
-          throw new Error(
-            'You must provide a path to a handler in fromServer().  Please check your routes.',
-          )
-
         // indicate handler path and asset class in a response header so we can track it in logs
-        response.set('x-rsf-handler', handlerPath.path)
-        response.set('x-rsf-response-type', request.path.endsWith('.json') ? 'json' : 'ssr')
+        response.set(HANDLER, handlerPath.path)
+        response.set(RESPONSE_TYPE, request.path.endsWith('.json') ? 'json' : 'ssr')
+
+        // use the handler path as the surrogate cache key if one has not already been set by cache#surrogateKey
+        if (!response.get(SURROGATE_KEY)) {
+          response.set(SURROGATE_KEY, handlerPath.path)
+        }
 
         // handler path has been transpiled to a function
         return handlerPath(params, request, response)
       }
-    },
+    }
   }
 }

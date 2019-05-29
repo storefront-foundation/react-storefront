@@ -38,16 +38,19 @@ export const styles = theme => ({
  * component that is displayed.
  */
 @withStyles(styles, { name: 'RSFPages' })
-@inject(({ app, router, history }) => ({ app, page: app.page, loading: app.loading, uri: app.uri, router, history }))
+@inject(({ app }) => ({
+  app,
+  page: app.page,
+  loading: app.loading
+}))
 @observer
 export default class Pages extends Component {
-  
   static propTypes = {
     /**
      * An object which serves as a map of page name to component to display.  When the value of `page`
      * in `AppModelBase` matches a key in this object, the corresponding component will be displayed.
      */
-    components: PropTypes.oneOfType([ PropTypes.object, PropTypes.func ]).isRequired,
+    components: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 
     /**
      * An object which serves as a map of page name to mask to display when the page is loading.  When the value of `page`
@@ -61,7 +64,7 @@ export default class Pages extends Component {
     components: {}
   }
 
-  state = { 
+  state = {
     loadingComponent: false
   }
 
@@ -98,7 +101,7 @@ export default class Pages extends Component {
    * @param {React.Component} comp The component to make lazy
    * @return {React.Component}
    */
-  createUniversalComponent = (comp) => {
+  createUniversalComponent = comp => {
     return universal(comp, {
       loading: this.componentLoadMask,
       onLoad: this.onLoad,
@@ -114,7 +117,13 @@ export default class Pages extends Component {
 
     if (Comp) {
       this.cache[page] = {
-        element: <Comp key={page} onBefore={this.onStartLoadingComponent} onAfter={this.onEndLoadingComponent}/>
+        element: (
+          <Comp
+            key={page}
+            onBefore={this.onStartLoadingComponent}
+            onAfter={this.onEndLoadingComponent}
+          />
+        )
       }
     }
   }
@@ -128,7 +137,11 @@ export default class Pages extends Component {
       const entry = this.cache[page]
 
       elements.push(
-        <div key={page} data-page={page} style={{ display: page === app.page && !loading ? 'block' : 'none' }}>
+        <div
+          key={page}
+          data-page={page}
+          style={{ display: page === app.page && !loading ? 'block' : 'none' }}
+        >
           {entry.element}
         </div>
       )
@@ -136,8 +149,8 @@ export default class Pages extends Component {
 
     return (
       <div className={classes.root}>
-        { this.renderLoadMask() }
-        { elements }
+        {this.renderLoadMask()}
+        {elements}
       </div>
     )
   }
@@ -155,18 +168,18 @@ export default class Pages extends Component {
   }
 
   isLoading = () => {
-    return this.props.loading || this.state.loadingComponent
+    return this.props.app.loading || this.state.loadingComponent
   }
 
   renderLoadMask = () => {
     const { loadMasks, page } = this.props
     const Mask = loadMasks[page]
     const loading = this.isLoading()
-    
+
     if (Mask) {
-      return loading ? <Mask/> : null
+      return loading ? <Mask /> : null
     } else {
-      return <LoadMask show={loading} fullscreen/>
+      return <LoadMask show={loading} fullscreen />
     }
   }
 
@@ -190,16 +203,15 @@ export default class Pages extends Component {
     } else {
       return (
         <Container className={classes.error}>
-          <pre>{ error.stack }</pre>
+          <pre>{error.stack}</pre>
         </Container>
       )
     }
   }
 
-  onError = (e) => {
+  onError = e => {
     if (e.message.match(/chunk/i)) {
       window.location.reload()
     }
   }
-
 }

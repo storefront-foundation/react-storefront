@@ -2,6 +2,8 @@ console.log('[react-storefront service worker]', 'Using Moov PWA Service Worker 
 
 workbox.loadModule('workbox-strategies')
 
+const PREFETCH_CACHE_MISS = 544
+
 let runtimeCacheOptions = {},
   baseCacheName,
   ssrCacheName
@@ -20,7 +22,7 @@ try {
 
 console.log(
   '[react-storefront service worker]',
-  `deployTime: ${deployTime}, prefetchFullRampUpTime: ${prefetchFullRampUpTime}`,
+  `deployTime: ${deployTime}, prefetchFullRampUpTime: ${prefetchFullRampUpTime}`
 )
 
 /**
@@ -33,7 +35,7 @@ console.log(
 function configureRuntimeCaching({
   cacheName = 'runtime',
   maxEntries = 200,
-  maxAgeSeconds = 3600,
+  maxAgeSeconds = 3600
 } = {}) {
   baseCacheName = cacheName
   ssrCacheName = `${cacheName}-html-{{version}}`
@@ -42,9 +44,9 @@ function configureRuntimeCaching({
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries,
-        maxAgeSeconds,
-      }),
-    ],
+        maxAgeSeconds
+      })
+    ]
   }
 }
 
@@ -59,7 +61,7 @@ function precacheLinks(response) {
     const matches = html.match(/href="([^"]+)"\sdata-moov-rel="prefetch"/g)
     if (matches) {
       return Promise.all(
-        matches.map(match => match.match(/href="([^"]+)"/)[1]).map(path => cachePath({ path })),
+        matches.map(match => match.match(/href="([^"]+)"/)[1]).map(path => cachePath({ path }))
       )
     }
     return Promise.resolve()
@@ -99,7 +101,7 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         if (!isPrefetchRampedUp()) {
           console.log(
             '[react-storefront service worker]',
-            `skipping prefetch of ${path}, not yet ramped up.`,
+            `skipping prefetch of ${path}, not yet ramped up.`
           )
           return
         }
@@ -109,9 +111,9 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         // Create an abort controller so we can abort the prefetch if a more important
         // request is sent.
         const abort = new AbortController()
+
         // Save prefetching arguments if we need to resume a cancelled request
         abort.args = [{ path, apiVersion }, cacheLinks]
-
         abortControllers.add(abort)
 
         // We connect the fetch with the abort controller here with the signal
@@ -119,15 +121,26 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
           credentials: 'include',
           signal: abort.signal,
           headers: {
-            'x-rsf-prefetch': '1',
-          },
+            'x-rsf-prefetch': '{{allowPrefetchThrottling}}' === 'true' ? 'only-if-cached' : '1'
+          }
         })
           .then(response => {
-            return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve())
-              .then(() => cache.put(decodeURIComponent(path), response))
-              .then(() => abortControllers.delete(abort))
-              .then(() => console.log('[react-storefront service worker]', 'prefetched', path))
+            return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
+              if (response.status === 200) {
+                cache.put(decodeURIComponent(path), response)
+                console.log(`[react-storefront service worker] ${path} was prefetched.`)
+              } else if (response.status === PREFETCH_CACHE_MISS) {
+                console.log(`[react-storefront service worker] ${path} was throttled.`)
+              } else {
+                console.log(
+                  `[react-storefront service worker] ${path} was not prefetched, returned status ${
+                    response.status
+                  }.`
+                )
+              }
+            })
           })
+          .then(() => abortControllers.delete(abort))
           .catch(error => {
             console.log('[react-storefront service worker] aborted prefetch for', path)
           })
@@ -180,8 +193,8 @@ function cacheState({ path, cacheData, apiVersion } = {}) {
     const res = new Response(blob, {
       status: 200,
       headers: {
-        'Content-Length': blob.size,
-      },
+        'Content-Length': blob.size
+      }
     })
 
     console.log('[react-storefront service worker]', `caching ${path}`)
@@ -230,15 +243,15 @@ function removeOldRuntimeCaches(currentVersion) {
   })
 }
 
+const isApiRequest = path => path.split(/\?/)[0].match(/\.json$/)
+
 /**
  * Gets the name of the versioned runtime cache
  * @param {String} apiVersion The api version
  * @return {String} A cache name
  */
 function getAPICacheName(apiVersion, path) {
-  const isApiRequest = path.split(/\?/)[0].match(/\.json$/)
-
-  if (isApiRequest && apiVersion) {
+  if (isApiRequest(path) && apiVersion) {
     return `${baseCacheName}-json-${apiVersion}`
   } else {
     return ssrCacheName
@@ -252,7 +265,7 @@ self.addEventListener('install', event => {
     // Cache non-amp version of pages when users land on AMP page
     clients
       .matchAll({
-        includeUncontrolled: true,
+        includeUncontrolled: true
       })
       .then(allClients => {
         allClients
@@ -301,7 +314,12 @@ function isAmp(url) {
  * @return {Boolean}
  */
 function shouldServeHTMLFromCache(url, event) {
-  return isAmp({ pathname: event.request.referrer }) || /\?source=pwa/.test(url.search)
+  return (
+    '{{serveSSRFromCache}}' === 'true' ||
+    isAmp({ pathname: event.request.referrer }) ||
+    /\?source=pwa/.test(url.search) ||
+    /(\?|&)powerlink/.test(url.search)
+  )
 }
 
 /**
@@ -321,6 +339,27 @@ const matchRuntimePath = context => {
   ) /* Safari has a known issue with service workers and videos: https://adactio.com/journal/14452 */
 }
 
+function offlineResponse(apiVersion, context) {
+  if (isApiRequest(context.url.pathname)) {
+    const offlineData = { page: 'Offline' }
+    const blob = new Blob([JSON.stringify(offlineData, null, 2)], {
+      type: 'application/json'
+    })
+    return new Response(blob, {
+      status: 200,
+      headers: {
+        'Content-Length': blob.size
+      }
+    })
+  } else {
+    // If not API request, find and send app shell
+    const path = '/.app-shell'
+    const cacheName = getAPICacheName(apiVersion, path)
+    const req = new Request(path)
+    return caches.open(cacheName).then(cache => cache.match(req))
+  }
+}
+
 workbox.routing.registerRoute(matchRuntimePath, async context => {
   try {
     const { url, event } = context
@@ -334,7 +373,10 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
 
     if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
-      return workbox.strategies.networkOnly().handle(context)
+      return workbox.strategies
+        .networkOnly(cacheOptions)
+        .handle(context)
+        .catch(() => offlineResponse(apiVersion, context))
     } else if (event.request.cache === 'force-cache' /* set by cache and sent by fromServer */) {
       return workbox.strategies.cacheFirst(cacheOptions).handle(context)
     } else {
@@ -345,6 +387,7 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
         .then(result => {
           return result || workbox.strategies.networkOnly().handle(context)
         })
+        .catch(() => offlineResponse(apiVersion, context))
     }
   } catch (e) {
     // if anything goes wrong, fallback to network

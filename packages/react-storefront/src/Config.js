@@ -6,12 +6,11 @@
  * Provides access to values set in the blob in Moov Console.
  */
 class Config {
-
   values = {}
 
   /**
    * Gets a config value
-   * @param {String} key 
+   * @param {String} key
    * @return {Object}
    */
   get(key) {
@@ -23,7 +22,7 @@ class Config {
    * @param {String/Object} blob A json blob
    */
   load(blob) {
-    if (!blob) return 
+    if (!blob) return
 
     if (typeof blob === 'string') {
       blob = JSON.parse(blob)
@@ -31,7 +30,6 @@ class Config {
 
     this.values = blob
   }
-
 }
 
 const config = new Config()

@@ -36,7 +36,6 @@ export const styles = theme => ({
 @inject('app')
 @observer
 export default class FilterButton extends Component {
-
   static propTypes = {
     /**
      * An instance of `SearchResultModelBase`
@@ -59,7 +58,7 @@ export default class FilterButton extends Component {
     title: PropTypes.string,
 
     /**
-     * Set to true to hide the clear link that is shown by default when one or more filters 
+     * Set to true to hide the clear link that is shown by default when one or more filters
      * is selected.  Defaults to false.
      */
     hideClearLink: PropTypes.bool,
@@ -74,7 +73,7 @@ export default class FilterButton extends Component {
     title: 'Filter',
     drawerProps: {},
     hideClearLink: false,
-    clearLinkText: "clear all"
+    clearLinkText: 'clear all'
   }
 
   constructor({ app }) {
@@ -83,13 +82,22 @@ export default class FilterButton extends Component {
     const openFilter = app.location.search.indexOf('openFilter') !== -1
 
     this.state = {
-      open: openFilter, 
+      open: openFilter,
       mountDrawer: openFilter
     }
   }
 
   render() {
-    const { classes, app, model, title, drawerProps, hideClearLink, clearLinkText, ...props } = this.props
+    const {
+      classes,
+      app,
+      model,
+      title,
+      drawerProps,
+      hideClearLink,
+      clearLinkText,
+      ...props
+    } = this.props
     const { open, mountDrawer } = this.state
     const { clear, clearDisabled, drawer, ...buttonClasses } = classes
     const pwaPath = app.location.pathname.replace(/\.amp/, '')
@@ -99,16 +107,16 @@ export default class FilterButton extends Component {
 
     return (
       <Fragment>
-        <ActionButton 
+        <ActionButton
           label={title}
-          href={ app.amp ? ampUrl : null }
-          value={this.getFilterList()} 
+          href={app.amp ? ampUrl : null}
+          value={this.getFilterList()}
           classes={buttonClasses}
-          {...props} 
+          {...props}
           onClick={this.onClick}
         />
         {!app.amp && (
-          <Drawer 
+          <Drawer
             ModalProps={{
               keepMounted: true
             }}
@@ -117,42 +125,42 @@ export default class FilterButton extends Component {
             title={
               <Hbox justifyContent="center">
                 <div>{title}</div>
-                { hideClearLink || model.filters.length === 0 ? null : (
-                  <button 
+                {hideClearLink || model.filters.length === 0 ? null : (
+                  <button
                     className={classnames({
                       [clear]: true,
                       [clearDisabled]: model.loading
-                    })} 
+                    })}
                     onClick={() => !model.loading && model.clearAllFilters()}
                   >
                     {clearLinkText}
                   </button>
                 )}
               </Hbox>
-            } 
-            open={open} 
-            onRequestClose={this.toggleOpen.bind(this, false)} 
+            }
+            open={open}
+            onRequestClose={this.toggleOpen.bind(this, false)}
           >
             {mountDrawer && (
-              <Filter model={model} onViewResultsClick={this.onViewResultsClick} {...drawerProps}/>
+              <Filter model={model} onViewResultsClick={this.onViewResultsClick} {...drawerProps} />
             )}
-          </Drawer>      
+          </Drawer>
         )}
       </Fragment>
     )
   }
 
-  onClick = (e) => {
+  onClick = e => {
     if (this.props.onClick) {
       this.props.onClick(e)
     }
 
     if (!e.defaultPrevented) {
-      this.toggleOpen(true) 
+      this.toggleOpen(true)
     }
   }
 
-  toggleOpen = (open) => {
+  toggleOpen = open => {
     this.setState({ open })
 
     if (open) {
@@ -170,7 +178,7 @@ export default class FilterButton extends Component {
     const { filters, facetGroups } = this.props.model
 
     if (!filters || !facetGroups) return null
-    if (filters.length > 1) return `${filters.length} selected` 
+    if (filters.length > 1) return `${filters.length} selected`
 
     const names = []
     const selection = {}
@@ -178,7 +186,7 @@ export default class FilterButton extends Component {
     for (let facet of filters) {
       selection[facet] = true
     }
-    
+
     for (let group of facetGroups) {
       for (let facet of group.facets) {
         if (selection[facet.code]) {
@@ -187,8 +195,6 @@ export default class FilterButton extends Component {
       }
     }
 
-    return names.length ? names.join(', ') : null    
+    return names.length ? names.join(', ') : null
   }
-
 }
-

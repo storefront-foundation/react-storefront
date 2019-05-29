@@ -1,5 +1,10 @@
 const path = require('path')
-const { createServerConfig, createLoaders, optimization } = require('./common')
+const {
+  createServerConfig,
+  createLoaders,
+  optimization,
+  injectBuildTimestamp
+} = require('./common')
 const merge = require('lodash/merge')
 
 module.exports = {
@@ -12,26 +17,26 @@ module.exports = {
    * @param {Object} options.additionalRules Additional rules to add the webpack config
    * @param {Object} options.envVariables Environment variables to inject into the build
    */
-  dev(root, { eslintConfig = require('./eslint-server'), envVariables = {}, rules = [], } = {}) {
+  dev(root, { eslintConfig = require('./eslint-server'), envVariables = {}, rules = [] } = {}) {
     return ({ entry, plugins, output, target, resolve, alias = {} } = {}) => {
       const webpack = require(path.join(root, 'node_modules', 'webpack'))
-  
+
       alias = {
         'react-storefront-stats': path.join(
           root,
           'node_modules',
           'react-storefront',
           'stats',
-          'getStatsFromNetwork',
+          'getStatsFromNetwork'
         ),
-        ...alias,
+        ...alias
       }
 
       return merge(createServerConfig(root, alias), {
         entry,
         mode: 'development',
         output: merge(output, {
-          devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+          devtoolModuleFilenameTemplate: '[absolute-resource-path]'
         }),
         target,
         resolve,
@@ -40,22 +45,23 @@ module.exports = {
             envName: 'development-server',
             assetsPath: '../build/assets/pwa',
             eslintConfig,
-            additionalRules: rules,
-          }),
+            additionalRules: rules
+          })
         },
         devtool: 'cheap-module-source-map',
         plugins: [
           ...plugins,
+          injectBuildTimestamp(),
           new webpack.ExtendedAPIPlugin(),
           new webpack.optimize.LimitChunkCountPlugin({
-            maxChunks: 1,
+            maxChunks: 1
           }),
           new webpack.DefinePlugin({
             'process.env.MOOV_RUNTIME': JSON.stringify('server'),
             'process.env.MOOV_ENV': JSON.stringify('development'),
-            ...envVariables,
-          }),
-        ],
+            ...envVariables
+          })
+        ]
       })
     }
   },
@@ -75,8 +81,8 @@ module.exports = {
         'node_modules',
         'react-storefront',
         'stats',
-        'getStats',
-      ),
+        'getStats'
+      )
     }
 
     return ({ entry, plugins, output, target, resolve }) =>
@@ -90,21 +96,22 @@ module.exports = {
         module: {
           rules: createLoaders(root, {
             envName: 'production-server',
-            eslintConfig: './eslint-server',
-          }),
+            eslintConfig: './eslint-server'
+          })
         },
         plugins: [
           ...plugins,
+          injectBuildTimestamp(),
           new webpack.ExtendedAPIPlugin(),
           new webpack.optimize.LimitChunkCountPlugin({
-            maxChunks: 1,
+            maxChunks: 1
           }),
           new webpack.DefinePlugin({
             'process.env.MOOV_RUNTIME': JSON.stringify('server'),
             'process.env.MOOV_ENV': JSON.stringify('production'),
-            ...envVariables,
-          }),
-        ],
+            ...envVariables
+          })
+        ]
       })
-  },
+  }
 }

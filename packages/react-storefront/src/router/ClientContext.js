@@ -19,4 +19,12 @@ export default class ClientContext {
     this.clientCache = shouldCache ? 'force-cache' : 'default'
     return this
   }
+
+  // Since this object is used in place of the Response on the client, we stub out Responses's methods
+  // to prevent errors on the client in isomorphic handlers
+  status() {}
+  set() {}
+  redirect() {}
+  get() {}
+  cookie() {}
 }

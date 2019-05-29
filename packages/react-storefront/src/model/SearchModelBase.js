@@ -33,7 +33,7 @@ export const ResultsModel = types.model('ResultsModel', {
   /**
    * The thumbnail width
    */
-  thumbnailWidth: 120,
+  thumbnailWidth: 120
 })
 
 /**
@@ -48,12 +48,12 @@ export const ResultsGroupModel = types
     /**
      * The list of links to display
      */
-    results: types.optional(types.array(ResultsModel), []),
+    results: types.optional(types.array(ResultsModel), [])
   })
   .views(self => ({
     get thumbnails() {
       return self.results.some(r => r.thumbnail != null)
-    },
+    }
   }))
 
 /**
@@ -80,7 +80,7 @@ const SearchModelBase = types
     /**
      * Minimum search text length for submission
      */
-    minimumTextLength: 1,
+    minimumTextLength: 1
   })
   .actions(self => ({
     /**
@@ -122,7 +122,7 @@ const SearchModelBase = types
 
       try {
         const state = await fetchSearchResults(
-          `/search/suggest.json?q=${encodeURIComponent(keyword)}`,
+          `/search/suggest.json?q=${encodeURIComponent(keyword)}`
         ).then(res => res.json())
         self.setGroups(state.search.groups)
         self.setLoading(false)
@@ -139,7 +139,7 @@ const SearchModelBase = types
      */
     setGroups(groups) {
       self.groups = groups
-    },
+    }
   }))
 
 export default SearchModelBase

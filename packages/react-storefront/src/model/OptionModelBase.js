@@ -32,7 +32,7 @@ const OptionModelBase = types.model('OptionModelBase', {
   /**
    * The item price for the option.
    */
-  price: types.maybeNull(types.number),
+  price: types.maybeNull(types.number)
 })
 
 export default OptionModelBase

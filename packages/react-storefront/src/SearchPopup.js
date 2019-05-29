@@ -113,14 +113,14 @@ export const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center'
   }
-});
+})
 
 @withStyles(styles, { name: 'RSFSearchPopup' })
 @inject(({ app: { searchPopup, search }, history }) => ({ searchPopup, search, history }))
 @observer
 export default class SearchPopup extends Component {
   state = {
-    search: '',
+    search: ''
   }
 
   static defaultProps = {
@@ -138,20 +138,26 @@ export default class SearchPopup extends Component {
      * search contains lists of suggestions
      */
     search: PropTypes.shape({
-      searches: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.shape({
-        text: PropTypes.string
-      })),
-      categories: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.shape({
-        id: PropTypes.string,
-        url: PropTypes.string,
-        name: PropTypes.string
-      })),
-      products: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.shape({
-        id: PropTypes.string,
-        url: PropTypes.string,
-        name: PropTypes.string,
-        image: PropTypes.string
-      }))
+      searches: MobxPropTypes.arrayOrObservableArrayOf(
+        PropTypes.shape({
+          text: PropTypes.string
+        })
+      ),
+      categories: MobxPropTypes.arrayOrObservableArrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          url: PropTypes.string,
+          name: PropTypes.string
+        })
+      ),
+      products: MobxPropTypes.arrayOrObservableArrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          url: PropTypes.string,
+          name: PropTypes.string,
+          image: PropTypes.string
+        })
+      )
     }),
 
     /**
@@ -162,10 +168,7 @@ export default class SearchPopup extends Component {
     /**
      * Suggestion results components
      */
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 
     history: PropTypes.shape({
       push: PropTypes.func.isRequired
@@ -188,7 +191,7 @@ export default class SearchPopup extends Component {
     this.onChangeSearchText('')
   }
 
-  onSearchSubmit = (event) => {
+  onSearchSubmit = event => {
     const { history } = this.props
     event.preventDefault()
     history.push(`/search?text=${this.state.search}`)
@@ -199,7 +202,7 @@ export default class SearchPopup extends Component {
     const { searchPopup, classes, search, children, suggestionResultsLimit } = this.props
     const searches = [...search.searches].splice(0, suggestionResultsLimit)
     const categories = [...search.categories].splice(0, suggestionResultsLimit)
-    const results = React.Children.map(children, (list) =>
+    const results = React.Children.map(children, list =>
       React.cloneElement(list, {
         searches,
         classes,
@@ -214,39 +217,43 @@ export default class SearchPopup extends Component {
     const contentReady = this.state.search && !loading
 
     return (
-      <form onSubmit={this.onSearchSubmit} onReset={() => { this.onChangeSearchText('') }}>
-        {searchPopup.opened && <div className={classes.searchPopup}>
-          <Button
-            className={classes.closeButton}
-            variant="contained"
-            onClick={this.hidePopup}>Cancel</Button>
-          <div className={classes.searchForm}>
-            <Input
-              type="text"
-              className={classes.flexInput}
-              value={this.state.search}
-              onChange={e => { this.onChangeSearchText(e.target.value) }}
-            />
-            <IconButton
-              variant="contained"
-              type="submit"
-              className={classes.searchButton}
-            >
-              <SearchIcon />
-            </IconButton>
-            {this.state.search && <IconButton type="reset" className={classes.searchReset}>
-              <SearchReset />
-            </IconButton>}
-          </div>
-          {loading && (
-            <div className={classes.loading}>
-              <CircularProgress />
+      <form
+        onSubmit={this.onSearchSubmit}
+        onReset={() => {
+          this.onChangeSearchText('')
+        }}
+      >
+        {searchPopup.opened && (
+          <div className={classes.searchPopup}>
+            <Button className={classes.closeButton} variant="contained" onClick={this.hidePopup}>
+              Cancel
+            </Button>
+            <div className={classes.searchForm}>
+              <Input
+                type="text"
+                className={classes.flexInput}
+                value={this.state.search}
+                onChange={e => {
+                  this.onChangeSearchText(e.target.value)
+                }}
+              />
+              <IconButton variant="contained" type="submit" className={classes.searchButton}>
+                <SearchIcon />
+              </IconButton>
+              {this.state.search && (
+                <IconButton type="reset" className={classes.searchReset}>
+                  <SearchReset />
+                </IconButton>
+              )}
             </div>
-          )}
-          {contentReady && <div className={classes.searchResultsWrapper}>
-            {results}
-          </div>}
-        </div>}
+            {loading && (
+              <div className={classes.loading}>
+                <CircularProgress />
+              </div>
+            )}
+            {contentReady && <div className={classes.searchResultsWrapper}>{results}</div>}
+          </div>
+        )}
       </form>
     )
   }
@@ -265,22 +272,30 @@ const commonPropTypes = {
  * @param props
  * @constructor
  */
-export const SuggestedSearch = (props) => (<React.Fragment>
-  <Typography component="h2" className={props.classes.suggestionHeader}>Suggested search</Typography>
-  <ul className={props.classes.suggestionsList}>
-    {props.searches.map((item, i) => (<li key={i}>
-      <Link to={`/search?text=${item.text}`} onClick={props.hidePopup}>
-        <Highlight search={props.searchText}>{item.text}</Highlight>
-      </Link>
-    </li>))}
-  </ul>
-</React.Fragment>)
+export const SuggestedSearch = props => (
+  <React.Fragment>
+    <Typography component="h2" className={props.classes.suggestionHeader}>
+      Suggested search
+    </Typography>
+    <ul className={props.classes.suggestionsList}>
+      {props.searches.map((item, i) => (
+        <li key={i}>
+          <Link to={`/search?text=${item.text}`} onClick={props.hidePopup}>
+            <Highlight search={props.searchText}>{item.text}</Highlight>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </React.Fragment>
+)
 
 SuggestedSearch.propTypes = {
   ...commonPropTypes,
-  searches: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.shape({
-    text: PropTypes.string
-  })),
+  searches: MobxPropTypes.arrayOrObservableArrayOf(
+    PropTypes.shape({
+      text: PropTypes.string
+    })
+  ),
   searchText: PropTypes.string
 }
 
@@ -289,20 +304,32 @@ SuggestedSearch.propTypes = {
  * @param props
  * @constructor
  */
-export const CategorySearches = (props) => (<React.Fragment>
-  <Typography component="h2" className={props.classes.suggestionHeader}>Category searches</Typography>
-  <ul className={props.classes.suggestionsList}>
-    {props.categories.map((item) => (<li key={item.id}><Link to={item.url} onClick={props.hidePopup}>{item.name}</Link></li>))}
-  </ul>
-</React.Fragment>)
+export const CategorySearches = props => (
+  <React.Fragment>
+    <Typography component="h2" className={props.classes.suggestionHeader}>
+      Category searches
+    </Typography>
+    <ul className={props.classes.suggestionsList}>
+      {props.categories.map(item => (
+        <li key={item.id}>
+          <Link to={item.url} onClick={props.hidePopup}>
+            {item.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </React.Fragment>
+)
 
 CategorySearches.propTypes = {
   ...commonPropTypes,
-  categories: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    url: PropTypes.string,
-    name: PropTypes.string
-  }))
+  categories: MobxPropTypes.arrayOrObservableArrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      url: PropTypes.string,
+      name: PropTypes.string
+    })
+  )
 }
 
 /**
@@ -310,29 +337,36 @@ CategorySearches.propTypes = {
  * @param props
  * @constructor
  */
-export const ProductSuggestions = (props) => (<React.Fragment>
-  <Typography component="h2" className={props.classes.suggestionHeader}>Product suggestions</Typography>
-  <ul className={props.classes.productsSuggestions}>
-    {props.products.map((item) => (<li key={item.id}>
-      <Link to={item.url} onClick={props.hidePopup} className={props.classes.productImage}>
-        <Image
-          fill
-          src={item.thumbnail}
-          alt={item.name} />
-      </Link>
-      <Link to={item.url} onClick={props.hidePopup}>{item.name}</Link>
-    </li>))}
-  </ul>
-</React.Fragment>)
+export const ProductSuggestions = props => (
+  <React.Fragment>
+    <Typography component="h2" className={props.classes.suggestionHeader}>
+      Product suggestions
+    </Typography>
+    <ul className={props.classes.productsSuggestions}>
+      {props.products.map(item => (
+        <li key={item.id}>
+          <Link to={item.url} onClick={props.hidePopup} className={props.classes.productImage}>
+            <Image fill src={item.thumbnail} alt={item.name} />
+          </Link>
+          <Link to={item.url} onClick={props.hidePopup}>
+            {item.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </React.Fragment>
+)
 
 ProductSuggestions.propTypes = {
   ...commonPropTypes,
-  products: MobxPropTypes.arrayOrObservableArrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    url: PropTypes.string,
-    name: PropTypes.string,
-    thumbnail: PropTypes.string
-  }))
+  products: MobxPropTypes.arrayOrObservableArrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      url: PropTypes.string,
+      name: PropTypes.string,
+      thumbnail: PropTypes.string
+    })
+  )
 }
 
 /**

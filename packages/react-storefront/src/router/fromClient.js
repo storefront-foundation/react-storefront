@@ -39,8 +39,8 @@ export default function fromClient(callback) {
     type: 'fromClient',
     runOn: {
       server: 'ssr', // indicates to the router that this handler should only be run on the server when returning html (and not when returning json)
-      client: true,
+      client: true
     },
-    fn,
+    fn
   }
 }

@@ -21,24 +21,24 @@ describe('Server', () => {
     exported = {}
     Helmet.canUseDOM = false // otherwise Helmet throws an error about calling rewind on the client
     App = () => <div>App</div>
-    model = AppModelBase, 
+    model = AppModelBase
     router = new Router().get('/test', fromServer(() => ({ page: 'Test' })))
     theme = createTheme()
     blob = {}
-    global.__webpack_hash__ = '0.0.0'
+    global.__build_timestamp__ = new Date().getTime().toString()
     global.sendResponse = jest.fn()
     global.requestBody = ''
-    global.$ = $,
+    global.$ = $
     global.fns = {
-      export: (key, value) => exported[key] = value,
-      init$:  html => ({ $: $.load(html) })
+      export: (key, value) => (exported[key] = value),
+      init$: html => ({ $: $.load(html) })
     }
     global.env = {
       node_env: 'production',
       requestBody: '',
-      headers: JSON.stringify({}), 
-      path: '/test', 
-      method: 'get', 
+      headers: JSON.stringify({}),
+      path: '/test',
+      method: 'get',
       host: 'moovweb.com:80',
       host_no_port: 'moovweb.com',
       secure: true
@@ -59,7 +59,6 @@ describe('Server', () => {
     it('should send an html response', async () => {
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
-      expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('text/html')
     })
 
@@ -86,13 +85,13 @@ describe('Server', () => {
       request = new Request()
       response = new Response(request)
 
-      const router = new Router()
-        .get('/test', 
-          fromServer((params, request, response) => {
-            response.set('content-type', 'application/foo')
-            return { page: 'Test' }
-          })
-        )
+      const router = new Router().get(
+        '/test',
+        fromServer((params, request, response) => {
+          response.set('content-type', 'application/foo')
+          return { page: 'Test' }
+        })
+      )
 
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
@@ -103,7 +102,6 @@ describe('Server', () => {
       global.env.path = '/test.amp'
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       expect(global.sendResponse).toBeCalled()
-      expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
     })
 
     it('should send a json response if the path ends with .json', async () => {
@@ -113,7 +111,6 @@ describe('Server', () => {
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const body = JSON.parse(global.sendResponse.mock.calls[0][0].body)
       expect(body.page).toBe('Test')
-      expect(exported.MOOV_PWA_RESPONSE.headers['x-rsf-track-cache-hit']).toBe('true')
     })
 
     it('should catch errors and render the error view', async () => {
@@ -139,29 +136,33 @@ describe('Server', () => {
     })
 
     it('should not do SSR when the response has already been sent', async () => {
-      router = new Router()
-        .get('/test', 
-          fromServer((params, request, response) => {
-            response.send(JSON.stringify({ foo: 'bar' }))
-          })
-        )
-        
+      router = new Router().get(
+        '/test',
+        fromServer((params, request, response) => {
+          response.send(JSON.stringify({ foo: 'bar' }))
+        })
+      )
+
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
-      expect(global.sendResponse).toBeCalledWith({ body: JSON.stringify({ foo: "bar" }), htmlparsed: true })
+      expect(global.sendResponse).toBeCalledWith({
+        body: JSON.stringify({ foo: 'bar' }),
+        htmlparsed: true
+      })
       expect(global.sendResponse.mock.calls.length).toBe(1)
     })
 
     it('should allow the user to override the viewport', async () => {
-      const viewport = 'width=device-width, initial-scale=.5, maximum-scale=12.0, minimum-scale=.25, user-scalable=yes'
+      const viewport =
+        'width=device-width, initial-scale=.5, maximum-scale=12.0, minimum-scale=.25, user-scalable=yes'
 
       const App = () => (
         <PWA>
           <Helmet>
-            <meta name="viewport" content={viewport}/>
+            <meta name="viewport" content={viewport} />
           </Helmet>
         </PWA>
       )
-  
+
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const data = global.sendResponse.mock.calls[0][0]
       expect($.load(data.body)('meta[name=viewport]').attr('content')).toBe(viewport)
@@ -183,7 +184,10 @@ describe('Server', () => {
         return body
       }
 
-      await new Server({ theme, model, router, blob, globals, App, transform }).serve(request, response)
+      await new Server({ theme, model, router, blob, globals, App, transform }).serve(
+        request,
+        response
+      )
       const data = global.sendResponse.mock.calls[0][0]
 
       expect(data).toEqual({ body, htmlparsed: true })

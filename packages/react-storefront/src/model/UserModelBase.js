@@ -5,7 +5,7 @@
 import { types } from 'mobx-state-tree'
 
 const UserModelBase = types.model('UserModelBase', {
-  email: types.maybeNull(types.string),
+  email: types.maybeNull(types.string)
 })
 
 export default UserModelBase
