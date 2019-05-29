@@ -23,8 +23,9 @@ export default class Server {
    * @param {Router} config.router An instance of moov_router's Router class
    * @param {Boolean} [config.deferScripts=true] Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
    * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
+   * @param {Function} errorReporter A function to call when an error occurs so that it can be logged
    */
-  constructor({ theme, model, App, router, deferScripts = true, transform }) {
+  constructor({ theme, model, App, router, deferScripts = true, transform, errorReporter }) {
     console.error = console.warn = console.log
 
     Object.assign(this, {
@@ -33,7 +34,8 @@ export default class Server {
       App,
       router,
       deferScripts,
-      transform
+      transform,
+      errorReporter
     })
   }
 
@@ -50,6 +52,7 @@ export default class Server {
 
     try {
       const state = await this.router.runAll(request, response)
+
       if (!state.proxyUpstream && !response.headersSent) {
         await this.renderPWA({ request, response, state })
       }
@@ -74,6 +77,16 @@ export default class Server {
   }
 
   /**
+   * Renders the specified state as a JSON response.
+   */
+  renderJSON(state, response) {
+    if (state.error) {
+      this.errorReporter({ message: state.error, stack: state.stack })
+    }
+    return response.send(JSON.stringify(state))
+  }
+
+  /**
    * Renders either a JSON or HTML response for the given state based on the path suffix.
    * @param {Object} options
    * @param {Object} options.request The current request object
@@ -89,7 +102,7 @@ export default class Server {
     this.setContentType(request, response)
 
     if (path.endsWith('.json')) {
-      return response.send(JSON.stringify(state))
+      this.renderJSON(state, response)
     }
 
     const amp = path.endsWith('.amp')
@@ -116,7 +129,7 @@ export default class Server {
 
       let html = renderHtml({
         component: (
-          <PWA>
+          <PWA errorReporter={this.errorReporter}>
             <App />
           </PWA>
         ),

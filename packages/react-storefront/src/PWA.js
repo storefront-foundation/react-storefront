@@ -14,6 +14,7 @@ import { isSafari } from './utils/browser'
 import { connectReduxDevtools } from 'mst-middlewares'
 import { onSnapshot } from 'mobx-state-tree'
 import debounce from 'lodash/debounce'
+import ErrorReporter from './ErrorReporter'
 
 /**
  * @private
@@ -41,11 +42,12 @@ export default class PWA extends Component {
   _nextId = 0
 
   render() {
-    const { amp, app } = this.props
+    const { amp, app, errorReporter } = this.props
 
     return (
       <Provider nextId={this.nextId}>
         <Fragment>
+          <ErrorReporter onError={errorReporter} />
           <CssBaseline />
           <Helmet>
             <html lang="en" />

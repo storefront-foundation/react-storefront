@@ -387,6 +387,42 @@ describe('PWA', () => {
     })
   })
 
+  describe('errorReporter', () => {
+    it('should be called when an error occurs during rendering', () => {
+      const errorReporter = jest.fn()
+      const error = new Error('test')
+
+      const ThrowError = () => {
+        throw error
+      }
+
+      mount(
+        <Provider history={history} app={app} router={router}>
+          <PWA errorReporter={errorReporter}>
+            <ThrowError />
+          </PWA>
+        </Provider>
+      )
+
+      expect(errorReporter).toHaveBeenCalledWith(error)
+    })
+
+    it('should be called when an error state is rendered', () => {
+      const errorReporter = jest.fn()
+      const error = new Error('test')
+      const errorObj = { message: error.message, stack: error.stack }
+      const app = AppModelBase.create({ location, ...errorObj })
+
+      mount(
+        <Provider history={history} app={app} router={router}>
+          <PWA errorReporter={errorReporter} />
+        </Provider>
+      )
+
+      expect(errorReporter).toHaveBeenCalledWith(errorObj)
+    })
+  })
+
   afterEach(() => jest.resetAllMocks())
   afterAll(() => jest.unmock('../src/router/serviceWorker'))
 })

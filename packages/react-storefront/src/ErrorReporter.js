@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer, disposeOnUnmount } from 'mobx-react'
 import { reaction } from 'mobx'
+import { isServer } from './environment'
 
 /**
  * Use this component to report errors to the error logging service of your choice.
