@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.23.1
+
+- Rolled back optimization to exclude AMP components in the client build that was added in 6.23.0 as it was causing issues in some apps.
+
 ### 6.23.0
 
 - You can now pass options to control how Router's `applySearch` function stringifies params. For example, `router.applySearch({ colors: ['red', 'green'] }, { arrayFormat: 'brackets' })`

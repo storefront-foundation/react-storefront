@@ -213,7 +213,7 @@ module.exports = {
             to: path.join(root, 'build', 'assets')
           }
         ]),
-        new webpack.IgnorePlugin(/Amp/),
+        // new webpack.IgnorePlugin(/Amp/),
         ...additionalPlugins,
         ...createServiceWorkerPlugins({
           root,
