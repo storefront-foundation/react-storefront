@@ -142,8 +142,6 @@ export default class PWA extends Component {
       cache(path, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
     }
 
-    this.handleRejections()
-
     if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
       connectReduxDevtools(require('remotedev'), app)
     }
@@ -180,14 +178,6 @@ export default class PWA extends Component {
 
     // record the initial state so that if the user comes back to the initial landing page the app state will be restored correctly.
     recordState(app.toJSON())
-  }
-
-  /**
-   * When an unhandled rejection occurs, store the error in app state so it
-   * can be displayed to the developer.
-   */
-  handleRejections() {
-    window.addEventListener('unhandledrejection', event => this.props.app.onError(event.reason))
   }
 
   /**

@@ -25,6 +25,23 @@ export default class ErrorBoundary extends Component {
     onError: Function.prototype
   }
 
+  componentDidMount() {
+    const { app, history, onError } = this.props
+
+    this.windowErrorEvent = window.addEventListener('error', event => {
+      onError({ error: event.error, history, app })
+    })
+
+    this.windowUnhandledRejectionEvent = window.addEventListener('unhandledrejection', event => {
+      onError({ error: event.reason, history, app })
+    })
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('error', this.windowErrorEvent)
+    window.removeEventListener('unhandledrejection', this.windowUnhandledRejectionEvent)
+  }
+
   /**
    * When an error is caught, call the error reporter and update the app state
    * @param {Error} error
@@ -43,7 +60,8 @@ export default class ErrorBoundary extends Component {
       stack: info.componentStack
     })
 
-    // this is needed to recover from the error and render the error view
+    // this is needed to recover from the error and render the error view since we're
+    // not actually observing anything on the state tree in this component.
     this.forceUpdate()
   }
 

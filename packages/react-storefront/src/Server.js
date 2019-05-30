@@ -60,26 +60,26 @@ export default class Server {
       return response.json(this.router.routes.map(route => route.path.spec))
     }
 
-    try {
-      this.router.on('error', this.reportError)
-      this.state = await this.router.runAll(request, response)
+    let state
 
-      if (!this.state.proxyUpstream && !response.headersSent) {
-        await this.renderPWA({ request, response })
+    const reportError = error => {
+      this.errorReporter({ error, history: this.history, app: state })
+    }
+
+    try {
+      this.router.on('error', reportError)
+      state = await this.router.runAll(request, response)
+
+      if (!state.proxyUpstream && !response.headersSent) {
+        await this.renderPWA({ request, response, state })
       }
     } catch (e) {
-      this.reportError(e)
+      reportError(e)
       await this.renderError(e, request, response)
     } finally {
       this.router.off('error', this.errorReporter)
       delete this.history
-      delete this.state
     }
-  }
-
-  reportError = error => {
-    const { history, state } = this
-    this.errorReporter({ error, history, app: state })
   }
 
   /**
@@ -104,11 +104,11 @@ export default class Server {
    * @param {Response} options.response The current response object
    * @return The html for app
    */
-  async renderPWA({ request, response }) {
+  async renderPWA({ request, response, state }) {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { App, theme, history, state } = this
+    const { App, theme, history } = this
     const { protocol, hostname, port, path } = request
     this.setContentType(request, response)
 
