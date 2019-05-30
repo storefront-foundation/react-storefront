@@ -54,7 +54,7 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    this.history = createMemoryHistory({ initialEntries: [request.path + request.search] })
+    const history = createMemoryHistory({ initialEntries: [request.path + request.search] })
 
     if (request.headers[ROUTES]) {
       return response.json(this.router.routes.map(route => route.path.spec))
@@ -63,7 +63,7 @@ export default class Server {
     let state
 
     const reportError = error => {
-      this.errorReporter({ error, history: this.history, app: state })
+      this.errorReporter({ error, history, app: state })
     }
 
     try {
@@ -71,14 +71,13 @@ export default class Server {
       state = await this.router.runAll(request, response)
 
       if (!state.proxyUpstream && !response.headersSent) {
-        await this.renderPWA({ request, response, state })
+        await this.renderPWA({ request, response, state, history })
       }
     } catch (e) {
       reportError(e)
       await this.renderError(e, request, response)
     } finally {
       this.router.off('error', this.errorReporter)
-      delete this.history
     }
   }
 
@@ -102,13 +101,15 @@ export default class Server {
    * @param {Object} options
    * @param {Object} options.request The current request object
    * @param {Response} options.response The current response object
+   * @param {Object} options.state The app state
+   * @param {Object} options.history The js history object
    * @return The html for app
    */
-  async renderPWA({ request, response, state }) {
+  async renderPWA({ request, response, state, history }) {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { App, theme, history } = this
+    const { App, theme } = this
     const { protocol, hostname, port, path } = request
     this.setContentType(request, response)
 
