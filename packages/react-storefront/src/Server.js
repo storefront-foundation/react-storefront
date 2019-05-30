@@ -75,7 +75,7 @@ export default class Server {
       }
     } catch (e) {
       reportError(e)
-      await this.renderError(e, request, response)
+      await this.renderError(e, request, response, history)
     } finally {
       this.router.off('error', this.errorReporter)
     }
@@ -212,7 +212,7 @@ export default class Server {
    * @param {Request} request
    * @param {Response} response
    */
-  renderError(e, request, response) {
+  renderError(e, request, response, history) {
     response.status(500, 'error')
 
     const state = {
@@ -228,7 +228,8 @@ export default class Server {
     this.renderPWA({
       request,
       response,
-      state
+      state,
+      history
     })
   }
 
