@@ -1,4 +1,5 @@
 const merge = require('lodash/merge')
+const TerserPlugin = require('terser-webpack-plugin')
 
 /**
  * Creates the webpack optimization config for production and development builds.
