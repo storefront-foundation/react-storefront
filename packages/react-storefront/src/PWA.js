@@ -45,7 +45,7 @@ export default class PWA extends Component {
     const { amp, app, errorReporter } = this.props
 
     return (
-      <Provider nextId={this.nextId}>
+      <Provider nextId={this.nextId} errorReporter={errorReporter}>
         <ErrorBoundary onError={errorReporter}>
           <Fragment>
             <CssBaseline />

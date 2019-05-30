@@ -6,7 +6,7 @@ jest.mock('../src/router/serviceWorker')
 
 import React from 'react'
 import { mount } from 'enzyme'
-import { Provider } from 'mobx-react'
+import { Provider, inject } from 'mobx-react'
 import AppModelBase from '../src/model/AppModelBase'
 import PWA from '../src/PWA'
 import simulant from 'simulant'
@@ -371,10 +371,14 @@ describe('PWA', () => {
   })
 
   describe('error handling', () => {
-    it('should call the errorReporter when an error occurs during rendering', () => {
-      const errorReporter = jest.fn()
-      const error = new Error()
+    let error, errorReporter
 
+    beforeEach(() => {
+      errorReporter = jest.fn()
+      error = new Error()
+    })
+
+    it('should call the errorReporter when an error occurs during rendering', () => {
       let thrown = false
 
       const ThrowError = () => {
@@ -399,6 +403,25 @@ describe('PWA', () => {
         app: expect.anything(),
         history: expect.anything()
       })
+    })
+
+    it('should provide the errorReporter on the context', () => {
+      let provided
+
+      const Test = inject('errorReporter')(function({ errorReporter }) {
+        provided = errorReporter
+        return null
+      })
+
+      mount(
+        <TestProvider>
+          <PWA errorReporter={errorReporter}>
+            <Test />
+          </PWA>
+        </TestProvider>
+      )
+
+      expect(provided).toBe(errorReporter)
     })
   })
 
