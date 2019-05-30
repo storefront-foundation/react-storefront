@@ -6,23 +6,27 @@ exports[`PWA should render amp-install-service worker when amp==true 1`] = `
     <inject-PWA classes={{...}}>
       <PWA classes={{...}} menu={{...}} app={{...}} history={{...}} router={[undefined]} amp={true}>
         <Provider nextId={[Function]}>
-          <WithStyles(CssBaseline)>
-            <CssBaseline classes={{...}} />
-          </WithStyles(CssBaseline)>
-          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}}>
-              <NullComponent defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}} />
-            </SideEffect(NullComponent)>
-          </HelmetWrapper>
-          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
-              <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
-            </SideEffect(NullComponent)>
-          </HelmetWrapper>
-          <amp-install-serviceworker src="https://localhost/service-worker.js" data-iframe-src="https://localhost/pwa/install-service-worker.html" layout="nodisplay" />
-          <div>
-            Foo
-          </div>
+          <inject-ErrorBoundary-with-app-history onError={[undefined]}>
+            <ErrorBoundary onError={[Function]} app={{...}} history={{...}}>
+              <WithStyles(CssBaseline)>
+                <CssBaseline classes={{...}} />
+              </WithStyles(CssBaseline)>
+              <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}}>
+                  <NullComponent defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}} />
+                </SideEffect(NullComponent)>
+              </HelmetWrapper>
+              <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                  <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+                </SideEffect(NullComponent)>
+              </HelmetWrapper>
+              <amp-install-serviceworker src="https://localhost/service-worker.js" data-iframe-src="https://localhost/pwa/install-service-worker.html" layout="nodisplay" />
+              <div>
+                Foo
+              </div>
+            </ErrorBoundary>
+          </inject-ErrorBoundary-with-app-history>
         </Provider>
       </PWA>
     </inject-PWA>
@@ -36,17 +40,21 @@ exports[`PWA should render children 1`] = `
     <inject-PWA classes={{...}}>
       <PWA classes={{...}} menu={{...}} app={{...}} history={{...}} router={[undefined]} amp={false}>
         <Provider nextId={[Function]}>
-          <WithStyles(CssBaseline)>
-            <CssBaseline classes={{...}} />
-          </WithStyles(CssBaseline)>
-          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}}>
-              <NullComponent defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}} />
-            </SideEffect(NullComponent)>
-          </HelmetWrapper>
-          <div>
-            foo
-          </div>
+          <inject-ErrorBoundary-with-app-history onError={[undefined]}>
+            <ErrorBoundary onError={[Function]} app={{...}} history={{...}}>
+              <WithStyles(CssBaseline)>
+                <CssBaseline classes={{...}} />
+              </WithStyles(CssBaseline)>
+              <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}}>
+                  <NullComponent defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}} />
+                </SideEffect(NullComponent)>
+              </HelmetWrapper>
+              <div>
+                foo
+              </div>
+            </ErrorBoundary>
+          </inject-ErrorBoundary-with-app-history>
         </Provider>
       </PWA>
     </inject-PWA>

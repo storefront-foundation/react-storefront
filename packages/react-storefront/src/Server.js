@@ -25,7 +25,15 @@ export default class Server {
    * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
    * @param {Function} errorReporter A function to call when an error occurs so that it can be logged
    */
-  constructor({ theme, model, App, router, deferScripts = true, transform, errorReporter }) {
+  constructor({
+    theme,
+    model,
+    App,
+    router,
+    deferScripts = true,
+    transform,
+    errorReporter = Function.prototype
+  }) {
     console.error = console.warn = console.log
 
     Object.assign(this, {
@@ -46,19 +54,32 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
+    this.history = createMemoryHistory({ initialEntries: [request.path + request.search] })
+
     if (request.headers[ROUTES]) {
       return response.json(this.router.routes.map(route => route.path.spec))
     }
 
     try {
-      const state = await this.router.runAll(request, response)
+      this.router.on('error', this.reportError)
+      this.state = await this.router.runAll(request, response)
 
-      if (!state.proxyUpstream && !response.headersSent) {
-        await this.renderPWA({ request, response, state })
+      if (!this.state.proxyUpstream && !response.headersSent) {
+        await this.renderPWA({ request, response })
       }
     } catch (e) {
+      this.reportError(e)
       await this.renderError(e, request, response)
+    } finally {
+      this.router.off('error', this.errorReporter)
+      delete this.history
+      delete this.state
     }
+  }
+
+  reportError = error => {
+    const { history, state } = this
+    this.errorReporter({ error, history, app: state })
   }
 
   /**
@@ -77,38 +98,26 @@ export default class Server {
   }
 
   /**
-   * Renders the specified state as a JSON response.
-   */
-  renderJSON(state, response) {
-    if (state.error) {
-      this.errorReporter({ message: state.error, stack: state.stack })
-    }
-    return response.send(JSON.stringify(state))
-  }
-
-  /**
    * Renders either a JSON or HTML response for the given state based on the path suffix.
    * @param {Object} options
    * @param {Object} options.request The current request object
    * @param {Response} options.response The current response object
-   * @param {Object} options.state The root react element
    * @return The html for app
    */
-  async renderPWA({ request, response, state }) {
+  async renderPWA({ request, response }) {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { protocol, hostname, port, path, search } = request
+    const { App, theme, history, state } = this
+    const { protocol, hostname, port, path } = request
     this.setContentType(request, response)
 
     if (path.endsWith('.json')) {
-      this.renderJSON(state, response)
+      return response.send(JSON.stringify(state))
     }
 
     const amp = path.endsWith('.amp')
-    const { App, theme } = this
     const sheetsRegistry = new SheetsRegistry()
-    const history = createMemoryHistory({ initialEntries: [path + search] })
 
     const model = this.model.create({
       ...state,
@@ -129,7 +138,7 @@ export default class Server {
 
       let html = renderHtml({
         component: (
-          <PWA errorReporter={this.errorReporter}>
+          <PWA>
             <App />
           </PWA>
         ),

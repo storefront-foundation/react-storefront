@@ -14,7 +14,7 @@ import { isSafari } from './utils/browser'
 import { connectReduxDevtools } from 'mst-middlewares'
 import { onSnapshot } from 'mobx-state-tree'
 import debounce from 'lodash/debounce'
-import ErrorReporter from './ErrorReporter'
+import ErrorBoundary from './ErrorBoundary'
 
 /**
  * @private
@@ -46,57 +46,48 @@ export default class PWA extends Component {
 
     return (
       <Provider nextId={this.nextId}>
-        <Fragment>
-          <ErrorReporter onError={errorReporter} />
-          <CssBaseline />
-          <Helmet>
-            <html lang="en" />
-            <meta charset="utf-8" />
-            <meta
-              name="viewport"
-              content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
-            />
-            <meta name="theme-color" content="#000000" />
-            {app.description ? <meta name="description" content={app.description} /> : null}
-            {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
-            <link rel="manifest" href="/manifest.json" />
-            <title>{app.title}</title>
-          </Helmet>
-          {amp && (
+        <ErrorBoundary onError={errorReporter}>
+          <Fragment>
+            <CssBaseline />
             <Helmet>
-              <script async src="https://cdn.ampproject.org/v0.js" />
-              <script
-                async
-                custom-element="amp-install-serviceworker"
-                src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
+              <html lang="en" />
+              <meta charset="utf-8" />
+              <meta
+                name="viewport"
+                content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
               />
+              <meta name="theme-color" content="#000000" />
+              {app.description ? <meta name="description" content={app.description} /> : null}
+              {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
+              <link rel="manifest" href="/manifest.json" />
+              <title>{app.title}</title>
             </Helmet>
-          )}
-          {amp && (
-            <amp-install-serviceworker
-              src={`${app.location.urlBase}/service-worker.js`}
-              data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
-              layout="nodisplay"
-            />
-          )}
-          {this.props.children}
-        </Fragment>
+            {amp && (
+              <Helmet>
+                <script async src="https://cdn.ampproject.org/v0.js" />
+                <script
+                  async
+                  custom-element="amp-install-serviceworker"
+                  src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
+                />
+              </Helmet>
+            )}
+            {amp && (
+              <amp-install-serviceworker
+                src={`${app.location.urlBase}/service-worker.js`}
+                data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
+                layout="nodisplay"
+              />
+            )}
+            {this.props.children}
+          </Fragment>
+        </ErrorBoundary>
       </Provider>
     )
   }
 
   nextId = () => {
     return this._nextId++
-  }
-
-  componentDidCatch(error, info) {
-    const { app } = this.props
-
-    app.applyState({
-      page: 'Error',
-      error: error.message,
-      stack: info.componentStack
-    })
   }
 
   componentDidMount() {

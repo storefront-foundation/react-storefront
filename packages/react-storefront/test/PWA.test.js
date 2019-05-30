@@ -14,6 +14,7 @@ import { clearTestCache } from '../src/utils/browser'
 import { Router, proxyUpstream } from '../src/router'
 import { createMemoryHistory } from 'history'
 import * as serviceWorker from '../src/router/serviceWorker'
+import TestProvider from './TestProvider'
 
 describe('PWA', () => {
   let history, app, userAgent, location
@@ -258,24 +259,6 @@ describe('PWA', () => {
     expect(document.body.classList.contains('moov-safari')).toBe(false)
   })
 
-  it('should catch errors during rendering and display the error view', () => {
-    const RenderError = () => {
-      throw new Error('Error during rendering')
-    }
-
-    mount(
-      <Provider history={history} app={app}>
-        <PWA>
-          <RenderError />
-        </PWA>
-      </Provider>
-    )
-
-    expect(app.error).toBe('Error during rendering')
-    expect(app.stack).not.toBeNull()
-    expect(app.page).toBe('Error')
-  })
-
   it('should record app state in history.state', done => {
     mount(
       <Provider history={history} app={app}>
@@ -387,39 +370,35 @@ describe('PWA', () => {
     })
   })
 
-  describe('errorReporter', () => {
-    it('should be called when an error occurs during rendering', () => {
+  describe('error handling', () => {
+    it('should call the errorReporter when an error occurs during rendering', () => {
       const errorReporter = jest.fn()
-      const error = new Error('test')
+      const error = new Error()
+
+      let thrown = false
 
       const ThrowError = () => {
-        throw error
+        if (thrown) {
+          return <div />
+        } else {
+          thrown = true
+          throw error
+        }
       }
 
       mount(
-        <Provider history={history} app={app} router={router}>
+        <TestProvider>
           <PWA errorReporter={errorReporter}>
             <ThrowError />
           </PWA>
-        </Provider>
+        </TestProvider>
       )
 
-      expect(errorReporter).toHaveBeenCalledWith(error)
-    })
-
-    it('should be called when an error state is rendered', () => {
-      const errorReporter = jest.fn()
-      const error = new Error('test')
-      const errorObj = { message: error.message, stack: error.stack }
-      const app = AppModelBase.create({ location, ...errorObj })
-
-      mount(
-        <Provider history={history} app={app} router={router}>
-          <PWA errorReporter={errorReporter} />
-        </Provider>
-      )
-
-      expect(errorReporter).toHaveBeenCalledWith(errorObj)
+      expect(errorReporter).toHaveBeenCalledWith({
+        error,
+        app: expect.anything(),
+        history: expect.anything()
+      })
     })
   })
 
