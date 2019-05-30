@@ -18,7 +18,7 @@ import createGenerateClassName from './utils/createGenerateClassName'
 const getSanitizedModelJson = state => sanitizeJsonForScript(state.toJSON())
 
 // Escape <\ in a closing script tag to avoid untimely script closing
-const sanitizeJsonForScript = state => JSON.stringify(state).replace(/<\/script/gi, '<\\/script')
+const sanitizeJsonForScript = state => JSON.stringify(state || {}).replace(/<\/script/gi, '<\\/script')
 
 /**
  * Get javascript asset filename by chunk name
