@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.24.0
+
+- Added support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
+- Added a `withPersonalization` HOC and `usePersonalization` hook for late loading personalized data.
+
 ### 6.23.1
 
 - Rolled back optimization to exclude AMP components in the client build that was added in 6.23.0 as it was causing issues in some apps.
