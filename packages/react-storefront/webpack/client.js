@@ -103,6 +103,8 @@ module.exports = {
       )
     }
 
+    const openBrowser = (process.env.OPEN_BROWSER || 'true').toLowerCase() === 'true'
+
     return ({ url = 'http://localhost:8080' } = {}) =>
       Object.assign(createClientConfig(root, { entries, alias }), {
         devtool: 'inline-cheap-module-source-map',
@@ -120,7 +122,7 @@ module.exports = {
             'process.env.MOOV_ENV': JSON.stringify('development'),
             'process.env.MOOV_SW': JSON.stringify(process.env.MOOV_SW)
           }),
-          new OpenBrowserPlugin({ url, ignoreErrors: true }),
+          ...(openBrowser ? [new OpenBrowserPlugin({ url, ignoreErrors: true })] : []),
           new WriteFilePlugin(),
           new CopyPlugin([
             {
