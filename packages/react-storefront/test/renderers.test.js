@@ -35,5 +35,23 @@ describe('renderers', () => {
         ).replace(/\s/g, '')
       )
     })
+
+    it('should not throw an error when rendering a null route result', () => {
+      const result = renderInitialStateScript({
+        state: { toJSON: () => ({ initialState: true }) },
+        routeData: null,
+        initialStateProperty: 'state',
+        initialRouteDataProperty: 'routeData'
+      })
+
+      expect(result.replace(/\s/g, '')).toEqual(
+        (
+          '<script type="text/javascript">' +
+          'window.state=Object.freeze({"initialState":true})' +
+          'window.routeData=Object.freeze({})' +
+          '</script>'
+        ).replace(/\s/g, '')
+      )
+    })
   })
 })
