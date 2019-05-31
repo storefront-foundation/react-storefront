@@ -4,7 +4,6 @@
  */
 import { useEffect, useContext } from 'react'
 import AppContext from '../AppContext'
-import { PageContext } from '../Pages'
 import { reaction } from 'mobx'
 
 /**
@@ -16,16 +15,24 @@ import { reaction } from 'mobx'
  */
 export default function usePersonalization(branch) {
   const { app } = useContext(AppContext)
-  const page = useContext(PageContext)
 
   const loadPersonalization = ready => {
-    if (ready) {
-      app[branch].loadPersonalization()
+    const model = app[branch]
+
+    if (model == null) {
+      return
+    } else if (model.loadPersonalization) {
+      if (ready) {
+        model.loadPersonalization()
+      }
+    } else {
+      console.warn(
+        `The model at ${branch} does not implement loadPersonalization.  You should implement this action so that usePersonalization/withPersonalization can load personalized data from the server.`
+      )
     }
   }
 
-  const shouldFetchPersonalization = () =>
-    !app.loading && (app[branch] && app[branch].id) && app.page === page
+  const shouldFetchPersonalization = () => !app.loading && app[branch]
 
   useEffect(() => {
     // check if we should load personalization data immediately as is the case if

@@ -31,9 +31,7 @@ describe('withPersonalization', () => {
 
     Test = ({ app }) => (
       <AppContext.Provider value={{ app }}>
-        <PageContext.Provider value="Product">
-          <Comp />
-        </PageContext.Provider>
+        <Comp />
       </AppContext.Provider>
     )
   })
@@ -59,21 +57,6 @@ describe('withPersonalization', () => {
     mount(<Test app={app} />)
 
     app.applyState({
-      product: {
-        id: '1'
-      }
-    })
-
-    expect(loadPersonalization).not.toHaveBeenCalled()
-  })
-
-  it('should not fire if the model changes and we are not on the right page', () => {
-    const app = AppModel.create({ loading: true, page: 'Home' })
-
-    mount(<Test app={app} />)
-
-    app.applyState({
-      loading: false,
       product: {
         id: '1'
       }

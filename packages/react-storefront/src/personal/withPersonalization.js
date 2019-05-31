@@ -6,8 +6,10 @@ import React from 'react'
 import usePersonalization from './usePersonalization'
 
 /**
- * Provides the `usePersonalization` hook as a HOC/decorator.
- * @param {String} branch
+ * Provides the `usePersonalization` hook as a HOC/decorator. Use this if you're using classes,
+ * use `usePersonalization` if you're using function components.
+ * @param {String} branch The name of the branch in the app state tree.  For example "product" or "category".
+ * @return {Function}
  */
 const withPersonalization = branch => WrappedComponent => props => {
   usePersonalization(branch)

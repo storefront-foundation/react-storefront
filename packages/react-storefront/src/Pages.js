@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import React, { Component, createContext } from 'react'
+import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import LoadMask from './LoadMask'
@@ -11,8 +11,6 @@ import universal from 'react-universal-component'
 import Container from './Container'
 import Row from './Row'
 import red from '@material-ui/core/colors/red'
-
-export const PageContext = createContext()
 
 export const styles = theme => ({
   root: {
@@ -120,13 +118,11 @@ export default class Pages extends Component {
     if (Comp) {
       this.cache[page] = {
         element: (
-          <PageContext.Provider value={page}>
-            <Comp
-              key={page}
-              onBefore={this.onStartLoadingComponent}
-              onAfter={this.onEndLoadingComponent}
-            />
-          </PageContext.Provider>
+          <Comp
+            key={page}
+            onBefore={this.onStartLoadingComponent}
+            onAfter={this.onEndLoadingComponent}
+          />
         )
       }
     }
