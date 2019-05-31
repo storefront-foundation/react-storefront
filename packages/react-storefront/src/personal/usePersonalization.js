@@ -24,12 +24,16 @@ export default function usePersonalization(branch) {
     }
   }
 
-  const isReady = () => {
-    return !app.loading && (app[branch] && app[branch].id) && app.page === page
-  }
+  const shouldFetchPersonalization = () =>
+    !app.loading && (app[branch] && app[branch].id) && app.page === page
 
   useEffect(() => {
-    loadPersonalization(isReady())
-    return reaction(isReady, loadPersonalization)
+    // check if we should load personalization data immediately as is the case if
+    // the user initially lands on a page with usePersonalization
+    loadPersonalization(shouldFetchPersonalization())
+
+    // it is critical that we return the reaction disposer here (returned by reaction)
+    // so that the reaction is disposed when the component unmounts
+    return reaction(shouldFetchPersonalization, loadPersonalization)
   }, [])
 }
