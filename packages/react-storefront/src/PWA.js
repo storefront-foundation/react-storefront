@@ -45,49 +45,46 @@ export default class PWA extends Component {
     super()
     this.appContextValue = { app, history, router, errorReporter }
   }
-
   render() {
     const { amp, app } = this.props
 
     return (
       <AppContext.Provider value={this.appContextValue}>
-        <Provider nextId={this.nextId} errorReporter={errorReporter}>
-          <ErrorBoundary onError={errorReporter}>
-            <Fragment>
-              <CssBaseline />
+        <Provider nextId={this.nextId}>
+          <Fragment>
+            <CssBaseline />
+            <Helmet>
+              <html lang="en" />
+              <meta charset="utf-8" />
+              <meta
+                name="viewport"
+                content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
+              />
+              <meta name="theme-color" content="#000000" />
+              {app.description ? <meta name="description" content={app.description} /> : null}
+              {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
+              <link rel="manifest" href="/manifest.json" />
+              <title>{app.title}</title>
+            </Helmet>
+            {amp && (
               <Helmet>
-                <html lang="en" />
-                <meta charset="utf-8" />
-                <meta
-                  name="viewport"
-                  content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
+                <script async src="https://cdn.ampproject.org/v0.js" />
+                <script
+                  async
+                  custom-element="amp-install-serviceworker"
+                  src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
                 />
-                <meta name="theme-color" content="#000000" />
-                {app.description ? <meta name="description" content={app.description} /> : null}
-                {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
-                <link rel="manifest" href="/manifest.json" />
-                <title>{app.title}</title>
               </Helmet>
-              {amp && (
-                <Helmet>
-                  <script async src="https://cdn.ampproject.org/v0.js" />
-                  <script
-                    async
-                    custom-element="amp-install-serviceworker"
-                    src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
-                  />
-                </Helmet>
-              )}
-              {amp && (
-                <amp-install-serviceworker
-                  src={`${app.location.urlBase}/service-worker.js`}
-                  data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
-                  layout="nodisplay"
-                />
-              )}
-              {this.props.children}
-            </Fragment>
-          </ErrorBoundary>
+            )}
+            {amp && (
+              <amp-install-serviceworker
+                src={`${app.location.urlBase}/service-worker.js`}
+                data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
+                layout="nodisplay"
+              />
+            )}
+            {this.props.children}
+          </Fragment>
         </Provider>
       </AppContext.Provider>
     )
