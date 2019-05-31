@@ -76,8 +76,9 @@ yarn release
 
 ### 6.24.0
 
-- You can now use the OPEN_BROWSER environment variable to control
+- You can now use the `OPEN_BROWSER` environment variable to control
   whether or not the browser opens after starting in development mode
+- Added universal error reporting with the new `errorReporter` config on both `react-storefront/launchClient` and `react-storefront-moov-xdn/index`.
 
 ### 6.23.1
 
