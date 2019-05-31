@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.24.1
+
+- Rerelease of 6.24.1 due to a botched build.
+
 ### 6.24.0
 
 - You can now specify webpack `optimization` options in the client build config.
