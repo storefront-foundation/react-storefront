@@ -6,7 +6,7 @@ jest.mock('../src/router/serviceWorker')
 
 import React from 'react'
 import { mount } from 'enzyme'
-import { Provider } from 'mobx-react'
+import { Provider, inject } from 'mobx-react'
 import AppModelBase from '../src/model/AppModelBase'
 import PWA from '../src/PWA'
 import simulant from 'simulant'
@@ -14,6 +14,7 @@ import { clearTestCache } from '../src/utils/browser'
 import { Router, proxyUpstream } from '../src/router'
 import { createMemoryHistory } from 'history'
 import * as serviceWorker from '../src/router/serviceWorker'
+import TestProvider from './TestProvider'
 
 describe('PWA', () => {
   let history, app, userAgent, location
@@ -258,24 +259,6 @@ describe('PWA', () => {
     expect(document.body.classList.contains('moov-safari')).toBe(false)
   })
 
-  it('should catch errors during rendering and display the error view', () => {
-    const RenderError = () => {
-      throw new Error('Error during rendering')
-    }
-
-    mount(
-      <Provider history={history} app={app}>
-        <PWA>
-          <RenderError />
-        </PWA>
-      </Provider>
-    )
-
-    expect(app.error).toBe('Error during rendering')
-    expect(app.stack).not.toBeNull()
-    expect(app.page).toBe('Error')
-  })
-
   it('should record app state in history.state', done => {
     mount(
       <Provider history={history} app={app}>
@@ -384,6 +367,61 @@ describe('PWA', () => {
       )
 
       expect(serviceWorker.cache).not.toHaveBeenCalledWith('/.app-shell')
+    })
+  })
+
+  describe('error handling', () => {
+    let error, errorReporter
+
+    beforeEach(() => {
+      errorReporter = jest.fn()
+      error = new Error()
+    })
+
+    it('should call the errorReporter when an error occurs during rendering', () => {
+      let thrown = false
+
+      const ThrowError = () => {
+        if (thrown) {
+          return <div />
+        } else {
+          thrown = true
+          throw error
+        }
+      }
+
+      mount(
+        <TestProvider>
+          <PWA errorReporter={errorReporter}>
+            <ThrowError />
+          </PWA>
+        </TestProvider>
+      )
+
+      expect(errorReporter).toHaveBeenCalledWith({
+        error,
+        app: expect.anything(),
+        history: expect.anything()
+      })
+    })
+
+    it('should provide the errorReporter on the context', () => {
+      let provided
+
+      const Test = inject('errorReporter')(function({ errorReporter }) {
+        provided = errorReporter
+        return null
+      })
+
+      mount(
+        <TestProvider>
+          <PWA errorReporter={errorReporter}>
+            <Test />
+          </PWA>
+        </TestProvider>
+      )
+
+      expect(provided).toBe(errorReporter)
     })
   })
 

@@ -11,23 +11,25 @@ import PWA from './PWA'
 /**
  * Bootstraps the PWA react application.
  * @param {options} options
- * @param {React.Element} options.app The root app element
+ * @param {React.Element} options.App The root app element
  * @param {Object} options.theme A material-ui theme
  * @param {Object} options.model A mobx-state-tree model class
  * @param {HTMLElement} options.target The DOM element to mount onto
+ * @param {Function} errorReporter A function to call when an error occurs so that it can be logged
  */
 export default function launchClient({
   App,
   theme,
   model,
   router,
-  target = document.getElementById('root')
+  target = document.getElementById('root'),
+  errorReporter = Function.prototype
 }) {
   const history = createBrowserHistory()
 
   hydrate({
     component: (
-      <PWA>
+      <PWA errorReporter={errorReporter}>
         <App />
       </PWA>
     ),

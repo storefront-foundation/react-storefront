@@ -76,6 +76,7 @@ module.exports = {
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
    * @param {Object} options.eslintConfig A config object for eslint
+   * @param {Object} options.alias Aliases to apply to the webpack config
    * @return {Object} A webpack config
    */
   dev(
@@ -87,13 +88,15 @@ module.exports = {
       eslintConfig = require('./eslint-client'),
       prefetchRampUpTime = -5000, // compensate for the 5 minute buffer for deployments so that there is no ramp up time
       allowPrefetchThrottling = false,
-      serveSSRFromCache = false
+      serveSSRFromCache = false,
+      alias = {}
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
-    const alias = {
+    alias = {
+      ...alias,
       'react-storefront-stats': path.join(
         root,
         'node_modules',
@@ -155,6 +158,7 @@ module.exports = {
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
    * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
+   * @param {Object} options.alias Aliases to apply to the webpack config
    * @return {Object} A webpack config
    */
   prod(
@@ -165,13 +169,15 @@ module.exports = {
       entries,
       prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
       allowPrefetchThrottling = true,
-      serveSSRFromCache = false
+      serveSSRFromCache = false,
+      alias = {}
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
     const dest = path.join(root, 'build', 'assets', 'pwa')
 
-    const alias = {
+    alias = {
+      ...alias,
       'react-storefront-stats': path.join(
         root,
         'node_modules',

@@ -23,8 +23,17 @@ export default class Server {
    * @param {Router} config.router An instance of moov_router's Router class
    * @param {Boolean} [config.deferScripts=true] Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
    * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
+   * @param {Function} errorReporter A function to call when an error occurs so that it can be logged
    */
-  constructor({ theme, model, App, router, deferScripts = true, transform }) {
+  constructor({
+    theme,
+    model,
+    App,
+    router,
+    deferScripts = true,
+    transform,
+    errorReporter = Function.prototype
+  }) {
     console.error = console.warn = console.log
 
     Object.assign(this, {
@@ -33,7 +42,8 @@ export default class Server {
       App,
       router,
       deferScripts,
-      transform
+      transform,
+      errorReporter
     })
   }
 
@@ -44,18 +54,30 @@ export default class Server {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
+    const history = createMemoryHistory({ initialEntries: [request.path + request.search] })
+
     if (request.headers[ROUTES]) {
       return response.json(this.router.routes.map(route => route.path.spec))
     }
 
+    let state
+
+    const reportError = error => {
+      this.errorReporter({ error, history, app: state })
+    }
+
     try {
-      const state = await this.router.runAll(request, response)
+      this.router.on('error', reportError)
+      state = await this.router.runAll(request, response)
 
       if (!state.proxyUpstream && !response.headersSent) {
-        await this.renderPWA({ request, response, state })
+        await this.renderPWA({ request, response, state, history })
       }
     } catch (e) {
-      await this.renderError(e, request, response)
+      reportError(e)
+      await this.renderError(e, request, response, history)
+    } finally {
+      this.router.off('error', this.errorReporter)
     }
   }
 
@@ -79,14 +101,16 @@ export default class Server {
    * @param {Object} options
    * @param {Object} options.request The current request object
    * @param {Response} options.response The current response object
-   * @param {Object} options.state The root react element
+   * @param {Object} options.state The app state
+   * @param {Object} options.history The js history object
    * @return The html for app
    */
-  async renderPWA({ request, response, state }) {
+  async renderPWA({ request, response, state, history }) {
     console.error = console.error || console.log
     console.warn = console.warn || console.log
 
-    const { protocol, hostname, port, path, search } = request
+    const { App, theme } = this
+    const { protocol, hostname, port, path } = request
     this.setContentType(request, response)
 
     if (path.endsWith('.json')) {
@@ -94,9 +118,7 @@ export default class Server {
     }
 
     const amp = path.endsWith('.amp')
-    const { App, theme } = this
     const sheetsRegistry = new SheetsRegistry()
-    const history = createMemoryHistory({ initialEntries: [path + search] })
 
     const model = this.model.create({
       ...state,
@@ -187,9 +209,10 @@ export default class Server {
    * Renders an error response, either as JSON or SSR HTML, depending on the suffix
    * on the request path.
    * @param {Error} e
+   * @param {Request} request
    * @param {Response} response
    */
-  renderError(e, request, response) {
+  renderError(e, request, response, history) {
     response.status(500, 'error')
 
     const state = {
@@ -205,7 +228,8 @@ export default class Server {
     this.renderPWA({
       request,
       response,
-      state
+      state,
+      history
     })
   }
 

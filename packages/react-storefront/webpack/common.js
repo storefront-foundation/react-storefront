@@ -51,7 +51,8 @@ function createServerConfig(root, alias) {
     context: path.join(root, 'src'),
     resolve: {
       alias: Object.assign({}, createAliases(root), alias, {
-        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch')
+        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch'),
+        'cross-fetch': path.join(root, 'node_modules', 'react-storefront', 'fetch.common')
       })
     }
   })

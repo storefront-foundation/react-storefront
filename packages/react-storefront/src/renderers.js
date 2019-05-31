@@ -59,6 +59,7 @@ function getSources(stats, chunk) {
 
 /**
  * Render HTML of given component
+ * @param  {options} options
  * @param  {React.Component} options.component Component to be rendered
  * @param  {Object} options.providers          Data providers
  * @param  {Object} options.registry           JSS Sheets Registry
@@ -84,6 +85,7 @@ export function renderHtml({ component, providers, registry, theme, cssPrefix = 
 
 /**
  * Renders initial state for client side hydration
+ * @param  {options} options                      Model instance
  * @param  {Object} options.state                 The initial app state needed for hydration
  * @param  {Object} options.routeData             The data that resulted from the route being run.  This is needed for creating a cache
  *                                                entry for the equivalend .json request if the user navigates back to this page.
@@ -106,6 +108,7 @@ export function renderInitialStateScript({
 
 /**
  * Renders script for a specified chunk
+ * @param  {options} options
  * @param  {Object} options.stats   Webpack generated stats
  * @param  {String} options.chunk   Chunk name
  * @param  {Boolean} options.defer  Should defer execution
@@ -119,13 +122,14 @@ export function renderScript({ stats, chunk, defer }) {
       src =>
         `<script type="text/javascript" ${
           defer ? 'defer' : ''
-        } src="${assetPathBase}/pwa/${src}"></script>`
+          } src="${assetPathBase}/pwa/${src}"></script>`
     )
     .join('')
 }
 
 /**
  * Renders extracted CSS from Sheets Registry
+ * @param  {options} options
  * @param  {Object} options.registry  JSS Sheets Registry
  * @param  {String} options.id        ID for style tag
  * @return {String}                   Style HTML
@@ -151,26 +155,27 @@ function getLocation(env) {
 
 /**
  * Renders a component on the server.
+ * @param  {options} options
  * @param  {React.Component} options.component    Component to be rendered
  * @param  {Object} options.state                 Model instance
  * @param  {Object} options.theme                 MUI Theme
  * @param  {Object} options.stats                 Webpack generated stats
  * @param  {String} options.clientChunk           Chunk name for hydration script
  * @param  {String} options.initialStateProperty  Optional window property name for initial state
- * @param  {Boolean} options.injectAssets					Defaults to true.  Set this to false to prevent scripts and css from automatically being injected into the document.
- * @param  {String} options.cssPrefix 						A prefix to apply to css class names
+ * @param  {Boolean} options.injectAssets          Defaults to true.  Set this to false to prevent scripts and css from automatically being injected into the document.
+ * @param  {String} options.cssPrefix            A prefix to apply to css class names
  * @return {Object}                               Components for SSR
  */
 export function render({
-  component,
-  state,
-  theme,
-  stats,
-  clientChunk,
-  initialStateProperty,
-  injectAssets = true,
-  cssPrefix
-}) {
+                         component,
+                         state,
+                         theme,
+                         stats,
+                         clientChunk,
+                         initialStateProperty,
+                         injectAssets = true,
+                         cssPrefix
+                       }) {
   const registry = new SheetsRegistry()
 
   state.applyState({ location: getLocation(env) }, 'REPLACE')
@@ -203,6 +208,7 @@ export function render({
 
 /**
  * Hydrates React component
+ * @param  {options} options
  * @param  {React.Component} options.component    Component to be rendered
  * @param  {Model} options.model                  MobX Model
  * @param  {Object} options.theme                 MUI Theme
@@ -212,14 +218,14 @@ export function render({
  * @return {Object} The app state
  */
 export function hydrate({
-  component,
-  model,
-  theme,
-  target,
-  providerProps = {},
-  initialStateProperty = 'initialState',
-  cssPrefix = 'jss'
-}) {
+                          component,
+                          model,
+                          theme,
+                          target,
+                          providerProps = {},
+                          initialStateProperty = 'initialState',
+                          cssPrefix = 'jss'
+                        }) {
   const generateClassName = createGenerateClassName()
   const state = model.create(window[initialStateProperty] || {})
   const jss = create(jssPreset(), jssNested())
