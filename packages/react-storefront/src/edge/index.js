@@ -7,7 +7,20 @@ import querystring from 'querystring'
 
 export default function addCacheKeys(router, event, context, callback) {
   return buildCacheKeys => {
-    const request = event.Records ? event.Records[0].cf.request : event
+    const isAtEdge = !!event.Records
+
+    function setHeader(request, key, value) {
+      request.headers[key] = isAtEdge
+        ? [
+            {
+              key,
+              value
+            }
+          ]
+        : value
+    }
+
+    const request = isAtEdge ? event.Records[0].cf.request : event
     const { match, params } = router.findMatchingRoute(request)
     const version = __build_timestamp__ // eslint-disable-line
 
@@ -17,8 +30,8 @@ export default function addCacheKeys(router, event, context, callback) {
       cacheKey = [request.path, querystring.stringify(request.queryStringParameters || {}), version]
     }
 
-    request.headers[CLOUDFRONT_CACHE] = encodeURIComponent(cacheKey.join('|'))
-    request.headers[XDN_VERSION] = version
+    setHeader(request, CLOUDFRONT_CACHE, encodeURIComponent(cacheKey.join('|')))
+    setHeader(request, XDN_VERSION, version)
 
     callback(null, request)
   }
