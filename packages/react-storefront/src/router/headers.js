@@ -54,4 +54,6 @@ export const XDN_VERSION = 'x-moov-xdn-version'
  */
 export const ROUTES = 'x-rsf-routes'
 
+export const CLOUDFRONT_CACHE = 'x-moov-cache-hash'
+
 export default null
