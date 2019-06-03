@@ -530,10 +530,13 @@ export default class Router extends EventEmitter {
   applySearch(params, stringifyOptions = {}) {
     const { history } = this
 
-    const nextParams = qs.stringify({
-      ...qs.parse(history.location.search, { ignoreQueryPrefix: true }),
-      ...params
-    }, stringifyOptions)
+    const nextParams = qs.stringify(
+      {
+        ...qs.parse(history.location.search, { ignoreQueryPrefix: true }),
+        ...params
+      },
+      stringifyOptions
+    )
 
     history.replace(`${history.location.pathname}?${nextParams}`)
   }
