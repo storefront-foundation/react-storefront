@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 import { CLOUDFRONT_CACHE, XDN_VERSION } from '../router/headers'
 
 export default function addCacheKey(router, event, context, callback) {
