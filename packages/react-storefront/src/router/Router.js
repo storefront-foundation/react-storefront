@@ -261,6 +261,15 @@ export default class Router extends EventEmitter {
     return cacheHandler.server.key(request, defaults)
   }
 
+  getSurrogateKey(request) {
+    const { match } = this.findMatchingRoute(request)
+    const handlers = match ? match.handlers : this.fallbackHandlers
+    if (!handlers) return null
+    const cacheHandler = handlers.find(handler => handler.type === 'cache')
+    if (!cacheHandler || !cacheHandler.server || !cacheHandler.server.surrogateKey) return null
+    return cacheHandler.server.surrogateKey(request)
+  }
+
   /**
    * Creates an object describing the browser location
    * @return {Object}
