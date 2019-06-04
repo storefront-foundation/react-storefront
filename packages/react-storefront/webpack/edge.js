@@ -53,13 +53,10 @@ module.exports = {
           ...plugins,
           injectBuildTimestamp(),
           new webpack.ExtendedAPIPlugin(),
-          // new webpack.IgnorePlugin(/material-ui/),
           new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 1
           }),
           new webpack.DefinePlugin({
-            'fromServer(': 'function() {}(',
-
             'process.env.MOOV_RUNTIME': JSON.stringify('server'),
             'process.env.MOOV_ENV': JSON.stringify('development'),
             ...envVariables
@@ -106,13 +103,10 @@ module.exports = {
           ...plugins,
           injectBuildTimestamp(),
           new webpack.ExtendedAPIPlugin(),
-          // new webpack.IgnorePlugin(/material-ui|lodash/),
           new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 1
           }),
           new webpack.DefinePlugin({
-            // 'fromServer(': 'function() {}(',
-
             'process.env.MOOV_RUNTIME': JSON.stringify('server'),
             'process.env.MOOV_ENV': JSON.stringify('production'),
             ...envVariables
