@@ -2,10 +2,10 @@
  * @license
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
-import isString from 'lodash/isString'
-import isEmpty from 'lodash/isEmpty'
-import forEach from 'lodash/forEach'
-import map from 'lodash/map'
+import _isString from 'lodash/isString'
+import _isEmpty from 'lodash/isEmpty'
+import _forEach from 'lodash/forEach'
+import _map from 'lodash/map'
 
 /**
  * Rules found in MPS. Only bidirectional is used.
@@ -30,7 +30,7 @@ export function convertHostMapToSlugRoutingRules(hostMap) {
 
   const hostRoutingRules = convertHostMapToHostRoutingRules(hostMap)
 
-  forEach(hostRoutingRules, ({ proxy, upstream }) => {
+  _forEach(hostRoutingRules, ({ proxy, upstream }) => {
     ;['http', 'https'].forEach(protocol => {
       routingRules.push({
         Proxy: `${protocol}://${proxy}`,
@@ -54,8 +54,8 @@ export function convertHostMapToSlugRoutingRules(hostMap) {
  * @param {Array} hostMap Array of strings in "<origin> => <upstream>" format as codified in project configuration
  */
 export function convertHostMapToHostRoutingRules(hostMap) {
-  return map(hostMap, mapping => {
-    if (isString(mapping)) {
+  return _map(hostMap, mapping => {
+    if (_isString(mapping)) {
       throw new Error('Host mapping must be a string')
     }
 
@@ -63,8 +63,8 @@ export function convertHostMapToHostRoutingRules(hostMap) {
       throw new Error('Only supported host mapping is =>')
     }
 
-    const [downstreamMapping, upstreamMapping] = map(mapping.split('=>'), str => str.trim())
-    if (isEmpty(downstreamMapping) || isEmpty(upstreamMapping)) {
+    const [downstreamMapping, upstreamMapping] = _map(mapping.split('=>'), str => str.trim())
+    if (_isEmpty(downstreamMapping) || _isEmpty(upstreamMapping)) {
       throw new Error('Host mapping downstream and upstream must be a non-empty string')
     }
 
