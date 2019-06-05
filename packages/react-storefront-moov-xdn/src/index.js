@@ -14,14 +14,22 @@ useMoovAsyncTransformer()
  * Provides the default functionality for scripts/index.js
  * @param {Object} options
  * @param {Object} theme The material-ui theme
- * @param {Class} model A mobx-state-tree model class that extends AppModelBase 
+ * @param {Class} model A mobx-state-tree model class that extends AppModelBase
  * @param {React.Component} App The app react component
  * @param {Router} router An instance of react-storefront/router
- * @param {String} blob The blob 
+ * @param {String} blob The blob
  * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
+ * @param {Function} errorReporter A function to call when an error occurs so that it can be logged
  */
-export default function responseRewriter({ theme, model, App, router, blob, transform }) {
-
+export default function responseRewriter({
+  theme,
+  model,
+  App,
+  router,
+  blob,
+  transform,
+  errorReporter = Function.prototype
+}) {
   if (env.secure !== 'true') {
     // Always redirect on non-secure requests.
     return sendResponse({ htmlparsed: false })
@@ -34,10 +42,9 @@ export default function responseRewriter({ theme, model, App, router, blob, tran
     // render the page
     Config.load(blob)
 
-    const request = env.rsf_request = new Request()
-    const response = env.rsf_response = new Response(request)
+    const request = (env.rsf_request = new Request())
+    const response = (env.rsf_response = new Response(request))
 
-    new Server({ theme, model, App, router, transform }).serve(request, response)
+    new Server({ theme, model, App, router, transform, errorReporter }).serve(request, response)
   }
-
 }

@@ -51,7 +51,8 @@ function createServerConfig(root, alias) {
     context: path.join(root, 'src'),
     resolve: {
       alias: Object.assign({}, createAliases(root), alias, {
-        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch')
+        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch'),
+        'cross-fetch': path.join(root, 'node_modules', 'react-storefront', 'fetch.common')
       })
     }
   })
@@ -140,34 +141,9 @@ function createAliases(root) {
   }
 }
 
-const optimization = {
-  minimize: true,
-  minimizer: [
-    new TerserPlugin({
-      terserOptions: {
-        warnings: false,
-        ie8: false,
-        compress: {
-          comparisons: false
-        },
-        parse: {},
-        mangle: true,
-        output: {
-          comments: false,
-          ascii_only: true
-        }
-      },
-      parallel: true,
-      cache: true,
-      sourceMap: true
-    })
-  ]
-}
-
 module.exports = {
   createClientConfig,
   createServerConfig,
   createLoaders,
-  optimization,
   injectBuildTimestamp
 }

@@ -84,17 +84,13 @@ export default class Router extends EventEmitter {
 
   constructor() {
     super()
-
     this.get('/.powerlinks.js', fromServer(powerLinkHandler))
   }
 
   errorHandler = (e, params, request, response) => {
-    console.error('Error caught with params', params, ' and with message:', e.message)
-
     if (response && response.status) {
       response.status(500, 'error')
     }
-
     return { page: 'Error', error: e.message, stack: e.stack, loading: false }
   }
 
@@ -353,6 +349,11 @@ export default class Router extends EventEmitter {
         }
       }
     } catch (err) {
+      // We emit an error event here so that we can pass the error to the error reporter
+      // while still allowing the user to provide their own error handler function.
+      this.emit('error', err)
+
+      // call the .error() function registered by the user
       yield this.errorHandler(err, params, request, response)
     }
   }

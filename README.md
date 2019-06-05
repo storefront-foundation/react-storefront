@@ -74,6 +74,21 @@ yarn release
 
 ## Changelog
 
+### 6.24.1
+
+- Rerelease of 6.24.1 due to a botched build.
+
+### 6.24.0
+
+- You can now specify webpack `optimization` options in the client build config.
+- You can now use the `OPEN_BROWSER` environment variable to control
+  whether or not the browser opens after starting in development mode
+- Added universal error reporting with the new `errorReporter` config on both `react-storefront/launchClient` and `react-storefront-moov-xdn/index`.
+
+### 6.23.1
+
+- Rolled back optimization to exclude AMP components in the client build that was added in 6.23.0 as it was causing issues in some apps.
+
 ### 6.23.0
 
 - You can now pass options to control how Router's `applySearch` function stringifies params. For example, `router.applySearch({ colors: ['red', 'green'] }, { arrayFormat: 'brackets' })`

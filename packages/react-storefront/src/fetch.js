@@ -15,7 +15,7 @@ function isFormUrlEncoded(contentType) {
 /**
  * Creates options for a fetch call
  * @param {String} url The URL to fetch
- * @param {Object} options fetch options
+ * @param {Object} fetchOptions fetch options
  * @param {String} qsOptions Options for serializing the request body using the qs package
  */
 function createRequestOptions(url, fetchOptions, qsOptions) {
@@ -24,7 +24,7 @@ function createRequestOptions(url, fetchOptions, qsOptions) {
   if (body) {
     method = method || 'POST'
 
-    // Only apply stringifiying when body is not a string already
+    // Only apply stringifying when body is not a string already
     if (!isString(body)) {
       if (isFormUrlEncoded(headers['content-type'])) {
         body = qs.stringify(body, qsOptions)

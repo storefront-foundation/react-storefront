@@ -16,6 +16,7 @@ module.exports = {
    * @param {Object} options.eslintConfig A config object for eslint
    * @param {Object} options.additionalRules Additional rules to add the webpack config
    * @param {Object} options.envVariables Environment variables to inject into the build
+   * @param {Object} options.alias Aliases to apply to the webpack config
    */
   dev(root, { eslintConfig = require('./eslint-server'), envVariables = {}, rules = [] } = {}) {
     return ({ entry, plugins, output, target, resolve, alias = {} } = {}) => {
@@ -27,7 +28,7 @@ module.exports = {
           'node_modules',
           'react-storefront',
           'stats',
-          'getStatsFromNetwork'
+          'getStatsInDev'
         ),
         ...alias
       }
@@ -70,12 +71,15 @@ module.exports = {
    * Generates a webpack config for the server production build
    * @param {String} root The path to the root of the project
    * @param {Object} options
+   * @param {Object} options.envVariables Environment variables to inject into the build
+   * @param {Object} options.alias Aliases to apply to the webpack config
    * @return {Object} A webpack config
    */
-  prod(root, { envVariables = {} } = {}) {
+  prod(root, { envVariables = {}, alias = {} } = {}) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
 
-    const alias = {
+    alias = {
+      ...alias,
       'react-storefront-stats': path.join(
         root,
         'node_modules',
