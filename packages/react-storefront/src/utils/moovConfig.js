@@ -55,7 +55,7 @@ export function convertHostMapToSlugRoutingRules(hostMap) {
  */
 export function convertHostMapToHostRoutingRules(hostMap) {
   return _map(hostMap, mapping => {
-    if (_isString(mapping)) {
+    if (!_isString(mapping)) {
       throw new Error('Host mapping must be a string')
     }
 
