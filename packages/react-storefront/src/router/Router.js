@@ -95,7 +95,9 @@ export default class Router extends EventEmitter {
   }
 
   pushRoute(method, path, handlers) {
-    this.routes.push({ path: new Route(path + '.:format'), method, handlers })
+    // We are explicitly setting a JSON route in order to handle
+    // model data routes
+    this.routes.push({ path: new Route(path + '.json'), method, handlers })
     this.routes.push({ path: new Route(path), method, handlers })
     return this
   }
@@ -291,6 +293,12 @@ export default class Router extends EventEmitter {
 
     // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
     // and that the app state's location information is updated.
+
+    if (request.path.endsWith('.json')) {
+      yield {
+        format: 'json'
+      }
+    }
 
     if (this.isBrowser) {
       yield {

@@ -125,7 +125,7 @@ describe('Router:Node', function() {
       router.get('/users/:id.json', fromServer(() => Promise.resolve({ result: 'json' })))
 
       expect(await runAll('get', '/users/1.html')).toEqual({ result: 'html' })
-      expect(await runAll('get', '/users/1.json')).toEqual({ result: 'json' })
+      expect(await runAll('get', '/users/1.json')).toEqual({ format: 'json', result: 'json' })
     })
 
     it('should capture the suffix', async function() {
@@ -279,6 +279,7 @@ describe('Router:Node', function() {
         )
       )
       expect(await runAll('get', '/products.json')).toEqual({
+        format: 'json',
         products: [{ name: 'Dog Toy' }]
       })
     })
@@ -417,6 +418,16 @@ describe('Router:Node', function() {
         products: [{ name: 'Dog Toy' }, { name: 'Bone' }]
       })
     })
+
+    it('should handle params with a period in them', async function() {
+      router.get('/p/:id', params => Promise.resolve(params))
+      expect(await runAll('get', '/p/hello.world')).toEqual({ id: 'hello.world' })
+    })
+
+    it('should pass format state property for JSON requests', async function() {
+      router.get('/p/:id', params => Promise.resolve(params))
+      expect(await runAll('get', '/p/foo.json')).toEqual({ id: 'foo', format: 'json' })
+    })
   })
 
   describe('cache', function() {
@@ -516,10 +527,13 @@ describe('Router:Node', function() {
       const history = createMemoryHistory()
       history.push('/search?sort=price')
 
-      router.watch(history, jest.fn()).applySearch({ filter: ['f1', 'f2'] }, { 
-        arrayFormat: 'brackets',
-        encode: false,
-      })
+      router.watch(history, jest.fn()).applySearch(
+        { filter: ['f1', 'f2'] },
+        {
+          arrayFormat: 'brackets',
+          encode: false
+        }
+      )
 
       expect(history.location.pathname + history.location.search).toEqual(
         '/search?sort=price&filter[]=f1&filter[]=f2'

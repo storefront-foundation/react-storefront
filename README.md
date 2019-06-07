@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.25.0
+
+- The Router now explicitly adds a JSON route with each
+  Route initialization
+
 ### 6.24.1
 
 - Rerelease of 6.24.1 due to a botched build.
