@@ -15,7 +15,7 @@ export function cache({ serverMaxAge, browserMaxAge }) {
   if (browserMaxAge === 0) {
     cacheControl.push('private, no-store, no-cache')
   } else if (browserMaxAge != null) {
-    cacheControl.push(`maxage=${browserMaxAge}`)
+    cacheControl.push(`max-age=${browserMaxAge}`)
   }
 
   if (serverMaxAge) {

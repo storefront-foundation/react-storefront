@@ -78,6 +78,7 @@ yarn release
 
 - The Router now explicitly adds a JSON route with each
   Route initialization
+- Fixed max-age cache control header configuration
 
 ### 6.24.1
 
