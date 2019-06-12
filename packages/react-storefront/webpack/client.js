@@ -12,6 +12,11 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
+// We use this pattern to replace AMP modules with an empty function
+// when building the application for the client, since AMP components
+// will never be used client side.
+const ampToExcludePattern = /react-storefront\/dist\/amp\/(.*).js/
+
 function createServiceWorkerPlugins({
   root,
   dest,
@@ -222,7 +227,14 @@ module.exports = {
             to: path.join(root, 'build', 'assets')
           }
         ]),
-        // new webpack.IgnorePlugin(/Amp/),
+        new webpack.NormalModuleReplacementPlugin(ampToExcludePattern, function(resource) {
+          // Parse module name from request
+          const moduleName = resource.request.match(ampToExcludePattern)[1]
+          if (moduleName !== 'installServiceWorker') {
+            // Empty module exists within the `amp` directory
+            resource.request = resource.request.replace(moduleName, 'Empty')
+          }
+        }),
         ...additionalPlugins,
         ...createServiceWorkerPlugins({
           root,

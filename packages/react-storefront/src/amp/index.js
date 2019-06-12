@@ -13,5 +13,6 @@ export { default as AmpMenu } from './AmpMenu.js';
 export { default as AmpModal } from './AmpModal.js';
 export { default as AmpSimpleMenu } from './AmpSimpleMenu.js';
 export { default as AmpState } from './AmpState.js';
+export { default as Empty } from './Empty.js';
 export { default as installServiceWorker } from './installServiceWorker.js';
 
