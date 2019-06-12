@@ -84,7 +84,7 @@ describe('Server', () => {
       request = new Request()
       response = new Response(request)
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
-      expect(exported.MOOV_PWA_RESPONSE.headers.link).toBe('</pwa/bootstrap.js>; rel=prefetch')
+      expect(exported.MOOV_PWA_RESPONSE.headers.link).toBe('</pwa/main.js>; rel=prefetch')
     })
 
     it('should render scripts', async () => {
@@ -94,7 +94,7 @@ describe('Server', () => {
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const body = global.sendResponse.mock.calls[0][0].body
       expect(body).toContain(
-        '<script type="text/javascript" defer src="/pwa/bootstrap.js"></script>'
+        '<script type="text/javascript" defer src="/pwa/main.js"></script>'
       )
     })
 
