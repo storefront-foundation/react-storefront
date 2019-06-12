@@ -20,7 +20,6 @@ import {
 import getStats from 'react-storefront-stats'
 import { renderAmpAnalyticsTags } from './Track'
 import { ROUTES } from './router/headers'
-import flatten from 'lodash/flatten'
 
 export default class Server {
   /**
@@ -163,17 +162,15 @@ export default class Server {
 
       const helmet = Helmet.renderStatic()
 
-      const chunks = flushChunkNames(stats)
-
-      const scripts = flatten([
-        getScripts({ stats, chunk: 'bootstrap' }),
-        getScripts({ stats, chunk: 'main' }),
-        chunks.map(chunk => getScripts({ stats, chunk }))
-      ])
+      const scripts = [
+        ...getScripts({ stats, chunk: 'bootstrap' }),
+        ...getScripts({ stats, chunk: 'main' }),
+        ...flushChunkNames(stats).map(chunk => getScripts({ stats, chunk }))
+      ]
 
       // Set prefetch headers so that our scripts will be fetched
       // and loaded as fast as possible
-      const prefetchHeaders = scripts.map(renderPrefetchHeader).join(',')
+      const prefetchHeaders = scripts.map(renderPrefetchHeader).join(', ')
       response.set('link', prefetchHeaders)
 
       html = `

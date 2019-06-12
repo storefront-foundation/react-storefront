@@ -77,6 +77,7 @@ yarn release
 ### 6.26.0
 
 - JavaScript bundles are now prefetched using link rel="prefetch" headers.
+- Adds a new `delayUntilInteractive` prop to `AnalyticsProvider` that delays loading analytics scripts until the app is fully interactive.  This helps ensure the best TTI and user experience.
 
 ### 6.25.0
 
