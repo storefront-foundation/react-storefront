@@ -20,6 +20,7 @@ import {
 import getStats from 'react-storefront-stats'
 import { renderAmpAnalyticsTags } from './Track'
 import { ROUTES } from './router/headers'
+import flattenDeep from 'lodash/flattenDeep'
 
 export default class Server {
   /**
@@ -163,10 +164,10 @@ export default class Server {
       const helmet = Helmet.renderStatic()
       const chunks = flushChunkNames(stats)
 
-      const scripts = [
-        ...chunks.map(chunk => getScripts({ stats, chunk })),
-        ...getScripts({ stats, chunk: 'main' })
-      ]
+      const scripts = flattenDeep([
+        chunks.map(chunk => getScripts({ stats, chunk })),
+        getScripts({ stats, chunk: 'main' })
+      ])
 
       // Set prefetch headers so that our scripts will be fetched
       // and loaded as fast as possible
