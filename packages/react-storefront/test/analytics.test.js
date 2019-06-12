@@ -5,6 +5,16 @@
 import analytics, { configureAnalytics, getTargets, activate } from '../src/analytics'
 
 describe('analytics', () => {
+  let NODE_ENV = process.env.NODE_ENV
+
+  beforeEach(() => {
+    process.env.NODE_ENV = 'development' // for coverage
+  })
+
+  afterEach(() => {
+    process.env.NODE_ENV = NODE_ENV
+  })
+
   it('calls all targets', () => {
     const targets = [1, 2, 3].map(i => ({ testMethod: jest.fn() }))
 
