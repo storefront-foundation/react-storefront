@@ -74,4 +74,15 @@ describe('analytics', () => {
     expect(errorTarget.test).toHaveBeenCalled()
     expect(successTarget.test).toHaveBeenCalled()
   })
+
+  it('should queue events until activates', () => {
+    jest.resetModules()
+    const { default: analytics, activate, configureAnalytics } = require('../src/analytics')
+    analytics.fire('test', 'foo', 'bar')
+    const test = jest.fn()
+    configureAnalytics({ test })
+    expect(test).not.toHaveBeenCalled()
+    activate()
+    expect(test).toHaveBeenCalledWith('foo', 'bar')
+  })
 })
