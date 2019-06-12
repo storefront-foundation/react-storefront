@@ -161,17 +161,16 @@ export default class Server {
       })
 
       const helmet = Helmet.renderStatic()
+      const chunks = flushChunkNames(stats)
 
       const scripts = [
-        ...getScripts({ stats, chunk: 'bootstrap' }),
-        ...getScripts({ stats, chunk: 'main' }),
-        ...flushChunkNames(stats).map(chunk => getScripts({ stats, chunk }))
+        ...chunks.map(chunk => getScripts({ stats, chunk })),
+        ...getScripts({ stats, chunk: 'main' })
       ]
 
       // Set prefetch headers so that our scripts will be fetched
       // and loaded as fast as possible
-      const prefetchHeaders = scripts.map(renderPrefetchHeader).join(', ')
-      response.set('link', prefetchHeaders)
+      response.set('link', scripts.map(renderPrefetchHeader).join(', '))
 
       html = `
         <!DOCTYPE html>
