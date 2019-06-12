@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.26.0
+
+- JavaScript bundles are now prefetched using link rel="prefetch" headers.
+
 ### 6.25.0
 
 - The Router now explicitly adds a JSON route with each

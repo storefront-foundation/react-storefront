@@ -9,10 +9,18 @@ import { flushChunkNames } from 'react-universal-component/server'
 import PWA from './PWA'
 import createMemoryHistory from 'history/createMemoryHistory'
 import { Helmet } from 'react-helmet'
-import { renderHtml, renderInitialStateScript, renderScript, renderStyle } from './renderers'
+import {
+  renderHtml,
+  renderInitialStateScript,
+  renderScript,
+  renderStyle,
+  renderPrefetchHeader,
+  getScripts
+} from './renderers'
 import getStats from 'react-storefront-stats'
 import { renderAmpAnalyticsTags } from './Track'
 import { ROUTES } from './router/headers'
+import flatten from 'lodash/flatten'
 
 export default class Server {
   /**
@@ -155,6 +163,19 @@ export default class Server {
 
       const helmet = Helmet.renderStatic()
 
+      const chunks = flushChunkNames(stats)
+
+      const scripts = flatten([
+        getScripts({ stats, chunk: 'bootstrap' }),
+        getScripts({ stats, chunk: 'main' }),
+        chunks.map(chunk => getScripts({ stats, chunk }))
+      ])
+
+      // Set prefetch headers so that our scripts will be fetched
+      // and loaded as fast as possible
+      const prefetchHeaders = scripts.map(renderPrefetchHeader).join(',')
+      response.set('link', prefetchHeaders)
+
       html = `
         <!DOCTYPE html>
         <html ${helmet.htmlAttributes.toString()}>
@@ -180,9 +201,7 @@ export default class Server {
                 routeData: state,
                 defer: this.deferScripts
               })}
-              ${renderScript({ stats, chunk: 'bootstrap', defer: this.deferScripts })}
-              ${this.getScripts(stats)}
-              ${renderScript({ stats, chunk: 'main', defer: this.deferScripts })}
+              ${scripts.map(src => renderScript(src, this.deferScripts)).join('')}
             `
             }
           </body>
@@ -231,17 +250,5 @@ export default class Server {
       state,
       history
     })
-  }
-
-  /**
-   * Gets the script tags that should added to the document based on the chunks used
-   * to render the current request.
-   * @param {Object} stats
-   * @return {String[]}
-   */
-  getScripts(stats) {
-    return flushChunkNames(stats)
-      .map(chunk => renderScript({ stats, chunk, defer: this.deferScripts }))
-      .filter(e => !!e)
   }
 }

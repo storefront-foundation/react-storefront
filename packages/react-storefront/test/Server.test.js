@@ -79,6 +79,25 @@ describe('Server', () => {
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('application/json')
     })
 
+    it('should set prefetch headers', async () => {
+      global.env.path = '/test'
+      request = new Request()
+      response = new Response(request)
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
+      expect(exported.MOOV_PWA_RESPONSE.headers.link).toBe('</pwa/bootstrap.js>; rel=prefetch')
+    })
+
+    it('should render scripts', async () => {
+      global.env.path = '/test'
+      request = new Request()
+      response = new Response(request)
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
+      const body = global.sendResponse.mock.calls[0][0].body
+      expect(body).toContain(
+        '<script type="text/javascript" defer src="/pwa/bootstrap.js"></script>'
+      )
+    })
+
     it('should allow you to override the content-type', async () => {
       global.env.path = '/test.json'
       request = new Request()

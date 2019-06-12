@@ -18,7 +18,8 @@ import createGenerateClassName from './utils/createGenerateClassName'
 const getSanitizedModelJson = state => sanitizeJsonForScript(state.toJSON())
 
 // Escape <\ in a closing script tag to avoid untimely script closing
-const sanitizeJsonForScript = state => JSON.stringify(state || {}).replace(/<\/script/gi, '<\\/script')
+const sanitizeJsonForScript = state =>
+  JSON.stringify(state || {}).replace(/<\/script/gi, '<\\/script')
 
 /**
  * Get javascript asset filename by chunk name
@@ -108,23 +109,31 @@ export function renderInitialStateScript({
 
 /**
  * Renders script for a specified chunk
- * @param  {options} options
- * @param  {Object} options.stats   Webpack generated stats
- * @param  {String} options.chunk   Chunk name
- * @param  {Boolean} options.defer  Should defer execution
+ * @param  {String} src             Source of script
+ * @param  {Boolean} defer          Should defer execution
  * @return {String}                 Script HTML
  */
-export function renderScript({ stats, chunk, defer }) {
-  const assetPathBase = process.env.ASSET_PATH_BASE || ''
+export function renderScript(src, defer) {
+  return `<script type="text/javascript" ${defer ? 'defer' : ''} src="${src}"></script>`
+}
 
-  return getSources(stats, chunk)
-    .map(
-      src =>
-        `<script type="text/javascript" ${
-          defer ? 'defer' : ''
-          } src="${assetPathBase}/pwa/${src}"></script>`
-    )
-    .join('')
+/**
+ * Extracts scripts from sources in chunk
+ * @param {Object} options
+ * @param {Object} options.stats    Webpack generated stats
+ * @param {String} options.chunk     Chunk name
+ */
+export function getScripts({ stats, chunk }) {
+  const assetPathBase = process.env.ASSET_PATH_BASE || ''
+  return getSources(stats, chunk).map(src => `${assetPathBase}/pwa/${src}`)
+}
+
+/**
+ * Renders a link prefetch header value
+ * @param {String} src Source of script
+ */
+export function renderPrefetchHeader(src) {
+  return `<${src}>; rel=prefetch`
 }
 
 /**
@@ -167,15 +176,15 @@ function getLocation(env) {
  * @return {Object}                               Components for SSR
  */
 export function render({
-                         component,
-                         state,
-                         theme,
-                         stats,
-                         clientChunk,
-                         initialStateProperty,
-                         injectAssets = true,
-                         cssPrefix
-                       }) {
+  component,
+  state,
+  theme,
+  stats,
+  clientChunk,
+  initialStateProperty,
+  injectAssets = true,
+  cssPrefix
+}) {
   const registry = new SheetsRegistry()
 
   state.applyState({ location: getLocation(env) }, 'REPLACE')
@@ -218,14 +227,14 @@ export function render({
  * @return {Object} The app state
  */
 export function hydrate({
-                          component,
-                          model,
-                          theme,
-                          target,
-                          providerProps = {},
-                          initialStateProperty = 'initialState',
-                          cssPrefix = 'jss'
-                        }) {
+  component,
+  model,
+  theme,
+  target,
+  providerProps = {},
+  initialStateProperty = 'initialState',
+  cssPrefix = 'jss'
+}) {
   const generateClassName = createGenerateClassName()
   const state = model.create(window[initialStateProperty] || {})
   const jss = create(jssPreset(), jssNested())
