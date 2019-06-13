@@ -84,7 +84,7 @@ describe('Server', () => {
       request = new Request()
       response = new Response(request)
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
-      expect(exported.MOOV_PWA_RESPONSE.headers.link).toBe('</pwa/main.js>; rel=prefetch')
+      expect(exported.MOOV_PWA_RESPONSE.headers.link).toBe('</pwa/main.js>; rel=preload; as=script')
     })
 
     it('should render scripts', async () => {
@@ -93,9 +93,7 @@ describe('Server', () => {
       response = new Response(request)
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const body = global.sendResponse.mock.calls[0][0].body
-      expect(body).toContain(
-        '<script type="text/javascript" defer src="/pwa/main.js"></script>'
-      )
+      expect(body).toContain('<script type="text/javascript" defer src="/pwa/main.js"></script>')
     })
 
     it('should allow you to override the content-type', async () => {

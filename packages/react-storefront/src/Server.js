@@ -14,7 +14,7 @@ import {
   renderInitialStateScript,
   renderScript,
   renderStyle,
-  renderPrefetchHeader,
+  renderPreloadHeader,
   getScripts
 } from './renderers'
 import getStats from 'react-storefront-stats'
@@ -22,6 +22,9 @@ import { renderAmpAnalyticsTags } from './Track'
 import { ROUTES } from './router/headers'
 import flattenDeep from 'lodash/flattenDeep'
 
+/**
+ * Serves requests from the Moovweb platform.
+ */
 export default class Server {
   /**
    * @param {Object} config
@@ -171,7 +174,7 @@ export default class Server {
 
       // Set prefetch headers so that our scripts will be fetched
       // and loaded as fast as possible
-      response.set('link', scripts.map(renderPrefetchHeader).join(', '))
+      response.set('link', scripts.map(renderPreloadHeader).join(', '))
 
       html = `
         <!DOCTYPE html>
