@@ -14,14 +14,17 @@ import {
   renderInitialStateScript,
   renderScript,
   renderStyle,
-  renderPrefetchHeader,
+  renderPreloadHeader,
   getScripts
 } from './renderers'
 import getStats from 'react-storefront-stats'
 import { renderAmpAnalyticsTags } from './Track'
 import { ROUTES } from './router/headers'
-import flatten from 'lodash/flatten'
+import flattenDeep from 'lodash/flattenDeep'
 
+/**
+ * Serves requests from the Moovweb platform.
+ */
 export default class Server {
   /**
    * @param {Object} config
@@ -162,19 +165,16 @@ export default class Server {
       })
 
       const helmet = Helmet.renderStatic()
-
       const chunks = flushChunkNames(stats)
 
-      const scripts = flatten([
-        getScripts({ stats, chunk: 'bootstrap' }),
-        getScripts({ stats, chunk: 'main' }),
-        chunks.map(chunk => getScripts({ stats, chunk }))
+      const scripts = flattenDeep([
+        chunks.map(chunk => getScripts({ stats, chunk })),
+        getScripts({ stats, chunk: 'main' })
       ])
 
       // Set prefetch headers so that our scripts will be fetched
       // and loaded as fast as possible
-      const prefetchHeaders = scripts.map(renderPrefetchHeader).join(',')
-      response.set('link', prefetchHeaders)
+      response.set('link', scripts.map(renderPreloadHeader).join(', '))
 
       html = `
         <!DOCTYPE html>

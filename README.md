@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.26.1
+
+- Fixed issue with JS scripts being included in the wrong order during SSR in 6.26.0.
+
 ### 6.26.0
 
 - JavaScript bundles are now prefetched using link rel="prefetch" headers.
