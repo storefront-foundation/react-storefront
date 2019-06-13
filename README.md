@@ -74,8 +74,9 @@ yarn release
 
 ## Changelog
 
-### 6.26.1
+### 6.27.0
 
+- Added `optimizeImages` util function for use in handlers
 - Fixed issue with JS scripts being included in the wrong order during SSR in 6.26.0.
 
 ### 6.26.0
