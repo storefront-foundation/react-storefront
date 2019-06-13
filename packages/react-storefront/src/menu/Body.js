@@ -5,8 +5,8 @@
 import React, { Component, Fragment } from 'react'
 import { observer, inject } from 'mobx-react'
 import ListItemText from '@material-ui/core/ListItemText'
-import MenuList from '@material-ui/core/MenuList'
-import MenuItem from '@material-ui/core/MenuItem'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 import ChevronLeft from '@material-ui/icons/ChevronLeft'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Item from './Item'
@@ -39,14 +39,14 @@ export default class Body extends Component {
         ) : (
           <div className={classes.hbox} style={{ transform: `translateX(${position}px)`, flex: 1 }}>
             {levels.map((list, depth) => (
-              <MenuList
+              <List
                 style={{ width: `${drawerWidth}px` }}
                 classes={{ root: classes.list, padding: classes.padding }}
                 key={depth}
               >
                 {list.root && rootHeader}
                 {!list.root && (
-                  <MenuItem divider button onClick={this.goBack}>
+                  <ListItem divider button onClick={this.goBack}>
                     <ListItemIcon classes={{ root: classes.header }}>
                       <ChevronLeft className={classes.icon} />
                     </ListItemIcon>
@@ -54,7 +54,7 @@ export default class Body extends Component {
                       classes={{ root: classes.headerText }}
                       primary={<div className={classes.headerText}>{list.text} </div>}
                     />
-                  </MenuItem>
+                  </ListItem>
                 )}
                 {list.items &&
                   list.items.map((item, key) => (
@@ -67,7 +67,7 @@ export default class Body extends Component {
                     />
                   ))}
                 {list.root && rootFooter}
-              </MenuList>
+              </List>
             ))}
           </div>
         )}
@@ -77,7 +77,7 @@ export default class Body extends Component {
 
   /**
    * Renders the menu as a simple list of expandable sections
-   * @return {MenuList}
+   * @return {List}
    */
   renderSimple() {
     const {
@@ -92,13 +92,13 @@ export default class Body extends Component {
     if (!root) return null
 
     return (
-      <MenuList classes={{ padding: classes.list }}>
+      <List classes={{ padding: classes.list }}>
         {rootHeader}
         {root.items.map((item, i) => (
           <Item {...this.props} depth={1} item={item} key={i} />
         ))}
         {rootFooter}
-      </MenuList>
+      </List>
     )
   }
 

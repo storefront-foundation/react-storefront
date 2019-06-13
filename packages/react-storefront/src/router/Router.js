@@ -98,6 +98,7 @@ export default class Router extends EventEmitter {
     // We are explicitly setting a JSON route in order to handle
     // model data routes
     this.routes.push({ path: new Route(path + '.json'), method, handlers })
+    this.routes.push({ path: new Route(path + '.amp'), method, handlers })
     this.routes.push({ path: new Route(path), method, handlers })
     return this
   }

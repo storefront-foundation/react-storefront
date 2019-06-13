@@ -15,14 +15,14 @@ export default class ItemContent extends Component {
   static contextType = MenuContext
 
   render() {
-    let { itemRenderer, item, leaf } = this.props
+    let { itemTextRenderer, item, leaf } = this.props
 
     const { classes } = this.context
 
     let contents
 
-    if (itemRenderer) {
-      contents = itemRenderer(item, leaf)
+    if (itemTextRenderer) {
+      contents = itemTextRenderer(item, leaf)
     }
 
     if (contents) {

@@ -4,8 +4,8 @@
  */
 import React, { Component, Fragment } from 'react'
 import ListItemText from '@material-ui/core/ListItemText'
-import MenuList from '@material-ui/core/MenuList'
-import MenuItem from '@material-ui/core/MenuItem'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 import ChevronLeft from '@material-ui/icons/ChevronLeft'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import classnames from 'classnames'
@@ -25,7 +25,7 @@ export default class MenuBody extends Component {
     const isRoot = id === '@'
 
     const header = !isRoot && (
-      <MenuItem divider button on={`tap:AMP.setState({ list: '${parentPath}' })`}>
+      <ListItem divider button on={`tap:AMP.setState({ list: '${parentPath}' })`}>
         <ListItemIcon classes={{ root: classes.header }}>
           <ChevronLeft className={classes.icon} />
         </ListItemIcon>
@@ -33,7 +33,7 @@ export default class MenuBody extends Component {
           classes={{ root: classes.headerText }}
           primary={<div className={classes.headerText}>{root.text} </div>}
         />
-      </MenuItem>
+      </ListItem>
     )
 
     return (
@@ -50,7 +50,7 @@ export default class MenuBody extends Component {
           [classes.hiddenRight]: !isRoot
         })}'`}
       >
-        <MenuList classes={{ padding: classes.ampList }}>
+        <List classes={{ padding: classes.ampList }}>
           {rootHeader}
           {header}
           {root.items.map((item, i) => (
@@ -59,7 +59,7 @@ export default class MenuBody extends Component {
             </Fragment>
           ))}
           {rootFooter}
-        </MenuList>
+        </List>
       </div>
     )
   }

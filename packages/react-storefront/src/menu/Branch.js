@@ -4,8 +4,8 @@
  */
 import React, { Component, Fragment } from 'react'
 import { observer, inject } from 'mobx-react'
-import MenuList from '@material-ui/core/MenuList'
-import MenuItem from '@material-ui/core/MenuItem'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 import Collapse from '@material-ui/core/Collapse'
 import classnames from 'classnames'
 import ItemContent from './ItemContent'
@@ -54,7 +54,7 @@ export default class Branch extends Component {
 
     const elements = [
       <div key="item" amp-bind={`class=>sublist == '${sublist}' ? 'expanded' : ''`}>
-        <MenuItem className="menu-item" button divider {...(amp ? ampProps : interactionProps)}>
+        <ListItem className="menu-item" button divider {...(amp ? ampProps : interactionProps)}>
           <ItemContent
             {...others}
             item={item}
@@ -62,7 +62,7 @@ export default class Branch extends Component {
             showExpander={showExpander}
             sublist={sublist}
           />
-        </MenuItem>
+        </ListItem>
       </div>
     ]
 
@@ -77,12 +77,12 @@ export default class Branch extends Component {
         : { in: item.expanded }
       elements.push(
         <Collapse {...props} timeout="auto" key="collapse">
-          <MenuList component="div" classes={{ root: classes.list }}>
+          <List component="div" classes={{ root: classes.list }}>
             {item.items &&
               item.items.map((item, i) => (
                 <Item {...this.props} depth={depth + 1} item={item} key={i} />
               ))}
-          </MenuList>
+          </List>
         </Collapse>
       )
     }

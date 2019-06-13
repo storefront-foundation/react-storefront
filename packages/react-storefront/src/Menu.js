@@ -233,20 +233,35 @@ export default class Menu extends Component {
     align: PropTypes.oneOf(['left', 'right']),
 
     /**
-     * A function to render the contents of a menu item.  It is passed the following arguments:
+     * Overrides the default rendering of a menu item.  It is passed the following arguments:
      *
      * 1.) item - the MenuItemModel instance.
-     * 2.) leaf - `true` when the item is a leaf node, otherwise `false`
      *
      * Return undefined to render the default contents
      *
      * Example:
      *
-     *  itemRenderer={(item, leaf) => {
-     *    return leaf ? <ListItemText primary={item.text}/> : undefined
+     *  itemTextRenderer={item => {
+     *    return item.text === 'My Special Item ? <MySpecialItem/> : null
      *  }}
      */
     itemRenderer: PropTypes.func,
+
+    /**
+     * Overrides the text context of a menu item.  It is passed the following arguments:
+     *
+     * 1.) item - the MenuItemModel instance.
+     * 2.) leaf - `true` when the item is a leaf node, otherwise `false`
+     *
+     * Return null to render the default contents
+     *
+     * Example:
+     *
+     *  itemTextRenderer={(item, leaf) => {
+     *    return leaf ? <ListItemText primary={item.text}/> : null
+     *  }}
+     */
+    itemTextRenderer: PropTypes.func,
 
     /**
      * Set to `true` to show the item corresponding to the current URL as selected.
