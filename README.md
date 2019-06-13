@@ -77,6 +77,7 @@ yarn release
 ### 6.26.0
 
 - JavaScript bundles are now prefetched using link rel="prefetch" headers.
+- Fixed Router handling AMP routes bug
 
 ### 6.25.0
 

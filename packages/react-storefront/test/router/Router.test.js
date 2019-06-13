@@ -428,6 +428,11 @@ describe('Router:Node', function() {
       router.get('/p/:id', params => Promise.resolve(params))
       expect(await runAll('get', '/p/foo.json')).toEqual({ id: 'foo', format: 'json' })
     })
+
+    it('should handle AMP format', async function() {
+      router.get('/p/:id', params => Promise.resolve(params))
+      expect(await runAll('get', '/p/foo.amp')).toEqual({ id: 'foo', format: 'amp' })
+    })
   })
 
   describe('cache', function() {
