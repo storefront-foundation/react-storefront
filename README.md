@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.27.0
+
+- Added `optimizeImages` util function for use in handlers
+
 ### 6.26.0
 
 - JavaScript bundles are now prefetched using link rel="prefetch" headers.
