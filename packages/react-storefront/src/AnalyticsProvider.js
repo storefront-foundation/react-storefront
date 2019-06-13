@@ -4,8 +4,9 @@
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import analytics, { configureAnalytics } from './analytics'
+import analytics, { configureAnalytics, activate } from './analytics'
 import { Provider, inject } from 'mobx-react'
+import ttiPolyfill from 'tti-polyfill'
 
 /**
  * Use this component to register your analytics targets.
@@ -59,7 +60,12 @@ export default class AnalyticsProvider extends Component {
     /**
      * Function which should return desired analytics targets to configure.
      */
-    targets: PropTypes.func.isRequired
+    targets: PropTypes.func.isRequired,
+
+    /**
+     * Set to true to delay loading of analytics until the app is interactive
+     */
+    delayUntilInteractive: PropTypes.bool
   }
 
   constructor(props) {
@@ -70,8 +76,18 @@ export default class AnalyticsProvider extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const { delayUntilInteractive } = this.props
+
     if (this.props.targets) {
+      if (delayUntilInteractive) {
+        await ttiPolyfill.getFirstConsistentlyInteractive()
+      }
+  
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[AnalyticsProvider]', 'initializing analytics')
+      }
+
       const targets = this.props.targets()
       configureAnalytics(...targets)
 
@@ -80,6 +96,8 @@ export default class AnalyticsProvider extends Component {
           target.setHistory(this.props.history)
         }
       }
+
+      activate()
     }
   }
 

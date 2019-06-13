@@ -86,7 +86,7 @@ describe('responseHeaderTransform', () => {
     global.env.__static_origin_path__ = true
     global.env.path = '/pwa/main.js'
     responseHeaderTransform()
-    expect(headers.header('cache-control')).toBe(`maxage=${FAR_FUTURE}, s-maxage=${FAR_FUTURE}`)
+    expect(headers.header('cache-control')).toBe(`max-age=${FAR_FUTURE}, s-maxage=${FAR_FUTURE}`)
   })
 
   it('should cache all other static assets on the server and not send a no-cache to the client', () => {

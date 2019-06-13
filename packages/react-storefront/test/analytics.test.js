@@ -2,13 +2,24 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import analytics, { configureAnalytics, getTargets } from '../src/analytics'
+import analytics, { configureAnalytics, getTargets, activate } from '../src/analytics'
 
-describe('AnalyticsProvider', () => {
+describe('analytics', () => {
+  let NODE_ENV = process.env.NODE_ENV
+
+  beforeEach(() => {
+    process.env.NODE_ENV = 'development' // for coverage
+  })
+
+  afterEach(() => {
+    process.env.NODE_ENV = NODE_ENV
+  })
+
   it('calls all targets', () => {
     const targets = [1, 2, 3].map(i => ({ testMethod: jest.fn() }))
 
     configureAnalytics(...targets)
+    activate()
     const data = { search: { keywords: 'red shirt' } }
     analytics.testMethod(data)
 
@@ -21,6 +32,7 @@ describe('AnalyticsProvider', () => {
     const targets = [1, 2, 3].map(i => ({ testMethod: jest.fn() }))
 
     configureAnalytics(...targets)
+    activate()
     const data = { search: { keywords: 'red shirt' } }
     analytics.fire('testMethod', data)
 
@@ -33,6 +45,7 @@ describe('AnalyticsProvider', () => {
     jest.spyOn(global.console, 'warn')
     const target = {}
     configureAnalytics(target)
+    activate()
     analytics.fooPageView({})
     expect(console.warn).toBeCalled()
   })
@@ -42,6 +55,7 @@ describe('AnalyticsProvider', () => {
     const t2 = {}
 
     configureAnalytics(t1, t2)
+    activate()
 
     const [r1, r2, ...rest] = getTargets()
     expect(r1).toBe(t1)
@@ -51,6 +65,7 @@ describe('AnalyticsProvider', () => {
 
   it('should return AnalyticsProxy from toString()', () => {
     configureAnalytics({})
+    activate()
     expect(analytics.toString()).toBe('AnalyticsProxy')
   })
 
@@ -64,8 +79,20 @@ describe('AnalyticsProvider', () => {
     }
 
     configureAnalytics(errorTarget, successTarget)
+    activate()
     analytics.fire('test', {})
     expect(errorTarget.test).toHaveBeenCalled()
     expect(successTarget.test).toHaveBeenCalled()
+  })
+
+  it('should queue events until activates', () => {
+    jest.resetModules()
+    const { default: analytics, activate, configureAnalytics } = require('../src/analytics')
+    analytics.fire('test', 'foo', 'bar')
+    const test = jest.fn()
+    configureAnalytics({ test })
+    expect(test).not.toHaveBeenCalled()
+    activate()
+    expect(test).toHaveBeenCalledWith('foo', 'bar')
   })
 })

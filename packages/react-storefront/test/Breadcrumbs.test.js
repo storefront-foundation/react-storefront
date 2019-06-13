@@ -8,8 +8,8 @@ import { Provider } from 'mobx-react'
 import Breadcrumbs from '../src/Breadcrumbs'
 import AppModelBase from '../src/model/AppModelBase'
 import waitForAnalytics from './helpers/waitForAnalytics'
-import { configureAnalytics } from '../src/analytics'
 import TestProvider from './TestProvider'
+import AnalyticsProvider from '../src/AnalyticsProvider'
 
 describe('Breadcrumbs', () => {
   it('renders', () => {
@@ -71,8 +71,6 @@ describe('Breadcrumbs', () => {
   it('should fire a breadcrumb_clicked event when clicked', () => {
     const breadcrumbClicked = jest.fn()
 
-    configureAnalytics({ breadcrumbClicked })
-
     const app = AppModelBase.create({
       breadcrumbs: [
         { url: '/', text: 'Home' },
@@ -83,7 +81,9 @@ describe('Breadcrumbs', () => {
 
     const wrapper = mount(
       <TestProvider app={app}>
-        <Breadcrumbs />
+        <AnalyticsProvider targets={() => [{ breadcrumbClicked }]}>
+          <Breadcrumbs />
+        </AnalyticsProvider>
       </TestProvider>
     )
 
@@ -92,7 +92,7 @@ describe('Breadcrumbs', () => {
       .at(0)
       .simulate('click')
 
-    waitForAnalytics(() => {
+    return waitForAnalytics(() => {
       expect(breadcrumbClicked).toHaveBeenCalledWith({
         breadcrumb: {
           text: 'Home',

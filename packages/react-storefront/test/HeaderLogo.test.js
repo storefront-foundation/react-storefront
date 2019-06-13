@@ -8,7 +8,7 @@ import HeaderLogo from '../src/HeaderLogo'
 import AppModelBase from '../src/model/AppModelBase'
 import { Provider } from 'mobx-react'
 import { createMemoryHistory } from 'history'
-import { configureAnalytics } from '../src/analytics'
+import AnalyticsProvider from '../src/AnalyticsProvider'
 import waitForAnalytics from './helpers/waitForAnalytics'
 
 describe('HeaderLogo', () => {
@@ -32,11 +32,12 @@ describe('HeaderLogo', () => {
 
   it('fires the logo_clicked event when clicked', () => {
     const logoClicked = jest.fn()
-    configureAnalytics({ logoClicked })
 
     mount(
       <Provider app={app} history={history}>
-        <HeaderLogo/>
+        <AnalyticsProvider targets={() => [{ logoClicked }]}>
+          <HeaderLogo/>
+        </AnalyticsProvider>
       </Provider>
     )
       .find('a').at(0)

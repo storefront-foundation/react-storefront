@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.28.0
+
+- Adds a new `delayUntilInteractive` prop to `AnalyticsProvider` that delays loading analytics scripts until the app is fully interactive. This helps ensure the best TTI and user experience.
+
 ### 6.27.0
 
 - Added `optimizeImages` util function for use in handlers
@@ -82,7 +86,7 @@ yarn release
 ### 6.26.0
 
 - JavaScript bundles are now prefetched using link rel="prefetch" headers.
-- Fixed Router handling AMP routes bug
+- Fixes bug in handling of AMP routes introduced in 6.25.0
 
 ### 6.25.0
 
