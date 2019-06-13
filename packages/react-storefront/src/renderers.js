@@ -132,8 +132,8 @@ export function getScripts({ stats, chunk }) {
  * Renders a link prefetch header value
  * @param {String} src Source of script
  */
-export function renderPrefetchHeader(src) {
-  return `<${src}>; rel=prefetch`
+export function renderPreloadHeader(src) {
+  return `<${src}>; rel=preload; as=script`
 }
 
 /**
