@@ -78,6 +78,7 @@ yarn release
 
 - Adds an `initialContent` prop to `SearchDrawer` that determines the content to display when the search field is blank.
 - Fixed bug where custom `ExpandableSection` icons were showing wrong icon when using `defaultExpanded`.
+- Fix a bug where format was not being passed as a request param. This was introduced in 6.25.0
 
 ### 6.28.0
 

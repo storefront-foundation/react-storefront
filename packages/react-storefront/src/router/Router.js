@@ -289,23 +289,19 @@ export default class Router extends EventEmitter {
 
     request.params = params
 
+    if (!request.params.hasOwnProperty('format')) {
+      if (request.path.endsWith('.json')) {
+        request.params.format = 'json'
+      } else if (request.path.endsWith('.amp')) {
+        request.params.format = 'amp'
+      }
+    }
+
     const handlers = match ? match.handlers : this.fallbackHandlers
     const willFetchFromServer = !initialLoad && handlers.some(h => h.type === 'fromServer')
 
     // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
     // and that the app state's location information is updated.
-
-    if (request.path.endsWith('.json')) {
-      yield {
-        format: 'json'
-      }
-    }
-
-    if (request.path.endsWith('.amp')) {
-      yield {
-        format: 'amp'
-      }
-    }
 
     if (this.isBrowser) {
       yield {
