@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.29.0
+
+- Adds an `initialContent` prop to `SearchDrawer` that determines the content to display when the search field is blank.
+
 ### 6.28.0
 
 - Adds a new `delayUntilInteractive` prop to `AnalyticsProvider` that delays loading analytics scripts until the app is fully interactive. This helps ensure the best TTI and user experience.
