@@ -17,7 +17,7 @@ create-react-storefront my-site
 
 ## License
 
-All rights reserved.
+React Storefront is licensed under the Apache 2.0 License.
 
 ## Contributing
 

@@ -3,7 +3,7 @@
   "version": "6.28.0",
   "main": "src/index.js",
   "author": "Moovweb",
-  "license": "UNLICENSED",
+  "license": "Apache 2.0",
   "dependencies": {
     "babel-core": "^6.26.0"
   },

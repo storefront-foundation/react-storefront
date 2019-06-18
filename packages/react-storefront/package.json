@@ -5,7 +5,7 @@
   "browser": "src",
   "module": "./index.js",
   "author": "Moovweb",
-  "license": "UNLICENSED",
+  "license": "Apache 2.0",
   "scripts": {
     "test:unit": "jest --runInBand",
     "test": "jest test.js --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!test/**/* && yarn test:browser",

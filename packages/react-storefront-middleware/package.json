@@ -3,7 +3,7 @@
   "version": "6.28.0",
   "description": "Express middleware for react-storefront",
   "author": "Moovweb",
-  "license": "UNLICENSED",
+  "license": "Apache 2.0",
   "main": "./index.js",
   "peerDependencies": {
     "express": "^4.16.4"
