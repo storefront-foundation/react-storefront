@@ -8,8 +8,8 @@ exports[`ExpandableSection should render 1`] = `
         <WithTheme(inject-ExpandableSection) title="Title" classes={{...}}>
           <inject-ExpandableSection theme={{...}} title="Title" classes={{...}}>
             <ExpandableSection theme={{...}} title="Title" classes={{...}} amp={false} margins={true}>
-              <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} onChange={[Function]}>
-                <ExpansionPanel expanded={[undefined]} onChange={[Function]} classes={{...}} defaultExpanded={false} disabled={false}>
+              <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} defaultExpanded={[undefined]} onChange={[Function]}>
+                <ExpansionPanel expanded={[undefined]} defaultExpanded={[undefined]} onChange={[Function]} classes={{...}} defaultExpanded={false} disabled={false}>
                   <WithStyles(Paper) className="MuiExpansionPanel-root-13 RSFExpandableSection-root-1 RSFExpandableSection-margins-2 RSFExpandableSection-expandedPanel-10" elevation={1} square={true}>
                     <Paper className="MuiExpansionPanel-root-13 RSFExpandableSection-root-1 RSFExpandableSection-margins-2 RSFExpandableSection-expandedPanel-10" elevation={1} square={true} classes={{...}} component="div">
                       <div className="MuiPaper-root-16 MuiPaper-elevation1-19 MuiExpansionPanel-root-13 RSFExpandableSection-root-1 RSFExpandableSection-margins-2 RSFExpandableSection-expandedPanel-10">
