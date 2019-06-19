@@ -201,5 +201,4 @@ main()
 function saveJsFile(data, filepath) {
   const json = JSON.stringify(data)
   fs.writeFileSync(filepath, `const data = ${json};\nexport default data;`, 'utf8')
-  execSync(`git add ${filepath}`)
 }
