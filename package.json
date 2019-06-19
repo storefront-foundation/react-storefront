@@ -64,7 +64,7 @@
   "scripts": {
     "build": "cd packages/react-storefront; yarn build; cd ../../; cd packages/react-storefront-moov-xdn; yarn build; cd ../../;",
     "precommit": "yarn add-license",
-    "release": "lerna version --force-publish=*; yarn build; yarn release:rsf; yarn release:moov-xdn; yarn release:middleware; yarn release:babel-plugin",
+    "release": "lerna version --force-publish=*; yarn docs; yarn build; yarn release:rsf; yarn release:moov-xdn; yarn release:middleware; yarn release:babel-plugin",
     "release:rsf": "cd packages/react-storefront/dist; yarn publish --non-interactive",
     "release:babel-plugin": "cd packages/babel-plugin-react-storefront; yarn publish --non-interactive",
     "release:moov-xdn": "cd packages/react-storefront-moov-xdn/dist; yarn publish --non-interactive",
