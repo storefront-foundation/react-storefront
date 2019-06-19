@@ -3,7 +3,7 @@
   "version": "6.29.0",
   "description": "Extension for running React Storefront apps on Moovweb's XDN platform.",
   "author": "Moovweb",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "main": "index.js",
   "scripts": {
     "test": "jest",
