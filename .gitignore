@@ -71,3 +71,4 @@ build/*
 
 # Storybook static built files
 storybook-static
+react-storefront.code-workspace

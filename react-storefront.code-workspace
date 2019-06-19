@@ -6,5 +6,9 @@
   ],
   "extensions": {
     "recommendations": ["esbenp.prettier-vscode"]
+  },
+  "settings": {
+    "editor.formatOnSave": true,
+    "workbench.editor.enablePreview": false
   }
 }
