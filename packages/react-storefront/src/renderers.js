@@ -201,15 +201,13 @@ export function render({
     html,
     style: renderStyle({ registry }),
     initialStateScript: renderInitialStateScript({ state, defer: false, initialStateProperty }),
-    bootstrapScript: renderScript({ stats, chunk: 'bootstrap' }),
-    componentScript: renderScript({ stats, chunk: clientChunk })
+    componentScript: getScripts({ stats, chunk: clientChunk }).map(renderScript)
   }
 
   if (injectAssets) {
     $head.append(result.style)
     $body.append(result.initialStateScript)
-    $body.append(result.bootstrapScript)
-    $body.append(result.componentScript)
+    $body.append(...result.componentScript)
   }
 
   return result
