@@ -68,9 +68,6 @@ typings/
 .idea
 
 build/*
-!build/docs/components.js
 
 # Storybook static built files
 storybook-static
-
-docs/

@@ -20,7 +20,7 @@
     "build:assets": "sync-folders --type copy webpack service-worker docs dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
     "watch": "yarn build:prep && concurrently 'yarn build:assets --watch' 'yarn build:sources --watch'",
-    "docs": "mkdir -p docs/build && NODE_ENV=docs babel-node docs/buildComponentDocs.js"
+    "docs": "mkdir -p docs/build && NODE_ENV=docs babel-node docs/buildDocs d.js"
   },
   "peerDependencies": {
     "@material-ui/core": "^3.8.1",
@@ -51,6 +51,7 @@
     "@storybook/react": "^4.1.3",
     "chai": "^4.1.2",
     "create-index": "^2.3.0",
+    "documentation": "^11.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "gh-pages": "^1.2.0",
