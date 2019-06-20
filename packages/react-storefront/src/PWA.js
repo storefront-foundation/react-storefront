@@ -14,6 +14,7 @@ import { isSafari } from './utils/browser'
 import { connectReduxDevtools } from 'mst-middlewares'
 import { onSnapshot } from 'mobx-state-tree'
 import debounce from 'lodash/debounce'
+import AppContext from './AppContext'
 import ErrorBoundary from './ErrorBoundary'
 
 /**
@@ -41,48 +42,54 @@ export const styles = theme => ({
 export default class PWA extends Component {
   _nextId = 0
 
+  constructor({ app, history, router, errorReporter }) {
+    super()
+    this.appContextValue = { app, history, router, errorReporter }
+  }
   render() {
     const { amp, app, errorReporter } = this.props
 
     return (
-      <Provider nextId={this.nextId} errorReporter={errorReporter}>
-        <ErrorBoundary onError={errorReporter}>
-          <Fragment>
-            <CssBaseline />
-            <Helmet>
-              <html lang="en" />
-              <meta charset="utf-8" />
-              <meta
-                name="viewport"
-                content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
-              />
-              <meta name="theme-color" content="#000000" />
-              {app.description ? <meta name="description" content={app.description} /> : null}
-              {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
-              <link rel="manifest" href="/manifest.json" />
-              <title>{app.title}</title>
-            </Helmet>
-            {amp && (
+      <AppContext.Provider value={this.appContextValue}>
+        <Provider nextId={this.nextId} errorReporter={errorReporter}>
+          <ErrorBoundary onError={errorReporter}>
+            <Fragment>
+              <CssBaseline />
               <Helmet>
-                <script async src="https://cdn.ampproject.org/v0.js" />
-                <script
-                  async
-                  custom-element="amp-install-serviceworker"
-                  src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
+                <html lang="en" />
+                <meta charset="utf-8" />
+                <meta
+                  name="viewport"
+                  content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
                 />
+                <meta name="theme-color" content="#000000" />
+                {app.description ? <meta name="description" content={app.description} /> : null}
+                {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
+                <link rel="manifest" href="/manifest.json" />
+                <title>{app.title}</title>
               </Helmet>
-            )}
-            {amp && (
-              <amp-install-serviceworker
-                src={`${app.location.urlBase}/service-worker.js`}
-                data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
-                layout="nodisplay"
-              />
-            )}
-            {this.props.children}
-          </Fragment>
-        </ErrorBoundary>
-      </Provider>
+              {amp && (
+                <Helmet>
+                  <script async src="https://cdn.ampproject.org/v0.js" />
+                  <script
+                    async
+                    custom-element="amp-install-serviceworker"
+                    src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
+                  />
+                </Helmet>
+              )}
+              {amp && (
+                <amp-install-serviceworker
+                  src={`${app.location.urlBase}/service-worker.js`}
+                  data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
+                  layout="nodisplay"
+                />
+              )}
+              {this.props.children}
+            </Fragment>
+          </ErrorBoundary>
+        </Provider>
+      </AppContext.Provider>
     )
   }
 

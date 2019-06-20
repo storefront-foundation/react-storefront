@@ -77,6 +77,8 @@ yarn release
 ### 6.30.0
 
 - Adds `imageProps` prop to `ImageSwitcher`
+- Added support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
+- Added a `withPersonalization` HOC and `usePersonalization` hook for late loading personalized data.
 
 ### 6.29.0
 
