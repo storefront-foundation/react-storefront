@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.30.0
+
+- Adds `imageProps` prop to `ImageSwitcher`
+
 ### 6.29.0
 
 - Adds an `initialContent` prop to `SearchDrawer` that determines the content to display when the search field is blank.

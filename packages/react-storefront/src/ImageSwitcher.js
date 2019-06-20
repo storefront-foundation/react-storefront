@@ -262,6 +262,11 @@ export default class ImageSwitcher extends Component {
      */
     loadingThumbnailProps: PropTypes.object,
 
+    /**
+     * Props to be added to the Image child components.
+     */
+    imageProps: PropTypes.object,
+
     /*
      * Option to manually set the selected index
      */
@@ -290,6 +295,7 @@ export default class ImageSwitcher extends Component {
     arrows: true,
     indicators: false,
     loadingThumbnailProps: {},
+    imageProps: {},
     reactPinchZoomPanOptions: {
       maxScale: 3
     }
@@ -428,6 +434,7 @@ export default class ImageSwitcher extends Component {
       style,
       reactPinchZoomPanOptions,
       loadingThumbnailProps,
+      imageProps,
       viewerThumbnailsOnly,
       notFoundSrc
     } = this.props
@@ -474,6 +481,7 @@ export default class ImageSwitcher extends Component {
                     src={i === 0 && app.loading ? null : src} // need to clear src when app.loading is true so that the onLoad event will fire and the loading thumbnail will be removed
                     alt={alt || 'product'}
                     onLoad={i === 0 ? this.clearLoadingProduct : null}
+                    {...imageProps}
                   />
                 )}
               </div>
