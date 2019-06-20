@@ -6,7 +6,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
         <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
-          <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
+          <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
             <div className="RSFImageSwitcher-root-1" style={[undefined]}>
               <div className="RSFImageSwitcher-swipeWrap-2">
                 <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
@@ -111,7 +111,7 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
             </amp-state>
             <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
               <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
-                <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
+                <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
                   <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId) images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
                     <inject-AmpImageSwitcher-with-nextId-ampStateId images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
                       <AmpImageSwitcher images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" type="slides" ampStateProperty="selectedImage" controls={false}>
@@ -149,7 +149,7 @@ exports[`ImageSwitcher should render arrows 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} arrows={true}>
         <inject-ImageSwitcher-with-app images={{...}} arrows={true} classes={{...}}>
-          <ImageSwitcher images={{...}} arrows={true} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
+          <ImageSwitcher images={{...}} arrows={true} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
             <div className="RSFImageSwitcher-root-141" style={[undefined]}>
               <div className="RSFImageSwitcher-swipeWrap-142">
                 <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
@@ -243,7 +243,7 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} showIndicators={true}>
         <inject-ImageSwitcher-with-app images={{...}} showIndicators={true} classes={{...}}>
-          <ImageSwitcher images={{...}} showIndicators={true} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
+          <ImageSwitcher images={{...}} showIndicators={true} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
             <div className="RSFImageSwitcher-root-195" style={[undefined]}>
               <div className="RSFImageSwitcher-swipeWrap-196">
                 <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
@@ -337,7 +337,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} thumbnails={{...}}>
         <inject-ImageSwitcher-with-app images={{...}} thumbnails={{...}} classes={{...}}>
-          <ImageSwitcher images={{...}} thumbnails={{...}} classes={{...}} app={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} reactPinchZoomPanOptions={{...}}>
+          <ImageSwitcher images={{...}} thumbnails={{...}} classes={{...}} app={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
             <div className="RSFImageSwitcher-root-55" style={[undefined]}>
               <div className="RSFImageSwitcher-swipeWrap-56">
                 <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>

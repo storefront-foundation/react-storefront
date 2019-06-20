@@ -7,12 +7,11 @@ import { mount } from 'enzyme'
 import PromoBanner from '../src/PromoBanner'
 import { Provider } from 'mobx-react'
 import { createMemoryHistory } from 'history'
-import { configureAnalytics } from '../src/analytics'
 import waitForAnalytics from './helpers/waitForAnalytics'
 import AppModelBase from '../src/model/AppModelBase'
+import AnalyticsProvider from '../src/AnalyticsProvider'
 
 describe('PromoBanner', () => {
-
   let history, app
 
   beforeEach(() => {
@@ -23,7 +22,7 @@ describe('PromoBanner', () => {
   it('renders', () => {
     const component = (
       <Provider history={history} app={app}>
-        <PromoBanner/>
+        <PromoBanner />
       </Provider>
     )
 
@@ -32,22 +31,23 @@ describe('PromoBanner', () => {
 
   it('fires the promo_banner_clicked event when clicked', () => {
     const promoBannerClicked = jest.fn()
-    configureAnalytics({ promoBannerClicked })
 
     mount(
       <Provider history={history} app={app}>
-        <PromoBanner name="promo" src="/promo.jpeg"/>
+        <AnalyticsProvider targets={() => [{ promoBannerClicked }]}>
+          <PromoBanner name="promo" src="/promo.jpeg" />
+        </AnalyticsProvider>
       </Provider>
     )
-      .find('a').at(0)
-      .simulate('click')    
+      .find('a')
+      .at(0)
+      .simulate('click')
 
-    waitForAnalytics(() => {
+    return waitForAnalytics(() => {
       expect(promoBannerClicked).toHaveBeenCalledWith({
         name: 'promo',
         imageUrl: '/promo.jpeg'
       })
     })
   })
-
 })

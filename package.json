@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "repository": "https://github.com/moovweb/react-storefront",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "private": true,
   "devEngines": {
     "node": "8.x || 9.x || 10.x"

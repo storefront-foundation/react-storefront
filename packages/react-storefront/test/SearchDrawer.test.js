@@ -157,4 +157,25 @@ describe('SearchDrawer', () => {
       })
     })
   })
+
+  describe('initialContent', () => {
+    it('should render when the search is blank', () => {
+      const wrapper = mount(
+        <TestContext>
+          <SearchDrawer searchButtonVariant="icon" initialContent={<div id="initialContent" />} />
+        </TestContext>
+      )
+      expect(wrapper.find('div#initialContent')).toHaveLength(1)
+    })
+
+    it('should hide when the search is filled', () => {
+      const wrapper = mount(
+        <TestContext>
+          <SearchDrawer searchButtonVariant="icon" initialContent={<div id="initialContent" />} />
+        </TestContext>
+      )
+      wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
+      expect(wrapper.find('div#initialContent')).toHaveLength(0)
+    })
+  })
 })

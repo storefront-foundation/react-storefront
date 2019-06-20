@@ -27,7 +27,7 @@ describe('powerLinkHandler', () => {
     })
     it('should set cache age', () => {
       powerLinkHandler(null, {}, response)
-      expect(response.get('cache-control')).toBe('maxage: 86400, s-maxage: 31536000')
+      expect(response.get('cache-control')).toBe('max-age: 86400, s-maxage: 31536000')
     })
     it('should set service worker path in body', () => {
       powerLinkHandler(

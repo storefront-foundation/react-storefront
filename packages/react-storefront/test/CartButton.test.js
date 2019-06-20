@@ -8,11 +8,10 @@ import CartButton from '../src/CartButton'
 import AppModelBase from '../src/model/AppModelBase'
 import { Provider } from 'mobx-react'
 import { createMemoryHistory } from 'history'
-import { configureAnalytics } from '../src/analytics'
 import waitForAnalytics from './helpers/waitForAnalytics'
+import AnalyticsProvider from '../src/AnalyticsProvider'
 
 describe('CartButton', () => {
-
   let app, history
 
   beforeEach(() => {
@@ -23,7 +22,7 @@ describe('CartButton', () => {
   it('renders', () => {
     const component = (
       <Provider app={app} history={history}>
-        <CartButton/>
+        <CartButton />
       </Provider>
     )
 
@@ -32,18 +31,18 @@ describe('CartButton', () => {
 
   it('fires the view_cart event when clicked', () => {
     const cartClicked = jest.fn()
-    configureAnalytics({ cartClicked })
 
     mount(
       <Provider app={app} history={history}>
-        <CartButton/>
+        <AnalyticsProvider targets={() => [{ cartClicked }]}>
+          <CartButton />
+        </AnalyticsProvider>
       </Provider>
     )
-      .find('a').at(0)
-      .simulate('click')    
+      .find('CartButton')
+      .at(0)
+      .simulate('click')
 
     return waitForAnalytics(() => expect(cartClicked).toHaveBeenCalled())
   })
-
 })
-

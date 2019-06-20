@@ -10,7 +10,7 @@ export default function powerLinkHandler(_params, request, response) {
   }`
 
   response.set('x-moov-cache', 'true')
-  response.set('cache-control', `maxage: ${60 * 60 * 24}, s-maxage: ${60 * 60 * 24 * 365}`)
+  response.set('cache-control', `max-age: ${60 * 60 * 24}, s-maxage: ${60 * 60 * 24 * 365}`)
 
   response.send(`
     var links = Array.from(document.querySelectorAll('a[data-rsf-power-link]')).map(function(link) {

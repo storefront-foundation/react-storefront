@@ -9,7 +9,6 @@ import createTheme from '../src/createTheme'
 import AppModelBase from '../src/model/AppModelBase'
 import { Router, fromServer } from '../src/router'
 import React from 'react'
-import { inject } from 'mobx-react'
 import $ from 'cheerio'
 import Request from '../../react-storefront-moov-xdn/src/Request'
 import Response from '../../react-storefront-moov-xdn/src/Response'
@@ -80,6 +79,23 @@ describe('Server', () => {
       expect(exported.MOOV_PWA_RESPONSE.headers['content-type']).toBe('application/json')
     })
 
+    it('should set prefetch headers', async () => {
+      global.env.path = '/test'
+      request = new Request()
+      response = new Response(request)
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
+      expect(exported.MOOV_PWA_RESPONSE.headers.link).toBe('</pwa/main.js>; rel=preload; as=script')
+    })
+
+    it('should render scripts', async () => {
+      global.env.path = '/test'
+      request = new Request()
+      response = new Response(request)
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
+      const body = global.sendResponse.mock.calls[0][0].body
+      expect(body).toContain('<script type="text/javascript" defer src="/pwa/main.js"></script>')
+    })
+
     it('should allow you to override the content-type', async () => {
       global.env.path = '/test.json'
       request = new Request()
@@ -111,28 +127,6 @@ describe('Server', () => {
       await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
       const body = JSON.parse(global.sendResponse.mock.calls[0][0].body)
       expect(body.page).toBe('Test')
-    })
-
-    it('should catch errors and render the error view', async () => {
-      const App = inject('app')(({ app }) => {
-        if (app.error) {
-          return (
-            <div>
-              <div className="page">{app.page}</div>
-              <div className="error">{app.error}</div>
-              <div className="stack">{app.stack}</div>
-            </div>
-          )
-        } else {
-          throw new Error('test')
-        }
-      })
-
-      await new Server({ theme, model, router, blob, App }).serve(request, response)
-      const { body } = global.sendResponse.mock.calls[0][0]
-      expect(body).toMatch(/<div class="page">Error<\/div>/)
-      expect(body).toMatch(/<div class="error">test<\/div>/)
-      expect(body).toMatch(/<div class="stack">[^<]+<\/div>/)
     })
 
     it('should not do SSR when the response has already been sent', async () => {
@@ -175,12 +169,11 @@ describe('Server', () => {
         </PWA>
       )
 
-      let called = false
+      let passedHtml
       const body = '<div>foo</div>'
 
       const transform = html => {
-        called = true
-        expect(html).toMatch(/<!DOCTYPE html>.*<div>test<\/div>/)
+        passedHtml = html
         return body
       }
 
@@ -188,10 +181,85 @@ describe('Server', () => {
         request,
         response
       )
+
       const data = global.sendResponse.mock.calls[0][0]
 
+      expect(passedHtml).toContain('<div>test</div>')
       expect(data).toEqual({ body, htmlparsed: true })
-      expect(called).toBe(true)
+    })
+  })
+
+  describe('errorReporter', () => {
+    let errorReporter, error
+
+    beforeEach(() => {
+      errorReporter = jest.fn()
+      error = new Error()
+    })
+
+    it('should be called when an error is thrown during rendering', async () => {
+      const App = () => {
+        throw error
+      }
+
+      await new Server({ theme, model, router, blob, globals, App, errorReporter }).serve(
+        request,
+        response
+      )
+
+      expect(errorReporter).toHaveBeenCalledWith({
+        error,
+        history: expect.anything(),
+        app: expect.anything()
+      })
+    })
+
+    it('should be called when an error is thrown from the router while serving HTML', async () => {
+      const App = () => <div />
+
+      const router = new Router().get(
+        '/test',
+        fromServer(() => {
+          throw error
+        })
+      )
+
+      await new Server({ theme, model, router, blob, globals, App, errorReporter }).serve(
+        request,
+        response
+      )
+
+      expect(errorReporter).toHaveBeenCalledWith({
+        error,
+        history: expect.anything(),
+        app: undefined
+      })
+    })
+
+    it('should be called when an error is thrown from the router during while serving JSON', async () => {
+      const App = () => <div />
+
+      const router = new Router().get(
+        '/test',
+        fromServer(() => {
+          throw error
+        })
+      )
+
+      global.env.path = '/test.json'
+      request = new Request()
+      response = new Response(request)
+
+      await new Server({ theme, model, router, blob, globals, App, errorReporter }).serve(
+        request,
+        response
+      )
+
+      expect(errorReporter).toHaveBeenCalledWith({
+        error,
+        history: expect.anything(),
+        app: undefined
+      })
     })
   })
 })

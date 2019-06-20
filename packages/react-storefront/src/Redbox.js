@@ -49,7 +49,9 @@ export default class Redbox extends Component {
       classes
     } = this.props
 
-    if (amp) {
+    if (!error) {
+      return null
+    } else if (amp) {
       return (
         <pre className={classes.amp}>
           {this.reformat(error)}

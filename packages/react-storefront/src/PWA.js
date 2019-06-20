@@ -15,6 +15,7 @@ import { connectReduxDevtools } from 'mst-middlewares'
 import { onSnapshot } from 'mobx-state-tree'
 import debounce from 'lodash/debounce'
 import AppContext from './AppContext'
+import ErrorBoundary from './ErrorBoundary'
 
 /**
  * @private
@@ -46,45 +47,47 @@ export default class PWA extends Component {
     this.appContextValue = { app, history, router, errorReporter }
   }
   render() {
-    const { amp, app } = this.props
+    const { amp, app, errorReporter } = this.props
 
     return (
       <AppContext.Provider value={this.appContextValue}>
-        <Provider nextId={this.nextId}>
-          <Fragment>
-            <CssBaseline />
-            <Helmet>
-              <html lang="en" />
-              <meta charset="utf-8" />
-              <meta
-                name="viewport"
-                content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
-              />
-              <meta name="theme-color" content="#000000" />
-              {app.description ? <meta name="description" content={app.description} /> : null}
-              {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
-              <link rel="manifest" href="/manifest.json" />
-              <title>{app.title}</title>
-            </Helmet>
-            {amp && (
+        <Provider nextId={this.nextId} errorReporter={errorReporter}>
+          <ErrorBoundary onError={errorReporter}>
+            <Fragment>
+              <CssBaseline />
               <Helmet>
-                <script async src="https://cdn.ampproject.org/v0.js" />
-                <script
-                  async
-                  custom-element="amp-install-serviceworker"
-                  src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
+                <html lang="en" />
+                <meta charset="utf-8" />
+                <meta
+                  name="viewport"
+                  content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
                 />
+                <meta name="theme-color" content="#000000" />
+                {app.description ? <meta name="description" content={app.description} /> : null}
+                {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
+                <link rel="manifest" href="/manifest.json" />
+                <title>{app.title}</title>
               </Helmet>
-            )}
-            {amp && (
-              <amp-install-serviceworker
-                src={`${app.location.urlBase}/service-worker.js`}
-                data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
-                layout="nodisplay"
-              />
-            )}
-            {this.props.children}
-          </Fragment>
+              {amp && (
+                <Helmet>
+                  <script async src="https://cdn.ampproject.org/v0.js" />
+                  <script
+                    async
+                    custom-element="amp-install-serviceworker"
+                    src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"
+                  />
+                </Helmet>
+              )}
+              {amp && (
+                <amp-install-serviceworker
+                  src={`${app.location.urlBase}/service-worker.js`}
+                  data-iframe-src={`${app.location.urlBase}/pwa/install-service-worker.html`}
+                  layout="nodisplay"
+                />
+              )}
+              {this.props.children}
+            </Fragment>
+          </ErrorBoundary>
         </Provider>
       </AppContext.Provider>
     )
@@ -92,16 +95,6 @@ export default class PWA extends Component {
 
   nextId = () => {
     return this._nextId++
-  }
-
-  componentDidCatch(error, info) {
-    const { app } = this.props
-
-    app.applyState({
-      page: 'Error',
-      error: error.message,
-      stack: info.componentStack
-    })
   }
 
   componentDidMount() {
@@ -156,8 +149,6 @@ export default class PWA extends Component {
       cache(path, `<!DOCTYPE html>\n${document.documentElement.outerHTML}`)
     }
 
-    this.handleRejections()
-
     if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
       connectReduxDevtools(require('remotedev'), app)
     }
@@ -194,14 +185,6 @@ export default class PWA extends Component {
 
     // record the initial state so that if the user comes back to the initial landing page the app state will be restored correctly.
     recordState(app.toJSON())
-  }
-
-  /**
-   * When an unhandled rejection occurs, store the error in app state so it
-   * can be displayed to the developer.
-   */
-  handleRejections() {
-    window.addEventListener('unhandledrejection', event => this.props.app.onError(event.reason))
   }
 
   /**

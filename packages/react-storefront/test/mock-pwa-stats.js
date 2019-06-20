@@ -5,7 +5,7 @@
 export default async function getStats() {
   return Promise.resolve({
     assetsByChunkName: {
-      bootstrap: ''
+      main: 'main.js'
     }
   })
 }

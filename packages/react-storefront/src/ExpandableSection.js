@@ -111,7 +111,12 @@ export default class ExpandableSection extends Component {
     /**
      * Controls the expanded state.  Defaults to false
      */
-    expanded: PropTypes.bool
+    expanded: PropTypes.bool,
+
+    /**
+     * Defaults the panel to being expanded, without controlling the state.  Defaults to false
+     */
+    defaultExpanded: PropTypes.bool
   }
 
   static defaultProps = {
@@ -126,14 +131,14 @@ export default class ExpandableSection extends Component {
     }
   }
 
-  constructor({ expanded, ExpandIcon, CollapseIcon, theme }) {
+  constructor({ expanded, defaultExpanded, ExpandIcon, CollapseIcon, theme }) {
     super()
 
     this.ExpandIcon = ExpandIcon || theme.ExpandIcon || ExpandMoreIcon
     this.CollapseIcon = CollapseIcon || theme.CollapseIcon || this.ExpandIcon
 
     this.state = {
-      expanded
+      expanded: expanded || defaultExpanded
     }
   }
 
@@ -146,6 +151,7 @@ export default class ExpandableSection extends Component {
       title,
       caption,
       expanded,
+      defaultExpanded,
       ExpandIcon: ei,
       CollapseIcon: ci,
       margins,
@@ -171,6 +177,7 @@ export default class ExpandableSection extends Component {
             })
           }}
           expanded={expanded}
+          defaultExpanded={defaultExpanded}
           {...others}
           onChange={this.onChange}
         >

@@ -5,7 +5,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import NavTabs from '../src/NavTabs'
-import { configureAnalytics } from '../src/analytics'
+import AnalyticsProvider from '../src/AnalyticsProvider'
 import waitForAnalytics from './helpers/waitForAnalytics'
 import Provider from './TestProvider'
 import { createMemoryHistory } from 'history'
@@ -68,11 +68,11 @@ describe('NavTabs', () => {
     const topNavClicked = jest.fn()
     const router = new Router()
 
-    configureAnalytics({ topNavClicked })
-
     mount(
       <Provider app={app} router={router}>
-        <NavTabs />
+        <AnalyticsProvider targets={() => [{ topNavClicked }]}>
+          <NavTabs />
+        </AnalyticsProvider>
       </Provider>
     )
       .find('[data-th="topNavClicked"]')

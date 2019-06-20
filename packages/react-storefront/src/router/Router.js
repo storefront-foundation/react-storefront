@@ -84,22 +84,21 @@ export default class Router extends EventEmitter {
 
   constructor() {
     super()
-
     this.get('/.powerlinks.js', fromServer(powerLinkHandler))
   }
 
   errorHandler = (e, params, request, response) => {
-    console.error('Error caught with params', params, ' and with message:', e.message)
-
     if (response && response.status) {
       response.status(500, 'error')
     }
-
     return { page: 'Error', error: e.message, stack: e.stack, loading: false }
   }
 
   pushRoute(method, path, handlers) {
-    this.routes.push({ path: new Route(path + '.:format'), method, handlers })
+    // We are explicitly setting JSON and AMP routes in order to handle
+    // model data routes
+    this.routes.push({ path: new Route(path + '.json'), method, handlers })
+    this.routes.push({ path: new Route(path + '.amp'), method, handlers })
     this.routes.push({ path: new Route(path), method, handlers })
     return this
   }
@@ -290,6 +289,14 @@ export default class Router extends EventEmitter {
 
     request.params = params
 
+    if (!request.params.hasOwnProperty('format')) {
+      if (request.path.endsWith('.json')) {
+        request.params.format = 'json'
+      } else if (request.path.endsWith('.amp')) {
+        request.params.format = 'amp'
+      }
+    }
+
     const handlers = match ? match.handlers : this.fallbackHandlers
     const willFetchFromServer = !initialLoad && handlers.some(h => h.type === 'fromServer')
 
@@ -344,6 +351,11 @@ export default class Router extends EventEmitter {
         }
       }
     } catch (err) {
+      // We emit an error event here so that we can pass the error to the error reporter
+      // while still allowing the user to provide their own error handler function.
+      this.emit('error', err)
+
+      // call the .error() function registered by the user
       yield this.errorHandler(err, params, request, response)
     }
   }
@@ -530,10 +542,13 @@ export default class Router extends EventEmitter {
   applySearch(params, stringifyOptions = {}) {
     const { history } = this
 
-    const nextParams = qs.stringify({
-      ...qs.parse(history.location.search, { ignoreQueryPrefix: true }),
-      ...params
-    }, stringifyOptions)
+    const nextParams = qs.stringify(
+      {
+        ...qs.parse(history.location.search, { ignoreQueryPrefix: true }),
+        ...params
+      },
+      stringifyOptions
+    )
 
     history.replace(`${history.location.pathname}?${nextParams}`)
   }

@@ -28,8 +28,8 @@ exports[`Filter renders with filters selected 1`] = `
                   <WithTheme(inject-ExpandableSection) title="Price" caption="Up to $100" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
                     <inject-ExpandableSection theme={{...}} title="Price" caption="Up to $100" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
                       <ExpandableSection theme={{...}} title="Price" caption="Up to $100" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}} amp={false}>
-                        <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} onChange={[Function]}>
-                          <ExpansionPanel expanded={[undefined]} onChange={[Function]} classes={{...}} defaultExpanded={false} disabled={false}>
+                        <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} defaultExpanded={[undefined]} onChange={[Function]}>
+                          <ExpansionPanel expanded={[undefined]} defaultExpanded={false} onChange={[Function]} classes={{...}} disabled={false}>
                             <WithStyles(Paper) className="MuiExpansionPanel-root-190 RSFExpandableSection-root-178 RSFExpandableSection-margins-179 RSFExpandableSection-expandedPanel-187" elevation={1} square={true}>
                               <Paper className="MuiExpansionPanel-root-190 RSFExpandableSection-root-178 RSFExpandableSection-margins-179 RSFExpandableSection-expandedPanel-187" elevation={1} square={true} classes={{...}} component="div">
                                 <div className="MuiPaper-root-193 MuiPaper-elevation1-196 MuiExpansionPanel-root-190 RSFExpandableSection-root-178 RSFExpandableSection-margins-179 RSFExpandableSection-expandedPanel-187">
@@ -271,8 +271,8 @@ exports[`Filter renders with filters selected 1`] = `
                   <WithTheme(inject-ExpandableSection) title="Color" caption="Sunburst" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
                     <inject-ExpandableSection theme={{...}} title="Color" caption="Sunburst" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
                       <ExpandableSection theme={{...}} title="Color" caption="Sunburst" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}} amp={false}>
-                        <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} onChange={[Function]}>
-                          <ExpansionPanel expanded={[undefined]} onChange={[Function]} classes={{...}} defaultExpanded={false} disabled={false}>
+                        <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} defaultExpanded={[undefined]} onChange={[Function]}>
+                          <ExpansionPanel expanded={[undefined]} defaultExpanded={false} onChange={[Function]} classes={{...}} disabled={false}>
                             <WithStyles(Paper) className="MuiExpansionPanel-root-190 RSFExpandableSection-root-178 RSFExpandableSection-margins-179 RSFExpandableSection-expandedPanel-187" elevation={1} square={true}>
                               <Paper className="MuiExpansionPanel-root-190 RSFExpandableSection-root-178 RSFExpandableSection-margins-179 RSFExpandableSection-expandedPanel-187" elevation={1} square={true} classes={{...}} component="div">
                                 <div className="MuiPaper-root-193 MuiPaper-elevation1-196 MuiExpansionPanel-root-190 RSFExpandableSection-root-178 RSFExpandableSection-margins-179 RSFExpandableSection-expandedPanel-187">
@@ -548,8 +548,8 @@ exports[`Filter renders with no filters selected 1`] = `
                   <WithTheme(inject-ExpandableSection) title="Price" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
                     <inject-ExpandableSection theme={{...}} title="Price" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
                       <ExpandableSection theme={{...}} title="Price" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}} amp={false}>
-                        <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} onChange={[Function]}>
-                          <ExpansionPanel expanded={[undefined]} onChange={[Function]} classes={{...}} defaultExpanded={false} disabled={false}>
+                        <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} defaultExpanded={[undefined]} onChange={[Function]}>
+                          <ExpansionPanel expanded={[undefined]} defaultExpanded={false} onChange={[Function]} classes={{...}} disabled={false}>
                             <WithStyles(Paper) className="MuiExpansionPanel-root-36 RSFExpandableSection-root-24 RSFExpandableSection-margins-25 RSFExpandableSection-expandedPanel-33" elevation={1} square={true}>
                               <Paper className="MuiExpansionPanel-root-36 RSFExpandableSection-root-24 RSFExpandableSection-margins-25 RSFExpandableSection-expandedPanel-33" elevation={1} square={true} classes={{...}} component="div">
                                 <div className="MuiPaper-root-39 MuiPaper-elevation1-42 MuiExpansionPanel-root-36 RSFExpandableSection-root-24 RSFExpandableSection-margins-25 RSFExpandableSection-expandedPanel-33">
@@ -784,8 +784,8 @@ exports[`Filter renders with no filters selected 1`] = `
                   <WithTheme(inject-ExpandableSection) title="Color" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
                     <inject-ExpandableSection theme={{...}} title="Color" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
                       <ExpandableSection theme={{...}} title="Color" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}} amp={false}>
-                        <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} onChange={[Function]}>
-                          <ExpansionPanel expanded={[undefined]} onChange={[Function]} classes={{...}} defaultExpanded={false} disabled={false}>
+                        <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} defaultExpanded={[undefined]} onChange={[Function]}>
+                          <ExpansionPanel expanded={[undefined]} defaultExpanded={false} onChange={[Function]} classes={{...}} disabled={false}>
                             <WithStyles(Paper) className="MuiExpansionPanel-root-36 RSFExpandableSection-root-24 RSFExpandableSection-margins-25 RSFExpandableSection-expandedPanel-33" elevation={1} square={true}>
                               <Paper className="MuiExpansionPanel-root-36 RSFExpandableSection-root-24 RSFExpandableSection-margins-25 RSFExpandableSection-expandedPanel-33" elevation={1} square={true} classes={{...}} component="div">
                                 <div className="MuiPaper-root-39 MuiPaper-elevation1-42 MuiExpansionPanel-root-36 RSFExpandableSection-root-24 RSFExpandableSection-margins-25 RSFExpandableSection-expandedPanel-33">

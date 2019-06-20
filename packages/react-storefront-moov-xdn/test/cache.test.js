@@ -22,7 +22,7 @@ describe('cache', () => {
 
   it('should send maxage when browserMaxAge is greater than 0', () => {
     cache({ browserMaxAge: 300 })
-    expect(global.headers.header).toHaveBeenCalledWith('Cache-Control', 'maxage=300')
+    expect(global.headers.header).toHaveBeenCalledWith('Cache-Control', 'max-age=300')
   })
 
   it('should send no cache-control header when neither browserMaxAge or serverMaxAge is specified', () => {

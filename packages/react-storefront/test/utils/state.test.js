@@ -2,6 +2,11 @@ import { lazyState, parseState } from '../../src/utils/state'
 
 describe('state', () => {
   describe('lazyState', () => {
+    it('should handle optional chaining', () => {
+      const state = { age: 21 }
+      expect(state?.person?.name).toEqual(undefined)
+      expect(state?.age).toEqual(21)
+    })
     it('should return a function that parses the provided JSON', () => {
       const state = { foo: 'bar' }
       const lazy = lazyState(JSON.stringify(state))

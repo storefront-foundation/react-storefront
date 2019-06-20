@@ -5,6 +5,12 @@
 
 let _targets = []
 
+// When false, any fired events will be put in a queue until activate() is called
+let activated = false
+
+// events accumulate here when activated is false
+const queue = []
+
 /**
  * Configures the PWA to broadcast events to all specified targets.  Once configured, You can call any method on
  * on all targets by calling `analytics.fire(method, ...params)`.
@@ -39,21 +45,40 @@ export function getTargets() {
   return _targets
 }
 
-function fire(event, ...args) {
-  for (let target of _targets) {
-    const fn = target[event]
+/**
+ * Stops queuing and immediatley fires all queued events
+ */
+export function activate() {
+  activated = true
 
-    if (fn) {
-      try {
-        fn.apply(target, args)
-      } catch (e) {
-        console.warn('Error thrown by analytics target, event=', event, 'target=', target, 'args=', args, e)
-      }
-    } else {
-      if (typeof event === 'string') {
-        console.warn(`${target.constructor.name} does not support ${event}`)
+  for (let call of queue) {
+    fire(call.event, ...call.args)
+
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[analytics]', 'sending queued event', call.event, ...call.args)
+    }
+  }
+}
+
+function fire(event, ...args) {
+  if (activated) {
+    for (let target of _targets) {
+      const fn = target[event]
+  
+      if (fn) {
+        try {
+          fn.apply(target, args)
+        } catch (e) {
+          console.warn('Error thrown by analytics target, event=', event, 'target=', target, 'args=', args, e)
+        }
+      } else {
+        if (typeof event === 'string') {
+          console.warn(`${target.constructor.name} does not support ${event}`)
+        }
       }
     }
+  } else {
+    queue.push({ event, args })
   }
 }
 

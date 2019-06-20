@@ -39,9 +39,23 @@ describe('ExpandableSection', () => {
     expect(
       mount(
         <TestProvider app={app}>
-          <ExpandableSection title="Title" expanded>Foo</ExpandableSection>
+          <ExpandableSection title="Title" expanded>
+            Foo
+          </ExpandableSection>
         </TestProvider>
       )
     ).toMatchSnapshot()
+  })
+
+  it('should render expanded when defaultExpanded=true', () => {
+    const app = AppModelBase.create({ amp: false })
+    const wrapper = mount(
+      <TestProvider app={app}>
+        <ExpandableSection title="Title" defaultExpanded>
+          Foo
+        </ExpandableSection>
+      </TestProvider>
+    )
+    expect(wrapper.getDOMNode().className.includes('MuiExpansionPanel-expanded')).toBe(true)
   })
 })

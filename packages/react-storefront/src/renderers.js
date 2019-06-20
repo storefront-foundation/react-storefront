@@ -18,7 +18,8 @@ import createGenerateClassName from './utils/createGenerateClassName'
 const getSanitizedModelJson = state => sanitizeJsonForScript(state.toJSON())
 
 // Escape <\ in a closing script tag to avoid untimely script closing
-const sanitizeJsonForScript = state => JSON.stringify(state).replace(/<\/script/gi, '<\\/script')
+const sanitizeJsonForScript = state =>
+  JSON.stringify(state || {}).replace(/<\/script/gi, '<\\/script')
 
 /**
  * Get javascript asset filename by chunk name
@@ -59,6 +60,7 @@ function getSources(stats, chunk) {
 
 /**
  * Render HTML of given component
+ * @param  {options} options
  * @param  {React.Component} options.component Component to be rendered
  * @param  {Object} options.providers          Data providers
  * @param  {Object} options.registry           JSS Sheets Registry
@@ -84,6 +86,7 @@ export function renderHtml({ component, providers, registry, theme, cssPrefix = 
 
 /**
  * Renders initial state for client side hydration
+ * @param  {options} options                      Model instance
  * @param  {Object} options.state                 The initial app state needed for hydration
  * @param  {Object} options.routeData             The data that resulted from the route being run.  This is needed for creating a cache
  *                                                entry for the equivalend .json request if the user navigates back to this page.
@@ -106,26 +109,36 @@ export function renderInitialStateScript({
 
 /**
  * Renders script for a specified chunk
- * @param  {Object} options.stats   Webpack generated stats
- * @param  {String} options.chunk   Chunk name
- * @param  {Boolean} options.defer  Should defer execution
+ * @param  {String} src             Source of script
+ * @param  {Boolean} defer          Should defer execution
  * @return {String}                 Script HTML
  */
-export function renderScript({ stats, chunk, defer }) {
-  const assetPathBase = process.env.ASSET_PATH_BASE || ''
+export function renderScript(src, defer) {
+  return `<script type="text/javascript" ${defer ? 'defer' : ''} src="${src}"></script>`
+}
 
-  return getSources(stats, chunk)
-    .map(
-      src =>
-        `<script type="text/javascript" ${
-          defer ? 'defer' : ''
-        } src="${assetPathBase}/pwa/${src}"></script>`
-    )
-    .join('')
+/**
+ * Extracts scripts from sources in chunk
+ * @param {Object} options
+ * @param {Object} options.stats    Webpack generated stats
+ * @param {String} options.chunk     Chunk name
+ */
+export function getScripts({ stats, chunk }) {
+  const assetPathBase = process.env.ASSET_PATH_BASE || ''
+  return getSources(stats, chunk).map(src => `${assetPathBase}/pwa/${src}`)
+}
+
+/**
+ * Renders a link prefetch header value
+ * @param {String} src Source of script
+ */
+export function renderPreloadHeader(src) {
+  return `<${src}>; rel=preload; as=script`
 }
 
 /**
  * Renders extracted CSS from Sheets Registry
+ * @param  {options} options
  * @param  {Object} options.registry  JSS Sheets Registry
  * @param  {String} options.id        ID for style tag
  * @return {String}                   Style HTML
@@ -151,14 +164,15 @@ function getLocation(env) {
 
 /**
  * Renders a component on the server.
+ * @param  {options} options
  * @param  {React.Component} options.component    Component to be rendered
  * @param  {Object} options.state                 Model instance
  * @param  {Object} options.theme                 MUI Theme
  * @param  {Object} options.stats                 Webpack generated stats
  * @param  {String} options.clientChunk           Chunk name for hydration script
  * @param  {String} options.initialStateProperty  Optional window property name for initial state
- * @param  {Boolean} options.injectAssets					Defaults to true.  Set this to false to prevent scripts and css from automatically being injected into the document.
- * @param  {String} options.cssPrefix 						A prefix to apply to css class names
+ * @param  {Boolean} options.injectAssets          Defaults to true.  Set this to false to prevent scripts and css from automatically being injected into the document.
+ * @param  {String} options.cssPrefix            A prefix to apply to css class names
  * @return {Object}                               Components for SSR
  */
 export function render({
@@ -187,15 +201,13 @@ export function render({
     html,
     style: renderStyle({ registry }),
     initialStateScript: renderInitialStateScript({ state, defer: false, initialStateProperty }),
-    bootstrapScript: renderScript({ stats, chunk: 'bootstrap' }),
-    componentScript: renderScript({ stats, chunk: clientChunk })
+    componentScript: getScripts({ stats, chunk: clientChunk }).map(renderScript)
   }
 
   if (injectAssets) {
     $head.append(result.style)
     $body.append(result.initialStateScript)
-    $body.append(result.bootstrapScript)
-    $body.append(result.componentScript)
+    $body.append(...result.componentScript)
   }
 
   return result
@@ -203,6 +215,7 @@ export function render({
 
 /**
  * Hydrates React component
+ * @param  {options} options
  * @param  {React.Component} options.component    Component to be rendered
  * @param  {Model} options.model                  MobX Model
  * @param  {Object} options.theme                 MUI Theme
