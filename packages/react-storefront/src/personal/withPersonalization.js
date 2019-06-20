@@ -8,7 +8,19 @@ import usePersonalization from './usePersonalization'
 /**
  * Provides the `usePersonalization` hook as a HOC/decorator. Use this if you're using classes,
  * use `usePersonalization` if you're using function components.
- * @param {String} branch The name of the branch in the app state tree.  For example "product" or "category".
+ *
+ * Example
+ *
+ * ```js
+ * @withPersonalization(app => app.product) // app.product.loadPersonalization will be called when the Product component is displayed
+ * @inject('app')
+ * @observer
+ * class Product extends Component {
+ *
+ * }
+ * ```
+ *
+ * @param {Function} branch A function that returns the model that should fetch personalized data.
  * @return {Function}
  */
 const withPersonalization = branch => WrappedComponent => props => {

@@ -27,7 +27,7 @@ describe('withPersonalization', () => {
       })
     )
 
-    const Comp = withPersonalization('product')(() => null)
+    const Comp = withPersonalization(app => app.product)(() => null)
 
     Test = ({ app }) => (
       <AppContext.Provider value={{ app }}>

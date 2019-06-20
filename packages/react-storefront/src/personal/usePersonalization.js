@@ -10,14 +10,24 @@ import { reaction } from 'mobx'
  * A hook for fetching late-loaded personalized data.  This hook automatically
  * calls the `loadPersonalization()` method on the model in the specified `branch` in the app
  * state tree whenever the model's id field changes.
- * @param {String} branch The name of the branch in the app state tree.  For example "product" or "category".
+ *
+ * Example
+ *
+ * ```js
+ *  function Product() {
+ *    usePersonalization(app => app.product)
+ *    return //...
+ *  }
+ * ```
+ *
+ * @param {Function} branch A function that returns the model that should fetch personalized data.
  * @return {Function}
  */
 export default function usePersonalization(branch) {
   const { app } = useContext(AppContext)
 
   const loadPersonalization = ready => {
-    const model = app[branch]
+    const model = branch(app)
 
     if (model == null) {
       return
@@ -32,7 +42,7 @@ export default function usePersonalization(branch) {
     }
   }
 
-  const shouldFetchPersonalization = () => !app.loading && app[branch]
+  const shouldFetchPersonalization = () => !app.loading && branch(app)
 
   useEffect(() => {
     // check if we should load personalization data immediately as is the case if

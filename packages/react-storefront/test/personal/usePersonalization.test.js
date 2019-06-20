@@ -28,7 +28,7 @@ describe('usePersonalization', () => {
     )
 
     const Comp = () => {
-      usePersonalization('product')
+      usePersonalization(app => app.product)
       return null
     }
 
