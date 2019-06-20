@@ -1,11 +1,11 @@
 {
   "name": "react-storefront",
-  "version": "6.25.0",
+  "version": "6.30.0-alpha.0",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "module": "./index.js",
   "author": "Moovweb",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "scripts": {
     "test:unit": "jest --runInBand",
     "test": "jest test.js --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!test/**/* && yarn test:browser",
@@ -52,8 +52,8 @@
     "chai": "^4.1.2",
     "create-index": "^2.3.0",
     "documentation": "moovweb/documentation#feature/preserve-markdown",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.2",
     "gh-pages": "^1.2.0",
     "globby": "^8.0.1",
     "jest": "^23.6.0",
@@ -80,6 +80,7 @@
   "dependencies": {
     "babel-eslint": "^9.0.0",
     "babel-minify-webpack-plugin": "^0.3.1",
+    "cheerio": "^0.22.0",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^1.0.0",
     "cookie": "^0.3.1",
@@ -117,6 +118,7 @@
     "sha1": "^1.1.1",
     "store2": "2.7.0",
     "terser-webpack-plugin": "^1.2.1",
+    "tti-polyfill": "^0.2.2",
     "webpack-stats-plugin": "^0.2.1",
     "workbox-webpack-plugin": "^3.2.0",
     "write-file-webpack-plugin": "^4.3.2"

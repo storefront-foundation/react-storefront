@@ -76,7 +76,8 @@ const ProductModelBase = types
      */
     apply(state) {
       Object.assign(self, state)
-    }
+    },
+    loadPersonalization() {}
   }))
 
 export default ProductModelBase

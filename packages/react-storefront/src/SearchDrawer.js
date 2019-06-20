@@ -167,7 +167,11 @@ export default class SearchDrawer extends Component {
     /**
      * Set to false to never show the clear button.  The search icon will be shown inside the input even when the user has entered text.
      */
-    showClearButton: PropTypes.bool
+    showClearButton: PropTypes.bool,
+    /**
+     * Content to display in place of the results when the search is blank.
+     */
+    initialContent: PropTypes.element
   }
 
   static defaultProps = {
@@ -206,7 +210,8 @@ export default class SearchDrawer extends Component {
       placeholder,
       blurBackground,
       searchButtonVariant,
-      showClearButton
+      showClearButton,
+      initialContent
     } = this.props
     const loading = search.loading
     const contentReady = this.props.search.text && !loading
@@ -266,7 +271,7 @@ export default class SearchDrawer extends Component {
               <CircularProgress />
             </div>
           )}
-          {contentReady && (
+          {contentReady ? (
             <div className={classes.results}>
               {this.props.search.groups.map(group => (
                 <Container key={group.caption}>
@@ -275,6 +280,8 @@ export default class SearchDrawer extends Component {
                 </Container>
               ))}
             </div>
+          ) : loading ? null : (
+            initialContent
           )}
         </div>
       </Drawer>

@@ -129,4 +129,22 @@ describe('ImageSwitcher', () => {
 
     expect(wrapper.find('ReactSwipableView').prop('index')).toBe(0)
   })
+
+  it('accepts imageProps', () => {
+    const wrapper = mount(
+      <TestProvider>
+        <ImageSwitcher
+          images={[{ src: 'test.jpg', alt: 'test' }]}
+          selectedIndex={0}
+          imageProps={{ quality: 50 }}
+        />
+      </TestProvider>
+    )
+    expect(
+      wrapper
+        .find('img')
+        .at(0)
+        .prop('src')
+    ).toMatch(/opt\.moovweb/)
+  })
 })

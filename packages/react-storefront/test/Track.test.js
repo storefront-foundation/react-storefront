@@ -8,6 +8,7 @@ import { configureAnalytics } from '../src/analytics'
 import waitForAnalytics from './helpers/waitForAnalytics'
 import Track, { renderAmpAnalyticsTags, resetId } from '../src/Track'
 import TestProvider from './TestProvider'
+import AnalyticsProvider from '../src/AnalyticsProvider';
 
 describe('Track', () => {
 
@@ -26,13 +27,13 @@ describe('Track', () => {
   it('should fire the configured event when clicked', () => {
     const testEvent = jest.fn()
 
-    configureAnalytics({ testEvent })
-
     mount(
       <TestProvider>
-        <Track event="testEvent" foo="bar">
-          <button>Click Me</button>
-        </Track>
+        <AnalyticsProvider targets={() => [{ testEvent }]}>
+          <Track event="testEvent" foo="bar">
+            <button>Click Me</button>
+          </Track>
+        </AnalyticsProvider>
       </TestProvider>
     )
       .find('button')
@@ -47,13 +48,13 @@ describe('Track', () => {
     const testEvent = jest.fn()
     const onSuccess = jest.fn()
 
-    configureAnalytics({ testEvent })
-
     mount(
       <TestProvider>
-        <Track event="testEvent" foo="bar" onSuccess={onSuccess}>
-          <button>Click Me</button>
-        </Track>
+        <AnalyticsProvider targets={() => [{ testEvent }]}>
+          <Track event="testEvent" foo="bar" onSuccess={onSuccess}>
+            <button>Click Me</button>
+          </Track>
+        </AnalyticsProvider>
       </TestProvider>
     )
       .find('button')
@@ -68,13 +69,13 @@ describe('Track', () => {
   it('calls the original handler prop', () => {
     const testEvent = jest.fn(), onClick = jest.fn()
 
-    configureAnalytics({ testEvent })
-
     mount(
       <TestProvider>
-        <Track event="testEvent" foo="bar">
-          <button onClick={onClick}>Click Me</button>
-        </Track>
+        <AnalyticsProvider targets={() => [{ testEvent }]}>
+          <Track event="testEvent" foo="bar">
+            <button onClick={onClick}>Click Me</button>
+          </Track>
+        </AnalyticsProvider>
       </TestProvider>
     )
       .find('button')
@@ -84,7 +85,7 @@ describe('Track', () => {
   })
 
   it('should create AMP triggers', () => {
-    configureAnalytics({
+    const targets = () => [{
       testEvent(data) {
         this.send(data)
       },
@@ -94,13 +95,15 @@ describe('Track', () => {
       getAmpAnalyticsType() {
         return "test"
       }
-    })
+    }]
 
     const wrapper = mount(
       <TestProvider app={{ amp: true }}>
-        <Track event="testEvent" foo="bar">
-          <button>Click Me</button>
-        </Track>
+        <AnalyticsProvider targets={targets}>
+          <Track event="testEvent" foo="bar">
+            <button>Click Me</button>
+          </Track>
+        </AnalyticsProvider>
       </TestProvider>
     )
 
@@ -121,13 +124,15 @@ describe('Track', () => {
     const click = jest.fn(), 
       focus = jest.fn()
 
-    configureAnalytics({ click, focus })
+    const targets = () => [{ click, focus }]
 
     mount(
       <TestProvider>
-        <Track trigger={{ onClick: 'click', onFocus: 'focus' }} foo="bar">
-          <button>Click Me</button>
-        </Track>
+        <AnalyticsProvider targets={targets}>
+          <Track trigger={{ onClick: 'click', onFocus: 'focus' }} foo="bar">
+            <button>Click Me</button>
+          </Track>
+        </AnalyticsProvider>
       </TestProvider>
     )
       .find('button')
@@ -141,7 +146,7 @@ describe('Track', () => {
   })
 
   it('should add GTM attributes for AMP', () => {
-    configureAnalytics({
+    const targets = () => [{
       testEvent(data) {
         this.send(data)
       },
@@ -159,13 +164,15 @@ describe('Track', () => {
           test: '<< escaping "html" >>'
         }
       }
-    })
+    }]
 
     const wrapper = mount(
       <TestProvider app={{ amp: true }}>
-        <Track event="testEvent" foo="bar">
-          <button>Click Me</button>
-        </Track>
+        <AnalyticsProvider targets={targets}>
+          <Track event="testEvent" foo="bar">
+            <button>Click Me</button>
+          </Track>
+        </AnalyticsProvider>
       </TestProvider>
     )
 

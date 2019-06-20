@@ -17,7 +17,7 @@ create-react-storefront my-site
 
 ## License
 
-All rights reserved.
+React Storefront is licensed under the Apache 2.0 License.
 
 ## Contributing
 
@@ -74,9 +74,32 @@ yarn release
 
 ## Changelog
 
+### 6.30.0
+
+- Adds `imageProps` prop to `ImageSwitcher`
+- Added support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
+- Added a `withPersonalization` HOC and `usePersonalization` hook for late loading personalized data.
+
+### 6.29.0
+
+- Adds an `initialContent` prop to `SearchDrawer` that determines the content to display when the search field is blank.
+- Fixed bug where custom `ExpandableSection` icons were showing wrong icon when using `defaultExpanded`.
+- Fixed a bug where format was not being passed as a request param. This was introduced in 6.25.0
+- Fixed bug in `renderers/render` which caused injection of PWA components into proxied pages to fail. This was a regression introduced in 6.26.0
+
+### 6.28.0
+
+- Adds a new `delayUntilInteractive` prop to `AnalyticsProvider` that delays loading analytics scripts until the app is fully interactive. This helps ensure the best TTI and user experience.
+
+### 6.27.0
+
+- Added `optimizeImages` util function for use in handlers
+- Fixed issue with JS scripts being included in the wrong order during SSR in 6.26.0.
+
 ### 6.26.0
 
 - JavaScript bundles are now prefetched using link rel="prefetch" headers.
+- Fixes bug in handling of AMP routes introduced in 6.25.0
 
 ### 6.25.0
 

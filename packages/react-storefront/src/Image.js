@@ -146,6 +146,9 @@ export default class Image extends Component {
       src,
       ...imgAttributes
     } = this.props
+
+    if (src == null) return null
+
     const { loaded, primaryNotFound } = this.state
 
     contain = contain || aspectRatio

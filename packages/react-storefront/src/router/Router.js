@@ -95,7 +95,7 @@ export default class Router extends EventEmitter {
   }
 
   pushRoute(method, path, handlers) {
-    // We are explicitly setting a JSON route in order to handle
+    // We are explicitly setting JSON and AMP routes in order to handle
     // model data routes
     this.routes.push({ path: new Route(path + '.json'), method, handlers })
     this.routes.push({ path: new Route(path + '.amp'), method, handlers })
@@ -289,17 +289,19 @@ export default class Router extends EventEmitter {
 
     request.params = params
 
+    if (!request.params.hasOwnProperty('format')) {
+      if (request.path.endsWith('.json')) {
+        request.params.format = 'json'
+      } else if (request.path.endsWith('.amp')) {
+        request.params.format = 'amp'
+      }
+    }
+
     const handlers = match ? match.handlers : this.fallbackHandlers
     const willFetchFromServer = !initialLoad && handlers.some(h => h.type === 'fromServer')
 
     // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
     // and that the app state's location information is updated.
-
-    if (request.path.endsWith('.json')) {
-      yield {
-        format: 'json'
-      }
-    }
 
     if (this.isBrowser) {
       yield {

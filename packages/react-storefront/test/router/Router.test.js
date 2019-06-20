@@ -125,7 +125,7 @@ describe('Router:Node', function() {
       router.get('/users/:id.json', fromServer(() => Promise.resolve({ result: 'json' })))
 
       expect(await runAll('get', '/users/1.html')).toEqual({ result: 'html' })
-      expect(await runAll('get', '/users/1.json')).toEqual({ format: 'json', result: 'json' })
+      expect(await runAll('get', '/users/1.json')).toEqual({ result: 'json' })
     })
 
     it('should capture the suffix', async function() {
@@ -279,7 +279,6 @@ describe('Router:Node', function() {
         )
       )
       expect(await runAll('get', '/products.json')).toEqual({
-        format: 'json',
         products: [{ name: 'Dog Toy' }]
       })
     })
@@ -427,6 +426,11 @@ describe('Router:Node', function() {
     it('should pass format state property for JSON requests', async function() {
       router.get('/p/:id', params => Promise.resolve(params))
       expect(await runAll('get', '/p/foo.json')).toEqual({ id: 'foo', format: 'json' })
+    })
+
+    it('should handle AMP format', async function() {
+      router.get('/p/:id', params => Promise.resolve(params))
+      expect(await runAll('get', '/p/foo.amp')).toEqual({ id: 'foo', format: 'amp' })
     })
   })
 

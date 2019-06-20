@@ -55,4 +55,54 @@ describe('AnalyticsProvider', () => {
 
     expect(target.setHistory).toHaveBeenCalledTimes(1)
   })
+
+  describe('delayUntilInteractive', () => {
+    let setInteractive, env
+
+    beforeEach(() => {
+      env = process.env.NODE_ENV
+      process.env.NODE_ENV = 'development' // for 100% coverage
+      jest.resetModules()
+      jest.mock('tti-polyfill', () => ({
+        getFirstConsistentlyInteractive: () => new Promise((resolve, reject) => {
+          setInteractive = resolve
+        })
+      }))
+    })
+
+    afterEach(() => {
+      process.env.NODE_ENV = env
+    })
+
+    it('should not load targets until the app is interactive if delayUntilInteractive is true', (done) => {
+      const AnalyticsProvider = require('../src/AnalyticsProvider').default
+      const targets = jest.fn(() => [])
+
+      mount(
+        <AnalyticsProvider targets={targets} delayUntilInteractive>
+          <div className="hello">Hello</div>
+        </AnalyticsProvider>
+      )
+
+      expect(targets).not.toHaveBeenCalled()
+      setInteractive()
+      setImmediate(() => {
+        expect(targets).toHaveBeenCalled()
+        done()
+      })
+    })
+
+    it('should load targets immediately if delayUntilInteractive is false', () => {
+      const AnalyticsProvider = require('../src/AnalyticsProvider').default
+      const targets = jest.fn(() => [])
+
+      mount(
+        <AnalyticsProvider targets={targets}>
+          <div className="hello">Hello</div>
+        </AnalyticsProvider>
+      )
+
+      expect(targets).toHaveBeenCalled()
+    })
+  })
 })
