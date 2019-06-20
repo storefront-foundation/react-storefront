@@ -5,8 +5,6 @@
 /**
  * Strips the protocol and hostname from the URL, returning a relative URL.
  *
- * Example:
- *
  * @example <caption>Example usage of relativeURL</caption>
  *
  * import { relativeURL } from 'react-storefront/utils/url'

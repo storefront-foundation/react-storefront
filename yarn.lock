@@ -6636,10 +6636,9 @@ doctrine@^2.0.0, doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-documentation@^11.0.1:
+documentation@moovweb/documentation#feature/preserve-markdown:
   version "11.0.1"
-  resolved "https://registry.yarnpkg.com/documentation/-/documentation-11.0.1.tgz#5054d9e480321b67ac3efc79b52088a2a54e0c2e"
-  integrity sha512-0rHyynNz2ONLG7Qwkw5zmSAUORfuvY9UuVVF7/miGkaTFeOf9mWgLth6tVItt91NQvVwtsReoJmyyjISL44HOg==
+  resolved "https://codeload.github.com/moovweb/documentation/tar.gz/2c32ab1cd060bc456a25353d5b00a0fe77794db7"
   dependencies:
     "@babel/core" "^7.1.2"
     "@babel/generator" "^7.1.3"

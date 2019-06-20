@@ -1,48 +1,50 @@
 const documentation = require('documentation')
-const flatten = require('lodash/flatten')
 const get = require('lodash/get')
 
-const extractValue = parent => {
-  return flatten(
-    parent.map(child => {
-      if (child.value) {
-        return child.value
-      }
-
-      return extractValue(child.children)
-    })
-  ).join('')
-}
-
 const parseComments = data => {
-  return (
-    data.description &&
-    data.description.children
-      .map(paragraph => {
-        return paragraph.value || extractValue(paragraph.children)
-      })
-      .join('\n\n')
-  )
+  return data.description
 }
 
-const parseParams = data => {
+const parseParams = (data, properties = false) => {
   return data.map(item => {
     const param = {
-      name: item.name,
+      name: properties
+        ? item.name
+            .split('.')
+            .slice(-1)
+            .pop()
+        : item.name,
       default: item.default,
       type: get(item.type, 'name') || get(item.type, 'expression.name')
     }
 
     if (item.description) {
-      param.text = extractValue(item.description.children)
+      param.text = item.description
     }
 
     if (item.properties) {
-      param.properties = parseParams(item.properties)
+      param.properties = parseParams(item.properties, true)
     }
 
     return param
   })
+}
+
+const parseExamples = data => {
+  return (
+    data &&
+    data.map(item => {
+      const param = {
+        description: item.description
+      }
+
+      if (item.caption) {
+        param.caption = item.caption
+      }
+
+      return param
+    })
+  )
 }
 
 const parseInfo = (data, results, path, isMixed = false) => {
@@ -54,16 +56,20 @@ const parseInfo = (data, results, path, isMixed = false) => {
   const isClass = data.path[0].kind === 'class'
   const name = fileName === data.name && !isClass ? 'default' : data.name
   const type = get(data.type, 'name') || data.kind
+  const fullPath = isClass && !isMixed ? path : `${path}/${name}`
+
   const comments = parseComments(data)
   const params = parseParams(data.params)
   const returns = parseParams(data.returns)
-  const fullPath = isClass && !isMixed ? path : `${path}/${name}`
+  const examples = parseExamples(data.examples)
+
   const exportsObject = {
     name: name,
     type: type,
     async: !!data.async,
     generator: !!data.generator,
     comments: comments,
+    examples: examples,
     params: params,
     returns: returns,
     members: type === 'class' ? [] : undefined
