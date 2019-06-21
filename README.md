@@ -76,10 +76,10 @@ yarn release
 
 ### 6.30.0
 
-- Adds `createSubmitURL` to `SearchDrawer`.
+- Adds a `createSubmitURL` prop to `SearchDrawer`.
 - You can now define a set of `initialGroups` to display in the search drawer when the search field is blank.
-- Adds `imageProps` prop to `ImageSwitcher`
-- Added support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
+- Adds an `imageProps` prop to `ImageSwitcher`
+- Adds support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
 - Added a `withPersonalization` HOC and `usePersonalization` hook for late loading personalized data.
 
 ### 6.29.0
