@@ -26,8 +26,13 @@ function createServiceWorkerPlugins({
   serveSSRFromCache = false
 }) {
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
-  const swHash = hash(path.join(swBootstrap))
-  const swBootstrapDest = `serviceWorkerBootstrap.${swHash}.js`
+
+  // We use the build time to cache bust the service worker boostrap here rather than
+  // hashing the file contents because the file is customized by config settings in
+  // the transform function below.  Hashing the file now wouldn't reflect the final
+  // output
+  const buildTime = new Date().getTime()
+  const swBootstrapDest = `serviceWorkerBootstrap.${buildTime}.js`
 
   if (workboxConfig) {
     return [
@@ -37,6 +42,11 @@ function createServiceWorkerPlugins({
           to: path.join(root, 'build', 'assets', 'pwa', swBootstrapDest),
           transform: content => {
             const buildTime = new Date().getTime() + 5 * 1000 * 60 // add 5 minutes to give the build time to deploy
+
+            console.log('building service-worker')
+            console.log('  prefetchRampUpTime', prefetchRampUpTime)
+            console.log('  allowPrefetchThrottling', allowPrefetchThrottling)
+            console.log('  serveSSRFromCache', serveSSRFromCache)
 
             return content
               .toString()
@@ -173,7 +183,7 @@ module.exports = {
       additionalPlugins = [],
       entries,
       prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
-      allowPrefetchThrottling = true,
+      allowPrefetchThrottling = false,
       serveSSRFromCache = false,
       optimization,
       alias = {}
