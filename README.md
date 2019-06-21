@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.30.1
+
+- `SearchDrawer` now handles a null value for `app.search.results` gracefully.
+
 ### 6.30.0
 
 - Adds a `createSubmitURL` prop to `SearchDrawer`.

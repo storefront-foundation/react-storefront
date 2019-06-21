@@ -74,6 +74,7 @@ export { default as icons } from './icons';
 export { default as menu } from './menu';
 export { default as model } from './model';
 export { default as persist } from './persist.js';
+export { default as personal } from './personal';
 export { default as renderers } from './renderers.js';
 export { default as router } from './router';
 export { default as utils } from './utils';

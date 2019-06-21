@@ -292,7 +292,7 @@ export default class SearchDrawer extends Component {
 
     if (loading) {
       return null
-    } else if (results.length) {
+    } else if (results && results.length) {
       return (
         <div className={classes.results}>
           {results.map(group => (
