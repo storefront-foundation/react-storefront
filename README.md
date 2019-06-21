@@ -79,6 +79,8 @@ yarn release
 - Adds `imageProps` prop to `ImageSwitcher`
 - Added support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
 - Added a `withPersonalization` HOC and `usePersonalization` hook for late loading personalized data.
+- Disable prefetching throttling by default.
+- Improved service worker cache-busting by including settings in the hashed filename for the bootsrap file.
 
 ### 6.29.0
 

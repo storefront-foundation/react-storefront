@@ -7,10 +7,11 @@ const CopyPlugin = require('copy-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
 const { createClientConfig, createLoaders, injectBuildTimestamp } = require('./common')
 const createOptimization = require('./optimization')
-const hash = require('md5-file').sync
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const crypto = require('crypto')
+const fs = require('fs')
 
 // We use this pattern to replace AMP modules with an empty function
 // when building the application for the client, since AMP components
@@ -25,55 +26,55 @@ function createServiceWorkerPlugins({
   allowPrefetchThrottling = false,
   serveSSRFromCache = false
 }) {
+  if (!workboxConfig) return []
+
+  let deployTime = new Date().getTime()
+
+  if (allowPrefetchThrottling) {
+    // pre fetch ramp up is not needed if we're allowing prefetch throttling
+    prefetchRampUpTime = 0
+  } else {
+    deployTime += 5 * 1000 * 60 // add 5 minutes to give the build time to deploy
+  }
+
   const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
 
-  // We use the build time to cache bust the service worker boostrap here rather than
-  // hashing the file contents because the file is customized by config settings in
-  // the transform function below.  Hashing the file now wouldn't reflect the final
-  // output
-  const buildTime = new Date().getTime()
-  const swBootstrapDest = `serviceWorkerBootstrap.${buildTime}.js`
+  const swBootstrapCode = fs
+    .readFileSync(swBootstrap, 'utf8')
+    .replace('{{version}}', deployTime)
+    .replace('{{deployTime}}', deployTime)
+    .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
+    .replace('{{allowPrefetchThrottling}}', allowPrefetchThrottling)
+    .replace('{{serveSSRFromCache}}', serveSSRFromCache)
 
-  if (workboxConfig) {
-    return [
-      new CopyPlugin([
+  const swHash = crypto
+    .createHash('md5')
+    .update(swBootstrapCode)
+    .digest('hex')
+
+  const swBootstrapOutputFile = `serviceWorkerBootstrap.${swHash}.js`
+
+  return [
+    new CopyPlugin([
+      {
+        from: swBootstrap,
+        to: path.join(root, 'build', 'assets', 'pwa', swBootstrapOutputFile),
+        transform: () => swBootstrapCode
+      }
+    ]),
+    new GenerateSW(
+      Object.assign(
         {
-          from: swBootstrap,
-          to: path.join(root, 'build', 'assets', 'pwa', swBootstrapDest),
-          transform: content => {
-            const buildTime = new Date().getTime() + 5 * 1000 * 60 // add 5 minutes to give the build time to deploy
-
-            console.log('building service-worker')
-            console.log('  prefetchRampUpTime', prefetchRampUpTime)
-            console.log('  allowPrefetchThrottling', allowPrefetchThrottling)
-            console.log('  serveSSRFromCache', serveSSRFromCache)
-
-            return content
-              .toString()
-              .replace('{{version}}', buildTime)
-              .replace('{{deployTime}}', buildTime)
-              .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
-              .replace('{{allowPrefetchThrottling}}', allowPrefetchThrottling)
-              .replace('{{serveSSRFromCache}}', serveSSRFromCache)
-          }
-        }
-      ]),
-      new GenerateSW(
-        Object.assign(
-          {
-            swDest: path.join(dest, '..', 'service-worker.js'),
-            importScripts: [`/pwa/${swBootstrapDest}`],
-            clientsClaim: true,
-            skipWaiting: true,
-            exclude: [/stats\.json/, /\.DS_Store/, /robots\.txt/, /manifest\.json/, /icons\//]
-          },
-          workboxConfig
-        )
+          swDest: path.join(dest, '..', 'service-worker.js'),
+          importScripts: [`/pwa/${swBootstrapOutputFile}`],
+          clientsClaim: true,
+          skipWaiting: true,
+          exclude: [/stats\.json/, /\.DS_Store/, /robots\.txt/, /manifest\.json/, /icons\//]
+        },
+        workboxConfig
       )
-    ]
-  } else {
-    return []
-  }
+    )
+  ]
 }
 
 module.exports = {
@@ -183,7 +184,7 @@ module.exports = {
       additionalPlugins = [],
       entries,
       prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
-      allowPrefetchThrottling = false,
+      allowPrefetchThrottling = true,
       serveSSRFromCache = false,
       optimization,
       alias = {}
