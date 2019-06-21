@@ -118,8 +118,7 @@ export const styles = theme => ({
   },
   results: {
     flex: 1,
-    overflowY: 'auto',
-    padding: '10px'
+    overflowY: 'auto'
   },
   loading: {
     display: 'flex',
@@ -271,21 +270,35 @@ export default class SearchDrawer extends Component {
               <CircularProgress />
             </div>
           )}
-          {contentReady ? (
-            <div className={classes.results}>
-              {this.props.search.groups.map(group => (
-                <Container key={group.caption}>
-                  <Typography className={classes.groupCaption}>{group.caption}</Typography>
-                  {this.renderGroup(group)}
-                </Container>
-              ))}
-            </div>
-          ) : loading ? null : (
-            initialContent
-          )}
+          {this.renderResults()}
         </div>
       </Drawer>
     )
+  }
+
+  renderResults() {
+    const {
+      search: { loading, results },
+      classes,
+      initialContent
+    } = this.props
+
+    if (loading) {
+      return null
+    } else if (results.length) {
+      return (
+        <div className={classes.results}>
+          {results.map(group => (
+            <Container key={group.caption}>
+              <Typography className={classes.groupCaption}>{group.caption}</Typography>
+              {this.renderGroup(group)}
+            </Container>
+          ))}
+        </div>
+      )
+    } else {
+      return initialContent
+    }
   }
 
   renderCloseButton() {

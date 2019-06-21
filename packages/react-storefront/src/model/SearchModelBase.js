@@ -70,6 +70,10 @@ const SearchModelBase = types
      */
     groups: types.optional(types.array(ResultsGroupModel), []),
     /**
+     * Result groups to display when the search field is blank
+     */
+    initialGroups: types.optional(types.array(ResultsGroupModel), []),
+    /**
      * True to show the loading spinner
      */
     loading: false,
@@ -82,6 +86,21 @@ const SearchModelBase = types
      */
     minimumTextLength: 1
   })
+  .views(self => ({
+    /**
+     * Returns the results to display, which will be the `initialGroups` when the search field is blank,
+     * and `groups` when a search query has been entered.
+     */
+    get results() {
+      const trimmed = self.text.trim()
+
+      if (trimmed.length) {
+        return self.groups
+      } else {
+        return self.initialGroups
+      }
+    }
+  }))
   .actions(self => ({
     /**
      * Set `true` to show the search popup, `false` to hide.
@@ -95,10 +114,13 @@ const SearchModelBase = types
      * @param {String} text
      */
     setText(text) {
+      const trimmed = text.trim()
+
       self.text = text
-      if (self.text.trim().length >= self.minimumTextLength) {
+
+      if (trimmed.length >= self.minimumTextLength) {
         self.loading = true
-        self.submit(text)
+        self.submit(trimmed)
       } else {
         self.loading = false
       }
@@ -124,8 +146,12 @@ const SearchModelBase = types
         const state = await fetchSearchResults(
           `/search/suggest.json?q=${encodeURIComponent(keyword)}`
         ).then(res => res.json())
-        self.setGroups(state.search.groups)
-        self.setLoading(false)
+
+        // only display the results if the user hasn't changed the search text since the request was sent
+        if (self.text.trim() === keyword) {
+          self.setGroups(state.search.groups)
+          self.setLoading(false)
+        }
       } catch (e) {
         if (!StaleResponseError.is(e)) {
           self.setLoading(false)

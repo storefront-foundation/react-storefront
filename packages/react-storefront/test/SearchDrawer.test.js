@@ -178,4 +178,41 @@ describe('SearchDrawer', () => {
       expect(wrapper.find('div#initialContent')).toHaveLength(0)
     })
   })
+
+  describe('with initialGroups', () => {
+    beforeEach(() => {
+      app = AppModelBase.create({
+        search: {
+          show: true,
+          initialGroups: [
+            {
+              caption: 'Suggestions',
+              results: [
+                {
+                  text: 'Result 1',
+                  url: '/results/1'
+                }
+              ]
+            }
+          ]
+        }
+      })
+    })
+    it('should display the initialGroups', () => {
+      const wrapper = mount(
+        <TestContext>
+          <SearchDrawer />
+        </TestContext>
+      )
+      expect(wrapper.find('a[href="/results/1"]')).toHaveLength(1)
+    })
+    it('should not display the initialContent', () => {
+      const wrapper = mount(
+        <TestContext>
+          <SearchDrawer initialContent={<div id="initialContent" />} />
+        </TestContext>
+      )
+      expect(wrapper.find('div#initialContent')).toHaveLength(0)
+    })
+  })
 })
