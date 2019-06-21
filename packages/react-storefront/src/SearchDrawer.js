@@ -170,7 +170,13 @@ export default class SearchDrawer extends Component {
     /**
      * Content to display in place of the results when the search is blank.
      */
-    initialContent: PropTypes.element
+    initialContent: PropTypes.element,
+    /**
+     * Use this function to customize the URL used to fetch results.  It is passed the search text:
+     * @example
+     * <SearchDrawer createSubmitURL={text => `/custom/search/path?q=${encodeURIComponent(text)}`}/>
+     */
+    createSubmitURL: PropTypes.func
   }
 
   static defaultProps = {
@@ -178,7 +184,8 @@ export default class SearchDrawer extends Component {
     CloseButtonIcon: () => <ClearIcon />,
     blurBackground: true,
     searchButtonVariant: 'fab',
-    showClearButton: true
+    showClearButton: true,
+    createSubmitURL: queryText => `/search?q=${encodeURIComponent(queryText)}`
   }
 
   constructor({ search }) {
@@ -394,7 +401,9 @@ export default class SearchDrawer extends Component {
    * Submits the search and hides the drawer
    */
   onSearchSubmit = () => {
-    this.props.history.push(`/search?q=${encodeURIComponent(this.props.search.text)}`)
+    const queryText = this.props.search.text
+    const url = this.props.createSubmitURL(queryText)
+    this.props.history.push(url)
     this.hide()
   }
 

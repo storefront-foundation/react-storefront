@@ -7,16 +7,21 @@ import SearchDrawer from '../src/SearchDrawer'
 import { mount } from 'enzyme'
 import Provider from './TestProvider'
 import AppModelBase from '../src/model/AppModelBase'
+import { createMemoryHistory } from 'history'
 
 describe('SearchDrawer', () => {
-  let TestContext, app
+  let TestContext, app, history
 
   beforeEach(() => {
     app = AppModelBase.create({ search: { show: true } })
+    history = createMemoryHistory()
+    history.push = jest.fn()
 
     TestContext = ({ children }) => (
       <div id="root">
-        <Provider app={app}>{children}</Provider>
+        <Provider app={app} history={history}>
+          {children}
+        </Provider>
       </div>
     )
   })
@@ -176,6 +181,32 @@ describe('SearchDrawer', () => {
       )
       wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
       expect(wrapper.find('div#initialContent')).toHaveLength(0)
+    })
+  })
+
+  describe('createSubmitURL', () => {
+    it('should change the url to this when the user submits the search', () => {
+      const createSubmitURL = jest.fn(text => '/submit')
+      app.search.setText('foo')
+      const wrapper = mount(
+        <TestContext>
+          <SearchDrawer createSubmitURL={createSubmitURL} />
+        </TestContext>
+      )
+      wrapper.find('SearchIcon').simulate('click')
+      expect(createSubmitURL).toHaveBeenCalledWith('foo')
+      expect(history.push).toHaveBeenCalledWith('/submit')
+    })
+
+    it('should use the default when not defined', () => {
+      app.search.setText('foo')
+      const wrapper = mount(
+        <TestContext>
+          <SearchDrawer />
+        </TestContext>
+      )
+      wrapper.find('SearchIcon').simulate('click')
+      expect(history.push).toHaveBeenCalledWith('/search?q=foo')
     })
   })
 
