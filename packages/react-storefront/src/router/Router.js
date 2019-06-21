@@ -19,6 +19,7 @@ import fromServer from './fromServer'
  *
  * Example:
  *
+ * ```js
  *  const router = new Router()
  *
  *  router.get('/products/:id', ({ id }) => {
@@ -30,9 +31,11 @@ import fromServer from './fromServer'
  *
  *  // assuming env.path = /products/1 and env.method = 'GET'
  *  router.run() // => the details for product 1
+ * ```
  *
  * Routes can be divided into multiple files to increase maintainability using the "use()" method.  For example:
  *
+ * ```js
  *  // /scripts/api/router.js
  *
  *  const appShell = require('/build/index.html.js)
@@ -49,7 +52,6 @@ import fromServer from './fromServer'
  *      // fetch product from upstream API...
  *     }))
  *
- *
  *  // /scripts/index.js
  *
  *  const router = require('/api/router')
@@ -61,12 +63,13 @@ import fromServer from './fromServer'
  *      sendResponse({ body, htmlparsed: true })
  *    })
  *  }
+ * ```
  *
  * Router is an EventEmitting that fires the following events:
  *
- * `before`: Fires before a route is run, passing an object containing `request` and `response`.
- * `after`: Fires after a route is run and all handlers have finised, passing an object containing `request` and `response`.
- * `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
+ * - `before`: Fires before a route is run, passing an object containing `request` and `response`.
+ * - `after`: Fires after a route is run and all handlers have finised, passing an object containing `request` and `response`.
+ * - `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
  */
 export default class Router extends EventEmitter {
   routes = []
@@ -187,6 +190,7 @@ export default class Router extends EventEmitter {
 
   /**
    * Returns `true` if `appShell` has been called to configure an appShell route, otherwise `false`.
+   * @private
    * @return {Boolean}
    */
   isAppShellConfigured() {
@@ -247,6 +251,7 @@ export default class Router extends EventEmitter {
 
   /**
    * Gets the server cache key for the matching route.
+   * @private
    * @param {Object} request
    * @param {Object} defaults The default values used for the cache key
    * @return {Object} An object populate with keys and values that when hashed, make up the cache key
@@ -386,6 +391,7 @@ export default class Router extends EventEmitter {
 
   /**
    * Converts specified callback to a promise
+   * @private
    * @param {Function/Object} callback A function that returns a Promise that
    *  resolves to the new state, a function that returns the new state, or the new state itself.
    * @param {Object} params The request parameters
@@ -429,6 +435,7 @@ export default class Router extends EventEmitter {
 
   /**
    * Returns true if the URL points to a route that has a proxyUpstream handler.
+   * @private
    * @param {String} url The url to check
    * @param {String} [method='get']
    * @return {Boolean}
@@ -457,6 +464,7 @@ export default class Router extends EventEmitter {
 
   /**
    * Runs all client and server handlers for the specified location and returns state
+   * @private
    */
   fetchFreshState = location => {
     const { pathname, search } = location
@@ -468,6 +476,7 @@ export default class Router extends EventEmitter {
 
   /**
    * Called when the location is changed on the client
+   * @private
    * @param {Function} callback A callback to pass the new state to
    * @param {Object} location The new location
    */
@@ -513,6 +522,7 @@ export default class Router extends EventEmitter {
 
   /**
    * Calls the specified callback whenever the current URL changes
+   * @private
    * @param {History} history
    * @param {Function} callback
    * @return {Router} this
