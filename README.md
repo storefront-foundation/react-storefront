@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.30.2
+
+- Fixed deprecation warning: `Please use require("history").createMemoryHistory instead of require("history/createMemoryHistory")`
+
 ### 6.30.1
 
 - `SearchDrawer` now handles a null value for `app.search.results` gracefully.
