@@ -234,6 +234,21 @@ export default class Router extends EventEmitter {
   }
 
   /**
+   * Returns `true` if the request will be cached on the client, otherwise `false`.
+   * @param {Object} request
+   * @return {Boolean}
+   */
+  willCacheOnClient(request) {
+    const handler = this.getCacheHandler(request)
+
+    if (handler && handler.client) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  /**
    * Configures service worker runtime caching options
    * @param {Object} options
    * @param {Object} options.cacheName The name of the runtime cache
@@ -253,12 +268,20 @@ export default class Router extends EventEmitter {
    * @return {Object} An object populate with keys and values that when hashed, make up the cache key
    */
   getCacheKey(request, defaults) {
-    const { match } = this.findMatchingRoute(request)
-    const handlers = match ? match.handlers : this.fallbackHandlers
-    if (!handlers) return defaults
-    const cacheHandler = handlers.find(handler => handler.type === 'cache')
+    const cacheHandler = this.getCacheHandler(request)
     if (!cacheHandler || !cacheHandler.server || !cacheHandler.server.key) return defaults
     return cacheHandler.server.key(request, defaults)
+  }
+
+  /**
+   * Finds the cache handler for the specified request
+   * @param {Object} request
+   * @return {Object} The handler
+   */
+  getCacheHandler(request) {
+    const { match } = this.findMatchingRoute(request)
+    const handlers = match ? match.handlers : this.fallbackHandlers
+    return handlers && handlers.find(handler => handler.type === 'cache')
   }
 
   /**

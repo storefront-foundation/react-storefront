@@ -17,6 +17,12 @@ export async function cache(path, cacheData) {
   if (await waitForServiceWorkerController()) {
     const { apiVersion } = window.moov || {}
 
+    if (!window.moov.router.willCacheOnClient({ path })) {
+      // Never cache a path unless it matches a route with a cache handler
+      // otherwise we could wind up caching pages like the cart that are not cacheable
+      return
+    }
+
     if (cacheData) {
       navigator.serviceWorker.controller.postMessage({
         action: 'cache-state',

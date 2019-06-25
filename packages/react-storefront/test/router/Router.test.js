@@ -786,6 +786,18 @@ describe('Router:Node', function() {
     })
   })
 
+  describe('willCacheOnClient', () => {
+    it('should return true if the route has a cache handler with client: true', () => {
+      router.get('/p/:id', cache({ client: true }))
+      expect(router.willCacheOnClient({ path: '/p/1.json' })).toBe(true)
+    })
+
+    it('should return false if the route has a cache handler with client: false', () => {
+      router.get('/cart')
+      expect(router.willCacheOnClient({ path: '/cart.json' })).toBe(false)
+    })
+  })
+
   afterAll(() => {
     jest.unmock('../../src/router/serviceWorker')
   })
