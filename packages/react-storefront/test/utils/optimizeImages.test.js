@@ -30,4 +30,21 @@ describe('optimizeImages', () => {
     </div>
     `)
   })
+  it('should be able to select specific images to transform', async () => {
+    const $ = cheerio.load(`
+    <div>
+      <img src="http://placekitten.com/200/300">
+      <img class="test" src="http://placekitten.com/500">
+      <img src="http://placekitten.com/400">
+    </div>
+    `)
+    optimizeImages($('.test'), { quality: 50 })
+    expect($.html({ decodeEntities: false })).toEqual(`
+    <div>
+      <img src="http://placekitten.com/200/300">
+      <img class="test" src="https://opt.moovweb.net/?quality=50&img=http%3A%2F%2Fplacekitten.com%2F500">
+      <img src="http://placekitten.com/400">
+    </div>
+    `)
+  })
 })
