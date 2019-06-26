@@ -165,7 +165,7 @@ describe('responseHeaderTransform', () => {
   it('should set cache-control: private, no-store, no-cache when simulating a prefetch rejection', () => {
     global.env.MOOV_PWA_RESPONSE = {
       cookies: [],
-      statusCode: 544
+      statusCode: 412
     }
 
     responseHeaderTransform()

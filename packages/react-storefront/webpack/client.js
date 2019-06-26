@@ -86,7 +86,7 @@ module.exports = {
    * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
-   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
+   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 412 error when a prefetch request results in a cache miss
    * @param {Object} options.eslintConfig A config object for eslint
    * @param {Boolean} options.optimization Configuration for the webpack optimzation object
    * @param {Object} options.alias Aliases to apply to the webpack config
@@ -172,7 +172,7 @@ module.exports = {
    * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
-   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
+   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 412 error when a prefetch request results in a cache miss
    * @param {Boolean} options.optimization Configuration for the webpack optimzation object
    * @param {Object} options.alias Aliases to apply to the webpack config
    * @return {Object} A webpack config
