@@ -51,14 +51,69 @@ describe('SearchModelBase', () => {
             url: 'http://example.com',
             thumbnail: '/foo/bar.png',
             thumbnailHeight: 120,
-            thumbnailWidth: 120,
-          },
-        ],
-      },
+            thumbnailWidth: 120
+          }
+        ]
+      }
     ]
 
     model.setGroups(groups)
     expect(model.groups.toJSON()).toEqual(groups)
+  })
+
+  describe('results', () => {
+    let data
+
+    beforeEach(() => {
+      data = {
+        initialGroups: [
+          {
+            caption: 'Suggestions',
+            results: [
+              {
+                text: 'Red Dress',
+                url: '/c/1'
+              }
+            ]
+          }
+        ],
+        groups: [
+          {
+            caption: 'Suggestions',
+            results: [
+              {
+                text: 'Blue Dress',
+                url: '/c/1'
+              }
+            ]
+          }
+        ]
+      }
+    })
+
+    it('should return groups when the search text is not blank', () => {
+      const model = SearchModelBase.create({
+        ...data,
+        text: 'Foo'
+      })
+      expect(model.results).toEqual(model.groups)
+    })
+
+    it('should return initialGroups when the search text is blank', () => {
+      const model = SearchModelBase.create({
+        ...data,
+        text: ' '
+      })
+      expect(model.results).toEqual(model.initialGroups)
+    })
+
+    it('should return initialGroups when the search text is empty', () => {
+      const model = SearchModelBase.create({
+        ...data,
+        text: ''
+      })
+      expect(model.results).toEqual(model.initialGroups)
+    })
   })
 })
 
@@ -66,7 +121,7 @@ describe('ResultsGroupModel', () => {
   it('should have thumbnails==true when a result contains a thumbnail', () => {
     const model = ResultsGroupModel.create({
       caption: 'Foo',
-      results: [{ text: 'Foo', url: '/foo', thumbnail: '/foo/bar.png' }],
+      results: [{ text: 'Foo', url: '/foo', thumbnail: '/foo/bar.png' }]
     })
 
     expect(model.thumbnails).toBe(true)
@@ -75,7 +130,7 @@ describe('ResultsGroupModel', () => {
   it('should have thumbnails==false when a result contains a thumbnail', () => {
     const model = ResultsGroupModel.create({
       caption: 'Foo',
-      results: [{ text: 'Foo', url: '/foo' }],
+      results: [{ text: 'Foo', url: '/foo' }]
     })
 
     expect(model.thumbnails).toBe(false)

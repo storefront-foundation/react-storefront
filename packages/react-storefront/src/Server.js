@@ -7,7 +7,7 @@ import React from 'react'
 import { SheetsRegistry } from 'react-jss/lib/jss'
 import { flushChunkNames } from 'react-universal-component/server'
 import PWA from './PWA'
-import createMemoryHistory from 'history/createMemoryHistory'
+import { createMemoryHistory } from 'history'
 import { Helmet } from 'react-helmet'
 import {
   renderHtml,

@@ -74,10 +74,20 @@ yarn release
 
 ## Changelog
 
+### 6.30.2
+
+- Fixed deprecation warning: `Please use require("history").createMemoryHistory instead of require("history/createMemoryHistory")`
+
+### 6.30.1
+
+- `SearchDrawer` now handles a null value for `app.search.results` gracefully.
+
 ### 6.30.0
 
-- Adds `imageProps` prop to `ImageSwitcher`
-- Added support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
+- Adds a `createSubmitURL` prop to `SearchDrawer`.
+- You can now define a set of `initialGroups` to display in the search drawer when the search field is blank.
+- Adds an `imageProps` prop to `ImageSwitcher`
+- Adds support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
 - Added a `withPersonalization` HOC and `usePersonalization` hook for late loading personalized data.
 - Disable prefetching throttling by default.
 - Improved service worker cache-busting by including settings in the hashed filename for the bootsrap file.
