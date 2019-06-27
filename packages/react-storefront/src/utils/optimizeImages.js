@@ -3,7 +3,11 @@
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
 import $ from 'cheerio'
+import fetch from 'cross-fetch'
 import qs from 'qs'
+
+const imageService = 'image.moovweb.net'
+const defaultOptions = { quality: 75, preventLayoutInstability: false }
 
 /**
  * Transforms source to come from the Moovweb Image Optimizer
@@ -11,7 +15,7 @@ import qs from 'qs'
  * @param {Object} options     Transformation options
  * @returns {String}           Optimized image URL
  */
-function transformSource(img, options = { quality: 75 }) {
+function transformSource(img, options) {
   const query = qs.stringify({ ...options, img })
   return `https://opt.moovweb.net/?${query}`
 }
@@ -22,9 +26,23 @@ function transformSource(img, options = { quality: 75 }) {
  * @param {Object} options     Transformation options
  * @returns {String}           Optimized HTML
  */
-export default function optimizeImages(elements, options) {
-  elements.each(function() {
-    const $img = $(this)
-    $img.attr('src', transformSource($img.attr('src'), options))
+export default async function optimizeImages(elements, options = defaultOptions) {
+  const { preventLayoutInstability, ...transformationOptions } = options
+  elements.each(async function(index, el) {
+    const $img = $(el)
+    const src = $img.attr('src')
+    $img.attr('src', transformSource(src, transformationOptions))
+    if (preventLayoutInstability) {
+      const url = `https://${imageService}/size?url=${encodeURIComponent(src)}`
+      try {
+        console.log('Fetching', url)
+        const { width, height } = await fetch(url).then(res => res.json())
+        console.log(width, height)
+        $img.attr('width', width)
+        $img.attr('height', height)
+      } catch (e) {
+        console.log('Could not preventLayoutInstability', e)
+      }
+    }
   })
 }
