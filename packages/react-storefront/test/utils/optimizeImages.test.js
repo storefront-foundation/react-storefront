@@ -55,19 +55,21 @@ describe('optimizeImages', () => {
     nock('https://image.moovweb.net')
       .get('/size?url=http%3A%2F%2Fplacekitten.com%2F200%2F300')
       .reply(200, '{"width":200,"height":300}', { 'content-type': 'application/json' })
+      .get('/size?url=http%3A%2F%2Fplacekitten.com%2F400')
+      .reply(200, '{"width":400,"height":400}', { 'content-type': 'application/json' })
 
-    // <img src="http://placekitten.com/400">
     const $ = cheerio.load(`
     <div>
       <img src="http://placekitten.com/200/300">
+      <img src="http://placekitten.com/400">
     </div>
     `)
     await optimizeImages($('img'), { quality: 50, preventLayoutInstability: true })
     expect($.html({ decodeEntities: false })).toEqual(`
     <div>
       <img src="https://opt.moovweb.net/?quality=50&img=http%3A%2F%2Fplacekitten.com%2F200%2F300" width="200" height="300">
+      <img src="https://opt.moovweb.net/?quality=50&img=http%3A%2F%2Fplacekitten.com%2F400" width="400" height="400">
     </div>
     `)
-    // <img src="http://placekitten.com/400" width="400" height="400">
   })
 })
