@@ -65,6 +65,16 @@ export default function addOptimizers($) {
     })
   }
 
+  function lazyLoadImages() {
+    $(this).each(function() {
+      const $img = $(this)
+      $img.attr('data-rsf-lazy', true)
+      $img.attr('data-src', $img.attr('src'))
+      $img.removeAttr('src')
+    })
+  }
+
   // Add plugins to loaded document
   $.prototype.optimizeImages = optimizeImages
+  $.prototype.lazyLoadImages = lazyLoadImages
 }
