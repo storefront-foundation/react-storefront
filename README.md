@@ -77,6 +77,8 @@ yarn release
 ### 6.30.3
 
 - Fixes a bug where requests could be catched by `serviceWorker.cache(path)` even if the path matches a route that doesn't have a cache handler.
+- Disable prefetching throttling by default.
+- Improved service worker cache-busting by including settings in the hashed filename for the bootsrap file.
 
 ### 6.30.2
 
@@ -93,8 +95,6 @@ yarn release
 - Adds an `imageProps` prop to `ImageSwitcher`
 - Adds support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
 - Added a `withPersonalization` HOC and `usePersonalization` hook for late loading personalized data.
-- Disable prefetching throttling by default.
-- Improved service worker cache-busting by including settings in the hashed filename for the bootsrap file.
 
 ### 6.29.0
 
