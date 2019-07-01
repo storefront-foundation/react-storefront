@@ -88,7 +88,7 @@ export default function responseHeaderTransform({
 
   // The browser should never cache rejected prefetches, otherwise it has the effect of
   // prefetching and storing an error.  The user will never be able to load that page.
-  if (headers.statusCode == 544) {
+  if (headers.statusCode == 412) {
     headers.header('cache-control', 'private, no-store, no-cache')
   }
 
