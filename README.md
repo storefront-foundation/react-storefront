@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.30.3
+
+- Fixes a bug where requests could be catched by `serviceWorker.cache(path)` even if the path matches a route that doesn't have a cache handler.
+
 ### 6.30.2
 
 - Fixed deprecation warning: `Please use require("history").createMemoryHistory instead of require("history/createMemoryHistory")`
