@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.31.1
+
+- Fixes the "Uncaught TypeError: Converting circular structure to JSON" error shown in the console when the user clicks the `ShowMore` button.
+
 ### 6.31.0
 
 - Adds a new `labelComponent` prop to `BackNav`, which allows you to override the default HTML element used to render the label.

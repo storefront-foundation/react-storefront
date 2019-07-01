@@ -72,6 +72,11 @@ export default class ShowMore extends Component {
     }
   }
 
+  onClick = () => {
+    const { model } = this.props
+    model.showMore()
+  }
+
   render() {
     const {
       app,
@@ -113,7 +118,7 @@ export default class ShowMore extends Component {
               : null
           }
           className={classnames(classes.root, className)}
-          onClick={model.showMore}
+          onClick={this.onClick}
           {...others}
         >
           {children || 'Show More'}
