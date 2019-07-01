@@ -7,10 +7,11 @@ const CopyPlugin = require('copy-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
 const { createClientConfig, createLoaders, injectBuildTimestamp } = require('./common')
 const createOptimization = require('./optimization')
-const hash = require('md5-file').sync
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const crypto = require('crypto')
+const fs = require('fs')
 
 // We use this pattern to replace AMP modules with an empty function
 // when building the application for the client, since AMP components
@@ -25,45 +26,55 @@ function createServiceWorkerPlugins({
   allowPrefetchThrottling = false,
   serveSSRFromCache = false
 }) {
-  const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
-  const swHash = hash(path.join(swBootstrap))
-  const swBootstrapDest = `serviceWorkerBootstrap.${swHash}.js`
+  if (!workboxConfig) return []
 
-  if (workboxConfig) {
-    return [
-      new CopyPlugin([
-        {
-          from: swBootstrap,
-          to: path.join(root, 'build', 'assets', 'pwa', swBootstrapDest),
-          transform: content => {
-            const buildTime = new Date().getTime() + 5 * 1000 * 60 // add 5 minutes to give the build time to deploy
+  let deployTime = new Date().getTime()
 
-            return content
-              .toString()
-              .replace('{{version}}', buildTime)
-              .replace('{{deployTime}}', buildTime)
-              .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
-              .replace('{{allowPrefetchThrottling}}', allowPrefetchThrottling)
-              .replace('{{serveSSRFromCache}}', serveSSRFromCache)
-          }
-        }
-      ]),
-      new GenerateSW(
-        Object.assign(
-          {
-            swDest: path.join(dest, '..', 'service-worker.js'),
-            importScripts: [`/pwa/${swBootstrapDest}`],
-            clientsClaim: true,
-            skipWaiting: true,
-            exclude: [/stats\.json/, /\.DS_Store/, /robots\.txt/, /manifest\.json/, /icons\//]
-          },
-          workboxConfig
-        )
-      )
-    ]
+  if (allowPrefetchThrottling) {
+    // pre fetch ramp up is not needed if we're allowing prefetch throttling
+    prefetchRampUpTime = 0
   } else {
-    return []
+    deployTime += 5 * 1000 * 60 // add 5 minutes to give the build time to deploy
   }
+
+  const swBootstrap = path.join(__dirname, '..', 'service-worker', 'bootstrap.js')
+
+  const swBootstrapCode = fs
+    .readFileSync(swBootstrap, 'utf8')
+    .replace('{{version}}', deployTime)
+    .replace('{{deployTime}}', deployTime)
+    .replace('{{prefetchRampUpTime}}', prefetchRampUpTime)
+    .replace('{{allowPrefetchThrottling}}', allowPrefetchThrottling)
+    .replace('{{serveSSRFromCache}}', serveSSRFromCache)
+
+  const swHash = crypto
+    .createHash('md5')
+    .update(swBootstrapCode)
+    .digest('hex')
+
+  const swBootstrapOutputFile = `serviceWorkerBootstrap.${swHash}.js`
+
+  return [
+    new CopyPlugin([
+      {
+        from: swBootstrap,
+        to: path.join(root, 'build', 'assets', 'pwa', swBootstrapOutputFile),
+        transform: () => swBootstrapCode
+      }
+    ]),
+    new GenerateSW(
+      Object.assign(
+        {
+          swDest: path.join(dest, '..', 'service-worker.js'),
+          importScripts: [`/pwa/${swBootstrapOutputFile}`],
+          clientsClaim: true,
+          skipWaiting: true,
+          exclude: [/stats\.json/, /\.DS_Store/, /robots\.txt/, /manifest\.json/, /icons\//]
+        },
+        workboxConfig
+      )
+    )
+  ]
 }
 
 module.exports = {
@@ -75,7 +86,7 @@ module.exports = {
    * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
-   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
+   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 412 error when a prefetch request results in a cache miss
    * @param {Object} options.eslintConfig A config object for eslint
    * @param {Boolean} options.optimization Configuration for the webpack optimzation object
    * @param {Object} options.alias Aliases to apply to the webpack config
@@ -161,7 +172,7 @@ module.exports = {
    * @param {Array}  options.additionalPlugins Additional plugins
    * @param {Object} options.workboxConfig A config object for InjectManifest from workbox-webpack-plugin.  See https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#configuration
    * @param {Number} options.prefetchRampUpTime The number of milliseconds from the time of the build before prefetching is ramped up to 100%
-   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 544 error when a prefetch request results in a cache miss
+   * @param {Boolean} options.allowPrefetchThrottling Set to true allow the platform to return a 412 error when a prefetch request results in a cache miss
    * @param {Boolean} options.optimization Configuration for the webpack optimzation object
    * @param {Object} options.alias Aliases to apply to the webpack config
    * @return {Object} A webpack config

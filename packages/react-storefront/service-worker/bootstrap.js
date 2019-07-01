@@ -2,7 +2,7 @@ console.log('[react-storefront service worker]', 'Using Moov PWA Service Worker 
 
 workbox.loadModule('workbox-strategies')
 
-const PREFETCH_CACHE_MISS = 544
+const PREFETCH_CACHE_MISS = 412
 
 let runtimeCacheOptions = {},
   baseCacheName,
@@ -116,13 +116,17 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         abort.args = [{ path, apiVersion }, cacheLinks]
         abortControllers.add(abort)
 
+        const headers = {}
+
+        if ('{{allowPrefetchThrottling}}' === 'true') {
+          headers['If-Match'] = 'cache-hit'
+        }
+
         // We connect the fetch with the abort controller here with the signal
         fetch(path, {
           credentials: 'include',
           signal: abort.signal,
-          headers: {
-            'x-rsf-prefetch': '{{allowPrefetchThrottling}}' === 'true' ? 'only-if-cached' : '1'
-          }
+          headers
         })
           .then(response => {
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
