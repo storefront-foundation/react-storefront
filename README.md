@@ -74,8 +74,9 @@ yarn release
 
 ## Changelog
 
-### 6.30.3
+### 6.31.0
 
+- Adds a new `labelComponent` prop to `BackNav`, which allows you to override the default HTML element used to render the label.
 - Fixes a bug where requests could be catched by `serviceWorker.cache(path)` even if the path matches a route that doesn't have a cache handler.
 - Disable prefetching throttling by default.
 - Improved service worker cache-busting by including settings in the hashed filename for the bootsrap file.

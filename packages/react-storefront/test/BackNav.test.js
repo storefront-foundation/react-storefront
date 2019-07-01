@@ -41,6 +41,15 @@ describe('BackNav', () => {
     )).toMatchSnapshot()
   })
 
+
+  it('render the corresponding tag if `labelComponent` prop provided', () => {
+    expect(mount(
+      <Provider history={history}>
+        <BackNav text="Rugs" url="/rugs/1" labelComponent="h1" />
+      </Provider>
+    )).toMatchSnapshot()
+  })
+
   it('goes to the specified url when clicked', () => {
     const wrapper = mount(
       <Provider history={history}>

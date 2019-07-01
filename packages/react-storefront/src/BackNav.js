@@ -39,7 +39,8 @@ export const styles = theme => ({
     fontSize: '18px',
     display: 'block',
     textAlign: 'center',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    padding: 0
   },
   backButtonWrapper: {
     position: 'absolute',
@@ -90,7 +91,16 @@ export default class BackNav extends Component {
      */
     searchResults: PropTypes.shape({
       layout: PropTypes.string.isRequired
-    })
+    }),
+
+    /**
+     * Overrides the default HTML element used for the label (span).
+     */
+    labelComponent: PropTypes.string
+  }
+
+  static defaultProps = {
+    labelComponent: 'span'
   }
 
   switchLayout = layout => {
@@ -129,7 +139,7 @@ export default class BackNav extends Component {
   }
 
   render() {
-    const { text, classes } = this.props
+    const { text, classes, labelComponent } = this.props
 
     return (
       <Paper className={classes.root}>
@@ -142,7 +152,7 @@ export default class BackNav extends Component {
           >
             <ArrowLeft />
           </span>
-          <span className={classes.label}>{text}</span>
+          {React.createElement(labelComponent, {className: classes.label}, text)}
           {this.renderViewToggle()}
         </Typography>
       </Paper>
