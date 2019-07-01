@@ -2,7 +2,6 @@
  * @license
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
-import $ from 'cheerio'
 import fetch from 'cross-fetch'
 import qs from 'qs'
 
@@ -30,33 +29,42 @@ function getSize(src) {
 }
 
 /**
- * Transforms image sources within the given elements to come from the Moovweb Image Optimizer
- * @param {Array} elements     Cheerio elements
- * @param {Object} options     Transformation options
- * @returns {String}           Optimized HTML
+ * Add optimization functions as plugins to cheerio
+ * @param {CheerioDocument} $ A preloaded Cheerio document
  */
-export default async function optimizeImages(elements, options = defaultOptions) {
-  const { preventLayoutInstability, ...transformationOptions } = options
+export default function addOptimizers($) {
+  /**
+   * Transforms image sources within the given elements to come from the Moovweb Image Optimizer
+   * @param {Array} elements     Cheerio elements
+   * @param {Object} options     Transformation options
+   * @returns {String}           Optimized HTML
+   */
+  async function optimizeImages(options = defaultOptions) {
+    const { preventLayoutInstability, ...transformationOptions } = options
 
-  const sources = []
-  let sizes
+    const sources = []
+    let sizes
 
-  elements.each(function() {
-    sources.push($(this).attr('src'))
-  })
+    $(this).each(function() {
+      sources.push($(this).attr('src'))
+    })
 
-  if (preventLayoutInstability) {
-    sizes = await Promise.all(sources.map(getSize))
+    if (preventLayoutInstability) {
+      sizes = await Promise.all(sources.map(getSize))
+    }
+
+    $(this).each(function(index, el) {
+      const $img = $(el)
+      const src = $img.attr('src')
+      $img.attr('src', transformSource(src, transformationOptions))
+      if (preventLayoutInstability) {
+        const { width, height } = sizes[index]
+        $img.attr('width', width)
+        $img.attr('height', height)
+      }
+    })
   }
 
-  elements.each(function(index, el) {
-    const $img = $(el)
-    const src = $img.attr('src')
-    $img.attr('src', transformSource(src, transformationOptions))
-    if (preventLayoutInstability) {
-      const { width, height } = sizes[index]
-      $img.attr('width', width)
-      $img.attr('height', height)
-    }
-  })
+  // Add plugins to loaded document
+  $.prototype.optimizeImages = optimizeImages
 }
