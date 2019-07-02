@@ -12,16 +12,16 @@ import usePersonalization from './usePersonalization'
  * Example
  *
  * ```js
- * @withPersonalization(app => app.product) // app.product.loadPersonalization will be called when the Product component is displayed
- * @inject('app')
- * @observer
+ * _@_withPersonalization(app => app.product) // app.product.loadPersonalization will be called when the Product component is displayed
+ * _@_inject('app')
+ * _@_observer
  * class Product extends Component {
  *
  * }
  * ```
  *
  * @param {Function} branch A function that returns the model that should fetch personalized data.
- * @return {Function}
+ * @returns {Function}
  */
 const withPersonalization = branch => WrappedComponent => props => {
   usePersonalization(branch)

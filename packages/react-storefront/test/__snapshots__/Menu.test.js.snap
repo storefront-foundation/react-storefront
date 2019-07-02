@@ -1,5 +1,319 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Menu custom renderers itemContentRenderer should be called for each item 1`] = `
+<TestProvider app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <WithTheme(WithStyles(inject-Menu-with-app)) simple={true} itemContentRenderer={[Function: mockConstructor]}>
+        <WithStyles(inject-Menu-with-app) theme={{...}} simple={true} itemContentRenderer={[Function: mockConstructor]}>
+          <inject-Menu-with-app theme={{...}} simple={true} itemContentRenderer={[Function: mockConstructor]} classes={{...}}>
+            <Menu theme={{...}} simple={true} itemContentRenderer={[Function: mockConstructor]} classes={{...}} app={{...}} drawerWidth={330} expandFirstItem={false} align="left" trackSelected={false}>
+              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
+                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
+                  <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-1059 MuiDrawer-modal-1070 RSFMenu-modal-1057" open={false} onClose={[Function: res]} keepMounted={true}>
+                    <Modal BackdropProps={{...}} className="MuiDrawer-root-1059 MuiDrawer-modal-1070 RSFMenu-modal-1057" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
+                      <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
+                        <Portal containerInfo={{...}}>
+                          <div className="mui-fixed MuiModal-root-1071 MuiDrawer-root-1059 MuiDrawer-modal-1070 RSFMenu-modal-1057 MuiModal-hidden-1072">
+                            <WithStyles(Backdrop) open={false} onClick={[Function]} transitionDuration={{...}}>
+                              <Backdrop open={false} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
+                                <WithTheme(Fade) in={false} timeout={{...}} onClick={[Function]}>
+                                  <Fade theme={{...}} in={false} timeout={{...}} onClick={[Function]}>
+                                    <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={false} timeout={{...}} onClick={[Function]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                      <div className="MuiBackdrop-root-1074" aria-hidden="true" style={{...}} onClick={[Function]} />
+                                    </Transition>
+                                  </Fade>
+                                </WithTheme(Fade)>
+                              </Backdrop>
+                            </WithStyles(Backdrop)>
+                            <RootRef rootRef={[Function]}>
+                              <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                                <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                                  <EventListener target="window" onResize={[Function: debounced]}>
+                                    <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                      <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-1061 RSFMenu-drawer-1035 MuiDrawer-paperAnchorLeft-1062" style={{...}} direction="right" role="document" tabIndex="-1">
+                                        <Paper elevation={16} square={true} className="MuiDrawer-paper-1061 RSFMenu-drawer-1035 MuiDrawer-paperAnchorLeft-1062" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
+                                          <div className="MuiPaper-root-1076 MuiPaper-elevation16-1094 MuiDrawer-paper-1061 RSFMenu-drawer-1035 MuiDrawer-paperAnchorLeft-1062" style={{...}} direction="right" role="document" tabIndex="-1">
+                                            <inject-Body-with-app drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false}>
+                                              <Body drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}}>
+                                                <WithStyles(List) classes={{...}}>
+                                                  <List classes={{...}} component="ul" dense={false} disablePadding={false}>
+                                                    <ul className="MuiList-root-1103 MuiList-padding-1104 RSFMenu-list-1036">
+                                                      <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
+                                                        <Item drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
+                                                          <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
+                                                            <Branch expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
+                                                              <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
+                                                                  <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
+                                                                    <MergeListContext dense={false} alignItems="center">
+                                                                      <WithStyles(ButtonBase) className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" disabled={false} onClick={[Function: bound ]} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109">
+                                                                        <ButtonBase className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" disabled={false} onClick={[Function: bound ]} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                                                          <div className="MuiButtonBase-root-1119 MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" onClick={[Function: bound ]}>
+                                                                            <inject-ItemContent-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.undefined">
+                                                                              <ItemContent expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.undefined" app={{...}}>
+                                                                                <div>
+                                                                                  Group 1
+                                                                                </div>
+                                                                              </ItemContent>
+                                                                            </inject-ItemContent-with-app>
+                                                                            <NoSsr defer={false} fallback={{...}}>
+                                                                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                <TouchRipple center={false} classes={{...}}>
+                                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-1126" childFactory={[Function: childFactory]}>
+                                                                                    <span className="MuiTouchRipple-root-1126" />
+                                                                                  </TransitionGroup>
+                                                                                </TouchRipple>
+                                                                              </WithStyles(TouchRipple)>
+                                                                            </NoSsr>
+                                                                          </div>
+                                                                        </ButtonBase>
+                                                                      </WithStyles(ButtonBase)>
+                                                                    </MergeListContext>
+                                                                  </ListItem>
+                                                                </WithStyles(ListItem)>
+                                                              </div>
+                                                              <WithStyles(Collapse) in={false} timeout="auto">
+                                                                <Collapse in={false} timeout="auto" theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
+                                                                  <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={false} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                                    <div className="MuiCollapse-container-1122" style={{...}}>
+                                                                      <div className="MuiCollapse-wrapper-1124">
+                                                                        <div className="MuiCollapse-wrapperInner-1125">
+                                                                          <WithStyles(List) component="div" classes={{...}}>
+                                                                            <List component="div" classes={{...}} dense={false} disablePadding={false}>
+                                                                              <div className="MuiList-root-1103 RSFMenu-list-1036 MuiList-padding-1104">
+                                                                                <inject-Item-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
+                                                                                  <Item expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
+                                                                                    <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true}>
+                                                                                      <Branch expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
+                                                                                        <div amp-bind="class=>sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                                          <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
+                                                                                            <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
+                                                                                              <MergeListContext dense={false} alignItems="center">
+                                                                                                <WithStyles(ButtonBase) className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" disabled={false} onClick={[Function: bound ]} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109">
+                                                                                                  <ButtonBase className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" disabled={false} onClick={[Function: bound ]} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                                                                                    <div className="MuiButtonBase-root-1119 MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" onClick={[Function: bound ]}>
+                                                                                                      <inject-ItemContent-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="2.undefined">
+                                                                                                        <ItemContent expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="2.undefined" app={{...}}>
+                                                                                                          <div>
+                                                                                                            Item 1
+                                                                                                          </div>
+                                                                                                        </ItemContent>
+                                                                                                      </inject-ItemContent-with-app>
+                                                                                                      <NoSsr defer={false} fallback={{...}}>
+                                                                                                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                                          <TouchRipple center={false} classes={{...}}>
+                                                                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-1126" childFactory={[Function: childFactory]}>
+                                                                                                              <span className="MuiTouchRipple-root-1126" />
+                                                                                                            </TransitionGroup>
+                                                                                                          </TouchRipple>
+                                                                                                        </WithStyles(TouchRipple)>
+                                                                                                      </NoSsr>
+                                                                                                    </div>
+                                                                                                  </ButtonBase>
+                                                                                                </WithStyles(ButtonBase)>
+                                                                                              </MergeListContext>
+                                                                                            </ListItem>
+                                                                                          </WithStyles(ListItem)>
+                                                                                        </div>
+                                                                                        <WithStyles(Collapse) in={false} timeout="auto">
+                                                                                          <Collapse in={false} timeout="auto" theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
+                                                                                            <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={false} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                                                                              <div className="MuiCollapse-container-1122" style={{...}}>
+                                                                                                <div className="MuiCollapse-wrapper-1124">
+                                                                                                  <div className="MuiCollapse-wrapperInner-1125">
+                                                                                                    <WithStyles(List) component="div" classes={{...}}>
+                                                                                                      <List component="div" classes={{...}} dense={false} disablePadding={false}>
+                                                                                                        <div className="MuiList-root-1103 RSFMenu-list-1036 MuiList-padding-1104">
+                                                                                                          <inject-Item-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
+                                                                                                            <Item expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
+                                                                                                              <inject-Leaf-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true}>
+                                                                                                                <Leaf expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
+                                                                                                                  <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]}>
+                                                                                                                    <inject-Link to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}}>
+                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                                                                        <a data-moov-link="on" className="RSFLink-root-1073 RSFMenu-link-1050" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                                                                                                          <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                                                                                            <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                                                                                              <MergeListContext dense={false} alignItems="center">
+                                                                                                                                <WithStyles(ButtonBase) className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" disabled={false} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109">
+                                                                                                                                  <ButtonBase className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" disabled={false} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                                                                                                                    <div className="MuiButtonBase-root-1119 MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button">
+                                                                                                                                      <inject-ItemContent-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} item={{...}} showExpander={false} leaf={true}>
+                                                                                                                                        <ItemContent expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} item={{...}} showExpander={false} leaf={true} app={{...}}>
+                                                                                                                                          <div>
+                                                                                                                                            Child 1
+                                                                                                                                          </div>
+                                                                                                                                        </ItemContent>
+                                                                                                                                      </inject-ItemContent-with-app>
+                                                                                                                                      <NoSsr defer={false} fallback={{...}}>
+                                                                                                                                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                                                                          <TouchRipple center={false} classes={{...}}>
+                                                                                                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-1126" childFactory={[Function: childFactory]}>
+                                                                                                                                              <span className="MuiTouchRipple-root-1126" />
+                                                                                                                                            </TransitionGroup>
+                                                                                                                                          </TouchRipple>
+                                                                                                                                        </WithStyles(TouchRipple)>
+                                                                                                                                      </NoSsr>
+                                                                                                                                    </div>
+                                                                                                                                  </ButtonBase>
+                                                                                                                                </WithStyles(ButtonBase)>
+                                                                                                                              </MergeListContext>
+                                                                                                                            </ListItem>
+                                                                                                                          </WithStyles(ListItem)>
+                                                                                                                        </a>
+                                                                                                                      </Link>
+                                                                                                                    </inject-Link>
+                                                                                                                  </WithStyles(inject-Link)>
+                                                                                                                </Leaf>
+                                                                                                              </inject-Leaf-with-app>
+                                                                                                            </Item>
+                                                                                                          </inject-Item-with-app>
+                                                                                                        </div>
+                                                                                                      </List>
+                                                                                                    </WithStyles(List)>
+                                                                                                  </div>
+                                                                                                </div>
+                                                                                              </div>
+                                                                                            </Transition>
+                                                                                          </Collapse>
+                                                                                        </WithStyles(Collapse)>
+                                                                                      </Branch>
+                                                                                    </inject-Branch-with-app>
+                                                                                  </Item>
+                                                                                </inject-Item-with-app>
+                                                                              </div>
+                                                                            </List>
+                                                                          </WithStyles(List)>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </Transition>
+                                                                </Collapse>
+                                                              </WithStyles(Collapse)>
+                                                            </Branch>
+                                                          </inject-Branch-with-app>
+                                                        </Item>
+                                                      </inject-Item-with-app>
+                                                      <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
+                                                        <Item drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
+                                                          <inject-Leaf-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
+                                                            <Leaf expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
+                                                              <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]}>
+                                                                <inject-Link to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}}>
+                                                                  <Link to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                    <a data-moov-link="on" className="RSFLink-root-1073 RSFMenu-link-1050" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                                                      <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
+                                                                        <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
+                                                                          <MergeListContext dense={false} alignItems="center">
+                                                                            <WithStyles(ButtonBase) className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" disabled={false} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109">
+                                                                              <ButtonBase className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" disabled={false} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                                                                <div className="MuiButtonBase-root-1119 MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button">
+                                                                                  <inject-ItemContent-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} item={{...}} showExpander={false} leaf={true}>
+                                                                                    <ItemContent expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} item={{...}} showExpander={false} leaf={true} app={{...}}>
+                                                                                      <div>
+                                                                                        Leaf
+                                                                                      </div>
+                                                                                    </ItemContent>
+                                                                                  </inject-ItemContent-with-app>
+                                                                                  <NoSsr defer={false} fallback={{...}}>
+                                                                                    <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                      <TouchRipple center={false} classes={{...}}>
+                                                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-1126" childFactory={[Function: childFactory]}>
+                                                                                          <span className="MuiTouchRipple-root-1126" />
+                                                                                        </TransitionGroup>
+                                                                                      </TouchRipple>
+                                                                                    </WithStyles(TouchRipple)>
+                                                                                  </NoSsr>
+                                                                                </div>
+                                                                              </ButtonBase>
+                                                                            </WithStyles(ButtonBase)>
+                                                                          </MergeListContext>
+                                                                        </ListItem>
+                                                                      </WithStyles(ListItem)>
+                                                                    </a>
+                                                                  </Link>
+                                                                </inject-Link>
+                                                              </WithStyles(inject-Link)>
+                                                            </Leaf>
+                                                          </inject-Leaf-with-app>
+                                                        </Item>
+                                                      </inject-Item-with-app>
+                                                    </ul>
+                                                  </List>
+                                                </WithStyles(List)>
+                                              </Body>
+                                            </inject-Body-with-app>
+                                          </div>
+                                        </Paper>
+                                      </WithStyles(Paper)>
+                                    </Transition>
+                                  </EventListener>
+                                </Slide>
+                              </WithTheme(Slide)>
+                            </RootRef>
+                          </div>
+                        </Portal>
+                      </Portal>
+                    </Modal>
+                  </WithStyles(Modal)>
+                </Drawer>
+              </WithStyles(Drawer)>
+              <inject-SEOLinks-with-app>
+                <SEOLinks app={{...}}>
+                  <div style={{...}}>
+                    <WithStyles(inject-Link)>
+                      <inject-Link classes={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                          <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href={{...}} />
+                        </Link>
+                      </inject-Link>
+                    </WithStyles(inject-Link)>
+                  </div>
+                  <NoScript>
+                    <div>
+                      <nav style={{...}}>
+                        <WithStyles(inject-Link) to="/item1">
+                          <inject-Link to="/item1" classes={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
+                                Item 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/item1/child1">
+                          <inject-Link to="/item1/child1" classes={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                Child 1
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                        <WithStyles(inject-Link) to="/leaf">
+                          <inject-Link to="/leaf" classes={{...}}>
+                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                              <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
+                                Leaf
+                              </a>
+                            </Link>
+                          </inject-Link>
+                        </WithStyles(inject-Link)>
+                      </nav>
+                    </div>
+                  </NoScript>
+                </SEOLinks>
+              </inject-SEOLinks-with-app>
+            </Menu>
+          </inject-Menu-with-app>
+        </WithStyles(inject-Menu-with-app)>
+      </WithTheme(WithStyles(inject-Menu-with-app))>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
+`;
+
 exports[`Menu custom renderers itemRenderer should be called for each item 1`] = `
 <TestProvider app={{...}} history={{...}}>
   <Provider router={{...}} app={{...}} history={{...}}>
@@ -483,320 +797,6 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                           <inject-Link to="/leaf" classes={{...}}>
                             <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
                               <a data-moov-link="on" className="RSFLink-root-959" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
-                                Leaf
-                              </a>
-                            </Link>
-                          </inject-Link>
-                        </WithStyles(inject-Link)>
-                      </nav>
-                    </div>
-                  </NoScript>
-                </SEOLinks>
-              </inject-SEOLinks-with-app>
-            </Menu>
-          </inject-Menu-with-app>
-        </WithStyles(inject-Menu-with-app)>
-      </WithTheme(WithStyles(inject-Menu-with-app))>
-    </MuiThemeProviderOld>
-  </Provider>
-</TestProvider>
-`;
-
-exports[`Menu custom renderers itemContentRenderer should be called for each item 1`] = `
-<TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
-    <MuiThemeProviderOld theme={{...}}>
-      <WithTheme(WithStyles(inject-Menu-with-app)) simple={true} itemContentRenderer={[Function: mockConstructor]}>
-        <WithStyles(inject-Menu-with-app) theme={{...}} simple={true} itemContentRenderer={[Function: mockConstructor]}>
-          <inject-Menu-with-app theme={{...}} simple={true} itemContentRenderer={[Function: mockConstructor]} classes={{...}}>
-            <Menu theme={{...}} simple={true} itemContentRenderer={[Function: mockConstructor]} classes={{...}} app={{...}} drawerWidth={330} expandFirstItem={false} align="left" trackSelected={false}>
-              <WithStyles(Drawer) variant="temporary" open={[undefined]} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} classes={{...}}>
-                <Drawer variant="temporary" open={false} onClose={[Function: res]} anchor="left" ModalProps={{...}} PaperProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
-                  <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-1059 MuiDrawer-modal-1070 RSFMenu-modal-1057" open={false} onClose={[Function: res]} keepMounted={true}>
-                    <Modal BackdropProps={{...}} className="MuiDrawer-root-1059 MuiDrawer-modal-1070 RSFMenu-modal-1057" open={false} onClose={[Function: res]} keepMounted={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} manager={{...}}>
-                      <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
-                        <Portal containerInfo={{...}}>
-                          <div className="mui-fixed MuiModal-root-1071 MuiDrawer-root-1059 MuiDrawer-modal-1070 RSFMenu-modal-1057 MuiModal-hidden-1072">
-                            <WithStyles(Backdrop) open={false} onClick={[Function]} transitionDuration={{...}}>
-                              <Backdrop open={false} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
-                                <WithTheme(Fade) in={false} timeout={{...}} onClick={[Function]}>
-                                  <Fade theme={{...}} in={false} timeout={{...}} onClick={[Function]}>
-                                    <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={false} timeout={{...}} onClick={[Function]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
-                                      <div className="MuiBackdrop-root-1074" aria-hidden="true" style={{...}} onClick={[Function]} />
-                                    </Transition>
-                                  </Fade>
-                                </WithTheme(Fade)>
-                              </Backdrop>
-                            </WithStyles(Backdrop)>
-                            <RootRef rootRef={[Function]}>
-                              <WithTheme(Slide) in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
-                                <Slide theme={{...}} in={false} direction="right" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
-                                  <EventListener target="window" onResize={[Function: debounced]}>
-                                    <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={false} style={{...}} in={false} direction="right" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
-                                      <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-1061 RSFMenu-drawer-1035 MuiDrawer-paperAnchorLeft-1062" style={{...}} direction="right" role="document" tabIndex="-1">
-                                        <Paper elevation={16} square={true} className="MuiDrawer-paper-1061 RSFMenu-drawer-1035 MuiDrawer-paperAnchorLeft-1062" style={{...}} direction="right" role="document" tabIndex="-1" classes={{...}} component="div">
-                                          <div className="MuiPaper-root-1076 MuiPaper-elevation16-1094 MuiDrawer-paper-1061 RSFMenu-drawer-1035 MuiDrawer-paperAnchorLeft-1062" style={{...}} direction="right" role="document" tabIndex="-1">
-                                            <inject-Body-with-app drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false}>
-                                              <Body drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}}>
-                                                <WithStyles(List) classes={{...}}>
-                                                  <List classes={{...}} component="ul" dense={false} disablePadding={false}>
-                                                    <ul className="MuiList-root-1103 MuiList-padding-1104 RSFMenu-list-1036">
-                                                      <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
-                                                        <Item drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
-                                                          <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
-                                                            <Branch expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                              <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
-                                                                <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
-                                                                  <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
-                                                                    <MergeListContext dense={false} alignItems="center">
-                                                                      <WithStyles(ButtonBase) className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" disabled={false} onClick={[Function: bound ]} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109">
-                                                                        <ButtonBase className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" disabled={false} onClick={[Function: bound ]} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                                                          <div className="MuiButtonBase-root-1119 MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" onClick={[Function: bound ]}>
-                                                                            <inject-ItemContent-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.undefined">
-                                                                              <ItemContent expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.undefined" app={{...}}>
-                                                                                <div>
-                                                                                  Group 1
-                                                                                </div>
-                                                                              </ItemContent>
-                                                                            </inject-ItemContent-with-app>
-                                                                            <NoSsr defer={false} fallback={{...}}>
-                                                                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                                                <TouchRipple center={false} classes={{...}}>
-                                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-1126" childFactory={[Function: childFactory]}>
-                                                                                    <span className="MuiTouchRipple-root-1126" />
-                                                                                  </TransitionGroup>
-                                                                                </TouchRipple>
-                                                                              </WithStyles(TouchRipple)>
-                                                                            </NoSsr>
-                                                                          </div>
-                                                                        </ButtonBase>
-                                                                      </WithStyles(ButtonBase)>
-                                                                    </MergeListContext>
-                                                                  </ListItem>
-                                                                </WithStyles(ListItem)>
-                                                              </div>
-                                                              <WithStyles(Collapse) in={false} timeout="auto">
-                                                                <Collapse in={false} timeout="auto" theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
-                                                                  <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={false} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
-                                                                    <div className="MuiCollapse-container-1122" style={{...}}>
-                                                                      <div className="MuiCollapse-wrapper-1124">
-                                                                        <div className="MuiCollapse-wrapperInner-1125">
-                                                                          <WithStyles(List) component="div" classes={{...}}>
-                                                                            <List component="div" classes={{...}} dense={false} disablePadding={false}>
-                                                                              <div className="MuiList-root-1103 RSFMenu-list-1036 MuiList-padding-1104">
-                                                                                <inject-Item-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                  <Item expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                    <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true}>
-                                                                                      <Branch expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                        <div amp-bind="class=>sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
-                                                                                          <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
-                                                                                            <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
-                                                                                              <MergeListContext dense={false} alignItems="center">
-                                                                                                <WithStyles(ButtonBase) className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" disabled={false} onClick={[Function: bound ]} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109">
-                                                                                                  <ButtonBase className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" disabled={false} onClick={[Function: bound ]} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                                                                                    <div className="MuiButtonBase-root-1119 MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-expander-1053 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" onClick={[Function: bound ]}>
-                                                                                                      <inject-ItemContent-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="2.undefined">
-                                                                                                        <ItemContent expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="2.undefined" app={{...}}>
-                                                                                                          <div>
-                                                                                                            Item 1
-                                                                                                          </div>
-                                                                                                        </ItemContent>
-                                                                                                      </inject-ItemContent-with-app>
-                                                                                                      <NoSsr defer={false} fallback={{...}}>
-                                                                                                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                                                                          <TouchRipple center={false} classes={{...}}>
-                                                                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-1126" childFactory={[Function: childFactory]}>
-                                                                                                              <span className="MuiTouchRipple-root-1126" />
-                                                                                                            </TransitionGroup>
-                                                                                                          </TouchRipple>
-                                                                                                        </WithStyles(TouchRipple)>
-                                                                                                      </NoSsr>
-                                                                                                    </div>
-                                                                                                  </ButtonBase>
-                                                                                                </WithStyles(ButtonBase)>
-                                                                                              </MergeListContext>
-                                                                                            </ListItem>
-                                                                                          </WithStyles(ListItem)>
-                                                                                        </div>
-                                                                                        <WithStyles(Collapse) in={false} timeout="auto">
-                                                                                          <Collapse in={false} timeout="auto" theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
-                                                                                            <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={false} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
-                                                                                              <div className="MuiCollapse-container-1122" style={{...}}>
-                                                                                                <div className="MuiCollapse-wrapper-1124">
-                                                                                                  <div className="MuiCollapse-wrapperInner-1125">
-                                                                                                    <WithStyles(List) component="div" classes={{...}}>
-                                                                                                      <List component="div" classes={{...}} dense={false} disablePadding={false}>
-                                                                                                        <div className="MuiList-root-1103 RSFMenu-list-1036 MuiList-padding-1104">
-                                                                                                          <inject-Item-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                                            <Item expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                                              <inject-Leaf-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true}>
-                                                                                                                <Leaf expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                                                  <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]}>
-                                                                                                                    <inject-Link to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                                                                                                                        <a data-moov-link="on" className="RSFLink-root-1073 RSFMenu-link-1050" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
-                                                                                                                          <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
-                                                                                                                            <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
-                                                                                                                              <MergeListContext dense={false} alignItems="center">
-                                                                                                                                <WithStyles(ButtonBase) className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" disabled={false} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109">
-                                                                                                                                  <ButtonBase className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" disabled={false} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                                                                                                                    <div className="MuiButtonBase-root-1119 MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button">
-                                                                                                                                      <inject-ItemContent-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} item={{...}} showExpander={false} leaf={true}>
-                                                                                                                                        <ItemContent expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} item={{...}} showExpander={false} leaf={true} app={{...}}>
-                                                                                                                                          <div>
-                                                                                                                                            Child 1
-                                                                                                                                          </div>
-                                                                                                                                        </ItemContent>
-                                                                                                                                      </inject-ItemContent-with-app>
-                                                                                                                                      <NoSsr defer={false} fallback={{...}}>
-                                                                                                                                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                                                                                                          <TouchRipple center={false} classes={{...}}>
-                                                                                                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-1126" childFactory={[Function: childFactory]}>
-                                                                                                                                              <span className="MuiTouchRipple-root-1126" />
-                                                                                                                                            </TransitionGroup>
-                                                                                                                                          </TouchRipple>
-                                                                                                                                        </WithStyles(TouchRipple)>
-                                                                                                                                      </NoSsr>
-                                                                                                                                    </div>
-                                                                                                                                  </ButtonBase>
-                                                                                                                                </WithStyles(ButtonBase)>
-                                                                                                                              </MergeListContext>
-                                                                                                                            </ListItem>
-                                                                                                                          </WithStyles(ListItem)>
-                                                                                                                        </a>
-                                                                                                                      </Link>
-                                                                                                                    </inject-Link>
-                                                                                                                  </WithStyles(inject-Link)>
-                                                                                                                </Leaf>
-                                                                                                              </inject-Leaf-with-app>
-                                                                                                            </Item>
-                                                                                                          </inject-Item-with-app>
-                                                                                                        </div>
-                                                                                                      </List>
-                                                                                                    </WithStyles(List)>
-                                                                                                  </div>
-                                                                                                </div>
-                                                                                              </div>
-                                                                                            </Transition>
-                                                                                          </Collapse>
-                                                                                        </WithStyles(Collapse)>
-                                                                                      </Branch>
-                                                                                    </inject-Branch-with-app>
-                                                                                  </Item>
-                                                                                </inject-Item-with-app>
-                                                                              </div>
-                                                                            </List>
-                                                                          </WithStyles(List)>
-                                                                        </div>
-                                                                      </div>
-                                                                    </div>
-                                                                  </Transition>
-                                                                </Collapse>
-                                                              </WithStyles(Collapse)>
-                                                            </Branch>
-                                                          </inject-Branch-with-app>
-                                                        </Item>
-                                                      </inject-Item-with-app>
-                                                      <inject-Item-with-app drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
-                                                        <Item drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
-                                                          <inject-Leaf-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
-                                                            <Leaf expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                              <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]}>
-                                                                <inject-Link to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                  <Link to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                                                                    <a data-moov-link="on" className="RSFLink-root-1073 RSFMenu-link-1050" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
-                                                                      <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
-                                                                        <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
-                                                                          <MergeListContext dense={false} alignItems="center">
-                                                                            <WithStyles(ButtonBase) className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" disabled={false} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109">
-                                                                              <ButtonBase className="MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" disabled={false} component="div" focusVisibleClassName="MuiListItem-focusVisible-1109" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                                                                <div className="MuiButtonBase-root-1119 MuiListItem-root-1107 RSFMenu-listItem-1049 RSFMenu-leaf-1054 MuiListItem-default-1110 MuiListItem-gutters-1115 MuiListItem-divider-1114 MuiListItem-button-1116" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button">
-                                                                                  <inject-ItemContent-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} item={{...}} showExpander={false} leaf={true}>
-                                                                                    <ItemContent expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} item={{...}} showExpander={false} leaf={true} app={{...}}>
-                                                                                      <div>
-                                                                                        Leaf
-                                                                                      </div>
-                                                                                    </ItemContent>
-                                                                                  </inject-ItemContent-with-app>
-                                                                                  <NoSsr defer={false} fallback={{...}}>
-                                                                                    <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                                                      <TouchRipple center={false} classes={{...}}>
-                                                                                        <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-1126" childFactory={[Function: childFactory]}>
-                                                                                          <span className="MuiTouchRipple-root-1126" />
-                                                                                        </TransitionGroup>
-                                                                                      </TouchRipple>
-                                                                                    </WithStyles(TouchRipple)>
-                                                                                  </NoSsr>
-                                                                                </div>
-                                                                              </ButtonBase>
-                                                                            </WithStyles(ButtonBase)>
-                                                                          </MergeListContext>
-                                                                        </ListItem>
-                                                                      </WithStyles(ListItem)>
-                                                                    </a>
-                                                                  </Link>
-                                                                </inject-Link>
-                                                              </WithStyles(inject-Link)>
-                                                            </Leaf>
-                                                          </inject-Leaf-with-app>
-                                                        </Item>
-                                                      </inject-Item-with-app>
-                                                    </ul>
-                                                  </List>
-                                                </WithStyles(List)>
-                                              </Body>
-                                            </inject-Body-with-app>
-                                          </div>
-                                        </Paper>
-                                      </WithStyles(Paper)>
-                                    </Transition>
-                                  </EventListener>
-                                </Slide>
-                              </WithTheme(Slide)>
-                            </RootRef>
-                          </div>
-                        </Portal>
-                      </Portal>
-                    </Modal>
-                  </WithStyles(Modal)>
-                </Drawer>
-              </WithStyles(Drawer)>
-              <inject-SEOLinks-with-app>
-                <SEOLinks app={{...}}>
-                  <div style={{...}}>
-                    <WithStyles(inject-Link)>
-                      <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                          <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href={{...}} />
-                        </Link>
-                      </inject-Link>
-                    </WithStyles(inject-Link)>
-                  </div>
-                  <NoScript>
-                    <div>
-                      <nav style={{...}}>
-                        <WithStyles(inject-Link) to="/item1">
-                          <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
-                                Item 1
-                              </a>
-                            </Link>
-                          </inject-Link>
-                        </WithStyles(inject-Link)>
-                        <WithStyles(inject-Link) to="/item1/child1">
-                          <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
-                                Child 1
-                              </a>
-                            </Link>
-                          </inject-Link>
-                        </WithStyles(inject-Link)>
-                        <WithStyles(inject-Link) to="/leaf">
-                          <inject-Link to="/leaf" classes={{...}}>
-                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                              <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                 Leaf
                               </a>
                             </Link>

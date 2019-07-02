@@ -57,6 +57,7 @@ export const styles = theme => ({
  *
  * Example:
  *
+ * ```js
  *  <TabPanel>
  *    <div label="Description">
  *      Description here
@@ -65,6 +66,7 @@ export const styles = theme => ({
  *      { instructionsFromCms }
  *    </CmsSlot>
  *  </TabPanel>
+ * ```
  */
 @withStyles(styles, { name: 'RSFTabPanel' })
 @inject('app', 'ampStateId')

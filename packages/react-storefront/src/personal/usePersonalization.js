@@ -14,14 +14,14 @@ import { reaction } from 'mobx'
  * Example
  *
  * ```js
- *  function Product() {
- *    usePersonalization(app => app.product)
- *    return //...
- *  }
+ * function Product() {
+ *   usePersonalization(app => app.product)
+ *   return //...
+ * }
  * ```
  *
  * @param {Function} branch A function that returns the model that should fetch personalized data.
- * @return {Function}
+ * @returns {Function}
  */
 export default function usePersonalization(branch) {
   const { app } = useContext(AppContext)

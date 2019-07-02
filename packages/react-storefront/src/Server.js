@@ -23,19 +23,17 @@ import { ROUTES } from './router/headers'
 import flattenDeep from 'lodash/flattenDeep'
 
 /**
- * Serves requests from the Moovweb platform.
+ * A request handler for the server.
+ * @param {Object} config
+ * @param {Object} config.theme A material-UI theme
+ * @param {Class} config.model The model class for the root of the state tree
+ * @param {React.Component} config.App The root app component
+ * @param {Router} config.router An instance of moov_router's Router class
+ * @param {Boolean} config.deferScripts Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
+ * @param {Function} config.transform A function to transform the rendered HTML before it is sent to the browser
+ * @param {Function} config.errorReporter A function to call when an error occurs so that it can be logged
  */
 export default class Server {
-  /**
-   * @param {Object} config
-   * @param {Object} config.theme A material-UI theme
-   * @param {Class} config.model The model class for the root of the state tree
-   * @param {React.Component} config.App The root app component
-   * @param {Router} config.router An instance of moov_router's Router class
-   * @param {Boolean} [config.deferScripts=true] Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
-   * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
-   * @param {Function} errorReporter A function to call when an error occurs so that it can be logged
-   */
   constructor({
     theme,
     model,
@@ -94,6 +92,7 @@ export default class Server {
 
   /**
    * Sets the content type to application/json for json URLs, text/html for all others
+   * @private
    * @param {Object} request
    * @param {Response} response
    */
@@ -109,6 +108,7 @@ export default class Server {
 
   /**
    * Renders either a JSON or HTML response for the given state based on the path suffix.
+   * @private
    * @param {Object} options
    * @param {Object} options.request The current request object
    * @param {Response} options.response The current response object
@@ -227,6 +227,7 @@ export default class Server {
   /**
    * Renders an error response, either as JSON or SSR HTML, depending on the suffix
    * on the request path.
+   * @private
    * @param {Error} e
    * @param {Request} request
    * @param {Response} response

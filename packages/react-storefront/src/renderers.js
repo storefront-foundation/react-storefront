@@ -23,6 +23,7 @@ const sanitizeJsonForScript = state =>
 
 /**
  * Get javascript asset filename by chunk name
+ * @private
  * @param  {Object} stats Webpack generated stats
  * @param  {String} chunk Chunk name
  * @return {String}       Asset filename
@@ -40,6 +41,7 @@ export function getJS(stats, chunk) {
 
 /**
  * Gets all source paths for the given chunk
+ * @private
  * @param  {Object} stats Webpack generated stats
  * @param  {String} chunk Chunk name
  * @return {String[]}
@@ -60,6 +62,7 @@ function getSources(stats, chunk) {
 
 /**
  * Render HTML of given component
+ * @private
  * @param  {options} options
  * @param  {React.Component} options.component Component to be rendered
  * @param  {Object} options.providers          Data providers
@@ -86,6 +89,7 @@ export function renderHtml({ component, providers, registry, theme, cssPrefix = 
 
 /**
  * Renders initial state for client side hydration
+ * @private
  * @param  {options} options                      Model instance
  * @param  {Object} options.state                 The initial app state needed for hydration
  * @param  {Object} options.routeData             The data that resulted from the route being run.  This is needed for creating a cache
@@ -109,6 +113,7 @@ export function renderInitialStateScript({
 
 /**
  * Renders script for a specified chunk
+ * @private
  * @param  {String} src             Source of script
  * @param  {Boolean} defer          Should defer execution
  * @return {String}                 Script HTML
@@ -119,6 +124,7 @@ export function renderScript(src, defer) {
 
 /**
  * Extracts scripts from sources in chunk
+ * @private
  * @param {Object} options
  * @param {Object} options.stats    Webpack generated stats
  * @param {String} options.chunk     Chunk name
@@ -130,6 +136,7 @@ export function getScripts({ stats, chunk }) {
 
 /**
  * Renders a link prefetch header value
+ * @private
  * @param {String} src Source of script
  */
 export function renderPreloadHeader(src) {
@@ -138,6 +145,7 @@ export function renderPreloadHeader(src) {
 
 /**
  * Renders extracted CSS from Sheets Registry
+ * @private
  * @param  {options} options
  * @param  {Object} options.registry  JSS Sheets Registry
  * @param  {String} options.id        ID for style tag
@@ -149,6 +157,7 @@ export function renderStyle({ registry, id = 'ssr-css' }) {
 
 /**
  * Helper for extracting location object from Adapt environment
+ * @private
  * @param  {Object} env Adapt Environment
  * @return {Object}     Location Object
  */
@@ -164,6 +173,7 @@ function getLocation(env) {
 
 /**
  * Renders a component on the server.
+ * @private
  * @param  {options} options
  * @param  {React.Component} options.component    Component to be rendered
  * @param  {Object} options.state                 Model instance
@@ -215,6 +225,7 @@ export function render({
 
 /**
  * Hydrates React component
+ * @private
  * @param  {options} options
  * @param  {React.Component} options.component    Component to be rendered
  * @param  {Model} options.model                  MobX Model
@@ -264,6 +275,7 @@ export function hydrate({
 /**
  * Removes the style tag rendered on the server so that components are styled correctly
  * after hydration.
+ * @private
  */
 function removeSSRStyles() {
   const jssStyles = document.getElementById('ssr-css')

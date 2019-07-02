@@ -2,6 +2,9 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
+/**
+ * @private
+ */
 export default class ClientContext {
   /**
    * The setting for service-worker caching

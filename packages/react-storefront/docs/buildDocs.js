@@ -72,12 +72,14 @@ function readFileContent(file) {
 async function maybeParseModule(module) {
   try {
     if (module.filename !== 'index') {
+      // Documentation.js can't parse models comments right with documentExported:true
+      // that is why parsing model folder we put documentExported:false
       const isModel = module.importPath.split('/')[0] === 'model'
-      const moduleDocs = await moduleParser(module.filepath, module.importPath, !isModel)
+      const result = await moduleParser(module.filepath, module.importPath, !isModel)
 
-      return Object.keys(moduleDocs.exports).length === 0
+      return Object.keys(result.exports).length === 0
         ? undefined
-        : Object.assign({}, module, moduleDocs, { component: false })
+        : Object.assign({}, module, result, { component: false })
     }
 
     return undefined
@@ -169,29 +171,52 @@ const main = async () => {
     .filter(item => !item.component)
     .reduce(
       (result, componentObject) => {
-        const { importPath, exports, filename, items } = { ...componentObject }
+        const { importPath, exports, item } = { ...componentObject }
         const root = importPath.split('/')[0]
-        const resultObj = { name: filename, items }
         const isRootFile = root === importPath
 
         result.exports = Object.assign({}, result.exports, exports)
 
         if (isRootFile) {
-          result.menu[root] = resultObj
+          result.menu[root] = item
 
           return result
         }
 
+        // Handle folders
         if (result.menu[root]) {
-          result.menu[root].children.push(resultObj)
+          result.menu[root].items.push(item)
         } else {
-          result.menu[root] = { children: [resultObj] }
+          result.menu[root] = { items: [item], text: root }
         }
 
         return result
       },
       { menu: {}, exports: {} }
     )
+
+  const sortByText = (a, b) => a.text.toLowerCase().localeCompare(b.text.toLowerCase())
+  const sortItems = items => {
+    items = items.sort((a, b) => sortByText(a, b))
+    items = items.map(item => {
+      if (item.items) {
+        item.items = sortItems(item.items)
+      }
+
+      return item
+    })
+
+    return items
+  }
+
+  modulesData.menu = sortItems(Object.values(modulesData.menu))
+  Object.keys(modulesData.exports).map(key => {
+    if (modulesData.exports[key].members) {
+      modulesData.exports[key].members = modulesData.exports[key].members.sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+      )
+    }
+  })
 
   saveJsFile(componentsData, REACT_DOC_FILEPATH)
   saveJsFile(modulesData, MODULE_DOC_FILEPATH)

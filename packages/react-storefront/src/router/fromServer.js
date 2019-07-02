@@ -10,6 +10,7 @@ let doFetch
 
 /**
  * Fetch's state as json from the specified url
+ * @private
  * @param {String} url The url to fetch
  * @param {Object} options
  * @param {String} options.cache Set to "force-cache" to cache the response in the service worker.  Omit to skip the service worker cache.
@@ -59,6 +60,7 @@ export async function fetch(url, { cache = 'default' } = {}) {
 /**
  * Handles a redirect response.  Will do a client side navigation if the URL has the same hostname as the app, otherwise will
  * reload the page.
+ * @private
  * @param {String} url
  */
 function redirectTo(url) {
@@ -82,43 +84,48 @@ function redirectTo(url) {
  * The `handlerPath` should point to a module that exports a function that takes params, request, and response,
  * and returns an object that should be applied to the app state.  For example:
  *
- *  // routes.js
- *  router.get('/p/:id'
- *    fromServer('./product/product-handler')
- *  )
+ * ```js
+ * // routes.js
+ * router.get('/p/:id'
+ *   fromServer('./product/product-handler')
+ * )
  *
- *  // product/product-handler.js
- *  export default function productHandler(params, request, response) {
- *    return fetchFromUpstreamApi(`/products/${params.id}`)
- *      .then(res => res.json())
- *      .then(productData => ({ // the shape of this object should match your AppModel
- *        page: 'Product',
- *        product: productData
- *      }))
- *  }
+ * // product/product-handler.js
+ * export default function productHandler(params, request, response) {
+ *   return fetchFromUpstreamApi(`/products/${params.id}`)
+ *     .then(res => res.json())
+ *     .then(productData => ({ // the shape of this object should match your AppModel
+ *       page: 'Product',
+ *       product: productData
+ *     }))
+ * }
+ * ```
  *
  * When the request path ends in ".json", the json response will be returned verbatim.  In all other cases, server-side rendered HTML
  * will be returned.
  *
  * You can also send a verbatim string response using `response.send(body)`.  For example:
  *
- *  // routes.js
- *  router.get('/my-api'
- *    fromServer('./my-api-handler')
- *  )
+ * ```js
+ * // routes.js
+ * router.get('/my-api'
+ *   fromServer('./my-api-handler')
+ * )
  *
- *  // my-api-handler.js
- *  export default function myApiHandler(params, request, response) {
- *    response
- *      .set('content-type', response.JSON)
- *      .send(JSON.stringify({ foo: 'bar' }))
- *  }
+ * // my-api-handler.js
+ * export default function myApiHandler(params, request, response) {
+ *   response
+ *     .set('content-type', response.JSON)
+ *     .send(JSON.stringify({ foo: 'bar' }))
+ * }
+ * ```
  *
  * When `response.send()` is called in a handler, react-storefront will never perform server-side rendering.
  *
- * @param {String} handlerPath The path to the module that exports a handler function that returns state to apply
+ * @param {String} handlerPath The path to the module that exports a handler function that returns
+ *  state to apply to the app state tree.  The shape of the returned object should match your `AppModel`.
  * @param {Function} getURL An optional function that returns the back end url to call when fetching.  You only need
- *   to specify this if you want to override the default URL.
+ *  to specify this if you want to override the default URL.
  * @return {Function}
  */
 export default function fromServer(handlerPath, getURL) {

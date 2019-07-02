@@ -13,9 +13,9 @@ import PWA from './PWA'
  * @param {options} options
  * @param {React.Element} options.App The root app element
  * @param {Object} options.theme A material-ui theme
- * @param {Object} options.model A mobx-state-tree model class
+ * @param {Class} options.model A mobx-state-tree model class, typically extending `react-storefront/model/AppModelBase`
  * @param {HTMLElement} options.target The DOM element to mount onto
- * @param {Function} errorReporter A function to call when an error occurs so that it can be logged
+ * @param {Function} options.errorReporter A function to call when an error occurs so that it can be logged, typically located in `src/errorReporter.js`.
  */
 export default function launchClient({
   App,

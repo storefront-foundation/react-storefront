@@ -10,16 +10,56 @@ const perfectProxy = (_params, _request, response) => response.send()
 /**
  * A handler that fetches HTML from the same path as the current request on the upstream site. Use
  * this handler to transform HTML from the upstream site or return it unaltered.
+ * To relay the response from the upstream site unaltered, call `response.send()` with no arguments.
  *
- * The callback you provide is passed the following arguments:
+ * Example - Using a handler to transform the HTML from the proxied site:
  *
- * params {Object} Request parameters parsed from the route and query string
- * request {Object} An object representing the request
- * response {Response} An object representing the response.  Call response.send(html) to send the resulting html back to the browser.
+ * ```js
+ * // src/routes.js
+ * import { Router, proxyUpstream } from 'react-storefront/router'
  *
- * To use response from the upstream site unaltered, called response.send() with no arguments.
+ * export default new Router()
+ *   .get('/some-page',
+ *     proxyUpstream('./proxy/proxy-handler')
+ *   )
+ * ```
  *
- * @param {Function} cb A callback which takes params, request, and response.
+ * ```js
+ * // src/proxy/proxy-handler.js
+ * import getStats from 'react-storefront-stats'
+ *
+ * export default async function proxyHandler(params, request, response) {
+ *   const contentType = global.env.content_type || ''
+ *
+ *   if (contentType.indexOf('html') > -1) {
+ *     const stats = await getStats()
+ *     fns.init$(body)
+ *
+ *     // ... alter the response HTML received from the upstream site here by calling functions on $. ...
+ *
+ *     response.send($.html())
+ *   } else {
+ *     response.send()
+ *   }
+ * }
+ * ```
+ *
+ * Example - returning the HTML from the upstream site unaltered:
+ *
+ * ```js
+ * // src/routes.js
+ * import { Router, proxyUpstream } from 'react-storefront/router'
+ *
+ * export default new Router()
+ *   .get('/some-page',
+ *     proxyUpstream()
+ *   )
+ * ```
+ *
+ * @param {Function} cb A function to call after the response has been received from the upstream site.
+ * @param {Object} cb.params Request parameters parsed from the route and query string
+ * @param {Request} cb.request An object representing the request
+ * @param {Response} cb.response An object representing the response.  Call `response.send(html)` to send the resulting html back to the browser.
  */
 export default function proxyUpstream(cb = perfectProxy) {
   return {

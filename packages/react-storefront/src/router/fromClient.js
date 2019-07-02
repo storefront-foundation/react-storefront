@@ -7,12 +7,16 @@
  *
  * Example:
  *
- * 		router.get('/p/:id',
- * 			fromClient({ view: 'Product' }),
- * 			fromServer('./product')
- * 		)
+ * ```js
+ * router.get('/p/:id',
+ *   fromClient({ view: 'Product' }),
+ * 	 fromServer('./product/Product')
+ * )
+ * ```
  *
- * @param {Function/Object} callback A function that takes the route params and returns an object to spply to the app state, or simply an object to spply to the app state.
+ * @param {Function/Object} callback A function that takes the route params and returns an
+ *  object to apply to the app state, or simply an object to apply to the app state. The
+ *  shape of the object should match your `AppModel`.
  * @return {Object} A handler spec
  */
 export default function fromClient(callback) {

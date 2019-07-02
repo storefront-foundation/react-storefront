@@ -8,6 +8,7 @@ import ProductModelBase from './ProductModelBase'
 /**
  * @class CartModelBase
  * A base model for the shopping cart
+ * @class CartModelBase
  */
 const CartModelBase = types
   .model('CartModelBase', {

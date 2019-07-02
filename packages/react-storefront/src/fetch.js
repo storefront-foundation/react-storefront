@@ -54,6 +54,9 @@ function createRequestOptions(url, fetchOptions, qsOptions) {
  * The same as fetch, but automatically relays the cookies passed in from the browser to the upstream API.
  * @param {String} url The url to fetch
  * @param {Object} options Options for fetch
+ * @param {Object} [options.redirect=manual] "manual", "follow", or "error"
+ * @param {Object} [options.maxRedirects=20] The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
+ * @param {Object} [options.acceptInvalidCerts=false] Set to true to allow connections to sites with invalid SSL cers.
  * @param {String} qsOptions Options for serializing the request body using the qs package
  * @return {Promise}
  */
@@ -91,24 +94,19 @@ export function fetchWithCookies(url, options = {}, qsOptions) {
  *   .then(res => res.text())
  * ```
  *
- * But you can also use it to fetch binary data:
+ * You can also use it to fetch binary data:
  *
  * ```js
  * const buffer = await fetch('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')
  *   .then(res => res.arrayBuffer())
  * ```
  *
- * In addition to the standard fetch options, you can also specify:
- *
- * - `maxRedirects` - number - The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
- * - `acceptInvalidCerts` - boolean - Set to true to allow connections to sites with invalid SSL cers.
- *
- * @param {String} url
- * @param {Object} options Options for fetch
+ * @param {String} url The URL to fetch
+ * @param {Object} options Options for fetch. In addition to the standard fetch options, you can also specify:
  * @param {Object} [options.redirect=manual] "manual", "follow", or "error"
  * @param {Object} [options.maxRedirects=20] The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
- * @param {Object} [options.acceptInvalidCerts=20] Set to true to allow connections to sites with invalid SSL cers.
- * @param {String} qsOptions Options for serializing the request body using the qs package
+ * @param {Object} [options.acceptInvalidCerts=false] Set to true to allow connections to sites with invalid SSL cers.
+ * @param {Object} qsOptions Options for serializing the request body using the qs package
  * @return {Promise}
  */
 export default function fetch(url, options = {}, qsOptions) {

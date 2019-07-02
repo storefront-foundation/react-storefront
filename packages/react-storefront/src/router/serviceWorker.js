@@ -2,11 +2,6 @@
  * @license
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
-
-/**
- * @license
- * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
- */
 /**
  * Cache content using the service worker.  If content is not supplied, the service worker will fetch
  * the content from the server
@@ -17,7 +12,7 @@ export async function cache(path, cacheData) {
   if (await waitForServiceWorkerController()) {
     const { apiVersion } = window.moov || {}
 
-    if (!window.moov.router.willCacheOnClient({ path })) {
+    if (window.moov.router && !window.moov.router.willCacheOnClient({ path })) {
       // Never cache a path unless it matches a route with a cache handler
       // otherwise we could wind up caching pages like the cart that are not cacheable
       return
@@ -86,6 +81,7 @@ export async function resumePrefetches() {
 
 /**
  * Configures runtime caching options
+ * @private
  * @param {Object} options
  * @param {Object} options.cacheName The name of the runtime cache
  * @param {Object} options.maxEntries The max number of entries to store in the cache
@@ -99,6 +95,7 @@ export async function configureCache(options) {
 
 /**
  * Resolves when the service worker has been installed
+ * @private
  */
 export async function waitForServiceWorkerController() {
   if (!navigator.serviceWorker || !navigator.serviceWorker.ready) {
@@ -120,6 +117,7 @@ export async function waitForServiceWorkerController() {
 /**
  * Removes runtime caches for old versions of the api.  This ensures that all responses
  * are appropriate for the current version of the UI.
+ * @private
  */
 export async function removeOldCaches() {
   if (await waitForServiceWorkerController()) {

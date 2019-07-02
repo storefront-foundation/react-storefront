@@ -10,22 +10,24 @@ import { SURROGATE_KEY } from './headers'
  *
  * Example:
  *
- *    router.get('/p/:id',
- *      cache({
- *        server: {
- *          maxAgeSeconds: 300 // cache for 5 minutes on the server,
- *          key: (request, defaults) => ({ // cache result separately for mobile and desktop user agents
- *            ...defaults,
- *            mobile: ['iOS', 'Android'].includes(
- *              new UAParser(request.headers['user-agent']).getOS().name
- *            )
- *          })
- *        },
- *        client: true // cache in the service worker based on the settings passed to router.configureClientCache()
- *      })
- *      fromClient({ view: 'Product' }),
- *      fromServer('./product.js'),
- *    )
+ * ```js
+ * router.get('/p/:id',
+ *   cache({
+ *     server: {
+ *       maxAgeSeconds: 300 // cache for 5 minutes on the server,
+ *       key: (request, defaults) => ({ // cache result separately for mobile and desktop user agents
+ *         ...defaults,
+ *         mobile: ['iOS', 'Android'].includes(
+ *           new UAParser(request.headers['user-agent']).getOS().name
+ *         )
+ *       })
+ *     },
+ *     client: true // cache in the service worker based on the settings passed to router.configureClientCache()
+ *   })
+ *   fromClient({ view: 'Product' }),
+ *   fromServer('./product.js'),
+ * )
+ * ```
  *
  * @param {Object} options
  * @param {Number} options.server

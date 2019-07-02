@@ -17,6 +17,7 @@ const queue = []
  *
  * Example:
  *
+ * ```js
  *  // src/analytics.js
  *
  *  import { configureAnalytics } from 'react-storefront/analytics'
@@ -27,13 +28,17 @@ const queue = []
  *    new GoogleTagManagerTarget({ apiKey: 'my_gtm_api_key' }),
  *    new MerkleSearchTarget({ apiKey: 'my_merkle_api_key' })
  *  )
+ * ```
  *
- * // then, to broadcast an analytics event to all targets:
+ * Then, to broadcast an analytics event to all targets:
  *
+ * ```js
  * import analytics from 'react-storefront/analytics'
  *
- * analytics.fire('someEvent', { foo: 'bar' }) // this will call the 'someEvent(data)' method on all configured targets and pass { foo: 'bar' } as the data argument.
- *
+ * // this will call the 'someEvent(data)' method on all configured targets and pass { foo: 'bar' } as the data argument.
+ * analytics.fire('someEvent', { foo: 'bar' })
+ * ```
+ * @private
  * @param {AnalyticsTarget[]} targets An array of targets to notify when analytics events occur
  * @return {AnalyticsProvider}
  */
@@ -41,12 +46,16 @@ export function configureAnalytics(...targets) {
   _targets = targets
 }
 
+/**
+ * @private
+ */
 export function getTargets() {
   return _targets
 }
 
 /**
  * Stops queuing and immediatley fires all queued events
+ * @private
  */
 export function activate() {
   activated = true
@@ -64,12 +73,20 @@ function fire(event, ...args) {
   if (activated) {
     for (let target of _targets) {
       const fn = target[event]
-  
+
       if (fn) {
         try {
           fn.apply(target, args)
         } catch (e) {
-          console.warn('Error thrown by analytics target, event=', event, 'target=', target, 'args=', args, e)
+          console.warn(
+            'Error thrown by analytics target, event=',
+            event,
+            'target=',
+            target,
+            'args=',
+            args,
+            e
+          )
         }
       } else {
         if (typeof event === 'string') {
@@ -83,22 +100,18 @@ function fire(event, ...args) {
 }
 
 /**
- * This module's default export is a single entry point for broadcasting analytics events to all targets configured via `configureAnalytics`.
- * Each target represents a tag manager or other analytics service to which the application should send data.
+ * This module's default export is an `EventEmitter` for broadcasting analytics events to all targets configured via `<AnalyticsProvider>`.
  *
  * Example:
  *
- *  // src/analytics.js
+ * ```js
+ * import analytics from 'react-storefront/analytics'
  *
- *  import { configureAnalytics } from 'react-storefront/analytics'
- *  import GoogleTagManagerTarget from 'react-storefront-analytics/GoogleTagManagerTarget'
- *  import MerkleSearchTarget from 'react-storefront-analytics/MerkleSearchTarget'
+ * // this will call the 'someEvent(data)' method on all configured targets and pass { foo: 'bar' } as the data argument.
+ * analytics.fire('someEvent', { foo: 'bar' })
+ * ```
  *
- *  configureAnalytics(
- *    new GoogleTagManagerTarget({ apiKey: 'my_gtm_api_key' }),
- *    new MerkleSearchTarget({ apiKey: 'my_merkle_api_key' })
- *  )
- *
+ * @type {EventEmitter}
  */
 
 let analytics = { fire }

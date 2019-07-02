@@ -7,6 +7,7 @@ import { createGenerateClassName as muiCreateGenerateClassName } from '@material
 /**
  * Creates a class name generator for JSS.
  * Adapted from https://github.com/cssinjs/jss/blob/master/src/utils/createGenerateClassName.js
+ * @private
  * @param {Boolean} [amp=false] Set to true when rendering amp.  When true, the smaller production class names will be used so
  *  you can tell for sure whether or not your stylesheet is small enough to meet amp's size limit.
  * @return {Function}

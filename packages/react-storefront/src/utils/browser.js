@@ -13,7 +13,7 @@ export function clearTestCache() {
 }
 
 /**
- * Returns true only in Safari
+ * Returns `true` only in Safari.
  * @return {Boolean}
  */
 export function isSafari() {

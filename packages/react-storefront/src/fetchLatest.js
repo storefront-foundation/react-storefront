@@ -4,22 +4,25 @@
  */
 /**
  * Creates a fetch function with an internal incrementing request counter that ensures that out of order
- * responses result in a StaleResponseError.
+ * responses result in a `StaleResponseError`.
  *
  * Example usage:
  *
- *  import { fetchLatest, StaleResponseError } from 'react-storefront/fetch'
+ * ```js
+ * import { fetchLatest, StaleResponseError } from 'react-storefront/fetch'
+ * import originalFetch from 'fetch'
  *
- *  const fetch = fetchLatest()
+ * const fetch = fetchLatest(originalFetch)
  *
- *  try {
- *    const response = await fetch('/some/url')
- *  } catch (e) {
- *    if (!StaleResponseError.is(e)) {
- *      throw e // just ignore stale responses, rethrow all other errors
- *    }
- *  }
- *
+ * try {
+ *   const response = await fetch('/some/url')
+ * } catch (e) {
+ *   if (!StaleResponseError.is(e)) {
+ *     throw e // just ignore stale responses, rethrow all other errors
+ *   }
+ * }
+ * ```
+ * @param {Function} fetch An implementation of the standard browser fetch.
  * @return {Function}
  */
 export function fetchLatest(fetch) {
@@ -60,7 +63,7 @@ export function fetchLatest(fetch) {
 }
 
 /**
- * Thrown when an out of order response is received
+ * Thrown when an out of order response is received from `fetchLatest`.
  */
 export class StaleResponseError extends Error {
   name = 'StaleResponseError'

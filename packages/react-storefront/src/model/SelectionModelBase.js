@@ -5,14 +5,24 @@
 import { types, clone } from 'mobx-state-tree'
 import OptionModelBase from './OptionModelBase'
 
+/**
+ * Represents a collection of selectable options.
+ * @class SelectionModelBase
+ */
 const SelectionModelBase = types
   .model('SelectionModelBase', {
     /**
      * All available options.
+     * @type {OptionModelBase[]}
+     * @memberof SelectionModelBase
+     * @instance
      */
     options: types.optional(types.array(OptionModelBase), []),
     /**
      * The selected option
+     * @type {OptionModelBase}
+     * @memberof SelectionModelBase
+     * @instance
      */
     selected: types.maybeNull(OptionModelBase)
   })
@@ -20,6 +30,8 @@ const SelectionModelBase = types
     /**
      * Updates the selected option
      * @param {OptionModelBase} option The option to select
+     * @memberof SelectionModelBase
+     * @instance
      */
     setSelected(option) {
       if (option) {

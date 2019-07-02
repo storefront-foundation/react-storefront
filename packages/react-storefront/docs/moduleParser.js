@@ -1,16 +1,27 @@
 const documentation = require('documentation')
 const get = require('lodash/get')
 
-const parseComments = data => {
-  return data.description
+// Take our own defined type if exists, then use documentation.js
+const parseType = data => {
+  const type = get(data, 'type')
+
+  if (get(type, 'elements') && get(type, 'elements').length > 0) {
+    return data.type.elements.map(el => el.name).join('|')
+  }
+
+  return get(type, 'name') || get(type, 'applications[0].name') || data.kind
 }
 
 const parseParams = (data, properties = false) => {
   return data.map(item => {
+    const type = parseType(item)
+
     const param = {
+      // options.App -> just App
       name: properties ? item.name.split('.').pop() : item.name,
       default: item.default,
-      type: get(item.type, 'name') || get(item.type, 'expression.name')
+      type: type || get(item.type, 'expression.name'),
+      extendedType: type ? get(item.type, 'expression.name') : undefined
     }
 
     if (item.description) {
@@ -26,65 +37,51 @@ const parseParams = (data, properties = false) => {
 }
 
 const parseExamples = data => {
-  return (
-    data &&
-    data.map(item => {
-      const param = {
-        description: item.description
-      }
+  return data.map(item => {
+    const param = {
+      description: item.description
+    }
 
-      if (item.caption) {
-        param.caption = item.caption
-      }
+    if (item.caption) {
+      param.caption = item.caption
+    }
 
-      return param
-    })
-  )
+    return param
+  })
 }
 
+// Documentation.js treats arrow functions as type const
 const repairType = (type, params, returns) => {
-  if (type !== 'function' && (params.length > 0 || returns.length > 0)) {
+  if ((type === 'constant' || type === 'member') && (params.length > 0 || returns.length > 0)) {
     return 'function'
   }
 
   return type
 }
 
-const getType = (type, kind) => {
-  if (get(type, 'name')) {
-    return get(type, 'name')
-  }
-
-  if (kind) {
-    return kind
-  }
-
-  if (get(type, 'expression') && get(type, 'applications')) {
-    return `${get(type, 'expression.name')}<${get(type, 'applications[0].name')}>`
-  }
-}
-
-const parseInfo = (data, results, path, isMixed) => {
+const parseInfo = (data, results, path, hasNamedExports) => {
   const fileName = data.context.file
     .split('/')
     .pop()
     .replace(/\.[^/.]+$/, '')
   const isClassMember = !!data.memberof
-  const type = getType(data.type, data.kind)
+  // If exported expression has the same name as file name we treat it as default export
   const getName = name => (fileName === name ? 'default' : name)
   const name = getName(isClassMember ? data.memberof : data.name)
   const isDefault = name === 'default'
-  const fullPath = !isMixed && isDefault ? path : `${path}/${name}`
+  const fullPath = !hasNamedExports && isDefault ? path : `${path}/${name}`
 
-  const comments = parseComments(data)
+  const comments = data.description
+  const type = parseType(data)
   const params = parseParams(data.params)
   const returns = parseParams(data.returns)
   const examples = parseExamples(data.examples)
-  const importTemplate = isDefault ? `${data.name}` : `{ ${data.name} }`
+  const importTemplate = isDefault ? data.name : `{ ${data.name} }`
 
   const exportsObject = {
     name: data.name,
     type: repairType(type, params, returns),
+    extendedType: get(data.type, 'expression.name'),
     async: !!data.async,
     generator: !!data.generator,
     comments: comments,
@@ -95,31 +92,36 @@ const parseInfo = (data, results, path, isMixed) => {
     members: type === 'class' ? [] : undefined
   }
 
+  // Populate Class members
   if (results.exports[fullPath]) {
     results.exports[fullPath].members.push(exportsObject)
   } else {
     results.exports[fullPath] = exportsObject
   }
 
-  if (isMixed && !isClassMember && !results.items.some(item => item.name === name)) {
-    results.items.push({ name })
+  const item = { text: name, url: fullPath }
+
+  // Populate menu items
+  if (hasNamedExports && !isClassMember) {
+    results.items.push(item)
   }
 
-  if (!isMixed && name !== 'default') {
-    results.items.push({ name })
+  // When file has one export which is not default, Example: format/price.js
+  if (!hasNamedExports && name !== 'default') {
+    results.items.push(item)
   }
-
-  return results
 }
 
 export default async function moduleParser(filePath, importPath, exported = true) {
+  const fileName = importPath.split('/').pop()
   const build = (await documentation.build(filePath, {
     shallow: true,
     documentExported: exported
   })).filter(item => !item.license && !item.private)
   const isJsDoc = item => (item.tags && item.tags.length) || item.description
-  const isMixed = build.length > 1
-
+  // Check if the file we are processing have multiple exports, it is used for menu population
+  // If it is true we will add the name to menu items
+  const hasNamedExports = build.length > 1
   let results = { items: [], exports: {} }
 
   for (const file of build) {
@@ -127,14 +129,26 @@ export default async function moduleParser(filePath, importPath, exported = true
       continue
     }
 
-    parseInfo(file, results, importPath, isMixed)
+    parseInfo(file, results, importPath, hasNamedExports)
 
     if (file.kind === 'class') {
       file.members.instance.filter(isJsDoc).forEach(member => {
-        parseInfo(member, results, importPath, isMixed)
+        parseInfo(member, results, importPath, hasNamedExports)
       })
     }
   }
 
-  return results
+  if (Object.keys(results.exports).length === 0) {
+    return results
+  }
+
+  const haveItems = results.items && results.items.length
+
+  const item = {
+    text: fileName,
+    url: haveItems ? undefined : importPath,
+    items: haveItems ? results.items : undefined
+  }
+
+  return { item, exports: results.exports }
 }

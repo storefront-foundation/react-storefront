@@ -239,7 +239,7 @@ export default class Menu extends Component {
     /**
      * Overrides the default rendering of a menu item.  It is passed the following arguments:
      *
-     * 1.) item - the MenuItemModel instance.
+     * - item - the MenuItemModel instance.
      *
      * Return undefined to render the default contents
      *
@@ -256,8 +256,8 @@ export default class Menu extends Component {
     /**
      * Overrides the content of a menu item.  It is passed the following arguments:
      *
-     * 1.) item - the MenuItemModel instance.
-     * 2.) leaf - `true` when the item is a leaf node, otherwise `false`
+     * - item - the MenuItemModel instance.
+     * - leaf - `true` when the item is a leaf node, otherwise `false`
      *
      * Return null to render the default contents
      *
