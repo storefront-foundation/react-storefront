@@ -54,7 +54,7 @@ import ttiPolyfill from 'tti-polyfill'
  *  }
  * ```
  */
-@inject(({ app, history }) => ({ amp: app && app.amp, history }))
+@inject(({ app, history }) => ({ config: app && app.config, amp: app && app.amp, history }))
 export default class AnalyticsProvider extends Component {
   static propTypes = {
     /**
@@ -72,23 +72,23 @@ export default class AnalyticsProvider extends Component {
     super(props)
     // Configure analytics for server side AMP rendering
     if (props.targets && props.amp) {
-      configureAnalytics(...props.targets(false))
+      configureAnalytics(...props.targets(false, props.config))
     }
   }
 
   async componentDidMount() {
-    const { delayUntilInteractive } = this.props
+    const { delayUntilInteractive, config } = this.props
 
     if (this.props.targets) {
       if (delayUntilInteractive) {
         await ttiPolyfill.getFirstConsistentlyInteractive()
       }
-  
+
       if (process.env.NODE_ENV === 'development') {
         console.log('[AnalyticsProvider]', 'initializing analytics')
       }
 
-      const targets = this.props.targets()
+      const targets = this.props.targets(true, config)
       configureAnalytics(...targets)
 
       for (let target of targets) {
