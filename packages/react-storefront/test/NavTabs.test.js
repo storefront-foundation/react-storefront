@@ -12,7 +12,6 @@ import { createMemoryHistory } from 'history'
 import { Router } from '../src/router'
 
 describe('NavTabs', () => {
-
   let app, history, location
 
   beforeEach(() => {
@@ -49,8 +48,18 @@ describe('NavTabs', () => {
       location,
       tabs: {
         items: [
-          { text: 'Tab 1', url: '/1', state: JSON.stringify({ page: 'product' }), prefetch: 'always' },
-          { text: 'Tab 1', url: '/2', state: JSON.stringify({ page: 'product' }), prefetch: 'visible' }
+          {
+            text: 'Tab 1',
+            url: '/1',
+            state: JSON.stringify({ page: 'product' }),
+            prefetch: 'always'
+          },
+          {
+            text: 'Tab 1',
+            url: '/2',
+            state: JSON.stringify({ page: 'product' }),
+            prefetch: 'visible'
+          }
         ]
       }
     }
@@ -79,21 +88,25 @@ describe('NavTabs', () => {
       .at(0)
       .simulate('click')
 
-    return waitForAnalytics(() => expect(topNavClicked).toHaveBeenCalledWith({
-      "item": {
-        "classes": {"root": "RSFTabsRow-tab-198 RSFNavTabs-tab-167"},
-        "className": null,
-        "expanded": false,
-        "image": null,
-        "items": null,
-        "prefetch": null,
-        "root": false,
-        "server": false,
-        "state": "{\"page\":\"product\"}",
-        "text": "Tab 1",
-        "url": "/1"
-      }
-    }))
+    return waitForAnalytics(() =>
+      expect(topNavClicked).toHaveBeenCalledWith({
+        item: {
+          classes: { root: 'RSFTabsRow-tab-198 RSFNavTabs-tab-167' },
+          className: null,
+          expanded: false,
+          image: null,
+          items: null,
+          lazyItemsURL: null,
+          loading: false,
+          prefetch: null,
+          root: false,
+          server: false,
+          state: '{"page":"product"}',
+          text: 'Tab 1',
+          url: '/1'
+        }
+      })
+    )
   })
 
   it('pushes the item state onto history when clicked', () => {
@@ -105,7 +118,8 @@ describe('NavTabs', () => {
         <NavTabs />
       </Provider>
     )
-      .find('button').at(0)
+      .find('button')
+      .at(0)
       .simulate('click')
 
     expect(history.location.state).toEqual({ page: 'product' })
@@ -116,7 +130,11 @@ describe('NavTabs', () => {
       <Provider app={app}>
         <NavTabs />
       </Provider>
-    ).find('a').at(0).getDOMNode().getAttribute('href')
+    )
+      .find('a')
+      .at(0)
+      .getDOMNode()
+      .getAttribute('href')
 
     expect(href).toEqual('https://example.com/1')
   })
@@ -128,15 +146,20 @@ describe('NavTabs', () => {
       </Provider>
     )
 
-    expect(mount(component).render().find('[class*="RSFNavTabs-tab-"]').length).toBeGreaterThan(0)
+    expect(
+      mount(component)
+        .render()
+        .find('[class*="RSFNavTabs-tab-"]').length
+    ).toBeGreaterThan(0)
   })
 
   it('does not require history', () => {
-    expect(mount(
-      <Provider app={app}>
-        <NavTabs />
-      </Provider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <Provider app={app}>
+          <NavTabs />
+        </Provider>
+      )
+    ).toMatchSnapshot()
   })
-
 })

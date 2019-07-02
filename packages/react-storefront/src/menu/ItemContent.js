@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import MenuContext from './MenuContext'
 import ExpanderIcon from './ExpanderIcon'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 @inject('app')
 @observer
@@ -15,14 +16,14 @@ export default class ItemContent extends Component {
   static contextType = MenuContext
 
   render() {
-    let { itemRenderer, item, leaf } = this.props
+    let { itemContentRenderer, item, leaf } = this.props
 
     const { classes } = this.context
 
     let contents
 
-    if (itemRenderer) {
-      contents = itemRenderer(item, leaf)
+    if (itemContentRenderer) {
+      contents = itemContentRenderer(item, leaf)
     }
 
     if (contents) {
@@ -48,7 +49,15 @@ export default class ItemContent extends Component {
           )}
           <ListItemText className={classes.listItem} primary={item.text} disableTypography />
           <ListItemIcon className={classes.listItemIcon}>
-            <ExpanderIcon {...this.props} />
+            {item.loading ? (
+              <CircularProgress
+                style={{ height: 24, width: 24, padding: 4 }}
+                color="secondary"
+                className={classes.loadingIcon}
+              />
+            ) : (
+              <ExpanderIcon {...this.props} />
+            )}
           </ListItemIcon>
         </Fragment>
       )

@@ -17,20 +17,20 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                           <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} style={{...}} />
                         </SideEffect(NullComponent)>
                       </HelmetWrapper>
-                      <amp-sidebar id="moov_menu" class="RSFAmpSimpleMenu-root-104" layout="nodisplay" side="left" on="sidebarClose:AMP.setState({ menuOpen: false })">
+                      <amp-sidebar id="moov_menu" class="RSFAmpSimpleMenu-root-106" layout="nodisplay" side="left" on="sidebarClose:AMP.setState({ menuOpen: false })">
                         <section>
                           <div>
                             <amp-accordion disable-session-states={true}>
                               <section>
-                                <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106 group-1">
-                                  <Typography variant="body1" component="h3" className="RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106 group-1" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                    <h3 className="MuiTypography-root-110 MuiTypography-body1-119 RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106 group-1">
+                                <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108 group-1">
+                                  <Typography variant="body1" component="h3" className="RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108 group-1" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                    <h3 className="MuiTypography-root-112 MuiTypography-body1-121 RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108 group-1">
                                       Group 1
-                                      <pure(ExpandLessIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                        <ExpandLessIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                          <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                            <SvgIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                              <svg className="MuiSvgIcon-root-145 RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                      <pure(ExpandLessIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                        <ExpandLessIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                          <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                            <SvgIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                              <svg className="MuiSvgIcon-root-147 RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                 <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
                                                 <path fill="none" d="M0 0h24v24H0z" />
                                               </svg>
@@ -38,11 +38,11 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                           </WithStyles(SvgIcon)>
                                         </ExpandLessIcon>
                                       </pure(ExpandLessIcon)>
-                                      <pure(ExpandMoreIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                        <ExpandMoreIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                          <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                            <SvgIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                              <svg className="MuiSvgIcon-root-145 RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                      <pure(ExpandMoreIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                        <ExpandMoreIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                          <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                            <SvgIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                              <svg className="MuiSvgIcon-root-147 RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                 <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                 <path fill="none" d="M0 0h24v24H0z" />
                                               </svg>
@@ -56,15 +56,15 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                 <div>
                                   <amp-accordion disable-session-states={true}>
                                     <section>
-                                      <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106">
-                                        <Typography variant="body1" component="h3" className="RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                          <h3 className="MuiTypography-root-110 MuiTypography-body1-119 RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106">
+                                      <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108">
+                                        <Typography variant="body1" component="h3" className="RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                          <h3 className="MuiTypography-root-112 MuiTypography-body1-121 RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108">
                                             Item 1
-                                            <pure(ExpandLessIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                              <ExpandLessIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                                <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                                  <SvgIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                    <svg className="MuiSvgIcon-root-145 RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                            <pure(ExpandLessIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                              <ExpandLessIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                                <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                                  <SvgIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                    <svg className="MuiSvgIcon-root-147 RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                       <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
                                                       <path fill="none" d="M0 0h24v24H0z" />
                                                     </svg>
@@ -72,11 +72,11 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                                 </WithStyles(SvgIcon)>
                                               </ExpandLessIcon>
                                             </pure(ExpandLessIcon)>
-                                            <pure(ExpandMoreIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                              <ExpandMoreIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                                <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                                  <SvgIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                    <svg className="MuiSvgIcon-root-145 RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                            <pure(ExpandMoreIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                              <ExpandMoreIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                                <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                                  <SvgIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                    <svg className="MuiSvgIcon-root-147 RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                       <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                       <path fill="none" d="M0 0h24v24H0z" />
                                                     </svg>
@@ -88,16 +88,16 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                         </Typography>
                                       </WithStyles(Typography)>
                                       <div>
-                                        <WithStyles(inject-Link) className="RSFAmpSimpleMenu-item-105" to="/item1/child1">
-                                          <inject-Link className="RSFAmpSimpleMenu-item-105" to="/item1/child1" classes={{...}}>
-                                            <Link className="RSFAmpSimpleMenu-item-105" to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                                              <a data-moov-link="on" className="RSFLink-root-154 RSFAmpSimpleMenu-item-105" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
+                                        <WithStyles(inject-Link) className="RSFAmpSimpleMenu-item-107" to="/item1/child1">
+                                          <inject-Link className="RSFAmpSimpleMenu-item-107" to="/item1/child1" classes={{...}}>
+                                            <Link className="RSFAmpSimpleMenu-item-107" to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                              <a data-moov-link="on" className="RSFLink-root-156 RSFAmpSimpleMenu-item-107" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                                 <WithStyles(ListItemText)>
                                                   <ListItemText classes={{...}} disableTypography={false} inset={false}>
-                                                    <div className="MuiListItemText-root-155">
-                                                      <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-158" component="span">
-                                                        <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-158" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                          <span className="MuiTypography-root-110 MuiTypography-subtitle1-128 MuiListItemText-primary-158">
+                                                    <div className="MuiListItemText-root-157">
+                                                      <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-160" component="span">
+                                                        <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-160" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                          <span className="MuiTypography-root-112 MuiTypography-subtitle1-130 MuiListItemText-primary-160">
                                                             Child 1
                                                           </span>
                                                         </Typography>
@@ -117,15 +117,15 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                             </amp-accordion>
                             <amp-accordion disable-session-states={true}>
                               <section>
-                                <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106 group-2">
-                                  <Typography variant="body1" component="h3" className="RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106 group-2" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                    <h3 className="MuiTypography-root-110 MuiTypography-body1-119 RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106 group-2">
+                                <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108 group-2">
+                                  <Typography variant="body1" component="h3" className="RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108 group-2" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                    <h3 className="MuiTypography-root-112 MuiTypography-body1-121 RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108 group-2">
                                       Group 2
-                                      <pure(ExpandLessIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                        <ExpandLessIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                          <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                            <SvgIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                              <svg className="MuiSvgIcon-root-145 RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                      <pure(ExpandLessIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                        <ExpandLessIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                          <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                            <SvgIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                              <svg className="MuiSvgIcon-root-147 RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                 <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
                                                 <path fill="none" d="M0 0h24v24H0z" />
                                               </svg>
@@ -133,11 +133,11 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                           </WithStyles(SvgIcon)>
                                         </ExpandLessIcon>
                                       </pure(ExpandLessIcon)>
-                                      <pure(ExpandMoreIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                        <ExpandMoreIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                          <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                            <SvgIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                              <svg className="MuiSvgIcon-root-145 RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                      <pure(ExpandMoreIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                        <ExpandMoreIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                          <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                            <SvgIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                              <svg className="MuiSvgIcon-root-147 RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                 <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                 <path fill="none" d="M0 0h24v24H0z" />
                                               </svg>
@@ -151,15 +151,15 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                 <div>
                                   <amp-accordion disable-session-states={true}>
                                     <section>
-                                      <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106">
-                                        <Typography variant="body1" component="h3" className="RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                          <h3 className="MuiTypography-root-110 MuiTypography-body1-119 RSFAmpSimpleMenu-item-105 RSFAmpSimpleMenu-group-106">
+                                      <WithStyles(Typography) variant="body1" component="h3" className="RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108">
+                                        <Typography variant="body1" component="h3" className="RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                          <h3 className="MuiTypography-root-112 MuiTypography-body1-121 RSFAmpSimpleMenu-item-107 RSFAmpSimpleMenu-group-108">
                                             Item 2
-                                            <pure(ExpandLessIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                              <ExpandLessIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                                <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109">
-                                                  <SvgIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                    <svg className="MuiSvgIcon-root-145 RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-collapse-109" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                            <pure(ExpandLessIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                              <ExpandLessIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                                <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111">
+                                                  <SvgIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                    <svg className="MuiSvgIcon-root-147 RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-collapse-111" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                       <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
                                                       <path fill="none" d="M0 0h24v24H0z" />
                                                     </svg>
@@ -167,11 +167,11 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                                 </WithStyles(SvgIcon)>
                                               </ExpandLessIcon>
                                             </pure(ExpandLessIcon)>
-                                            <pure(ExpandMoreIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                              <ExpandMoreIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                                <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108">
-                                                  <SvgIcon className="RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                    <svg className="MuiSvgIcon-root-145 RSFAmpSimpleMenu-toggle-107 RSFAmpSimpleMenu-expand-108" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                            <pure(ExpandMoreIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                              <ExpandMoreIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                                <WithStyles(SvgIcon) className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110">
+                                                  <SvgIcon className="RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                    <svg className="MuiSvgIcon-root-147 RSFAmpSimpleMenu-toggle-109 RSFAmpSimpleMenu-expand-110" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                       <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                       <path fill="none" d="M0 0h24v24H0z" />
                                                     </svg>
@@ -183,16 +183,16 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                         </Typography>
                                       </WithStyles(Typography)>
                                       <div>
-                                        <WithStyles(inject-Link) className="RSFAmpSimpleMenu-item-105" to="/item2/child2">
-                                          <inject-Link className="RSFAmpSimpleMenu-item-105" to="/item2/child2" classes={{...}}>
-                                            <Link className="RSFAmpSimpleMenu-item-105" to="/item2/child2" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
-                                              <a data-moov-link="on" className="RSFLink-root-154 RSFAmpSimpleMenu-item-105" style={[undefined]} onClick={[Function]} href="https://localhost/item2/child2">
+                                        <WithStyles(inject-Link) className="RSFAmpSimpleMenu-item-107" to="/item2/child2">
+                                          <inject-Link className="RSFAmpSimpleMenu-item-107" to="/item2/child2" classes={{...}}>
+                                            <Link className="RSFAmpSimpleMenu-item-107" to="/item2/child2" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                              <a data-moov-link="on" className="RSFLink-root-156 RSFAmpSimpleMenu-item-107" style={[undefined]} onClick={[Function]} href="https://localhost/item2/child2">
                                                 <WithStyles(ListItemText)>
                                                   <ListItemText classes={{...}} disableTypography={false} inset={false}>
-                                                    <div className="MuiListItemText-root-155">
-                                                      <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-158" component="span">
-                                                        <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-158" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                          <span className="MuiTypography-root-110 MuiTypography-subtitle1-128 MuiListItemText-primary-158">
+                                                    <div className="MuiListItemText-root-157">
+                                                      <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-160" component="span">
+                                                        <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-160" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                          <span className="MuiTypography-root-112 MuiTypography-subtitle1-130 MuiListItemText-primary-160">
                                                             Child 2
                                                           </span>
                                                         </Typography>

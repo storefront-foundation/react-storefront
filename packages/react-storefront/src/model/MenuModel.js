@@ -2,7 +2,8 @@
  * @license
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
-import { types } from 'mobx-state-tree'
+import { types, flow } from 'mobx-state-tree'
+import fetch from 'fetch'
 
 export const MenuItemModel = types
   .model('MenuItemModel', {
@@ -15,12 +16,28 @@ export const MenuItemModel = types
     root: types.optional(types.boolean, false),
     server: types.optional(types.boolean, false),
     prefetch: types.maybeNull(types.string),
+    loading: false,
+    lazyItemsURL: types.maybeNull(types.string),
     expanded: false
   })
+  .views(self => ({
+    hasChildren() {
+      return self.items != null || self.lazyItemsURL != null
+    }
+  }))
   .actions(self => ({
-    toggle() {
+    toggle: flow(function*() {
+      if (self.items == null && self.lazyItemsURL) {
+        self.loading = true
+
+        self.items = yield fetch(self.lazyItemsURL)
+          .then(res => res.json())
+          .then(result => result.items)
+
+        self.loading = false
+      }
       self.expanded = !self.expanded
-    },
+    }),
     collapse() {
       self.expanded = false
     }

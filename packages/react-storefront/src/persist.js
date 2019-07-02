@@ -6,6 +6,9 @@ import { onSnapshot, getSnapshot, applySnapshot } from 'mobx-state-tree'
 import Storage from 'store2'
 
 /**
+ *  Example:
+ *
+ *  ```js
  *  import { persist } from 'path/to/persist'
  *
  *  export const ModelName = types
@@ -20,6 +23,7 @@ import Storage from 'store2'
  *       })
  *     }
  *   }))
+ * ```
  *
  * @param {String} name The name of the item in storage
  * @param {Model} store The mobx state tree model to store

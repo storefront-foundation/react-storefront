@@ -4,6 +4,13 @@
  */
 /**
  * Strips the protocol and hostname from the URL, returning a relative URL.
+ *
+ * @example <caption>Example usage of relativeURL</caption>
+ *
+ * import { relativeURL } from 'react-storefront/utils/url'
+ *
+ * relativeURL('https://www.domain.com/path/to/page') // returns "/path/to/page"
+ *
  * @param {String} url An absolute or relative URL
  * @return {String} A relative URL
  */
@@ -21,6 +28,7 @@ const cleanProtocol = protocol => (protocol || '').replace(/:/, '')
 
 /**
  * Creates an absolute URL for the given URL
+ *
  * @param {String} url A relative URL
  * @param {LocationModel} currentLocation The current browser location
  * @return {String} An absolute URL

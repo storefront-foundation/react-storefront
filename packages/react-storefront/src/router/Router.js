@@ -18,7 +18,7 @@ import fromServer from './fromServer'
  * which supports sophisticated pattern matching including optional paths, params, and splatting.
  *
  * Example:
- *
+ * ```js
  *  const router = new Router()
  *
  *  router.get('/products/:id', ({ id }) => {
@@ -30,9 +30,11 @@ import fromServer from './fromServer'
  *
  *  // assuming env.path = /products/1 and env.method = 'GET'
  *  router.run() // => the details for product 1
+ * ```
  *
  * Routes can be divided into multiple files to increase maintainability using the "use()" method.  For example:
  *
+ * ```js
  *  // /scripts/api/router.js
  *
  *  const appShell = require('/build/index.html.js)
@@ -40,16 +42,18 @@ import fromServer from './fromServer'
  *  module.exports = new Router()
  *    .fallback(() => appShell) // render the PWA's app shell for all unmatched routes
  *    .use('/products', require('/api/products.js'))
+ * ```
  *
- *
+ * ```js
  *  // /scripts/api/products.js
  *
  *  module.exports = new Router()
  *    .get('/:id', ({ id }) => new Promise((resolve, reject) => {
  *      // fetch product from upstream API...
  *     }))
+ * ```
  *
- *
+ * ```js
  *  // /scripts/index.js
  *
  *  const router = require('/api/router')
@@ -61,12 +65,13 @@ import fromServer from './fromServer'
  *      sendResponse({ body, htmlparsed: true })
  *    })
  *  }
+ * ```
  *
  * Router is an EventEmitting that fires the following events:
  *
- * `before`: Fires before a route is run, passing an object containing `request` and `response`.
- * `after`: Fires after a route is run and all handlers have finised, passing an object containing `request` and `response`.
- * `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
+ * - `before`: Fires before a route is run, passing an object containing `request` and `response`.
+ * - `after`: Fires after a route is run and all handlers have finised, passing an object containing `request` and `response`.
+ * - `fetch`: Fires when a `fromServer` handler runs on the client, resulting in a fetch from the server. No arguments are passed to the event handler.
  */
 export default class Router extends EventEmitter {
   routes = []

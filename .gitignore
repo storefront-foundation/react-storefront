@@ -68,9 +68,7 @@ typings/
 .idea
 
 build/*
-!build/docs/components.js
 
 # Storybook static built files
 storybook-static
-
-docs/
+react-storefront.code-workspace

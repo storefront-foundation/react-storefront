@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.32.0
+
+- You can now lazy load items in the main menu by setting `lazyItemsURL` in `MenuItemModel` instances.
+- You can now customize the rendering of menu items via Menu's `itemRenderer` and `itemContentRenderer` props.
+
 ### 6.31.1
 
 - Fixes the "Uncaught TypeError: Converting circular structure to JSON" error shown in the console when the user clicks the `ShowMore` button.

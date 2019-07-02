@@ -88,22 +88,13 @@ describe('Menu', () => {
         <Menu useexpanders expandFirstItem />
       </Provider>
     )
-    const rootItem = component
-      .find('ul')
-      .at(0)
-      .find('li')
-      .at(0)
+
+    const rootItem = component.find('ListItem').at(0)
 
     rootItem.simulate('click')
     component.update()
 
-    const expandableItem = component
-      .find('ul')
-      .at(1)
-      .find('li')
-      .at(1)
-
-    expect(expandableItem.html()).toMatch(/RSFMenu-expanded-/)
+    expect(app.menu.levels[0].items[0].items[0].expanded).toBe(false)
   })
 
   it('should render without expand first not root item by default', () => {
@@ -112,22 +103,13 @@ describe('Menu', () => {
         <Menu useexpanders />
       </Provider>
     )
-    const rootItem = component
-      .find('ul')
-      .at(0)
-      .find('li')
-      .at(0)
+
+    const rootItem = component.find('ListItem').at(0)
 
     rootItem.simulate('click')
     component.update()
 
-    const expandableItem = component
-      .find('ul')
-      .at(1)
-      .find('li')
-      .at(1)
-    expect(expandableItem.hasClass('RSFMenu-expanded-13')).toEqual(false)
-
+    expect(app.menu.levels[0].items[0].items[0].expanded).toBe(false)
     expect(component).toMatchSnapshot()
   })
 
@@ -170,102 +152,92 @@ describe('Menu', () => {
       )
     ).toMatchSnapshot()
   })
-  it('should call a custom itemRenderer', () => {
-    let appWithTopLevelLeaf = AppModelBase.create({
-      location: {
-        pathname: '/',
-        search: '',
-        hostname: 'localhost'
-      },
-      menu: {
-        levels: [
-          {
-            root: true,
-            items: [
-              {
-                text: 'Group 1',
-                items: [
-                  {
-                    text: 'Item 1',
-                    url: '/item1',
-                    items: [{ text: 'Child 1', url: '/item1/child1' }]
-                  }
-                ]
-              },
-              {
-                text: 'Leaf',
-                url: '/leaf'
-              }
-            ]
-          }
-        ]
-      }
+
+  describe('custom renderers', () => {
+    let appWithTopLevelLeaf
+
+    beforeEach(() => {
+      appWithTopLevelLeaf = AppModelBase.create({
+        location: {
+          pathname: '/',
+          search: '',
+          hostname: 'localhost'
+        },
+        menu: {
+          levels: [
+            {
+              root: true,
+              items: [
+                {
+                  text: 'Group 1',
+                  items: [
+                    {
+                      text: 'Item 1',
+                      url: '/item1',
+                      items: [{ text: 'Child 1', url: '/item1/child1' }]
+                    }
+                  ]
+                },
+                {
+                  text: 'Leaf',
+                  url: '/leaf'
+                }
+              ]
+            }
+          ]
+        }
+      })
     })
 
-    const renderer = jest.fn(item => {
-      console.log(item.text)
+    describe('itemRenderer', () => {
+      it('should be called for each item', () => {
+        const renderer = jest.fn(item => <div>{item.text}</div>)
+        expect(
+          mount(
+            <Provider app={appWithTopLevelLeaf} history={{}}>
+              <Menu simple itemRenderer={renderer} />
+            </Provider>
+          )
+        ).toMatchSnapshot()
+        expect(renderer.mock.calls[0][0].text).toEqual('Group 1')
+        expect(renderer.mock.calls[1][0].text).toEqual('Leaf')
+        expect(renderer.mock.calls).toHaveLength(2)
+      })
+
+      it('should render the default when null is returned', () => {
+        const renderer = jest.fn()
+        expect(
+          mount(
+            <Provider app={appWithTopLevelLeaf} history={{}}>
+              <Menu simple itemRenderer={renderer} />
+            </Provider>
+          )
+        ).toMatchSnapshot()
+        expect(renderer.mock.calls).toHaveLength(4)
+        expect(renderer.mock.calls[0][0].text).toEqual('Group 1')
+        expect(renderer.mock.calls[1][0].text).toEqual('Item 1')
+        expect(renderer.mock.calls[2][0].text).toEqual('Child 1')
+        expect(renderer.mock.calls[3][0].text).toEqual('Leaf')
+      })
     })
 
-    expect(
-      mount(
-        <Provider app={appWithTopLevelLeaf} history={{}}>
-          <Menu simple itemRenderer={renderer} />
-        </Provider>
-      )
-    ).toMatchSnapshot()
-
-    expect(renderer.mock.calls.length).toBe(4)
-    expect(renderer.mock.calls[0][0].text).toEqual('Group 1')
-    expect(renderer.mock.calls[0][1]).toEqual(false)
-    expect(renderer.mock.calls[1][0].text).toEqual('Item 1')
-    expect(renderer.mock.calls[1][1]).toEqual(false)
-    expect(renderer.mock.calls[2][0].text).toEqual('Child 1')
-    expect(renderer.mock.calls[2][1]).toEqual(true)
-    expect(renderer.mock.calls[3][0].text).toEqual('Leaf')
-    expect(renderer.mock.calls[3][1]).toEqual(true)
-  })
-
-  it('should call a custom itemRenderer', () => {
-    let appWithTopLevelLeaf = AppModelBase.create({
-      location: {
-        pathname: '/',
-        search: '',
-        hostname: 'localhost'
-      },
-      menu: {
-        levels: [
-          {
-            root: true,
-            items: [
-              {
-                text: 'Group 1',
-                items: [
-                  {
-                    text: 'Item 1',
-                    url: '/item1',
-                    items: [{ text: 'Child 1', url: '/item1/child1' }]
-                  }
-                ]
-              },
-              {
-                text: 'Leaf',
-                url: '/leaf'
-              }
-            ]
-          }
-        ]
-      }
+    describe('itemContentRenderer', () => {
+      it('should be called for each item', () => {
+        const renderer = jest.fn(item => <div>{item.text}</div>)
+        expect(
+          mount(
+            <Provider app={appWithTopLevelLeaf} history={{}}>
+              <Menu simple itemContentRenderer={renderer} />
+            </Provider>
+          )
+        ).toMatchSnapshot()
+        expect(renderer.mock.calls[0][0].text).toEqual('Group 1')
+        expect(renderer.mock.calls[1][0].text).toEqual('Item 1')
+        expect(renderer.mock.calls[2][0].text).toEqual('Child 1')
+        expect(renderer.mock.calls[3][0].text).toEqual('Leaf')
+        expect(renderer.mock.calls).toHaveLength(4)
+      })
     })
-
-    const renderer = item => <div>{item.text}</div>
-
-    expect(
-      mount(
-        <Provider app={appWithTopLevelLeaf} history={{}}>
-          <Menu simple itemRenderer={renderer} />
-        </Provider>
-      )
-    ).toMatchSnapshot()
   })
 
   it('should render children', () => {
@@ -320,12 +292,7 @@ describe('Menu', () => {
         </Provider>
       )
       expect(wrapper.exists('.group-1')).toBe(true)
-      wrapper
-        .find('ul')
-        .at(0)
-        .find('li')
-        .at(0)
-        .simulate('click')
+      wrapper.find('ListItem').simulate('click')
       wrapper.update()
       expect(wrapper.exists('.child-1')).toBe(true)
       expect(wrapper.exists('.item-1')).toBe(true)
@@ -340,6 +307,45 @@ describe('Menu', () => {
       expect(wrapper.exists('.group-1')).toBe(true)
       expect(wrapper.exists('.child-1')).toBe(true)
       expect(wrapper.exists('.item-1')).toBe(true)
+    })
+  })
+
+  describe('lazyItemsURL', () => {
+    it('should lazy load items when the node is clicked', () => {
+      app = AppModelBase.create({
+        location: {
+          pathname: '/',
+          search: '',
+          hostname: 'localhost'
+        },
+        menu: {
+          levels: [
+            {
+              root: true,
+              items: [
+                {
+                  text: 'Group 1',
+                  className: 'group-1',
+                  lazyItemsURL: '/lazy/items.json'
+                }
+              ]
+            }
+          ]
+        }
+      })
+
+      const wrapper = mount(
+        <Provider app={app} history={{}}>
+          <Menu simple />
+        </Provider>
+      )
+
+      wrapper
+        .find('.group-1')
+        .at(0)
+        .simulate('click')
+
+      expect(global.fetch).toHaveBeenCalledWith('/lazy/items.json')
     })
   })
 })

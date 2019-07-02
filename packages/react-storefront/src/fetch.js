@@ -77,25 +77,31 @@ export function fetchWithCookies(url, options = {}, qsOptions) {
 /**
  * An implementation of the standard fetch API.  See https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API for options
  *
- * This function is commonly used to fetch json data:
+ * This function is commonly used to fetch json data
  *
- *  const data = await fetch('https://jsonplaceholder.typicode.com/todos/1')
- *    .then(res => res.json())
+ * ```js
+ * const data = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+ *   .then(res => res.json())
+ * ```
  *
- * ... or string data:
+ * Or string data:
  *
- *  const text = await fetch('https://jsonplaceholder.typicode.com/todos/1')
- *    .then(res => res.text())
+ * ```js
+ * const text = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+ *   .then(res => res.text())
+ * ```
  *
- * ... but you can also use it to fetch binary data:
+ * But you can also use it to fetch binary data:
  *
- *  const buffer = await fetch('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')
- *    .then(res => res.arrayBuffer())
+ * ```js
+ * const buffer = await fetch('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')
+ *   .then(res => res.arrayBuffer())
+ * ```
  *
  * In addition to the standard fetch options, you can also specify:
  *
- *  `maxRedirects` - number - The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
- *  `acceptInvalidCerts` - boolean - Set to true to allow connections to sites with invalid SSL cers.
+ * - `maxRedirects` - number - The maximum number of redirects that fetch will follow before returning an error.  Defaults to 20.
+ * - `acceptInvalidCerts` - boolean - Set to true to allow connections to sites with invalid SSL cers.
  *
  * @param {String} url
  * @param {Object} options Options for fetch

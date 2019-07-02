@@ -11,29 +11,39 @@ import Leaf from './Leaf'
 @observer
 export default class Item extends Component {
   render() {
-    let NodeType = Leaf
+    let NodeType = Leaf,
+      result = null
 
-    const { item } = this.props
+    const { item, itemRenderer } = this.props
 
-    if (item.items) {
+    if (item.hasChildren()) {
       NodeType = Branch
     }
 
-    return (
-      <NodeType
-        expandFirstItem={this.props.expandFirstItem}
-        itemRenderer={this.props.itemRenderer}
-        trackSelected={this.props.trackSelected}
-        ExpandIcon={this.props.ExpandIcon}
-        CollapseIcon={this.props.CollapseIcon}
-        theme={this.props.theme}
-        item={item}
-        index={this.props.index}
-        depth={this.props.depth}
-        useExpanders={this.props.useExpanders}
-        simple={this.props.simple}
-        depth={this.props.depth}
-      />
-    )
+    if (itemRenderer) {
+      result = itemRenderer(item, item.leaf)
+    }
+
+    if (result == null) {
+      result = (
+        <NodeType
+          expandFirstItem={this.props.expandFirstItem}
+          itemContentRenderer={this.props.itemContentRenderer}
+          itemRenderer={itemRenderer}
+          trackSelected={this.props.trackSelected}
+          ExpandIcon={this.props.ExpandIcon}
+          CollapseIcon={this.props.CollapseIcon}
+          theme={this.props.theme}
+          item={item}
+          index={this.props.index}
+          depth={this.props.depth}
+          useExpanders={this.props.useExpanders}
+          simple={this.props.simple}
+          depth={this.props.depth}
+        />
+      )
+    }
+
+    return result
   }
 }

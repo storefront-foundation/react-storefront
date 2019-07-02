@@ -4,7 +4,7 @@
  */
 import React, { Component, Fragment, PureComponent } from 'react'
 import { observer, inject } from 'mobx-react'
-import MenuItem from '@material-ui/core/MenuItem'
+import ListItem from '@material-ui/core/ListItem'
 import classnames from 'classnames'
 import ItemContent from './ItemContent'
 import Link from '../Link'
@@ -27,7 +27,7 @@ export default class Leaf extends Component {
         state={item.state ? () => JSON.parse(item.state) : null}
         onClick={this.onClick}
       >
-        <MenuItem
+        <ListItem
           button
           divider
           selected={trackSelected && app.location.pathname === item.url.replace(/\?.*/, '')}
@@ -36,7 +36,7 @@ export default class Leaf extends Component {
           }}
         >
           <ItemContent {...others} item={item} showExpander={false} leaf />
-        </MenuItem>
+        </ListItem>
       </Link>
     )
   }
