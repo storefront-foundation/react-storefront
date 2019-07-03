@@ -109,6 +109,7 @@ export default class AddToCartButton extends Component {
             variant="contained"
             color="secondary"
             size="large"
+            data-th="add-to-cart"
             {...other}
             on={`tap:${ampFormId}.submit`}
             onClick={this.onClick}
