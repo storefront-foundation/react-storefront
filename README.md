@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.33.1
+
+- Fixed linking to JS assets introduced in 6.33.0
+
 ### 6.33.0
 
 - Added source maps for production builds.
