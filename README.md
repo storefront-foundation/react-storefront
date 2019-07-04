@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.33.0
+
+- Added source maps for production builds.
+
 ### 6.32.0
 
 - You can now lazy load items in the main menu by setting `lazyItemsURL` in `MenuItemModel` instances.

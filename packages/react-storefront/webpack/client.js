@@ -215,6 +215,7 @@ module.exports = {
     return Object.assign(createClientConfig(root, { entries, alias }), {
       mode: 'production',
       optimization: createOptimization({ production: true, overrides: optimization }),
+      devtool: 'source-map',
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { envName: 'production-client' })
       },
