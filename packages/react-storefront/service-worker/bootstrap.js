@@ -119,7 +119,7 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         const headers = {}
 
         if ('{{allowPrefetchThrottling}}' === 'true') {
-          headers['If-Match'] = 'cache-hit'
+          headers['X-Moov-If-Match'] = 'cache-hit'
         }
 
         // We connect the fetch with the abort controller here with the signal
