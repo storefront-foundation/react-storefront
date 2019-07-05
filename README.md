@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.34.0
+
+- Cookies are now sent with AJAX requests to get suggestions in the search drawer.
+
 ### 6.33.1
 
 - Fixed linking to JS assets introduced in 6.33.0
