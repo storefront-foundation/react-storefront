@@ -56,7 +56,15 @@ function getSources(stats, chunk) {
       return key.split('~').some(page => page === chunk)
     })
     .map(key => {
-      return stats.assetsByChunkName[key]
+      const assets = stats.assetsByChunkName[key]
+
+      if (Array.isArray(assets)) {
+        // we'll get an array when building with source maps, in that case pick the JS file, not the map
+        return stats.assetsByChunkName[key].find(file => !file.match(/\.map$/))
+      } else {
+        // otherwise the value will be the JS file
+        return assets
+      }
     })
 }
 

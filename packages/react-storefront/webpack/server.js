@@ -98,6 +98,7 @@ module.exports = {
         target,
         resolve,
         mode: 'production',
+        devtool: 'source-map',
         optimization,
         module: {
           rules: createLoaders(root, {

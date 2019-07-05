@@ -1,6 +1,29 @@
-import { renderInitialStateScript } from '../src/renderers'
+import { renderInitialStateScript, getScripts } from '../src/renderers'
 
 describe('renderers', () => {
+  describe('getScripts', () => {
+    describe('with source maps', () => {
+      it('should return only the js files', () => {
+        const stats = {
+          assetsByChunkName: {
+            main: ['main.js', 'main.js.map']
+          }
+        }
+        expect(getScripts({ stats, chunk: 'main' })).toEqual(['/pwa/main.js'])
+      })
+    })
+    describe('without source maps', () => {
+      it('should return only the js files', () => {
+        const stats = {
+          assetsByChunkName: {
+            main: 'main.js'
+          }
+        }
+        expect(getScripts({ stats, chunk: 'main' })).toEqual(['/pwa/main.js'])
+      })
+    })
+  })
+
   describe('renderInitialStateScript', () => {
     it('should render window.initialState and window.initialRouteData', () => {
       const result = renderInitialStateScript({
