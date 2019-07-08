@@ -10,6 +10,7 @@ import * as serviceWorker from '../../src/router/serviceWorker'
 import { createMemoryHistory } from 'history'
 import qs from 'qs'
 import Response from '../../../react-storefront-moov-xdn/src/Response'
+import createCustomCacheKey from '../../src/router/createCustomCacheKey'
 
 describe('Router:Node', function() {
   let router, runAll, response
@@ -827,6 +828,72 @@ describe('Router:Node', function() {
     it('should return false if the route has a cache handler with client: false', () => {
       router.get('/cart')
       expect(router.willCacheOnClient({ path: '/cart.json' })).toBe(false)
+    })
+  })
+
+  describe('createEdgeCacheConfiguration', () => {
+    let key, cacheHandler
+
+    beforeEach(() => {
+      key = createCustomCacheKey()
+        .addHeader('user-agent')
+        .addHeader('host')
+        .removeQueryParameter('uid')
+        .removeQueryParameter('gclid')
+        .addCookie('currency')
+        .addCookie('location', cookie => {
+          cookie.partition('na').byPattern('us|ca')
+          cookie.partition('eur').byPattern('de|fr|ee')
+        })
+      cacheHandler = cache({
+        server: {
+          maxAgeSeconds: 300,
+          key
+        }
+      })
+    })
+
+    it('should return generate custom cache keys for outer edge manager', () => {
+      const router = new Router().get('/', cacheHandler).get('/p/:id', cacheHandler)
+
+      const customKey = {
+        add_cookies: {
+          currency: null,
+          location: [
+            { partition: 'na', partitioning_regex: 'us|ca' },
+            { partition: 'eur', partitioning_regex: 'de|fr|ee' }
+          ]
+        },
+        add_headers: ['user-agent', 'host'],
+        remove_query_parameters: ['uid', 'gclid']
+      }
+
+      expect(router.createEdgeCacheConfiguration()).toEqual([
+        {
+          path_regex: /^\/\.json(?=\?|$)/,
+          ...customKey
+        },
+        {
+          path_regex: /^\/\.amp(?=\?|$)/,
+          ...customKey
+        },
+        {
+          path_regex: /^\/(?=\?|$)/,
+          ...customKey
+        },
+        {
+          path_regex: /^\/p\/([^\/\?]+)\.json(?=\?|$)/,
+          ...customKey
+        },
+        {
+          path_regex: /^\/p\/([^\/\?]+)\.amp(?=\?|$)/,
+          ...customKey
+        },
+        {
+          path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/,
+          ...customKey
+        }
+      ])
     })
   })
 

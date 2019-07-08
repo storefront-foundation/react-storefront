@@ -12,6 +12,7 @@ import ClientContext from './ClientContext'
 import EventEmitter from 'eventemitter3'
 import powerLinkHandler from './powerLinkHandler'
 import fromServer from './fromServer'
+import RegexpVisitor from 'route-parser/lib/route/visitors/regexp'
 
 /**
  * Provides routing for MUR-based applications and PWAs.  This class is inspired by express and uses https://github.com/rcs/route-parser,
@@ -579,5 +580,29 @@ export default class Router extends EventEmitter {
     )
 
     history.replace(`${history.location.pathname}?${nextParams}`)
+  }
+
+  createEdgeCacheConfiguration() {
+    const customCacheKeys = []
+
+    for (let route of this.routes) {
+      const cache = route.handlers.find(handler => handler.type === 'cache')
+      if (!cache || !cache.server || !cache.server.key) continue
+      customCacheKeys.push({
+        path_regex: this.routeToRegex(route),
+        ...cache.server.key.toJSON()
+      })
+    }
+
+    return customCacheKeys
+  }
+
+  /**
+   * Gets the regular expression for the specified route
+   * @private
+   * @param {Object} route
+   */
+  routeToRegex(route) {
+    return RegexpVisitor.visit(route.path.ast).re
   }
 }
