@@ -77,6 +77,7 @@ yarn release
 ### 6.34.0
 
 - Cookies are now sent with AJAX requests to get suggestions in the search drawer.
+- Fixed an error that occurs in Link when `history` cannot be injected from app scope.
 
 ### 6.33.1
 
