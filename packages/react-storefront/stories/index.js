@@ -26,6 +26,7 @@ import HeaderLogo from '../src/HeaderLogo'
 import Image from '../src/Image'
 import ImageSwitcher from '../src/ImageSwitcher'
 import Link from '../src/Link'
+import Lazy from '../src/Lazy'
 import LoadMask from '../src/LoadMask'
 import Menu, { MenuItemModel, MenuModel } from '../src/Menu'
 import NavTabs, { TabsModel } from '../src/NavTabs'
@@ -438,6 +439,25 @@ storiesOf('ImageSwitcher', module)
         'https://via.placeholder.com/200?text=3'
       ]}
     />
+  ))
+
+storiesOf('Lazy', module)
+  .addWithJSX('with defaults', () => (
+    <div>
+      <div style={{ height: '2000px' }}>Scroll Down</div>
+      <Lazy>
+        <div style={{ width: '100%', height: 500, background: '#abccba' }}>Hello World!</div>
+      </Lazy>
+    </div>
+  ))
+  .addWithJSX('with set height', () => (
+    <div>
+      <h1>Header</h1>
+      <Lazy style={{ height: 500 }}>
+        <img src="https://placehold.it/200x500" alt="placeholder" />
+      </Lazy>
+      <p>This text should not move</p>
+    </div>
   ))
 
 storiesOf('Link', module)

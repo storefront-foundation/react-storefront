@@ -78,6 +78,7 @@ yarn release
 
 - Cookies are now sent with AJAX requests to get suggestions in the search drawer.
 - Fixed an error that occurs in Link when `history` cannot be injected from app scope.
+- Added `Lazy` component for late loading components with a simple wrapper
 
 ### 6.33.1
 
