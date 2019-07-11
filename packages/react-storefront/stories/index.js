@@ -327,6 +327,20 @@ storiesOf('CmsSlot', module)
       </CmsSlot>
     </div>
   ))
+  .addWithJSX('with lazy loaded images', () => (
+    <div>
+      <CmsSlot>
+        {`
+        <div style="height: 500px;"></div>
+        <img data-src="https://placehold.it/600" data-rsf-lazy>
+        <div style="height: 600px;"></div>
+        <img data-src="https://placehold.it/200" data-rsf-lazy>
+        <div style="height: 1500px;"></div>
+        <img data-src="https://placehold.it/800x200" data-rsf-lazy>  
+        `}
+      </CmsSlot>
+    </div>
+  ))
 
 storiesOf('Container', module).addWithJSX('with default props', () => (
   <div>
