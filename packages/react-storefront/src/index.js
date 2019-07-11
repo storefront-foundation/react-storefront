@@ -30,6 +30,7 @@ export { default as FilterButton } from './FilterButton.js';
 export { default as HeaderLogo } from './HeaderLogo.js';
 export { default as Image } from './Image.js';
 export { default as ImageSwitcher } from './ImageSwitcher.js';
+export { default as Lazy } from './Lazy.js';
 export { default as Link } from './Link.js';
 export { default as LoadMask } from './LoadMask.js';
 export { default as Menu } from './Menu.js';
