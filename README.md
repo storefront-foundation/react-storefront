@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.34.1
+
+- Fixed warning "React does not recognize the lazyLoadImages prop on a DOM element." when using `CmsSlot`.
+
 ### 6.34.0
 
 - Cookies are now sent with AJAX requests to get suggestions in the search drawer.

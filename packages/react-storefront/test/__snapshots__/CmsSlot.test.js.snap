@@ -9,7 +9,7 @@ exports[`CmsSlot renders nothing when no children are provided 1`] = `
 exports[`CmsSlot renders verbatim html 1`] = `
 <WithStyles(CmsSlot) className="slot1">
   <CmsSlot className="slot1" classes={{...}} lazyLoadImages={false}>
-    <span lazyLoadImages={false} className="slot1 RSFCmsSlot-root-3 RSFCmsSlot-block-2" dangerouslySetInnerHTML={{...}} />
+    <span className="slot1 RSFCmsSlot-root-3 RSFCmsSlot-block-2" dangerouslySetInnerHTML={{...}} />
   </CmsSlot>
 </WithStyles(CmsSlot)>
 `;

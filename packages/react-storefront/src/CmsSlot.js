@@ -97,7 +97,7 @@ export default class CmsSlot extends Component {
   }
 
   render() {
-    const { children, className, classes, inline, ...others } = this.props
+    const { children, className, classes, inline, lazyLoadImages, ...others } = this.props
 
     return children ? (
       <span
