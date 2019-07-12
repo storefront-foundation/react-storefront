@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.34.2
+
+- Fixed issues with lazy loading images in `CmsSlot`
+- Fixed sizing of loading spinner in the `ShowMore` button so that it matches the button height
+
 ### 6.34.1
 
 - Fixed warning "React does not recognize the lazyLoadImages prop on a DOM element." when using `CmsSlot`.

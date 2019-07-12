@@ -10,30 +10,39 @@ import withStyles from '@material-ui/core/styles/withStyles'
 // https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
 function lazyLoadImages(element) {
   if (!element) return
-
   const lazyImages = [...element.querySelectorAll('[data-rsf-lazy]')]
   if (!lazyImages.length) return
 
+  let lazyImageObserver
+
+  const load = img => {
+    img.src = img.dataset.src
+    img.removeAttribute('data-rsf-lazy')
+
+    if (lazyImageObserver) {
+      lazyImageObserver.unobserve(lazyImage)
+    }
+  }
+
   const observerHandler = function(entries) {
-    entries.forEach(function(entry) {
+    for (let entry of entries) {
       if (entry.isIntersecting) {
-        const lazyImage = entry.target
-        lazyImage.src = lazyImage.dataset.src
-        lazyImageObserver.unobserve(lazyImage)
+        load(entry.target)
       }
-    })
+    }
   }
 
   try {
-    const lazyImageObserver = new window.IntersectionObserver(observerHandler)
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
+    lazyImageObserver = new window.IntersectionObserver(observerHandler)
+
+    for (let img of lazyImages) {
+      lazyImageObserver.observe(img)
+    }
   } catch (e) {
     // eagerly load images when we don't have the observer
-    lazyImages.forEach(function(lazyImage) {
-      lazyImage.src = lazyImage.dataset.src
-    })
+    for (let img of lazyImages) {
+      load(img)
+    }
   }
 }
 
@@ -55,6 +64,9 @@ export const styles = theme => ({
         top: 0,
         left: 0
       }
+    },
+    '& img[data-rsf-lazy]': {
+      visibility: 'hidden'
     }
   }
 })
@@ -91,6 +103,12 @@ export default class CmsSlot extends Component {
   }
 
   componentDidMount() {
+    if (this.props.lazyLoadImages) {
+      lazyLoadImages(this.el.current)
+    }
+  }
+
+  componentDidUpdate() {
     if (this.props.lazyLoadImages) {
       lazyLoadImages(this.el.current)
     }
