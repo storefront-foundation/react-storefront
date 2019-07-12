@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.34.3
+
+- Fixed prefetch throttling opt-in in production client webpack config.
+
 ### 6.34.2
 
 - Fixed issues with lazy loading images in `CmsSlot`

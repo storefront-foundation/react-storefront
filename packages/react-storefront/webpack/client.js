@@ -184,7 +184,7 @@ module.exports = {
       additionalPlugins = [],
       entries,
       prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
-      allowPrefetchThrottling = true,
+      allowPrefetchThrottling = false,
       serveSSRFromCache = false,
       optimization,
       alias = {}
