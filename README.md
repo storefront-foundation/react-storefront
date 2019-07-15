@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.35.0
+
+- Added `optimize` prop on `Image` component which allows you to optimize images for mobile devices using Moovweb's CDN.
+
 ### 6.34.3
 
 - Fixed prefetch throttling opt-in in production client webpack config.

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 import { inject } from 'mobx-react'
 import classnames from 'classnames'
 import VisibilitySensor from 'react-visibility-sensor'
+import qs from 'qs'
 
 export const styles = theme => ({
   root: {
@@ -98,7 +99,22 @@ export default class Image extends Component {
      * Sets the minimum amount of pixels the image can be scrolled out of view before it
      * is lazy loaded.  Defaults to 100.  You must set `lazy` in order for this setting to take effect.
      */
-    lazyOffset: PropTypes.number
+    lazyOffset: PropTypes.number,
+
+    /**
+     * When specified, the image will be optimized for mobile devices by the Moovweb CDN.  Accepts the following keys:
+     *
+     * - quality  - A number or string containing the number for the desired quality, on a scale from 1 (worst) to 100 (best).
+     * - width - A number or string containing the number for the desired pixel width.
+     * - height - A number or string containing the number for the desired pixel height.
+     * - format - A string containing the desired file format. Accepts "webp" or "jpeg".
+     */
+    optimize: PropTypes.shape({
+      quality: PropTypes.number,
+      width: PropTypes.number,
+      height: PropTypes.number,
+      format: PropTypes.oneOf(['webp', 'jpeg'])
+    })
   }
 
   static defaultProps = {
@@ -106,7 +122,8 @@ export default class Image extends Component {
     contain: false,
     fill: false,
     lazy: false,
-    lazyOffset: 100
+    lazyOffset: 100,
+    optimize: {}
   }
 
   constructor({ lazy, amp }) {
@@ -144,6 +161,7 @@ export default class Image extends Component {
       aspectRatio,
       alt,
       src,
+      optimize,
       ...imgAttributes
     } = this.props
 
@@ -233,12 +251,12 @@ export default class Image extends Component {
   }
 
   getOptimizedSrc() {
-    const { src, quality } = this.props
+    const { src, quality, optimize } = this.props
 
-    if (quality) {
-      return `https://opt.moovweb.net/?quality=${encodeURIComponent(
-        quality
-      )}&img=${encodeURIComponent(src)}`
+    if (quality || Object.keys(optimize).length > 0) {
+      const options = { ...optimize, img: src }
+      if (quality) options.quality = quality
+      return `https://opt.moovweb.net/?${qs.stringify(options)}`
     } else {
       return src
     }

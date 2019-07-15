@@ -16,7 +16,7 @@ exports[`ButtonSelector should allow you to set a custom angle for the strikethr
                         <span className="MuiButton-label-12 RSFButtonSelector-imageLabel-6">
                           <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}}>
                             <inject-Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}}>
-                              <Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                              <Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFButtonSelector-image-7 RSFImage-root-47 RSFImage-fill-50">
                                   <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={{...}} onError={[Function]} />
                                 </div>
@@ -40,7 +40,7 @@ exports[`ButtonSelector should allow you to set a custom angle for the strikethr
                         <span className="MuiButton-label-12 RSFButtonSelector-imageLabel-6">
                           <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}}>
                             <inject-Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}}>
-                              <Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                              <Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFButtonSelector-image-7 RSFImage-root-47 RSFImage-fill-50">
                                   <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={{...}} onError={[Function]} />
                                 </div>
@@ -87,7 +87,7 @@ exports[`ButtonSelector should render buttons with images 1`] = `
                         <span className="MuiButton-label-12 RSFButtonSelector-imageLabel-6">
                           <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}}>
                             <inject-Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}}>
-                              <Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                              <Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFButtonSelector-image-7 RSFImage-root-47 RSFImage-fill-50">
                                   <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={{...}} onError={[Function]} />
                                 </div>
@@ -119,7 +119,7 @@ exports[`ButtonSelector should render buttons with images 1`] = `
                         <span className="MuiButton-label-12 RSFButtonSelector-imageLabel-6">
                           <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}}>
                             <inject-Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}}>
-                              <Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                              <Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFButtonSelector-image-7 RSFImage-root-47 RSFImage-fill-50">
                                   <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={{...}} onError={[Function]} />
                                 </div>
@@ -325,7 +325,7 @@ exports[`ButtonSelector should render links for options with urls 1`] = `
                               <span className="MuiButton-label-12 RSFButtonSelector-imageLabel-6">
                                 <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}}>
                                   <inject-Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}}>
-                                    <Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                    <Image src="http://via.placeholder.com/128x128/ffffff" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                       <div className="RSFButtonSelector-image-7 RSFImage-root-47 RSFImage-fill-50">
                                         <img src="http://via.placeholder.com/128x128/ffffff" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={{...}} onError={[Function]} />
                                       </div>
@@ -357,7 +357,7 @@ exports[`ButtonSelector should render links for options with urls 1`] = `
                               <span className="MuiButton-label-12 RSFButtonSelector-imageLabel-6">
                                 <WithStyles(inject-Image) src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}}>
                                   <inject-Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}}>
-                                    <Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                    <Image src="http://via.placeholder.com/128x128/000000" className="RSFButtonSelector-image-7" fill={true} alt={{...}} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                       <div className="RSFButtonSelector-image-7 RSFImage-root-47 RSFImage-fill-50">
                                         <img src="http://via.placeholder.com/128x128/000000" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={{...}} onError={[Function]} />
                                       </div>

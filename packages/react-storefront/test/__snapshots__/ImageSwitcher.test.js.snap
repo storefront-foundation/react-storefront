@@ -16,7 +16,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
                         <div className="RSFImageSwitcher-imageWrap-3">
                           <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
                             <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
-                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
+                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFImage-root-26">
                                   <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
                                 </div>
@@ -159,7 +159,7 @@ exports[`ImageSwitcher should render arrows 1`] = `
                         <div className="RSFImageSwitcher-imageWrap-143">
                           <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
                             <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
-                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
+                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFImage-root-166">
                                   <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
                                 </div>
@@ -253,7 +253,7 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
                         <div className="RSFImageSwitcher-imageWrap-197">
                           <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
                             <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
-                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
+                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFImage-root-220">
                                   <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
                                 </div>
@@ -347,7 +347,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                         <div className="RSFImageSwitcher-imageWrap-57">
                           <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
                             <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
-                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100}>
+                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFImage-root-80">
                                   <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
                                 </div>
@@ -438,7 +438,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <span className="MuiTab-wrapper-127">
                                               <WithStyles(inject-Image) src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true}>
                                                 <inject-Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                                  <Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                                     <div className="RSFImageSwitcher-thumbnail-61 RSFImage-root-80 RSFImage-fill-83">
                                                       <img src="/at.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
                                                     </div>
@@ -468,7 +468,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <span className="MuiTab-wrapper-127">
                                               <WithStyles(inject-Image) src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true}>
                                                 <inject-Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                                  <Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                                     <div className="RSFImageSwitcher-thumbnail-61 RSFImage-root-80 RSFImage-fill-83">
                                                       <img src="/bt.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
                                                     </div>
@@ -498,7 +498,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <span className="MuiTab-wrapper-127">
                                               <WithStyles(inject-Image) src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true}>
                                                 <inject-Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100}>
+                                                  <Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                                     <div className="RSFImageSwitcher-thumbnail-61 RSFImage-root-80 RSFImage-fill-83">
                                                       <img src="/ct.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
                                                     </div>
