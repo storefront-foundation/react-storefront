@@ -76,6 +76,7 @@ yarn release
 
 ### 6.35.0
 
+- Added `resetSelectionWhenImagesChange` prop to `ImageSwitcher`.
 - `PageLink` now merges the `state` prop with state automatically created from the `model` prop.
 - Added `optimize` prop on `Image` component which allows you to optimize images for mobile devices using Moovweb's CDN.
 

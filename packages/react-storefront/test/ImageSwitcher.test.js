@@ -9,6 +9,7 @@ import Provider from './TestProvider'
 import AppModelBase from '../src/model/AppModelBase'
 import AmpState from '../src/amp/AmpState'
 import TestProvider from './TestProvider'
+import ProductModelBase from '../src/model/ProductModelBase'
 
 describe('ImageSwitcher', () => {
   it('only shows images by default, no bells and whistles', () => {
@@ -126,6 +127,38 @@ describe('ImageSwitcher', () => {
         images: ['http://localhost/2/1.png', 'http://localhost/2/2.png', 'http://localhost/2/3.png']
       }
     })
+
+    expect(wrapper.find('ReactSwipableView').prop('index')).toBe(0)
+  })
+
+  it('should show the first image when images change', () => {
+    function Test({ product }) {
+      return (
+        <TestProvider>
+          <ImageSwitcher product={product} resetSelectionWhenImagesChange thumbnails />
+        </TestProvider>
+      )
+    }
+
+    const product = ProductModelBase.create({
+      id: '1',
+      images: ['http://localhost/1/1.png', 'http://localhost/1/2.png', 'http://localhost/1/3.png']
+    })
+
+    const wrapper = mount(<Test product={product} />)
+
+    wrapper
+      .find('ImageSwitcher')
+      .at(0)
+      .setState({ selectedIndex: 1 })
+
+    expect(wrapper.find('ReactSwipableView').prop('index')).toBe(1)
+
+    product.apply({
+      images: ['http://localhost/2/1.png', 'http://localhost/2/2.png', 'http://localhost/2/3.png']
+    })
+
+    wrapper.update()
 
     expect(wrapper.find('ReactSwipableView').prop('index')).toBe(0)
   })
