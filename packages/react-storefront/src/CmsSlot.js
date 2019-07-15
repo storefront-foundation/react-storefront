@@ -6,45 +6,7 @@ import React, { Component, createRef } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
-
-// https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
-function lazyLoadImages(element) {
-  if (!element) return
-  const lazyImages = [...element.querySelectorAll('[data-rsf-lazy]')]
-  if (!lazyImages.length) return
-
-  let lazyImageObserver
-
-  const load = img => {
-    img.src = img.dataset.src
-    img.removeAttribute('data-rsf-lazy')
-
-    if (lazyImageObserver) {
-      lazyImageObserver.unobserve(lazyImage)
-    }
-  }
-
-  const observerHandler = function(entries) {
-    for (let entry of entries) {
-      if (entry.isIntersecting) {
-        load(entry.target)
-      }
-    }
-  }
-
-  try {
-    lazyImageObserver = new window.IntersectionObserver(observerHandler)
-
-    for (let img of lazyImages) {
-      lazyImageObserver.observe(img)
-    }
-  } catch (e) {
-    // eagerly load images when we don't have the observer
-    for (let img of lazyImages) {
-      load(img)
-    }
-  }
-}
+import { lazyLoadImages } from './utils/lazyLoadImages'
 
 export const styles = theme => ({
   inline: {
