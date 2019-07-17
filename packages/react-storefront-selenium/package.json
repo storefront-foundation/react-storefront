@@ -1,0 +1,11 @@
+{
+  "name": "react-storefront-selenium",
+  "version": "6.35.0",
+  "description": "Helpers for writing selenium tests for React Storefront",
+  "author": "Moovweb",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {}
+}
