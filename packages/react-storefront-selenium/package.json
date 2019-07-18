@@ -5,7 +5,10 @@
   "author": "Moovweb",
   "license": "Apache-2.0",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@slack/webhook": "^5.0.0",
+    "selenium-webdriver": "^4.0.0-alpha.4"
+  },
   "peerDependencies": {},
   "devDependencies": {}
 }
