@@ -1,6 +1,6 @@
 # React Storefront
 
-Build and deploy e-commerce progressive web apps in record time.
+Build and deploy e-commerce progressive web apps (PWAs) in record time.
 
 [Full Guides, API Documentation, and Examples](https://pwa.moovweb.com/)
 
