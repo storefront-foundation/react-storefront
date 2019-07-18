@@ -1,14 +1,9 @@
 let SmokeTestReporter, sendCalls
 
 describe('SmokeTestReporter', () => {
-  beforeAll(() => {
-    process.env.SLACK_RUN_WEB_HOOK = 'https://slack.com/webhooks/run'
-    process.env.SLACK_FAIL_WEB_HOOK = 'https://slack.com/webhooks/fail'
-  })
-
   beforeEach(() => {
-    sendCalls = []
     jest.resetModules()
+    sendCalls = []
 
     class MockWebhook {
       constructor(url) {
@@ -24,10 +19,11 @@ describe('SmokeTestReporter', () => {
   })
 
   describe('onTestResult', () => {
+    process.env.SLACK_RUN_WEB_HOOK = 'https://slack.com/webhooks/run'
+
     it('should send a run notification on success', () => {
       const testResult = {
         testResults: []
-        // TODO create test result here
       }
 
       new SmokeTestReporter().onTestResult(null, testResult, null)
@@ -40,6 +36,47 @@ describe('SmokeTestReporter', () => {
       ])
     })
 
-    it('should send run and failure notifications on failure', () => {})
+    it('should send run and failure notifications on failure', async () => {
+      process.env.SLACK_RUN_WEB_HOOK = 'https://slack.com/webhooks/run'
+      process.env.SLACK_FAIL_WEB_HOOK = 'https://slack.com/webhooks/fail'
+
+      const testResult = {
+        testResults: [
+          { ancestorTitles: ['smoke tests'], title: 'first test', status: 'failed' },
+          { ancestorTitles: ['smoke tests'], title: 'second test', status: 'failed' }
+        ]
+      }
+
+      await new SmokeTestReporter().onTestResult(null, testResult, null)
+
+      expect(sendCalls).toEqual([
+        {
+          url: process.env.SLACK_RUN_WEB_HOOK,
+          text: 'smoke tests failed with: first test'
+        },
+        {
+          url: process.env.SLACK_FAIL_WEB_HOOK,
+          text: 'smoke tests failed with: first test'
+        }
+      ])
+    })
+
+    it('should send only failure notifications on failure with only fail webhook', async () => {
+      process.env.SLACK_FAIL_WEB_HOOK = 'https://slack.com/webhooks/fail'
+      process.env.SLACK_RUN_WEB_HOOK = ''
+
+      const testResult = {
+        testResults: [{ ancestorTitles: ['smoke tests'], title: 'first test', status: 'failed' }]
+      }
+
+      await new SmokeTestReporter().onTestResult(null, testResult, null)
+
+      expect(sendCalls).toEqual([
+        {
+          url: process.env.SLACK_FAIL_WEB_HOOK,
+          text: 'smoke tests failed with: first test'
+        }
+      ])
+    })
   })
 })

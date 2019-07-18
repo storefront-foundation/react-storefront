@@ -36,7 +36,7 @@ class SmokeTestReporter {
     const runWebhook = new IncomingWebhook(process.env.SLACK_RUN_WEB_HOOK || '')
     const failWebhook = new IncomingWebhook(process.env.SLACK_FAIL_WEB_HOOK || '')
 
-    if (isSuccess && process.env.SLACK_RUN_WEB_HOOK) {
+    if (process.env.SLACK_RUN_WEB_HOOK) {
       await runWebhook.send({ text })
     }
 
