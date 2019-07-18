@@ -10,5 +10,8 @@
     "selenium-webdriver": "^4.0.0-alpha.4"
   },
   "peerDependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --coverage --collectCoverageFrom=lib/**/*.js --collectCoverageFrom=!**/test/*.js"
+  }
 }
