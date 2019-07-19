@@ -49,17 +49,31 @@ export default class Breadcrumbs extends Component {
     /**
      * The items to display, each with url, text, and state.
      */
-    items: PropTypes.arrayOf(PropTypes.objectOf)
+    items: PropTypes.arrayOf(PropTypes.objectOf),
+
+    /**
+     * Set to true to hide the last breadcrumb
+     */
+    hideLast: PropTypes.bool
+  }
+
+  static defaultProps = {
+    hideLast: false
   }
 
   render() {
     let {
       app: { breadcrumbs },
       items,
+      hideLast,
       classes
     } = this.props
 
     breadcrumbs = items || breadcrumbs
+
+    if (hideLast) {
+      breadcrumbs = breadcrumbs.slice(0, breadcrumbs.length - 1)
+    }
 
     return (
       <Typography className={classes.breadcrumbs} variant="caption">

@@ -102,4 +102,49 @@ describe('Breadcrumbs', () => {
       })
     })
   })
+
+  describe('hideLast', () => {
+    it('should not show the last breadcrumb when true', () => {
+      const app = AppModelBase.create({
+        breadcrumbs: [
+          { url: '/', text: 'Home' },
+          {
+            url: '/c/1',
+            text: 'Category 1',
+            state: { loadingCategory: { title: 'Category 1' } }
+          },
+          { text: 'Subcategory 1', state: { loadingSubcategory: { title: 'Subcategory 1' } } }
+        ]
+      })
+
+      const wrapper = mount(
+        <Provider app={app}>
+          <Breadcrumbs hideLast />
+        </Provider>
+      )
+
+      expect(wrapper.findWhere(n => n.text() === 'Subcategory 1')).toHaveLength(0)
+    })
+    it('should show the last breadcrumb when false', () => {
+      const app = AppModelBase.create({
+        breadcrumbs: [
+          { url: '/', text: 'Home' },
+          {
+            url: '/c/1',
+            text: 'Category 1',
+            state: { loadingCategory: { title: 'Category 1' } }
+          },
+          { text: 'Subcategory 1', state: { loadingSubcategory: { title: 'Subcategory 1' } } }
+        ]
+      })
+
+      const wrapper = mount(
+        <Provider app={app}>
+          <Breadcrumbs />
+        </Provider>
+      )
+
+      expect(wrapper.findWhere(n => n.text() === 'Subcategory 1').length).toBeGreaterThan(0)
+    })
+  })
 })
