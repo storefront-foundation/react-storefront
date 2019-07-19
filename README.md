@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.35.1
+
+- Sourcemap files are now excluded from the service worker precache manifest.
+
 ### 6.35.0
 
 - Added `resetSelectionWhenImagesChange` prop to `ImageSwitcher`.
