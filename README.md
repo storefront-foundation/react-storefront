@@ -77,6 +77,7 @@ yarn release
 ### 6.36.0
 
 - Added a `hideLast` prop to to the `Breadcrumbs` component.
+- You can now disable the service worker by setting passing `serviceWorker: false` to `launchClient`.
 
 ### 6.35.1
 
@@ -147,10 +148,6 @@ yarn release
 - Adds an `imageProps` prop to `ImageSwitcher`
 - Adds support for accessing the app state tree with React's `useContext` hook via the new `react-storefront/AppContext`.
 - Added a `withPersonalization` HOC and `usePersonalization` hook for late loading personalized data.
-
-### 6.29.1
-
-- Added `serviceWorker` to `launchClient` options
 
 ### 6.29.0
 
