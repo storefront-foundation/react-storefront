@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.29.1
+
+- Added `serviceWorker` to `launchClient` options
+
 ### 6.35.1
 
 - Sourcemap files are now excluded from the service worker precache manifest.

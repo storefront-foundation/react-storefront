@@ -5,7 +5,7 @@
 import React from 'react'
 import { hydrate } from './renderers'
 import createBrowserHistory from 'history/createBrowserHistory'
-import registerServiceWorker from './registerServiceWorker'
+import registerServiceWorker, { unregister } from './registerServiceWorker'
 import PWA from './PWA'
 
 /**
@@ -16,6 +16,7 @@ import PWA from './PWA'
  * @param {Class} options.model A mobx-state-tree model class, typically extending `react-storefront/model/AppModelBase`
  * @param {HTMLElement} options.target The DOM element to mount onto
  * @param {Function} options.errorReporter A function to call when an error occurs so that it can be logged, typically located in `src/errorReporter.js`.
+ * @param {Boolean} options.serviceWorker A flag for controlling if a service worker is registered
  */
 export default function launchClient({
   App,
@@ -23,7 +24,8 @@ export default function launchClient({
   model,
   router,
   target = document.getElementById('root'),
-  errorReporter = Function.prototype
+  errorReporter = Function.prototype,
+  serviceWorker = true
 }) {
   const history = createBrowserHistory()
 
@@ -42,5 +44,9 @@ export default function launchClient({
     }
   })
 
-  registerServiceWorker()
+  if (serviceWorker) {
+    registerServiceWorker()
+  } else {
+    unregister()
+  }
 }
