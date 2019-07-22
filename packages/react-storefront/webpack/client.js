@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const path = require('path')
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
@@ -12,6 +11,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const crypto = require('crypto')
 const fs = require('fs')
+const OEMConfigWriterPlugin = require('./plugins/oem-config-writer-plugin')
 
 // We use this pattern to replace AMP modules with an empty function
 // when building the application for the client, since AMP components
@@ -187,7 +187,8 @@ module.exports = {
       allowPrefetchThrottling = true,
       serveSSRFromCache = false,
       optimization,
-      alias = {}
+      alias = {},
+      routesPath = null
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))
@@ -211,13 +212,28 @@ module.exports = {
         })
       )
     }
-
-    return Object.assign(createClientConfig(root, { entries, alias }), {
+    const commonClientConfig = createClientConfig(root, { entries, alias })
+    return {
+      ...commonClientConfig,
+      entry: {
+        ...commonClientConfig.entry,
+        // Note that routes is only added for OEMConfigWriterPlugin, and removed
+        // from the final build by that same plugin.
+        routes: routesPath
+      },
       mode: 'production',
       optimization: createOptimization({ production: true, overrides: optimization }),
       devtool: 'source-map',
       module: {
         rules: createLoaders(path.resolve(root, 'src'), { envName: 'production-client' })
+      },
+      output: {
+        ...commonClientConfig.output,
+        filename: chunkData => {
+          return chunkData.chunk.name === 'routes'
+            ? 'routes.js'
+            : commonClientConfig.output.filename
+        }
       },
       plugins: [
         new webpack.LoaderOptionsPlugin({
@@ -247,6 +263,9 @@ module.exports = {
             resource.request = resource.request.replace(moduleName, 'Empty')
           }
         }),
+        // Extracts OEM config from `routes: routesPath` Router file
+        // into OEM custom_cache_keys config attribute.
+        new OEMConfigWriterPlugin({ outputFile: '../../oem.json' }),
         ...additionalPlugins,
         ...createServiceWorkerPlugins({
           root,
@@ -257,7 +276,7 @@ module.exports = {
           serveSSRFromCache
         })
       ].concat(createPlugins(root))
-    })
+    }
   }
 }
 

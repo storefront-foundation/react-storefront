@@ -1,7 +1,5 @@
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
-const { merge } = require('lodash')
 const path = require('path')
-const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 const buildTimestamp = new Date().getTime().toString()
 
@@ -40,13 +38,17 @@ function createClientConfig(
       chunkFilename: '[name].[hash].js',
       path: path.join(root, 'build', 'assets', 'pwa'),
       publicPath: '/pwa/',
-      devtoolModuleFilenameTemplate: '[absolute-resource-path]'
+      devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+      // This allows requiring webpack entries from a nodejs runtime, but should
+      // not affect the browser environment.
+      // TODO: check the final bundle size
+      libraryTarget: 'commonjs2'
     }
   }
 }
 
 function createServerConfig(root, alias) {
-  return merge({
+  return {
     name: 'server',
     context: path.join(root, 'src'),
     resolve: {
@@ -55,7 +57,7 @@ function createServerConfig(root, alias) {
         'cross-fetch': path.join(root, 'node_modules', 'react-storefront', 'fetch.common')
       })
     }
-  })
+  }
 }
 
 function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } = {}) {

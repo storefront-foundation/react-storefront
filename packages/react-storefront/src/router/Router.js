@@ -594,7 +594,9 @@ export default class Router extends EventEmitter {
       })
     }
 
-    return customCacheKeys
+    return {
+      custom_cache_keys: customCacheKeys
+    }
   }
 
   /**

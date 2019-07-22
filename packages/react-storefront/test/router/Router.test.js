@@ -868,32 +868,34 @@ describe('Router:Node', function() {
         remove_query_parameters: ['uid', 'gclid']
       }
 
-      expect(router.createEdgeCacheConfiguration()).toEqual([
-        {
-          path_regex: /^\/\.json(?=\?|$)/,
-          ...customKey
-        },
-        {
-          path_regex: /^\/\.amp(?=\?|$)/,
-          ...customKey
-        },
-        {
-          path_regex: /^\/(?=\?|$)/,
-          ...customKey
-        },
-        {
-          path_regex: /^\/p\/([^\/\?]+)\.json(?=\?|$)/,
-          ...customKey
-        },
-        {
-          path_regex: /^\/p\/([^\/\?]+)\.amp(?=\?|$)/,
-          ...customKey
-        },
-        {
-          path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/,
-          ...customKey
-        }
-      ])
+      expect(router.createEdgeCacheConfiguration()).toEqual({
+        custom_cache_keys: [
+          {
+            path_regex: /^\/\.json(?=\?|$)/,
+            ...customKey
+          },
+          {
+            path_regex: /^\/\.amp(?=\?|$)/,
+            ...customKey
+          },
+          {
+            path_regex: /^\/(?=\?|$)/,
+            ...customKey
+          },
+          {
+            path_regex: /^\/p\/([^\/\?]+)\.json(?=\?|$)/,
+            ...customKey
+          },
+          {
+            path_regex: /^\/p\/([^\/\?]+)\.amp(?=\?|$)/,
+            ...customKey
+          },
+          {
+            path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/,
+            ...customKey
+          }
+        ]
+      })
     })
   })
 
