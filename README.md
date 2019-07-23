@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.36.1
+
+- Updated the `lodash` dependency to fix a vulnerability
+
 ### 6.36.0
 
 - Added a `hideLast` prop to to the `Breadcrumbs` component.
