@@ -284,7 +284,7 @@ function createPlugins(root) {
   return [
     injectBuildTimestamp(),
     new CleanWebpackPlugin(
-      [path.join(root, 'build', 'assets'), path.join(root, 'scripts', 'build')],
+      [path.join(root, 'build', 'oem.json'), path.join(root, 'build', 'assets'), path.join(root, 'scripts', 'build')],
       {
         allowExternal: true,
         verbose: false

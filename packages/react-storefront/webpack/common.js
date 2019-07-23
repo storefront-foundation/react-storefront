@@ -41,7 +41,6 @@ function createClientConfig(
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
       // This allows requiring webpack entries from a nodejs runtime, but should
       // not affect the browser environment.
-      // TODO: check the final bundle size
       libraryTarget: 'commonjs2'
     }
   }

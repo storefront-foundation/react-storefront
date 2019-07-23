@@ -8,7 +8,6 @@ module.exports = class OEMConfigWriterPlugin {
   }
 
   apply(compiler) {
-    console.log(Object.keys(compiler))
     compiler.hooks.emit.tap('OEMConfigWriterPlugin', compilation => {
       // Not all customer project will have the `routesPath` attribute provided
       // to react-storefront/webpack/client#prod() options
