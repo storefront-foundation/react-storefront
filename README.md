@@ -61,6 +61,7 @@ npm link babel-plugin-react-storefront
 
 ### 5.13.1
 
+* Fixed `Filter` issue where all group items were being rendered even when not expanded
 * Added Google AMP Client ID
 
 ### 5.13.0

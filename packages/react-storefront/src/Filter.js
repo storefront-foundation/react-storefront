@@ -192,7 +192,7 @@ export default class Filter extends Component {
         onChange={(e, expanded) => this.setState({ expanded: { ...this.state.expanded, [group.name]: expanded }})}
         margins={margins}
       >
-        {formGroup}
+        {expanded[group.name] && formGroup}
       </ExpandableSection>
     )
   }
