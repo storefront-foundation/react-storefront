@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.36.2
+
+- `SearchResultsModelBase` nows updates `facetGroups` if defined in a search results response
+
 ### 6.36.1
 
 - Fixed `Filter` issue where all group items were being rendered even when not expanded
