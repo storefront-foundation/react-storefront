@@ -77,6 +77,7 @@ yarn release
 ### 6.36.1
 
 - Updated the `lodash` dependency to fix a vulnerability
+- Fixed missing prefech flag header on prefetch requests.
 
 ### 6.36.0
 

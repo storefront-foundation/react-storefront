@@ -116,7 +116,9 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         abort.args = [{ path, apiVersion }, cacheLinks]
         abortControllers.add(abort)
 
-        const headers = {}
+        const headers = {
+          'x-rsf-prefetch': '1'
+        }
 
         if ('{{allowPrefetchThrottling}}' === 'true') {
           headers['X-Moov-If-Match'] = 'cache-hit'
