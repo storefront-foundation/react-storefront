@@ -76,6 +76,7 @@ yarn release
 
 ### 6.36.1
 
+- Fixed `Filter` issue where all group items were being rendered even when not expanded
 - Updated the `lodash` dependency to fix a vulnerability
 - Fixed missing prefech flag header on prefetch requests.
 
