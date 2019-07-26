@@ -1,4 +1,4 @@
-const { IncomingWebhook } = require('@slack/webhook')
+const fetch = require('node-fetch')
 
 class SmokeTestReporter {
   constructor(globalConfig, options) {
@@ -33,15 +33,26 @@ class SmokeTestReporter {
   }
 
   async sendNotifications(text, isSuccess) {
-    const runWebhook = new IncomingWebhook(process.env.SLACK_RUN_WEB_HOOK || '')
-    const failWebhook = new IncomingWebhook(process.env.SLACK_FAIL_WEB_HOOK || '')
+    const runWebhook = process.env.RUN_WEBHOOK
+    const failWebhook = process.env.FAIL_WEBHOOK
+
+    const failBody = process.env.RUN_WEBHOOK_BODY.replace(/\{message\}/, text)
+    const runBody = process.env.FAIL_WEBHOOK_BODY.replace(/\{message\}/, text)
 
     if (process.env.SLACK_RUN_WEB_HOOK) {
-      await runWebhook.send({ text })
+      await fetch(runWebhook, {
+        method: 'post',
+        body: runBody,
+        headers: { 'Content-Type': 'application/json' }
+      })
     }
 
     if (!isSuccess && process.env.SLACK_FAIL_WEB_HOOK) {
-      await failWebhook.send({ text })
+      await fetch(failWebhook, {
+        method: 'post',
+        body: failBody,
+        headers: { 'Content-Type': 'application/json' }
+      })
     }
   }
 }

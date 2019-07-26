@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "dependencies": {
-    "@slack/webhook": "^5.0.0",
+    "fetch": "^1.1.0",
     "selenium-webdriver": "^4.0.0-alpha.4"
   },
   "peerDependencies": {},
