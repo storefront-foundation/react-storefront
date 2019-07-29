@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
-import { onSnapshot, getSnapshot, applySnapshot } from 'mobx-state-tree'
+import { onSnapshot, applySnapshot } from 'mobx-state-tree'
 import Storage from 'store2'
 
 /**

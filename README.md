@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.36.3
+
+- `SearchResultsModelBase` nows accepts `selectedFacets` instead of `filters` to hold the state of the
+  currently applied filters. This allows us to render the `FilterButton` with proper information when navigating to a state of the application where filters have already been applied.
+
 ### 6.36.2
 
 - `SearchResultsModelBase` nows updates `facetGroups` if defined in a search results response

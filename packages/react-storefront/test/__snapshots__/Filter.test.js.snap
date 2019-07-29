@@ -24,10 +24,10 @@ exports[`Filter renders with filters selected 1`] = `
                     </div>
                   </LoadMask>
                 </WithStyles(LoadMask)>
-                <WithStyles(WithTheme(inject-ExpandableSection)) title="Price" caption="Up to $100" expanded={[undefined]} onChange={[Function: onChange]} margins={true}>
-                  <WithTheme(inject-ExpandableSection) title="Price" caption="Up to $100" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
-                    <inject-ExpandableSection theme={{...}} title="Price" caption="Up to $100" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
-                      <ExpandableSection theme={{...}} title="Price" caption="Up to $100" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}} amp={false}>
+                <WithStyles(WithTheme(inject-ExpandableSection)) title="Price" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true}>
+                  <WithTheme(inject-ExpandableSection) title="Price" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
+                    <inject-ExpandableSection theme={{...}} title="Price" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
+                      <ExpandableSection theme={{...}} title="Price" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}} amp={false}>
                         <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} defaultExpanded={[undefined]} onChange={[Function]}>
                           <ExpansionPanel expanded={[undefined]} defaultExpanded={false} onChange={[Function]} classes={{...}} disabled={false}>
                             <WithStyles(Paper) className="MuiExpansionPanel-root-172 RSFExpandableSection-root-160 RSFExpandableSection-margins-161 RSFExpandableSection-expandedPanel-169" elevation={1} square={true}>
@@ -44,13 +44,6 @@ exports[`Filter renders with filters selected 1`] = `
                                                   <h6 className="MuiTypography-root-211 MuiTypography-subtitle1-229">
                                                     Price
                                                   </h6>
-                                                </Typography>
-                                              </WithStyles(Typography)>
-                                              <WithStyles(Typography) variant="caption" className="RSFExpandableSection-caption-162">
-                                                <Typography variant="caption" className="RSFExpandableSection-caption-162" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                  <span className="MuiTypography-root-211 MuiTypography-caption-221 RSFExpandableSection-caption-162">
-                                                    Up to $100
-                                                  </span>
                                                 </Typography>
                                               </WithStyles(Typography)>
                                             </div>
@@ -118,10 +111,10 @@ exports[`Filter renders with filters selected 1`] = `
                     </inject-ExpandableSection>
                   </WithTheme(inject-ExpandableSection)>
                 </WithStyles(WithTheme(inject-ExpandableSection))>
-                <WithStyles(WithTheme(inject-ExpandableSection)) title="Color" caption="Sunburst" expanded={[undefined]} onChange={[Function: onChange]} margins={true}>
-                  <WithTheme(inject-ExpandableSection) title="Color" caption="Sunburst" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
-                    <inject-ExpandableSection theme={{...}} title="Color" caption="Sunburst" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
-                      <ExpandableSection theme={{...}} title="Color" caption="Sunburst" expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}} amp={false}>
+                <WithStyles(WithTheme(inject-ExpandableSection)) title="Color" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true}>
+                  <WithTheme(inject-ExpandableSection) title="Color" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
+                    <inject-ExpandableSection theme={{...}} title="Color" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}}>
+                      <ExpandableSection theme={{...}} title="Color" caption={{...}} expanded={[undefined]} onChange={[Function: onChange]} margins={true} classes={{...}} amp={false}>
                         <WithStyles(ExpansionPanel) classes={{...}} expanded={[undefined]} defaultExpanded={[undefined]} onChange={[Function]}>
                           <ExpansionPanel expanded={[undefined]} defaultExpanded={false} onChange={[Function]} classes={{...}} disabled={false}>
                             <WithStyles(Paper) className="MuiExpansionPanel-root-172 RSFExpandableSection-root-160 RSFExpandableSection-margins-161 RSFExpandableSection-expandedPanel-169" elevation={1} square={true}>
@@ -138,13 +131,6 @@ exports[`Filter renders with filters selected 1`] = `
                                                   <h6 className="MuiTypography-root-211 MuiTypography-subtitle1-229">
                                                     Color
                                                   </h6>
-                                                </Typography>
-                                              </WithStyles(Typography)>
-                                              <WithStyles(Typography) variant="caption" className="RSFExpandableSection-caption-162">
-                                                <Typography variant="caption" className="RSFExpandableSection-caption-162" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                  <span className="MuiTypography-root-211 MuiTypography-caption-221 RSFExpandableSection-caption-162">
-                                                    Sunburst
-                                                  </span>
                                                 </Typography>
                                               </WithStyles(Typography)>
                                             </div>

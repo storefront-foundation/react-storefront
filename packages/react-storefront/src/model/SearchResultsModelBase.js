@@ -4,6 +4,7 @@
  */
 import { types, isAlive, flow } from 'mobx-state-tree'
 import fetch from 'fetch'
+import { xorBy } from 'lodash'
 import ProductModelBase from './ProductModelBase'
 
 /**
@@ -99,14 +100,6 @@ export const SortBase = types.model('SortBase', {
 export default types
   .model('SearchResultsModelBase', {
     /**
-     * The codes of the currently applied filters
-     * @type {String}
-     * @memberof SearchResultsModelBase
-     * @instance
-     */
-    filters: types.optional(types.array(types.string), []),
-
-    /**
      * Automatically set to `true` when the user has changed a filter.  This causes
      * the filter dialog footer to be displayed.
      * @type {Boolean}
@@ -114,6 +107,14 @@ export default types
      * @instance
      */
     filtersChanged: false,
+
+    /**
+     * The currently applied filters
+     * @type {FacetModelBase[]}
+     * @memberof SearchResultsModelBase
+     * @instance
+     */
+    selectedFacets: types.optional(types.array(FacetModelBase), []),
 
     /**
      * Filters that can be selected.
@@ -220,6 +221,9 @@ export default types
       } else {
         return false
       }
+    },
+    get filters() {
+      return self.selectedFacets.map(facet => facet.code)
     }
   }))
   .actions(self => ({
@@ -229,7 +233,7 @@ export default types
      * @instance
      */
     clearAllFilters() {
-      self.filters.clear()
+      self.selectedFacets.clear()
       self.filtersChanged = true
     },
     /**
@@ -259,14 +263,7 @@ export default types
      * @instance
      */
     toggleFilter(facet) {
-      const { code } = facet
-      const index = self.filters.indexOf(code)
-
-      if (index === -1) {
-        self.filters.push(code)
-      } else {
-        self.filters.splice(index, 1)
-      }
+      self.selectedFacets = xorBy(self.selectedFacets, [{ ...facet }], 'code')
       self.filtersChanged = true
     },
     /**

@@ -158,7 +158,7 @@ export default class Filter extends Component {
         {group.facets.map((facet, i) => {
           let checked = false
 
-          if (get(model, 'filters', []).indexOf(facet.code) !== -1) {
+          if (model.selectedFacets.some(f => f.code === facet.code)) {
             selection.push(facet)
             checked = true
           }
@@ -230,7 +230,7 @@ export default class Filter extends Component {
   refresh() {
     const { router, model } = this.props
     router.applySearch({
-      [this.props.queryParam]: model.filters.toJSON()
+      [this.props.queryParam]: model.filters
     })
     model.refresh()
   }

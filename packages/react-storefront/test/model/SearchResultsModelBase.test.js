@@ -10,6 +10,17 @@ describe('SearchResultsModelBase', () => {
     jest.resetModules()
   })
 
+  describe('view', () => {
+    it('filters', () => {
+      const red = FacetModelBase.create({ name: 'Red', code: 'red' })
+      const green = FacetModelBase.create({ name: 'Green', code: 'green' })
+      const results = SearchResultsModelBase.create({
+        selectedFacets: [red, green]
+      })
+      expect(results.filters).toEqual(['red', 'green'])
+    })
+  })
+
   describe('toggleFilter', () => {
     it('adds a filter', () => {
       const results = SearchResultsModelBase.create()
@@ -20,11 +31,12 @@ describe('SearchResultsModelBase', () => {
     })
 
     it('removes a filter', () => {
+      const red = FacetModelBase.create({ name: 'Red', code: 'red' })
+      const green = FacetModelBase.create({ name: 'Green', code: 'green' })
       const results = SearchResultsModelBase.create({
-        filters: ['red', 'green']
+        selectedFacets: [red, green]
       })
-      const facet = FacetModelBase.create({ name: 'Red', code: 'red' })
-      results.toggleFilter(facet)
+      results.toggleFilter(red)
       expect(results.filters).toEqual(['green'])
       expect(results.filtersChanged).toBe(true)
     })

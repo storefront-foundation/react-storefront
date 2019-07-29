@@ -175,26 +175,9 @@ export default class FilterButton extends Component {
   }
 
   getFilterList = () => {
-    const { filters, facetGroups } = this.props.model
-
-    if (!filters || !facetGroups) return null
-    if (filters.length > 1) return `${filters.length} selected`
-
-    const names = []
-    const selection = {}
-
-    for (let facet of filters) {
-      selection[facet] = true
-    }
-
-    for (let group of facetGroups) {
-      for (let facet of group.facets) {
-        if (selection[facet.code]) {
-          names.push(facet.name)
-        }
-      }
-    }
-
-    return names.length ? names.join(', ') : null
+    const { selectedFacets } = this.props.model
+    if (!selectedFacets || !selectedFacets.length) return null
+    if (selectedFacets.length > 1) return `${selectedFacets.length} selected`
+    return selectedFacets[0].name
   }
 }
