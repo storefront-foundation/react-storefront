@@ -35,7 +35,6 @@ class SmokeTestReporter {
   async sendNotifications(text, isSuccess) {
     const runWebhook = process.env.RUN_WEBHOOK
     const failWebhook = process.env.FAIL_WEBHOOK
-
     const runBody = process.env.RUN_WEBHOOK_BODY
     const failBody = process.env.FAIL_WEBHOOK_BODY
 
