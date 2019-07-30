@@ -2,6 +2,8 @@ let SmokeTestReporter, fetch
 
 describe('SmokeTestReporter', () => {
   beforeEach(() => {
+    process.env = {}
+
     jest.resetModules()
 
     jest.mock('node-fetch')
@@ -40,7 +42,6 @@ describe('SmokeTestReporter', () => {
 
     it('should not run notification, if no run webhook or run webhook body provided', async () => {
       process.env.RUN_WEBHOOK = runWebhook
-      process.env.RUN_WEBHOOK_BODY = ''
 
       const testResult = {
         testResults: []
@@ -60,7 +61,6 @@ describe('SmokeTestReporter', () => {
 
     it('should not fail notification, if no fail webhook or fail webhook body provided', async () => {
       process.env.FAIL_WEBHOOK = failWebhook
-      process.env.FAIL_WEBHOOK_BODY = ''
 
       const testResult = {
         testResults: []
@@ -113,7 +113,6 @@ describe('SmokeTestReporter', () => {
     })
 
     it('should send only failure notifications on failure with only fail webhook', async () => {
-      process.env.RUN_WEBHOOK = ''
       process.env.FAIL_WEBHOOK = failWebhook
       process.env.FAIL_WEBHOOK_BODY = failWebhookBody
 
