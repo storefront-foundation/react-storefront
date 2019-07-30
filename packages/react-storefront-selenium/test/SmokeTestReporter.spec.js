@@ -1,44 +1,88 @@
-let SmokeTestReporter, sendCalls
+let SmokeTestReporter, fetch
 
 describe('SmokeTestReporter', () => {
   beforeEach(() => {
     jest.resetModules()
-    sendCalls = []
 
-    class MockWebhook {
-      constructor(url) {
-        this.url = url
-      }
-      send({ text }) {
-        sendCalls.push({ url: this.url, text })
-      }
-    }
+    jest.mock('node-fetch')
 
-    jest.mock('@slack/webhook', () => ({ IncomingWebhook: MockWebhook }))
+    fetch = require('node-fetch')
     SmokeTestReporter = require('../lib/SmokeTestReporter')
   })
 
   describe('onTestResult', () => {
-    process.env.SLACK_RUN_WEB_HOOK = 'https://slack.com/webhooks/run'
+    const runWebhook = 'https://slack.com/webhooks/run'
+    const runWebhookBody = '{"run": "{message}"}'
+    const failWebhook = 'https://slack.com/webhooks/fail'
+    const failWebhookBody = '{"fail": "{message}"}'
+    const defaultParams = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: ''
+    }
 
-    it('should send a run notification on success', () => {
+    it('should send a run notification on success', async () => {
+      process.env.RUN_WEBHOOK = runWebhook
+      process.env.RUN_WEBHOOK_BODY = runWebhookBody
+
       const testResult = {
         testResults: []
       }
 
-      new SmokeTestReporter().onTestResult(null, testResult, null)
+      await new SmokeTestReporter().onTestResult(null, testResult, null)
 
-      expect(sendCalls).toEqual([
-        {
-          url: process.env.SLACK_RUN_WEB_HOOK,
-          text: 'All tests passed'
-        }
-      ])
+      expect(fetch).toHaveBeenCalledTimes(1)
+      expect(fetch).toHaveBeenCalledWith(runWebhook, {
+        ...defaultParams,
+        body: runWebhookBody.replace(/\{message\}/, 'All tests passed')
+      })
+    })
+
+    it('should not run notification, if no run webhook or run webhook body provided', async () => {
+      process.env.RUN_WEBHOOK = runWebhook
+      process.env.RUN_WEBHOOK_BODY = ''
+
+      const testResult = {
+        testResults: []
+      }
+
+      await new SmokeTestReporter().onTestResult(null, testResult, null)
+
+      expect(fetch).toHaveBeenCalledTimes(0)
+
+      process.env.RUN_WEBHOOK = ''
+      process.env.RUN_WEBHOOK_BODY = runWebhookBody
+
+      await new SmokeTestReporter().onTestResult(null, testResult, null)
+
+      expect(fetch).toHaveBeenCalledTimes(0)
+    })
+
+    it('should not fail notification, if no fail webhook or fail webhook body provided', async () => {
+      process.env.FAIL_WEBHOOK = failWebhook
+      process.env.FAIL_WEBHOOK_BODY = ''
+
+      const testResult = {
+        testResults: []
+      }
+
+      await new SmokeTestReporter().onTestResult(null, testResult, null)
+
+      expect(fetch).toHaveBeenCalledTimes(0)
+
+      process.env.FAIL_WEBHOOK = ''
+      process.env.FAIL_WEBHOOK_BODY = failWebhookBody
+
+      await new SmokeTestReporter().onTestResult(null, testResult, null)
+
+      expect(fetch).toHaveBeenCalledTimes(0)
     })
 
     it('should send run and failure notifications on failure', async () => {
-      process.env.SLACK_RUN_WEB_HOOK = 'https://slack.com/webhooks/run'
-      process.env.SLACK_FAIL_WEB_HOOK = 'https://slack.com/webhooks/fail'
+      process.env.RUN_WEBHOOK = runWebhook
+      process.env.RUN_WEBHOOK_BODY = runWebhookBody
+      process.env.FAIL_WEBHOOK = failWebhook
+      process.env.FAIL_WEBHOOK_BODY = failWebhookBody
 
       const testResult = {
         testResults: [
@@ -49,21 +93,29 @@ describe('SmokeTestReporter', () => {
 
       await new SmokeTestReporter().onTestResult(null, testResult, null)
 
-      expect(sendCalls).toEqual([
-        {
-          url: process.env.SLACK_RUN_WEB_HOOK,
-          text: 'smoke tests failed with: first test'
-        },
-        {
-          url: process.env.SLACK_FAIL_WEB_HOOK,
-          text: 'smoke tests failed with: first test'
-        }
+      expect(fetch).toHaveBeenCalledTimes(2)
+      expect(fetch.mock.calls).toEqual([
+        [
+          runWebhook,
+          {
+            ...defaultParams,
+            body: runWebhookBody.replace(/\{message\}/, 'smoke tests failed with: first test')
+          }
+        ],
+        [
+          failWebhook,
+          {
+            ...defaultParams,
+            body: failWebhookBody.replace(/\{message\}/, 'smoke tests failed with: first test')
+          }
+        ]
       ])
     })
 
     it('should send only failure notifications on failure with only fail webhook', async () => {
-      process.env.SLACK_FAIL_WEB_HOOK = 'https://slack.com/webhooks/fail'
-      process.env.SLACK_RUN_WEB_HOOK = ''
+      process.env.RUN_WEBHOOK = ''
+      process.env.FAIL_WEBHOOK = failWebhook
+      process.env.FAIL_WEBHOOK_BODY = failWebhookBody
 
       const testResult = {
         testResults: [{ ancestorTitles: ['smoke tests'], title: 'first test', status: 'failed' }]
@@ -71,11 +123,15 @@ describe('SmokeTestReporter', () => {
 
       await new SmokeTestReporter().onTestResult(null, testResult, null)
 
-      expect(sendCalls).toEqual([
-        {
-          url: process.env.SLACK_FAIL_WEB_HOOK,
-          text: 'smoke tests failed with: first test'
-        }
+      expect(fetch).toHaveBeenCalledTimes(1)
+      expect(fetch.mock.calls).toEqual([
+        [
+          failWebhook,
+          {
+            ...defaultParams,
+            body: failWebhookBody.replace(/\{message\}/, 'smoke tests failed with: first test')
+          }
+        ]
       ])
     })
   })

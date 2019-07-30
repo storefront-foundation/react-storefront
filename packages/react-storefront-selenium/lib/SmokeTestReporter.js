@@ -36,21 +36,21 @@ class SmokeTestReporter {
     const runWebhook = process.env.RUN_WEBHOOK
     const failWebhook = process.env.FAIL_WEBHOOK
 
-    const failBody = process.env.RUN_WEBHOOK_BODY.replace(/\{message\}/, text)
-    const runBody = process.env.FAIL_WEBHOOK_BODY.replace(/\{message\}/, text)
+    const runBody = process.env.RUN_WEBHOOK_BODY
+    const failBody = process.env.FAIL_WEBHOOK_BODY
 
-    if (process.env.SLACK_RUN_WEB_HOOK) {
+    if (runWebhook && runBody) {
       await fetch(runWebhook, {
-        method: 'post',
-        body: runBody,
+        method: 'POST',
+        body: runBody.replace(/\{message\}/, text),
         headers: { 'Content-Type': 'application/json' }
       })
     }
 
-    if (!isSuccess && process.env.SLACK_FAIL_WEB_HOOK) {
+    if (!isSuccess && failWebhook && failBody) {
       await fetch(failWebhook, {
-        method: 'post',
-        body: failBody,
+        method: 'POST',
+        body: failBody.replace(/\{message\}/, text),
         headers: { 'Content-Type': 'application/json' }
       })
     }

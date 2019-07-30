@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "dependencies": {
-    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.0",
     "selenium-webdriver": "^4.0.0-alpha.4"
   },
   "peerDependencies": {},
