@@ -113,6 +113,7 @@
     "react-visibility-sensor": "^3.14.0",
     "redbox-react": "^1.6.0",
     "remotedev": "^0.2.7",
+    "replace-in-file-webpack-plugin": "^1.0.6",
     "resize-observer-polyfill": "^1.5.0",
     "route-parser": "^0.0.5",
     "sha1": "^1.1.1",

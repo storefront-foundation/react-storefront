@@ -6,6 +6,7 @@ const {
   injectBuildTimestamp
 } = require('./common')
 const merge = require('lodash/merge')
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin')
 
 module.exports = {
   /**
@@ -55,6 +56,22 @@ module.exports = {
         devtool: 'cheap-module-source-map',
         plugins: [
           ...plugins,
+          // This replacement fixes a issue which is introduced by core-js
+          // Core-js tries to handle "Unhandled rejection" errors by only
+          // logging them in the console. We want to catch the error downstream
+          // and handle it properly
+          new ReplaceInFileWebpackPlugin([
+            {
+              dir: output.path,
+              files: [output.filename],
+              rules: [
+                {
+                  search: "console.error('Unhandled promise rejection', value);",
+                  replace: 'throw value;'
+                }
+              ]
+            }
+          ]),
           injectBuildTimestamp(),
           new webpack.ExtendedAPIPlugin(),
           new webpack.optimize.LimitChunkCountPlugin({
