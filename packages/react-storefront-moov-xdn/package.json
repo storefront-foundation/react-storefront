@@ -11,8 +11,11 @@
     "build": "mkdir -p dist; cp .npmrc dist; NODE_ENV=production babel src --source-maps --out-dir dist && cp package.json dist"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "moov_builder": "4.0.0-alpha.1",
-    "moov_stdlib": "^2.6.33"
+    "moov_stdlib": "^2.6.33",
+    "node-emoji": "^1.10.0",
+    "yargs": "^13.3.0"
   },
   "peerDependencies": {
     "react-storefront": "^6.0.0"

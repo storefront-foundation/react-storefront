@@ -78,6 +78,7 @@
     "webpack-cli": "^3.2.1"
   },
   "dependencies": {
+    "alias-regex-webpack-plugin": "^0.1.2",
     "babel-eslint": "^9.0.0",
     "babel-minify-webpack-plugin": "^0.3.1",
     "cheerio": "^0.22.0",

@@ -6,6 +6,7 @@ const {
   injectBuildTimestamp
 } = require('./common')
 const merge = require('lodash/merge')
+const AliasRegexOverridePlugin = require('alias-regex-webpack-plugin')
 
 module.exports = {
   /**
@@ -35,15 +36,16 @@ module.exports = {
       )
     }
 
-    return ({ entry, plugins, output, target, resolve }) =>
+    return () =>
       merge(createServerConfig(root, alias), {
-        entry,
+        entry: path.join('..', 'scripts', 'mount.js'),
         mode: 'development',
-        output: merge(output, {
-          devtoolModuleFilenameTemplate: '[absolute-resource-path]'
-        }),
-        target,
-        resolve,
+        output: {
+          devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+          filename: path.join('..', 'scripts', 'moov_main.js'),
+          globalObject: 'global' // this is needed for the `window is not defined` JSONP related error
+        },
+        target: 'web',
         module: {
           rules: createLoaders(root, {
             envName: 'development-server',
@@ -54,8 +56,11 @@ module.exports = {
         },
         devtool: 'cheap-module-source-map',
         plugins: [
-          ...plugins,
           injectBuildTimestamp(),
+          new AliasRegexOverridePlugin(
+            /^\//,
+            `${path.resolve(path.join(root, 'scripts'))}${path.sep}`
+          ),
           new webpack.ExtendedAPIPlugin(),
           new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 1
