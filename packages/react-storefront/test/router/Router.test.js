@@ -871,27 +871,27 @@ describe('Router:Node', function() {
       expect(router.createEdgeCacheConfiguration()).toEqual({
         custom_cache_keys: [
           {
-            path_regex: /^\/\.json(?=\?|$)/,
+            path_regex: /^\/\.json(?=\?|$)/.toString(),
             ...customKey
           },
           {
-            path_regex: /^\/\.amp(?=\?|$)/,
+            path_regex: /^\/\.amp(?=\?|$)/.toString(),
             ...customKey
           },
           {
-            path_regex: /^\/(?=\?|$)/,
+            path_regex: /^\/(?=\?|$)/.toString(),
             ...customKey
           },
           {
-            path_regex: /^\/p\/([^\/\?]+)\.json(?=\?|$)/,
+            path_regex: /^\/p\/([^\/\?]+)\.json(?=\?|$)/.toString(),
             ...customKey
           },
           {
-            path_regex: /^\/p\/([^\/\?]+)\.amp(?=\?|$)/,
+            path_regex: /^\/p\/([^\/\?]+)\.amp(?=\?|$)/.toString(),
             ...customKey
           },
           {
-            path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/,
+            path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/.toString(),
             ...customKey
           }
         ]
