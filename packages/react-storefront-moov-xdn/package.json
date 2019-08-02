@@ -7,14 +7,21 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "watch": "babel --watch src --source-maps --out-dir dist",
-    "build": "mkdir -p dist; cp .npmrc dist; NODE_ENV=production babel src --source-maps --out-dir dist && cp package.json dist"
+    "build": "mkdir -p dist; yarn build:assets; NODE_ENV=production yarn build:sources",
+    "build:sources": "babel src --source-maps --out-dir dist",
+    "build:assets": "cp -f .npmrc package.json dist && sync-folders --type copy scripts dist",
+    "watch": "concurrently 'yarn build:assets --watch' 'yarn build:sources --watch'"
+  },
+  "bin": {
+    "xdn-start": "scripts/start.js",
+    "xdn-build": "scripts/build.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",
     "moov_builder": "4.0.0-alpha.1",
     "moov_stdlib": "^2.6.33",
     "node-emoji": "^1.10.0",
+    "open": "^6.4.0",
     "yargs": "^13.3.0"
   },
   "peerDependencies": {

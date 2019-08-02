@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const webpack = require('webpack')
 const { blue, bold, green, yellow } = require('chalk')
 const path = require('path')
@@ -8,6 +10,9 @@ const { fork } = require('child_process')
 const tmp = path.join(process.cwd(), 'tmp')
 const builds = []
 const config = require('./getMoovwebConfig')()
+const argv = require('yargs').argv
+const getAppURL = require('./getAppURL')
+const open = require('open')
 
 if (!config) {
   log(
@@ -27,6 +32,7 @@ if (!config) {
 let buildsInProgress = 0
 let initializing = true
 let moovsdk
+let browserOpened = false
 
 function main() {
   if (!fs.existsSync(tmp)) {
@@ -45,9 +51,23 @@ function main() {
 
   // const moovsdkPath = path.join(process.cwd(), 'node_modules', 'moovsdk')
   const moovsdkPath = path.join('/Users/markbrocato/Code/moovworker/sdk/sdk-cli')
+  const moovArgs = process.argv.slice(2).filter(arg => !arg.match(/--(debug|inspect)/))
 
-  moovsdk = fork(moovsdkPath, ['start', '--no-build', '--pause', ...process.argv.slice(2)], {
-    silent: true
+  const nodeArgs = ['debug', 'inspect']
+    .filter(arg => argv[arg] != null)
+    .map(arg => {
+      const value = argv[arg]
+
+      if (value === true) {
+        return `--${arg}`
+      } else {
+        return `--${arg}=${value}`
+      }
+    })
+
+  moovsdk = fork(moovsdkPath, ['start', '--no-build', '--pause', ...moovArgs], {
+    silent: true,
+    execArgv: nodeArgs
   })
 
   moovsdk.stdout.on('data', data => {
@@ -96,6 +116,19 @@ function buildEnded() {
 
   if (!builds.some(b => b.errors) && buildsInProgress === 0) {
     process.stdout.write(green(bold(emojify('Build successful! :tada:\n\n'))))
+    openBrowser()
+  }
+}
+
+function openBrowser() {
+  if (process.env.OPEN_BROWSER !== 'false' && !browserOpened) {
+    browserOpened = true
+
+    try {
+      open(getAppURL(argv))
+    } catch (e) {
+      console.log('error getting URL for app', e)
+    }
   }
 }
 

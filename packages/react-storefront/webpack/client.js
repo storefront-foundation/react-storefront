@@ -1,7 +1,5 @@
-const webpack = require('webpack')
 const path = require('path')
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin
-const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
@@ -127,9 +125,7 @@ module.exports = {
       )
     }
 
-    const openBrowser = (process.env.OPEN_BROWSER || 'true').toLowerCase() === 'true'
-
-    return ({ url = 'http://localhost:8080' } = {}) =>
+    return () =>
       Object.assign(createClientConfig(root, { entries, alias }), {
         devtool: 'inline-cheap-module-source-map',
         mode: 'development',
@@ -147,7 +143,6 @@ module.exports = {
             'process.env.MOOV_ENV': JSON.stringify('development'),
             'process.env.MOOV_SW': JSON.stringify(process.env.MOOV_SW)
           }),
-          ...(openBrowser ? [new OpenBrowserPlugin({ url, ignoreErrors: true })] : []),
           new WriteFilePlugin(),
           new CopyPlugin([
             {
@@ -219,52 +214,53 @@ module.exports = {
       )
     }
 
-    return Object.assign(createClientConfig(root, { entries, alias }), {
-      mode: 'production',
-      optimization: createOptimization({ production: true, overrides: optimization }),
-      devtool: 'source-map',
-      module: {
-        rules: createLoaders(path.resolve(root, 'src'), { envName: 'production-client' })
-      },
-      plugins: [
-        new webpack.LoaderOptionsPlugin({
-          minimize: true,
-          debug: false
-        }),
-        new webpack.DefinePlugin({
-          'process.env.MOOV_RUNTIME': JSON.stringify('client'),
-          'process.env.NODE_ENV': JSON.stringify('production'),
-          'process.env.MOOV_ENV': JSON.stringify('production'),
-          'process.env.PUBLIC_URL': JSON.stringify('') // needed for registerServiceWorker.js
-        }),
-        new StatsWriterPlugin({
-          filename: path.relative(dest, path.join(root, 'scripts', 'build', 'stats.json'))
-        }),
-        new CopyPlugin([
-          {
-            from: path.join(root, 'public'),
-            to: path.join(root, 'build', 'assets')
-          }
-        ]),
-        new webpack.NormalModuleReplacementPlugin(ampToExcludePattern, function(resource) {
-          // Parse module name from request
-          const moduleName = resource.request.match(ampToExcludePattern)[1]
-          if (moduleName !== 'installServiceWorker') {
-            // Empty module exists within the `amp` directory
-            resource.request = resource.request.replace(moduleName, 'Empty')
-          }
-        }),
-        ...additionalPlugins,
-        ...createServiceWorkerPlugins({
-          root,
-          dest,
-          workboxConfig,
-          prefetchRampUpTime,
-          allowPrefetchThrottling,
-          serveSSRFromCache
-        })
-      ].concat(createPlugins(root))
-    })
+    return () =>
+      Object.assign(createClientConfig(root, { entries, alias }), {
+        mode: 'production',
+        optimization: createOptimization({ production: true, overrides: optimization }),
+        devtool: 'source-map',
+        module: {
+          rules: createLoaders(path.resolve(root, 'src'), { envName: 'production-client' })
+        },
+        plugins: [
+          new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false
+          }),
+          new webpack.DefinePlugin({
+            'process.env.MOOV_RUNTIME': JSON.stringify('client'),
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            'process.env.MOOV_ENV': JSON.stringify('production'),
+            'process.env.PUBLIC_URL': JSON.stringify('') // needed for registerServiceWorker.js
+          }),
+          new StatsWriterPlugin({
+            filename: path.relative(dest, path.join(root, 'scripts', 'build', 'stats.json'))
+          }),
+          new CopyPlugin([
+            {
+              from: path.join(root, 'public'),
+              to: path.join(root, 'build', 'assets')
+            }
+          ]),
+          new webpack.NormalModuleReplacementPlugin(ampToExcludePattern, function(resource) {
+            // Parse module name from request
+            const moduleName = resource.request.match(ampToExcludePattern)[1]
+            if (moduleName !== 'installServiceWorker') {
+              // Empty module exists within the `amp` directory
+              resource.request = resource.request.replace(moduleName, 'Empty')
+            }
+          }),
+          ...additionalPlugins,
+          ...createServiceWorkerPlugins({
+            root,
+            dest,
+            workboxConfig,
+            prefetchRampUpTime,
+            allowPrefetchThrottling,
+            serveSSRFromCache
+          })
+        ].concat(createPlugins(root))
+      })
   }
 }
 
