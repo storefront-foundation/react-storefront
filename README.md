@@ -77,6 +77,7 @@ yarn release
 ### 6.36.3
 
 - `Server` now properly handle the case when rendering an error fails
+- The app shell will no longer be throttled when prefetching.
 
 ### 6.36.2
 
