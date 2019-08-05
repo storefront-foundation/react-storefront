@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.36.3
+
+- `Server` now properly handle the case when rendering an error fails
+
 ### 6.36.2
 
 - `SearchResultsModelBase` nows updates `facetGroups` if defined in a search results response
