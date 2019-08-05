@@ -11,6 +11,8 @@ let abortControllers = new Set()
 let toResume = new Set()
 let deployTime, prefetchFullRampUpTime
 
+const appShellPath = '/.app-shell'
+
 try {
   // injected via webpack client build
   deployTime = parseInt('{{deployTime}}')
@@ -120,7 +122,11 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
           'x-rsf-prefetch': '1'
         }
 
-        if ('{{allowPrefetchThrottling}}' === 'true') {
+        if (
+          '{{allowPrefetchThrottling}}' === 'true' &&
+          // never throttle the app shell because it's only prefetched and never hit directly
+          path !== appShellPath
+        ) {
           headers['X-Moov-If-Match'] = 'cache-hit'
         }
 
@@ -359,9 +365,8 @@ function offlineResponse(apiVersion, context) {
     })
   } else {
     // If not API request, find and send app shell
-    const path = '/.app-shell'
-    const cacheName = getAPICacheName(apiVersion, path)
-    const req = new Request(path)
+    const cacheName = getAPICacheName(apiVersion, appShellPath)
+    const req = new Request(appShellPath)
     return caches.open(cacheName).then(cache => cache.match(req))
   }
 }
