@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.36.4
+
+- Removes this warning about deprecated usage of `require("history/createBrowserHistory")`.
+
 ### 6.36.3
 
 - `Server` now properly handle the case when rendering an error fails
