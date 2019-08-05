@@ -12,38 +12,46 @@ function createModel(filters) {
   return SubcategoryModelBase.create({
     id: '1',
     filters,
-    facetGroups: [{
-      name: 'Price',
-      facets: [{
-        code: '0-100',
-        name: 'Up to $100',
-        matches: 20
-      }, {
-        code: '100-200',
-        name: '$100 - $200',
-        matches: 10
-      }]
-    }, {
-      name: 'Color',
-      facets: [{
-        code: 'red',
-        name: 'Red',
-        matches: 2
-      }, {
-        code: 'sunburst',
-        name: 'Sunburst',
-        matches: 10
-      }]
-    }]
+    facetGroups: [
+      {
+        name: 'Price',
+        facets: [
+          {
+            code: '0-100',
+            name: 'Up to $100',
+            matches: 20
+          },
+          {
+            code: '100-200',
+            name: '$100 - $200',
+            matches: 10
+          }
+        ]
+      },
+      {
+        name: 'Color',
+        facets: [
+          {
+            code: 'red',
+            name: 'Red',
+            matches: 2
+          },
+          {
+            code: 'sunburst',
+            name: 'Sunburst',
+            matches: 10
+          }
+        ]
+      }
+    ]
   })
 }
 
 describe('Filter', () => {
-
   it('renders with no filters selected', () => {
     const component = (
       <Provider router={{}} app={{}}>
-        <Filter model={createModel([])}/>
+        <Filter model={createModel([])} />
       </Provider>
     )
 
@@ -53,11 +61,38 @@ describe('Filter', () => {
   it('renders with filters selected', () => {
     const component = (
       <Provider router={{}} app={{}}>
-        <Filter model={createModel(['0-100', 'sunburst'])}/>
+        <Filter model={createModel(['0-100', 'sunburst'])} />
       </Provider>
     )
 
     expect(mount(component)).toMatchSnapshot()
   })
 
+  it('does not render group items when not expanded', () => {
+    const el = mount(
+      <Provider router={{}} app={{}}>
+        <Filter model={createModel(['0-100', 'sunburst'])} />
+      </Provider>
+    )
+
+    expect(el.find('FormGroup').length).toEqual(0)
+  })
+
+  it('renders group items when expanded', () => {
+    const el = mount(
+      <Provider router={{}} app={{}}>
+        <Filter model={createModel(['0-100', 'sunburst'])} />
+      </Provider>
+    )
+
+    expect(el.find('FormGroup').length).toEqual(0)
+
+    el.find('Filter')
+      .instance()
+      .setState({ expanded: { Price: true } })
+
+    el.update()
+
+    expect(el.find('FormGroup').length).toEqual(1)
+  })
 })

@@ -74,6 +74,25 @@ yarn release
 
 ## Changelog
 
+### 6.36.4
+
+- Removes this warning about deprecated usage of `require("history/createBrowserHistory")`.
+
+### 6.36.3
+
+- `Server` now properly handle the case when rendering an error fails
+- The app shell will no longer be throttled when prefetching.
+
+### 6.36.2
+
+- `SearchResultsModelBase` nows updates `facetGroups` if defined in a search results response
+
+### 6.36.1
+
+- Fixed `Filter` issue where all group items were being rendered even when not expanded
+- Updated the `lodash` dependency to fix a vulnerability
+- Fixed missing prefech flag header on prefetch requests.
+
 ### 6.36.0
 
 - Added a `hideLast` prop to to the `Breadcrumbs` component.

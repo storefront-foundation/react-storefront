@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import { hydrate } from './renderers'
-import createBrowserHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import registerServiceWorker, { unregister } from './registerServiceWorker'
 import PWA from './PWA'
 
