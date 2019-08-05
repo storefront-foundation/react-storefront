@@ -546,75 +546,6 @@ describe('Router:Node', function() {
     })
   })
 
-  describe('getCacheKey', () => {
-    it('should return the defaults when no key function is specified', () => {
-      router.get(
-        '/test',
-        cache({
-          server: {
-            maxAgeSeconds: 60
-          }
-        })
-      )
-
-      expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
-      ).toEqual({ foo: 'bar' })
-    })
-
-    it('should return the defaults when no server config is specified', () => {
-      router.get(
-        '/test',
-        cache({
-          client: true
-        })
-      )
-
-      expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
-      ).toEqual({ foo: 'bar' })
-    })
-
-    it('should return the defaults when no cache handler is specified', () => {
-      router.get('/test', fromClient({ a: 'b' }))
-
-      expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
-      ).toEqual({ foo: 'bar' })
-    })
-
-    it('should call cache.server.key for the matching route', () => {
-      router.get(
-        '/test',
-        cache({
-          server: {
-            key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
-          }
-        })
-      )
-
-      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({
-        foo: 'bar',
-        path: '/test'
-      })
-    })
-
-    it('should work on fallback routes', () => {
-      router.fallback(
-        cache({
-          server: {
-            key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
-          }
-        })
-      )
-
-      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({
-        foo: 'bar',
-        path: '/test'
-      })
-    })
-  })
-
   describe('watch', () => {
     it('should run route when history changes', () => {
       const history = createMemoryHistory()
@@ -871,27 +802,27 @@ describe('Router:Node', function() {
       expect(router.createEdgeCacheConfiguration()).toEqual({
         custom_cache_keys: [
           {
-            path_regex: /^\/\.json(?=\?|$)/.toString(),
+            path_regex: /^\/\.json(?=\?|$)/.source,
             ...customKey
           },
           {
-            path_regex: /^\/\.amp(?=\?|$)/.toString(),
+            path_regex: /^\/\.amp(?=\?|$)/.source,
             ...customKey
           },
           {
-            path_regex: /^\/(?=\?|$)/.toString(),
+            path_regex: /^\/(?=\?|$)/.source,
             ...customKey
           },
           {
-            path_regex: /^\/p\/([^\/\?]+)\.json(?=\?|$)/.toString(),
+            path_regex: /^\/p\/([^\/\?]+)\.json(?=\?|$)/.source,
             ...customKey
           },
           {
-            path_regex: /^\/p\/([^\/\?]+)\.amp(?=\?|$)/.toString(),
+            path_regex: /^\/p\/([^\/\?]+)\.amp(?=\?|$)/.source,
             ...customKey
           },
           {
-            path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/.toString(),
+            path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/.source,
             ...customKey
           }
         ]

@@ -267,18 +267,6 @@ export default class Router extends EventEmitter {
   }
 
   /**
-   * Gets the server cache key for the matching route.
-   * @param {Object} request
-   * @param {Object} defaults The default values used for the cache key
-   * @return {Object} An object populate with keys and values that when hashed, make up the cache key
-   */
-  getCacheKey(request, defaults) {
-    const cacheHandler = this.getCacheHandler(request)
-    if (!cacheHandler || !cacheHandler.server || !cacheHandler.server.key) return defaults
-    return cacheHandler.server.key(request, defaults)
-  }
-
-  /**
    * Finds the cache handler for the specified request
    * @param {Object} request
    * @return {Object} The handler
