@@ -25,7 +25,7 @@ module.exports = async function build(environment) {
   const config = getConfig(environment)
 
   // build server last because it needs the client stats
-  const sorted = Object.keys(config.builds).sort((a, b) => (a === 'server' ? 1 : 0))
+  const sorted = Object.keys(config.builds).sort((a, b) => (a === 'client' ? 0 : 1))
 
   for (let key of sorted) {
     try {
@@ -33,7 +33,7 @@ module.exports = async function build(environment) {
       process.stdout.write(green(bold(emojify(`Building ${key} bundle... `))))
       const compiler = webpack(require(path.resolve(build))())
       await run(compiler)
-      process.stdout.write(green(bold(emojify('success! :tada:\n\n'))))
+      process.stdout.write(green(bold(emojify('success! :tada:\n'))))
     } catch (e) {
       log(red(bold(emojify(`\n:boom:  Error(s) occurred in the ${key} build:\n`))))
       log(e)

@@ -34,11 +34,7 @@ function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } =
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
     },
-    {
-      test: /\.js$/,
-      include: /(src|node_modules\/proxy-polyfill)/,
-      use: [{ loader: 'babel-loader', options: { envName } }]
-    },
+    createBabelLoader(envName),
     {
       test: /\.(png|jpg|gif|otf|woff|ttf)$/,
       use: [
@@ -67,6 +63,14 @@ function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } =
   ]
 }
 
+function createBabelLoader(envName) {
+  return {
+    test: /\.js$/,
+    include: /(src|node_modules\/proxy-polyfill)/,
+    use: [{ loader: 'babel-loader', options: { envName } }]
+  }
+}
+
 function injectBuildTimestamp() {
   return new webpack.DefinePlugin({
     __build_timestamp__: JSON.stringify(buildTimestamp)
@@ -89,5 +93,6 @@ function createAliases(root) {
 module.exports = {
   createAliases,
   createLoaders,
-  injectBuildTimestamp
+  injectBuildTimestamp,
+  createBabelLoader
 }
