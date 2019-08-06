@@ -795,7 +795,8 @@ describe('Router:Node', function() {
           ]
         },
         add_headers: ['user-agent', 'host'],
-        query_parameters_blacklist: ['uid', 'gclid']
+        query_parameters_list: ['uid', 'gclid'],
+        query_parameters_mode: 'blacklist',
       }
 
       expect(router.createEdgeCacheConfiguration()).toEqual({

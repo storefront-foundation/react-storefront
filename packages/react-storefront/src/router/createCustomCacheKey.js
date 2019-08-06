@@ -5,10 +5,16 @@
 /**
  * @private
  */
+const QS_MODE_BLACKLIST = 'blacklist'
+const QS_MODE_WHITELIST = 'whitelist'
+
 class CustomCacheKey {
   headers = []
-  queryParametersWhitelist = null
-  queryParametersBlacklist = null
+
+  queryParametersMode = QS_MODE_BLACKLIST
+  queryParameterslist = []
+  queryParametersChanged = false
+
   cookies = {}
 
   addHeader(name) {
@@ -19,21 +25,24 @@ class CustomCacheKey {
   excludeAllQueryParameters() {
     this._preventQueryParametersConflict()
 
-    this.queryParametersWhitelist = []
+    this.queryParametersMode = QS_MODE_WHITELIST
+    this.queryParameterslist = []
     return this
   }
 
   excludeQueryParameters(params) {
     this._preventQueryParametersConflict()
 
-    this.queryParametersBlacklist = params
+    this.queryParametersMode = QS_MODE_BLACKLIST
+    this.queryParameterslist = params
     return this
   }
 
   excludeAllQueryParametersExcept(params) {
     this._preventQueryParametersConflict()
 
-    this.queryParametersWhitelist = params
+    this.queryParametersMode = QS_MODE_WHITELIST
+    this.queryParameterslist = params
     return this
   }
 
@@ -53,9 +62,8 @@ class CustomCacheKey {
     return {
       add_headers: this.headers,
       add_cookies: this.cookies,
-      // Only add whitelist OR blacklist. Enforced by _preventQueryParametersConflict()
-      ...(this.queryParametersWhitelist && { query_parameters_whitelist: this.queryParametersWhitelist }),
-      ...(this.queryParametersBlacklist && { query_parameters_blacklist: this.queryParametersBlacklist }),
+      query_parameters_mode: this.queryParametersMode,
+      query_parameters_list: this.queryParameterslist,
     }
   }
 
@@ -63,9 +71,10 @@ class CustomCacheKey {
    * @private
    */
   _preventQueryParametersConflict() {
-    if (this.queryParametersWhitelist || this.queryParametersBlacklist) {
+    if (this.queryParametersChanged) {
       throw new Error('You cannot combine multiple query params exclusion in a single custom cache key definition')
     }
+    this.queryParametersChanged = true
   }
 }
 
