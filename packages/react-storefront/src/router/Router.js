@@ -577,7 +577,7 @@ export default class Router extends EventEmitter {
       const cache = route.handlers.find(handler => handler.type === 'cache')
       if (!cache || !cache.server || !cache.server.key) continue
       customCacheKeys.push({
-        path_regex: this.routeToRegex(route).toString(),
+        path_regex: this.routeToRegex(route).source,
         ...cache.server.key.toJSON()
       })
     }

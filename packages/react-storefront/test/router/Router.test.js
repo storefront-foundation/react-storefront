@@ -769,8 +769,7 @@ describe('Router:Node', function() {
       key = createCustomCacheKey()
         .addHeader('user-agent')
         .addHeader('host')
-        .removeQueryParameter('uid')
-        .removeQueryParameter('gclid')
+        .excludeQueryParameters(['uid', 'gclid'])
         .addCookie('currency')
         .addCookie('location', cookie => {
           cookie.partition('na').byPattern('us|ca')
@@ -796,7 +795,7 @@ describe('Router:Node', function() {
           ]
         },
         add_headers: ['user-agent', 'host'],
-        remove_query_parameters: ['uid', 'gclid']
+        query_parameters_blacklist: ['uid', 'gclid']
       }
 
       expect(router.createEdgeCacheConfiguration()).toEqual({

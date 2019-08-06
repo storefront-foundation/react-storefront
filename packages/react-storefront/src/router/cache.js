@@ -17,7 +17,7 @@ import { SURROGATE_KEY } from './headers'
  *       maxAgeSeconds: 300 // cache for 5 minutes on the server,
  *       key: createCustomCacheKey() // split cache by user-agent header, currency, and location (with bucketing), and exclude the ?uid search parameter from the cache key
  *         .addHeader('user-agent')
- *         .removeQueryParameter('uid')
+ *         .excludeQueryParameters(['uid'])
  *         .addCookie('currency')
  *         .addCookie('location', cookie => {
  *           cookie.partition('na').byPattern('us|ca')

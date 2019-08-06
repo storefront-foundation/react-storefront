@@ -7,7 +7,8 @@
  */
 class CustomCacheKey {
   headers = []
-  removeQueryParameters = []
+  queryParametersWhitelist = null
+  queryParametersBlacklist = null
   cookies = {}
 
   addHeader(name) {
@@ -15,8 +16,24 @@ class CustomCacheKey {
     return this
   }
 
-  removeQueryParameter(name) {
-    this.removeQueryParameters.push(name)
+  excludeAllQueryParameters() {
+    this._preventQueryParametersConflict()
+
+    this.queryParametersWhitelist = []
+    return this
+  }
+
+  excludeQueryParameters(params) {
+    this._preventQueryParametersConflict()
+
+    this.queryParametersBlacklist = params
+    return this
+  }
+
+  excludeAllQueryParametersExcept(params) {
+    this._preventQueryParametersConflict()
+
+    this.queryParametersWhitelist = params
     return this
   }
 
@@ -35,8 +52,19 @@ class CustomCacheKey {
   toJSON() {
     return {
       add_headers: this.headers,
-      remove_query_parameters: this.removeQueryParameters,
-      add_cookies: this.cookies
+      add_cookies: this.cookies,
+      // Only add whitelist OR blacklist. Enforced by _preventQueryParametersConflict()
+      ...(this.queryParametersWhitelist && { query_parameters_whitelist: this.queryParametersWhitelist }),
+      ...(this.queryParametersBlacklist && { query_parameters_blacklist: this.queryParametersBlacklist }),
+    }
+  }
+
+  /**
+   * @private
+   */
+  _preventQueryParametersConflict() {
+    if (this.queryParametersWhitelist || this.queryParametersBlacklist) {
+      throw new Error('You cannot combine multiple query params exclusion in a single custom cache key definition')
     }
   }
 }
@@ -99,7 +127,7 @@ class PartitionConfig {
  *        server: {
  *          key: createCustomCacheKey()
  *            .addHeader('user-agent')
- *            .removeQueryParameter('uid')
+ *            .excludeQueryParameters(['uid'])
  *            .addCookie('location', cookie => {
  *              cookie.partition('na').byPattern('us|ca')
  *              cookie.partition('eur').byPattern('de|fr|ee')
