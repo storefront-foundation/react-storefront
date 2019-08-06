@@ -38,10 +38,7 @@ function createClientConfig(
       chunkFilename: '[name].[hash].js',
       path: path.join(root, 'build', 'assets', 'pwa'),
       publicPath: '/pwa/',
-      devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-      // This allows requiring webpack entries from a nodejs runtime, but should
-      // not affect the browser environment.
-      libraryTarget: 'commonjs2'
+      devtoolModuleFilenameTemplate: '[absolute-resource-path]'
     }
   }
 }
