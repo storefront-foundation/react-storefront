@@ -13,8 +13,8 @@
     "watch": "concurrently 'yarn build:assets --watch' 'yarn build:sources --watch'"
   },
   "bin": {
-    "xdn-start": "scripts/start.js",
-    "xdn-build": "scripts/build.js"
+    "xdn-start": "scripts/xdn-start.js",
+    "xdn-build": "scripts/xdn-build.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",

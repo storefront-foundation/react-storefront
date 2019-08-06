@@ -1,62 +1,7 @@
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
-const { merge } = require('lodash')
 const path = require('path')
-const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 const buildTimestamp = new Date().getTime().toString()
-
-function createClientConfig(
-  root,
-  {
-    // This is where the developer will add additional entries for adapt components.
-    entries = {},
-    alias = {}
-  }
-) {
-  return {
-    name: 'client',
-    target: 'web',
-    context: path.join(root, 'src'),
-    entry: Object.assign(
-      {
-        main: ['./client.js'],
-        installServiceWorker: path.join(
-          root,
-          'node_modules',
-          'react-storefront',
-          'amp',
-          'installServiceWorker'
-        )
-      },
-      entries
-    ),
-    resolve: {
-      alias: Object.assign({}, createAliases(root), alias, {
-        fetch: 'isomorphic-unfetch'
-      })
-    },
-    output: {
-      filename: '[name].[hash].js',
-      chunkFilename: '[name].[hash].js',
-      path: path.join(root, 'build', 'assets', 'pwa'),
-      publicPath: '/pwa/',
-      devtoolModuleFilenameTemplate: '[absolute-resource-path]'
-    }
-  }
-}
-
-function createServerConfig(root, alias) {
-  return merge({
-    name: 'server',
-    context: path.join(root, 'src'),
-    resolve: {
-      alias: Object.assign({}, createAliases(root), alias, {
-        fetch: path.join(root, 'node_modules', 'react-storefront', 'fetch'),
-        'cross-fetch': path.join(root, 'node_modules', 'react-storefront', 'fetch.common')
-      })
-    }
-  })
-}
 
 function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } = {}) {
   return [
@@ -142,8 +87,7 @@ function createAliases(root) {
 }
 
 module.exports = {
-  createClientConfig,
-  createServerConfig,
+  createAliases,
   createLoaders,
   injectBuildTimestamp
 }

@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-const config = require('./getMoovwebConfig')()
+const { getConfig } = require('./config')
 const webpack = require('webpack')
 const { clear, log } = console
 const { emojify } = require('node-emoji')
 const { blue, bold, green, red } = require('chalk')
 const path = require('path')
 
-async function main() {
+module.exports = async function build(environment) {
   clear()
 
   log(
@@ -22,13 +22,15 @@ async function main() {
     )
   )
 
+  const config = getConfig(environment)
+
   // build server last because it needs the client stats
   const sorted = Object.keys(config.builds).sort((a, b) => (a === 'server' ? 1 : 0))
 
   for (let key of sorted) {
     try {
       const build = config.builds[key]
-      process.stdout.write(green(bold(emojify(`Building ${key}... `))))
+      process.stdout.write(green(bold(emojify(`Building ${key} bundle... `))))
       const compiler = webpack(require(path.resolve(build))())
       await run(compiler)
       process.stdout.write(green(bold(emojify('success! :tada:\n\n'))))
@@ -51,5 +53,3 @@ function run(compiler) {
     })
   })
 }
-
-main()

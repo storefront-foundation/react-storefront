@@ -9,25 +9,10 @@ const fs = require('fs')
 const { fork } = require('child_process')
 const tmp = path.join(process.cwd(), 'tmp')
 const builds = []
-const config = require('./getMoovwebConfig')()
+const { getConfig, writeMoovConfig } = require('./lib/config')
 const argv = require('yargs').argv
-const getAppURL = require('./getAppURL')
+const getAppURL = require('./lib/getAppURL')
 const open = require('open')
-
-if (!config) {
-  log(
-    red(
-      bold(
-        `Error: No moovweb config found for environment ${
-          process.env.NODE_ENV
-        }.  Please ensure that your package json has a "moovweb" object with a "${
-          process.env.NODE_ENV
-        }" key.`
-      )
-    )
-  )
-  process.exit(0)
-}
 
 let buildsInProgress = 0
 let initializing = true
@@ -35,6 +20,23 @@ let moovsdk
 let browserOpened = false
 
 function main() {
+  const config = getConfig()
+
+  if (!config) {
+    log(
+      red(
+        bold(
+          `Error: No moovweb config found for environment ${
+            process.env.NODE_ENV
+          }.  Please ensure that your package json has a "moovweb" object with a "${
+            process.env.NODE_ENV
+          }" key.`
+        )
+      )
+    )
+    process.exit(0)
+  }
+
   if (!fs.existsSync(tmp)) {
     fs.mkdirSync(tmp)
   }
@@ -48,6 +50,14 @@ function main() {
   for (let key in config.builds) {
     createCompiler(config.builds[key])
   }
+
+  initializing = false
+}
+
+function serve() {
+  if (moovsdk) return
+
+  writeMoovConfig()
 
   // const moovsdkPath = path.join(process.cwd(), 'node_modules', 'moovsdk')
   const moovsdkPath = path.join('/Users/markbrocato/Code/moovworker/sdk/sdk-cli')
@@ -71,18 +81,20 @@ function main() {
   })
 
   moovsdk.stdout.on('data', data => {
-    // if (!initializing && buildsInProgress === 0) {
-    process.stdout.write(data)
-    // }
+    if (buildsInProgress === 0) {
+      process.stdout.write(data)
+    }
+
+    if (data.includes('MoovJS SDK is running')) {
+      openBrowser()
+    }
   })
 
   moovsdk.stderr.on('data', data => {
-    // if (!initializing && buildsInProgress === 0) {
-    process.stderr.write(data)
-    // }
+    if (buildsInProgress === 0) {
+      process.stderr.write(data)
+    }
   })
-
-  initializing = false
 }
 
 function createCompiler(config) {
@@ -116,7 +128,7 @@ function buildEnded() {
 
   if (!builds.some(b => b.errors) && buildsInProgress === 0) {
     process.stdout.write(green(bold(emojify('Build successful! :tada:\n\n'))))
-    openBrowser()
+    serve()
   }
 }
 
