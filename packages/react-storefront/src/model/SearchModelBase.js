@@ -201,7 +201,10 @@ const SearchModelBase = types
 
       try {
         const state = await fetchSearchResults(
-          `/search/suggest.json?q=${encodeURIComponent(keyword)}`
+          `/search/suggest.json?q=${encodeURIComponent(keyword)}`,
+          {
+            credentials: 'include'
+          }
         ).then(res => res.json())
 
         // only display the results if the user hasn't changed the search text since the request was sent

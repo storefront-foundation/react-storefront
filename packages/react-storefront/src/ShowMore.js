@@ -18,6 +18,7 @@ export const styles = theme => ({
   },
   loading: {
     display: 'flex',
+    height: 45,
     justifyContent: 'center'
   }
 })

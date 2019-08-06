@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import Link from './Link'
 import PropTypes from 'prop-types'
 import { isAlive } from 'mobx-state-tree'
+import merge from 'lodash/merge'
 
 /**
  * A link to a page that automatically set AppModelBase.loading{props.Page}
@@ -21,16 +22,21 @@ export default class PageLink extends Component {
     /**
      * The page to display when clicked.
      */
-    page: PropTypes.string.isRequired
+    page: PropTypes.string.isRequired,
+
+    /**
+     * An object to apply to the state tree when the link is clicked.
+     */
+    state: PropTypes.object
   }
 
   render() {
     let { model, page, ...others } = this.props
-    return <Link to={model.url} state={this.createState} {...others} />
+    return <Link to={model.url} {...others} state={this.createState} />
   }
 
   createState = () => {
-    let { page, model } = this.props
+    let { page, model, state } = this.props
 
     if (isAlive(model)) {
       if (typeof model.createLinkState === 'function') {
@@ -39,16 +45,25 @@ export default class PageLink extends Component {
         model = model.toJSON()
       }
 
-      return {
-        page,
-        // setting loading to true here speeds up page transitions because it eliminates the reconciliation cycle that
-        // would otherwise follow when the router decides it needs to fetch data from the srver
-        loading: true,
-        [`loading${page}`]: {
-          id: model.id + '-loading',
-          ...model
-        }
+      if (typeof state === 'function') {
+        state = state()
       }
+
+      const result = merge(
+        {
+          page,
+          // setting loading to true here speeds up page transitions because it eliminates the reconciliation cycle that
+          // would otherwise follow when the router decides it needs to fetch data from the srver
+          loading: true,
+          [`loading${page}`]: {
+            id: model.id + '-loading',
+            ...model
+          }
+        },
+        state
+      )
+
+      return result
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "6.33.1",
+  "version": "6.36.4",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "module": "./index.js",
@@ -27,7 +27,7 @@
     "@material-ui/icons": "^3.0.2",
     "babel-plugin-react-storefront": "^6.0.0",
     "file-loader": "^2.0.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.11",
     "mobx": "^4.9.4",
     "mobx-react": "^5.4.3",
     "mobx-state-tree": "^3.14.0",

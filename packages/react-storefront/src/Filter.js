@@ -206,7 +206,7 @@ export default class Filter extends Component {
         }
         margins={margins}
       >
-        {formGroup}
+        {expanded[group.name] && formGroup}
       </ExpandableSection>
     )
   }

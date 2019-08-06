@@ -1,6 +1,6 @@
 # React Storefront
 
-Build and deploy e-commerce progressive web apps in record time.
+Build and deploy e-commerce progressive web apps (PWAs) in record time.
 
 [Full Guides, API Documentation, and Examples](https://pwa.moovweb.com/)
 
@@ -74,9 +74,63 @@ yarn release
 
 ## Changelog
 
-### 6.34.0
+### 6.37.0
 
 - Added the ability to split and normalize the server cache for routes using the `cache()` handler's new `server.key` property and `react-storefront/router/createCustomCacheKey`.
+
+### 6.36.4
+
+- Removes this warning about deprecated usage of `require("history/createBrowserHistory")`.
+
+### 6.36.3
+
+- `Server` now properly handle the case when rendering an error fails
+- The app shell will no longer be throttled when prefetching.
+
+### 6.36.2
+
+- `SearchResultsModelBase` nows updates `facetGroups` if defined in a search results response
+
+### 6.36.1
+
+- Fixed `Filter` issue where all group items were being rendered even when not expanded
+- Updated the `lodash` dependency to fix a vulnerability
+- Fixed missing prefech flag header on prefetch requests.
+
+### 6.36.0
+
+- Added a `hideLast` prop to to the `Breadcrumbs` component.
+- You can now disable the service worker by setting passing `serviceWorker: false` to `launchClient`.
+
+### 6.35.1
+
+- Sourcemap files are now excluded from the service worker precache manifest.
+
+### 6.35.0
+
+- Added `resetSelectionWhenImagesChange` prop to `ImageSwitcher`.
+- `PageLink` now merges the `state` prop with state automatically created from the `model` prop.
+- Added `optimize` prop on `Image` component which allows you to optimize images for mobile devices using Moovweb's CDN.
+
+### 6.34.3
+
+- Fixed prefetch throttling opt-in in production client webpack config.
+
+### 6.34.2
+
+- Fixed issues with lazy loading images in `CmsSlot`
+- Fixed sizing of loading spinner in the `ShowMore` button so that it matches the button height
+
+### 6.34.1
+
+- Fixed warning "React does not recognize the lazyLoadImages prop on a DOM element." when using `CmsSlot`.
+
+### 6.34.0
+
+- Cookies are now sent with AJAX requests to get suggestions in the search drawer.
+- Fixed an error that occurs in Link when `history` cannot be injected from app scope.
+- Added `Lazy` component for late loading components with a simple wrapper
+- `CmsSlot` now lazy loads images with `data-rsf-lazy` attribute
 
 ### 6.33.1
 

@@ -16,6 +16,7 @@ import { ReactPinchZoomPan } from 'react-pinch-zoom-pan'
 import TabsRow from './TabsRow'
 import analytics from './analytics'
 import { inject, observer } from 'mobx-react'
+import { reaction } from 'mobx'
 import AmpImageSwitcher from './amp/AmpImageSwitcher'
 import LoadMask from './LoadMask'
 import Image from './Image'
@@ -285,7 +286,13 @@ export default class ImageSwitcher extends Component {
       onPinchStop: PropTypes.func,
       initialScale: PropTypes.number,
       maxScale: PropTypes.number
-    })
+    }),
+
+    /**
+     * Set to true to always revert back to the first image when image URLs
+     * are changed.
+     */
+    resetSelectionWhenImagesChange: PropTypes.bool
   }
 
   static defaultProps = {
@@ -296,6 +303,7 @@ export default class ImageSwitcher extends Component {
     indicators: false,
     loadingThumbnailProps: {},
     imageProps: {},
+    resetSelectionWhenImagesChange: false,
     reactPinchZoomPanOptions: {
       maxScale: 3
     }
@@ -322,6 +330,18 @@ export default class ImageSwitcher extends Component {
       return { productId: product.id, selectedIndex: 0 }
     } else {
       return null
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.resetSelectionWhenImagesChange) {
+      this.disposeReaction = reaction(() => this.images, () => this.setState({ selectedIndex: 0 }))
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.disposeReaction) {
+      this.disposeReaction()
     }
   }
 

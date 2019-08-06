@@ -4,7 +4,7 @@ exports[`Breadcrumbs includes state in the link 1`] = `
 <Provider app={{...}}>
   <WithStyles(inject-Breadcrumbs-with-app)>
     <inject-Breadcrumbs-with-app classes={{...}}>
-      <Breadcrumbs classes={{...}} app={{...}}>
+      <Breadcrumbs classes={{...}} app={{...}} hideLast={false}>
         <WithStyles(Typography) className="RSFBreadcrumbs-breadcrumbs-1" variant="caption">
           <Typography className="RSFBreadcrumbs-breadcrumbs-1" variant="caption" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
             <span className="MuiTypography-root-4 MuiTypography-caption-14 RSFBreadcrumbs-breadcrumbs-1">
@@ -87,7 +87,7 @@ exports[`Breadcrumbs renders 1`] = `
 <Provider app={{...}}>
   <WithStyles(inject-Breadcrumbs-with-app)>
     <inject-Breadcrumbs-with-app classes={{...}}>
-      <Breadcrumbs classes={{...}} app={{...}}>
+      <Breadcrumbs classes={{...}} app={{...}} hideLast={false}>
         <WithStyles(Typography) className="RSFBreadcrumbs-breadcrumbs-1" variant="caption">
           <Typography className="RSFBreadcrumbs-breadcrumbs-1" variant="caption" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
             <span className="MuiTypography-root-4 MuiTypography-caption-14 RSFBreadcrumbs-breadcrumbs-1">
@@ -170,7 +170,7 @@ exports[`Breadcrumbs renders blank when an empty array of breadcrumbs is provide
 <Provider app={{...}}>
   <WithStyles(inject-Breadcrumbs-with-app)>
     <inject-Breadcrumbs-with-app classes={{...}}>
-      <Breadcrumbs classes={{...}} app={{...}}>
+      <Breadcrumbs classes={{...}} app={{...}} hideLast={false}>
         <WithStyles(Typography) className="RSFBreadcrumbs-breadcrumbs-1" variant="caption">
           <Typography className="RSFBreadcrumbs-breadcrumbs-1" variant="caption" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
             <span className="MuiTypography-root-4 MuiTypography-caption-14 RSFBreadcrumbs-breadcrumbs-1">
@@ -196,7 +196,7 @@ exports[`Breadcrumbs renders blank when no breadcrumbs are provided 1`] = `
 <Provider app={{...}}>
   <WithStyles(inject-Breadcrumbs-with-app)>
     <inject-Breadcrumbs-with-app classes={{...}}>
-      <Breadcrumbs classes={{...}} app={{...}}>
+      <Breadcrumbs classes={{...}} app={{...}} hideLast={false}>
         <WithStyles(Typography) className="RSFBreadcrumbs-breadcrumbs-1" variant="caption">
           <Typography className="RSFBreadcrumbs-breadcrumbs-1" variant="caption" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
             <span className="MuiTypography-root-4 MuiTypography-caption-14 RSFBreadcrumbs-breadcrumbs-1">

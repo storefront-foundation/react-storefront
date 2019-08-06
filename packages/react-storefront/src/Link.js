@@ -190,17 +190,15 @@ export default class Link extends Component {
     if (!e.isDefaultPrevented() && !server && canUseClientSideNavigation(url, this.props.router)) {
       e.preventDefault()
 
-      if (url === history.location.pathname + history.location.search) {
+      if (!history) {
+        // Fallback to redirect
+        window.location.href = url
+      } else if (url === history.location.pathname + history.location.search) {
         // return immediately if the url isn't changing.  Pushing the existing URL onto state will override the
         // current state and going forward then back will yield a broken page.
         return
-      }
-
-      if (this.props.history) {
-        this.props.history.push(url, state && state.toJSON ? state.toJSON() : state)
       } else {
-        // Fallback to redirect
-        window.location.href = url
+        history.push(url, state && state.toJSON ? state.toJSON() : state)
       }
     }
   }

@@ -69,7 +69,14 @@ function createServiceWorkerPlugins({
           importScripts: [`/pwa/${swBootstrapOutputFile}`],
           clientsClaim: true,
           skipWaiting: true,
-          exclude: [/stats\.json/, /\.DS_Store/, /robots\.txt/, /manifest\.json/, /icons\//]
+          exclude: [
+            /stats\.json/,
+            /\.DS_Store/,
+            /robots\.txt/,
+            /manifest\.json/,
+            /icons\//,
+            /\.js\.map/
+          ]
         },
         workboxConfig
       )
@@ -184,7 +191,7 @@ module.exports = {
       additionalPlugins = [],
       entries,
       prefetchRampUpTime = 1000 * 60 * 20 /* 20 minutes */,
-      allowPrefetchThrottling = true,
+      allowPrefetchThrottling = false,
       serveSSRFromCache = false,
       optimization,
       alias = {},

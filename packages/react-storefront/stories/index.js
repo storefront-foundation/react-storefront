@@ -26,6 +26,7 @@ import HeaderLogo from '../src/HeaderLogo'
 import Image from '../src/Image'
 import ImageSwitcher from '../src/ImageSwitcher'
 import Link from '../src/Link'
+import Lazy from '../src/Lazy'
 import LoadMask from '../src/LoadMask'
 import Menu, { MenuItemModel, MenuModel } from '../src/Menu'
 import NavTabs, { TabsModel } from '../src/NavTabs'
@@ -72,7 +73,7 @@ import SearchResultsModelBase, {
 import { BreadcrumbModel } from '../src/model/AppModelBase'
 import { Provider, observer } from 'mobx-react'
 
-import createBrowserHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import JssProvider from 'react-jss/lib/JssProvider'
 import { create } from 'jss'
 import { createGenerateClassName, jssPreset, createMuiTheme } from '@material-ui/core/styles'
@@ -326,6 +327,20 @@ storiesOf('CmsSlot', module)
       </CmsSlot>
     </div>
   ))
+  .addWithJSX('with lazy loaded images', () => (
+    <div>
+      <CmsSlot>
+        {`
+        <div style="height: 500px;"></div>
+        <img data-src="https://placehold.it/600" data-rsf-lazy>
+        <div style="height: 600px;"></div>
+        <img data-src="https://placehold.it/200" data-rsf-lazy>
+        <div style="height: 1500px;"></div>
+        <img data-src="https://placehold.it/800x200" data-rsf-lazy>  
+        `}
+      </CmsSlot>
+    </div>
+  ))
 
 storiesOf('Container', module).addWithJSX('with default props', () => (
   <div>
@@ -438,6 +453,25 @@ storiesOf('ImageSwitcher', module)
         'https://via.placeholder.com/200?text=3'
       ]}
     />
+  ))
+
+storiesOf('Lazy', module)
+  .addWithJSX('with defaults', () => (
+    <div>
+      <div style={{ height: '2000px' }}>Scroll Down</div>
+      <Lazy>
+        <div style={{ width: '100%', height: 500, background: '#abccba' }}>Hello World!</div>
+      </Lazy>
+    </div>
+  ))
+  .addWithJSX('with set height', () => (
+    <div>
+      <h1>Header</h1>
+      <Lazy style={{ height: 500 }}>
+        <img src="https://placehold.it/200x500" alt="placeholder" />
+      </Lazy>
+      <p>This text should not move</p>
+    </div>
   ))
 
 storiesOf('Link', module)
