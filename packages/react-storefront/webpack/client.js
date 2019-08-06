@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const crypto = require('crypto')
 const fs = require('fs')
+const OEMConfigWriterPlugin = require('./plugins/oem-config-writer-plugin')
 
 // We use this pattern to replace AMP modules with an empty function
 // when building the application for the client, since AMP components
@@ -111,7 +112,8 @@ module.exports = {
       allowPrefetchThrottling = false,
       serveSSRFromCache = false,
       optimization,
-      alias = {}
+      alias = {},
+      routesPath = null
     } = {}
   ) {
     const webpack = require(path.join(root, 'node_modules', 'webpack'))

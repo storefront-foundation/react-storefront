@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.37.0
+
+- Added the ability to split and normalize the server cache for routes using the `cache()` handler's new `server.key` property and `react-storefront/router/createCustomCacheKey`.
+
 ### 6.36.4
 
 - Removes this warning about deprecated usage of `require("history/createBrowserHistory")`.

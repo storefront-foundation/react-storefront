@@ -10,6 +10,7 @@ import * as serviceWorker from '../../src/router/serviceWorker'
 import { createMemoryHistory } from 'history'
 import qs from 'qs'
 import Response from '../../../react-storefront-moov-xdn/src/Response'
+import createCustomCacheKey from '../../src/router/createCustomCacheKey'
 
 describe('Router:Node', function() {
   let router, runAll, response
@@ -545,75 +546,6 @@ describe('Router:Node', function() {
     })
   })
 
-  describe('getCacheKey', () => {
-    it('should return the defaults when no key function is specified', () => {
-      router.get(
-        '/test',
-        cache({
-          server: {
-            maxAgeSeconds: 60
-          }
-        })
-      )
-
-      expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
-      ).toEqual({ foo: 'bar' })
-    })
-
-    it('should return the defaults when no server config is specified', () => {
-      router.get(
-        '/test',
-        cache({
-          client: true
-        })
-      )
-
-      expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
-      ).toEqual({ foo: 'bar' })
-    })
-
-    it('should return the defaults when no cache handler is specified', () => {
-      router.get('/test', fromClient({ a: 'b' }))
-
-      expect(
-        router.getCacheKey({ path: '/test', search: '', method: 'get' }, { foo: 'bar' })
-      ).toEqual({ foo: 'bar' })
-    })
-
-    it('should call cache.server.key for the matching route', () => {
-      router.get(
-        '/test',
-        cache({
-          server: {
-            key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
-          }
-        })
-      )
-
-      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({
-        foo: 'bar',
-        path: '/test'
-      })
-    })
-
-    it('should work on fallback routes', () => {
-      router.fallback(
-        cache({
-          server: {
-            key: (request, defaults) => ({ ...defaults, path: request.path + request.search })
-          }
-        })
-      )
-
-      expect(router.getCacheKey({ path: '/test', search: '' }, { foo: 'bar' })).toEqual({
-        foo: 'bar',
-        path: '/test'
-      })
-    })
-  })
-
   describe('watch', () => {
     it('should run route when history changes', () => {
       const history = createMemoryHistory()
@@ -827,6 +759,74 @@ describe('Router:Node', function() {
     it('should return false if the route has a cache handler with client: false', () => {
       router.get('/cart')
       expect(router.willCacheOnClient({ path: '/cart.json' })).toBe(false)
+    })
+  })
+
+  describe('createEdgeCacheConfiguration', () => {
+    let key, cacheHandler
+
+    beforeEach(() => {
+      key = createCustomCacheKey()
+        .addHeader('user-agent')
+        .addHeader('host')
+        .excludeQueryParameters(['uid', 'gclid'])
+        .addCookie('currency')
+        .addCookie('location', cookie => {
+          cookie.partition('na').byPattern('us|ca')
+          cookie.partition('eur').byPattern('de|fr|ee')
+        })
+      cacheHandler = cache({
+        server: {
+          maxAgeSeconds: 300,
+          key
+        }
+      })
+    })
+
+    it('should return generate custom cache keys for outer edge manager', () => {
+      const router = new Router().get('/', cacheHandler).get('/p/:id', cacheHandler)
+
+      const customKey = {
+        add_cookies: {
+          currency: null,
+          location: [
+            { partition: 'na', partitioning_regex: 'us|ca' },
+            { partition: 'eur', partitioning_regex: 'de|fr|ee' }
+          ]
+        },
+        add_headers: ['user-agent', 'host'],
+        query_parameters_list: ['uid', 'gclid'],
+        query_parameters_mode: 'blacklist',
+      }
+
+      expect(router.createEdgeCacheConfiguration()).toEqual({
+        custom_cache_keys: [
+          {
+            path_regex: /^\/\.json(?=\?|$)/.source,
+            ...customKey
+          },
+          {
+            path_regex: /^\/\.amp(?=\?|$)/.source,
+            ...customKey
+          },
+          {
+            path_regex: /^\/(?=\?|$)/.source,
+            ...customKey
+          },
+          {
+            path_regex: /^\/p\/([^\/\?]+)\.json(?=\?|$)/.source,
+            ...customKey
+          },
+          {
+            path_regex: /^\/p\/([^\/\?]+)\.amp(?=\?|$)/.source,
+            ...customKey
+          },
+          {
+            path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/.source,
+            ...customKey
+          }
+        ]
+      })
     })
   })
 
