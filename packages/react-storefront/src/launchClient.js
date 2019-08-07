@@ -3,8 +3,8 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import React from 'react'
-import { hydrate } from './renderers'
 import { createBrowserHistory } from 'history'
+import hydrate from './utils/hydrate'
 import registerServiceWorker, { unregister } from './registerServiceWorker'
 import PWA from './PWA'
 

@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.37.0
+
+- `Server` now cleans and minifies server side rendered CSS
+- `hydrate` now lives in utils. Used internally and for RSF components in adapt pages.
+
 ### 6.36.4
 
 - Removes this warning about deprecated usage of `require("history/createBrowserHistory")`.
