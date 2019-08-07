@@ -7,7 +7,7 @@ const fs = require('fs')
 const { fork } = require('child_process')
 const tmp = path.join(process.cwd(), 'tmp')
 const builds = []
-const { getConfig, writeMoovConfig } = require('../lib/config')
+const { getConfig } = require('../lib/config')
 const argv = require('yargs').argv
 const getAppURL = require('../lib/getAppURL')
 const open = require('open')
@@ -16,9 +16,18 @@ let buildsInProgress = 0
 let initializing = true
 let moovsdk
 let browserOpened = false
+let debug
+let port
+let serviceWorker
+let environment
 
-function handler({ environment }) {
-  const config = getConfig(environment)
+function handler(argv) {
+  debug = argv.debug
+  port = argv.port
+  serviceWorker = argv.serviceWorker
+  environment = argv.environment
+
+  const config = getConfig(environment, { write: true })
 
   if (!config) {
     log(
@@ -55,23 +64,24 @@ function handler({ environment }) {
 function serve() {
   if (moovsdk) return
 
-  writeMoovConfig()
+  const moovsdkPath = path.join(process.cwd(), 'node_modules', 'moovsdk')
+  // const moovsdkPath = path.join('/Users/markbrocato/Code/moovworker/sdk/sdk-cli')
 
-  // const moovsdkPath = path.join(process.cwd(), 'node_modules', 'moovsdk')
-  const moovsdkPath = path.join('/Users/markbrocato/Code/moovworker/sdk/sdk-cli')
-  const moovArgs = process.argv.slice(2).filter(arg => !arg.match(/--(debug|inspect)/))
+  const moovArgs = []
 
-  const nodeArgs = ['debug', 'inspect']
-    .filter(arg => argv[arg] != null)
-    .map(arg => {
-      const value = argv[arg]
+  if (port) {
+    moovArgs.push(`--port=${port}`)
+  }
 
-      if (value === true) {
-        return `--${arg}`
-      } else {
-        return `--${arg}=${value}`
-      }
-    })
+  const nodeArgs = []
+
+  if (debug) {
+    nodeArgs.push('inspect')
+  }
+
+  if (serviceWorker) {
+    process.env.MOOV_SW = 'true'
+  }
 
   moovsdk = fork(moovsdkPath, ['start', '--no-build', '--pause', ...moovArgs], {
     silent: true,

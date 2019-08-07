@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const { getConfig } = require('./config')
 const webpack = require('webpack')
 const { clear, log } = console
@@ -26,7 +24,7 @@ module.exports = async function build(environment) {
     )
   )
 
-  const config = getConfig(environment)
+  const config = getConfig(environment, { write: true })
 
   // build server last because it needs the client stats
   const sorted = Object.keys(config.builds).sort((a, b) => (a === 'client' ? 0 : 1))

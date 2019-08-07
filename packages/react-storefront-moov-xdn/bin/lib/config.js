@@ -3,10 +3,10 @@ const path = require('path')
 const merge = require('lodash/merge')
 const getEnvironment = require('./getEnvironment')
 
-function getConfig(environment = getEnvironment()) {
+function getConfig(environment = getEnvironment(), { write = false } = {}) {
   const packageJson = path.join(process.cwd(), 'package.json')
   const contents = fs.readFileSync(packageJson, 'utf8')
-  const { environments, ...config } = merge(
+  let { environments, ...config } = merge(
     {
       environments: {
         development: {
@@ -26,18 +26,19 @@ function getConfig(environment = getEnvironment()) {
     JSON.parse(contents).moovweb
   )
 
-  return merge(config, environments[environment] || {})
-}
+  config = merge(config, environments[environment] || {})
 
-function writeMoovConfig(environment = getEnvironment()) {
-  fs.writeFileSync(
-    path.join(process.cwd(), 'moov_config.json'),
-    JSON.stringify(getConfig(environment), null, '  '),
-    'utf8'
-  )
+  if (write) {
+    fs.writeFileSync(
+      path.join(process.cwd(), 'moov_config.json'),
+      JSON.stringify(config, null, '  '),
+      'utf8'
+    )
+  }
+
+  return config
 }
 
 module.exports = {
-  getConfig,
-  writeMoovConfig
+  getConfig
 }
