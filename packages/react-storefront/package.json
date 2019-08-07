@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "6.36.4",
+  "version": "6.37.0",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "module": "./index.js",
