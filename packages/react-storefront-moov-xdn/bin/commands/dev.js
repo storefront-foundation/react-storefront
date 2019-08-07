@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const webpack = require('webpack')
 const { blue, bold, green, yellow } = require('chalk')
 const path = require('path')
@@ -9,9 +7,9 @@ const fs = require('fs')
 const { fork } = require('child_process')
 const tmp = path.join(process.cwd(), 'tmp')
 const builds = []
-const { getConfig, writeMoovConfig } = require('./lib/config')
+const { getConfig, writeMoovConfig } = require('../lib/config')
 const argv = require('yargs').argv
-const getAppURL = require('./lib/getAppURL')
+const getAppURL = require('../lib/getAppURL')
 const open = require('open')
 
 let buildsInProgress = 0
@@ -19,8 +17,8 @@ let initializing = true
 let moovsdk
 let browserOpened = false
 
-function main() {
-  const config = getConfig()
+function handler({ environment }) {
+  const config = getConfig(environment)
 
   if (!config) {
     log(
@@ -177,4 +175,32 @@ function reportErrors(build, err, stats) {
   }
 }
 
-main()
+module.exports = {
+  command: 'dev',
+  desc: 'build and serve your app locally',
+  builder: yargs => {
+    return yargs
+      .option('environment', {
+        alias: 'e',
+        describe:
+          'The name of the environment to build, corresponding to a key in the "environments" under "moovweb" in package.json.',
+        default: 'development'
+      })
+      .option('debug', {
+        alias: 'd',
+        describe: 'Include this flag to listen for debugger connections',
+        default: false
+      })
+      .option('port', {
+        alias: 'p',
+        describe: 'The port on which to serve the app',
+        default: 8080
+      })
+      .option('service-worker', {
+        alias: 'sw',
+        describe: 'Set to true to build and serve the service-worker',
+        default: false
+      })
+  },
+  handler
+}

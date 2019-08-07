@@ -26,7 +26,7 @@ function getConfig(environment = getEnvironment()) {
     JSON.parse(contents).moovweb
   )
 
-  return merge(config, config.environments[environment] || {})
+  return merge(config, environments[environment] || {})
 }
 
 function writeMoovConfig(environment = getEnvironment()) {

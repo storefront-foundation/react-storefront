@@ -7,6 +7,10 @@ const { emojify } = require('node-emoji')
 const { blue, bold, green, red } = require('chalk')
 const path = require('path')
 
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'production'
+}
+
 module.exports = async function build(environment) {
   clear()
 

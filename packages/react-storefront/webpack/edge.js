@@ -2,7 +2,10 @@ const path = require('path')
 const { createAliases, createBabelLoader } = require('./common')
 const OEMConfigWriterPlugin = require('./plugins/oem-config-writer-plugin')
 
-module.exports = function prod(root, { router, alias = {}, envVariables = {} } = {}) {
+module.exports = function prod(
+  root,
+  { router = 'src/routes.js', alias = {}, envVariables = {} } = {}
+) {
   const webpack = require(path.join(root, 'node_modules', 'webpack'))
 
   return () => ({

@@ -9,12 +9,11 @@
     "test": "jest",
     "build": "mkdir -p dist; yarn build:assets; NODE_ENV=production yarn build:sources",
     "build:sources": "babel src --source-maps --out-dir dist",
-    "build:assets": "cp -f .npmrc package.json dist && sync-folders --type copy scripts dist",
+    "build:assets": "cp -f .npmrc package.json dist && sync-folders --type copy bin dist",
     "watch": "concurrently 'yarn build:assets --watch' 'yarn build:sources --watch'"
   },
   "bin": {
-    "xdn-start": "scripts/xdn-start.js",
-    "xdn-build": "scripts/xdn-build.js"
+    "xdn": "bin/index.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",
