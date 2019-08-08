@@ -10,15 +10,14 @@ if (!process.env.NODE_ENV) {
 }
 
 module.exports = async function build(environment) {
-  clear()
-
   log(
     blue(
       bold(
         emojify(
-          `:hammer_and_wrench:  Building React Storefront app for the Moovweb XDN (using ${green(
-            process.env.NODE_ENV
-          )} webpack configs)...\n`
+          `:hammer_and_wrench:  Building React Storefront app for the Moovweb XDN (` +
+            `environment: ${green(environment)}, ` +
+            `bundles: ${green(process.env.NODE_ENV)}` +
+            `)...\n`
         )
       )
     )

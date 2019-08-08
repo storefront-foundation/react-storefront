@@ -6,7 +6,7 @@ module.exports = {
       alias: 'e',
       describe:
         'The name of the environment to build, corresponding to a key in the "environments" under "moovweb" in package.json.',
-      default: 'production'
+      default: process.env.moov_env || 'production'
     })
   },
   handler: ({ environment }) => {
