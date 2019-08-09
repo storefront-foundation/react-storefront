@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.37.1
+
+- Fixed webpack production build issue
+
 ### 6.37.0
 
 - `Server` now cleans and minifies server side rendered CSS
