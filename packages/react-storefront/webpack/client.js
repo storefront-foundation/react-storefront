@@ -130,10 +130,11 @@ module.exports = {
       )
     }
 
-    if (process.env.ANALYZE === 'true') {
+    if (process.env.moov_analysis_report_path || process.env.ANALYZE === 'true') {
       additionalPlugins.push(
         new BundleAnalyzerPlugin({
-          analyzerMode: 'static'
+          analyzerMode: 'static',
+          reportFilename: process.env.MOOV_ANALYSIS_REPORT_PATH
         })
       )
     }

@@ -55,7 +55,9 @@ function handler(argv) {
   clear()
 
   log(
-    blue(bold(emojify(':hammer_and_wrench:  Building React Storefront app for the Moovweb XDN...')))
+    blue(
+      bold(emojify(':hammer_and_wrench:  Building React Storefront app for local development...'))
+    )
   )
 
   for (let key in config.bundles) {
