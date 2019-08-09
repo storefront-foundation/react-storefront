@@ -12,15 +12,19 @@ const argv = require('yargs').argv
 const getAppURL = require('../lib/getAppURL')
 const open = require('open')
 
-let buildsInProgress = 0
-let initializing = true
-let moovsdk
-let browserOpened = false
-let debug
-let port
-let serviceWorker
-let environment
+let buildsInProgress = 0,
+  initializing = true,
+  moovsdk,
+  browserOpened = false,
+  debug,
+  port,
+  serviceWorker,
+  environment
 
+/**
+ * The handler for the `xdn dev` command.
+ * @param {Object} argv
+ */
 function handler(argv) {
   debug = argv.debug
   port = argv.port
@@ -54,19 +58,20 @@ function handler(argv) {
     blue(bold(emojify(':hammer_and_wrench:  Building React Storefront app for the Moovweb XDN...')))
   )
 
-  for (let key in config.builds) {
-    createCompiler(config.builds[key])
+  for (let key in config.bundles) {
+    createCompiler(config.bundles[key])
   }
 
   initializing = false
 }
 
+/**
+ * Starts moovsdk to serve the app.
+ */
 function serve() {
   if (moovsdk) return
 
   const moovsdkPath = path.join(process.cwd(), 'node_modules', 'moovsdk')
-  // const moovsdkPath = path.join('/Users/markbrocato/Code/moovworker/sdk/sdk-cli')
-
   const moovArgs = []
 
   if (port) {
@@ -105,6 +110,10 @@ function serve() {
   })
 }
 
+/**
+ * Creates a webpack compiler for a specific config and starts watching for changes.
+ * @param {String} config The path to a webpack config
+ */
 function createCompiler(config) {
   const build = { errors: false }
   const compiler = webpack(require(path.resolve(config))())
@@ -123,12 +132,19 @@ function createCompiler(config) {
   builds.push(build)
 }
 
+/**
+ * To be called when a build starts.  Pauses requests in the moovsdk.
+ */
 function buildStarted() {
   if (buildsInProgress++ === 0 && moovsdk) {
     moovsdk.send('pause-requests')
   }
 }
 
+/**
+ * To be called when a build starts.  Resumes requests in the moovsdk if no remaining
+ * builds are in progress.
+ */
 function buildEnded() {
   if (--buildsInProgress === 0 && moovsdk) {
     moovsdk.send('resume-requests')
@@ -140,6 +156,9 @@ function buildEnded() {
   }
 }
 
+/**
+ * Opens the browser and displays the app's homepage.
+ */
 function openBrowser() {
   if (process.env.OPEN_BROWSER !== 'false' && !browserOpened) {
     browserOpened = true
@@ -152,6 +171,12 @@ function openBrowser() {
   }
 }
 
+/**
+ * Error handler for webpack builds.  Reports errors to the console.
+ * @param {*} build
+ * @param {*} err
+ * @param {*} stats
+ */
 function reportErrors(build, err, stats) {
   if (err) {
     log(red(`Error in ${key} Webpack configuration.`))

@@ -9,6 +9,13 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'production'
 }
 
+/**
+ * Builds all application bundles for the specified moovweb environment.
+ * Resolves when all builds are done.
+ *
+ * @param {String} environment The name of an environment corresponsing
+ *  to the "environments" object under "moovweb" in package.json
+ */
 module.exports = async function build(environment) {
   log(
     blue(
@@ -26,11 +33,11 @@ module.exports = async function build(environment) {
   const config = getConfig(environment, { write: true })
 
   // build server last because it needs the client stats
-  const sorted = Object.keys(config.builds).sort((a, b) => (a === 'client' ? 0 : 1))
+  const sorted = Object.keys(config.bundles).sort((a, b) => (a === 'client' ? 0 : 1))
 
   for (let key of sorted) {
     try {
-      const build = config.builds[key]
+      const build = config.bundles[key]
       process.stdout.write(green(bold(emojify(`Building ${key} bundle... `))))
       const compiler = webpack(require(path.resolve(build))())
       await run(compiler)
