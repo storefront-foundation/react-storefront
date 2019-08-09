@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.38.0
+
+- Adding analytics events `searchSubmitted` and `searchLinkClicked` to SearchDrawer
+
 ### 6.37.1
 
 - Fixed webpack production build issue
