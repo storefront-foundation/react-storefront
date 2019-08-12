@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 const decompress = require('decompress');
 const download = require('download');
 const fs = require('fs');

@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 const { calculateReactStorefrontPath } = require('./utils');
 const installDependencies = require('./install-dependencies');
 const { isTargetPathValid } = require('./input-validation');

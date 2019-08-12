@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 #!/usr/bin/env node
 const _ = require('lodash')
 const { createReactStorefront } = require('./lib/create-react-storefront')

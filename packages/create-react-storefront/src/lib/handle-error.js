@@ -1,4 +1,8 @@
 /**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
+/**
  * Prints an error stack trace, a custom message, and exits with code 1.
  * 
  * @param {Object} err The error object.

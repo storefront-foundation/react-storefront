@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 const { execSync } = require('child_process');
 const handleError = require('./handle-error');
 

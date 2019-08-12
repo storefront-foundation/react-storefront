@@ -1,3 +1,7 @@
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 const { calculateReactStorefrontPath } = require('./utils');
 const createReactStorefrontInternal = require('./create-react-storefront-internal');
 const { promptForConfig } = require('./prompt-for-config');
