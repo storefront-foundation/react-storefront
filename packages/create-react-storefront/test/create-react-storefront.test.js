@@ -1,5 +1,3 @@
-const mock = require('mock-require')
-
 let createReactStorefront = require('../src/lib/create-react-storefront')
 
 describe('_calculateStartCommand', () => {
@@ -64,62 +62,50 @@ describe('createReactStorefront', () => {
 
   describe('with incomplete configuration', () => {
     beforeEach(() => {
-      mock('../src/lib/prompt-for-config', {
+      jest.mock('../src/lib/prompt-for-config', () => ({
         promptForConfig: () => {
           throw new Error('User configuration is incomplete. Aborting.')
         }
-      })
+      }))
 
-      createReactStorefront = mock.reRequire('../src/lib/create-react-storefront')
-    })
+      jest.resetModules()
 
-    afterEach(() => {
-      mock.stopAll()
-      createReactStorefront = mock.reRequire('../src/lib/create-react-storefront')
+      createReactStorefront = require('../src/lib/create-react-storefront')
     })
 
     it('returns early', async () => {
       await createReactStorefront.createReactStorefront({ projectName: 'test' })
-      expect(stdOut[0]).to.include('incomplete')
+      expect(stdOut[0]).toContain('incomplete')
     })
   })
 
   describe('with a project name', () => {
     beforeEach(() => {
-      mock('../src/lib/prompt-for-config', {
+      jest.mock('../src/lib/prompt-for-config', () => ({
         promptForConfig: () => {
           return {}
         }
-      })
-    })
-
-    afterEach(() => {
-      mock.stopAll()
-      createReactStorefront = mock.reRequire('../src/lib/create-react-storefront')
+      }))
     })
 
     describe('when creation succeeds', () => {
       beforeEach(() => {
-        mock('../src/lib/create-react-storefront-internal', () => {
-          return true
-        })
-
-        createReactStorefront = mock.reRequire('../src/lib/create-react-storefront')
+        jest.mock('../src/lib/create-react-storefront-internal', () => () => true)
+        jest.resetModules()
+        createReactStorefront = require('../src/lib/create-react-storefront')
       })
 
       it('logs success', async () => {
         await createReactStorefront.createReactStorefront({ projectName: 'test' })
-        expect(stdOut[0]).to.include('created')
+        expect(stdOut[0]).toContain('created')
       })
     })
 
     describe('when creation fails', () => {
       beforeEach(() => {
-        mock('../src/lib/create-react-storefront-internal', () => {
-          return false
-        })
-
-        createReactStorefront = mock.reRequire('../src/lib/create-react-storefront')
+        jest.mock('../src/lib/create-react-storefront-internal', () => () => false)
+        jest.resetModules()
+        createReactStorefront = require('../src/lib/create-react-storefront')
       })
 
       it('does not log', async () => {
