@@ -13,7 +13,7 @@
     "watch": "concurrently 'yarn build:assets --watch' 'yarn build:sources --watch'"
   },
   "bin": {
-    "xdn": "bin/index.js"
+    "rsf": "bin/index.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",

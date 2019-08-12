@@ -90,7 +90,7 @@ function serve() {
     process.env.MOOV_SW = 'true'
   }
 
-  moovsdk = fork(moovsdkPath, ['start', '--no-build', '--pause', ...moovArgs], {
+  moovsdk = fork(moovsdkPath, ['start', '--no-build', ...moovArgs], {
     silent: true,
     execArgv: nodeArgs
   })

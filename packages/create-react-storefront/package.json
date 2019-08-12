@@ -1,0 +1,40 @@
+{
+  "name": "create-react-storefront",
+  "version": "6.36.4",
+  "description": "Utility to create React Storefront projects",
+  "main": "index.js",
+  "dependencies": {
+    "decompress": "^4.2.0",
+    "download": "^7.1.0",
+    "lodash": "^4.17.11",
+    "prompts": "^1.1.0",
+    "yargs": "^12.0.2"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "mock-require": "^3.0.2"
+  },
+  "scripts": {
+    "test": "jest test.js --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!test/**/*"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "moovweb",
+    "node",
+    "web",
+    "html",
+    "transformation",
+    "service",
+    "builder",
+    "assets",
+    "yarn"
+  ],
+  "author": "Moovweb",
+  "license": "UNLICENSED",
+  "preferGlobal": true,
+  "bin": {
+    "create-react-storefront": "./index.js"
+  }
+}
