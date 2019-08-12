@@ -1,4 +1,3 @@
-const mock = require('mock-require')
 const path = require('path')
 
 let { isTargetPathValid } = require('../src/lib/input-validation.js')
@@ -39,32 +38,25 @@ describe('inputValidation', () => {
   })
 
   describe('on error', () => {
-    let handleErrorCalled
+    let mockErrorHandler
 
     beforeEach(() => {
-      handleErrorCalled = false
+      mockErrorHandler = jest.fn()
 
-      mock('fs', {
+      jest.mock('fs', () => ({
         existsSync: () => {
-          throw 'fs error'
+          throw new Error('fs error')
         }
-      })
+      }))
 
-      mock('../src/lib/handle-error', () => {
-        handleErrorCalled = true
-      })
-
-      isTargetPathValid = mock.reRequire('../src/lib/input-validation.js').isTargetPathValid
-    })
-
-    afterEach(() => {
-      mock.stopAll()
-      isTargetPathValid = mock.reRequire('../src/lib/input-validation.js').isTargetPathValid
+      jest.mock('../src/lib/handle-error', () => mockErrorHandler)
+      jest.resetModules()
+      isTargetPathValid = require('../src/lib/input-validation.js').isTargetPathValid
     })
 
     it('calls handleError', () => {
       isTargetPathValid()
-      expect(handleErrorCalled).toEqual(true)
+      expect(mockErrorHandler).toHaveBeenCalled()
     })
   })
 })
