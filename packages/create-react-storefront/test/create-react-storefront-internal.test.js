@@ -1,31 +1,25 @@
-const mock = require('mock-require')
-
 let createReactStorefrontInternal = require('../src/lib/create-react-storefront-internal')
 
 describe('createReactStorefrontInternal', () => {
   beforeEach(() => {
-    mock('../src/lib/utils', {
+    jest.doMock('../src/lib/utils', () => ({
       calculateReactStorefrontPath: () => {},
       getProjectName: () => {}
-    })
-    mock('../src/lib/retrieve-template', {
+    }))
+    jest.doMock('../src/lib/retrieve-template', () => ({
       retrieveTemplate: () => {}
-    })
-    mock('../src/lib/template-processing', {
+    }))
+    jest.doMock('../src/lib/template-processing', () => ({
       processReactStorefrontConfigJsons: () => {},
       processPackageJson: () => {}
-    })
-    mock('../src/lib/install-dependencies', () => {})
-  })
-
-  afterEach(() => {
-    mock.stopAll()
-    createReactStorefrontInternal = mock.reRequire('../src/lib/create-react-storefront-internal')
+    }))
+    jest.doMock('../src/lib/install-dependencies', () => () => {})
   })
 
   describe('when a new directory is not required', () => {
     beforeEach(() => {
-      createReactStorefrontInternal = mock.reRequire('../src/lib/create-react-storefront-internal')
+      jest.resetModules()
+      createReactStorefrontInternal = require('../src/lib/create-react-storefront-internal')
     })
 
     it('returns true', async () => {
@@ -45,14 +39,13 @@ describe('createReactStorefrontInternal', () => {
   describe('when a new directory is required', () => {
     describe('when the target is valid', () => {
       beforeEach(() => {
-        mock('../src/lib/input-validation', {
+        jest.doMock('../src/lib/input-validation', () => ({
           isTargetPathValid: () => {
             return true
           }
-        })
-        createReactStorefrontInternal = mock.reRequire(
-          '../src/lib/create-react-storefront-internal'
-        )
+        }))
+        jest.resetModules()
+        createReactStorefrontInternal = require('../src/lib/create-react-storefront-internal')
       })
 
       describe('with configureUpstream', () => {
@@ -61,16 +54,14 @@ describe('createReactStorefrontInternal', () => {
         beforeEach(() => {
           callCount = 0
 
-          mock('../src/lib/template-processing', {
+          jest.doMock('../src/lib/template-processing', () => ({
             processReactStorefrontConfigJsons: () => {
               callCount++
             },
             processPackageJson: () => {}
-          })
-
-          createReactStorefrontInternal = mock.reRequire(
-            '../src/lib/create-react-storefront-internal'
-          )
+          }))
+          jest.resetModules()
+          createReactStorefrontInternal = require('../src/lib/create-react-storefront-internal')
         })
 
         it('returns true', async () => {
@@ -92,16 +83,14 @@ describe('createReactStorefrontInternal', () => {
 
       describe('without configureUpstream', () => {
         beforeEach(() => {
-          mock('../src/lib/template-processing', {
+          jest.doMock('../src/lib/template-processing', () => ({
             processReactStorefrontConfigJsons: () => {
               throw 'should never happen'
             },
             processPackageJson: () => {}
-          })
-
-          createReactStorefrontInternal = mock.reRequire(
-            '../src/lib/create-react-storefront-internal'
-          )
+          }))
+          jest.resetModules()
+          createReactStorefrontInternal = require('../src/lib/create-react-storefront-internal')
         })
 
         it('returns true', async () => {
@@ -121,14 +110,13 @@ describe('createReactStorefrontInternal', () => {
 
     describe('when the target is invalid', () => {
       beforeEach(() => {
-        mock('../src/lib/input-validation', {
+        jest.doMock('../src/lib/input-validation', () => ({
           isTargetPathValid: () => {
             return false
           }
-        })
-        createReactStorefrontInternal = mock.reRequire(
-          '../src/lib/create-react-storefront-internal'
-        )
+        }))
+        jest.resetModules()
+        createReactStorefrontInternal = require('../src/lib/create-react-storefront-internal')
       })
 
       it('returns false', async () => {
