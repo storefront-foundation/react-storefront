@@ -7,13 +7,13 @@ let templateProcessing = require('../src/lib/template-processing')
 describe('JSON processing', () => {
   const testJsonPath = path.resolve(__dirname, 'test-artifacts', 'tmp-jsons')
 
-  before(() => {
+  beforeAll(() => {
     const defaultJsonPath = path.resolve(__dirname, 'test-artifacts', 'default-jsons')
     execSync(`mkdir ${testJsonPath}`)
     execSync(`cp ${defaultJsonPath}/* ${testJsonPath} `)
   })
 
-  after(() => {
+  afterAll(() => {
     execSync(`rm -rf ${testJsonPath}`)
   })
 
@@ -25,7 +25,7 @@ describe('JSON processing', () => {
       devUpstream: 'dev-origin.example.com'
     }
 
-    before(() => {
+    beforeAll(() => {
       templateProcessing.processReactStorefrontConfigJsons(testJsonPath, values)
     })
 
@@ -64,7 +64,7 @@ describe('JSON processing', () => {
       private: true
     }
 
-    before(() => {
+    beforeAll(() => {
       templateProcessing.processPackageJson('test', testJsonPath, values)
     })
 
@@ -87,57 +87,33 @@ describe('JSON processing', () => {
 })
 
 describe('_readConfigJson', () => {
-  let handleErrorCalled
+  let mockHandleError
 
   beforeEach(() => {
-    handleErrorCalled = false
-
-    mock('../src/lib/handle-error', () => {
-      handleErrorCalled = true
-    })
-
-    templateProcessing = mock.reRequire('../src/lib/template-processing')
-  })
-
-  afterEach(() => {
-    mock.stopAll()
-    templateProcessing = mock.reRequire('../src/lib/template-processing')
+    mockHandleError = jest.fn()
+    jest.mock('../src/lib/handle-error', () => mockHandleError)
+    jest.resetModules()
+    templateProcessing = require('../src/lib/template-processing')
   })
 
   it('calls handleError on error', () => {
-    try {
-      templateProcessing._readConfigJson(__dirname)
-      expect(true).toEqual(false)
-    } catch (err) {
-      expect(handleErrorCalled).toEqual(true)
-    }
+    templateProcessing._readConfigJson(__dirname)
+    expect(mockHandleError).toHaveBeenCalled()
   })
 })
 
 describe('_writeConfigJson', () => {
-  let handleErrorCalled
+  let mockHandleError
 
   beforeEach(() => {
-    handleErrorCalled = false
-
-    mock('../src/lib/handle-error', () => {
-      handleErrorCalled = true
-    })
-
-    templateProcessing = mock.reRequire('../src/lib/template-processing')
-  })
-
-  afterEach(() => {
-    mock.stopAll()
-    templateProcessing = mock.reRequire('../src/lib/template-processing')
+    mockHandleError = jest.fn()
+    jest.mock('../src/lib/handle-error', () => mockHandleError)
+    jest.resetModules()
+    templateProcessing = require('../src/lib/template-processing')
   })
 
   it('calls handleError on error', () => {
-    try {
-      templateProcessing._writeConfigJson(__dirname, 'not valid json')
-      expect(true).toEqual(false)
-    } catch (err) {
-      expect(handleErrorCalled).toEqual(true)
-    }
+    templateProcessing._writeConfigJson(__dirname, 'not valid json')
+    expect(mockHandleError).toHaveBeenCalled()
   })
 })

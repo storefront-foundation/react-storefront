@@ -96,22 +96,15 @@ describe('promptForConfig', () => {
 
   describe('with incomplete input in the default section', () => {
     beforeEach(() => {
-      mock('prompts', () => {
-        return {}
-      })
-
-      promptForConfig = mock.reRequire('../src/lib/prompt-for-config')
-    })
-
-    afterEach(() => {
-      mock.stopAll()
-      promptForConfig = mock.reRequire('../src/lib/prompt-for-config')
+      jest.mock('prompts', () => () => ({}))
+      jest.resetModules()
+      promptForConfig = require('../src/lib/prompt-for-config')
     })
 
     it('throws an error', async () => {
       try {
         await promptForConfig.promptForConfig()
-        expect(true).toEqual(false)
+        expect(true).toBe(false)
       } catch (err) {
         expect(err.message).toContain('incomplete')
       }

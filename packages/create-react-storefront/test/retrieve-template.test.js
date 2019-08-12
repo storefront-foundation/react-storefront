@@ -5,111 +5,65 @@ const path = require('path')
 
 let retrieveTemplate = require('../src/lib/retrieve-template')
 
-// Timeout is extended for this block to prevent network hiccups from causing
-// failures.
-describe('retrieveTemplate', () => {
-  before(async () => {
-    await retrieveTemplate.retrieveTemplate(path.resolve(__dirname, 'tmp'))
-  })
-
-  after(() => {
-    const tmpPath = path.resolve(__dirname, 'tmp')
-    execSync(`rm -rf ${tmpPath}`)
-  })
-
-  it('deletes the downloaded file', () => {
-    expect(fs.existsSync(path.resolve(__dirname, 'moov_pwa_template.zip'))).toEqual(false)
-  })
-
-  it('unzips without an extra folder in the path', () => {
-    expect(fs.existsSync(path.resolve(__dirname, 'tmp', 'package.json'))).toEqual(true)
-  })
-}).timeout(10000)
-
-describe('_deleteTemplate', () => {
-  let handleErrorCalled
+describe('retrieve-template', () => {
+  let mockHandleError
 
   beforeEach(() => {
-    handleErrorCalled = false
+    mockHandleError = jest.fn()
+    jest.mock('../src/lib/handle-error', () => mockHandleError)
+    jest.resetModules()
+    retrieveTemplate = require('../src/lib/retrieve-template')
+  })
 
-    mock('../src/lib/handle-error', () => {
-      handleErrorCalled = true
+  describe('retrieveTemplate', () => {
+    beforeEach(() => {
+      jest.setTimeout(1000000)
     })
 
-    retrieveTemplate = mock.reRequire('../src/lib/retrieve-template')
+    afterEach(() => {
+      const tmpPath = path.resolve(__dirname, 'tmp')
+      execSync(`rm -rf ${tmpPath}`)
+    })
+
+    it('deletes the downloaded file', async () => {
+      await retrieveTemplate.retrieveTemplate(path.resolve(__dirname, 'tmp'))
+      expect(fs.existsSync(path.resolve(__dirname, 'moov_pwa_template.zip'))).toEqual(false)
+    })
+
+    it('unzips without an extra folder in the path', async () => {
+      await retrieveTemplate.retrieveTemplate(path.resolve(__dirname, 'tmp'))
+      expect(fs.existsSync(path.resolve(__dirname, 'tmp', 'package.json'))).toEqual(true)
+    })
   })
 
-  afterEach(() => {
-    mock.stopAll()
-    retrieveTemplate = mock.reRequire('../src/lib/retrieve-template')
-  })
-
-  it('calls handleError on error', () => {
-    try {
+  describe('_deleteTemplate', () => {
+    it('calls handleError on error', () => {
       retrieveTemplate._deleteTemplate()
-      expect(true).toEqual(false)
-    } catch (err) {
-      expect(handleErrorCalled).toEqual(true)
-    }
+      expect(mockHandleError).toHaveBeenCalled()
+    })
   })
-})
 
-describe('_downloadTemplate', () => {
-  let handleErrorCalled
-
-  beforeEach(() => {
-    handleErrorCalled = false
-
-    mock('../src/lib/handle-error', () => {
-      handleErrorCalled = true
+  describe('_downloadTemplate', () => {
+    beforeEach(() => {
+      jest.mock('download', () => () => Promise.reject(new Error('mock download error')))
+      jest.resetModules()
+      retrieveTemplate = require('../src/lib/retrieve-template')
     })
 
-    mock('download', () => {
-      throw 'error'
+    afterEach(() => {
+      jest.unmock('download')
     })
 
-    retrieveTemplate = mock.reRequire('../src/lib/retrieve-template')
-  })
-
-  afterEach(() => {
-    mock.stopAll()
-    retrieveTemplate = mock.reRequire('../src/lib/retrieve-template')
-  })
-
-  it('calls handleError on error', () => {
-    try {
-      retrieveTemplate._downloadTemplate()
-      expect(true).toEqual(false)
-    } catch (err) {
-      expect(handleErrorCalled).toEqual(true)
-    }
-  })
-})
-
-describe('_unzipTemplate', () => {
-  let handleErrorCalled
-
-  beforeEach(() => {
-    handleErrorCalled = false
-
-    mock('../src/lib/handle-error', () => {
-      handleErrorCalled = true
+    it('calls handleError on error', async () => {
+      await retrieveTemplate._downloadTemplate()
+      expect(mockHandleError).toHaveBeenCalled()
     })
-
-    retrieveTemplate = mock.reRequire('../src/lib/retrieve-template')
   })
 
-  afterEach(() => {
-    mock.stopAll()
-    retrieveTemplate = mock.reRequire('../src/lib/retrieve-template')
-  })
-
-  it('calls handleError on error', async () => {
-    try {
+  describe('_unzipTemplate', () => {
+    it('calls handleError on error', async () => {
       await retrieveTemplate._unzipTemplate(undefined)
-      expect(true).toEqual(false)
-    } catch (err) {
-      expect(handleErrorCalled).toEqual(true)
-    }
+      expect(mockHandleError).toHaveBeenCalled()
+    })
   })
 })

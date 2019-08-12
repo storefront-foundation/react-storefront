@@ -11,7 +11,10 @@
 const handleError = (err, msg) => {
   console.log(err.stack)
   console.log(msg)
-  process.exit(1)
+
+  if (process.env.NODE_ENV != 'test') {
+    process.exit(1)
+  }
 }
 
 module.exports = handleError

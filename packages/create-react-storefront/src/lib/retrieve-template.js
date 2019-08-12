@@ -23,6 +23,7 @@ const _deleteTemplate = () => {
 
 const _downloadTemplate = async () => {
   const templateUrl = 'https://github.com/moovweb/react-storefront-boilerplate/zipball/master'
+
   try {
     await download(templateUrl, process.cwd(), {
       filename: downloadedTemplateName
