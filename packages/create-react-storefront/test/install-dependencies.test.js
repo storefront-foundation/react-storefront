@@ -1,29 +1,16 @@
-const mock = require('mock-require')
-
 let installDependencies = require('../src/lib/install-dependencies')
 
 describe('installDependencies', () => {
-  afterEach(() => {
-    mock.stopAll()
-    installDependencies = mock.reRequire('../src/lib/install-dependencies')
-  })
-
   describe('when install succeeds', () => {
     let originalConsoleLog, stdOut
 
     beforeEach(() => {
       stdOut = []
-
       originalConsoleLog = console.log
-      console.log = msg => {
-        stdOut.push(msg)
-      }
-
-      mock('child_process', {
-        execSync: () => {}
-      })
-
-      installDependencies = mock.reRequire('../src/lib/install-dependencies')
+      console.log = msg => stdOut.push(msg)
+      jest.mock('child_process', () => ({ execSync: jest.fn() }))
+      jest.resetModules()
+      installDependencies = require('../src/lib/install-dependencies')
     })
 
     afterEach(() => {
@@ -32,37 +19,30 @@ describe('installDependencies', () => {
 
     it('logs success', () => {
       installDependencies('path')
-      expect(stdOut[1]).to.include('installed')
+      expect(stdOut[1]).toContain('installed')
     })
   })
 
   describe('when install fails', () => {
-    let handleErrorCalled
+    let mockErrorHandler
 
     beforeEach(() => {
-      handleErrorCalled = false
+      mockErrorHandler = jest.fn()
+      jest.mock('../src/lib/handle-error', () => mockErrorHandler)
 
-      mock('../src/lib/handle-error', () => {
-        handleErrorCalled = true
-      })
-
-      mock('child_process', {
+      jest.mock('child_process', () => ({
         execSync: () => {
-          throw 'error'
+          throw new Error('test')
         }
-      })
+      }))
 
-      installDependencies = mock.reRequire('../src/lib/install-dependencies')
-    })
-
-    afterEach(() => {
-      mock.stopAll()
-      installDependencies = mock.reRequire('../src/lib/install-dependencies')
+      jest.resetModules()
+      installDependencies = require('../src/lib/install-dependencies')
     })
 
     it('calls handleError', () => {
       installDependencies('path')
-      expect(handleErrorCalled).toEqual(true)
+      expect(mockErrorHandler).toHaveBeenCalled()
     })
   })
 })
