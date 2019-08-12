@@ -187,7 +187,7 @@ export default class Server {
             ${helmet.script.toString()}
           </head>
           <body ${helmet.bodyAttributes.toString()}>
-            ${renderStyle({ registry: sheetsRegistry, id: 'ssr-css' })}
+            ${await renderStyle({ registry: sheetsRegistry, id: 'ssr-css' })}
             <noscript>
               You need to enable JavaScript to run this app.
             </noscript>

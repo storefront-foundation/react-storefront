@@ -21,6 +21,8 @@ import Container from './Container'
 import classnames from 'classnames'
 import Drawer from '@material-ui/core/Drawer'
 import { Hbox } from './Box'
+import analytics from './analytics'
+import Track from './Track'
 
 /**
  * A modal search UI that displays a single text search field and grouped results.  The
@@ -339,9 +341,11 @@ export default class SearchDrawer extends Component {
       >
         {group.results.map((result, i) => (
           <li key={i}>
-            <Link to={result.url} onClick={this.hide}>
-              {group.thumbnails ? this.renderThumbnail(result) : this.renderLinkText(result)}
-            </Link>
+            <Track event="searchLinkClicked" term={this.props.search.text}>
+              <Link to={result.url} onClick={this.hide}>
+                {group.thumbnails ? this.renderThumbnail(result) : this.renderLinkText(result)}
+              </Link>
+            </Track>
           </li>
         ))}
       </ul>
@@ -402,6 +406,7 @@ export default class SearchDrawer extends Component {
    */
   onSearchSubmit = () => {
     const queryText = this.props.search.text
+    analytics.fire('searchSubmitted', { term: queryText })
     const url = this.props.createSubmitURL(queryText)
     this.props.history.push(url)
     this.hide()

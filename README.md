@@ -74,9 +74,22 @@ yarn release
 
 ## Changelog
 
-### 6.37.0
+### 6.39.0
 
 - Added the ability to split and normalize the server cache for routes using the `cache()` handler's new `server.key` property and `react-storefront/router/createCustomCacheKey`.
+
+### 6.38.0
+
+- Adding analytics events `searchSubmitted` and `searchLinkClicked` to SearchDrawer
+
+### 6.37.1
+
+- Fixed webpack production build issue
+
+### 6.37.0
+
+- `Server` now cleans and minifies server side rendered CSS
+- `hydrate` now lives in utils. Used internally and for RSF components in adapt pages.
 
 ### 6.36.4
 

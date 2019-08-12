@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "6.36.4",
+  "version": "6.38.0",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "module": "./index.js",
@@ -79,10 +79,12 @@
   },
   "dependencies": {
     "alias-regex-webpack-plugin": "^0.1.2",
+    "autoprefixer": "^9.6.1",
     "babel-eslint": "^9.0.0",
     "babel-minify-webpack-plugin": "^0.3.1",
     "cheerio": "^0.22.0",
     "classnames": "^2.2.6",
+    "clean-css": "^4.2.1",
     "clean-webpack-plugin": "^3.0.0",
     "cookie": "^0.3.1",
     "copy-webpack-plugin": "^5.0.4",
@@ -104,6 +106,7 @@
     "md5-file": "^4.0.0",
     "mst-middlewares": "^3.10.0",
     "pako": "^1.0.8",
+    "postcss": "^7.0.17",
     "proxy-polyfill": "^0.3.0",
     "qs": "^6.5.2",
     "react-dev-utils": "^5.0.1",

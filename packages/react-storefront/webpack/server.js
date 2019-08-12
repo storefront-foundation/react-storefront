@@ -72,6 +72,10 @@ function createConfig({ root, alias, statsModule, eslintConfig, rules, ...others
       filename: path.join('..', 'scripts', 'moov_main.js'),
       globalObject: 'global' // this is needed for the `window is not defined` JSONP related error
     },
+    node: {
+      // Fixes the `Cannot find module 'fs'` error when using clean-css in Server.js
+      fs: 'empty'
+    },
     target: 'web',
     module: {
       rules: createLoaders(root, {
