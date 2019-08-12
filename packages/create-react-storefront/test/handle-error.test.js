@@ -1,25 +1,22 @@
-const handleError = require('../src/lib/handle-error')
+let handleError
 
 describe('handleError', () => {
   let originalConsoleLog, originalProcessExit, stdOut
 
   beforeEach(() => {
     stdOut = []
-
     originalConsoleLog = console.log
-    console.log = msg => {
-      stdOut.push(msg)
-    }
-
+    console.log = msg => stdOut.push(msg)
     originalProcessExit = process.exit
-    process.exit = code => {
-      console.log(code)
-    }
+    process.exit = jest.fn()
+    process.env.NODE_ENV = 'production'
+    handleError = require('../src/lib/handle-error')
   })
 
   afterEach(() => {
     console.log = originalConsoleLog
     process.exit = originalProcessExit
+    process.env.NODE_ENV = 'test'
   })
 
   it('logs the error stack', () => {
@@ -52,6 +49,6 @@ describe('handleError', () => {
       'message'
     )
 
-    expect(stdOut[2]).toEqual(1)
+    expect(process.exit).toHaveBeenCalledWith(1)
   })
 })
