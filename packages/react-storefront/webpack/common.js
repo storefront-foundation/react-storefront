@@ -1,7 +1,5 @@
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
-const { merge } = require('lodash')
 const path = require('path')
-const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 const buildTimestamp = new Date().getTime().toString()
 
@@ -46,7 +44,7 @@ function createClientConfig(
 }
 
 function createServerConfig(root, alias) {
-  return merge({
+  return {
     name: 'server',
     context: path.join(root, 'src'),
     resolve: {
@@ -55,7 +53,7 @@ function createServerConfig(root, alias) {
         'cross-fetch': path.join(root, 'node_modules', 'react-storefront', 'fetch.common')
       })
     }
-  })
+  }
 }
 
 function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } = {}) {
@@ -111,10 +109,7 @@ function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } =
         }
       ]
     },
-    {
-      test: /\.svg$/,
-      use: [{ loader: 'babel-loader', options: { envName } }, { loader: 'react-svg-loader' }]
-    },
+    createBabelLoader(envName),
     {
       test: /\.(md|html)$/,
       use: 'raw-loader'
@@ -141,9 +136,18 @@ function createAliases(root) {
   }
 }
 
+function createBabelLoader(envName) {
+  return {
+    test: /\.svg$/,
+    use: [{ loader: 'babel-loader', options: { envName } }, { loader: 'react-svg-loader' }]
+  }
+}
+
 module.exports = {
   createClientConfig,
   createServerConfig,
   createLoaders,
+  createBabelLoader,
+  createAliases,
   injectBuildTimestamp
 }

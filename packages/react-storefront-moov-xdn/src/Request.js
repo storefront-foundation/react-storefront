@@ -5,24 +5,26 @@
 import qs from 'qs'
 import parseMultipartRequest from './parseMultipartRequest'
 import Headers from './Headers'
-import getHeaders from "./getHeaders"
+import getHeaders from './getHeaders'
+import cookie from 'cookie'
 
 /**
  * Creates a request object for route handlers from the moovjs environment.
  * @return {Object}
  */
 export default class Request {
-  
   constructor() {
     const [path, search] = env.path.split(/\?/)
+    const headers = new Headers(env.headers ? JSON.parse(env.headers) : getHeaders())
 
     Object.assign(this, {
-      sendResponse: global.sendResponse, 
-      headers: new Headers(env.headers ? JSON.parse(env.headers) : getHeaders()), 
-      path, 
+      sendResponse: global.sendResponse,
+      headers,
+      cookies: cookie.parse(headers.get('cookie') || ''),
+      path,
       search: search ? `?${search}` : '',
       query: qs.parse(search),
-      method: env.method, 
+      method: env.method,
       port: env.host.split(/:/)[1] || (env.secure ? '443' : '80'),
       hostname: env.host_no_port,
       protocol: env.host_no_port === 'localhost' ? 'http:' : env.secure ? 'https:' : 'http:'
@@ -32,10 +34,11 @@ export default class Request {
   }
 
   get pathname() {
-    console.warn('warning: request.pathname is deprecated and will be removed in a future version of react-storefront-moov-xdn')
+    console.warn(
+      'warning: request.pathname is deprecated and will be removed in a future version of react-storefront-moov-xdn'
+    )
     return this.path
   }
-
 }
 
 /**
@@ -46,13 +49,13 @@ export default class Request {
  * @return {Object}
  */
 function parseBody(request) {
-  const contentType = (request.headers.get('content-type') || '')
+  const contentType = request.headers.get('content-type') || ''
 
   // MIME types should be matched as case insesitive, but we need to pass the original
   // content-type value when parsing multi-part form data so that the boundary is
   // correctly matched.
-  const contentTypeLowerCase = contentType.toLowerCase() 
-  
+  const contentTypeLowerCase = contentType.toLowerCase()
+
   const body = global.requestBody
 
   if (body == null) {
