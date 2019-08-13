@@ -76,6 +76,7 @@ yarn release
 
 ### 6.40.0
 
+- `fetch()` now relays the `user-agent` header from the browser if one is not explicitly provided.
 - The `server` option in `cache()` route handlers has been renamed `edge`. Usage of `server` is still supported, but will result in a deprecation warning.
 
 ### 6.39.0
