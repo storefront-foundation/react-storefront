@@ -28,7 +28,7 @@ describe('cache', () => {
     })
   })
 
-  describe('on the server', () => {
+  describe('on the edge', () => {
     let Response
 
     beforeEach(() => {
@@ -44,8 +44,15 @@ describe('cache', () => {
       const cache = require('../../src/router').cache
       const response = new Response()
 
-      cache({ server: { maxAgeSeconds: 1000 } }).fn({}, {}, response)
+      cache({ edge: { maxAgeSeconds: 1000 } }).fn({}, {}, response)
 
+      expect(response.cache).toEqual({ browserMaxAge: 0, serverMaxAge: 1000 })
+    })
+
+    it('should support "server" in lieu of "edge" for backwards compatibility', () => {
+      const cache = require('../../src/router').cache
+      const response = new Response()
+      cache({ edge: { maxAgeSeconds: 1000 } }).fn({}, {}, response)
       expect(response.cache).toEqual({ browserMaxAge: 0, serverMaxAge: 1000 })
     })
 
@@ -58,7 +65,7 @@ describe('cache', () => {
       try {
         const cache = require('../../src/router').cache
 
-        cache({ server: { maxAgeSeconds: 1000 } }).fn({}, { method: 'POST' }, response)
+        cache({ edge: { maxAgeSeconds: 1000 } }).fn({}, { method: 'POST' }, response)
       } catch (e) {
         error = e
       } finally {
@@ -73,7 +80,7 @@ describe('cache', () => {
     it('should send x-moov-surrogate-key', () => {
       const response = new Response()
       const cache = require('../../src/router').cache
-      cache({ server: { surrogateKey: () => 'test' } }).fn({}, { method: 'POST' }, response)
+      cache({ edge: { surrogateKey: () => 'test' } }).fn({}, { method: 'POST' }, response)
       expect(response.get('x-moov-surrogate-key')).toBe('test')
     })
   })
@@ -84,7 +91,7 @@ describe('cache', () => {
       process.env.MOOV_ENV = 'development'
       const request = { method: 'post' }
       const cache = require('../../src/router').cache
-      expect(() => cache({ server: {}, client: true }).fn({}, request)).toThrowError(
+      expect(() => cache({ edge: {}, client: true }).fn({}, request)).toThrowError(
         /Only GET requests/
       )
     })

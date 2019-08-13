@@ -64,7 +64,7 @@ class CustomCacheKey {
       add_headers: this.headers,
       add_cookies: this.cookies,
       query_parameters_mode: this.queryParametersMode,
-      query_parameters_list: this.queryParameterslist,
+      query_parameters_list: this.queryParameterslist
     }
   }
 
@@ -73,7 +73,9 @@ class CustomCacheKey {
    */
   _preventQueryParametersConflict() {
     if (this.queryParametersChanged) {
-      throw new Error('You cannot combine multiple query params exclusion in a single custom cache key definition')
+      throw new Error(
+        'You cannot combine multiple query params exclusion in a single custom cache key definition'
+      )
     }
     this.queryParametersChanged = true
   }
@@ -143,7 +145,7 @@ class PartitionConfig {
  *  new Router()
  *    .get('/s/:id',
  *      cache({
- *        server: {
+ *        edge: {
  *          key: createCustomCacheKey()
  *            .addHeader('user-agent')
  *            .excludeQueryParameters(['uid'])

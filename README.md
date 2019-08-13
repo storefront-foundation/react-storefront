@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.40.0
+
+- The `server` option in `cache()` route handlers has been renamed `edge`. Usage of `server` is still supported, but will result in a deprecation warning.
+
 ### 6.39.0
 
 - Added the ability to split and normalize the server cache for routes using the `cache()` handler's new `server.key` property and `react-storefront/router/createCustomCacheKey`.

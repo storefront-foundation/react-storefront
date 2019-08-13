@@ -442,7 +442,7 @@ describe('Router:Node', function() {
         fromClient({ view: 'Foo' }),
         fromServer(() => ({ foo: 'bar' })),
         cache({
-          server: {
+          edge: {
             maxAgeSeconds: 300
           }
         })
@@ -667,7 +667,7 @@ describe('Router:Node', function() {
       router.get(
         '/new',
         cache({
-          server: { maxAgeSeconds: 300 }
+          edge: { maxAgeSeconds: 300 }
         }),
         fromServer(() => {
           return Promise.resolve('NEW PRODUCTS')
@@ -683,7 +683,7 @@ describe('Router:Node', function() {
       router.get(
         '/new',
         cache({
-          server: { maxAgeSeconds: 300 }
+          edge: { maxAgeSeconds: 300 }
         }),
         fromServer((params, request, response) => {
           response.set('set-cookie', 'foo=bar')
@@ -776,7 +776,7 @@ describe('Router:Node', function() {
           cookie.partition('eur').byPattern('de|fr|ee')
         })
       cacheHandler = cache({
-        server: {
+        edge: {
           maxAgeSeconds: 300,
           key
         }
