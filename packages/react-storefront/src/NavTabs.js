@@ -136,11 +136,13 @@ export default class NavTabs extends Component {
   }
 
   renderTab = (item, i) => {
+    const { selected } = this.props.tabs
     return (
       <NavTab
         {...item}
         key={i}
         item={item}
+        selected={selected === i}
         onMouseEnter={this.showMenu}
         onMouseLeave={this.onTabLeave}
         onItemClick={this.onItemClick}

@@ -8,6 +8,7 @@ import Link from './Link'
 import Tab from '@material-ui/core/Tab'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { observer } from 'mobx-react'
+import classnames from 'classnames'
 import { lazyState } from './utils/state'
 
 export const styles = theme => ({
@@ -38,20 +39,21 @@ export const styles = theme => ({
   },
   menuItem: {
     padding: `1em ${theme.margins.container}px`
-  }
+  },
+  selected: {}
 })
 
 @withStyles(styles, { name: 'RSFNavTab' })
 @observer
 export default class NavTab extends Component {
   render() {
-    const { classes, state, url, prefetch, text, item } = this.props
+    const { classes, state, url, prefetch, text, item, selected } = this.props
 
     return (
       <Track event="topNavClicked" item={item}>
         <Link
           state={lazyState(state)}
-          className={classes.link}
+          className={classnames(classes.link, { [classes.selected]: selected })}
           to={url}
           prefetch={prefetch}
           onClick={this.props.onClick}

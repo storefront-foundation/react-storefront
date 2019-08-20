@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.41.0
+
+- Added the ability to override the style of selected a NavTab via a new `selected` class.
+
 ### 6.40.0
 
 - `fetch()` now relays the `user-agent` header from the browser if one is not explicitly provided.
