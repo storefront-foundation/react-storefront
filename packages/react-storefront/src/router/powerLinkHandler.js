@@ -15,17 +15,24 @@ export default function powerLinkHandler(_params, request, response) {
   response.send(`
     var links = Array.from(document.querySelectorAll('a[data-rsf-power-link]')).map(function(link) {
       var powerlink = link.getAttribute('href');
-      powerlink += (powerlink.indexOf('?') === -1 ? '?' : '&') + 'powerlink'
-      link.setAttribute('href', powerlink);
+
+      if (!powerlink.match(/[?&]powerlink/)) {
+        powerlink += (powerlink.indexOf('?') === -1 ? '?' : '&') + 'powerlink'
+        link.setAttribute('href', powerlink);
+      }
+
       return link.getAttribute('href')
     });
 
-    var el = document.createElement('iframe');
+    if (!document.querySelector('iframe[data-rsf-power-link])) {
+      var el = document.createElement('iframe');
 
-    el.setAttribute('src', '${src}/pwa/install-service-worker.html?preload=' + encodeURIComponent(JSON.stringify(links)));
-    el.setAttribute('style', 'height:1px;width:1px;');
-    el.setAttribute('frameborder', '0');
-    
-    document.body.appendChild(el);
+      el.setAttribute('data-rsf-power-link', 'on')
+      el.setAttribute('src', '${src}/pwa/install-service-worker.html?preload=' + encodeURIComponent(JSON.stringify(links)));
+      el.setAttribute('style', 'height:1px;width:1px;');
+      el.setAttribute('frameborder', '0');
+      
+      document.body.appendChild(el);
+    }
   `)
 }
