@@ -52,12 +52,14 @@ exports.findVisibleElements = async (driver, selector) => {
   return response
 }
 
-exports.waitForElement = (driver, selector) => {
+const waitForElement = (driver, selector) => {
   return driver.wait(() => isDisplayedAndEnabled(driver, selector), 5000)
 }
 
+exports.waitForElement = waitForElement
+
 exports.clickElement = async (driver, selector) => {
-  await this.waitForElement(driver, selector)
+  await waitForElement(driver, selector)
 
   const elements = await driver.findElements(By.css(selector))
 
