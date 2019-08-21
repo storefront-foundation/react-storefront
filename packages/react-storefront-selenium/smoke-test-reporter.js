@@ -1,5 +1,3 @@
-const fetch = require('node-fetch')
-
 class SmokeTestReporter {
   constructor(globalConfig, options) {
     this._globalConfig = globalConfig
@@ -8,8 +6,6 @@ class SmokeTestReporter {
 
   async onTestResult(test, testResult, aggregatedResult) {
     const failedTests = {}
-
-    console.log('got here!!!!!!!!!!!!!')
 
     testResult.testResults
       .filter(el => el.status === 'failed')

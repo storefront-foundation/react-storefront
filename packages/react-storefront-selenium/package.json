@@ -12,6 +12,6 @@
   "peerDependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "jest --coverage --collectCoverageFrom=lib/**/*.js --collectCoverageFrom=!**/test/*.js"
+    "test": "jest --coverage --collectCoverageFrom=smoke-test-reporter.js"
   }
 }
