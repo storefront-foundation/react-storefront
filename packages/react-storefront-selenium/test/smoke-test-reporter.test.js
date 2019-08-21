@@ -9,7 +9,7 @@ describe('SmokeTestReporter', () => {
     jest.mock('node-fetch')
 
     fetch = require('node-fetch')
-    SmokeTestReporter = require('../lib/SmokeTestReporter')
+    SmokeTestReporter = require('../SmokeTestReporter')
   })
 
   describe('onTestResult', () => {
