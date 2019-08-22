@@ -35,10 +35,8 @@ class SmokeTestReporter {
       }
     })
 
-    const failedTestNames = Object.keys(failedTests)
-    const isSuccess = 0 === failedTestNames.length
     let result = {}
-    if (isSuccess) {
+    if (runResults.success) {
       result.status = statusSuccess
     } else {
       result.status = statusFailure
