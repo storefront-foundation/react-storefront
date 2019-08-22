@@ -26,7 +26,6 @@ jobs:
           command: |
             yarn install
 
-      #
       - run:
           name: Deploy docs to production
           command: |
