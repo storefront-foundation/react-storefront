@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "jest --coverage --collectCoverageFrom=smoke-test-reporter.js test/*",
-    "ci:smoke": "jest default-smoke.test.js --reporters=./smoke-test-reporter.js"
+    "ci:smoke": "jest ./default-smoke.test.js --reporters=./smoke-test-reporter.js"
   },
   "devDependencies": {
     "chromedriver": "^76.0.0",
