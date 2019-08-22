@@ -17,13 +17,15 @@ const {
   waitForElement
 } = require('./index')
 
-const hostToTest = process.env.RSF_HOST
+const startURL = process.env.RSF_URL
+const sleepBetweenPages = process.env.RSF_SLEEP_BETWEEN_PAGES || 1000
+const headless = process.env.RSF_HEADLESS || 'true'
 
-if (!hostToTest) {
+if (!startURL) {
   console.error(
-    'You must set the RSF_HOST environment variable to the hostname of the app you want to test.'
+    'You must set the RSF_URL environment variable to the URL of the app you want to test.'
   )
-  console.error('Example: export RSF_HOST="myapp.moovweb.cloud"')
+  console.error('Example: export RSF_URL="https://myapp.moovweb.cloud"')
   process.exit(1)
 }
 
@@ -32,16 +34,19 @@ describe('smoke tests', () => {
   let driver
 
   beforeAll(() => {
-    driver = createDefaultDriver()
+    driver = createDefaultDriver({ headless })
   })
 
   afterAll(async () => {
     await driver.quit()
   })
 
+  beforeEach(async () => {
+    await driver.sleep(sleepBetweenPages)
+  })
+
   it('Navigate to landing page', async function() {
-    const protocol = hostToTest.startsWith('localhost') ? 'http' : 'https'
-    await driver.get(`${protocol}://${hostToTest}`)
+    await driver.get(startURL)
   })
 
   it('Navigate to category', async function() {

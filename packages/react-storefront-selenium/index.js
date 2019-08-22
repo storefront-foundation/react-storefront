@@ -1,19 +1,6 @@
 const { Builder, By } = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 
-const chromeOptions = new chrome.Options()
-chromeOptions.addArguments('disable-infobars')
-chromeOptions.addArguments('disable-extensions')
-chromeOptions.addArguments('no-sandbox')
-chromeOptions.addArguments('disable-dev-shm-usage')
-chromeOptions.addArguments('disable-gpu')
-chromeOptions.addArguments('headless')
-chromeOptions.setUserPreferences({ credential_enable_service: false })
-chromeOptions.windowSize({
-  width: 414,
-  height: 736
-})
-
 const defaultWaitForElementTimeout = 10000
 
 const isDisplayedAndEnabled = async (driver, selector) => {
@@ -31,7 +18,25 @@ const isDisplayedAndEnabled = async (driver, selector) => {
   return false
 }
 
-const createDefaultDriver = () => {
+const createDefaultDriver = ({ headless = 'true' } = {}) => {
+  const chromeOptions = new chrome.Options()
+
+  chromeOptions.addArguments('disable-infobars')
+  chromeOptions.addArguments('disable-extensions')
+  chromeOptions.addArguments('no-sandbox')
+  chromeOptions.addArguments('disable-dev-shm-usage')
+  chromeOptions.addArguments('disable-gpu')
+  chromeOptions.setUserPreferences({ credential_enable_service: false })
+
+  if (headless === 'true') {
+    chromeOptions.addArguments('headless')
+  }
+
+  chromeOptions.windowSize({
+    width: 414,
+    height: 736
+  })
+
   return new Builder()
     .setChromeOptions(chromeOptions)
     .forBrowser('chrome')
