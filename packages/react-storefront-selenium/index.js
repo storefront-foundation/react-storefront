@@ -2,7 +2,6 @@ const { Builder, By } = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 
 const chromeOptions = new chrome.Options()
-
 chromeOptions.addArguments('disable-infobars')
 chromeOptions.addArguments('disable-extensions')
 chromeOptions.addArguments('no-sandbox')
@@ -14,6 +13,8 @@ chromeOptions.windowSize({
   width: 414,
   height: 736
 })
+
+const defaultWaitForElementTimeout = 10000
 
 const isDisplayedAndEnabled = async (driver, selector) => {
   const elements = await driver.findElements(By.css(selector))
@@ -30,14 +31,14 @@ const isDisplayedAndEnabled = async (driver, selector) => {
   return false
 }
 
-exports.createDefaultDriver = () => {
+const createDefaultDriver = () => {
   return new Builder()
     .setChromeOptions(chromeOptions)
     .forBrowser('chrome')
     .build()
 }
 
-exports.findVisibleElements = async (driver, selector) => {
+const findVisibleElements = async (driver, selector) => {
   const elements = await driver.findElements(By.css(selector))
   const response = []
 
@@ -52,14 +53,12 @@ exports.findVisibleElements = async (driver, selector) => {
   return response
 }
 
-const waitForElement = (driver, selector) => {
-  return driver.wait(() => isDisplayedAndEnabled(driver, selector), 5000)
+const waitForElement = (driver, selector, timeout = defaultWaitForElementTimeout) => {
+  return driver.wait(() => isDisplayedAndEnabled(driver, selector), timeout)
 }
 
-exports.waitForElement = waitForElement
-
-exports.clickElement = async (driver, selector) => {
-  await waitForElement(driver, selector)
+const clickElement = async (driver, selector, timeout = defaultWaitForElementTimeout) => {
+  await waitForElement(driver, selector, timeout)
 
   const elements = await driver.findElements(By.css(selector))
 
@@ -70,4 +69,11 @@ exports.clickElement = async (driver, selector) => {
       return element.click()
     }
   }
+}
+
+module.exports = {
+  createDefaultDriver,
+  waitForElement,
+  findVisibleElements,
+  clickElement
 }
