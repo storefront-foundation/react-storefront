@@ -1,6 +1,6 @@
 {
   "name": "react-storefront-selenium",
-  "version": "6.35.0",
+  "version": "6.42.0-alpha.0",
   "description": "Helpers for writing selenium tests for React Storefront",
   "author": "Moovweb",
   "license": "Apache-2.0",
@@ -9,8 +9,6 @@
     "node-fetch": "^2.6.0",
     "selenium-webdriver": "^3.6.0"
   },
-  "peerDependencies": {},
-  "devDependencies": {},
   "scripts": {
     "test": "jest --coverage --collectCoverageFrom=smoke-test-reporter.js"
   }
