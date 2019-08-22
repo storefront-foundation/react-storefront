@@ -14,7 +14,7 @@ class SmokeTestReporter {
 
   async onRunComplete(test, runResults) {
     const result = this.getResults(runResults)
-    await fs.writeFile(outputFile, JSON.stringify(result))
+    await this.writeToFile(outputFile, JSON.stringify(result))
   }
 
   getResults(runResults) {
@@ -23,17 +23,20 @@ class SmokeTestReporter {
     // Go over all failed test cases and grab their descriptions
     const testSuiteResults = runResults.testResults
     const testCaseResults = [].concat.apply([], testSuiteResults.map(test => test.testResults))
-    testCaseResults
-      .filter(el => el.status === 'failed')
-      .forEach(testCase => {
-        if (testCase.ancestorTitles[0] in failedTests) {
-          failedTests[testCase.ancestorTitles[0]].push(testCase.title)
-        } else {
-          failedTests[testCase.ancestorTitles[0]] = [testCase.title]
-        }
-      })
+    testCaseResults.forEach(testCase => {
+      if (testCase.status !== 'failed') {
+        return
+      }
 
-    const isSuccess = 0 === failedTests.length
+      if (testCase.ancestorTitles[0] in failedTests) {
+        failedTests[testCase.ancestorTitles[0]].push(testCase.title)
+      } else {
+        failedTests[testCase.ancestorTitles[0]] = [testCase.title]
+      }
+    })
+
+    const failedTestNames = Object.keys(failedTests)
+    const isSuccess = 0 === failedTestNames.length
     let result = {}
     if (isSuccess) {
       result.status = statusSuccess
@@ -45,6 +48,10 @@ class SmokeTestReporter {
     }
 
     return result
+  }
+
+  async writeToFile(filename, data) {
+    await fs.writeFile(filename, data)
   }
 }
 
