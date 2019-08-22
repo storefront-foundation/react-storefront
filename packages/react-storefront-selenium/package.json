@@ -14,6 +14,7 @@
     "ci:smoke": "jest default-smoke.test.js --reporters=./smoke-test-reporter.js"
   },
   "devDependencies": {
-    "chromedriver": "^76.0.0"
+    "chromedriver": "^76.0.0",
+    "jest": "^24.9.0"
   }
 }
