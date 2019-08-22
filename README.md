@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.42.0
+
+- Adds a new `react-storefront-selenium` package to help developers write selenium tests for React Storefront apps and schedule smoke testing with Moovweb Control Center.
+
 ### 6.41.0
 
 - Adds the ability to clear the client cache using `clearClientCache()` from `react-storefront/cache`
