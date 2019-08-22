@@ -72,6 +72,8 @@ export default class AmpMenu extends Component {
 
     const root = menu.levels[0]
 
+    if (!root) return null
+
     const bodies = [
       <MenuBody
         rootHeader={rootHeader}

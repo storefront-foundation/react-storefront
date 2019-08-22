@@ -69,7 +69,14 @@ function createServiceWorkerPlugins({
           importScripts: [`/pwa/${swBootstrapOutputFile}`],
           clientsClaim: true,
           skipWaiting: true,
-          exclude: [/stats\.json/, /\.DS_Store/, /robots\.txt/, /manifest\.json/, /icons\//]
+          exclude: [
+            /stats\.json/,
+            /\.DS_Store/,
+            /robots\.txt/,
+            /manifest\.json/,
+            /icons\//,
+            /\.js\.map/
+          ]
         },
         workboxConfig
       )

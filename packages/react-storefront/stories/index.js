@@ -73,7 +73,7 @@ import SearchResultsModelBase, {
 import { BreadcrumbModel } from '../src/model/AppModelBase'
 import { Provider, observer } from 'mobx-react'
 
-import createBrowserHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import JssProvider from 'react-jss/lib/JssProvider'
 import { create } from 'jss'
 import { createGenerateClassName, jssPreset, createMuiTheme } from '@material-ui/core/styles'

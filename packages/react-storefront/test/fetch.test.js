@@ -404,4 +404,45 @@ describe('redirect', () => {
       expect(result).toEqual(JSON.stringify({ redirect: 'https://www.example.com/redirect0' }))
     })
   })
+
+  describe('user-agent', () => {
+    let request
+
+    beforeEach(() => {
+      global.https = require('https')
+      request = jest.spyOn(global.https, 'request')
+      global.env.rsf_request = {
+        headers: {
+          get(name) {
+            if (name.toLowerCase() === 'user-agent') {
+              return 'test-user-agent'
+            }
+          }
+        }
+      }
+      nock('https://www.foo.com')
+        .get('/')
+        .reply(200, '<!doctype html>', { 'content-type': 'html/text' })
+    })
+
+    afterEach(() => {
+      delete global.https
+      delete global.env.rsf_request
+      jest.clearAllMocks()
+    })
+
+    it('should automatically be set to the user-agent passed in from the browser', async () => {
+      await fetch('https://www.foo.com')
+      expect(request.mock.calls[0][0].headers['user-agent']).toEqual('test-user-agent')
+    })
+
+    it('should retain the user-agent if explicitly set', async () => {
+      await fetch('https://www.foo.com', {
+        headers: {
+          'user-agent': 'original'
+        }
+      })
+      expect(request.mock.calls[0][0].headers['user-agent']).toEqual('original')
+    })
+  })
 })

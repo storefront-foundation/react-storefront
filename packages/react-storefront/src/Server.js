@@ -187,7 +187,7 @@ export default class Server {
             ${helmet.script.toString()}
           </head>
           <body ${helmet.bodyAttributes.toString()}>
-            ${renderStyle({ registry: sheetsRegistry, id: 'ssr-css' })}
+            ${await renderStyle({ registry: sheetsRegistry, id: 'ssr-css' })}
             <noscript>
               You need to enable JavaScript to run this app.
             </noscript>
@@ -232,7 +232,7 @@ export default class Server {
    * @param {Request} request
    * @param {Response} response
    */
-  renderError(e, request, response, history) {
+  async renderError(e, request, response, history) {
     response.status(500, 'error')
 
     const state = {
@@ -245,11 +245,19 @@ export default class Server {
       response.send(state)
     }
 
-    this.renderPWA({
-      request,
-      response,
-      state,
-      history
-    })
+    try {
+      await this.renderPWA({
+        request,
+        response,
+        state,
+        history
+      })
+    } catch (err) {
+      response.send(
+        process.env.MOOV_ENV === 'production'
+          ? 'An unknown error occurred while attempting to process your request.'
+          : err.stack
+      )
+    }
   }
 }

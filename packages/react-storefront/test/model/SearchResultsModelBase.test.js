@@ -21,7 +21,7 @@ describe('SearchResultsModelBase', () => {
 
     it('removes a filter', () => {
       const results = SearchResultsModelBase.create({
-        filters: ['red', 'green'],
+        filters: ['red', 'green']
       })
       const facet = FacetModelBase.create({ name: 'Red', code: 'red' })
       results.toggleFilter(facet)
@@ -51,7 +51,7 @@ describe('SearchResultsModelBase', () => {
         id: '1',
         loadingMore: true,
         page: 0,
-        items: [{ id: '1' }],
+        items: [{ id: '1' }]
       })
 
       results.addItems([{ id: '2' }, { id: '3' }])
@@ -65,7 +65,7 @@ describe('SearchResultsModelBase', () => {
         id: '1',
         loadingMore: true,
         page: 1,
-        items: [{ id: '1' }],
+        items: [{ id: '1' }]
       })
 
       results.addItems([{ id: '2' }, { id: '3' }])
@@ -79,21 +79,21 @@ describe('SearchResultsModelBase', () => {
     it('should fetch more records from the server and add them to existing records', async () => {
       global.fetch.mockResponse(
         JSON.stringify({
-          items: [{ id: '2' }, { id: '3' }],
-        }),
+          items: [{ id: '2' }, { id: '3' }]
+        })
       )
 
       const results = SubcategoryModelBase.create({
         id: '1',
         loadingMore: true,
-        items: [{ id: '1' }],
+        items: [{ id: '1' }]
       })
 
       global.window = {
         location: {
           pathname: '/s/1',
-          search: '?filters[0]=red',
-        },
+          search: '?filters[0]=red'
+        }
       }
 
       await results.showMore()
@@ -108,7 +108,7 @@ describe('SearchResultsModelBase', () => {
       const model = SubcategoryModelBase.create({
         id: '1',
         items: [{ id: '1' }, { id: '2' }],
-        total: 10,
+        total: 10
       })
 
       expect(model.hasMoreItems).toBe(true)
@@ -117,7 +117,7 @@ describe('SearchResultsModelBase', () => {
       const model = SubcategoryModelBase.create({
         id: '1',
         page: 1,
-        numberOfPages: 3,
+        numberOfPages: 3
       })
 
       expect(model.hasMoreItems).toBe(true)
@@ -126,7 +126,7 @@ describe('SearchResultsModelBase', () => {
       const model = SubcategoryModelBase.create({
         id: '1',
         items: [{ id: '1' }, { id: '2' }],
-        total: 2,
+        total: 2
       })
 
       expect(model.hasMoreItems).toBe(false)
@@ -135,7 +135,7 @@ describe('SearchResultsModelBase', () => {
       const model = SubcategoryModelBase.create({
         id: '1',
         page: 1,
-        numberOfPages: 2,
+        numberOfPages: 2
       })
 
       expect(model.hasMoreItems).toBe(false)
@@ -143,10 +143,28 @@ describe('SearchResultsModelBase', () => {
 
     it('should return false when neither total nor numberOfPages are specified', () => {
       const model = SubcategoryModelBase.create({
-        id: '1',
+        id: '1'
       })
 
       expect(model.hasMoreItems).toBe(false)
+    })
+  })
+
+  describe('showPage', () => {
+    it('should replace facet groups if defined', async () => {
+      global.fetch.mockResponse(
+        JSON.stringify({
+          items: [{ id: '2' }, { id: '3' }],
+          facetGroups: [{ name: 'foo' }]
+        })
+      )
+
+      const results = SearchResultsModelBase.create()
+
+      await results.showPage(1)
+
+      expect(results.items.map(i => i.id)).toEqual(['2', '3'])
+      expect(results.facetGroups.map(i => i.name)).toEqual(['foo'])
     })
   })
 })

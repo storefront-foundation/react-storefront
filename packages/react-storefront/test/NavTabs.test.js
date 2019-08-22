@@ -91,7 +91,7 @@ describe('NavTabs', () => {
     return waitForAnalytics(() =>
       expect(topNavClicked).toHaveBeenCalledWith({
         item: {
-          classes: { root: 'RSFTabsRow-tab-198 RSFNavTabs-tab-167' },
+          classes: { root: 'RSFTabsRow-tab-200 RSFNavTabs-tab-169' },
           className: null,
           expanded: false,
           image: null,

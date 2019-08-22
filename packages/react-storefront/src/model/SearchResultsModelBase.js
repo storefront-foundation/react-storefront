@@ -288,6 +288,9 @@ export default types
         if (isAlive(self)) {
           self.addItems(results.items)
           self.setTotal(results.total)
+          if (results.facetGroups) {
+            self.setFacetGroups(results.facetGroups)
+          }
         }
       } finally {
         if (isAlive(self)) {
@@ -345,6 +348,15 @@ export default types
      */
     setTotal(total) {
       self.total = total
+    },
+    /**
+     * Sets the facet groups
+     * @param {Array} facetGroups
+     * @memberof SearchResultsModelBase
+     * @instance
+     */
+    setFacetGroups(facetGroups) {
+      self.facetGroups = facetGroups
     },
     /**
      * Toggles the layout

@@ -1,6 +1,6 @@
 # React Storefront
 
-Build and deploy e-commerce progressive web apps in record time.
+Build and deploy e-commerce progressive web apps (PWAs) in record time.
 
 [Full Guides, API Documentation, and Examples](https://pwa.moovweb.com/)
 
@@ -73,6 +73,61 @@ yarn release
 ```
 
 ## Changelog
+
+### 6.41.0
+
+- Adds the ability to clear the client cache using `clearClientCache()` from `react-storefront/cache`
+- Added the ability to override the style of selected a NavTab via a new `selected` class.
+
+### 6.40.0
+
+- `fetch()` now relays the `user-agent` header from the browser if one is not explicitly provided.
+- The `server` option in `cache()` route handlers has been renamed `edge`. Usage of `server` is still supported, but will result in a deprecation warning.
+
+### 6.39.0
+
+- Added the ability to split and normalize the server cache for routes using the `cache()` handler's new `server.key` property and `react-storefront/router/createCustomCacheKey`.
+
+### 6.38.0
+
+- Adding analytics events `searchSubmitted` and `searchLinkClicked` to SearchDrawer
+
+### 6.37.1
+
+- Fixed webpack production build issue
+
+### 6.37.0
+
+- `Server` now cleans and minifies server side rendered CSS
+- `hydrate` now lives in utils. Used internally and for RSF components in adapt pages.
+
+### 6.36.4
+
+- Removes this warning about deprecated usage of `require("history/createBrowserHistory")`.
+
+### 6.36.3
+
+- `Server` now properly handle the case when rendering an error fails
+- The app shell will no longer be throttled when prefetching.
+
+### 6.36.2
+
+- `SearchResultsModelBase` nows updates `facetGroups` if defined in a search results response
+
+### 6.36.1
+
+- Fixed `Filter` issue where all group items were being rendered even when not expanded
+- Updated the `lodash` dependency to fix a vulnerability
+- Fixed missing prefech flag header on prefetch requests.
+
+### 6.36.0
+
+- Added a `hideLast` prop to to the `Breadcrumbs` component.
+- You can now disable the service worker by setting passing `serviceWorker: false` to `launchClient`.
+
+### 6.35.1
+
+- Sourcemap files are now excluded from the service worker precache manifest.
 
 ### 6.35.0
 

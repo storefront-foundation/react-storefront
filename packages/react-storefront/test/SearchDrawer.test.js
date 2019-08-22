@@ -8,6 +8,8 @@ import { mount } from 'enzyme'
 import Provider from './TestProvider'
 import AppModelBase from '../src/model/AppModelBase'
 import { createMemoryHistory } from 'history'
+import waitForAnalytics from './helpers/waitForAnalytics'
+import AnalyticsProvider from '../src/AnalyticsProvider'
 
 describe('SearchDrawer', () => {
   let TestContext, app, history
@@ -244,6 +246,104 @@ describe('SearchDrawer', () => {
         </TestContext>
       )
       expect(wrapper.find('div#initialContent')).toHaveLength(0)
+    })
+  })
+
+  describe('analytics events', () => {
+    fetch.mockResponse(
+      JSON.stringify({
+        search: {
+          groups: []
+        }
+      })
+    )
+
+    beforeEach(() => {
+      app = AppModelBase.create({
+        search: {
+          show: true,
+          text: 'query',
+          groups: [
+            {
+              caption: 'Results',
+              results: [
+                {
+                  text: 'Result 1',
+                  url: '/results/1'
+                },
+                {
+                  text: 'Result 2',
+                  url: '/results/2'
+                }
+              ]
+            }
+          ]
+        }
+      })
+    })
+
+    it('should fire search link clicked', () => {
+      const searchLinkClicked = jest.fn()
+
+      const wrapper = mount(
+        <Provider app={app} history={history}>
+          <AnalyticsProvider targets={() => [{ searchLinkClicked }]}>
+            <SearchDrawer />
+          </AnalyticsProvider>
+        </Provider>
+      )
+
+      wrapper
+        .find('Track')
+        .at(0)
+        .simulate('click')
+
+      return waitForAnalytics(() => {
+        expect(history.push).toHaveBeenCalledWith('/results/1', undefined)
+        expect(searchLinkClicked).toHaveBeenCalledWith({ term: 'query' })
+      })
+    })
+
+    it('should fire submitted on search icon click', () => {
+      const searchSubmitted = jest.fn()
+
+      const wrapper = mount(
+        <Provider app={app} history={history}>
+          <AnalyticsProvider targets={() => [{ searchSubmitted }]}>
+            <SearchDrawer />
+          </AnalyticsProvider>
+        </Provider>
+      )
+
+      wrapper
+        .find('SearchIcon')
+        .at(0)
+        .simulate('click')
+
+      return waitForAnalytics(() => {
+        expect(searchSubmitted).toHaveBeenCalledWith({ term: 'query' })
+      })
+    })
+
+    it('should fire submitted on form submit', () => {
+      const searchSubmitted = jest.fn()
+
+      const wrapper = mount(
+        <Provider app={app} history={history}>
+          <AnalyticsProvider targets={() => [{ searchSubmitted }]}>
+            <SearchDrawer />
+          </AnalyticsProvider>
+        </Provider>
+      )
+
+      wrapper
+        .find('form')
+        .at(0)
+        .simulate('submit')
+
+      return waitForAnalytics(() => {
+        expect(searchSubmitted).toHaveBeenCalledWith({ term: 'query' })
+      })
     })
   })
 })

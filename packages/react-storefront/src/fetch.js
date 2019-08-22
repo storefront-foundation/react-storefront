@@ -21,6 +21,16 @@ function isFormUrlEncoded(contentType) {
 function createRequestOptions(url, fetchOptions, qsOptions) {
   let { body, headers = {}, method, ...options } = fetchOptions
 
+  // Apply user-agent header from the browser if one isn't explicitly set
+  // This helps prevent synthetic APIs from getting blocked.
+  if (
+    !Object.keys(headers).find(name => name.toLowerCase() === 'user-agent') &&
+    global.env.rsf_request &&
+    global.env.rsf_request.headers
+  ) {
+    headers['user-agent'] = global.env.rsf_request.headers.get('user-agent')
+  }
+
   if (body) {
     method = method || 'POST'
 

@@ -8,6 +8,7 @@
 export { default as ClientContext } from './ClientContext.js';
 export { default as Router } from './Router.js';
 export { default as cache } from './cache.js';
+export { default as createCustomCacheKey } from './createCustomCacheKey.js';
 export { default as fromClient } from './fromClient.js';
 export { default as fromServer } from './fromServer.js';
 export { default as headers } from './headers.js';

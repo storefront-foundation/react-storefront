@@ -42,6 +42,10 @@ module.exports = {
         output: merge(output, {
           devtoolModuleFilenameTemplate: '[absolute-resource-path]'
         }),
+        node: {
+          // Fixes the `Cannot find module 'fs'` error when using clean-css in Server.js
+          fs: 'empty'
+        },
         target,
         resolve,
         module: {
@@ -95,6 +99,10 @@ module.exports = {
       merge(createServerConfig(root, alias), {
         entry,
         output,
+        node: {
+          // Fixes the `Cannot find module 'fs'` error when using clean-css in Server.js
+          fs: 'empty'
+        },
         target,
         resolve,
         mode: 'production',
