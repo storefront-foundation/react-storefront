@@ -76,6 +76,7 @@ yarn release
 
 ### 6.41.0
 
+- Adds the ability to clear the client cache using `clearClientCache()` from `react-storefront/cache`
 - Added the ability to override the style of selected a NavTab via a new `selected` class.
 
 ### 6.40.0

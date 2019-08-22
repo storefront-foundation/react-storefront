@@ -94,6 +94,17 @@ export async function configureCache(options) {
 }
 
 /**
+ * Clears all API and SSR responses from the client cache
+ */
+export async function clearCache() {
+  if (await waitForServiceWorkerController()) {
+    navigator.serviceWorker.controller.postMessage({
+      action: 'clear-cache'
+    })
+  }
+}
+
+/**
  * Resolves when the service worker has been installed
  * @private
  */
