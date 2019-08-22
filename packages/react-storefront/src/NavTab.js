@@ -60,7 +60,7 @@ export default class NavTab extends Component {
           anchorProps={{
             onMouseEnter: this.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,
-            'data-th': 'topNavClicked'
+            'data-th': 'nav'
           }}
         >
           <Tab

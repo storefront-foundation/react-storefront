@@ -84,7 +84,7 @@ describe('NavTabs', () => {
         </AnalyticsProvider>
       </Provider>
     )
-      .find('[data-th="topNavClicked"]')
+      .find('[data-th="nav"]')
       .at(0)
       .simulate('click')
 

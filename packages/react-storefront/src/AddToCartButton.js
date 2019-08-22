@@ -109,6 +109,7 @@ export default class AddToCartButton extends Component {
             variant="contained"
             color="secondary"
             size="large"
+            data-th="add-to-cart"
             {...other}
             on={`tap:${ampFormId}.submit`}
             onClick={this.onClick}
@@ -124,20 +125,22 @@ export default class AddToCartButton extends Component {
           autoHideDuration={3000}
           onClose={this.handleClose}
           message={<div className={classes.confirmation}>{confirmation}</div>}
-          action={[
-            <Link to={cartURL} className={classes.cartLink}>
-              {cartLinkText}
-            </Link>,
-            <IconButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
-            >
-              <CloseIcon />
-            </IconButton>
-          ]}
+          action={
+            <>
+              <Link to={cartURL} className={classes.cartLink}>
+                {cartLinkText}
+              </Link>
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleClose}
+              >
+                <CloseIcon />
+              </IconButton>
+            </>
+          }
           {...snackbarProps}
         />
       </Fragment>

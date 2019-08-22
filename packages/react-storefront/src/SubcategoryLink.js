@@ -21,6 +21,13 @@ export default class SubcategoryLink extends Component {
 
   render() {
     const { subcategory, ...others } = this.props
-    return <PageLink page="Subcategory" model={subcategory} {...others} />
+    return (
+      <PageLink
+        page="Subcategory"
+        model={subcategory}
+        anchorProps={{ 'data-th': 'subcategory-link' }}
+        {...others}
+      />
+    )
   }
 }

@@ -63,7 +63,7 @@ export default class CartButton extends Component {
 
     return (
       <Track event="cartClicked">
-        <Link to={path} server={server} onClick={onClick}>
+        <Link to={path} server={server} onClick={onClick} anchorProps={{ 'data-th': 'cart-link' }}>
           <ToolbarButton aria-label="Cart" color="inherit" icon={cartIcon} {...buttonProps}>
             {cart && cart.quantity > 0 && (
               <div className={classes.cartQuantity}>{cart.quantity}</div>
