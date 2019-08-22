@@ -53,11 +53,11 @@ describe('smoke tests', () => {
     await clickElement(driver, '[data-th="nav"]')
   })
 
-  it('navigate to subcategory', async function() {
+  it('Navigate to subcategory', async function() {
     await clickElement(driver, '[data-th="subcategory-link"]')
   })
 
-  it('navigate to product', async function() {
+  it('Navigate to product', async function() {
     await clickElement(driver, '[data-th="product-link"]')
   })
 
@@ -75,7 +75,7 @@ describe('smoke tests', () => {
     expect(products).toHaveLength(1)
   })
 
-  it('navigate to checkout', async function() {
+  it('Navigate to checkout', async function() {
     await clickElement(driver, '[data-th="checkout-link"]')
   })
 })
