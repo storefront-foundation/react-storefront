@@ -1226,7 +1226,7 @@ exports[`Menu should render in complex mode by default 1`] = `
                                           <div className="MuiPaper-root-156 MuiPaper-elevation16-174 MuiDrawer-paper-141 RSFMenu-drawer-115 MuiDrawer-paperAnchorLeft-142" style={{...}} direction="right" role="document" tabIndex="-1">
                                             <inject-Body-with-app drawerWidth={330} simple={false} theme={{...}} expandFirstItem={false} trackSelected={false}>
                                               <Body drawerWidth={330} simple={false} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}}>
-                                                <div className="RSFMenu-hbox-126" style={{...}}>
+                                                <div className="RSFMenu-bodyWrap-126" style={{...}}>
                                                   <WithStyles(List) style={{...}} classes={{...}}>
                                                     <List style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-183 RSFMenu-list-116 MuiList-padding-184" style={{...}}>
@@ -1397,7 +1397,7 @@ exports[`Menu should render in complex mode by default 2`] = `
                                           <div className="MuiPaper-root-266 MuiPaper-elevation16-284 MuiDrawer-paper-251 RSFMenu-drawer-225 MuiDrawer-paperAnchorLeft-252" style={{...}} direction="right" role="document" tabIndex="-1">
                                             <inject-Body-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false}>
                                               <Body drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}}>
-                                                <div className="RSFMenu-hbox-236" style={{...}}>
+                                                <div className="RSFMenu-bodyWrap-236" style={{...}}>
                                                   <WithStyles(List) style={{...}} classes={{...}}>
                                                     <List style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-293 RSFMenu-list-226 MuiList-padding-294" style={{...}}>
@@ -1885,7 +1885,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                           <div className="MuiPaper-root-631 MuiPaper-elevation16-649 MuiDrawer-paper-616 RSFMenu-drawer-590 MuiDrawer-paperAnchorLeft-617" style={{...}} direction="right" role="document" tabIndex="-1">
                                             <inject-Body-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false}>
                                               <Body drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}}>
-                                                <div className="RSFMenu-hbox-601" style={{...}}>
+                                                <div className="RSFMenu-bodyWrap-601" style={{...}}>
                                                   <WithStyles(List) style={{...}} classes={{...}}>
                                                     <List style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-658 RSFMenu-list-591 MuiList-padding-659" style={{...}}>
@@ -2181,7 +2181,7 @@ exports[`Menu should use custom icons 1`] = `
                                           <div className="MuiPaper-root-376 MuiPaper-elevation16-394 MuiDrawer-paper-361 RSFMenu-drawer-335 MuiDrawer-paperAnchorLeft-362" style={{...}} direction="right" role="document" tabIndex="-1">
                                             <inject-Body-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} expandFirstItem={false} trackSelected={false}>
                                               <Body drawerWidth={330} simple={false} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} expandFirstItem={false} trackSelected={false} app={{...}}>
-                                                <div className="RSFMenu-hbox-346" style={{...}}>
+                                                <div className="RSFMenu-bodyWrap-346" style={{...}}>
                                                   <WithStyles(List) style={{...}} classes={{...}}>
                                                     <List style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-403 RSFMenu-list-336 MuiList-padding-404" style={{...}}>
