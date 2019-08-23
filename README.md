@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.42.0
+
+- Fixes an issue where the `Menu` would not reset the user taps on an item to drill down.
+
 ### 6.41.0
 
 - Adds the ability to clear the client cache using `clearClientCache()` from `react-storefront/cache`
