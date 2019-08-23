@@ -65,7 +65,7 @@ export default class Server {
 
     const history = createMemoryHistory({ initialEntries: [request.path + request.search] })
 
-    if (request.headers[ROUTES]) {
+    if (request.headers.get(ROUTES)) {
       return response.json(this.router.routes.map(route => route.path.spec))
     }
 

@@ -6,6 +6,11 @@ const {
   injectBuildTimestamp
 } = require('./common')
 const merge = require('lodash/merge')
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
+
+const ampOptimizerErrorSupression = new FilterWarningsPlugin({
+  exclude: /Critical dependency: the request of a dependency is an expression/
+})
 
 module.exports = {
   /**
@@ -68,7 +73,8 @@ module.exports = {
             'process.env.MOOV_RUNTIME': JSON.stringify('server'),
             'process.env.MOOV_ENV': JSON.stringify('development'),
             ...envVariables
-          })
+          }),
+          ampOptimizerErrorSupression
         ]
       })
   },
@@ -125,7 +131,8 @@ module.exports = {
             'process.env.MOOV_RUNTIME': JSON.stringify('server'),
             'process.env.MOOV_ENV': JSON.stringify('production'),
             ...envVariables
-          })
+          }),
+          ampOptimizerErrorSupression
         ]
       })
   }

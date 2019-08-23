@@ -76,6 +76,7 @@ yarn release
 
 ### 6.42.0
 
+- The headers object included in fetch responses now matches the Headers interface from the standard fetch API.
 - Fixes an issue where the `Menu` would not reset the user taps on an item to drill down.
 
 ### 6.41.0

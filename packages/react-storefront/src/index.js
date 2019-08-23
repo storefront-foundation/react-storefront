@@ -69,7 +69,6 @@ export { default as analytics } from './analytics.js';
 export { default as cache } from './cache.js';
 export { default as createTheme } from './createTheme.js';
 export { default as environment } from './environment.js';
-export { default as fetch } from './fetch.js';
 export { default as fetchLatest } from './fetchLatest.js';
 export { default as format } from './format.js';
 export { default as icons } from './icons';

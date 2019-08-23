@@ -8,11 +8,11 @@ import fetchMock from 'jest-fetch-mock'
 import mockGetStats from './mock-pwa-stats'
 
 // Setup enzyme's react adapter
-Enzyme.configure({ adapter: new EnzymeAdapter() });
+Enzyme.configure({ adapter: new EnzymeAdapter() })
 
 global.requestAnimationFrame = function(callback) {
-  setTimeout(callback, 0);
-};
+  setTimeout(callback, 0)
+}
 
 global.jsdom.reconfigure({
   features: {
@@ -22,6 +22,5 @@ global.jsdom.reconfigure({
 
 global.fetch = fetchMock
 
-jest.mock('../src/fetch', () => global.fetch)
 jest.mock('fetch', () => global.fetch, { virtual: true })
 jest.mock('react-storefront-stats', () => mockGetStats, { virtual: true })

@@ -7,6 +7,7 @@ import merge from 'lodash/merge'
 import URL from 'url'
 import qs from 'qs'
 import pako from 'pako'
+import Headers from './Headers'
 
 function isFormUrlEncoded(contentType) {
   return contentType && contentType.indexOf('x-www-form-urlencoded') >= 0
@@ -184,10 +185,11 @@ export default function fetch(url, options = {}, qsOptions) {
             status: response.statusCode,
             statusText: response.statusText,
             ok,
-            headers: response.headers,
+            headers: new Headers(response.headers),
             arrayBuffer: () => Promise.resolve(data),
             text: () => Promise.resolve(extractString(response, data)),
-            json: () => Promise.resolve(JSON.parse(extractString(response, data)))
+            json: () => Promise.resolve(JSON.parse(extractString(response, data))),
+            clone: () => ({ ...result })
           }
 
           if (!ok) {
