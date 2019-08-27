@@ -7,10 +7,10 @@ exports[`CartButton renders 1`] = `
       <CartButton classes={{...}} cart={{...}} path="/cart">
         <inject-Track-with-app event="cartClicked">
           <Track event="cartClicked" app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
-            <WithStyles(inject-Link) to="/cart" server={[undefined]} onClick={[Function]}>
-              <inject-Link to="/cart" server={[undefined]} onClick={[Function]} classes={{...}}>
-                <Link to="/cart" server={[undefined]} onClick={[Function]} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-                  <a data-moov-link="on" className="RSFLink-root-3" style={[undefined]} onClick={[Function]} href="/cart">
+            <WithStyles(inject-Link) to="/cart" server={[undefined]} onClick={[Function]} anchorProps={{...}}>
+              <inject-Link to="/cart" server={[undefined]} onClick={[Function]} anchorProps={{...}} classes={{...}}>
+                <Link to="/cart" server={[undefined]} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={[undefined]} location={{...}}>
+                  <a data-th="cart-link" data-moov-link="on" className="RSFLink-root-3" style={[undefined]} onClick={[Function]} href="/cart">
                     <WithStyles(ToolbarButton) aria-label="Cart" color="inherit" icon={{...}}>
                       <ToolbarButton aria-label="Cart" color="inherit" icon={{...}} classes={{...}}>
                         <WithStyles(IconButton) classes={{...}} aria-label="Cart" color="inherit">
