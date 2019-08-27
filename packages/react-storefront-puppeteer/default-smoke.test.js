@@ -66,7 +66,7 @@ describe('smoke tests', () => {
   })
 
   it('Verify product in cart', async function() {
-    await clickElement(page, '[data-th=product-link]')
+    await page.waitForSelector('[data-th=product-link]')
   })
 
   it('Navigate to checkout', async function() {
