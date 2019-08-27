@@ -45,17 +45,17 @@ const createDefaultDriver = ({ headless = 'true' } = {}) => {
 
 const findVisibleElements = async (driver, selector) => {
   const elements = await driver.findElements(By.css(selector))
-  const response = []
+  const results = []
 
   for (const element of elements) {
     const isDisplayed = await element.isDisplayed()
 
     if (isDisplayed) {
-      response.push(element)
+      results.push(element)
     }
   }
 
-  return response
+  return results
 }
 
 const waitForElement = (driver, selector, timeout = defaultWaitForElementTimeout) => {
