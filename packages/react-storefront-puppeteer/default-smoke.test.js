@@ -66,8 +66,7 @@ describe('smoke tests', () => {
   })
 
   it('Verify product in cart', async function() {
-    const products = await page.$x('//a[contains(@href, "p/1")]')
-    expect(products.length).toBeTruthy()
+    await clickElement(page, '[data-th=product-link]')
   })
 
   it('Navigate to checkout', async function() {
