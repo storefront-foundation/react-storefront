@@ -11,7 +11,7 @@
 const { createBrowser, createPage, clickElement } = require('./index')
 
 const startURL = process.env.RSF_URL
-const sleepBetweenPages = process.env.RSF_SLEEP_BETWEEN_PAGES || 2000
+const sleepBetweenPages = process.env.RSF_SLEEP_BETWEEN_PAGES || 3000
 const headless = process.env.RSF_HEADLESS || 'true'
 
 if (!startURL) {
