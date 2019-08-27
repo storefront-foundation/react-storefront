@@ -1,7 +1,7 @@
 {
-  "name": "react-storefront-selenium",
+  "name": "react-storefront-puppeteer",
   "version": "6.42.0-alpha.1",
-  "description": "Helpers for writing selenium tests for React Storefront",
+  "description": "Helpers for writing puppeter tests for React Storefront",
   "author": "Moovweb",
   "license": "Apache-2.0",
   "main": "index.js",
