@@ -47,6 +47,9 @@ function createServerConfig(root, alias) {
   return {
     name: 'server',
     context: path.join(root, 'src'),
+    node: {
+      fs: 'empty' // Fixes the `Cannot find module 'fs'` error when using clean-css in Server.js
+    },
     resolve: {
       alias: Object.assign({}, createAliases(root), alias, {
         'node-fetch': path.join(root, 'node_modules', 'react-storefront-moov-xdn', 'fetch.common'),

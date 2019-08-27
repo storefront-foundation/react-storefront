@@ -74,9 +74,13 @@ yarn release
 
 ## Changelog
 
+### 6.42.2
+
+- Restored the default export of `react-storefront/fetch` for backwards compatibility.
+
 ### 6.42.1
 
-- Restored react-storefront/fetch for backwards compatibility.
+- Restored `react-storefront/fetch` for backwards compatibility.
 
 ### 6.42.0
 
