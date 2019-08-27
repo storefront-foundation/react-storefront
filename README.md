@@ -74,9 +74,18 @@ yarn release
 
 ## Changelog
 
+### 6.43.0
+
+- Adds a new `react-storefront-puppeteer` package to help developers write puppeteer tests for React Storefront apps and schedule smoke testing with Moovweb Control Center.
+
+### 6.42.1
+
+- Restored react-storefront/fetch for backwards compatibility.
+
 ### 6.42.0
 
-- Adds a new `react-storefront-selenium` package to help developers write selenium tests for React Storefront apps and schedule smoke testing with Moovweb Control Center.
+- The headers object included in fetch responses now matches the Headers interface from the standard fetch API.
+- Fixes an issue where the `Menu` would not reset the user taps on an item to drill down.
 
 ### 6.41.0
 

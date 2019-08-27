@@ -89,10 +89,11 @@ export const styles = theme => ({
     fontSize: theme.typography.body1.fontSize
   },
 
-  hbox: {
+  bodyWrap: {
     display: 'flex',
     flexDirection: 'row',
-    transition: 'all ease-out .2s'
+    transition: 'all ease-out .2s',
+    maxHeight: '100%'
   },
 
   hidden: {

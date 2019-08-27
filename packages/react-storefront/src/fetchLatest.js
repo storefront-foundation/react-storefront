@@ -9,7 +9,7 @@
  * Example usage:
  *
  * ```js
- * import { fetchLatest, StaleResponseError } from 'react-storefront/fetch'
+ * import { fetchLatest, StaleResponseError } from 'react-storefront/fetchLatest'
  * import originalFetch from 'fetch'
  *
  * const fetch = fetchLatest(originalFetch)

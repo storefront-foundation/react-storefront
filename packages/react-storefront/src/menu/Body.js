@@ -37,7 +37,10 @@ export default class Body extends Component {
         {simple ? (
           this.renderSimple()
         ) : (
-          <div className={classes.hbox} style={{ transform: `translateX(${position}px)`, flex: 1 }}>
+          <div
+            className={classes.bodyWrap}
+            style={{ transform: `translateX(${position}px)`, flex: 1 }}
+          >
             {levels.map((list, depth) => (
               <List
                 style={{ width: `${drawerWidth}px` }}
