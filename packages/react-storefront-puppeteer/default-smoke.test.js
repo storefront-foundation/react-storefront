@@ -5,7 +5,7 @@
  * We rely on elements with `data-th` attributes to guide the selenium test script through the
  * shopping flow.
  *
- * The hostname of the app to be tested is specified in the required environment variable `RSF_HOST`.
+ * The hostname of the app to be tested is specified in the required environment variable `RSF_URL`.
  */
 
 const { createBrowser, createPage, clickElement } = require('./index')
@@ -24,7 +24,7 @@ if (!startURL) {
 
 describe('smoke tests', () => {
   jest.setTimeout(30000)
-  // let driver
+
   let browser
   let page
 
