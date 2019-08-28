@@ -22,15 +22,7 @@ function isFormUrlEncoded(contentType) {
 function createRequestOptions(url, fetchOptions, qsOptions) {
   let { body, headers = {}, method, ...options } = fetchOptions
 
-  // Apply user-agent header from the browser if one isn't explicitly set
-  // This helps prevent synthetic APIs from getting blocked.
-  if (
-    !Object.keys(headers).find(name => name.toLowerCase() === 'user-agent') &&
-    global.env.rsf_request &&
-    global.env.rsf_request.headers
-  ) {
-    headers['user-agent'] = global.env.rsf_request.headers.get('user-agent')
-  }
+  forwardHeadersFromBrowser(headers)
 
   if (body) {
     method = method || 'POST'
@@ -58,6 +50,34 @@ function createRequestOptions(url, fetchOptions, qsOptions) {
     port,
     path,
     headers
+  }
+}
+
+const FORWARD_HEADERS = [
+  // Apply user-agent header from the browser if one isn't explicitly set
+  // This helps prevent synthetic APIs from getting blocked.
+  'user-agent',
+
+  // This is needed when using basic auth for both the PWA and the site used
+  // for the synthetic API.
+  'authorization'
+]
+
+/**
+ * Copies certain headers from the browser request to the provided headers if they are not already present.
+ * See FORWARD_HEADERS.
+ * @private
+ * @param {Object} userHeaders The headers passed to fetch by the developer
+ */
+function forwardHeadersFromBrowser(userHeaders) {
+  for (let header of FORWARD_HEADERS) {
+    if (
+      !Object.keys(userHeaders).find(name => name.toLowerCase() === header) &&
+      global.env.rsf_request &&
+      global.env.rsf_request.headers
+    ) {
+      userHeaders[header] = global.env.rsf_request.headers.get(header)
+    }
   }
 }
 
@@ -157,9 +177,7 @@ export default function fetch(url, options = {}, qsOptions) {
           } else if (options.redirect === 'error') {
             return reject(
               new Error(
-                `fetch received a redirect response status ${
-                  response.statusCode
-                } and options.redirect was set to "error".`
+                `fetch received a redirect response status ${response.statusCode} and options.redirect was set to "error".`
               )
             )
           } else {

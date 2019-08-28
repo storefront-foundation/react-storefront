@@ -65,7 +65,8 @@ export default class PWA extends Component {
                 <meta name="theme-color" content="#000000" />
                 {app.description ? <meta name="description" content={app.description} /> : null}
                 {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
-                <link rel="manifest" href="/manifest.json" />
+                {/* crossorigin="use-credentials" is needed when the site is password protected by basic auth*/}
+                <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
                 <title>{app.title}</title>
               </Helmet>
               {amp && (

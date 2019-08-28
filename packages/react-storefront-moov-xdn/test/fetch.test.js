@@ -405,21 +405,26 @@ describe('redirect', () => {
     })
   })
 
-  describe('user-agent', () => {
+  describe('forwarding headers', () => {
     let request
 
     beforeEach(() => {
       global.https = require('https')
       request = jest.spyOn(global.https, 'request')
+
+      const headers = {
+        'user-agent': 'test-user-agent',
+        authorization: 'password'
+      }
+
       global.env.rsf_request = {
         headers: {
           get(name) {
-            if (name.toLowerCase() === 'user-agent') {
-              return 'test-user-agent'
-            }
+            return headers[name.toLowerCase()]
           }
         }
       }
+
       nock('https://www.foo.com')
         .get('/')
         .reply(200, '<!doctype html>', { 'content-type': 'html/text' })
@@ -431,18 +436,35 @@ describe('redirect', () => {
       jest.clearAllMocks()
     })
 
-    it('should automatically be set to the user-agent passed in from the browser', async () => {
-      await fetch('https://www.foo.com')
-      expect(request.mock.calls[0][0].headers['user-agent']).toEqual('test-user-agent')
+    describe('user-agent', () => {
+      it('should automatically be set to the user-agent passed in from the browser', async () => {
+        await fetch('https://www.foo.com')
+        expect(request.mock.calls[0][0].headers['user-agent']).toEqual('test-user-agent')
+      })
+
+      it('should retain the user-agent if explicitly set', async () => {
+        await fetch('https://www.foo.com', {
+          headers: {
+            'user-agent': 'original'
+          }
+        })
+        expect(request.mock.calls[0][0].headers['user-agent']).toEqual('original')
+      })
     })
 
-    it('should retain the user-agent if explicitly set', async () => {
-      await fetch('https://www.foo.com', {
-        headers: {
-          'user-agent': 'original'
-        }
+    describe('authorization', () => {
+      it('should forward the value from the browser request', async () => {
+        await fetch('https://www.foo.com')
+        expect(request.mock.calls[0][0].headers['authorization']).toEqual('password')
       })
-      expect(request.mock.calls[0][0].headers['user-agent']).toEqual('original')
+      it('should retain the authorization if explicitly set', async () => {
+        await fetch('https://www.foo.com', {
+          headers: {
+            authorization: 'set'
+          }
+        })
+        expect(request.mock.calls[0][0].headers['authorization']).toEqual('set')
+      })
     })
   })
 })
