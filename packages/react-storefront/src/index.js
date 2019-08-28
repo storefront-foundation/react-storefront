@@ -11,6 +11,7 @@ export { default as AnalyticsProvider } from './AnalyticsProvider.js';
 export { default as AppBar } from './AppBar.js';
 export { default as AppContext } from './AppContext.js';
 export { default as BackNav } from './BackNav.js';
+export { default as BackToTop } from './BackToTop.js';
 export { default as BottomDrawer } from './BottomDrawer.js';
 export { default as Box } from './Box.js';
 export { default as Breadcrumbs } from './Breadcrumbs.js';

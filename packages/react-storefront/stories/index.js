@@ -8,6 +8,7 @@ import green from '@material-ui/core/colors/green'
 import ActionButton from '../src/ActionButton'
 import AddToCartButton from '../src/AddToCartButton'
 // import AppBar from '../src/AppBar'
+import BackToTop from '../src/BackToTop'
 import BottomDrawer from '../src/BottomDrawer'
 import Box from '../src/Box'
 import Breadcrumbs from '../src/Breadcrumbs'
@@ -187,6 +188,58 @@ storiesOf('AddToCartButton', module)
 // storiesOf('AppBar', module)
 // 	.addDecorator(wrapWithProvider())
 //     .add('with default props', () => <AppBar />)
+
+storiesOf('BackToTop', module)
+  .addDecorator(wrapWithProvider())
+  .addWithJSX('with default props', () => (
+    <div>
+      <h1>Top</h1>
+      <div style={{ height: 5000 }}>TALL</div>
+      <BackToTop />
+    </div>
+  ))
+  .addWithJSX('with custom icon', () => (
+    <div>
+      <h1>Top</h1>
+      <div style={{ height: 5000 }}>TALL</div>
+      <BackToTop Icon={Pets} />
+    </div>
+  ))
+  .addWithJSX('with smaller size', () => (
+    <div>
+      <h1>Top</h1>
+      <div style={{ height: 5000 }}>TALL</div>
+      <BackToTop size="small" />
+    </div>
+  ))
+  .addWithJSX('with larger size', () => (
+    <div>
+      <h1>Top</h1>
+      <div style={{ height: 5000 }}>TALL</div>
+      <BackToTop size="large" />
+    </div>
+  ))
+  .addWithJSX('with farther showUnderY value', () => (
+    <div>
+      <h1>Top</h1>
+      <div style={{ height: 5000 }}>TALL</div>
+      <BackToTop showUnderY={1000} />
+    </div>
+  ))
+  .addWithJSX('with closer instantBehaviorUnderY value', () => (
+    <div>
+      <h1>Top</h1>
+      <div style={{ height: 5000 }}>TALL</div>
+      <BackToTop instantBehaviorUnderY={500} />
+    </div>
+  ))
+  .addWithJSX('with fadeTime of zero', () => (
+    <div>
+      <h1>Top</h1>
+      <div style={{ height: 5000 }}>TALL</div>
+      <BackToTop fadeTime={0} />
+    </div>
+  ))
 
 storiesOf('BottomDrawer', module)
   .addDecorator(wrapWithProvider())

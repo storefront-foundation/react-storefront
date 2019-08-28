@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.43.0
+
+- Added `BackToTop` component for scrolling to top of page.
+
 ### 6.42.2
 
 - Restored the default export of `react-storefront/fetch` for backwards compatibility.

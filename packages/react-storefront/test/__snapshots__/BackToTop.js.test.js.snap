@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackToTop should render 1`] = `
+<TestProvider>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <WithStyles(BackToTop)>
+        <BackToTop classes={{...}} showUnderY={250} instantBehaviorUnderY={3000} fadeTime={320} size="medium">
+          <div className="RSFBackToTop-root-1">
+            <WithTheme(Fade) in={false} timeout={320}>
+              <Fade theme={{...}} in={false} timeout={320}>
+                <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={false} timeout={320} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                  <WithStyles(Fab) className="RSFBackToTop-fab-2" size="medium" onClick={[Function]} style={{...}}>
+                    <Fab className="RSFBackToTop-fab-2" size="medium" onClick={[Function]} style={{...}} classes={{...}} color="default" component="button" disabled={false} disableFocusRipple={false} type="button" variant="round">
+                      <WithStyles(ButtonBase) className="MuiFab-root-4 MuiFab-sizeMedium-13 RSFBackToTop-fab-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-9" onClick={[Function]} style={{...}} component="button" type="button">
+                        <ButtonBase className="MuiFab-root-4 MuiFab-sizeMedium-13 RSFBackToTop-fab-2" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-9" onClick={[Function]} style={{...}} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                          <button className="MuiButtonBase-root-14 MuiFab-root-4 MuiFab-sizeMedium-13 RSFBackToTop-fab-2" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} style={{...}}>
+                            <span className="MuiFab-label-5">
+                              <pure(ArrowUpwardIcon) className="RSFBackToTop-icon-3">
+                                <ArrowUpwardIcon className="RSFBackToTop-icon-3">
+                                  <WithStyles(SvgIcon) className="RSFBackToTop-icon-3">
+                                    <SvgIcon className="RSFBackToTop-icon-3" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                      <svg className="MuiSvgIcon-root-17 RSFBackToTop-icon-3" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                        <path fill="none" d="M0 0h24v24H0V0z" />
+                                        <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" />
+                                      </svg>
+                                    </SvgIcon>
+                                  </WithStyles(SvgIcon)>
+                                </ArrowUpwardIcon>
+                              </pure(ArrowUpwardIcon)>
+                            </span>
+                            <NoSsr defer={false} fallback={{...}}>
+                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                <TouchRipple center={false} classes={{...}}>
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-26" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-26" />
+                                  </TransitionGroup>
+                                </TouchRipple>
+                              </WithStyles(TouchRipple)>
+                            </NoSsr>
+                          </button>
+                        </ButtonBase>
+                      </WithStyles(ButtonBase)>
+                    </Fab>
+                  </WithStyles(Fab)>
+                </Transition>
+              </Fade>
+            </WithTheme(Fade)>
+          </div>
+        </BackToTop>
+      </WithStyles(BackToTop)>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
+`;
+
+exports[`BackToTop should render with custom icon 1`] = `
+<TestProvider>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <WithStyles(BackToTop) Icon={[Function: CustomIcon]}>
+        <BackToTop Icon={[Function: CustomIcon]} classes={{...}} showUnderY={250} instantBehaviorUnderY={3000} fadeTime={320} size="medium">
+          <div className="RSFBackToTop-root-33">
+            <WithTheme(Fade) in={false} timeout={320}>
+              <Fade theme={{...}} in={false} timeout={320}>
+                <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={false} timeout={320} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                  <WithStyles(Fab) className="RSFBackToTop-fab-34" size="medium" onClick={[Function]} style={{...}}>
+                    <Fab className="RSFBackToTop-fab-34" size="medium" onClick={[Function]} style={{...}} classes={{...}} color="default" component="button" disabled={false} disableFocusRipple={false} type="button" variant="round">
+                      <WithStyles(ButtonBase) className="MuiFab-root-36 MuiFab-sizeMedium-45 RSFBackToTop-fab-34" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-41" onClick={[Function]} style={{...}} component="button" type="button">
+                        <ButtonBase className="MuiFab-root-36 MuiFab-sizeMedium-45 RSFBackToTop-fab-34" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-41" onClick={[Function]} style={{...}} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                          <button className="MuiButtonBase-root-46 MuiFab-root-36 MuiFab-sizeMedium-45 RSFBackToTop-fab-34" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} style={{...}}>
+                            <span className="MuiFab-label-37">
+                              <CustomIcon className="RSFBackToTop-icon-35">
+                                <i>
+                                  X
+                                </i>
+                              </CustomIcon>
+                            </span>
+                            <NoSsr defer={false} fallback={{...}}>
+                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                <TouchRipple center={false} classes={{...}}>
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-49" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-49" />
+                                  </TransitionGroup>
+                                </TouchRipple>
+                              </WithStyles(TouchRipple)>
+                            </NoSsr>
+                          </button>
+                        </ButtonBase>
+                      </WithStyles(ButtonBase)>
+                    </Fab>
+                  </WithStyles(Fab)>
+                </Transition>
+              </Fade>
+            </WithTheme(Fade)>
+          </div>
+        </BackToTop>
+      </WithStyles(BackToTop)>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
+`;
