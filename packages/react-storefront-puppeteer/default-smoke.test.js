@@ -11,9 +11,10 @@
 const puppeteer = require('puppeteer')
 const { createPage, clickElement } = require('./index')
 
-const startURL = process.env.RSF_URL
-const headless = process.env.RSF_HEADLESS !== 'false'
-const ignoreHTTPSErrors = process.env.RSF_IGNORE_HTTPS_ERRORS === 'true'
+const startURL = process.env.RSF_SMOKE_TEST_URL
+const headless = process.env.RSF_SMOKE_TEST_HEADLESS !== 'false'
+const ignoreHTTPSErrors = process.env.RSF_SMOKE_TEST_IGNORE_HTTPS_ERRORS === 'true'
+const timeout = parseInt(process.env.RSF_SMOKE_TEST_TIMEOUT || '10000')
 
 if (!startURL) {
   console.error(
@@ -24,7 +25,7 @@ if (!startURL) {
 }
 
 describe('smoke tests', () => {
-  jest.setTimeout(30000)
+  jest.setTimeout(timeout)
 
   let browser
   let page
