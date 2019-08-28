@@ -36,7 +36,7 @@ class SmokeTestReporter {
     })
 
     let result = {}
-    if (runResults.success) {
+    if (this.allTestsPassing(runResults)) {
       result.status = statusSuccess
     } else {
       result.status = statusFailure
@@ -46,6 +46,13 @@ class SmokeTestReporter {
     }
 
     return result
+  }
+
+  allTestsPassing(runResults) {
+    const noTestsFailed = 0 === runResults.numFailedTests
+    const noTestSuitesFailed = 0 === runResults.numFailedTestSuites
+
+    return noTestsFailed && noTestSuitesFailed
   }
 
   async writeToFile(filename, data) {
