@@ -77,6 +77,7 @@ yarn release
 ### 6.43.0
 
 - Added `BackToTop` component for scrolling to top of page.
+- The `authorization` header sent from the browser will be forwarded to fetch calls made from the server when basic auth is enabled.
 
 ### 6.42.2
 
