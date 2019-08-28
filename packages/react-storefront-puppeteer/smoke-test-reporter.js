@@ -13,11 +13,11 @@ class SmokeTestReporter {
   }
 
   async onRunComplete(test, runResults) {
-    const result = this.getResults(runResults)
-    await this.writeToFile(outputFile, JSON.stringify(result))
+    const summary = this.getSummary(runResults)
+    await fs.writeFile(outputFile, JSON.stringify(summary))
   }
 
-  getResults(runResults) {
+  getSummary(runResults) {
     const failedTests = {}
 
     // Go over all failed test cases and grab their descriptions
@@ -36,7 +36,7 @@ class SmokeTestReporter {
     })
 
     let result = {}
-    if (this.allTestsPassing(runResults)) {
+    if (this.allTestsPassed(runResults)) {
       result.status = statusSuccess
     } else {
       result.status = statusFailure
@@ -48,15 +48,11 @@ class SmokeTestReporter {
     return result
   }
 
-  allTestsPassing(runResults) {
+  allTestsPassed(runResults) {
     const noTestsFailed = 0 === runResults.numFailedTests
     const noTestSuitesFailed = 0 === runResults.numFailedTestSuites
 
     return noTestsFailed && noTestSuitesFailed
-  }
-
-  async writeToFile(filename, data) {
-    await fs.writeFile(filename, data)
   }
 }
 

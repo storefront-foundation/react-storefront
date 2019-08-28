@@ -1,10 +1,11 @@
 const SmokeTestReporter = require('../smoke-test-reporter')
+const fs = require('fs')
 
 describe('SmokeTestReporter', () => {
   const reporter = new SmokeTestReporter()
 
   beforeAll(() => {
-    reporter.writeToFile = jest.fn()
+    fs.writeFile = jest.fn()
   })
 
   beforeEach(() => {
@@ -18,21 +19,14 @@ describe('SmokeTestReporter', () => {
         numFailedTests: 0,
         testResults: [
           {
-            testResults: [
-              {
-                status: 'skipped'
-              },
-              {
-                status: 'passed'
-              }
-            ]
+            testResults: [{ status: 'skipped' }, { status: 'passed' }]
           }
         ]
       }
 
       await reporter.onRunComplete(null, runResults, null)
 
-      expect(reporter.writeToFile).toHaveBeenCalledWith(
+      expect(fs.writeFile).toHaveBeenCalledWith(
         'test-result.json',
         JSON.stringify({ status: 'success' })
       )
@@ -52,13 +46,47 @@ describe('SmokeTestReporter', () => {
 
       await reporter.onRunComplete(null, runResults, null)
 
-      expect(reporter.writeToFile).toHaveBeenCalledWith(
+      expect(fs.writeFile).toHaveBeenCalledWith(
         'test-result.json',
         JSON.stringify({
           status: 'failure',
           error: "Test 'smoke tests' failed with: first test, second test"
         })
       )
+    })
+  })
+
+  describe('allTestsPassed', () => {
+    it('should return true if nothing failed', () => {
+      const runResults = {
+        numFailedTestSuites: 0,
+        numFailedTests: 0
+      }
+      expect(reporter.allTestsPassed(runResults)).toEqual(true)
+    })
+
+    it('should return false if a test suite failed', () => {
+      const runResults = {
+        numFailedTestSuites: 1,
+        numFailedTests: 0
+      }
+      expect(reporter.allTestsPassed(runResults)).toEqual(false)
+    })
+
+    it('should return false if a test failed', () => {
+      const runResults = {
+        numFailedTestSuites: 0,
+        numFailedTests: 1
+      }
+      expect(reporter.allTestsPassed(runResults)).toEqual(false)
+    })
+
+    it('should return false if both failed', () => {
+      const runResults = {
+        numFailedTestSuites: 1,
+        numFailedTests: 1
+      }
+      expect(reporter.allTestsPassed(runResults)).toEqual(false)
     })
   })
 })
