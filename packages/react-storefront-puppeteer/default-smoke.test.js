@@ -8,10 +8,11 @@
  * The hostname of the app to be tested is specified in the required environment variable `RSF_URL`.
  */
 
-const { createBrowser, createPage, clickElement } = require('./index')
+const puppeteer = require('puppeteer')
+const { createPage, clickElement } = require('./index')
 
 const startURL = process.env.RSF_URL
-const headless = process.env.RSF_HEADLESS || 'true'
+const headless = process.env.RSF_HEADLESS !== 'false'
 const ignoreHTTPSErrors = process.env.RSF_IGNORE_HTTPS_ERRORS === 'true'
 
 if (!startURL) {
@@ -29,7 +30,7 @@ describe('smoke tests', () => {
   let page
 
   beforeAll(async () => {
-    browser = await createBrowser({ headless, ignoreHTTPSErrors })
+    browser = await puppeteer.launch({ ignoreHTTPSErrors, headless })
     page = await createPage(browser)
   })
 

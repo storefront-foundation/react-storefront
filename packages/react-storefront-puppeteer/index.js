@@ -1,13 +1,3 @@
-const puppeteer = require('puppeteer')
-
-const defaultWaitForElementTimeout = 100000
-
-const createBrowser = async ({ headless = 'true' } = {}) => {
-  const options = {}
-  options.headless = 'true' === headless
-  return await puppeteer.launch(options)
-}
-
 const createPage = async (browser, { width = 414, height = 736 } = {}) => {
   const page = await browser.newPage()
 
@@ -25,7 +15,6 @@ const clickElement = async (page, selector) => {
 }
 
 module.exports = {
-  createBrowser,
   createPage,
   clickElement
 }
