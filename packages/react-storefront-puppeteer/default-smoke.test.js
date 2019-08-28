@@ -13,6 +13,7 @@ const { createBrowser, createPage, clickElement } = require('./index')
 const startURL = process.env.RSF_URL
 const sleepBetweenPages = process.env.RSF_SLEEP_BETWEEN_PAGES || 3000
 const headless = process.env.RSF_HEADLESS || 'true'
+const ignoreHTTPSErrors = process.env.RSF_IGNORE_HTTPS_ERRORS === 'true'
 
 if (!startURL) {
   console.error(
@@ -31,6 +32,7 @@ describe('smoke tests', () => {
   beforeAll(async () => {
     browser = await createBrowser({ headless })
     page = await createPage(browser)
+    page.ignoreHTTPSErrors(ignoreHTTPSErrors)
   })
 
   afterAll(async () => {
