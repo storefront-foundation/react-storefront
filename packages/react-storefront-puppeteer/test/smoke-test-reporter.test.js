@@ -14,6 +14,8 @@ describe('SmokeTestReporter', () => {
   describe('onRunComplete', () => {
     it('should write test output to a file', async () => {
       const runResults = {
+        numFailedTestSuites: 0,
+        numFailedTests: 0,
         testResults: [
           {
             testResults: [
