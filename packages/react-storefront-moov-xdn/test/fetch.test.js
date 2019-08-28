@@ -465,6 +465,17 @@ describe('redirect', () => {
         })
         expect(request.mock.calls[0][0].headers['authorization']).toEqual('set')
       })
+      it('should not set a value when none is provided by the browser', async () => {
+        global.env.rsf_request = {
+          headers: {
+            get: () => null
+          }
+        }
+
+        await fetch('https://www.foo.com')
+
+        expect(Object.keys(request.mock.calls[0][0].headers)).not.toContain('authorization')
+      })
     })
   })
 })

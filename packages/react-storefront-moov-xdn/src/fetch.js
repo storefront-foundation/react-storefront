@@ -76,7 +76,11 @@ function forwardHeadersFromBrowser(userHeaders) {
       global.env.rsf_request &&
       global.env.rsf_request.headers
     ) {
-      userHeaders[header] = global.env.rsf_request.headers.get(header)
+      const value = global.env.rsf_request.headers.get(header)
+
+      if (value != null) {
+        userHeaders[header] = value
+      }
     }
   }
 }
