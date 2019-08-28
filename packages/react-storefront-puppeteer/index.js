@@ -20,6 +20,7 @@ const createPage = async (browser, { width = 414, height = 736 } = {}) => {
 }
 
 const clickElement = async (page, selector) => {
+  await page.waitForSelector(selector, { visible: true })
   return await page.click(selector, { waitUntil: 'networkidle0' })
 }
 

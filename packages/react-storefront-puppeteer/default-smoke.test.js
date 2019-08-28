@@ -11,7 +11,6 @@
 const { createBrowser, createPage, clickElement } = require('./index')
 
 const startURL = process.env.RSF_URL
-const sleepBetweenPages = process.env.RSF_SLEEP_BETWEEN_PAGES || 3000
 const headless = process.env.RSF_HEADLESS || 'true'
 const ignoreHTTPSErrors = process.env.RSF_IGNORE_HTTPS_ERRORS === 'true'
 
@@ -30,17 +29,12 @@ describe('smoke tests', () => {
   let page
 
   beforeAll(async () => {
-    browser = await createBrowser({ headless })
+    browser = await createBrowser({ headless, ignoreHTTPSErrors })
     page = await createPage(browser)
-    page.ignoreHTTPSErrors(ignoreHTTPSErrors)
   })
 
   afterAll(async () => {
     await browser.close()
-  })
-
-  beforeEach(async () => {
-    await page.waitFor(sleepBetweenPages)
   })
 
   it('Navigate to landing page', async () => {
@@ -52,15 +46,15 @@ describe('smoke tests', () => {
   })
 
   it('Navigate to subcategory', async function() {
-    await clickElement(page, '[data-th="subcategory-link"]')
+    await clickElement(page, '[data-page="Category"] [data-th="subcategory-link"]')
   })
 
   it('Navigate to product', async function() {
-    await clickElement(page, '[data-th="product-link"]')
+    await clickElement(page, '[data-page="Subcategory"] [data-th="product-link"]')
   })
 
   it('Add product to cart ', async function() {
-    await clickElement(page, '[data-th="add-to-cart"]')
+    await clickElement(page, '[data-page="Product"] [data-th="add-to-cart"]')
   })
 
   it('Navigate to cart', async function() {
@@ -68,7 +62,7 @@ describe('smoke tests', () => {
   })
 
   it('Verify product in cart', async function() {
-    await page.waitForSelector('[data-th=product-link]')
+    await page.waitForSelector('[data-page="Cart"] [data-th=product-link]')
   })
 
   it('Navigate to checkout', async function() {
