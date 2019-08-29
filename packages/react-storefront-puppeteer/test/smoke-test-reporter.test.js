@@ -19,7 +19,10 @@ describe('SmokeTestReporter', () => {
         numFailedTests: 0,
         testResults: [
           {
-            testResults: [{ status: 'skipped' }, { status: 'passed' }]
+            testResults: [
+              { title: 'test1', status: 'skipped' },
+              { title: 'test2', status: 'passed' }
+            ]
           }
         ]
       }
@@ -28,7 +31,10 @@ describe('SmokeTestReporter', () => {
 
       expect(fs.writeFile).toHaveBeenCalledWith(
         'test-result.json',
-        JSON.stringify({ status: 'success' })
+        JSON.stringify({
+          status: 'passed',
+          tests: `${reporter.markPassed} test1\n${reporter.markPassed} test2\n`
+        })
       )
     })
 
@@ -49,8 +55,8 @@ describe('SmokeTestReporter', () => {
       expect(fs.writeFile).toHaveBeenCalledWith(
         'test-result.json',
         JSON.stringify({
-          status: 'failure',
-          error: "Test 'smoke tests' failed with: first test, second test"
+          status: 'failed',
+          tests: `${reporter.markFailed} first test\n${reporter.markFailed} second test\n`
         })
       )
     })

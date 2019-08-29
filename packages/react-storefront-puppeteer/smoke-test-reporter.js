@@ -1,7 +1,11 @@
 const fs = require('fs')
 
-const statusSuccess = 'success'
-const statusFailure = 'failure'
+const statusPassed = 'passed'
+const statusFailed = 'failed'
+
+const markPassed = ':white_check_mark:'
+const markFailed = ':x:'
+
 const outputFile = process.env.JEST_OUTPUT_FILENAME || 'test-result.json'
 
 // Processes jest test results and saves them to a file.
@@ -10,6 +14,13 @@ class SmokeTestReporter {
   constructor(globalConfig, options) {
     this._globalConfig = globalConfig
     this._options = options
+
+    if (!options) {
+      options = {}
+    }
+
+    this.markPassed = options.markPassed || markPassed
+    this.markFailed = options.markFailed || markFailed
   }
 
   async onRunComplete(test, runResults) {
@@ -18,32 +29,27 @@ class SmokeTestReporter {
   }
 
   getSummary(runResults) {
-    const failedTests = {}
+    const testResults = new Map()
 
-    // Go over all failed test cases and grab their descriptions
+    // Go over all test cases and grab their descriptions
     const testSuiteResults = runResults.testResults
     const testCaseResults = [].concat.apply([], testSuiteResults.map(test => test.testResults))
     testCaseResults.forEach(testCase => {
-      if (testCase.status !== 'failed') {
-        return
-      }
-
-      if (testCase.ancestorTitles[0] in failedTests) {
-        failedTests[testCase.ancestorTitles[0]].push(testCase.title)
-      } else {
-        failedTests[testCase.ancestorTitles[0]] = [testCase.title]
-      }
+      const testPassed = testCase.status !== statusFailed
+      testResults.set(testCase.title, testPassed)
     })
 
     let result = {}
     if (this.allTestsPassed(runResults)) {
-      result.status = statusSuccess
+      result.status = statusPassed
     } else {
-      result.status = statusFailure
-      result.error = Object.keys(failedTests)
-        .map(name => `Test '${name}' failed with: ${failedTests[name].join(', ')}`)
-        .join('\n')
+      result.status = statusFailed
     }
+
+    result.tests = ''
+    testResults.forEach((isPassed, test) => {
+      result.tests += `${this.getTestMark(isPassed)} ${test}\n`
+    })
 
     return result
   }
@@ -53,6 +59,10 @@ class SmokeTestReporter {
     const noTestSuitesFailed = 0 === runResults.numFailedTestSuites
 
     return noTestsFailed && noTestSuitesFailed
+  }
+
+  getTestMark(isPassed) {
+    return isPassed ? this.markPassed : this.markFailed
   }
 }
 
