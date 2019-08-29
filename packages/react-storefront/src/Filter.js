@@ -200,7 +200,7 @@ export default class Filter extends Component {
         key={key}
         title={group.name}
         caption={caption}
-        expanded={expanded[group.name]}
+        expanded={expanded[group.name] || false}
         onChange={(e, expanded) =>
           this.setState({ expanded: { ...this.state.expanded, [group.name]: expanded } })
         }
