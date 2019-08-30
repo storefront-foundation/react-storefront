@@ -69,7 +69,7 @@ export default class BackToTop extends Component {
   }
 
   componentDidMount() {
-    this.onScroll()
+    // this.onScroll()
     window.addEventListener('scroll', this.onScroll, { passive: true })
   }
 

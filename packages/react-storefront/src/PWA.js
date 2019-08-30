@@ -16,7 +16,6 @@ import { onSnapshot } from 'mobx-state-tree'
 import debounce from 'lodash/debounce'
 import AppContext from './AppContext'
 import ErrorBoundary from './ErrorBoundary'
-import { reaction } from 'mobx'
 
 /**
  * @private
@@ -262,10 +261,11 @@ export default class PWA extends Component {
    * want those two things to happen at the same time.
    */
   resetOnLocationChange() {
-    this.disposer = reaction(
-      () => this.props.app.location.pathname,
-      () => (this.resetPageAfterUpdate = true)
-    )
+    this.disposer = this.props.history.listen((location, action) => {
+      if (location.pathname != this.props.app.location.pathname && action === 'PUSH') {
+        this.resetPageAfterUpdate = true
+      }
+    })
   }
 
   /**
