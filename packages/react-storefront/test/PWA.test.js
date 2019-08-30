@@ -24,7 +24,12 @@ describe('PWA', () => {
     jest.spyOn(window.navigator, 'userAgent', 'get').mockImplementation(() => userAgent)
     location = { hostname: 'localhost', pathname: '/', search: '' }
     app = AppModelBase.create({ location })
-    history = { push: jest.fn(), listen: jest.fn(), location, replace: jest.fn() }
+    history = {
+      push: jest.fn(),
+      listen: jest.fn(() => Function.prototype),
+      location,
+      replace: jest.fn()
+    }
   })
 
   it('should render amp-install-service worker when amp==true', () => {
@@ -290,7 +295,8 @@ describe('PWA', () => {
           history.replace(path, state)
         }
       },
-      location: history.location
+      location: history.location,
+      listen: () => Function.prototype
     }
 
     history.replace({ pathname: history.location.pathname, state: { page: 'Test' } })
