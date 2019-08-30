@@ -347,18 +347,16 @@ export default class Router extends EventEmitter {
 
     let cachedFromServerResult = null
 
-    if (this.isBrowser) {
+    if (this.isBrowser && !initialLoad) {
       const serverHandlers = handlers.filter(h => h.type === 'fromServer')
       cachedFromServerResult = await this.getCachedPatch(serverHandlers)
-      const willFetchFromServer =
-        !initialLoad && serverHandlers.length && cachedFromServerResult == null
 
       // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
       // and that the app state's location information is updated.
       yield {
         location: this.createLocation(),
         ...historyState,
-        loading: willFetchFromServer
+        loading: serverHandlers.length && cachedFromServerResult == null
       }
     }
 

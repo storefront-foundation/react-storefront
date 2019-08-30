@@ -135,14 +135,14 @@ export default function fromServer(handlerPath, getURL) {
     )
   }
 
+  /**
+   * Creates the URL for fetching json from the server, using `getURL` if provided,
+   * allowing the user to override the URL convention.
+   * @private
+   */
   function createURL() {
-    let url = `${location.pathname}.json${location.search}`
-
-    if (getURL) {
-      url = getURL(url)
-    }
-
-    return url
+    const url = `${location.pathname}.json${location.search}`
+    return getURL ? getURL(url) : url
   }
 
   return {
