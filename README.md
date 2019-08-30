@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.45.0
+
+- Skeletons are now skipped when the URL matches a route that is cached on the client.
+
 ### 6.43.2
 
 - Fixed a client build issue relating to AMP exclusion.
