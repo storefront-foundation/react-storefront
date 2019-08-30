@@ -2,7 +2,7 @@
  * @license
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import throttle from 'lodash/throttle'
 import ArrowUpward from '@material-ui/icons/ArrowUpward'
@@ -68,8 +68,13 @@ export default class BackToTop extends Component {
     visible: false
   }
 
+  constructor(props) {
+    super(props)
+    this.el = createRef()
+  }
+
   componentDidMount() {
-    // this.onScroll()
+    this.onScroll()
     window.addEventListener('scroll', this.onScroll, { passive: true })
   }
 
@@ -83,7 +88,10 @@ export default class BackToTop extends Component {
 
   onScroll = throttle(() => {
     this.setState({
-      visible: this.scrollY > this.props.showUnderY
+      visible:
+        this.scrollY > this.props.showUnderY &&
+        this.el.current.parentElement &&
+        this.el.current.parentElement.offsetParent != null
     })
   }, 200)
 
@@ -96,8 +104,9 @@ export default class BackToTop extends Component {
     const { classes, fadeTime, size } = this.props
     const { visible } = this.state
     const Icon = this.props.Icon || ArrowUpward
+
     return (
-      <div className={classes.root}>
+      <div className={classes.root} ref={this.el}>
         <Fade in={visible} timeout={fadeTime}>
           <Fab className={classes.fab} size={size} onClick={this.scrollToTop}>
             <Icon className={classes.icon} />
