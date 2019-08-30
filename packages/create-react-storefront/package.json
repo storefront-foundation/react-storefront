@@ -1,0 +1,36 @@
+{
+  "name": "create-react-storefront",
+  "version": "6.43.1",
+  "description": "A CLI for creating React Storefront apps.",
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "decompress": "^4.2.0",
+    "download": "^7.1.0",
+    "lodash": "^4.17.11",
+    "ora": "^3.4.0",
+    "prompts": "^1.1.0",
+    "url-exists": "^1.0.3",
+    "yargs": "^12.0.2"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "moovweb",
+    "node",
+    "web",
+    "html",
+    "transformation",
+    "service",
+    "builder",
+    "assets",
+    "yarn"
+  ],
+  "author": "Moovweb",
+  "license": "UNLICENSED",
+  "preferGlobal": true,
+  "bin": {
+    "create-react-storefront": "./index.js"
+  }
+}
