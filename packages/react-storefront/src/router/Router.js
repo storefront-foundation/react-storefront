@@ -13,6 +13,7 @@ import EventEmitter from 'eventemitter3'
 import powerLinkHandler from './powerLinkHandler'
 import fromServer from './fromServer'
 import RegexpVisitor from 'route-parser/lib/route/visitors/regexp'
+import defaultClientCacheConfig from './defaultClientCacheConfig'
 
 /**
  * Provides routing for MUR-based applications and PWAs.  This class is inspired by express and uses https://github.com/rcs/route-parser,
@@ -76,10 +77,9 @@ import RegexpVisitor from 'route-parser/lib/route/visitors/regexp'
  */
 export default class Router extends EventEmitter {
   routes = []
-
   appShellConfigured = false
-
   isBrowser = process.env.MOOV_RUNTIME === 'client'
+  clientCacheConfig = defaultClientCacheConfig
 
   fallbackHandlers = [
     {
@@ -87,12 +87,6 @@ export default class Router extends EventEmitter {
       fn: () => ({ page: '404' })
     }
   ]
-
-  clientCacheConfig = {
-    cacheName: 'runtime',
-    maxEntries: 200,
-    maxAgeSeconds: 60 * 60 * 24
-  }
 
   constructor() {
     super()
