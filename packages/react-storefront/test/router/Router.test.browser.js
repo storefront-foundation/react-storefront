@@ -15,7 +15,7 @@ const location = {
   pathname: '/context.html',
   search: '',
   hostname: 'localhost',
-  port: '9876',
+  port: '9876'
 }
 const allRouteData = { loading: false, location }
 
@@ -30,15 +30,15 @@ describe('Router:Browser', function() {
     Object.assign(window, {
       moov: {
         state: {
-          toJSON: () => ({}),
+          toJSON: () => ({})
         },
-        timing: {},
+        timing: {}
       },
       process: {
         env: {
-          MOOV_RUNTIME: 'client',
-        },
-      },
+          MOOV_RUNTIME: 'client'
+        }
+      }
     })
 
     runAll = function(method, uri) {
@@ -70,12 +70,12 @@ describe('Router:Browser', function() {
       expect(await runAll('get', '/products/1/foo')).to.deep.equal({
         id: '1',
         seoText: 'foo',
-        ...allRouteData,
+        ...allRouteData
       })
       expect(await runAll('get', '/products/1')).to.deep.equal({
         id: '1',
         seoText: undefined,
-        ...allRouteData,
+        ...allRouteData
       })
     })
 
@@ -90,18 +90,19 @@ describe('Router:Browser', function() {
       expect(await runAll('get', '/products/1/2')).to.deep.equal({
         id: '1',
         foo: '2',
-        ...allRouteData,
+        ...allRouteData
       })
       expect(await runAll('get', '/products/1')).to.deep.equal({
         id: '1',
         foo: undefined,
-        ...allRouteData,
+        ...allRouteData
       })
     })
 
     it('should match based on suffix', async function() {
-      router.get('/users/:id.html', fromClient(() => Promise.resolve('html')))
-      expect(await runAll('get', '/users/1.html')).to.equal('html')
+      router.get('/users/:id.html', fromClient(() => Promise.resolve({ type: 'html' })))
+      const result = await runAll('get', '/users/1.html')
+      expect(result.type).to.equal('html')
     })
 
     it('should capture the suffix', async function() {
@@ -109,7 +110,7 @@ describe('Router:Browser', function() {
       expect(await runAll('get', '/users/1.html')).to.deep.equal({
         id: '1',
         format: 'html',
-        ...allRouteData,
+        ...allRouteData
       })
     })
 
@@ -118,7 +119,7 @@ describe('Router:Browser', function() {
         '/c/:id',
         fromClient({ view: 'category' }),
         fromServer(() => Promise.resolve({ name: 'test', loading: false })),
-        fromServer(() => ({ url: '/c/1', loading: false })),
+        fromServer(() => ({ url: '/c/1', loading: false }))
       )
 
       const result = await runAll('get', '/c/1')
@@ -144,13 +145,13 @@ describe('Router:Browser', function() {
         fromServer(() =>
           Promise.resolve({
             products: [{ name: 'Dog Toy' }],
-            loading: false,
-          }),
-        ),
+            loading: false
+          })
+        )
       )
       expect(await runAll('get', '/products.json')).to.not.deep.equal({
         products: [{ name: 'Dog Toy' }],
-        ...allRouteData,
+        ...allRouteData
       })
     })
 
@@ -177,7 +178,7 @@ describe('Router:Browser', function() {
         '/test/:id',
         fromClient(() => {
           throw new Error('This is an error')
-        }),
+        })
       )
       const state = await runAll('get', '/test/123')
       expect(state).to.have.property('error', 'This is an error')
@@ -190,18 +191,18 @@ describe('Router:Browser', function() {
           '/test/:q',
           fromClient(() => {
             throw new Error('This is an error')
-          }),
+          })
         )
         .error((e, params, state) => {
           return {
             q: params.q,
-            message: e.message,
+            message: e.message
           }
         })
       expect(await runAll('get', '/test/123')).to.deep.equal({
         q: '123',
         message: 'This is an error',
-        ...allRouteData,
+        ...allRouteData
       })
     })
 
@@ -210,7 +211,7 @@ describe('Router:Browser', function() {
         '/test',
         fromServer(() => {
           throw new Error('This is an error on the server')
-        }),
+        })
       )
       const state = await runAll('get', '/test')
       expect(state).to.have.property('error', 'This is an error on the server')
@@ -223,33 +224,33 @@ describe('Router:Browser', function() {
           '/test/:q',
           fromServer(() => {
             throw new Error('This is an error on the server')
-          }),
+          })
         )
         .error((e, params, state) => {
           return {
             q: params.q,
             message: e.message,
-            loading: false,
+            loading: false
           }
         })
       expect(await runAll('get', '/test/123')).to.deep.equal({
         ...allRouteData,
         q: '123',
-        message: 'This is an error on the server',
+        message: 'This is an error on the server'
       })
     })
 
     it('should provide params in client handler', async function() {
       router.get(
         '/c/:id',
-        fromClient(params => ({ view: 'category', id: params.id, query: params.q })),
+        fromClient(params => ({ view: 'category', id: params.id, query: params.q }))
       )
 
       expect(await runAll('get', '/c/1?q=hello')).to.deep.equal({
         view: 'category',
         query: 'hello',
         id: '1',
-        ...allRouteData,
+        ...allRouteData
       })
     })
   })
@@ -267,7 +268,7 @@ describe('Router:Browser', function() {
       expect(await runAll('get', '/products/1/reviews/2')).to.deep.equal({
         id: '1',
         reviewId: '2',
-        ...allRouteData,
+        ...allRouteData
       })
     })
 
@@ -276,20 +277,23 @@ describe('Router:Browser', function() {
         '/products',
         new Router()
           .get('/:productId', handler)
-          .use('/:productId/reviews', new Router().get('/:reviewId', handler)),
+          .use('/:productId/reviews', new Router().get('/:reviewId', handler))
       )
 
       expect(await runAll('get', '/products/1/reviews/2')).to.deep.equal({
         productId: '1',
         reviewId: '2',
-        ...allRouteData,
+        ...allRouteData
       })
     })
 
     it('should match based on extension', async function() {
-      router.use('/c', new Router().get('/:id.html', fromClient(() => Promise.resolve('html'))))
-
-      expect(await runAll('get', '/c/1.html')).to.equal('html')
+      router.use(
+        '/c',
+        new Router().get('/:id.html', fromClient(() => Promise.resolve({ type: 'html' })))
+      )
+      const result = await runAll('get', '/c/1.html')
+      expect(result.type).to.equal('html')
     })
   })
 
@@ -300,7 +304,7 @@ describe('Router:Browser', function() {
       router.get(
         '/test',
         fromClient({ view: 'test' }),
-        fromServer(() => Promise.resolve({ value: 'test' })),
+        fromServer(() => Promise.resolve({ value: 'test' }))
       )
 
       const history = createMemoryHistory()
@@ -340,9 +344,10 @@ describe('Router:Browser', function() {
       setTimeout(() => {
         expect(calls[0]).to.deep.equal({
           state: {
-            product: { name: 'Test' },
+            ...allRouteData,
+            product: { name: 'Test' }
           },
-          method: 'PUSH',
+          method: 'PUSH'
         })
         done()
       }, 100)
@@ -351,14 +356,14 @@ describe('Router:Browser', function() {
 
   describe('cache', function() {
     it('should be called on the client', async function() {
-      const cacheHandler = cache({ server: { maxAgeSeconds: 300 } })
+      const cacheHandler = cache({ edge: { maxAgeSeconds: 300 } })
       cacheHandler.fn = sinon.fake()
 
       router.get(
         '/test',
         cacheHandler,
         fromClient({ view: 'test' }),
-        fromServer(() => Promise.resolve({ value: 'test' })),
+        fromServer(() => Promise.resolve({ value: 'test' }))
       )
 
       await router.runAll({ path: '/test', search: '' }, response)
@@ -370,8 +375,8 @@ describe('Router:Browser', function() {
     it('should be fired when a fromServer handler runs', async function() {
       const router = new Router().get('/', {
         type: 'fromServer',
-        runOn: { client: true, server: true },
-        fn: () => Promise.resolve({}),
+        runOn: { client: true, edge: true },
+        fn: () => Promise.resolve({})
       })
 
       const fn = sinon.fake()

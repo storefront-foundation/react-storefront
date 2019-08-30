@@ -362,7 +362,7 @@ export default class Router extends EventEmitter {
       yield {
         location: this.createLocation(),
         ...historyState,
-        loading: serverHandlers.length && cachedFromServerResult == null
+        loading: serverHandlers.length > 0 && cachedFromServerResult == null
       }
     }
 

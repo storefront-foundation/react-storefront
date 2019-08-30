@@ -5,7 +5,6 @@
 jest.mock('../../src/router/serviceWorker')
 
 import { Router, fromClient, fromServer, cache, proxyUpstream } from '../../src/router'
-import ClientContext from '../../src/router/ClientContext'
 import * as serviceWorker from '../../src/router/serviceWorker'
 import { createMemoryHistory } from 'history'
 import qs from 'qs'
@@ -763,6 +762,68 @@ describe('Router:Node', function() {
     it('should return false if the route has a cache handler with client: false', () => {
       router.get('/cart')
       expect(router.willCacheOnClient({ path: '/cart.json' })).toBe(false)
+    })
+  })
+
+  describe('when fromServer responses are cached on the client', () => {
+    let handlerFn, serverHandler, request, runAll
+
+    beforeEach(() => {
+      process.env.MOOV_RUNTIME = 'client'
+      handlerFn = jest.fn()
+      serverHandler = fromServer(handlerFn)
+      request = { path: '/p/1', search: '' }
+      response = new Response()
+      response.cacheOnClient = jest.fn()
+
+      serverHandler.getCachedResponse = jest.fn(() => ({
+        json: () => Promise.resolve({ product: { name: 'test' } })
+      }))
+
+      runAll = async router => {
+        const results = []
+
+        for await (let result of router.run(request, response)) {
+          results.push(result)
+        }
+        return results
+      }
+    })
+
+    it('should skip the fetch when cache({ client: true }) is present', async () => {
+      const router = new Router().get(
+        '/p/:id',
+        cache({ client: true }),
+        fromClient({ page: 'Product' }),
+        serverHandler
+      )
+      const results = await runAll(router)
+      expect(serverHandler.getCachedResponse).toHaveBeenCalled()
+      expect(results).toHaveLength(2)
+      expect(handlerFn).not.toHaveBeenCalled()
+    })
+
+    it('should fetch when cache({ client: false }) is present, even if there is a cached result', async () => {
+      const router = new Router().get(
+        '/p/:id',
+        cache({ client: false }),
+        fromClient({ page: 'Product' }),
+        serverHandler
+      )
+      await runAll(router)
+      expect(handlerFn).toHaveBeenCalled()
+    })
+
+    it('should fetch when cache({ client: true }) is present if there is no cached result', async () => {
+      const router = new Router().get(
+        '/p/:id',
+        cache({ client: true }),
+        fromClient({ page: 'Product' }),
+        serverHandler
+      )
+      serverHandler.getCachedResponse = jest.fn(() => null)
+      await runAll(router)
+      expect(handlerFn).toHaveBeenCalled()
     })
   })
 
