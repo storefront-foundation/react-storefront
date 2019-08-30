@@ -601,16 +601,20 @@ describe('Router:Node', function() {
     })
 
     it('should yield state from clicked Link', () => {
+      process.env.MOOV_RUNTIME = 'client'
+
+      const router = new Router()
       const handler = jest.fn()
       const history = createMemoryHistory({ initialEntries: ['/'] })
-
       router.get('/p/:id', fromClient({ foo: 'bar' })).watch(history, handler)
-
       history.push('/p/1', { product: { name: 'Test' } })
 
       return new Promise(resolve => {
         setTimeout(() => {
-          expect(handler).toHaveBeenCalledWith({ product: { name: 'Test' } }, 'PUSH')
+          expect(handler).toHaveBeenCalledWith(
+            expect.objectContaining({ product: { name: 'Test' } }),
+            'PUSH'
+          )
           resolve()
         })
       })

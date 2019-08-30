@@ -244,7 +244,18 @@ export default class Router extends EventEmitter {
    * @return {Boolean}
    */
   willCacheOnClient(request) {
-    const handler = this.getCacheHandler(request)
+    const { match } = this.findMatchingRoute(request)
+    return this.isClientCachingEnabled(match)
+  }
+
+  /**
+   * Returns `true` if the route has a cache handler with `client: true`, otherwise `false`.
+   * @private
+   * @param {Route} route
+   * @return {Boolean}
+   */
+  isClientCachingEnabled(route) {
+    const handler = this.getCacheHandler(route)
 
     if (handler && handler.client) {
       return true
@@ -269,12 +280,11 @@ export default class Router extends EventEmitter {
 
   /**
    * Finds the cache handler for the specified request
-   * @param {Object} request
+   * @param {Object} route
    * @return {Object} The handler
    */
-  getCacheHandler(request) {
-    const { match } = this.findMatchingRoute(request)
-    const handlers = match ? match.handlers : this.fallbackHandlers
+  getCacheHandler(route) {
+    const handlers = route ? route.handlers : this.fallbackHandlers
     return handlers && handlers.find(handler => handler.type === 'cache')
   }
 
@@ -298,7 +308,9 @@ export default class Router extends EventEmitter {
    * @param {Object[]} fromServerHandlers
    * @return {Object}
    */
-  async getCachedPatch(fromServerHandlers) {
+  async getCachedPatch(route, fromServerHandlers) {
+    if (!this.isClientCachingEnabled(route)) return null
+
     const result = {}
 
     for (let handler of fromServerHandlers) {
@@ -343,7 +355,7 @@ export default class Router extends EventEmitter {
 
     if (this.isBrowser && !initialLoad) {
       const serverHandlers = handlers.filter(h => h.type === 'fromServer')
-      cachedFromServerResult = await this.getCachedPatch(serverHandlers)
+      cachedFromServerResult = await this.getCachedPatch(match, serverHandlers)
 
       // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
       // and that the app state's location information is updated.
