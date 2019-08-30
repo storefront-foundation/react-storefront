@@ -88,6 +88,12 @@ export default class Router extends EventEmitter {
     }
   ]
 
+  clientCacheConfig = {
+    cacheName: 'runtime',
+    maxEntries: 200,
+    maxAgeSeconds: 60 * 60 * 24
+  }
+
   constructor() {
     super()
     this.get('/.powerlinks.js', fromServer(powerLinkHandler))
@@ -262,6 +268,7 @@ export default class Router extends EventEmitter {
    * @return {Router} this
    */
   configureClientCache(options) {
+    this.clientCacheConfig = options
     configureCache(options)
     return this
   }
@@ -291,19 +298,26 @@ export default class Router extends EventEmitter {
     }
   }
 
-  async getCachedPatches(fromServerHandlers, url) {
-    const cachedPatches = []
+  /**
+   * Returns a merged cached response for all specified fromServer handler.  Will return null
+   * if we're missing a cached response for any of the handlers
+   * @param {Object[]} fromServerHandlers
+   * @return {Object}
+   */
+  async getCachedPatch(fromServerHandlers) {
+    const result = {}
 
     for (let handler of fromServerHandlers) {
-      const response = await handler.getCachedResponse()
+      const response = await handler.getCachedResponse(this.clientCacheConfig.cacheName)
 
       if (response) {
-        const patch = await response.json()
-        cachedPatches.push(patch)
+        merge(result, await response.json())
+      } else {
+        return null
       }
     }
 
-    return cachedPatches
+    return result
   }
 
   /**
@@ -331,15 +345,13 @@ export default class Router extends EventEmitter {
 
     const handlers = match ? match.handlers : this.fallbackHandlers
 
-    let serverResponsesCached = false
-    let cachedPatches = []
+    let cachedFromServerResult = null
 
     if (this.isBrowser) {
       const serverHandlers = handlers.filter(h => h.type === 'fromServer')
-      cachedPatches = await this.getCachedPatches(serverHandlers)
-      serverResponsesCached =
-        serverHandlers.length && serverHandlers.length === cachedPatches.length
-      const willFetchFromServer = !initialLoad && !serverResponsesCached
+      cachedFromServerResult = await this.getCachedPatch(serverHandlers)
+      const willFetchFromServer =
+        !initialLoad && serverHandlers.length && cachedFromServerResult == null
 
       // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
       // and that the app state's location information is updated.
@@ -380,12 +392,13 @@ export default class Router extends EventEmitter {
         }
 
         if (handler.type === 'fromServer') {
-          if (serverResponsesCached) {
+          if (cachedFromServerResult != null) {
             // if we already have a cached response, we don't need to run the fromServer handler
             // again.
             continue
+          } else {
+            this.emit('fetch')
           }
-          this.emit('fetch')
         }
 
         const result = await this.toPromise(handler.fn, params, request, response)
@@ -394,7 +407,7 @@ export default class Router extends EventEmitter {
           // If this is the fromClient handler, yield it's result along with any cached fromServer
           // results at the same time. Doing these all at once reduces cached page transitions to to
           // a single react render cycle.
-          yield merge({}, result || {}, ...cachedPatches)
+          yield merge({}, result || {}, cachedFromServerResult)
         } else if (result) {
           yield result
         }

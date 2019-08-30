@@ -2,6 +2,12 @@
  * @license
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
+import getAPIVersion from './getAPIVersion'
+
+/**
+ * @license
+ * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
+ */
 /**
  * Cache content using the service worker.  If content is not supplied, the service worker will fetch
  * the content from the server
@@ -31,13 +37,14 @@ export async function cache(path, cacheData) {
   }
 }
 
-export function getCachedResponse(url, apiVersion) {
-  const cacheName = `runtime-json-${apiVersion}`
-  const request = new Request(url)
-
-  return caches.open(cacheName).then(cache => {
-    return cache.match(request)
-  })
+/**
+ * Returns the cached response for the given URL if present.
+ * @param {String} cacheName The name of the cache to pull from
+ * @param {String} url A json fetch URL
+ * @return {Response}
+ */
+export function getCachedResponse(cacheName, url) {
+  return caches.open(`${cacheName}-${getAPIVersion()}`).then(cache => cache.match(new Request(url)))
 }
 
 /**

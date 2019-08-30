@@ -37,7 +37,7 @@ console.log(
 function configureRuntimeCaching({
   cacheName = 'runtime',
   maxEntries = 200,
-  maxAgeSeconds = 3600
+  maxAgeSeconds = 60 * 60 * 24
 } = {}) {
   baseCacheName = cacheName
   ssrCacheName = `${cacheName}-html-{{version}}`
