@@ -16,6 +16,7 @@ import { onSnapshot } from 'mobx-state-tree'
 import debounce from 'lodash/debounce'
 import AppContext from './AppContext'
 import ErrorBoundary from './ErrorBoundary'
+import { reaction } from 'mobx'
 
 /**
  * @private
@@ -37,7 +38,7 @@ export const styles = theme => ({
 })
 
 @withStyles(styles)
-@inject(({ app, history, router }) => ({ menu: app.menu, app, history, router, amp: app.amp }))
+@inject(({ app, history, router }) => ({ app, history, router, amp: app.amp }))
 @observer
 export default class PWA extends Component {
   _nextId = 0
@@ -46,6 +47,7 @@ export default class PWA extends Component {
     super()
     this.appContextValue = { app, history, router, errorReporter }
   }
+
   render() {
     const { amp, app, errorReporter } = this.props
 
@@ -102,7 +104,6 @@ export default class PWA extends Component {
     const { router, app, history } = this.props
 
     if (router) {
-      router.on('after', this.resetPage)
       router.watch(history, app.applyState)
     }
 
@@ -116,6 +117,8 @@ export default class PWA extends Component {
 
     // set initial offline status
     app.setOffline(!navigator.onLine)
+
+    this.resetOnLocationChange()
 
     window.addEventListener('online', () => {
       app.setOffline(false)
@@ -153,6 +156,17 @@ export default class PWA extends Component {
     if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
       connectReduxDevtools(require('remotedev'), app)
     }
+  }
+
+  componentDidUpdate() {
+    if (this.resetPageAfterUpdate) {
+      this.resetPageAfterUpdate = false
+      this.resetPage()
+    }
+  }
+
+  componentWillUnmount() {
+    this.disposer()
   }
 
   /**
@@ -241,8 +255,24 @@ export default class PWA extends Component {
     })
   }
 
+  /**
+   * When the URL changes, call `this.resetPage()` after the next render.
+   * If we don't wait for the next render, when the user clicks a link, they
+   * will first see the page scroll to the top, then see the page change.  We
+   * want those two things to happen at the same time.
+   */
+  resetOnLocationChange() {
+    this.disposer = reaction(
+      () => this.props.app.location.pathname,
+      () => (this.resetPageAfterUpdate = true)
+    )
+  }
+
+  /**
+   * Resets the scroll position and closes the main menu.
+   */
   resetPage = () => {
     window.scrollTo(0, 0)
-    this.props.menu.close()
+    this.props.app.menu.close()
   }
 }

@@ -71,11 +71,12 @@ export default class Pages extends Component {
   mounted = false
   cache = {}
 
-  componentWillMount() {
-    const { components, app } = this.props
+  constructor(props) {
+    super(props)
+    const { components, app } = props
 
     if (typeof components === 'function') {
-      this.components = this.props.components(this.createUniversalComponent)
+      this.components = components(this.createUniversalComponent)
     } else {
       this.components = components
     }
