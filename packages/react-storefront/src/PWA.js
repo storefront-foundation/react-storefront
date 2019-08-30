@@ -102,7 +102,7 @@ export default class PWA extends Component {
     const { router, app, history } = this.props
 
     if (router) {
-      router.on('fetch', this.resetPage)
+      router.on('after', this.resetPage)
       router.watch(history, app.applyState)
     }
 

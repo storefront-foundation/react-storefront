@@ -31,6 +31,15 @@ export async function cache(path, cacheData) {
   }
 }
 
+export function getCachedResponse(url, apiVersion) {
+  const cacheName = `runtime-json-${apiVersion}`
+  const request = new Request(url)
+
+  return caches.open(cacheName).then(cache => {
+    return cache.match(request)
+  })
+}
+
 /**
  * Prefetches and caches JSON for the specified path
  * @param {String} path A URL path for a page (without .json)

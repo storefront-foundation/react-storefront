@@ -291,6 +291,21 @@ export default class Router extends EventEmitter {
     }
   }
 
+  async getCachedPatches(fromServerHandlers, url) {
+    const cachedPatches = []
+
+    for (let handler of fromServerHandlers) {
+      const response = await handler.getCachedResponse()
+
+      if (response) {
+        const patch = await response.json()
+        cachedPatches.push(patch)
+      }
+    }
+
+    return cachedPatches
+  }
+
   /**
    * Runs the current url (from env) and generates a result from each the matching route's handlers.
    * @param {Object} request The request being served
@@ -315,16 +330,23 @@ export default class Router extends EventEmitter {
     }
 
     const handlers = match ? match.handlers : this.fallbackHandlers
-    const willFetchFromServer = !initialLoad && handlers.some(h => h.type === 'fromServer')
 
-    // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
-    // and that the app state's location information is updated.
+    let serverResponsesCached = false
+    let cachedPatches = []
 
     if (this.isBrowser) {
+      const serverHandlers = handlers.filter(h => h.type === 'fromServer')
+      cachedPatches = await this.getCachedPatches(serverHandlers)
+      serverResponsesCached =
+        serverHandlers.length && serverHandlers.length === cachedPatches.length
+      const willFetchFromServer = !initialLoad && !serverResponsesCached
+
+      // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
+      // and that the app state's location information is updated.
       yield {
-        loading: willFetchFromServer,
         location: this.createLocation(),
-        ...historyState
+        ...historyState,
+        loading: willFetchFromServer
       }
     }
 
@@ -358,12 +380,22 @@ export default class Router extends EventEmitter {
         }
 
         if (handler.type === 'fromServer') {
+          if (serverResponsesCached) {
+            // if we already have a cached response, we don't need to run the fromServer handler
+            // again.
+            continue
+          }
           this.emit('fetch')
         }
 
         const result = await this.toPromise(handler.fn, params, request, response)
 
-        if (result) {
+        if (handler.type === 'fromClient' && this.isBrowser) {
+          // If this is the fromClient handler, yield it's result along with any cached fromServer
+          // results at the same time. Doing these all at once reduces cached page transitions to to
+          // a single react render cycle.
+          yield merge({}, result || {}, ...cachedPatches)
+        } else if (result) {
           yield result
         }
       }
@@ -505,10 +537,6 @@ export default class Router extends EventEmitter {
     const request = { path: pathname, search, query: qs.parse(search), method: 'GET' }
     const context = new ClientContext()
     const { state } = location
-
-    if (state) {
-      callback(state, action) // called when restoring history state and applying state from Link components
-    }
 
     this.emit('before', { request, response: context })
 

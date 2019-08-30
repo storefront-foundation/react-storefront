@@ -3,10 +3,14 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import { fetchLatest, StaleResponseError } from '../fetchLatest'
-import { abortPrefetches, resumePrefetches } from './serviceWorker'
+import { abortPrefetches, resumePrefetches, getCachedResponse } from './serviceWorker'
 import { HANDLER, RESPONSE_TYPE, SURROGATE_KEY, REACT_STOREFRONT, API_VERSION } from './headers'
 
 let doFetch
+
+function getApiVersion() {
+  return (window.moov || {}).apiVersion
+}
 
 /**
  * Fetch's state as json from the specified url
@@ -23,13 +27,12 @@ export async function fetch(url, { cache = 'default' } = {}) {
   const { href } = location
 
   try {
-    const apiVersion = (window.moov || {}).apiVersion
     const result = await doFetch(url, {
       cache: cache || 'default',
       credentials: 'include',
       headers: {
         [REACT_STOREFRONT]: 'true', // allows back end handlers to quickly identify PWA API requests,
-        [API_VERSION]: apiVersion // needed for the service worker to determine the correct runtime cache name and ensure that we're not getting a cached response from a previous api version
+        [API_VERSION]: getApiVersion() // needed for the service worker to determine the correct runtime cache name and ensure that we're not getting a cached response from a previous api version
       }
     }).then(response => {
       const { redirected, url } = response
@@ -135,22 +138,29 @@ export default function fromServer(handlerPath, getURL) {
     )
   }
 
+  function createURL() {
+    let url = `${location.pathname}.json${location.search}`
+
+    if (getURL) {
+      url = getURL(url)
+    }
+
+    return url
+  }
+
   return {
     type: 'fromServer',
     runOn: {
       server: true,
       client: true // fromServer handlers run on the client too - we make an ajax request to get the state from the server
     },
-    fn: async function(params, request, response) {
+    getCachedResponse() {
+      return getCachedResponse(createURL(), getApiVersion())
+    },
+    async fn(params, request, response) {
       if (typeof handlerPath === 'string') {
-        let url = `${location.pathname}.json${location.search}`
-
-        if (getURL) {
-          url = getURL(url)
-        }
-
         // handler path has not been transpiled, fetch the data from the server and return the result.
-        return fetch(url, { cache: response.clientCache })
+        return fetch(createURL(), { cache: response.clientCache })
       } else {
         // indicate handler path and asset class in a response header so we can track it in logs
         response.set(HANDLER, handlerPath.path)
