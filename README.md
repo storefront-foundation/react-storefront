@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.43.2
+
+- Fixed a client build issue relating to AMP exclusion.
+
 ### 6.43.1
 
 - Prevent errors when headers forwarded by fetch are not provided by the browser.

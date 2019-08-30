@@ -17,6 +17,19 @@ const fs = require('fs')
 // when building the application for the client, since AMP components
 // will never be used client side.
 const ampToExcludePattern = /react-storefront\/dist\/amp\/(.*).js/
+const excludeAmpHandler = function(resource) {
+  // Parse module name from request
+  const moduleName = resource.request.match(ampToExcludePattern)[1]
+  if (
+    moduleName !== 'installServiceWorker' &&
+    // We need to ignore these AMP components since they normally wrap sections
+    moduleName !== 'AmpState' &&
+    moduleName !== 'AmpForm'
+  ) {
+    // Empty module exists within the `amp` directory
+    resource.request = resource.request.replace(moduleName, 'Empty')
+  }
+}
 
 function createServiceWorkerPlugins({
   root,
@@ -158,6 +171,7 @@ module.exports = {
           new StatsWriterPlugin({
             filename: 'stats.json'
           }),
+          new webpack.NormalModuleReplacementPlugin(ampToExcludePattern, excludeAmpHandler),
           ...additionalPlugins,
           ...createServiceWorkerPlugins({
             root,
@@ -246,14 +260,7 @@ module.exports = {
             to: path.join(root, 'build', 'assets')
           }
         ]),
-        new webpack.NormalModuleReplacementPlugin(ampToExcludePattern, function(resource) {
-          // Parse module name from request
-          const moduleName = resource.request.match(ampToExcludePattern)[1]
-          if (moduleName !== 'installServiceWorker') {
-            // Empty module exists within the `amp` directory
-            resource.request = resource.request.replace(moduleName, 'Empty')
-          }
-        }),
+        new webpack.NormalModuleReplacementPlugin(ampToExcludePattern, excludeAmpHandler),
         ...additionalPlugins,
         ...createServiceWorkerPlugins({
           root,
