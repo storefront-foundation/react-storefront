@@ -108,7 +108,7 @@ export default class BackToTop extends Component {
     return (
       <div className={classes.root} ref={this.el}>
         <Fade in={visible} timeout={fadeTime}>
-          <Fab className={classes.fab} size={size} onClick={this.scrollToTop}>
+          <Fab className={classes.fab} size={size} onClick={this.scrollToTop} title="back to top">
             <Icon className={classes.icon} />
           </Fab>
         </Fade>

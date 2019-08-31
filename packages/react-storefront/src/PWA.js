@@ -23,6 +23,9 @@ import ErrorBoundary from './ErrorBoundary'
  */
 export const styles = theme => ({
   '@global': {
+    html: {
+      touchAction: 'manipulation'
+    },
     'body.moov-modal': {
       overflow: 'hidden',
       position: 'fixed',
@@ -59,10 +62,7 @@ export default class PWA extends Component {
               <Helmet>
                 <html lang="en" />
                 <meta charset="utf-8" />
-                <meta
-                  name="viewport"
-                  content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
-                />
+                <meta name="viewport" content="width=device-width" />
                 <meta name="theme-color" content="#000000" />
                 {app.description ? <meta name="description" content={app.description} /> : null}
                 {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
