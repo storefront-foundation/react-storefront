@@ -41,18 +41,10 @@ export async function cache(path, cacheData) {
  * Returns the cached response for the given URL if present.
  * @param {String} cacheName The name of the cache to pull from
  * @param {String} url A json fetch URL
- * @return {Response}
+ * @return {Promise<Response>}
  */
-export async function getCachedResponse(cacheName, url) {
-  const result = await caches.open(`${cacheName}-${getAPIVersion()}`).then(cache => {
-    const request = new Request(url)
-    console.log('[getCachedResponse] request', request)
-    return cache.match(request)
-  })
-
-  console.log('[getCachedResponse] returning', result)
-
-  return result
+export function getCachedResponse(cacheName, url) {
+  return caches.open(`${cacheName}-${getAPIVersion()}`).then(cache => cache.match(new Request(url)))
 }
 
 /**

@@ -355,14 +355,23 @@ export default class Router extends EventEmitter {
 
     if (this.isBrowser && !initialLoad) {
       const serverHandlers = handlers.filter(h => h.type === 'fromServer')
+      const fromClientHandler = handlers.find(h => h.type === 'fromClient')
       cachedFromServerResult = await this.getCachedPatch(match, serverHandlers)
 
-      // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
-      // and that the app state's location information is updated.
-      yield {
+      const historyStatePatch = {
         location: this.createLocation(),
         ...historyState,
         loading: serverHandlers.length > 0 && cachedFromServerResult == null
+      }
+
+      if (cachedFromServerResult && fromClientHandler) {
+        // If we have a cached result from the server, merge the historyStatePatch into it so we only have to yield once
+        // in the fromClient handler
+        cachedFromServerResult = merge({}, historyStatePatch, cachedFromServerResult)
+      } else {
+        // Here we ensure that the loading mask is displayed immediately if we are going to fetch from the server
+        // and that the app state's location information is updated.
+        yield historyStatePatch
       }
     }
 
