@@ -64,11 +64,12 @@
   "scripts": {
     "build": "cd packages/react-storefront; yarn build; cd ../../; cd packages/react-storefront-moov-xdn; yarn build; cd ../../;",
     "precommit": "yarn add-license",
-    "release": "lerna version --force-publish=*; yarn docs; yarn build; yarn release:rsf; yarn release:create-rsf; yarn release:moov-xdn; yarn release:middleware; yarn release:babel-plugin",
+    "release": "lerna version --force-publish=*; yarn docs; yarn build; yarn release:rsf; yarn release:create-rsf; yarn release:moov-xdn; yarn release:middleware; yarn release:babel-plugin; yarn release:puppeteer",
     "release:rsf": "cd packages/react-storefront/dist; yarn publish --non-interactive",
     "release:create-rsf": "cd packages/create-react-storefront; yarn publish --non-interactive",
     "release:babel-plugin": "cd packages/babel-plugin-react-storefront; yarn publish --non-interactive",
     "release:moov-xdn": "cd packages/react-storefront-moov-xdn/dist; yarn publish --non-interactive",
+    "release:puppeteer": "cd packages/react-storefront-puppeteer; yarn publish --non-interactive",
     "release:middleware": "cd packages/react-storefront-middleware; yarn publish --non-interactive",
     "docs": "cd packages/react-storefront; yarn docs; cd ../../;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
@@ -78,7 +79,7 @@
     "watch:rsf-moov-xdn": "pushd packages/react-storefront-moov-xdn; yarn watch; popd;",
     "add-license": "node ./tasks/addLicense",
     "upgrade-docs": "sh ./tasks/upgrade-docs.sh",
-    "link:all": "yarn build; cd packages/react-storefront/dist; npm link; yarn link; cd ../../../; cd packages/create-react-storefront; npm link; yarn link; cd ../../; cd packages/babel-plugin-react-storefront; npm link; yarn link; cd ../../; cd packages/react-storefront-moov-xdn/dist; npm link; yarn link; cd ../../../;"
+    "link:all": "yarn build; cd packages/react-storefront/dist; npm link; yarn link; cd ../../../; npm link; yarn link; cd ../../../; cd packages/create-react-storefront; cd packages/babel-plugin-react-storefront; npm link; yarn link; cd ../../; cd packages/react-storefront-moov-xdn/dist; npm link; yarn link; cd ../../../; cd packages/react-storefront-puppeteer; npm link; yarn link;"
   },
   "workspaces": {
     "packages": [

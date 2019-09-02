@@ -1,0 +1,19 @@
+{
+  "name": "react-storefront-puppeteer",
+  "version": "6.44.0-alpha.4",
+  "description": "Helpers for writing puppeter tests for React Storefront",
+  "author": "Moovweb",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "puppeteer": "^1.19.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "scripts": {
+    "test": "jest --coverage --collectCoverageFrom=smoke-test-reporter.js test/*",
+    "ci:smoke": "jest ./default-smoke.test.js --reporters=default --reporters=./smoke-test-reporter.js"
+  }
+}
