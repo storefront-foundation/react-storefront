@@ -5,6 +5,9 @@
   "author": "Moovweb",
   "license": "Apache-2.0",
   "main": "./index.js",
+  "scripts": {
+    "link": "npm link; yarn link"
+  },
   "peerDependencies": {
     "express": "^4.16.4"
   }

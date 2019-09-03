@@ -6,7 +6,9 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "dependencies": {
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.0"
+  },
+  "peerDependencies": {
     "puppeteer": "^1.19.0"
   },
   "devDependencies": {
@@ -14,6 +16,7 @@
   },
   "scripts": {
     "test": "jest --coverage --collectCoverageFrom=smoke-test-reporter.js test/*",
-    "ci:smoke": "jest ./default-smoke.test.js --reporters=default --reporters=./smoke-test-reporter.js"
+    "ci:smoke": "jest ./default-smoke.test.js --reporters=default --reporters=./smoke-test-reporter.js",
+    "link": "npm link; yarn link"
   }
 }

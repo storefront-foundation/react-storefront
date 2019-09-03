@@ -8,7 +8,6 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:8.16
-
     working_directory: ~/repo
 
     steps:
@@ -46,7 +45,4 @@ jobs:
       - run:
           name: Run tests
           command: |
-            cd packages/react-storefront
-            yarn test:unit
-            # yarn test
-            # yarn test:browser
+            yarn test
