@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.44.1
+
+- `cache/clearClientCache` no longer requires the service worker to be installed in order to clear the cache. This is now done entirely by the main browser thread.
+
 ### 6.44.0
 
 - Adds a new `react-storefront-puppeteer` package to help developers write puppeteer tests for React Storefront apps and schedule smoke testing with Moovweb Control Center.
