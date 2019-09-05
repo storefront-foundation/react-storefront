@@ -62,12 +62,9 @@ export default class CmsSlot extends Component {
     lazyLoadImages: false
   }
 
-  constructor({ lazyLoadImages }) {
+  constructor() {
     super()
-
-    if (lazyLoadImages) {
-      this.el = createRef()
-    }
+    this.el = createRef()
   }
 
   componentDidMount() {
