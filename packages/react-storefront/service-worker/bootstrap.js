@@ -140,9 +140,7 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
               if (response.status === 200) {
                 cache.put(path, response)
-                console.log(
-                  `[react-storefront service worker] ${path} was prefetched without decoding.`
-                )
+                console.log(`[react-storefront service worker] ${path} was prefetched.`)
               } else if (response.status === PREFETCH_CACHE_MISS) {
                 console.log(`[react-storefront service worker] ${path} was throttled.`)
               } else {
