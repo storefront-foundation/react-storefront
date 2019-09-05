@@ -47,7 +47,7 @@ export default class PWA extends Component {
 
   constructor({ app, history, router, errorReporter }) {
     super()
-    this.appContextValue = { app, history, router, errorReporter }
+    this.appContextValue = { app, history, router, errorReporter, scrollResetPending: false }
   }
 
   render() {
@@ -104,6 +104,10 @@ export default class PWA extends Component {
 
     if (router) {
       router.watch(history, app.applyState)
+
+      router.on('before', () => {
+        this.appContextValue.scrollResetPending = true
+      })
     }
 
     this.bindAppStateToHistory()
@@ -161,6 +165,7 @@ export default class PWA extends Component {
     if (this.resetPageAfterUpdate) {
       this.resetPageAfterUpdate = false
       this.resetPage()
+      this.appContextValue.scrollResetPending = false
     }
   }
 
