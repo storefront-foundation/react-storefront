@@ -7,8 +7,8 @@
   "author": "Moovweb",
   "license": "Apache-2.0",
   "scripts": {
-    "test:unit": "jest --runInBand",
-    "test": "jest test.js --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!test/**/* && yarn test:browser",
+    "test:unit": "jest --runInBand --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!test/**/*",
+    "test": "yarn test:unit && yarn test:browser",
     "test:browser": "webpack --config=config/webpack.config.js && karma start config/karma.conf.js --single-run",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -20,7 +20,8 @@
     "build:assets": "sync-folders --type copy webpack service-worker docs dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
     "watch": "yarn build:prep && concurrently 'yarn build:assets --watch' 'yarn build:sources --watch'",
-    "docs": "mkdir -p docs/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node docs/buildDocs d.js"
+    "docs": "mkdir -p docs/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node docs/buildDocs d.js",
+    "link": "yarn build; cd dist; npm link; yarn link; cd ..;"
   },
   "peerDependencies": {
     "@material-ui/core": "^3.8.1",

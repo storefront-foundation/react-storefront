@@ -229,8 +229,6 @@ self.addEventListener('message', function(event) {
       configureRuntimeCaching(event.data.options)
     } else if (action === 'remove-old-caches') {
       removeOldRuntimeCaches(event.data.apiVersion)
-    } else if (action === 'clear-cache') {
-      clearRuntimeCaches()
     } else if (action === 'abort-prefetches') {
       abortPrefetches()
     } else if (action === 'resume-prefetches') {
@@ -371,17 +369,6 @@ function offlineResponse(apiVersion, context) {
     const req = new Request(appShellPath)
     return caches.open(cacheName).then(cache => cache.match(req))
   }
-}
-
-/**
- * Clears all cached API and SSR responses
- */
-function clearRuntimeCaches() {
-  caches.keys().then(keys => {
-    for (let key of keys) {
-      if (!key.startsWith('workbox-precache')) caches.delete(key)
-    }
-  })
 }
 
 workbox.routing.registerRoute(matchRuntimePath, async context => {

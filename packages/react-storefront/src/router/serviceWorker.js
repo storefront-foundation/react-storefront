@@ -111,12 +111,17 @@ export async function configureCache(options) {
 
 /**
  * Clears all API and SSR responses from the client cache
+ * @return {Promise} Resolved once all caches have b
  */
 export async function clearCache() {
-  if (await waitForServiceWorkerController()) {
-    navigator.serviceWorker.controller.postMessage({
-      action: 'clear-cache'
-    })
+  if ('caches' in window) {
+    const keys = await caches.keys()
+
+    for (let key of keys) {
+      if (!key.startsWith('workbox-precache')) {
+        await caches.delete(key)
+      }
+    }
   }
 }
 

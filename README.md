@@ -78,6 +78,14 @@ yarn release
 
 - Skeletons are now skipped when the URL matches a route that is cached on the client.
 
+### 6.44.1
+
+- `cache/clearClientCache` no longer requires the service worker to be installed in order to clear the cache. This is now done entirely by the main browser thread.
+
+### 6.44.0
+
+- Adds a new `react-storefront-puppeteer` package to help developers write puppeteer tests for React Storefront apps and schedule smoke testing with Moovweb Control Center.
+
 ### 6.43.2
 
 - Fixed a client build issue relating to AMP exclusion.

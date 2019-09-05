@@ -21,6 +21,13 @@ export default class ProductLink extends Component {
 
   render() {
     const { product, ...others } = this.props
-    return <PageLink page="Product" model={product} {...others} />
+    return (
+      <PageLink
+        page="Product"
+        model={product}
+        anchorProps={{ 'data-th': 'product-link' }}
+        {...others}
+      />
+    )
   }
 }
