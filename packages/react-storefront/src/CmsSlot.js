@@ -79,16 +79,22 @@ export default class CmsSlot extends Component {
   }
 
   runEffects() {
-    if (this.props.lazyLoadImages) {
-      lazyLoadImages(this.el.current)
-    }
+    try {
+      if (!this.el.current) return
 
-    if (this.props.prefetchLinks) {
-      const links = Array.from(this.el.current.querySelectorAll('a[data-rsf-prefetch="always"]'))
-
-      for (let link of links) {
-        prefetchJsonFor(link.getAttribute('href'))
+      if (this.props.lazyLoadImages) {
+        lazyLoadImages(this.el.current)
       }
+
+      if (this.props.prefetchLinks) {
+        const links = Array.from(this.el.current.querySelectorAll('a[data-rsf-prefetch="always"]'))
+
+        for (let link of links) {
+          prefetchJsonFor(link.getAttribute('href'))
+        }
+      }
+    } catch (e) {
+      console.warn('error running side effects on CmsSlot', e)
     }
   }
 
