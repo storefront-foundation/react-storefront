@@ -11,6 +11,7 @@ import universal from 'react-universal-component'
 import Container from './Container'
 import Row from './Row'
 import red from '@material-ui/core/colors/red'
+import { waitForServiceWorkerController } from './router/serviceWorker'
 
 export const styles = theme => ({
   root: {
@@ -86,6 +87,23 @@ export default class Pages extends Component {
 
   componentDidMount() {
     this.mounted = true
+    this.preloadPageComponents()
+  }
+
+  async preloadPageComponents() {
+    await waitForServiceWorkerController()
+
+    const whenIdle = window.requestIdleCallback || window.requestAnimationFrame
+
+    whenIdle(() => {
+      for (let key in this.components) {
+        try {
+          this.components[key].preload()
+        } catch (e) {
+          console.warn('could not preload page component', key, e)
+        }
+      }
+    })
   }
 
   componentWillUpdate(nextProps) {
