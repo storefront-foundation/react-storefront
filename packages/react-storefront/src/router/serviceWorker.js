@@ -43,8 +43,18 @@ export async function cache(path, cacheData) {
  * @param {String} url A json fetch URL
  * @return {Promise<Response>}
  */
-export function getCachedResponse(cacheName, url) {
-  return caches.open(`${cacheName}-${getAPIVersion()}`).then(cache => cache.match(new Request(url)))
+export async function getCachedResponse(cacheName, url) {
+  const cachedResponse = await caches
+    .open(`${cacheName}-${getAPIVersion()}`)
+    .then(cache => cache.match(new Request(url)))
+
+  console.log('cachedResponse', cacheName, url, cachedResponse)
+
+  return cachedResponse
+}
+
+if (typeof window !== 'undefined') {
+  window._moovFromCache = getCachedResponse
 }
 
 /**
