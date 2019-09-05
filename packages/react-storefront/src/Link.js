@@ -140,7 +140,7 @@ export default class Link extends Component {
     }
 
     if (prefetch) {
-      props['data-moov-rel'] = 'prefetch'
+      props['data-rsf-prefetch'] = prefetch
     }
 
     const link = <a {...props}>{children}</a>

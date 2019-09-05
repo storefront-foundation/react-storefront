@@ -60,7 +60,7 @@ configureRuntimeCaching()
  */
 function precacheLinks(response) {
   return response.text().then(html => {
-    const matches = html.match(/href="([^"]+)"\sdata-moov-rel="prefetch"/g)
+    const matches = html.match(/href="([^"]+)"\sdata-rsf-prefetch/g)
     if (matches) {
       return Promise.all(
         matches.map(match => match.match(/href="([^"]+)"/)[1]).map(path => cachePath({ path }))
