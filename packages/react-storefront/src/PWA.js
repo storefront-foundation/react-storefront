@@ -106,6 +106,10 @@ export default class PWA extends Component {
       router.watch(history, app.applyState)
 
       router.on('before', () => {
+        // We'll check this to determine if the page should be reset after the next render
+        // this ensures that the scroll reset doesn't happen until the new page is rendered.
+        // Otherwise we would see the current page scroll to the top and after some delay, the new
+        // page would render
         this.appContextValue.scrollResetPending = true
       })
     }
@@ -120,8 +124,6 @@ export default class PWA extends Component {
 
     // set initial offline status
     app.setOffline(!navigator.onLine)
-
-    this.resetOnLocationChange()
 
     window.addEventListener('online', () => {
       app.setOffline(false)
@@ -162,8 +164,7 @@ export default class PWA extends Component {
   }
 
   componentDidUpdate() {
-    if (this.resetPageAfterUpdate) {
-      this.resetPageAfterUpdate = false
+    if (this.appContextValue.scrollResetPending) {
       this.resetPage()
       this.appContextValue.scrollResetPending = false
     }
@@ -255,20 +256,6 @@ export default class PWA extends Component {
 
         // instead do the navigation client-side using the history API
         this.props.history.push(delegateTarget.getAttribute('href'))
-      }
-    })
-  }
-
-  /**
-   * When the URL changes, call `this.resetPage()` after the next render.
-   * If we don't wait for the next render, when the user clicks a link, they
-   * will first see the page scroll to the top, then see the page change.  We
-   * want those two things to happen at the same time.
-   */
-  resetOnLocationChange() {
-    this.disposer = this.props.history.listen((location, action) => {
-      if (location.pathname != this.props.app.location.pathname && action === 'PUSH') {
-        this.resetPageAfterUpdate = true
       }
     })
   }

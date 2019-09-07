@@ -203,7 +203,10 @@ const ProductModelBase = types
         fetch(`${pathname}/images/${selected.id}.json${search}`)
           .then(res => res.json())
           .then(state => self.apply({ ...state, loadingImages: false }))
-          .catch(() => self.apply({ loadingImages: false }))
+          .catch(e => {
+            console.error(e)
+            self.apply({ loadingImages: false })
+          })
       }
     },
     /**
