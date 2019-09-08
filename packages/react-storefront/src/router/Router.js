@@ -564,7 +564,7 @@ export default class Router extends EventEmitter {
     const context = new ClientContext()
     const { state } = location
 
-    this.emit('before', { request, response: context })
+    this.emit('before', { request, response: context, action })
 
     if (action === 'PUSH' || !state) {
       /*

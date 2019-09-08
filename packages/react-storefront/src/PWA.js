@@ -105,12 +105,14 @@ export default class PWA extends Component {
     if (router) {
       router.watch(history, app.applyState)
 
-      router.on('before', () => {
+      router.on('before', ({ action }) => {
         // We'll check this to determine if the page should be reset after the next render
         // this ensures that the scroll reset doesn't happen until the new page is rendered.
         // Otherwise we would see the current page scroll to the top and after some delay, the new
         // page would render
-        this.appContextValue.scrollResetPending = true
+        if (action === 'PUSH') {
+          this.appContextValue.scrollResetPending = true
+        }
       })
     }
 
