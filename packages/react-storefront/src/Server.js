@@ -21,6 +21,7 @@ import getStats from 'react-storefront-stats'
 import { renderAmpAnalyticsTags } from './Track'
 import { ROUTES } from './router/headers'
 import flattenDeep from 'lodash/flattenDeep'
+import requestContext from './requestContext'
 
 /**
  * A request handler for the server.
@@ -121,7 +122,7 @@ export default class Server {
     console.warn = console.warn || console.log
 
     const { App, theme } = this
-    const { protocol, hostname, port, path } = request
+    const { protocol, hostname, port, path, search } = request
     this.setContentType(request, response)
 
     if (path.endsWith('.json')) {
@@ -165,6 +166,12 @@ export default class Server {
       })
 
       const helmet = Helmet.renderStatic()
+
+      if (amp && (!requestContext.get('amp-enabled') || !requestContext.get('amp-transformed'))) {
+        console.warn('AMP not enabled, redirecting to the PWA.')
+        response.redirect(path.replace(/\.amp/, '') + search, 302)
+      }
+
       const chunks = flushChunkNames(stats)
 
       const scripts = flattenDeep([

@@ -12,6 +12,8 @@ import React from 'react'
 import $ from 'cheerio'
 import Request from '../../react-storefront-moov-xdn/src/Request'
 import Response from '../../react-storefront-moov-xdn/src/Response'
+import requestContext from '../src/requestContext'
+import '../../react-storefront-moov-xdn/src/requestContext'
 
 describe('Server', () => {
   let router, theme, blob, globals, model, App, exported, request, response
@@ -186,6 +188,75 @@ describe('Server', () => {
 
       expect(passedHtml).toContain('<div>test</div>')
       expect(data).toEqual({ body, htmlparsed: true })
+    })
+
+    it('should redirect to non-AMP page when AMP is requested but both @withAmp is not used and AMP transform was not called', async () => {
+      const App = () => <div />
+
+      const router = new Router().get(
+        '/nope',
+        fromServer(() => {
+          return {}
+        })
+      )
+
+      global.env.path = '/nope.amp'
+      request = new Request()
+      response = new Response(request)
+
+      const spy = jest.spyOn(response, 'redirect')
+
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
+
+      expect(spy).toHaveBeenCalledWith('/nope', 302)
+    })
+
+    it('should redirect to non-AMP page when AMP is requested but AMP transform has never been used', async () => {
+      const App = () => <div />
+
+      const router = new Router().get(
+        '/test',
+        fromServer(() => {
+          return {}
+        })
+      )
+
+      global.env.path = '/test.amp?foo=bar'
+      request = new Request()
+      response = new Response(request)
+
+      const spy = jest.spyOn(response, 'redirect')
+
+      requestContext.set('amp-enabled', true)
+
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
+
+      expect(spy).toHaveBeenCalledWith('/test?foo=bar', 302)
+    })
+
+    it('should not redirect when AMP is requested and @withAmp is used and has been transformed', async () => {
+      const App = () => <div />
+
+      const router = new Router().get(
+        '/test',
+        fromServer(() => {
+          return {}
+        })
+      )
+
+      global.env.path = '/test.amp'
+      request = new Request()
+      response = new Response(request)
+
+      const spy = jest.spyOn(response, 'redirect')
+
+      // acts as @withAmp
+      requestContext.set('amp-enabled', true)
+      // acts as AMP transformation
+      requestContext.set('amp-transformed', true)
+      await new Server({ theme, model, router, blob, globals, App }).serve(request, response)
+
+      expect(spy).not.toHaveBeenCalled()
     })
   })
 

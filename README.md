@@ -76,6 +76,8 @@ yarn release
 
 ### 6.46.0
 
+- Added `react-storefront/requestContext` for request scoped state storage access
+- Redirects from AMP to the PWA if @withAmp is not present on the main page component or if react-storefront-extensions/transformAmpHtml is not used.
 - Added the ability to disable analytics by setting a cookie named "rsf_disable_analytics" to "true". The default smoke test now disables analytics so that smoke test runs aren't counted as real user sessions.
 
 ### 6.45.0

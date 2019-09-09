@@ -7,6 +7,7 @@ import Server from 'react-storefront/Server'
 import Config from 'react-storefront/Config'
 import Request from './Request'
 import Response from './Response'
+import './requestContext'
 
 useMoovAsyncTransformer()
 

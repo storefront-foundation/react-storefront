@@ -143,7 +143,8 @@
       "!**/index.js"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|svg)$": "../test/config/assetMock.js"
+      "\\.(jpg|jpeg|png|svg)$": "../test/config/assetMock.js",
+      "react-storefront/(.*)": "<rootDir>/src/$1"
     }
   }
 }
