@@ -17,6 +17,8 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import Link from './Link'
 import { PropTypes as MobxPropTypes, inject, observer } from 'mobx-react'
 import Image from './Image'
+import analytics from './analytics'
+import Track from './Track'
 
 /**
  * A search popup with suggestions of search texts, categories, products.
@@ -193,8 +195,10 @@ export default class SearchPopup extends Component {
 
   onSearchSubmit = event => {
     const { history } = this.props
+    const term = this.state.search
     event.preventDefault()
-    history.push(`/search?text=${this.state.search}`)
+    history.push(`/search?text=${term}`)
+    analytics.fire('searchSubmitted', { term })
     this.hidePopup()
   }
 
@@ -280,9 +284,11 @@ export const SuggestedSearch = props => (
     <ul className={props.classes.suggestionsList}>
       {props.searches.map((item, i) => (
         <li key={i}>
-          <Link to={`/search?text=${item.text}`} onClick={props.hidePopup}>
-            <Highlight search={props.searchText}>{item.text}</Highlight>
-          </Link>
+          <Track event="searchSubmitted" term={item.text}>
+            <Link to={`/search?text=${item.text}`} onClick={props.hidePopup}>
+              <Highlight search={props.searchText}>{item.text}</Highlight>
+            </Link>
+          </Track>
         </li>
       ))}
     </ul>
@@ -312,9 +318,11 @@ export const CategorySearches = props => (
     <ul className={props.classes.suggestionsList}>
       {props.categories.map(item => (
         <li key={item.id}>
-          <Link to={item.url} onClick={props.hidePopup}>
-            {item.name}
-          </Link>
+          <Track event="searchSubmitted" term={item.name}>
+            <Link to={item.url} onClick={props.hidePopup}>
+              {item.name}
+            </Link>
+          </Track>
         </li>
       ))}
     </ul>
@@ -345,12 +353,16 @@ export const ProductSuggestions = props => (
     <ul className={props.classes.productsSuggestions}>
       {props.products.map(item => (
         <li key={item.id}>
-          <Link to={item.url} onClick={props.hidePopup} className={props.classes.productImage}>
-            <Image fill src={item.thumbnail} alt={item.name} />
-          </Link>
-          <Link to={item.url} onClick={props.hidePopup}>
-            {item.name}
-          </Link>
+          <Track event="searchSubmitted" term={item.name}>
+            <Link to={item.url} onClick={props.hidePopup} className={props.classes.productImage}>
+              <Image fill src={item.thumbnail} alt={item.name} />
+            </Link>
+          </Track>
+          <Track event="searchSubmitted" term={item.name}>
+            <Link to={item.url} onClick={props.hidePopup}>
+              {item.name}
+            </Link>
+          </Track>
         </li>
       ))}
     </ul>

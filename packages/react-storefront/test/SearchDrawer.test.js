@@ -283,11 +283,11 @@ describe('SearchDrawer', () => {
     })
 
     it('should fire search link clicked', () => {
-      const searchLinkClicked = jest.fn()
+      const searchSubmitted = jest.fn()
 
       const wrapper = mount(
         <Provider app={app} history={history}>
-          <AnalyticsProvider targets={() => [{ searchLinkClicked }]}>
+          <AnalyticsProvider targets={() => [{ searchSubmitted }]}>
             <SearchDrawer />
           </AnalyticsProvider>
         </Provider>
@@ -300,7 +300,7 @@ describe('SearchDrawer', () => {
 
       return waitForAnalytics(() => {
         expect(history.push).toHaveBeenCalledWith('/results/1', undefined)
-        expect(searchLinkClicked).toHaveBeenCalledWith({ term: 'query' })
+        expect(searchSubmitted).toHaveBeenCalledWith({ term: 'query' })
       })
     })
 

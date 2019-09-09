@@ -341,7 +341,7 @@ export default class SearchDrawer extends Component {
       >
         {group.results.map((result, i) => (
           <li key={i}>
-            <Track event="searchLinkClicked" term={this.props.search.text}>
+            <Track event="searchSubmitted" term={this.props.search.text}>
               <Link to={result.url} onClick={this.hide}>
                 {group.thumbnails ? this.renderThumbnail(result) : this.renderLinkText(result)}
               </Link>

@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.45.0
+
+- Added tracking search events for the `SearchPopup` component
+
 ### 6.44.1
 
 - `cache/clearClientCache` no longer requires the service worker to be installed in order to clear the cache. This is now done entirely by the main browser thread.
