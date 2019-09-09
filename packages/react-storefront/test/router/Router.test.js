@@ -799,7 +799,7 @@ describe('Router:Node', function() {
       )
       const results = await runAll(router)
       expect(serverHandler.getCachedResponse).toHaveBeenCalled()
-      expect(results).toHaveLength(2)
+      expect(results).toHaveLength(1)
       expect(handlerFn).not.toHaveBeenCalled()
     })
 

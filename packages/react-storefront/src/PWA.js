@@ -99,21 +99,22 @@ export default class PWA extends Component {
     return this._nextId++
   }
 
+  onBeforeRouteChange = ({ action }) => {
+    // We'll check this to determine if the page should be reset after the next render
+    // this ensures that the scroll reset doesn't happen until the new page is rendered.
+    // Otherwise we would see the current page scroll to the top and after some delay, the new
+    // page would render
+    if (action === 'PUSH') {
+      this.appContextValue.scrollResetPending = true
+    }
+  }
+
   componentDidMount() {
     const { router, app, history } = this.props
 
     if (router) {
       router.watch(history, app.applyState)
-
-      router.on('before', ({ action }) => {
-        // We'll check this to determine if the page should be reset after the next render
-        // this ensures that the scroll reset doesn't happen until the new page is rendered.
-        // Otherwise we would see the current page scroll to the top and after some delay, the new
-        // page would render
-        if (action === 'PUSH') {
-          this.appContextValue.scrollResetPending = true
-        }
-      })
+      router.on('before', this.onBeforeRouteChange)
     }
 
     this.bindAppStateToHistory()
@@ -173,7 +174,9 @@ export default class PWA extends Component {
   }
 
   componentWillUnmount() {
-    this.disposer()
+    if (this.props.router) {
+      this.props.router.removeListener('before', this.onBeforeRouteChange)
+    }
   }
 
   /**
