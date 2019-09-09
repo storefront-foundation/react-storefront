@@ -32,7 +32,7 @@ describe('smoke tests', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({ ignoreHTTPSErrors, headless })
-    page = await createPage(browser)
+    page = await createPage(browser, { url: startURL })
   })
 
   afterAll(async () => {

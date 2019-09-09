@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.46.0
+
+- Added the ability to disable analytics by setting a cookie named "rsf_disable_analytics" to "true". The default smoke test now disables analytics so that smoke test runs aren't counted as real user sessions.
+
 ### 6.45.0
 
 - Added tracking search events for the `SearchPopup` component

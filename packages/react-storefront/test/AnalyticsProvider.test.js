@@ -18,7 +18,7 @@ describe('AnalyticsProvider', () => {
     mount(
       <AnalyticsProvider targets={() => [1, 2, 3]}>
         <div>Hello</div>
-      </AnalyticsProvider>,
+      </AnalyticsProvider>
     )
     expect(spy).toHaveBeenCalledWith(1, 2, 3)
     spy.mockRestore()
@@ -28,7 +28,7 @@ describe('AnalyticsProvider', () => {
     const wrapper = mount(
       <AnalyticsProvider targets={() => []}>
         <div className="hello">Hello</div>
-      </AnalyticsProvider>,
+      </AnalyticsProvider>
     )
     expect(wrapper.find('.hello').text()).toEqual('Hello')
   })
@@ -39,7 +39,7 @@ describe('AnalyticsProvider', () => {
         <AnalyticsProvider targets={() => []}>
           <div className="hello">Hello</div>
         </AnalyticsProvider>
-      </TestProvider>,
+      </TestProvider>
     )
     expect(wrapper.find('.hello').text()).toEqual('Hello')
   })
@@ -50,7 +50,7 @@ describe('AnalyticsProvider', () => {
     mount(
       <AnalyticsProvider targets={() => [target]}>
         <div className="hello">Hello</div>
-      </AnalyticsProvider>,
+      </AnalyticsProvider>
     )
 
     expect(target.setHistory).toHaveBeenCalledTimes(1)
@@ -64,9 +64,10 @@ describe('AnalyticsProvider', () => {
       process.env.NODE_ENV = 'development' // for 100% coverage
       jest.resetModules()
       jest.mock('tti-polyfill', () => ({
-        getFirstConsistentlyInteractive: () => new Promise((resolve, reject) => {
-          setInteractive = resolve
-        })
+        getFirstConsistentlyInteractive: () =>
+          new Promise((resolve, reject) => {
+            setInteractive = resolve
+          })
       }))
     })
 
@@ -74,7 +75,7 @@ describe('AnalyticsProvider', () => {
       process.env.NODE_ENV = env
     })
 
-    it('should not load targets until the app is interactive if delayUntilInteractive is true', (done) => {
+    it('should not load targets until the app is interactive if delayUntilInteractive is true', done => {
       const AnalyticsProvider = require('../src/AnalyticsProvider').default
       const targets = jest.fn(() => [])
 
@@ -103,6 +104,28 @@ describe('AnalyticsProvider', () => {
       )
 
       expect(targets).toHaveBeenCalled()
+    })
+  })
+
+  describe('rsf_disable_analytics cookie', () => {
+    beforeEach(() => {
+      document.cookie = 'rsf_disable_analytics=true'
+    })
+
+    afterEach(() => {
+      document.cookie = 'rsf_disable_analytics=false'
+    })
+
+    it('should prevent analytics from initializing when set to true', () => {
+      const getTargets = jest.fn(() => [1, 2, 3])
+
+      mount(
+        <AnalyticsProvider targets={getTargets}>
+          <div>Hello</div>
+        </AnalyticsProvider>
+      )
+
+      expect(getTargets).not.toHaveBeenCalled()
     })
   })
 })

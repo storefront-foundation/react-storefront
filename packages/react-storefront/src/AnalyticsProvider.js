@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import analytics, { configureAnalytics, activate } from './analytics'
 import { Provider, inject } from 'mobx-react'
 import ttiPolyfill from 'tti-polyfill'
+import { getCookie } from './utils/cookie'
 
 /**
  * Use this component to register your analytics targets.
@@ -76,6 +77,15 @@ export default class AnalyticsProvider extends Component {
     }
   }
 
+  /**
+   * Returns true unless a rsf_disable_analytics cookie is present and set to "true".
+   * This cookie allows us to turn off analytics during smoke testing, crawling, etc...
+   * @return {Boolean}
+   */
+  anayticsEnabled() {
+    return getCookie('rsf_disable_analytics') !== 'true'
+  }
+
   async componentDidMount() {
     const { delayUntilInteractive } = this.props
 
@@ -83,21 +93,25 @@ export default class AnalyticsProvider extends Component {
       if (delayUntilInteractive) {
         await ttiPolyfill.getFirstConsistentlyInteractive()
       }
-  
-      if (process.env.NODE_ENV === 'development') {
-        console.log('[AnalyticsProvider]', 'initializing analytics')
-      }
 
-      const targets = this.props.targets()
-      configureAnalytics(...targets)
-
-      for (let target of targets) {
-        if (typeof target.setHistory === 'function') {
-          target.setHistory(this.props.history)
+      if (this.anayticsEnabled()) {
+        if (process.env.NODE_ENV === 'development') {
+          console.log('[AnalyticsProvider]', 'initializing analytics')
         }
-      }
 
-      activate()
+        const targets = this.props.targets()
+        configureAnalytics(...targets)
+
+        for (let target of targets) {
+          if (typeof target.setHistory === 'function') {
+            target.setHistory(this.props.history)
+          }
+        }
+
+        activate()
+      } else {
+        console.log('Skipping analytics because a rsf_disable_analytics=true cookie is present.')
+      }
     }
   }
 
