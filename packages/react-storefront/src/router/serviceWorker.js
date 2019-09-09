@@ -48,8 +48,6 @@ export async function getCachedResponse(cacheName, url) {
     .open(`${cacheName}-${getAPIVersion()}`)
     .then(cache => cache.match(new Request(url)))
 
-  console.log('cachedResponse', cacheName, url, cachedResponse)
-
   return cachedResponse
 }
 
