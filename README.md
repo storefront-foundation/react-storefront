@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.46.1
+
+- Fixing AMP check in `Server`
+
 ### 6.46.0
 
 - When `cache({ edge })` is present on a route and has a `key` property, the cookies in that key will be forwarded on any `fetch` calls sent upstream.

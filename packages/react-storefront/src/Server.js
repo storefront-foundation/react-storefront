@@ -167,11 +167,6 @@ export default class Server {
 
       const helmet = Helmet.renderStatic()
 
-      if (amp && (!requestContext.get('amp-enabled') || !requestContext.get('amp-transformed'))) {
-        console.warn('AMP not enabled, redirecting to the PWA.')
-        response.redirect(path.replace(/\.amp/, '') + search, 302)
-      }
-
       const chunks = flushChunkNames(stats)
 
       const scripts = flattenDeep([
@@ -217,6 +212,19 @@ export default class Server {
 
       if (typeof this.transform === 'function') {
         html = await this.transform(html, { model, sheetsRegistry, helmet })
+      }
+
+      if (amp && (!requestContext.get('amp-enabled') || !requestContext.get('amp-transformed'))) {
+        console.warn('\nAMP not enabled')
+        if (!requestContext.get('amp-enabled')) {
+          console.warn('\twithAMP was not used')
+        }
+        if (!requestContext.get('amp-transformed')) {
+          console.warn('\ttransformAmpHtml was not used')
+        }
+        console.warn('Redirecting to the PWA.')
+        response.redirect(path.replace(/\.amp/, '') + search, 302)
+        return
       }
 
       response.send(html)

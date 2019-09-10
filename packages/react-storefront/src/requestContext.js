@@ -23,9 +23,17 @@ export function setImplementation(i) {
  */
 export default {
   get(...args) {
+    if (!impl) {
+      console.warn('requestContext implementation not provided, returning undefined')
+      return undefined
+    }
     return impl.get(...args)
   },
   set(...args) {
+    if (!impl) {
+      console.warn('requestContext implementation not provided, skipping.')
+      return
+    }
     impl.set(...args)
   }
 }
