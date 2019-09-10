@@ -74,15 +74,12 @@ yarn release
 
 ## Changelog
 
-### 6.47.0
-
-- When `cache({ edge })` is present on a route and has a `key` property, the cookies in that key will be forwarded on any `fetch` calls sent upstream.
-
 ### 6.46.0
 
+- When `cache({ edge })` is present on a route and has a `key` property, the cookies in that key will be forwarded on any `fetch` calls sent upstream.
 - Added `react-storefront/requestContext` for request scoped state storage access
-- Redirects from AMP to the PWA if @withAmp is not present on the main page component or if react-storefront-extensions/transformAmpHtml is not used.
-- Added the ability to disable analytics by setting a cookie named "rsf_disable_analytics" to "true". The default smoke test now disables analytics so that smoke test runs aren't counted as real user sessions.
+- Redirects from AMP to the PWA if `@withAmp` is not present on the main page component or if `react-storefront-extensions/transformAmpHtml` is not used.
+- Added the ability to disable analytics by setting a cookie named `rsf_disable_analytics` to `true`. The default smoke test now disables analytics so that smoke test runs aren't counted as real user sessions.
 
 ### 6.45.0
 
