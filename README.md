@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.47.0
+
+- When `cache({ edge })` is present on a route and has a `key` property, the cookies in that key will be forwarded on any `fetch` calls sent upstream.
+
 ### 6.46.0
 
 - Added `react-storefront/requestContext` for request scoped state storage access

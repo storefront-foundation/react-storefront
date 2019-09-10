@@ -3,6 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import ClientContext from '../../src/router/ClientContext'
+import { createCustomCacheKey } from '../../src/router'
 
 describe('cache', () => {
   describe('on the client', () => {
@@ -82,6 +83,39 @@ describe('cache', () => {
       const cache = require('../../src/router').cache
       cache({ edge: { surrogateKey: () => 'test' } }).fn({}, { method: 'POST' }, response)
       expect(response.get('x-moov-surrogate-key')).toBe('test')
+    })
+
+    it('should set shouldSendCookies to false when maxAgeSeconds is specified', () => {
+      const cache = require('../../src/router').cache
+      const request = {}
+
+      cache({
+        edge: {
+          maxAgeSeconds: 100
+        },
+        client: true
+      }).fn({}, request, new Response(request))
+
+      expect(global.env.shouldSendCookies).toEqual(false)
+    })
+
+    describe('key', () => {
+      it('should set shouldSendCookies when a custom cache key is specified', () => {
+        const cache = require('../../src/router').cache
+        const request = {}
+
+        cache({
+          edge: {
+            maxAgeSeconds: 100,
+            key: createCustomCacheKey()
+              .addCookie('currency')
+              .addCookie('location')
+          },
+          client: true
+        }).fn({}, request, new Response(request))
+
+        expect(global.env.shouldSendCookies).toEqual(['currency', 'location'])
+      })
     })
   })
 

@@ -98,8 +98,14 @@ function forwardHeadersFromBrowser(userHeaders) {
 export function fetchWithCookies(url, options = {}, qsOptions) {
   const headers = {}
 
-  if (env.cookie && env.shouldSendCookies !== false) {
-    headers.cookie = env.cookie
+  if (env.cookie) {
+    if (Array.isArray(env.shouldSendCookies)) {
+      // send only those cookies that are included in the custom cache key (see router/cache.js)
+      headers.cookie = pickCookies(env.rsf_request.cookies, env.shouldSendCookies)
+    } else if (env.shouldSendCookies !== false) {
+      // will get here when the response is cached at edge without a custom cache key
+      headers.cookie = env.cookie
+    }
   }
 
   return fetch(
@@ -110,6 +116,27 @@ export function fetchWithCookies(url, options = {}, qsOptions) {
     }),
     qsOptions
   )
+}
+
+/**
+ * Returns a cookie header containing only those cookies in `names` copied over
+ * from the incoming request from the browser
+ * @param {Object} fromCookies The source cookies
+ * @param {String[]} names
+ * @return {String}
+ */
+function pickCookies(fromCookies, names) {
+  const cookies = []
+
+  for (let name of names) {
+    const value = fromCookies[name]
+
+    if (value !== undefined) {
+      cookies.push(`${encodeURIComponent(name)}=${encodeURIComponent(fromCookies[name])}`)
+    }
+  }
+
+  return cookies.join('; ')
 }
 
 /**

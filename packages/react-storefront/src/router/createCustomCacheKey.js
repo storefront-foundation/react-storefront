@@ -59,6 +59,14 @@ class CustomCacheKey {
     return this
   }
 
+  /**
+   * Returns the name of all cookies in the custom key
+   * @return {String[]}
+   */
+  getCookieNames() {
+    return Object.keys(this.cookies)
+  }
+
   toJSON() {
     return {
       add_headers: this.headers,

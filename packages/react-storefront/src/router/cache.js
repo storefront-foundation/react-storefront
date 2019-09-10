@@ -79,7 +79,9 @@ export default function cache({ edge, server, client }) {
       } else if (edge) {
         if (edge.maxAgeSeconds) {
           // For fetch to read
-          env.shouldSendCookies = false
+          env.shouldSendCookies =
+            edge.key && edge.key.getCookieNames ? edge.key.getCookieNames() : false
+
           response.relayUpstreamCookies(false)
           response.cacheOnServer(edge.maxAgeSeconds)
         }

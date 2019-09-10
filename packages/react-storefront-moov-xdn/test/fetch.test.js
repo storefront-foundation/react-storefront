@@ -243,8 +243,12 @@ describe('fetch', () => {
 })
 
 describe('fetchWithCookies', () => {
+  let env
+
   beforeEach(() => {
-    env.cookie = 'JSESSIONID=EB9FC0F82486EF5F36C7851A56BB3CB2'
+    global.env = env = {
+      cookie: 'JSESSIONID=EB9FC0F82486EF5F36C7851A56BB3CB2'
+    }
   })
 
   afterEach(() => {
@@ -305,6 +309,39 @@ describe('fetchWithCookies', () => {
 
     nock('https://api.com', {
       reqheaders: { cookie: env.cookie, 'content-type': 'application/json', 'content-length': 39 }
+    })
+      .post('/posts/1', JSON.stringify(body))
+      .reply(200, { success: true })
+
+    const result = await fetchWithCookies('https://api.com/posts/1', { body }).then(res =>
+      res.json()
+    )
+
+    expect(result).toEqual({ success: true })
+  })
+
+  it('should only send the cookies included in env.shouldSendCookies', async () => {
+    const body = {
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    }
+
+    env.rsf_request = {
+      cookies: {
+        currency: 'USD',
+        sessionid: 'abc123'
+      }
+    }
+
+    env.shouldSendCookies = ['currency']
+
+    nock('https://api.com', {
+      reqheaders: {
+        cookie: 'currency=USD',
+        'content-type': 'application/json',
+        'content-length': 39
+      }
     })
       .post('/posts/1', JSON.stringify(body))
       .reply(200, { success: true })
