@@ -290,7 +290,8 @@ export default class ImageSwitcher extends Component {
 
     /**
      * Set to true to always revert back to the first image when image URLs
-     * are changed.
+     * are changed.  This behavior is automatically adopted when the `product`
+     * prop is specified.
      */
     resetSelectionWhenImagesChange: PropTypes.bool
   }
@@ -303,7 +304,6 @@ export default class ImageSwitcher extends Component {
     indicators: false,
     loadingThumbnailProps: {},
     imageProps: {},
-    resetSelectionWhenImagesChange: false,
     reactPinchZoomPanOptions: {
       maxScale: 3
     }
@@ -312,7 +312,8 @@ export default class ImageSwitcher extends Component {
   state = {
     selectedIndex: 0,
     productId: null,
-    viewerActive: false
+    viewerActive: false,
+    fullSizeImagesLoaded: false
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -334,8 +335,13 @@ export default class ImageSwitcher extends Component {
   }
 
   componentDidMount() {
-    if (this.props.resetSelectionWhenImagesChange) {
-      this.disposeReaction = reaction(() => this.images, () => this.setState({ selectedIndex: 0 }))
+    if (this.props.resetSelectionWhenImagesChange || this.props.product) {
+      this.disposeReaction = reaction(
+        () => this.images,
+        () => {
+          this.setState({ selectedIndex: 0, fullSizeImagesLoaded: false })
+        }
+      )
     }
   }
 
@@ -459,6 +465,7 @@ export default class ImageSwitcher extends Component {
       notFoundSrc
     } = this.props
     const { images, thumbnails } = this
+    const { fullSizeImagesLoaded } = this.state
 
     if (app.amp)
       return (
@@ -500,7 +507,7 @@ export default class ImageSwitcher extends Component {
                     notFoundSrc={notFoundSrc}
                     src={i === 0 && app.loading ? null : src} // need to clear src when app.loading is true so that the onLoad event will fire and the loading thumbnail will be removed
                     alt={alt || 'product'}
-                    onLoad={i === 0 ? this.clearLoadingProduct : null}
+                    onLoad={i === 0 ? this.onFullSizeImagesLoaded : null}
                     {...imageProps}
                   />
                 )}
@@ -535,14 +542,17 @@ export default class ImageSwitcher extends Component {
 
           {product && <LoadMask show={product.loadingImages} className={classes.mask} />}
 
-          {product && app.loadingProduct && app.loadingProduct.thumbnail && (
-            <Image
-              src={app.loadingProduct.thumbnail}
-              className={classes.productThumb}
-              {...loadingThumbnailProps}
-              fill
-            />
-          )}
+          {product &&
+            app.loadingProduct &&
+            app.loadingProduct.thumbnail &&
+            !fullSizeImagesLoaded && (
+              <Image
+                src={app.loadingProduct.thumbnail}
+                className={classes.productThumb}
+                {...loadingThumbnailProps}
+                fill
+              />
+            )}
 
           <Portal>
             <div
@@ -597,7 +607,8 @@ export default class ImageSwitcher extends Component {
     )
   }
 
-  clearLoadingProduct = () => {
+  onFullSizeImagesLoaded = () => {
+    this.setState({ fullSizeImagesLoaded: true })
     this.props.app.applyState({ loadingProduct: null })
   }
 }

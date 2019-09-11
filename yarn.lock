@@ -4406,6 +4406,13 @@ babel-plugin-react-docgen@^2.0.0:
     lodash "^4.17.10"
     react-docgen "^3.0.0-rc.1"
 
+babel-plugin-react-storefront@^6.0.3:
+  version "6.44.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-storefront/-/babel-plugin-react-storefront-6.44.2.tgz#a9fcc3324195a1e3506dc159d27fa9e20e66c518"
+  integrity sha512-4SmjqaZkfsaQwCELV1DUWMGxZighw1Vs1n+KhMRAjv+3MLDbnVBdibPE5jlmvLBCguWBfSGv5I4Wy+HCJ+s6tw==
+  dependencies:
+    babel-core "^6.26.0"
+
 babel-plugin-syntax-object-rest-spread@^6.13.0, babel-plugin-syntax-object-rest-spread@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
@@ -10033,9 +10040,9 @@ handlebars@^4.0.2, handlebars@^4.0.3, handlebars@~4.0.5:
     uglify-js "^3.1.4"
 
 handlebars@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.1.2.tgz#b6b37c1ced0306b221e094fc7aca3ec23b131b67"
-  integrity sha512-nvfrjqvt9xQ8Z/w0ijewdD/vvWDTOweBUm96NTr66Wfvo1mJenBLwcYmPs3TIBP5ruzYGD7Hx/DaM9RmhroGPw==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.2.0.tgz#57ce8d2175b9bbb3d8b3cf3e4217b1aec8ddcb2e"
+  integrity sha512-Kb4xn5Qh1cxAKvQnzNWZ512DhABzyFNmsaJf3OAkWNa4NkaqWcNI8Tao8Tasi0/F4JD9oyG0YxuFyvyR57d+Gw==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"

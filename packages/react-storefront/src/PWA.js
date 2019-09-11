@@ -23,6 +23,9 @@ import ErrorBoundary from './ErrorBoundary'
  */
 export const styles = theme => ({
   '@global': {
+    html: {
+      touchAction: 'manipulation'
+    },
     'body.moov-modal': {
       overflow: 'hidden',
       position: 'fixed',
@@ -37,15 +40,16 @@ export const styles = theme => ({
 })
 
 @withStyles(styles)
-@inject(({ app, history, router }) => ({ menu: app.menu, app, history, router, amp: app.amp }))
+@inject(({ app, history, router }) => ({ app, history, router, amp: app.amp }))
 @observer
 export default class PWA extends Component {
   _nextId = 0
 
   constructor({ app, history, router, errorReporter }) {
     super()
-    this.appContextValue = { app, history, router, errorReporter }
+    this.appContextValue = { app, history, router, errorReporter, scrollResetPending: false }
   }
+
   render() {
     const { amp, app, errorReporter } = this.props
 
@@ -58,10 +62,7 @@ export default class PWA extends Component {
               <Helmet>
                 <html lang="en" />
                 <meta charset="utf-8" />
-                <meta
-                  name="viewport"
-                  content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no"
-                />
+                <meta name="viewport" content="width=device-width" />
                 <meta name="theme-color" content="#000000" />
                 {app.description ? <meta name="description" content={app.description} /> : null}
                 {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
@@ -98,12 +99,22 @@ export default class PWA extends Component {
     return this._nextId++
   }
 
+  onBeforeRouteChange = ({ action }) => {
+    // We'll check this to determine if the page should be reset after the next render
+    // this ensures that the scroll reset doesn't happen until the new page is rendered.
+    // Otherwise we would see the current page scroll to the top and after some delay, the new
+    // page would render
+    if (action === 'PUSH') {
+      this.appContextValue.scrollResetPending = true
+    }
+  }
+
   componentDidMount() {
     const { router, app, history } = this.props
 
     if (router) {
-      router.on('fetch', this.resetPage)
       router.watch(history, app.applyState)
+      router.on('before', this.onBeforeRouteChange)
     }
 
     this.bindAppStateToHistory()
@@ -152,6 +163,19 @@ export default class PWA extends Component {
 
     if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
       connectReduxDevtools(require('remotedev'), app)
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.appContextValue.scrollResetPending) {
+      this.resetPage()
+      this.appContextValue.scrollResetPending = false
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.router) {
+      this.props.router.removeListener('before', this.onBeforeRouteChange)
     }
   }
 
@@ -241,8 +265,11 @@ export default class PWA extends Component {
     })
   }
 
+  /**
+   * Resets the scroll position and closes the main menu.
+   */
   resetPage = () => {
     window.scrollTo(0, 0)
-    this.props.menu.close()
+    this.props.app.menu.close()
   }
 }

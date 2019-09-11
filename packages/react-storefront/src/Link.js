@@ -13,7 +13,11 @@ import classnames from 'classnames'
 import dataProps from './utils/dataProps'
 
 export const styles = {
-  root: {}
+  root: {
+    // prevents blue background when tapping links
+    userSelect: 'none',
+    '-webkit-tap-highlight-color': 'transparent'
+  }
 }
 
 @withStyles(styles, { name: 'RSFLink' })
@@ -136,7 +140,7 @@ export default class Link extends Component {
     }
 
     if (prefetch) {
-      props['data-moov-rel'] = 'prefetch'
+      props['data-rsf-prefetch'] = prefetch
     }
 
     const link = <a {...props}>{children}</a>

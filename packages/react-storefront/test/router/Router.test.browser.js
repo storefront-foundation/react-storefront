@@ -100,8 +100,9 @@ describe('Router:Browser', function() {
     })
 
     it('should match based on suffix', async function() {
-      router.get('/users/:id.html', fromClient(() => Promise.resolve('html')))
-      expect(await runAll('get', '/users/1.html')).to.equal('html')
+      router.get('/users/:id.html', fromClient(() => Promise.resolve({ type: 'html' })))
+      const result = await runAll('get', '/users/1.html')
+      expect(result.type).to.equal('html')
     })
 
     it('should capture the suffix', async function() {
@@ -287,9 +288,12 @@ describe('Router:Browser', function() {
     })
 
     it('should match based on extension', async function() {
-      router.use('/c', new Router().get('/:id.html', fromClient(() => Promise.resolve('html'))))
-
-      expect(await runAll('get', '/c/1.html')).to.equal('html')
+      router.use(
+        '/c',
+        new Router().get('/:id.html', fromClient(() => Promise.resolve({ type: 'html' })))
+      )
+      const result = await runAll('get', '/c/1.html')
+      expect(result.type).to.equal('html')
     })
   })
 
@@ -340,6 +344,7 @@ describe('Router:Browser', function() {
       setTimeout(() => {
         expect(calls[0]).to.deep.equal({
           state: {
+            ...allRouteData,
             product: { name: 'Test' }
           },
           method: 'PUSH'
@@ -370,7 +375,7 @@ describe('Router:Browser', function() {
     it('should be fired when a fromServer handler runs', async function() {
       const router = new Router().get('/', {
         type: 'fromServer',
-        runOn: { client: true, server: true },
+        runOn: { client: true, edge: true },
         fn: () => Promise.resolve({})
       })
 

@@ -37,7 +37,7 @@ console.log(
 function configureRuntimeCaching({
   cacheName = 'runtime',
   maxEntries = 200,
-  maxAgeSeconds = 3600
+  maxAgeSeconds = 60 * 60 * 24
 } = {}) {
   baseCacheName = cacheName
   ssrCacheName = `${cacheName}-html-{{version}}`
@@ -60,7 +60,7 @@ configureRuntimeCaching()
  */
 function precacheLinks(response) {
   return response.text().then(html => {
-    const matches = html.match(/href="([^"]+)"\sdata-moov-rel="prefetch"/g)
+    const matches = html.match(/href="([^"]+)"\sdata-rsf-prefetch/g)
     if (matches) {
       return Promise.all(
         matches.map(match => match.match(/href="([^"]+)"/)[1]).map(path => cachePath({ path }))
@@ -139,7 +139,7 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
           .then(response => {
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
               if (response.status === 200) {
-                cache.put(decodeURIComponent(path), response)
+                cache.put(path, response)
                 console.log(`[react-storefront service worker] ${path} was prefetched.`)
               } else if (response.status === PREFETCH_CACHE_MISS) {
                 console.log(`[react-storefront service worker] ${path} was throttled.`)

@@ -7,6 +7,7 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { lazyLoadImages } from './utils/lazyLoadImages'
+import { prefetchJsonFor } from './router/serviceWorker'
 
 export const styles = theme => ({
   inline: {
@@ -49,35 +50,61 @@ export default class CmsSlot extends Component {
     /**
      * Set to true to lazy load images that have been preprocessed with `$.lazyLoadImages()`.
      */
-    lazyLoadImages: PropTypes.boolean
+    lazyLoadImages: PropTypes.boolean,
+
+    /**
+     * Set to true to prefetch links that have a data-rsf-prefetch attribute.
+     */
+    prefetchLinks: false
   }
 
   static defaultProps = {
     lazyLoadImages: false
   }
 
-  constructor({ lazyLoadImages }) {
+  constructor() {
     super()
-
-    if (lazyLoadImages) {
-      this.el = createRef()
-    }
+    this.el = createRef()
   }
 
   componentDidMount() {
-    if (this.props.lazyLoadImages) {
-      lazyLoadImages(this.el.current)
-    }
+    this.runEffects()
   }
 
   componentDidUpdate() {
-    if (this.props.lazyLoadImages) {
-      lazyLoadImages(this.el.current)
+    this.runEffects()
+  }
+
+  runEffects() {
+    try {
+      if (!this.el.current) return
+
+      if (this.props.lazyLoadImages) {
+        lazyLoadImages(this.el.current)
+      }
+
+      if (this.props.prefetchLinks) {
+        const links = Array.from(this.el.current.querySelectorAll('a[data-rsf-prefetch="always"]'))
+
+        for (let link of links) {
+          prefetchJsonFor(link.getAttribute('href'))
+        }
+      }
+    } catch (e) {
+      console.warn('error running side effects on CmsSlot', e)
     }
   }
 
   render() {
-    const { children, className, classes, inline, lazyLoadImages, ...others } = this.props
+    const {
+      children,
+      className,
+      classes,
+      inline,
+      lazyLoadImages,
+      prefetchLinks,
+      ...others
+    } = this.props
 
     return children ? (
       <span
