@@ -32,5 +32,8 @@
   "preferGlobal": true,
   "bin": {
     "create-react-storefront": "./index.js"
+  },
+  "scripts": {
+    "start": "node ."
   }
 }

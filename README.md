@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.48.0
+
+- create-react-storefront now checks for node 8 at startup.
+
 ### 6.47.0
 
 - Skeletons are now skipped when the URL matches a route that is cached on the client.

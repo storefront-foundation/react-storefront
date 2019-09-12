@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+require('./lib/check-node-version')()
+
 const _ = require('lodash')
 const { createReactStorefront } = require('./lib/create-react-storefront')
 
@@ -47,19 +49,18 @@ const argv = require('yargs')
     'Display the create-react-storefront version and exit',
     `create-react-storefront v${getPackageJsonVersion()}`
   )
-  .command('$0 <project-name>', 'Create a react-storefront project', yargs => {
+  .command('$0 <app-name>', 'Creates a new React Storefront app.', yargs => {
     const returnedYargs = yargs
-      .positional('project-name', {
-        describe: 'A name for the new project',
+      .positional('app-name', {
+        describe: 'A name for the new app',
         type: 'string'
       })
-      .option('configure-upstream', {
-        describe:
-          'Sets the upstream site for synthetic APIs and proxying.  Example: --configure-upstream="https://www.domain.com"',
+      .option('yes', {
+        describe: 'Run in non-interactive mode, accepting all defaults.',
         default: false,
         type: 'boolean'
       })
-      .alias('configure-upstream', 'u')
+      .alias('yes', 'y')
       .option('branch', {
         describe:
           'Use a specific branch from react-storefront-boilerplate as the app template (defaults to master). Example: --branch=commercial',
@@ -67,12 +68,13 @@ const argv = require('yargs')
         type: 'string'
       })
       .alias('branch', 'b')
-      .option('yes', {
-        describe: 'Run in non-interactive mode, accepting all defaults.',
+      .option('configure-upstream', {
+        describe:
+          'Sets the upstream site for synthetic APIs and proxying.  Example: --configure-upstream="https://www.domain.com"',
         default: false,
         type: 'boolean'
       })
-      .alias('yes', 'y')
+      .alias('configure-upstream', 'u')
       .help()
       .alias('help', 'h')
       .wrap(yargs.terminalWidth())

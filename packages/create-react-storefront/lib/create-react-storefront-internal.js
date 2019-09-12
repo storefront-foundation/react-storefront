@@ -17,7 +17,7 @@ const chalk = require('chalk')
 const createReactStorefrontInternal = async (options, userConfig) => {
   console.log('')
 
-  const targetPath = calculateReactStorefrontPath(options.projectName, userConfig)
+  const targetPath = calculateReactStorefrontPath(options.appName, userConfig)
 
   if (userConfig.createDirectory && !isTargetPathValid(targetPath)) {
     console.log(
@@ -45,7 +45,7 @@ const createReactStorefrontInternal = async (options, userConfig) => {
 
   try {
     spinner = ora('Writing package.json...').start()
-    processPackageJson(options.projectName, targetPath, userConfig)
+    processPackageJson(options.appName, targetPath, userConfig)
     spinner.succeed('Writing package.json... done.')
   } catch (e) {
     spinner.fail('Failed')
