@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.48.2
+
+- Fixed AMP validation errors in `AmpImageSwitcher`.
+
 ### 6.48.1
 
 - ImageSwitcher with color selector now works in AMP

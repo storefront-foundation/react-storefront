@@ -154,6 +154,7 @@ export default class AmpImageSwitcher extends Component {
       indicators,
       ampStateId,
       ampStateProperty,
+      product,
       images,
       thumbnails,
       classes,
@@ -163,6 +164,11 @@ export default class AmpImageSwitcher extends Component {
     const { id } = this
 
     const pathname = app.location.pathname.replace(/\.amp/, '')
+
+    // This endpoint is only used to give AMP a valid initial `src` for AMP lists
+    const initialStateEndpoint = `${pathname}/images/${
+      product && product.color && product.color.length ? product.color[0].id : '000000'
+    }.json`
 
     const Carousel = ({ children, ...props }) => (
       <amp-carousel
@@ -183,8 +189,7 @@ export default class AmpImageSwitcher extends Component {
     const Template = ({ children, ...props }) => (
       <amp-list
         layout="fill"
-        // Set to bogus URL so we do not fetch extra data on initial load
-        src="about:blank"
+        src={initialStateEndpoint}
         amp-bind={`src=>'${pathname}/images/' + moovAmpState.color.selected.id + '.json'`}
         {...props}
       >

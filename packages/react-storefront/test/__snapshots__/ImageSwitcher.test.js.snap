@@ -112,9 +112,9 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
             <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
               <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
                 <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
-                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
-                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
-                      <AmpImageSwitcher images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
+                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
+                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
+                      <AmpImageSwitcher product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
                         <div className="RSFAmpImageSwitcher-root-274 RSFImageSwitcher-root-249 RSFAmpImageSwitcher-rootImportant-275">
                           <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
                             <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
@@ -137,7 +137,7 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
                             <AfterInteracted>
                               <div className="RSFAmpImageSwitcher-hidden-285" amp-bind="class=>!moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-285\\' : \\'\\'">
                                 <Template items="." single-item={true}>
-                                  <amp-list layout="fill" src="about:blank" amp-bind="src=>\\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\'" items="." single-item={true}>
+                                  <amp-list layout="fill" src="/images/000000.json" amp-bind="src=>\\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\'" items="." single-item={true}>
                                     <template type="amp-mustache">
                                       <Carousel dangerouslySetInnerHTML={{...}}>
                                         <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })" dangerouslySetInnerHTML={{...}} />
@@ -181,9 +181,9 @@ exports[`ImageSwitcher should render AmpImageSwitcher without product colors 1`]
             <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
               <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
                 <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
-                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
-                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
-                      <AmpImageSwitcher images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
+                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
+                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
+                      <AmpImageSwitcher product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
                         <div className="RSFAmpImageSwitcher-root-311 RSFImageSwitcher-root-286 RSFAmpImageSwitcher-rootImportant-312">
                           <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
                             <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
@@ -206,7 +206,7 @@ exports[`ImageSwitcher should render AmpImageSwitcher without product colors 1`]
                             <AfterInteracted>
                               <div className="RSFAmpImageSwitcher-hidden-322" amp-bind="class=>!moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-322\\' : \\'\\'">
                                 <Template items="." single-item={true}>
-                                  <amp-list layout="fill" src="about:blank" amp-bind="src=>\\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\'" items="." single-item={true}>
+                                  <amp-list layout="fill" src="/images/000000.json" amp-bind="src=>\\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\'" items="." single-item={true}>
                                     <template type="amp-mustache">
                                       <Carousel dangerouslySetInnerHTML={{...}}>
                                         <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })" dangerouslySetInnerHTML={{...}} />

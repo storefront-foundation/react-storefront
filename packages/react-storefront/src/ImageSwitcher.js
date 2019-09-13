@@ -470,6 +470,7 @@ export default class ImageSwitcher extends Component {
     if (app.amp)
       return (
         <AmpImageSwitcher
+          product={product}
           images={images}
           thumbnails={thumbnails}
           className={className}
