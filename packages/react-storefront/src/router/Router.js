@@ -14,6 +14,10 @@ import powerLinkHandler from './powerLinkHandler'
 import fromServer from './fromServer'
 import RegexpVisitor from 'route-parser/lib/route/visitors/regexp'
 import defaultClientCacheConfig from './defaultClientCacheConfig'
+import fromClient from './fromClient'
+import fromServer from './fromServer'
+import proxyUpstreamHandler from './proxyUpstream'
+import cacheHandler from './cache'
 
 /**
  * Provides routing for MUR-based applications and PWAs.  This class is inspired by express and uses https://github.com/rcs/route-parser,
@@ -107,6 +111,16 @@ export default class Router extends EventEmitter {
     this.routes.push({ path: new Route(path + '.amp'), method, handlers })
     this.routes.push({ path: new Route(path), method, handlers })
     return this
+  }
+
+  /**
+   * Registers a route that matches all HTTP methods.
+   * @param {String} path The path pattern
+   * @param {...any} handlers Handlers that return patches to be merged into the app state
+   * @return {Router} this
+   */
+  match(path, handlers) {
+    return this.pushRoute(null, path, handlers)
   }
 
   /**
@@ -496,7 +510,7 @@ export default class Router extends EventEmitter {
     method = method.toUpperCase()
 
     const match = this.routes
-      .filter(route => method === route.method)
+      .filter(route => method === route.method || route.method == null)
       .find(route => (params = route.path.match(path)))
 
     return { match, params: { ...params, ...query } }

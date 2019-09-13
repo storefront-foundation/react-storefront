@@ -7,54 +7,66 @@
 
 For the server build, converts:
 
-  import { Router, fromClient, fromServer } from 'moov_router'
+  import { Router, page, state } from 'react-storefront/router'
 
   new Router()
     .get('/', 
-      fromClient(({ params }) => ({ view: params.template })),
-      fromServer('./fetchHomeData')
+      page('Home'),
+      state('./home/home-handler')
     )
 
 ... into ...
 
-  import { Router, fromClient, fromServer } from 'moov_router'
+  import { Router, page, state } from 'react-storefront/router'
     
   new Router()
     .get('/',
-      fromClient(params => ({ view: params.template })),
-      fromServer(require('./fetchHomeData'))
+      page('Home'),
+      fromServer(function() {
+        var handler = require('./home/home-handler').default;
+        handler.path = './home/home-handler';
+        return handler;
+      })())
     )
 
 */
-module.exports = function (babel) {
+module.exports = function(babel) {
   const t = babel.types
   let declarations = new Set()
 
   return {
     visitor: {
-      ImportDeclaration: function (path) {
+      ImportDeclaration: function(path) {
         const { node } = path
 
-        if (node.source && node.source.type === 'StringLiteral' && (node.source.value === 'react-storefront/router')) {
+        if (
+          node.source &&
+          node.source.type === 'StringLiteral' &&
+          node.source.value === 'react-storefront/router'
+        ) {
           node.specifiers.forEach(spec => {
-            if (spec.imported && ['fromServer', 'proxyUpstream'].includes(spec.imported.name)) {
+            if (
+              spec.imported &&
+              ['fromServer', 'state', 'proxyUpstream'].includes(spec.imported.name)
+            ) {
               declarations.add(spec.local)
             }
           })
         }
       },
 
-      CallExpression: function (path) {
+      CallExpression: function(path) {
         const { node } = path
 
         if (!node.callee) return
 
         const toModify = path.scope.getBinding(node.callee.name)
-        
+
         if (
           node.callee &&
           node.callee.type === 'Identifier' &&
-          toModify && declarations.has(toModify.identifier)
+          toModify &&
+          declarations.has(toModify.identifier)
         ) {
           const arg = path.get('arguments')[0]
 
