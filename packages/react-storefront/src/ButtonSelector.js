@@ -249,7 +249,7 @@ export default class ButtonSelector extends Component {
           disabled={option.disabled}
           on={`tap:AMP.setState({ ${ampStateId}: { ${name}: { selected: ${JSON.stringify(
             option.toJSON()
-          )} }}})`}
+          )} }, ${name}Interacted: true }})`}
           classes={{
             label: option.image || option.color ? classes.imageLabel : null,
             disabled: classes.disabled

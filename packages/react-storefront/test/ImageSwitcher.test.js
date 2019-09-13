@@ -56,9 +56,39 @@ describe('ImageSwitcher', () => {
   })
 
   it('should render AmpImageSwitcher when amp=true', () => {
+    let app, history
+
     expect(
       mount(
-        <Provider app={AppModelBase.create({ amp: true })} nextId={() => '1'}>
+        <Provider
+          app={AppModelBase.create({
+            amp: true,
+            location: { pathname: '', search: '' },
+            product: { id: '', color: { options: [{ id: 'foo' }] } }
+          })}
+          nextId={() => '1'}
+        >
+          <AmpState>
+            <ImageSwitcher images={['/a.jpg', '/b.jpg', '/c.jpg']} />
+          </AmpState>
+        </Provider>
+      )
+    ).toMatchSnapshot()
+  })
+
+  it('should render AmpImageSwitcher without product colors', () => {
+    let app, history
+
+    expect(
+      mount(
+        <Provider
+          app={AppModelBase.create({
+            amp: true,
+            location: { pathname: '', search: '' },
+            product: { id: '' }
+          })}
+          nextId={() => '1'}
+        >
           <AmpState>
             <ImageSwitcher images={['/a.jpg', '/b.jpg', '/c.jpg']} />
           </AmpState>
@@ -76,22 +106,6 @@ describe('ImageSwitcher', () => {
     expect(
       wrapper
         .find('img')
-        .first()
-        .prop('alt')
-    ).toBe('test')
-  })
-
-  it('should accept image objects and use given props in AMP', () => {
-    const wrapper = mount(
-      <Provider app={AppModelBase.create({ amp: true })} nextId={() => '1'}>
-        <AmpState>
-          <ImageSwitcher images={[{ src: 'test.jpg', alt: 'test' }]} />
-        </AmpState>
-      </Provider>
-    )
-    expect(
-      wrapper
-        .find('amp-img')
         .first()
         .prop('alt')
     ).toBe('test')

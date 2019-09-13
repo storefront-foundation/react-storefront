@@ -112,26 +112,115 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
             <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
               <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
                 <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
-                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId) images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
-                    <inject-AmpImageSwitcher-with-nextId-ampStateId images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
-                      <AmpImageSwitcher images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" type="slides" ampStateProperty="selectedImage" controls={false}>
+                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
+                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
+                      <AmpImageSwitcher images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
                         <div className="RSFAmpImageSwitcher-root-274 RSFImageSwitcher-root-249 RSFAmpImageSwitcher-rootImportant-275">
                           <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
                             <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
                               <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
+                          <amp-state id="moovAmpState" amp-bind="src=>moovAmpState.colorInteracted ? \\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\' : null" />
                           <div className="RSFAmpImageSwitcher-carouselWrap-276">
-                            <amp-carousel controls={true} id="1" layout="fill" type="slides" amp-bind="slide=>moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
-                              <amp-img lightbox={true} src="/a.jpg" layout="fill" alt="product" />
-                              <amp-img lightbox={true} src="/b.jpg" layout="fill" alt="product" />
-                              <amp-img lightbox={true} src="/c.jpg" layout="fill" alt="product" />
-                            </amp-carousel>
+                            <BeforeInteracted>
+                              <div amp-bind="class=>moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-285\\' : \\'\\'">
+                                <Carousel>
+                                  <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
+                                    <amp-img src="/a.jpg" layout="fill" alt="product" />
+                                    <amp-img src="/b.jpg" layout="fill" alt="product" />
+                                    <amp-img src="/c.jpg" layout="fill" alt="product" />
+                                  </amp-carousel>
+                                </Carousel>
+                              </div>
+                            </BeforeInteracted>
+                            <AfterInteracted>
+                              <div className="RSFAmpImageSwitcher-hidden-285" amp-bind="class=>!moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-285\\' : \\'\\'">
+                                <Template items="." single-item={true}>
+                                  <amp-list layout="fill" src="about:blank" amp-bind="src=>\\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\'" items="." single-item={true}>
+                                    <template type="amp-mustache">
+                                      <Carousel dangerouslySetInnerHTML={{...}}>
+                                        <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })" dangerouslySetInnerHTML={{...}} />
+                                      </Carousel>
+                                    </template>
+                                  </amp-list>
+                                </Template>
+                              </div>
+                            </AfterInteracted>
                           </div>
                         </div>
                       </AmpImageSwitcher>
-                    </inject-AmpImageSwitcher-with-nextId-ampStateId>
-                  </WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId)>
+                    </inject-AmpImageSwitcher-with-nextId-ampStateId-app>
+                  </WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app)>
+                </ImageSwitcher>
+              </inject-ImageSwitcher-with-app>
+            </WithStyles(inject-ImageSwitcher-with-app)>
+          </Provider>
+        </AmpState>
+      </inject-AmpState>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
+`;
+
+exports[`ImageSwitcher should render AmpImageSwitcher without product colors 1`] = `
+<TestProvider app={{...}} nextId={[Function: nextId]}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
+    <MuiThemeProviderOld theme={{...}}>
+      <inject-AmpState>
+        <AmpState amp={true} initialState={{...}} id="moovAmpState">
+          <Provider ampStateId="moovAmpState">
+            <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+              <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+              </SideEffect(NullComponent)>
+            </HelmetWrapper>
+            <amp-state id="moovAmpState">
+              <script type="application/json" dangerouslySetInnerHTML={{...}} />
+            </amp-state>
+            <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
+              <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
+                <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
+                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
+                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
+                      <AmpImageSwitcher images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
+                        <div className="RSFAmpImageSwitcher-root-311 RSFImageSwitcher-root-286 RSFAmpImageSwitcher-rootImportant-312">
+                          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                              <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+                            </SideEffect(NullComponent)>
+                          </HelmetWrapper>
+                          <amp-state id="moovAmpState" amp-bind="src=>moovAmpState.colorInteracted ? \\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\' : null" />
+                          <div className="RSFAmpImageSwitcher-carouselWrap-313">
+                            <BeforeInteracted>
+                              <div amp-bind="class=>moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-322\\' : \\'\\'">
+                                <Carousel>
+                                  <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
+                                    <amp-img src="/a.jpg" layout="fill" alt="product" />
+                                    <amp-img src="/b.jpg" layout="fill" alt="product" />
+                                    <amp-img src="/c.jpg" layout="fill" alt="product" />
+                                  </amp-carousel>
+                                </Carousel>
+                              </div>
+                            </BeforeInteracted>
+                            <AfterInteracted>
+                              <div className="RSFAmpImageSwitcher-hidden-322" amp-bind="class=>!moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-322\\' : \\'\\'">
+                                <Template items="." single-item={true}>
+                                  <amp-list layout="fill" src="about:blank" amp-bind="src=>\\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\'" items="." single-item={true}>
+                                    <template type="amp-mustache">
+                                      <Carousel dangerouslySetInnerHTML={{...}}>
+                                        <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })" dangerouslySetInnerHTML={{...}} />
+                                      </Carousel>
+                                    </template>
+                                  </amp-list>
+                                </Template>
+                              </div>
+                            </AfterInteracted>
+                          </div>
+                        </div>
+                      </AmpImageSwitcher>
+                    </inject-AmpImageSwitcher-with-nextId-ampStateId-app>
+                  </WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app)>
                 </ImageSwitcher>
               </inject-ImageSwitcher-with-app>
             </WithStyles(inject-ImageSwitcher-with-app)>

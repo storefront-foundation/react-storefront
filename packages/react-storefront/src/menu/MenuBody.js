@@ -54,9 +54,7 @@ export default class MenuBody extends Component {
           {rootHeader}
           {header}
           {root.items.map((item, i) => (
-            <Fragment>
-              <Item {...this.props} depth={depth} item={item} key={i} index={i} />
-            </Fragment>
+            <Item {...this.props} depth={depth} item={item} key={i} index={i} />
           ))}
           {rootFooter}
         </List>

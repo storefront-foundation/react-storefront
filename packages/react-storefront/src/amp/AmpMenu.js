@@ -76,6 +76,7 @@ export default class AmpMenu extends Component {
 
     const bodies = [
       <MenuBody
+        key={0}
         rootHeader={rootHeader}
         rootFooter={rootFooter}
         drawerWidth={drawerWidth}
@@ -96,6 +97,7 @@ export default class AmpMenu extends Component {
       if (node.items) {
         bodies.push(
           <MenuBody
+            key={index + 1}
             rootHeader={rootHeader}
             rootFooter={rootFooter}
             drawerWidth={drawerWidth}

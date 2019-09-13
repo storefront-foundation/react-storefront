@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.48.2
+
+- ImageSwitcher with color selector now works in AMP
+
 ### 6.48.0
 
 - create-react-storefront now checks for node 8 at startup.
