@@ -24,7 +24,7 @@ module.exports = class OEMConfigWriterPlugin {
       delete compilation.assets['routes.js']
       delete compilation.assets['routes.js.map']
 
-      const OEMConfig = routes.createEdgeCacheConfiguration()
+      const OEMConfig = routes.createEdgeConfiguration()
       const OEMConfigJson = JSON.stringify(OEMConfig)
 
       if (OEMConfigJson !== this.previousOEMConfigJson) {

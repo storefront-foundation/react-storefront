@@ -74,6 +74,11 @@ yarn release
 
 ## Changelog
 
+### 6.49.0
+
+- Added a `fromOrigin(originName)` handler type that allows you to proxy an origin from the edge.
+- Added a `redirectTo(path)` handler type that allows you redirect the request at the edge.
+
 ### 6.48.2
 
 - Fixed AMP validation errors in `AmpImageSwitcher`.

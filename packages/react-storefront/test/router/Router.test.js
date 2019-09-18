@@ -4,7 +4,15 @@
  */
 jest.mock('../../src/router/serviceWorker')
 
-import { Router, fromClient, fromServer, cache, proxyUpstream } from '../../src/router'
+import {
+  Router,
+  fromClient,
+  fromServer,
+  fromOrigin,
+  redirectTo,
+  cache,
+  proxyUpstream
+} from '../../src/router'
 import * as serviceWorker from '../../src/router/serviceWorker'
 import { createMemoryHistory } from 'history'
 import qs from 'qs'
@@ -847,7 +855,7 @@ describe('Router:Node', function() {
     })
   })
 
-  describe('createEdgeCacheConfiguration', () => {
+  describe('createEdgeConfiguration', () => {
     let key, cacheHandler
 
     beforeEach(() => {
@@ -884,7 +892,7 @@ describe('Router:Node', function() {
         query_parameters_mode: 'blacklist'
       }
 
-      expect(router.createEdgeCacheConfiguration()).toEqual({
+      expect(router.createEdgeConfiguration()).toEqual({
         custom_cache_keys: [
           {
             path_regex: /^\/\.json(?=\?|$)/.source,
@@ -910,7 +918,125 @@ describe('Router:Node', function() {
             path_regex: /^\/p\/([^\/\?]+)(?=\?|$)/.source,
             ...customKey
           }
-        ]
+        ],
+        router: []
+      })
+    })
+
+    describe('edge proxy configuration', () => {
+      it('should proxy to given origin', () => {
+        const router = new Router().get('/foo', fromOrigin('desktop'))
+        expect(router.createEdgeConfiguration().router[2]).toEqual({
+          path: '^\\/foo(?=\\?|$)',
+          proxy: {
+            backend: 'desktop'
+          }
+        })
+      })
+      it('should proxy to given origin with transformed path', () => {
+        const router = new Router().get(
+          '/foo/:cat/:id',
+          fromOrigin('desktop').transformPath('/bar/{cat}/{id}')
+        )
+        expect(router.createEdgeConfiguration().router[2]).toEqual({
+          path: '^\\/foo\\/([^\\/\\?]+)\\/([^\\/\\?]+)(?=\\?|$)',
+          proxy: {
+            backend: 'desktop',
+            rewrite_path_regex: '/bar/\\1/\\2'
+          }
+        })
+      })
+      it('should redirect with status', () => {
+        const router = new Router().get('/foo', redirectTo('/bar').withStatus(302))
+        expect(router.createEdgeConfiguration().router[2]).toEqual({
+          path: '^\\/foo(?=\\?|$)',
+          redirect: {
+            status: 302,
+            rewrite_path_regex: '/bar'
+          }
+        })
+      })
+      it('should redirect with status and path transformation', () => {
+        const router = new Router().get('/foo/*path', redirectTo('/bar/{path}').withStatus(200))
+        expect(router.createEdgeConfiguration().router[2]).toEqual({
+          path: '^\\/foo\\/([^?]*?)(?=\\?|$)',
+          redirect: {
+            status: 200,
+            rewrite_path_regex: '/bar/\\1'
+          }
+        })
+      })
+      it('should transformed path with multiple uses of variable', () => {
+        const router = new Router().get(
+          '/foo/:x/:y',
+          fromOrigin('desktop').transformPath('/bar/{x}/{y}/{x}')
+        )
+        const config = router.createEdgeConfiguration().router[2]
+        expect(config).toEqual({
+          path: '^\\/foo\\/([^\\/\\?]+)\\/([^\\/\\?]+)(?=\\?|$)',
+          proxy: {
+            backend: 'desktop',
+            rewrite_path_regex: '/bar/\\1/\\2/\\1'
+          }
+        })
+        // Test regex replacement
+        expect(
+          '/foo/a/b'.replace(
+            new RegExp(config.path),
+            config.proxy.rewrite_path_regex.replace(/\\/g, '$')
+          )
+        ).toEqual('/bar/a/b/a')
+      })
+      it('should leave escaped paths alone', () => {
+        const router = new Router().get(
+          '/foo/:x',
+          fromOrigin('desktop').transformPath('/bar/\\{x}/{x}')
+        )
+        const config = router.createEdgeConfiguration().router[2]
+        expect(config).toEqual({
+          path: '^\\/foo\\/([^\\/\\?]+)(?=\\?|$)',
+          proxy: {
+            backend: 'desktop',
+            rewrite_path_regex: '/bar/\\{x}/\\1'
+          }
+        })
+        // Test regex replacement
+        expect(
+          '/foo/a'.replace(
+            new RegExp(config.path),
+            config.proxy.rewrite_path_regex.replace(/\\\d/g, '$$1')
+          )
+        ).toEqual('/bar/\\{x}/a')
+      })
+      it('should handle variable at beginning of path', () => {
+        const router = new Router().get('/foo/:x', fromOrigin('desktop').transformPath('{x}/bar'))
+        expect(router.createEdgeConfiguration().router[2]).toEqual({
+          path: '^\\/foo\\/([^\\/\\?]+)(?=\\?|$)',
+          proxy: {
+            backend: 'desktop',
+            rewrite_path_regex: '\\1/bar'
+          }
+        })
+      })
+      it('should handle variable within a path param', () => {
+        const router = new Router().get('/foo/:x', fromOrigin('desktop').transformPath('/bar{x}'))
+        expect(router.createEdgeConfiguration().router[2]).toEqual({
+          path: '^\\/foo\\/([^\\/\\?]+)(?=\\?|$)',
+          proxy: {
+            backend: 'desktop',
+            rewrite_path_regex: '/bar\\1'
+          }
+        })
+      })
+      it('should not support fromOrigin when not at edge', async () => {
+        router.get('/foo/:x', fromOrigin('desktop'))
+        await runAll('get', '/foo/1')
+        expect(response.statusCode).toEqual(500)
+      })
+      it('should redirect with transformed path when not at edge and using redirectTo', async () => {
+        router.get('/foo/:x/:y', redirectTo('/bar/{x}/x-{y}/{x}'))
+        await runAll('get', '/foo/1/2')
+        expect(response.redirectTo).toEqual('/bar/1/x-2/1')
       })
     })
   })
