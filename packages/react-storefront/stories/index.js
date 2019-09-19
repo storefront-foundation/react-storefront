@@ -58,6 +58,7 @@ import TabsRow from '../src/TabsRow'
 import ToolbarButton from '../src/ToolbarButton'
 import BackNav from '../src/BackNav'
 import createTheme from '../src/createTheme'
+import Video from '../src/Video'
 
 // Models
 import { LocationModel } from '../src/model/AppModelBase'
@@ -747,3 +748,30 @@ storiesOf('TabsRow', module)
 storiesOf('ToolbarButton', module)
   .addWithJSX('with label', () => <ToolbarButton icon={<PhotoCamera />} label="Camera" />)
   .addWithJSX('without label', () => <ToolbarButton icon={<PhotoCamera />} />)
+
+const sources = (
+  <React.Fragment>
+    <source
+      src="https://amp.dev/static/inline-examples/videos/kitten-playing.webm"
+      type="video/webm"
+    />
+    <source
+      src="https://amp.dev/static/inline-examples/videos/kitten-playing.mp4"
+      type="video/mp4"
+    />
+  </React.Fragment>
+)
+
+storiesOf('Video', module)
+  .addDecorator(wrapWithProvider())
+  .addWithJSX('with defaults', () => <Video>{sources}</Video>)
+  .addWithJSX('with src prop', () => (
+    <Video src="https://amp.dev/static/inline-examples/videos/kitten-playing.webm" />
+  ))
+  .addWithJSX('with fixed width', () => <Video width="300">{sources}</Video>)
+  .addWithJSX('with controls', () => <Video controls>{sources}</Video>)
+  .addWithJSX('with poster', () => (
+    <Video width="400" height="200" controls poster="https://placehold.it/400x200?text=Poster">
+      {sources}
+    </Video>
+  ))

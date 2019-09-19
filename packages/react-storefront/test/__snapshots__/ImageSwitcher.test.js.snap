@@ -17,7 +17,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
                           <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
                             <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
                               <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
-                                <div className="RSFImage-root-26">
+                                <div className="RSFImage-root-28">
                                   <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
                                 </div>
                               </Image>
@@ -31,15 +31,15 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
                 <div className="RSFImageSwitcher-arrows-10">
                   <WithStyles(IconButton) className="RSFImageSwitcher-arrow-11 RSFImageSwitcher-rightArrow-13" onClick={[Function: onClick]}>
                     <IconButton className="RSFImageSwitcher-arrow-11 RSFImageSwitcher-rightArrow-13" onClick={[Function: onClick]} classes={{...}} color="default" disabled={false}>
-                      <WithStyles(ButtonBase) className="MuiIconButton-root-30 RSFImageSwitcher-arrow-11 RSFImageSwitcher-rightArrow-13" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]}>
-                        <ButtonBase className="MuiIconButton-root-30 RSFImageSwitcher-arrow-11 RSFImageSwitcher-rightArrow-13" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                          <button className="MuiButtonBase-root-36 MuiIconButton-root-30 RSFImageSwitcher-arrow-11 RSFImageSwitcher-rightArrow-13" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: onClick]}>
-                            <span className="MuiIconButton-label-35">
+                      <WithStyles(ButtonBase) className="MuiIconButton-root-32 RSFImageSwitcher-arrow-11 RSFImageSwitcher-rightArrow-13" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]}>
+                        <ButtonBase className="MuiIconButton-root-32 RSFImageSwitcher-arrow-11 RSFImageSwitcher-rightArrow-13" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                          <button className="MuiButtonBase-root-38 MuiIconButton-root-32 RSFImageSwitcher-arrow-11 RSFImageSwitcher-rightArrow-13" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: onClick]}>
+                            <span className="MuiIconButton-label-37">
                               <pure(ChevronRightIcon) classes={{...}}>
                                 <ChevronRightIcon classes={{...}}>
                                   <WithStyles(SvgIcon) classes={{...}}>
                                     <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                      <svg className="MuiSvgIcon-root-39 RSFImageSwitcher-icon-14" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                      <svg className="MuiSvgIcon-root-41 RSFImageSwitcher-icon-14" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                         <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
                                         <path fill="none" d="M0 0h24v24H0z" />
                                       </svg>
@@ -51,8 +51,8 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
                             <NoSsr defer={false} fallback={{...}}>
                               <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
                                 <TouchRipple center={true} classes={{...}}>
-                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-48" childFactory={[Function: childFactory]}>
-                                    <span className="MuiTouchRipple-root-48" />
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-50" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-50" />
                                   </TransitionGroup>
                                 </TouchRipple>
                               </WithStyles(TouchRipple)>
@@ -69,7 +69,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
                       <ReactPinchZoomPan maxScale={3} render={[Function: render]} initialScale={1}>
                         <div>
                           <div style={{...}}>
-                            <div style={{...}}>
+                            <div style={{...}} className="" onClick={[Function: onClick]}>
                               <img src="/a.jpg" alt="product" style={{...}} />
                             </div>
                           </div>
@@ -115,16 +115,16 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
                   <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
                     <inject-AmpImageSwitcher-with-nextId-ampStateId-app product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
                       <AmpImageSwitcher product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
-                        <div className="RSFAmpImageSwitcher-root-274 RSFImageSwitcher-root-249 RSFAmpImageSwitcher-rootImportant-275">
+                        <div className="RSFAmpImageSwitcher-root-284 RSFImageSwitcher-root-257 RSFAmpImageSwitcher-rootImportant-285">
                           <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
                             <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
                               <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
                           <amp-state id="moovAmpState" amp-bind="src=>moovAmpState.colorInteracted ? \\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\' : null" />
-                          <div className="RSFAmpImageSwitcher-carouselWrap-276">
+                          <div className="RSFAmpImageSwitcher-carouselWrap-286">
                             <BeforeInteracted>
-                              <div amp-bind="class=>moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-285\\' : \\'\\'">
+                              <div amp-bind="class=>moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-295\\' : \\'\\'">
                                 <Carousel>
                                   <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
                                     <amp-img src="/a.jpg" layout="fill" alt="product" />
@@ -135,12 +135,32 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
                               </div>
                             </BeforeInteracted>
                             <AfterInteracted>
-                              <div className="RSFAmpImageSwitcher-hidden-285" amp-bind="class=>!moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-285\\' : \\'\\'">
+                              <div className="RSFAmpImageSwitcher-hidden-295" amp-bind="class=>!moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-295\\' : \\'\\'">
                                 <Template items="." single-item={true}>
                                   <amp-list layout="fill" src="/images/000000.json" amp-bind="src=>\\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\'" items="." single-item={true}>
                                     <template type="amp-mustache">
-                                      <Carousel dangerouslySetInnerHTML={{...}}>
-                                        <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })" dangerouslySetInnerHTML={{...}} />
+                                      <Carousel>
+                                        <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
+                                          {{#images}}
+                                          {{#video}}
+                                          <WithStyles(inject-Video) src="{{src}}" layout="fill" alt="{{alt}}">
+                                            <inject-Video src="{{src}}" layout="fill" alt="{{alt}}" classes={{...}}>
+                                              <Video src="{{src}}" layout="fill" alt="{{alt}}" classes={{...}} amp={true} controls={true}>
+                                                <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                                                  <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                                                    <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+                                                  </SideEffect(NullComponent)>
+                                                </HelmetWrapper>
+                                                <amp-video class="RSFVideo-root-296" src="{{src}}" layout="fill" alt="{{alt}}" controls={true} />
+                                              </Video>
+                                            </inject-Video>
+                                          </WithStyles(inject-Video)>
+                                          {{/video}}
+                                          {{^video}}
+                                          <amp-img src="{{.}}" layout="fill" alt="test" />
+                                          {{/video}}
+                                          {{/images}}
+                                        </amp-carousel>
                                       </Carousel>
                                     </template>
                                   </amp-list>
@@ -184,16 +204,16 @@ exports[`ImageSwitcher should render AmpImageSwitcher without product colors 1`]
                   <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
                     <inject-AmpImageSwitcher-with-nextId-ampStateId-app product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
                       <AmpImageSwitcher product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
-                        <div className="RSFAmpImageSwitcher-root-311 RSFImageSwitcher-root-286 RSFAmpImageSwitcher-rootImportant-312">
+                        <div className="RSFAmpImageSwitcher-root-324 RSFImageSwitcher-root-297 RSFAmpImageSwitcher-rootImportant-325">
                           <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
                             <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
                               <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
                           <amp-state id="moovAmpState" amp-bind="src=>moovAmpState.colorInteracted ? \\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\' : null" />
-                          <div className="RSFAmpImageSwitcher-carouselWrap-313">
+                          <div className="RSFAmpImageSwitcher-carouselWrap-326">
                             <BeforeInteracted>
-                              <div amp-bind="class=>moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-322\\' : \\'\\'">
+                              <div amp-bind="class=>moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-335\\' : \\'\\'">
                                 <Carousel>
                                   <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
                                     <amp-img src="/a.jpg" layout="fill" alt="product" />
@@ -204,12 +224,32 @@ exports[`ImageSwitcher should render AmpImageSwitcher without product colors 1`]
                               </div>
                             </BeforeInteracted>
                             <AfterInteracted>
-                              <div className="RSFAmpImageSwitcher-hidden-322" amp-bind="class=>!moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-322\\' : \\'\\'">
+                              <div className="RSFAmpImageSwitcher-hidden-335" amp-bind="class=>!moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-335\\' : \\'\\'">
                                 <Template items="." single-item={true}>
                                   <amp-list layout="fill" src="/images/000000.json" amp-bind="src=>\\'/images/\\' + moovAmpState.color.selected.id + \\'.json\\'" items="." single-item={true}>
                                     <template type="amp-mustache">
-                                      <Carousel dangerouslySetInnerHTML={{...}}>
-                                        <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })" dangerouslySetInnerHTML={{...}} />
+                                      <Carousel>
+                                        <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
+                                          {{#images}}
+                                          {{#video}}
+                                          <WithStyles(inject-Video) src="{{src}}" layout="fill" alt="{{alt}}">
+                                            <inject-Video src="{{src}}" layout="fill" alt="{{alt}}" classes={{...}}>
+                                              <Video src="{{src}}" layout="fill" alt="{{alt}}" classes={{...}} amp={true} controls={true}>
+                                                <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                                                  <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                                                    <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+                                                  </SideEffect(NullComponent)>
+                                                </HelmetWrapper>
+                                                <amp-video class="RSFVideo-root-336" src="{{src}}" layout="fill" alt="{{alt}}" controls={true} />
+                                              </Video>
+                                            </inject-Video>
+                                          </WithStyles(inject-Video)>
+                                          {{/video}}
+                                          {{^video}}
+                                          <amp-img src="{{.}}" layout="fill" alt="test" />
+                                          {{/video}}
+                                          {{/images}}
+                                        </amp-carousel>
                                       </Carousel>
                                     </template>
                                   </amp-list>
@@ -239,17 +279,17 @@ exports[`ImageSwitcher should render arrows 1`] = `
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} arrows={true}>
         <inject-ImageSwitcher-with-app images={{...}} arrows={true} classes={{...}}>
           <ImageSwitcher images={{...}} arrows={true} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
-            <div className="RSFImageSwitcher-root-141" style={[undefined]}>
-              <div className="RSFImageSwitcher-swipeWrap-142">
+            <div className="RSFImageSwitcher-root-145" style={[undefined]}>
+              <div className="RSFImageSwitcher-swipeWrap-146">
                 <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
                   <div style={{...}} onTouchStart={[Function]} onTouchEnd={[Function]} onScroll={[Function]}>
                     <div style={{...}} className="react-swipeable-view-container">
                       <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
-                        <div className="RSFImageSwitcher-imageWrap-143">
+                        <div className="RSFImageSwitcher-imageWrap-147">
                           <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
                             <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
                               <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
-                                <div className="RSFImage-root-166">
+                                <div className="RSFImage-root-172">
                                   <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
                                 </div>
                               </Image>
@@ -260,18 +300,18 @@ exports[`ImageSwitcher should render arrows 1`] = `
                     </div>
                   </div>
                 </ReactSwipableView>
-                <div className="RSFImageSwitcher-arrows-150">
-                  <WithStyles(IconButton) className="RSFImageSwitcher-arrow-151 RSFImageSwitcher-rightArrow-153" onClick={[Function: onClick]}>
-                    <IconButton className="RSFImageSwitcher-arrow-151 RSFImageSwitcher-rightArrow-153" onClick={[Function: onClick]} classes={{...}} color="default" disabled={false}>
-                      <WithStyles(ButtonBase) className="MuiIconButton-root-170 RSFImageSwitcher-arrow-151 RSFImageSwitcher-rightArrow-153" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]}>
-                        <ButtonBase className="MuiIconButton-root-170 RSFImageSwitcher-arrow-151 RSFImageSwitcher-rightArrow-153" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                          <button className="MuiButtonBase-root-176 MuiIconButton-root-170 RSFImageSwitcher-arrow-151 RSFImageSwitcher-rightArrow-153" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: onClick]}>
-                            <span className="MuiIconButton-label-175">
+                <div className="RSFImageSwitcher-arrows-154">
+                  <WithStyles(IconButton) className="RSFImageSwitcher-arrow-155 RSFImageSwitcher-rightArrow-157" onClick={[Function: onClick]}>
+                    <IconButton className="RSFImageSwitcher-arrow-155 RSFImageSwitcher-rightArrow-157" onClick={[Function: onClick]} classes={{...}} color="default" disabled={false}>
+                      <WithStyles(ButtonBase) className="MuiIconButton-root-176 RSFImageSwitcher-arrow-155 RSFImageSwitcher-rightArrow-157" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]}>
+                        <ButtonBase className="MuiIconButton-root-176 RSFImageSwitcher-arrow-155 RSFImageSwitcher-rightArrow-157" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                          <button className="MuiButtonBase-root-182 MuiIconButton-root-176 RSFImageSwitcher-arrow-155 RSFImageSwitcher-rightArrow-157" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: onClick]}>
+                            <span className="MuiIconButton-label-181">
                               <pure(ChevronRightIcon) classes={{...}}>
                                 <ChevronRightIcon classes={{...}}>
                                   <WithStyles(SvgIcon) classes={{...}}>
                                     <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                      <svg className="MuiSvgIcon-root-179 RSFImageSwitcher-icon-154" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                      <svg className="MuiSvgIcon-root-185 RSFImageSwitcher-icon-158" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                         <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
                                         <path fill="none" d="M0 0h24v24H0z" />
                                       </svg>
@@ -283,8 +323,8 @@ exports[`ImageSwitcher should render arrows 1`] = `
                             <NoSsr defer={false} fallback={{...}}>
                               <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
                                 <TouchRipple center={true} classes={{...}}>
-                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-188" childFactory={[Function: childFactory]}>
-                                    <span className="MuiTouchRipple-root-188" />
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-194" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-194" />
                                   </TransitionGroup>
                                 </TouchRipple>
                               </WithStyles(TouchRipple)>
@@ -297,11 +337,11 @@ exports[`ImageSwitcher should render arrows 1`] = `
                 </div>
                 <Portal disablePortal={false}>
                   <Portal containerInfo={{...}}>
-                    <div className="RSFImageSwitcher-viewerOverlay-160">
+                    <div className="RSFImageSwitcher-viewerOverlay-164">
                       <ReactPinchZoomPan maxScale={3} render={[Function: render]} initialScale={1}>
                         <div>
                           <div style={{...}}>
-                            <div style={{...}}>
+                            <div style={{...}} className="" onClick={[Function: onClick]}>
                               <img src="/a.jpg" alt="product" style={{...}} />
                             </div>
                           </div>
@@ -310,7 +350,7 @@ exports[`ImageSwitcher should render arrows 1`] = `
                     </div>
                   </Portal>
                 </Portal>
-                <div onClick={[Function: onClick]} className="RSFImageSwitcher-viewerToggle-158">
+                <div onClick={[Function: onClick]} className="RSFImageSwitcher-viewerToggle-162">
                   <svg width="100" height="100" viewBox="0 0 100 100">
                     <line x1="50" y1="25" x2="50" y2="75" strokeWidth="4" stroke="white" />
                     <line x1="25" y1="50" x2="75" y2="50" strokeWidth="4" stroke="white" />
@@ -333,17 +373,17 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} showIndicators={true}>
         <inject-ImageSwitcher-with-app images={{...}} showIndicators={true} classes={{...}}>
           <ImageSwitcher images={{...}} showIndicators={true} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
-            <div className="RSFImageSwitcher-root-195" style={[undefined]}>
-              <div className="RSFImageSwitcher-swipeWrap-196">
+            <div className="RSFImageSwitcher-root-201" style={[undefined]}>
+              <div className="RSFImageSwitcher-swipeWrap-202">
                 <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
                   <div style={{...}} onTouchStart={[Function]} onTouchEnd={[Function]} onScroll={[Function]}>
                     <div style={{...}} className="react-swipeable-view-container">
                       <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
-                        <div className="RSFImageSwitcher-imageWrap-197">
+                        <div className="RSFImageSwitcher-imageWrap-203">
                           <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
                             <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
                               <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
-                                <div className="RSFImage-root-220">
+                                <div className="RSFImage-root-228">
                                   <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
                                 </div>
                               </Image>
@@ -354,18 +394,18 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
                     </div>
                   </div>
                 </ReactSwipableView>
-                <div className="RSFImageSwitcher-arrows-204">
-                  <WithStyles(IconButton) className="RSFImageSwitcher-arrow-205 RSFImageSwitcher-rightArrow-207" onClick={[Function: onClick]}>
-                    <IconButton className="RSFImageSwitcher-arrow-205 RSFImageSwitcher-rightArrow-207" onClick={[Function: onClick]} classes={{...}} color="default" disabled={false}>
-                      <WithStyles(ButtonBase) className="MuiIconButton-root-224 RSFImageSwitcher-arrow-205 RSFImageSwitcher-rightArrow-207" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]}>
-                        <ButtonBase className="MuiIconButton-root-224 RSFImageSwitcher-arrow-205 RSFImageSwitcher-rightArrow-207" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                          <button className="MuiButtonBase-root-230 MuiIconButton-root-224 RSFImageSwitcher-arrow-205 RSFImageSwitcher-rightArrow-207" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: onClick]}>
-                            <span className="MuiIconButton-label-229">
+                <div className="RSFImageSwitcher-arrows-210">
+                  <WithStyles(IconButton) className="RSFImageSwitcher-arrow-211 RSFImageSwitcher-rightArrow-213" onClick={[Function: onClick]}>
+                    <IconButton className="RSFImageSwitcher-arrow-211 RSFImageSwitcher-rightArrow-213" onClick={[Function: onClick]} classes={{...}} color="default" disabled={false}>
+                      <WithStyles(ButtonBase) className="MuiIconButton-root-232 RSFImageSwitcher-arrow-211 RSFImageSwitcher-rightArrow-213" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]}>
+                        <ButtonBase className="MuiIconButton-root-232 RSFImageSwitcher-arrow-211 RSFImageSwitcher-rightArrow-213" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                          <button className="MuiButtonBase-root-238 MuiIconButton-root-232 RSFImageSwitcher-arrow-211 RSFImageSwitcher-rightArrow-213" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: onClick]}>
+                            <span className="MuiIconButton-label-237">
                               <pure(ChevronRightIcon) classes={{...}}>
                                 <ChevronRightIcon classes={{...}}>
                                   <WithStyles(SvgIcon) classes={{...}}>
                                     <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                      <svg className="MuiSvgIcon-root-233 RSFImageSwitcher-icon-208" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                      <svg className="MuiSvgIcon-root-241 RSFImageSwitcher-icon-214" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                         <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
                                         <path fill="none" d="M0 0h24v24H0z" />
                                       </svg>
@@ -377,8 +417,8 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
                             <NoSsr defer={false} fallback={{...}}>
                               <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
                                 <TouchRipple center={true} classes={{...}}>
-                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-242" childFactory={[Function: childFactory]}>
-                                    <span className="MuiTouchRipple-root-242" />
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-250" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-250" />
                                   </TransitionGroup>
                                 </TouchRipple>
                               </WithStyles(TouchRipple)>
@@ -391,11 +431,11 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
                 </div>
                 <Portal disablePortal={false}>
                   <Portal containerInfo={{...}}>
-                    <div className="RSFImageSwitcher-viewerOverlay-214">
+                    <div className="RSFImageSwitcher-viewerOverlay-220">
                       <ReactPinchZoomPan maxScale={3} render={[Function: render]} initialScale={1}>
                         <div>
                           <div style={{...}}>
-                            <div style={{...}}>
+                            <div style={{...}} className="" onClick={[Function: onClick]}>
                               <img src="/a.jpg" alt="product" style={{...}} />
                             </div>
                           </div>
@@ -404,7 +444,7 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
                     </div>
                   </Portal>
                 </Portal>
-                <div onClick={[Function: onClick]} className="RSFImageSwitcher-viewerToggle-212">
+                <div onClick={[Function: onClick]} className="RSFImageSwitcher-viewerToggle-218">
                   <svg width="100" height="100" viewBox="0 0 100 100">
                     <line x1="50" y1="25" x2="50" y2="75" strokeWidth="4" stroke="white" />
                     <line x1="25" y1="50" x2="75" y2="50" strokeWidth="4" stroke="white" />
@@ -427,17 +467,17 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
       <WithStyles(inject-ImageSwitcher-with-app) images={{...}} thumbnails={{...}}>
         <inject-ImageSwitcher-with-app images={{...}} thumbnails={{...}} classes={{...}}>
           <ImageSwitcher images={{...}} thumbnails={{...}} classes={{...}} app={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
-            <div className="RSFImageSwitcher-root-55" style={[undefined]}>
-              <div className="RSFImageSwitcher-swipeWrap-56">
+            <div className="RSFImageSwitcher-root-57" style={[undefined]}>
+              <div className="RSFImageSwitcher-swipeWrap-58">
                 <ReactSwipableView index={0} onChangeIndex={[Function: onChangeIndex]} animateHeight={false} animateTransitions={true} axis="x" disabled={false} disableLazyLoading={false} enableMouseEvents={false} hysteresis={0.6} ignoreNativeScroll={false} threshold={5} springConfig={{...}} resistance={false}>
                   <div style={{...}} onTouchStart={[Function]} onTouchEnd={[Function]} onScroll={[Function]}>
                     <div style={{...}} className="react-swipeable-view-container">
                       <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
-                        <div className="RSFImageSwitcher-imageWrap-57">
+                        <div className="RSFImageSwitcher-imageWrap-59">
                           <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
                             <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
                               <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
-                                <div className="RSFImage-root-80">
+                                <div className="RSFImage-root-84">
                                   <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
                                 </div>
                               </Image>
@@ -448,18 +488,18 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                     </div>
                   </div>
                 </ReactSwipableView>
-                <div className="RSFImageSwitcher-arrows-64">
-                  <WithStyles(IconButton) className="RSFImageSwitcher-arrow-65 RSFImageSwitcher-rightArrow-67" onClick={[Function: onClick]}>
-                    <IconButton className="RSFImageSwitcher-arrow-65 RSFImageSwitcher-rightArrow-67" onClick={[Function: onClick]} classes={{...}} color="default" disabled={false}>
-                      <WithStyles(ButtonBase) className="MuiIconButton-root-84 RSFImageSwitcher-arrow-65 RSFImageSwitcher-rightArrow-67" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]}>
-                        <ButtonBase className="MuiIconButton-root-84 RSFImageSwitcher-arrow-65 RSFImageSwitcher-rightArrow-67" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                          <button className="MuiButtonBase-root-90 MuiIconButton-root-84 RSFImageSwitcher-arrow-65 RSFImageSwitcher-rightArrow-67" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: onClick]}>
-                            <span className="MuiIconButton-label-89">
+                <div className="RSFImageSwitcher-arrows-66">
+                  <WithStyles(IconButton) className="RSFImageSwitcher-arrow-67 RSFImageSwitcher-rightArrow-69" onClick={[Function: onClick]}>
+                    <IconButton className="RSFImageSwitcher-arrow-67 RSFImageSwitcher-rightArrow-69" onClick={[Function: onClick]} classes={{...}} color="default" disabled={false}>
+                      <WithStyles(ButtonBase) className="MuiIconButton-root-88 RSFImageSwitcher-arrow-67 RSFImageSwitcher-rightArrow-69" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]}>
+                        <ButtonBase className="MuiIconButton-root-88 RSFImageSwitcher-arrow-67 RSFImageSwitcher-rightArrow-69" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function: onClick]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                          <button className="MuiButtonBase-root-94 MuiIconButton-root-88 RSFImageSwitcher-arrow-67 RSFImageSwitcher-rightArrow-69" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function: onClick]}>
+                            <span className="MuiIconButton-label-93">
                               <pure(ChevronRightIcon) classes={{...}}>
                                 <ChevronRightIcon classes={{...}}>
                                   <WithStyles(SvgIcon) classes={{...}}>
                                     <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                      <svg className="MuiSvgIcon-root-93 RSFImageSwitcher-icon-68" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                      <svg className="MuiSvgIcon-root-97 RSFImageSwitcher-icon-70" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                         <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
                                         <path fill="none" d="M0 0h24v24H0z" />
                                       </svg>
@@ -471,8 +511,8 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                             <NoSsr defer={false} fallback={{...}}>
                               <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
                                 <TouchRipple center={true} classes={{...}}>
-                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-134" childFactory={[Function: childFactory]}>
-                                    <span className="MuiTouchRipple-root-134" />
+                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-138" childFactory={[Function: childFactory]}>
+                                    <span className="MuiTouchRipple-root-138" />
                                   </TransitionGroup>
                                 </TouchRipple>
                               </WithStyles(TouchRipple)>
@@ -485,11 +525,11 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                 </div>
                 <Portal disablePortal={false}>
                   <Portal containerInfo={{...}}>
-                    <div className="RSFImageSwitcher-viewerOverlay-74">
+                    <div className="RSFImageSwitcher-viewerOverlay-76">
                       <ReactPinchZoomPan maxScale={3} render={[Function: render]} initialScale={1}>
                         <div>
                           <div style={{...}}>
-                            <div style={{...}}>
+                            <div style={{...}} className="" onClick={[Function: onClick]}>
                               <img src="/a.jpg" alt="product" style={{...}} />
                             </div>
                           </div>
@@ -498,37 +538,37 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                     </div>
                   </Portal>
                 </Portal>
-                <div onClick={[Function: onClick]} className="RSFImageSwitcher-viewerToggle-72">
+                <div onClick={[Function: onClick]} className="RSFImageSwitcher-viewerToggle-74">
                   <svg width="100" height="100" viewBox="0 0 100 100">
                     <line x1="50" y1="25" x2="50" y2="75" strokeWidth="4" stroke="white" />
                     <line x1="25" y1="50" x2="75" y2="50" strokeWidth="4" stroke="white" />
                   </svg>
                 </div>
               </div>
-              <div className="RSFImageSwitcher-thumbs-60">
+              <div className="RSFImageSwitcher-thumbs-62">
                 <div className="field">
-                  <label className="RSFImageSwitcher-thumbsTitle-58" />
+                  <label className="RSFImageSwitcher-thumbsTitle-60" />
                 </div>
                 <WithStyles(inject-TabsRow-with-app) classes={{...}} imageProps={{...}} centered={true} initialSelectedIdx={0} onTabChange={[Function: onTabChange]} items={{...}}>
                   <inject-TabsRow-with-app imageProps={{...}} centered={true} initialSelectedIdx={0} onTabChange={[Function: onTabChange]} items={{...}} classes={{...}}>
                     <TabsRow imageProps={{...}} centered={true} initialSelectedIdx={0} onTabChange={[Function: onTabChange]} items={{...}} classes={{...}} app={{...}} variant="scrollable">
-                      <WithStyles(Tabs) value={0} onChange={[Function]} indicatorColor="secondary" variant="scrollable" className="RSFTabsRow-root-104 RSFImageSwitcher-tabsRowRoot-76" classes={{...}}>
-                        <Tabs value={0} onChange={[Function]} indicatorColor="secondary" variant="scrollable" className="RSFTabsRow-root-104 RSFImageSwitcher-tabsRowRoot-76" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} scrollable={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
-                          <div className="MuiTabs-root-110 RSFTabsRow-root-104 RSFImageSwitcher-tabsRowRoot-76 RSFTabsRow-root-104 RSFImageSwitcher-tabsRowRoot-76" variant="scrollable">
+                      <WithStyles(Tabs) value={0} onChange={[Function]} indicatorColor="secondary" variant="scrollable" className="RSFTabsRow-root-108 RSFImageSwitcher-tabsRowRoot-78" classes={{...}}>
+                        <Tabs value={0} onChange={[Function]} indicatorColor="secondary" variant="scrollable" className="RSFTabsRow-root-108 RSFImageSwitcher-tabsRowRoot-78" theme={{...}} classes={{...}} centered={false} component="div" fullWidth={false} scrollable={false} ScrollButtonComponent={[Function: WithStyles]} scrollButtons="auto" textColor="inherit">
+                          <div className="MuiTabs-root-114 RSFTabsRow-root-108 RSFImageSwitcher-tabsRowRoot-78 RSFTabsRow-root-108 RSFImageSwitcher-tabsRowRoot-78" variant="scrollable">
                             <EventListener target="window" onResize={[Function: debounced]} />
-                            <div className="MuiTabs-flexContainer-111 RSFTabsRow-centered-109">
-                              <div className="MuiTabs-scroller-113 RSFTabsRow-scroller-107 RSFImageSwitcher-tabScroller-77 MuiTabs-fixed-114" style={{...}} role="tablist" onScroll={[Function: debounced]}>
-                                <div className="MuiTabs-flexContainer-111 RSFTabsRow-centered-109">
+                            <div className="MuiTabs-flexContainer-115 RSFTabsRow-centered-113">
+                              <div className="MuiTabs-scroller-117 RSFTabsRow-scroller-111 RSFImageSwitcher-tabScroller-79 MuiTabs-fixed-118" style={{...}} role="tablist" onScroll={[Function: debounced]}>
+                                <div className="MuiTabs-flexContainer-115 RSFTabsRow-centered-113">
                                   <WithStyles(Tab) label={[undefined]} icon={{...}} classes={{...}} fullWidth={false} indicator={false} selected={true} onChange={[Function]} textColor="inherit" value={0}>
                                     <Tab label={[undefined]} icon={{...}} fullWidth={false} indicator={false} selected={true} onChange={[Function]} textColor="inherit" value={0} classes={{...}} disabled={false}>
-                                      <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121 MuiTab-selected-124 RSFTabsRow-selectedTab-106" role="tab" aria-selected={true} disabled={false} onClick={[Function]}>
-                                        <ButtonBase focusRipple={true} className="MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121 MuiTab-selected-124 RSFTabsRow-selectedTab-106" role="tab" aria-selected={true} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                          <button className="MuiButtonBase-root-90 MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121 MuiTab-selected-124 RSFTabsRow-selectedTab-106" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={true} onClick={[Function]}>
-                                            <span className="MuiTab-wrapper-127">
-                                              <WithStyles(inject-Image) src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true}>
-                                                <inject-Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
-                                                    <div className="RSFImageSwitcher-thumbnail-61 RSFImage-root-80 RSFImage-fill-83">
+                                      <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125 MuiTab-selected-128 RSFTabsRow-selectedTab-110" role="tab" aria-selected={true} disabled={false} onClick={[Function]}>
+                                        <ButtonBase focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125 MuiTab-selected-128 RSFTabsRow-selectedTab-110" role="tab" aria-selected={true} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                          <button className="MuiButtonBase-root-94 MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125 MuiTab-selected-128 RSFTabsRow-selectedTab-110" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={true} onClick={[Function]}>
+                                            <span className="MuiTab-wrapper-131">
+                                              <WithStyles(inject-Image) src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
+                                                <inject-Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
+                                                  <Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                                                    <div className="RSFImageSwitcher-thumbnail-63 RSFImage-root-84 RSFImage-fill-87">
                                                       <img src="/at.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
                                                     </div>
                                                   </Image>
@@ -538,8 +578,8 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <NoSsr defer={false} fallback={{...}}>
                                               <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
                                                 <TouchRipple center={false} classes={{...}}>
-                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-134" childFactory={[Function: childFactory]}>
-                                                    <span className="MuiTouchRipple-root-134" />
+                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-138" childFactory={[Function: childFactory]}>
+                                                    <span className="MuiTouchRipple-root-138" />
                                                   </TransitionGroup>
                                                 </TouchRipple>
                                               </WithStyles(TouchRipple)>
@@ -551,14 +591,14 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                   </WithStyles(Tab)>
                                   <WithStyles(Tab) label={[undefined]} icon={{...}} classes={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1}>
                                     <Tab label={[undefined]} icon={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={1} classes={{...}} disabled={false}>
-                                      <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
-                                        <ButtonBase focusRipple={true} className="MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                          <button className="MuiButtonBase-root-90 MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
-                                            <span className="MuiTab-wrapper-127">
-                                              <WithStyles(inject-Image) src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true}>
-                                                <inject-Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
-                                                    <div className="RSFImageSwitcher-thumbnail-61 RSFImage-root-80 RSFImage-fill-83">
+                                      <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
+                                        <ButtonBase focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                          <button className="MuiButtonBase-root-94 MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                            <span className="MuiTab-wrapper-131">
+                                              <WithStyles(inject-Image) src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
+                                                <inject-Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
+                                                  <Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                                                    <div className="RSFImageSwitcher-thumbnail-63 RSFImage-root-84 RSFImage-fill-87">
                                                       <img src="/bt.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
                                                     </div>
                                                   </Image>
@@ -568,8 +608,8 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <NoSsr defer={false} fallback={{...}}>
                                               <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
                                                 <TouchRipple center={false} classes={{...}}>
-                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-134" childFactory={[Function: childFactory]}>
-                                                    <span className="MuiTouchRipple-root-134" />
+                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-138" childFactory={[Function: childFactory]}>
+                                                    <span className="MuiTouchRipple-root-138" />
                                                   </TransitionGroup>
                                                 </TouchRipple>
                                               </WithStyles(TouchRipple)>
@@ -581,14 +621,14 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                   </WithStyles(Tab)>
                                   <WithStyles(Tab) label={[undefined]} icon={{...}} classes={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={2}>
                                     <Tab label={[undefined]} icon={{...}} fullWidth={false} indicator={false} selected={false} onChange={[Function]} textColor="inherit" value={2} classes={{...}} disabled={false}>
-                                      <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
-                                        <ButtonBase focusRipple={true} className="MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                          <button className="MuiButtonBase-root-90 MuiTab-root-119 RSFTabsRow-tab-105 MuiTab-textColorInherit-121" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
-                                            <span className="MuiTab-wrapper-127">
-                                              <WithStyles(inject-Image) src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true}>
-                                                <inject-Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-61" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
-                                                    <div className="RSFImageSwitcher-thumbnail-61 RSFImage-root-80 RSFImage-fill-83">
+                                      <WithStyles(ButtonBase) focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" role="tab" aria-selected={false} disabled={false} onClick={[Function]}>
+                                        <ButtonBase focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                          <button className="MuiButtonBase-root-94 MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
+                                            <span className="MuiTab-wrapper-131">
+                                              <WithStyles(inject-Image) src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
+                                                <inject-Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
+                                                  <Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                                                    <div className="RSFImageSwitcher-thumbnail-63 RSFImage-root-84 RSFImage-fill-87">
                                                       <img src="/ct.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
                                                     </div>
                                                   </Image>
@@ -598,8 +638,8 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                             <NoSsr defer={false} fallback={{...}}>
                                               <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
                                                 <TouchRipple center={false} classes={{...}}>
-                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-134" childFactory={[Function: childFactory]}>
-                                                    <span className="MuiTouchRipple-root-134" />
+                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-138" childFactory={[Function: childFactory]}>
+                                                    <span className="MuiTouchRipple-root-138" />
                                                   </TransitionGroup>
                                                 </TouchRipple>
                                               </WithStyles(TouchRipple)>
@@ -610,9 +650,9 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                     </Tab>
                                   </WithStyles(Tab)>
                                 </div>
-                                <WithStyles(TabIndicator) className="MuiTabs-indicator-118 RSFTabsRow-indicator-102" color="secondary" style={{...}}>
-                                  <TabIndicator className="MuiTabs-indicator-118 RSFTabsRow-indicator-102" color="secondary" style={{...}} classes={{...}}>
-                                    <span className="MuiPrivateTabIndicator-root-131 MuiPrivateTabIndicator-colorSecondary-133 MuiTabs-indicator-118 RSFTabsRow-indicator-102" style={{...}} />
+                                <WithStyles(TabIndicator) className="MuiTabs-indicator-122 RSFTabsRow-indicator-106" color="secondary" style={{...}}>
+                                  <TabIndicator className="MuiTabs-indicator-122 RSFTabsRow-indicator-106" color="secondary" style={{...}} classes={{...}}>
+                                    <span className="MuiPrivateTabIndicator-root-135 MuiPrivateTabIndicator-colorSecondary-137 MuiTabs-indicator-122 RSFTabsRow-indicator-106" style={{...}} />
                                   </TabIndicator>
                                 </WithStyles(TabIndicator)>
                               </div>

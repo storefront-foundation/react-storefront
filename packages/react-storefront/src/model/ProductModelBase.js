@@ -4,6 +4,7 @@
  */
 import { types, onPatch } from 'mobx-state-tree'
 import SelectionModelBase from './SelectionModelBase'
+import MediaTypeModel from './MediaTypeModel'
 
 /**
  * A base model for product pages.
@@ -29,7 +30,6 @@ import SelectionModelBase from './SelectionModelBase'
  *
  * @class ProductModelBase
  */
-
 const ProductModelBase = types
   .model('ProductModelBase', {
     /**
@@ -115,7 +115,7 @@ const ProductModelBase = types
      * @memberof ProductModelBase
      * @instance
      */
-    images: types.array(types.string),
+    images: types.array(types.union(types.string, MediaTypeModel)),
     /**
      * The thumbnail corresponding to each image.
      * @type {String[]}

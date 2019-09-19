@@ -66,6 +66,7 @@ export { default as TabsRow } from './TabsRow.js';
 export { default as ToolbarButton } from './ToolbarButton.js';
 export { default as Track } from './Track.js';
 export { default as UpdateNotification } from './UpdateNotification.js';
+export { default as Video } from './Video.js';
 export { default as analytics } from './analytics.js';
 export { default as cache } from './cache.js';
 export { default as createTheme } from './createTheme.js';

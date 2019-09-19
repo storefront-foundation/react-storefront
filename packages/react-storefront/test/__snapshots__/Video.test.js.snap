@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Video should render with amp-video in amp mode 1`] = `
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <WithStyles(inject-Video) src="haha.mp4">
+        <inject-Video src="haha.mp4" classes={{...}}>
+          <Video src="haha.mp4" classes={{...}} amp={true} controls={true}>
+            <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+              <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+              </SideEffect(NullComponent)>
+            </HelmetWrapper>
+            <amp-video class="RSFVideo-root-2" src="haha.mp4" controls={true} layout="fill" />
+          </Video>
+        </inject-Video>
+      </WithStyles(inject-Video)>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
+`;
+
+exports[`Video should render with video tag when in non-AMP mode 1`] = `
+<TestProvider app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}}>
+    <MuiThemeProviderOld theme={{...}}>
+      <WithStyles(inject-Video) src="haha.mp4">
+        <inject-Video src="haha.mp4" classes={{...}}>
+          <Video src="haha.mp4" classes={{...}} amp={false} controls={true}>
+            <video className="RSFVideo-root-1" src="haha.mp4" controls={true} />
+          </Video>
+        </inject-Video>
+      </WithStyles(inject-Video)>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
+`;

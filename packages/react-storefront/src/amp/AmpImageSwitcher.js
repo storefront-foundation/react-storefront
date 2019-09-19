@@ -8,6 +8,7 @@ import classnames from 'classnames'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { inject } from 'mobx-react'
 import PropTypes from 'prop-types'
+import Video from '../Video'
 
 export const styles = theme => ({
   root: {
@@ -266,21 +267,27 @@ export default class AmpImageSwitcher extends Component {
         <div className={classes.carouselWrap}>
           <BeforeInteracted>
             <Carousel>
-              {images.map(({ src, alt }) => (
-                <amp-img key={src} src={src} layout="fill" alt={alt} />
-              ))}
+              {images.map(({ src, alt, video }) =>
+                video ? (
+                  <Video src={src} alt={alt} key={src} />
+                ) : (
+                  <amp-img key={src} src={src} layout="fill" alt={alt} />
+                )
+              )}
             </Carousel>
           </BeforeInteracted>
           <AfterInteracted>
             <Template items="." single-item>
-              <Carousel
-                dangerouslySetInnerHTML={{
-                  __html: `
-                {{#images}}
-                  <amp-img src="{{.}}" layout="fill" alt="test"></amp-img>
-                {{/images}}`
-                }}
-              />
+              <Carousel>
+                {'{{#images}}'}
+                {'{{#video}}'}
+                <Video src="{{src}}" layout="fill" alt="{{alt}}" />
+                {'{{/video}}'}
+                {'{{^video}}'}
+                <amp-img src="{{.}}" layout="fill" alt="test" />
+                {'{{/video}}'}
+                {'{{/images}}'}
+              </Carousel>
             </Template>
           </AfterInteracted>
           {indicators && (

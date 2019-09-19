@@ -8,6 +8,7 @@
 export { default as AppModelBase } from './AppModelBase.js';
 export { default as CartModelBase } from './CartModelBase.js';
 export { default as CategoryModelBase } from './CategoryModelBase.js';
+export { default as MediaTypeModel } from './MediaTypeModel.js';
 export { default as MenuModel } from './MenuModel.js';
 export { default as OptionModelBase } from './OptionModelBase.js';
 export { default as ProductModelBase } from './ProductModelBase.js';

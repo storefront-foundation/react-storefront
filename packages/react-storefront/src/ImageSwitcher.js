@@ -20,12 +20,14 @@ import { reaction } from 'mobx'
 import AmpImageSwitcher from './amp/AmpImageSwitcher'
 import LoadMask from './LoadMask'
 import Image from './Image'
+import Video from './Video'
 
 const paletteIconTextColor = '#77726D'
 
-const imagePropType = PropTypes.shape({
+const mediaPropType = PropTypes.shape({
   src: PropTypes.string.isRequired,
-  alt: PropTypes.string
+  alt: PropTypes.string,
+  video: PropTypes.bool
 })
 
 export const styles = theme => ({
@@ -205,6 +207,23 @@ export const styles = theme => ({
 
   mask: {
     opacity: '0.8'
+  },
+
+  playButton: {
+    '&:after': {
+      color: 'white',
+      content: '"►"',
+      position: 'absolute',
+      left: 'calc(50% - 24px)',
+      top: 'calc(50% - 24px)',
+      fontSize: '48px'
+    }
+  },
+
+  playing: {
+    '&:after': {
+      display: 'none'
+    }
   }
 })
 
@@ -226,7 +245,7 @@ export default class ImageSwitcher extends Component {
     /**
      * An array of (URL or image object) for the full size images
      */
-    images: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, imagePropType])).isRequired,
+    images: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, mediaPropType])).isRequired,
 
     /**
      * An array of thumbnails to display below the main image.  You can also
@@ -234,7 +253,7 @@ export default class ImageSwitcher extends Component {
      */
     thumbnails: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, imagePropType]))
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, mediaPropType]))
     ]),
 
     /**
@@ -313,7 +332,8 @@ export default class ImageSwitcher extends Component {
     selectedIndex: 0,
     productId: null,
     viewerActive: false,
-    fullSizeImagesLoaded: false
+    fullSizeImagesLoaded: false,
+    playingVideo: false
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -398,7 +418,7 @@ export default class ImageSwitcher extends Component {
     const { images, product } = this.props
     const _images = images && images.length ? images : (product && product.images) || []
     return _images.map(e => {
-      return typeof e === 'string' ? { src: e, alt: 'product' } : e
+      return typeof e === 'string' ? { src: e, alt: 'product', video: false } : e
     })
   }
 
@@ -427,7 +447,9 @@ export default class ImageSwitcher extends Component {
             }}
             centered
             initialSelectedIdx={selectedIndex}
-            onTabChange={(e, selectedIndex) => this.setState({ selectedIndex })}
+            onTabChange={(e, selectedIndex) =>
+              this.setState({ selectedIndex, playingVideo: false })
+            }
             items={modifiedThumbs}
           />
         </div>
@@ -489,6 +511,7 @@ export default class ImageSwitcher extends Component {
 
     const { selectedIndex, viewerActive } = this.state
     const selectedImage = images[selectedIndex]
+    const SelectedImageTag = selectedImage.video ? 'video' : 'img'
 
     return (
       <div className={classnames(className, classes.root)} style={style}>
@@ -498,10 +521,10 @@ export default class ImageSwitcher extends Component {
             index={selectedIndex}
             onChangeIndex={i => this.setState({ selectedIndex: i })}
           >
-            {images.map(({ src, alt }, i) => (
+            {images.map(({ src, alt, video }, i) => (
               <div key={i} className={classes.imageWrap}>
-                {app.amp ? (
-                  <amp-img src={src} alt="product" layout="fill" />
+                {video ? (
+                  <Video src={src} alt={alt || 'product'} />
                 ) : (
                   <Image
                     key={src}
@@ -577,9 +600,29 @@ export default class ImageSwitcher extends Component {
                           display: 'flex',
                           height: '100%'
                         }}
+                        className={classnames({
+                          [classes.playButton]: selectedImage.video,
+                          [classes.playing]: this.state.playingVideo
+                        })}
+                        onClick={() => {
+                          if (this.selectedVideo) {
+                            if (this.selectedVideo.paused) {
+                              this.selectedVideo.play()
+                              this.setState({ playingVideo: true })
+                            } else {
+                              this.selectedVideo.pause()
+                              this.setState({ playingVideo: false })
+                            }
+                          }
+                        }}
                       >
                         {selectedImage && (
-                          <img
+                          <SelectedImageTag
+                            ref={el => {
+                              if (selectedImage.video) {
+                                this.selectedVideo = el
+                              }
+                            }}
                             src={selectedImage.src}
                             alt={selectedImage.alt}
                             style={{

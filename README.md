@@ -76,6 +76,8 @@ yarn release
 
 ### 6.49.0
 
+- `ImageSwitcher` can now display videos.
+- Added a new `Video` component which supports displaying videos in AMP.
 - Added a `fromOrigin(originName)` handler type that allows you to proxy an origin from the edge.
 - Added a `redirectTo(path)` handler type that allows you redirect the request at the edge.
 
