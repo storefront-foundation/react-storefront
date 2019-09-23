@@ -7,6 +7,7 @@ import { inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import escape from 'lodash/escape'
 import analytics, { getTargets } from './analytics'
+import merge from 'lodash/merge'
 
 let nextId = 0
 let ampAnalyticsTypes = {}
@@ -210,24 +211,30 @@ export default class Track extends Component {
   }
 }
 
-export function renderAmpAnalyticsTags() {
-  const result = []
+export function renderAmpAnalyticsTags(app) {
+  try {
+    return Object.keys(ampAnalyticsTypes)
+      .map(type => {
+        const target = getTargets().find(t => t.getAmpAnalyticsType() === type)
+        const ampData = typeof target.getAmpAnalyticsData === 'function' ? target.getAmpAnalyticsData(app) : {}
 
-  for (let type in ampAnalyticsTypes) {
-    const target = getTargets().find(t => t.getAmpAnalyticsType() === type)
-    const attributes =
-      target && target.getAmpAnalyticsAttributes ? target.getAmpAnalyticsAttributes() : { type }
-    const attributesHtml = Object.keys(attributes)
-      .map(key => `${key}="${escape(attributes[key])}"`)
-      .join(' ')
-    result.push(
-      `<amp-analytics ${attributesHtml}>` +
-        `<script type="application/json">${JSON.stringify(ampAnalyticsTypes[type])}</script>` +
-        `</amp-analytics>`
-    )
+        const attributes =
+          target && target.getAmpAnalyticsAttributes ? target.getAmpAnalyticsAttributes() : { type }
+
+        const attributesHtml = Object.keys(attributes)
+          .map(key => `${key}="${escape(attributes[key])}"`)
+          .join(' ')
+
+        return (
+          `<amp-analytics ${attributesHtml}>` +
+          `<script type="application/json">${JSON.stringify(
+            merge({}, ampAnalyticsTypes[type], ampData)
+          )}</script>` +
+          `</amp-analytics>`
+        )
+      })
+      .join('\n')
+  } finally {
+    ampAnalyticsTypes = {}
   }
-
-  ampAnalyticsTypes = {}
-
-  return result.join('\n')
 }

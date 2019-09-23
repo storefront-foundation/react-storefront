@@ -233,7 +233,7 @@ export default class Server {
       Helmet.renderStatic()
 
       // flush amp analytics tags to prevent memory leak
-      renderAmpAnalyticsTags()
+      renderAmpAnalyticsTags(model)
 
       throw e
     }

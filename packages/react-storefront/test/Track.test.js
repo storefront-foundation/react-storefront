@@ -8,20 +8,21 @@ import { configureAnalytics } from '../src/analytics'
 import waitForAnalytics from './helpers/waitForAnalytics'
 import Track, { renderAmpAnalyticsTags, resetId } from '../src/Track'
 import TestProvider from './TestProvider'
-import AnalyticsProvider from '../src/AnalyticsProvider';
+import AnalyticsProvider from '../src/AnalyticsProvider'
 
 describe('Track', () => {
-
   beforeEach(() => {
     resetId()
   })
 
   it('should support no children', () => {
-    expect(mount(
-      <TestProvider>
-        <Track event="testEvent" foo="bar"/>
-      </TestProvider>
-    )).toMatchSnapshot()
+    expect(
+      mount(
+        <TestProvider>
+          <Track event="testEvent" foo="bar" />
+        </TestProvider>
+      )
+    ).toMatchSnapshot()
   })
 
   it('should fire the configured event when clicked', () => {
@@ -44,7 +45,7 @@ describe('Track', () => {
     })
   })
 
-  it('should call the onSuccess prop after the event has been sent', (done) => {
+  it('should call the onSuccess prop after the event has been sent', done => {
     const testEvent = jest.fn()
     const onSuccess = jest.fn()
 
@@ -65,9 +66,10 @@ describe('Track', () => {
       done()
     }, 200)
   })
-  
+
   it('calls the original handler prop', () => {
-    const testEvent = jest.fn(), onClick = jest.fn()
+    const testEvent = jest.fn(),
+      onClick = jest.fn()
 
     mount(
       <TestProvider>
@@ -85,17 +87,17 @@ describe('Track', () => {
   })
 
   it('should create AMP triggers', () => {
-    const targets = () => [{
-      testEvent(data) {
-        this.send(data)
-      },
-      send() {
-
-      },
-      getAmpAnalyticsType() {
-        return "test"
+    const targets = () => [
+      {
+        testEvent(data) {
+          this.send(data)
+        },
+        send() {},
+        getAmpAnalyticsType() {
+          return 'test'
+        }
       }
-    }]
+    ]
 
     const wrapper = mount(
       <TestProvider app={{ amp: true }}>
@@ -108,20 +110,56 @@ describe('Track', () => {
     )
 
     // check the amp trigger
-    expect(renderAmpAnalyticsTags()).toEqual(
+    expect(renderAmpAnalyticsTags({})).toEqual(
       '<amp-analytics type="test">' +
         '<script type="application/json">' +
-          "{\"triggers\":[{\"on\":\"click\",\"foo\":\"bar\",\"ampData\":{},\"selector\":\"[data-amp-id=\\\"0\\\"]\",\"request\":\"event\"}]}" +
+        '{"triggers":[{"on":"click","foo":"bar","ampData":{},"selector":"[data-amp-id=\\"0\\"]","request":"event"}]}' +
         '</script>' +
-      '</amp-analytics>'
+        '</amp-analytics>'
     )
 
     // make sure it adds the data-amp-id to the wrapped element
     expect(wrapper.find('button[data-amp-id="0"]').length).toBe(1)
   })
 
+  it('should include the result of getAmpAnalyticsData()', () => {
+    const targets = () => [
+      {
+        testEvent(data) {
+          this.send(data)
+        },
+        send() {},
+        getAmpAnalyticsType() {
+          return 'test'
+        },
+        getAmpAnalyticsData() {
+          return { title: 'React Storefront Home' }
+        }
+      }
+    ]
+
+    const wrapper = mount(
+      <TestProvider app={{ amp: true }}>
+        <AnalyticsProvider targets={targets}>
+          <Track event="testEvent" foo="bar">
+            <button>Click Me</button>
+          </Track>
+        </AnalyticsProvider>
+      </TestProvider>
+    )
+
+    // check the amp trigger
+    expect(renderAmpAnalyticsTags({})).toEqual(
+      '<amp-analytics type="test">' +
+        '<script type="application/json">' +
+        '{"triggers":[{"on":"click","foo":"bar","ampData":{},"selector":"[data-amp-id=\\"0\\"]","request":"event"}],"title":"React Storefront Home"}' +
+        '</script>' +
+        '</amp-analytics>'
+    )
+  })
+
   it('should support multiple triggers', () => {
-    const click = jest.fn(), 
+    const click = jest.fn(),
       focus = jest.fn()
 
     const targets = () => [{ click, focus }]
@@ -146,25 +184,25 @@ describe('Track', () => {
   })
 
   it('should add GTM attributes for AMP', () => {
-    const targets = () => [{
-      testEvent(data) {
-        this.send(data)
-      },
-      send() {
-
-      },
-      apiKey: 'GTM-testme',
-      getAmpAnalyticsType() {
-        return "gtm"
-      },
-      getAmpAnalyticsAttributes() {
-        return {
-          config: `https://www.googletagmanager.com/amp.json?id=${this.apiKey}`,
-          'data-credentials': 'include',
-          test: '<< escaping "html" >>'
+    const targets = () => [
+      {
+        testEvent(data) {
+          this.send(data)
+        },
+        send() {},
+        apiKey: 'GTM-testme',
+        getAmpAnalyticsType() {
+          return 'gtm'
+        },
+        getAmpAnalyticsAttributes() {
+          return {
+            config: `https://www.googletagmanager.com/amp.json?id=${this.apiKey}`,
+            'data-credentials': 'include',
+            test: '<< escaping "html" >>'
+          }
         }
       }
-    }]
+    ]
 
     const wrapper = mount(
       <TestProvider app={{ amp: true }}>
@@ -176,12 +214,12 @@ describe('Track', () => {
       </TestProvider>
     )
 
-    expect(renderAmpAnalyticsTags()).toEqual(
+    expect(renderAmpAnalyticsTags({})).toEqual(
       '<amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-testme" data-credentials="include" test="&lt;&lt; escaping &quot;html&quot; &gt;&gt;">' +
         '<script type="application/json">' +
-          "{\"triggers\":[{\"on\":\"click\",\"foo\":\"bar\",\"ampData\":{},\"selector\":\"[data-amp-id=\\\"0\\\"]\",\"request\":\"event\"}]}" +
+        '{"triggers":[{"on":"click","foo":"bar","ampData":{},"selector":"[data-amp-id=\\"0\\"]","request":"event"}]}' +
         '</script>' +
-      '</amp-analytics>'
+        '</amp-analytics>'
     )
   })
 })

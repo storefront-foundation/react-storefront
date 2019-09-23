@@ -74,8 +74,9 @@ yarn release
 
 ## Changelog
 
-### 6.49.1
+### 6.50.0
 
+- You can now add data to `amp-analytics` tags by implementing `getAmpAnalyticsData()` on analytics targets.
 - Updated `Headers` implementation to support spreading, deleting, direct access of properties
 
 ### 6.49.0
