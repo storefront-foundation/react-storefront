@@ -97,7 +97,7 @@ function createLoaders(sourcePath, { envName, assetsPath = '.', eslintConfig } =
       use: [{ loader: 'babel-loader', options: { envName } }]
     },
     {
-      test: /\.(png|jpg|gif|otf|woff|ttf)$/,
+      test: /\.(png|jpg|gif|otf|woff2?|ttf)$/,
       use: [
         {
           loader: 'url-loader',
