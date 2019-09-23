@@ -24,6 +24,7 @@ class HeadersInternal {
   set(key, value) {
     if (key == null) throw new Error('key cannot be null in call to headers.set()')
     this.headers[key.toLowerCase()] = value
+    this[key.toLowerCase()] = value // this is needed for spreading like: { ...headers }
   }
   get(key) {
     if (key == null) throw new Error('key cannot be null in call to headers.get()')
@@ -42,16 +43,16 @@ class HeadersInternal {
     return Object.values(this.headers)
   }
   toJSON() {
-    return this.headers
+    return { ...this.headers }
+  }
+  toString() {
+    return JSON.stringify(this.headers)
   }
 }
 
 const proxy = {
   get: function(target, name) {
     if (target.keys().includes(name)) {
-      console.warn(
-        'warning: accessing headers directly on the Headers object is deprecated and will be removed in a future version of react-storefront-moov-xdn. Please use headers.get(name) instead'
-      )
       return target.get(name)
     }
     return Reflect.get(target, name)
@@ -60,17 +61,12 @@ const proxy = {
     return target.keys()
   },
   set: function(target, name, value) {
-    console.warn(
-      'warning: setting headers directly on the Headers object is deprecated and will be removed in a future version of react-storefront-moov-xdn. Please use headers.set(name, value) instead'
-    )
     target.set(name, value)
     return true
   },
-  getOwnPropertyDescriptor() {
-    return {
-      enumerable: true,
-      configurable: true
-    }
+  deleteProperty: function(target, name) {
+    target.delete(name)
+    return true
   }
 }
 

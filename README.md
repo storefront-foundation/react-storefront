@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.49.1
+
+- Updated `Headers` implementation to support spreading, deleting, direct access of properties
+
 ### 6.49.0
 
 - `ImageSwitcher` can now display videos.

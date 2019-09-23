@@ -1,4 +1,5 @@
 import Headers from '../src/Headers'
+import https from 'https'
 
 describe('Headers', () => {
   it('should get headers regardless of case', () => {
@@ -24,7 +25,7 @@ describe('Headers', () => {
 
   it('should set headers regardless of case', () => {
     let headers
-    headers = new Headers({})
+    headers = new Headers()
     headers.set('Content-Type', 'application/json')
     expect(headers.get('content-type')).toBe('application/json')
   })
@@ -41,6 +42,12 @@ describe('Headers', () => {
     headers.baz = 'qux'
     expect(headers.baz).toBe('qux')
     expect(headers.foo).toBe('bar')
+  })
+
+  it('(to be deprecated) should delete header with delete operator', () => {
+    let headers = new Headers({ foo: 'bar', baz: 'qux' })
+    delete headers.foo
+    expect(headers.keys()).toEqual(['baz'])
   })
 
   it('(to be deprecated) should list header keys', () => {
@@ -92,5 +99,56 @@ describe('Headers', () => {
   it('should list header values', () => {
     let headers = new Headers({ foo: 'bar', baz: 'qux' })
     expect(headers.values().join()).toBe('bar,qux')
+  })
+
+  it('should spread headers', () => {
+    let headers = new Headers({ foo: 'bar' })
+    headers.set('baz', 'qux')
+    expect({ mi: 'fa', ...headers }).toEqual({
+      mi: 'fa',
+      foo: 'bar',
+      baz: 'qux'
+    })
+  })
+
+  it('should have toString', () => {
+    let headers = new Headers({ foo: 'bar', baz: 'qux' })
+    expect(headers.toString()).toEqual('{"foo":"bar","baz":"qux"}')
+  })
+
+  it('should have toJSON', () => {
+    let headers = new Headers({ foo: 'bar', baz: 'qux' })
+    expect(headers.toJSON()).toEqual({ baz: 'qux', foo: 'bar' })
+  })
+
+  it('should build Headers from another instance', () => {
+    let a = new Headers({ foo: 'bar' })
+    let b = new Headers(a)
+    b.set('baz', 'qux')
+    expect(b.keys()).toEqual(['foo', 'baz'])
+  })
+
+  it('should work with real https request', done => {
+    let headers = new Headers({ 'x-foo': 'bar' })
+    const options = {
+      hostname: 'echo.moovweb.com',
+      port: 443,
+      method: 'GET',
+      headers
+    }
+    https
+      .get(options, resp => {
+        let data = ''
+        resp.on('data', chunk => {
+          data += chunk
+        })
+        resp.on('end', () => {
+          expect(data).toContain('<tr><td><b>x-foo</b></td>  <td>3</td> <td break>bar</td></tr>')
+          done()
+        })
+      })
+      .on('error', err => {
+        console.log('Error: ' + err.message)
+      })
   })
 })
