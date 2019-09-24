@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.50.1
+
+- Fixed error when running apps in express due to `headers.get(name)` not being defined.
+
 ### 6.50.0
 
 - You can now add data to `amp-analytics` tags by implementing `getAmpAnalyticsData()` on analytics targets.

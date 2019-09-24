@@ -16,18 +16,24 @@ module.exports = function(server) {
       cacheOnServer: Function.prototype
     })
 
-    Object.assign(global, env = {
-      http,
-      https,
-      fns: {
-        export: (key, value) => {
-          exportedValues[key] = value
+    // shim get, which is provided on the moovweb platform
+    req.headers.get = name => name && req.headers[name.toLowerCase()]
+
+    Object.assign(
+      global,
+      (env = {
+        http,
+        https,
+        fns: {
+          export: (key, value) => {
+            exportedValues[key] = value
+          }
+        },
+        env: {
+          asset_host: `//localhost:${(process.env.PORT || 8500) + 1}`
         }
-      },
-      env: {
-        asset_host: `//localhost:${(process.env.PORT || 8500) + 1}`
-      }
-    })
+      })
+    )
 
     server.serve(req, res)
   }
