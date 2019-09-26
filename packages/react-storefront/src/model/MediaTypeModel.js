@@ -11,6 +11,6 @@ import { types } from 'mobx-state-tree'
  */
 export default types.model('MediaType', {
   src: types.string,
-  alt: types.optional(types.string, 'product'),
+  alt: types.maybeNull(types.string),
   video: types.optional(types.boolean, false)
 })

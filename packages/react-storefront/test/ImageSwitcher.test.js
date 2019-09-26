@@ -194,4 +194,128 @@ describe('ImageSwitcher', () => {
         .prop('src')
     ).toMatch(/opt\.moovweb/)
   })
+
+  it('uses the product name as the alt prop when no alt is provided', () => {
+    const wrapper = mount(
+      <TestProvider>
+        <ImageSwitcher
+          product={{ name: 'Red Shirt' }}
+          images={[{ src: 'test.jpg' }, { src: 'with_alt.jpg' }]}
+          selectedIndex={0}
+        />
+      </TestProvider>
+    )
+
+    expect(
+      wrapper
+        .find('img')
+        .at(0)
+        .prop('alt')
+    ).toEqual('Red Shirt')
+  })
+
+  it('uses the alt that is provided', () => {
+    const wrapper = mount(
+      <TestProvider>
+        <ImageSwitcher
+          product={{ name: 'Red Shirt' }}
+          images={[{ src: 'test.jpg', alt: 'a red shirt' }]}
+        />
+      </TestProvider>
+    )
+
+    expect(
+      wrapper
+        .find('img')
+        .at(0)
+        .prop('alt')
+    ).toEqual('a red shirt')
+  })
+
+  it('uses the alt that is provided on the product', () => {
+    const wrapper = mount(
+      <TestProvider>
+        <ImageSwitcher
+          product={{ name: 'Red Shirt', images: [{ src: 'test.jpg', alt: 'a red shirt' }] }}
+        />
+      </TestProvider>
+    )
+
+    expect(
+      wrapper
+        .find('img')
+        .at(0)
+        .prop('alt')
+    ).toEqual('a red shirt')
+  })
+
+  it('uses the product name as the alt prop when only urls are provided', () => {
+    const wrapper = mount(
+      <TestProvider>
+        <ImageSwitcher product={{ name: 'Red Shirt' }} images={['test.jpg']} selectedIndex={0} />
+      </TestProvider>
+    )
+
+    expect(
+      wrapper
+        .find('img')
+        .at(0)
+        .prop('alt')
+    ).toEqual('Red Shirt')
+  })
+
+  it('uses the product name as the alt prop when only urls are provided on the product', () => {
+    const wrapper = mount(
+      <TestProvider>
+        <ImageSwitcher product={{ name: 'Red Shirt', images: ['test.jpg'] }} />
+      </TestProvider>
+    )
+
+    expect(
+      wrapper
+        .find('img')
+        .at(0)
+        .prop('alt')
+    ).toEqual('Red Shirt')
+  })
+
+  it('uses the provided alts for thumbnails', () => {
+    const wrapper = mount(
+      <TestProvider>
+        <ImageSwitcher
+          product={{ name: 'Red Shirt' }}
+          images={['test.jpg']}
+          thumbnails={[{ src: 'thumb.jpg', alt: 'red shirt thumbnail' }]}
+        />
+      </TestProvider>
+    )
+
+    expect(
+      wrapper
+        .find('Image[src="thumb.jpg"]')
+        .at(0)
+        .prop('alt')
+    ).toEqual('red shirt thumbnail')
+  })
+
+  it('uses the provided alts for thumbnails from the product', () => {
+    const wrapper = mount(
+      <TestProvider>
+        <ImageSwitcher
+          product={{
+            name: 'Red Shirt',
+            images: ['test.jpg'],
+            thumbnails: [{ src: 'thumb.jpg', alt: 'red shirt thumbnail' }]
+          }}
+        />
+      </TestProvider>
+    )
+
+    expect(
+      wrapper
+        .find('Image[src="thumb.jpg"]')
+        .at(0)
+        .prop('alt')
+    ).toEqual('red shirt thumbnail')
+  })
 })

@@ -14,11 +14,11 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
                     <div style={{...}} className="react-swipeable-view-container">
                       <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
                         <div className="RSFImageSwitcher-imageWrap-3">
-                          <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
-                            <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
-                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                          <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]}>
+                            <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]} classes={{...}}>
+                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFImage-root-28">
-                                  <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
+                                  <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onLoad={[Function]} onError={[Function]} />
                                 </div>
                               </Image>
                             </inject-Image>
@@ -70,7 +70,7 @@ exports[`ImageSwitcher only shows images by default, no bells and whistles 1`] =
                         <div>
                           <div style={{...}}>
                             <div style={{...}} className="" onClick={[Function: onClick]}>
-                              <img src="/a.jpg" alt="product" style={{...}} />
+                              <img src="/a.jpg" alt={[undefined]} style={{...}} />
                             </div>
                           </div>
                         </div>
@@ -127,9 +127,9 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
                               <div amp-bind="class=>moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-295\\' : \\'\\'">
                                 <Carousel>
                                   <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
-                                    <amp-img src="/a.jpg" layout="fill" alt="product" />
-                                    <amp-img src="/b.jpg" layout="fill" alt="product" />
-                                    <amp-img src="/c.jpg" layout="fill" alt="product" />
+                                    <amp-img src="/a.jpg" layout="fill" alt={[undefined]} />
+                                    <amp-img src="/b.jpg" layout="fill" alt={[undefined]} />
+                                    <amp-img src="/c.jpg" layout="fill" alt={[undefined]} />
                                   </amp-carousel>
                                 </Carousel>
                               </div>
@@ -216,9 +216,9 @@ exports[`ImageSwitcher should render AmpImageSwitcher without product colors 1`]
                               <div amp-bind="class=>moovAmpState.colorInteracted ? \\'RSFAmpImageSwitcher-hidden-335\\' : \\'\\'">
                                 <Carousel>
                                   <amp-carousel controls={true} id="1" lightbox={true} layout="fill" type="slides" loop={true} amp-bind="slide=> moovAmpState.selectedImage" on="slideChange:AMP.setState({ moovAmpState: { selectedImage: event.index } })">
-                                    <amp-img src="/a.jpg" layout="fill" alt="product" />
-                                    <amp-img src="/b.jpg" layout="fill" alt="product" />
-                                    <amp-img src="/c.jpg" layout="fill" alt="product" />
+                                    <amp-img src="/a.jpg" layout="fill" alt={[undefined]} />
+                                    <amp-img src="/b.jpg" layout="fill" alt={[undefined]} />
+                                    <amp-img src="/c.jpg" layout="fill" alt={[undefined]} />
                                   </amp-carousel>
                                 </Carousel>
                               </div>
@@ -286,11 +286,11 @@ exports[`ImageSwitcher should render arrows 1`] = `
                     <div style={{...}} className="react-swipeable-view-container">
                       <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
                         <div className="RSFImageSwitcher-imageWrap-147">
-                          <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
-                            <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
-                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                          <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]}>
+                            <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]} classes={{...}}>
+                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFImage-root-172">
-                                  <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
+                                  <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onLoad={[Function]} onError={[Function]} />
                                 </div>
                               </Image>
                             </inject-Image>
@@ -342,7 +342,7 @@ exports[`ImageSwitcher should render arrows 1`] = `
                         <div>
                           <div style={{...}}>
                             <div style={{...}} className="" onClick={[Function: onClick]}>
-                              <img src="/a.jpg" alt="product" style={{...}} />
+                              <img src="/a.jpg" alt={[undefined]} style={{...}} />
                             </div>
                           </div>
                         </div>
@@ -380,11 +380,11 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
                     <div style={{...}} className="react-swipeable-view-container">
                       <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
                         <div className="RSFImageSwitcher-imageWrap-203">
-                          <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
-                            <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
-                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                          <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]}>
+                            <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]} classes={{...}}>
+                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFImage-root-228">
-                                  <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
+                                  <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onLoad={[Function]} onError={[Function]} />
                                 </div>
                               </Image>
                             </inject-Image>
@@ -436,7 +436,7 @@ exports[`ImageSwitcher should render indicator dots 1`] = `
                         <div>
                           <div style={{...}}>
                             <div style={{...}} className="" onClick={[Function: onClick]}>
-                              <img src="/a.jpg" alt="product" style={{...}} />
+                              <img src="/a.jpg" alt={[undefined]} style={{...}} />
                             </div>
                           </div>
                         </div>
@@ -474,11 +474,11 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                     <div style={{...}} className="react-swipeable-view-container">
                       <div style={{...}} className={[undefined]} aria-hidden={false} data-swipeable="true">
                         <div className="RSFImageSwitcher-imageWrap-59">
-                          <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]}>
-                            <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}}>
-                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt="product" onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                          <WithStyles(inject-Image) notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]}>
+                            <inject-Image notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]} classes={{...}}>
+                              <Image notFoundSrc={[undefined]} src="/a.jpg" alt={[undefined]} onLoad={[Function]} classes={{...}} amp={false} quality={{...}} contain={false} fill={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                 <div className="RSFImage-root-84">
-                                  <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="product" onLoad={[Function]} onError={[Function]} />
+                                  <img src="/a.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onLoad={[Function]} onError={[Function]} />
                                 </div>
                               </Image>
                             </inject-Image>
@@ -530,7 +530,7 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                         <div>
                           <div style={{...}}>
                             <div style={{...}} className="" onClick={[Function: onClick]}>
-                              <img src="/a.jpg" alt="product" style={{...}} />
+                              <img src="/a.jpg" alt={[undefined]} style={{...}} />
                             </div>
                           </div>
                         </div>
@@ -565,11 +565,11 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                         <ButtonBase focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125 MuiTab-selected-128 RSFTabsRow-selectedTab-110" role="tab" aria-selected={true} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
                                           <button className="MuiButtonBase-root-94 MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125 MuiTab-selected-128 RSFTabsRow-selectedTab-110" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={true} onClick={[Function]}>
                                             <span className="MuiTab-wrapper-131">
-                                              <WithStyles(inject-Image) src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
-                                                <inject-Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/at.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                                              <WithStyles(inject-Image) src="/at.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
+                                                <inject-Image src="/at.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
+                                                  <Image src="/at.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                                     <div className="RSFImageSwitcher-thumbnail-63 RSFImage-root-84 RSFImage-fill-87">
-                                                      <img src="/at.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
+                                                      <img src="/at.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onError={[Function]} />
                                                     </div>
                                                   </Image>
                                                 </inject-Image>
@@ -595,11 +595,11 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                         <ButtonBase focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
                                           <button className="MuiButtonBase-root-94 MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                             <span className="MuiTab-wrapper-131">
-                                              <WithStyles(inject-Image) src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
-                                                <inject-Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/bt.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                                              <WithStyles(inject-Image) src="/bt.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
+                                                <inject-Image src="/bt.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
+                                                  <Image src="/bt.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                                     <div className="RSFImageSwitcher-thumbnail-63 RSFImage-root-84 RSFImage-fill-87">
-                                                      <img src="/bt.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
+                                                      <img src="/bt.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onError={[Function]} />
                                                     </div>
                                                   </Image>
                                                 </inject-Image>
@@ -625,11 +625,11 @@ exports[`ImageSwitcher should render thumbnails 1`] = `
                                         <ButtonBase focusRipple={true} className="MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" role="tab" aria-selected={false} disabled={false} onClick={[Function]} classes={{...}} centerRipple={false} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
                                           <button className="MuiButtonBase-root-94 MuiTab-root-123 RSFTabsRow-tab-109 MuiTab-textColorInherit-125" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} role="tab" aria-selected={false} onClick={[Function]}>
                                             <span className="MuiTab-wrapper-131">
-                                              <WithStyles(inject-Image) src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
-                                                <inject-Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
-                                                  <Image src="/ct.jpg" alt="thumbnail" className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
+                                              <WithStyles(inject-Image) src="/ct.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true}>
+                                                <inject-Image src="/ct.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}}>
+                                                  <Image src="/ct.jpg" alt={[undefined]} className="RSFImageSwitcher-thumbnail-63" notFoundSrc={[undefined]} fill={true} classes={{...}} amp={false} quality={{...}} contain={false} lazy={false} lazyOffset={100} optimize={{...}}>
                                                     <div className="RSFImageSwitcher-thumbnail-63 RSFImage-root-84 RSFImage-fill-87">
-                                                      <img src="/ct.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt="thumbnail" onError={[Function]} />
+                                                      <img src="/ct.jpg" className="" layout={{...}} height={[undefined]} width={[undefined]} alt={[undefined]} onError={[Function]} />
                                                     </div>
                                                   </Image>
                                                 </inject-Image>

@@ -406,19 +406,34 @@ export default class ImageSwitcher extends Component {
 
   get thumbnails() {
     const { thumbnails, product } = this.props
-    if (thumbnails === false) return []
-    const _thumbnails =
-      thumbnails && thumbnails.length ? thumbnails : (product && product.thumbnails) || []
-    return _thumbnails.map(e => {
-      return typeof e === 'string' ? { src: e, alt: 'thumbnail' } : e
-    })
+
+    if (thumbnails === false) {
+      return []
+    } else {
+      return this.normalizeImages(
+        thumbnails && thumbnails.length ? thumbnails : (product && product.thumbnails) || []
+      )
+    }
   }
 
   get images() {
     const { images, product } = this.props
-    const _images = images && images.length ? images : (product && product.images) || []
-    return _images.map(e => {
-      return typeof e === 'string' ? { src: e, alt: 'product', video: false } : e
+
+    return this.normalizeImages(
+      images && images.length ? images : (product && product.images) || []
+    )
+  }
+
+  normalizeImages(images) {
+    const { product } = this.props
+    const productName = product && product.name
+
+    return images.map(e => {
+      if (typeof e === 'string') {
+        return { src: e, alt: productName, video: false }
+      } else {
+        return { ...e, alt: e.alt || productName }
+      }
     })
   }
 
@@ -524,13 +539,13 @@ export default class ImageSwitcher extends Component {
             {images.map(({ src, alt, video }, i) => (
               <div key={i} className={classes.imageWrap}>
                 {video ? (
-                  <Video src={src} alt={alt || 'product'} />
+                  <Video src={src} alt={alt} />
                 ) : (
                   <Image
                     key={src}
                     notFoundSrc={notFoundSrc}
                     src={i === 0 && app.loading ? null : src} // need to clear src when app.loading is true so that the onLoad event will fire and the loading thumbnail will be removed
-                    alt={alt || 'product'}
+                    alt={alt}
                     onLoad={i === 0 ? this.onFullSizeImagesLoaded : null}
                     {...imageProps}
                   />

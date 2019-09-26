@@ -111,18 +111,18 @@ const ProductModelBase = types
     brand: types.maybeNull(types.string),
     /**
      * The product images.
-     * @type {String[]}
+     * @type {String[] | MediaTypeModel}
      * @memberof ProductModelBase
      * @instance
      */
     images: types.array(types.union(types.string, MediaTypeModel)),
     /**
      * The thumbnail corresponding to each image.
-     * @type {String[]}
+     * @type {String[] | MediaTypeModel}
      * @memberof ProductModelBase
      * @instance
      */
-    thumbnails: types.array(types.string),
+    thumbnails: types.array(types.union(types.string, MediaTypeModel)),
     /**
      * The thumbnail of the product.
      * @type {String}

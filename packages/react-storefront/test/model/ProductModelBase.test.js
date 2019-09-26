@@ -3,6 +3,7 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import { createTestProduct } from '../fixtures/Product'
+import ProductModelBase from '../../src/model/ProductModelBase'
 
 describe('ProductModelBase', () => {
   let product
@@ -14,17 +15,17 @@ describe('ProductModelBase', () => {
         options: [
           { id: 'red', text: 'red' },
           { id: 'green', text: 'green' },
-          { id: 'blue', text: 'blue' },
-        ],
-      },
+          { id: 'blue', text: 'blue' }
+        ]
+      }
     })
   })
 
   it('fetches images when the selected color changes', () => {
     global.fetch.mockResponse(
       JSON.stringify({
-        images: ['/1.jpeg', '2.jpeg'],
-      }),
+        images: ['/1.jpeg', '2.jpeg']
+      })
     )
 
     product.color.setSelected(product.color.options[0])
@@ -76,14 +77,14 @@ describe('ProductModelBase', () => {
 
   it('should apply new state', () => {
     product.apply({
-      images: ['/foo.jpeg'],
+      images: ['/foo.jpeg']
     })
     expect(product.images).toEqual(['/foo.jpeg'])
   })
 
   it('should calculate price based on basePrice', () => {
     const product = createTestProduct({
-      basePrice: 99.99,
+      basePrice: 99.99
     })
 
     expect(product.price).toEqual(99.99)
@@ -95,11 +96,47 @@ describe('ProductModelBase', () => {
       size: {
         selected: {
           id: '1',
-          price: 109.99,
-        },
-      },
+          price: 109.99
+        }
+      }
     })
 
     expect(product.price).toEqual(109.99)
+  })
+
+  it('should accept URLs for images', () => {
+    expect(() => {
+      ProductModelBase.create({
+        id: '1',
+        images: ['product.png']
+      })
+    }).not.toThrowError()
+  })
+
+  it('should accept objects for images', () => {
+    expect(() => {
+      ProductModelBase.create({
+        id: '1',
+        images: [{ src: 'product.png', alt: 'product' }]
+      })
+    }).not.toThrowError()
+  })
+
+  it('should accept URLs for thumbnails', () => {
+    expect(() => {
+      ProductModelBase.create({
+        id: '1',
+        thumbnails: ['product.png']
+      })
+    }).not.toThrowError()
+  })
+
+  it('should accept objects for images', () => {
+    expect(() => {
+      ProductModelBase.create({
+        id: '1',
+        thumbnails: [{ src: 'product.png', alt: 'product' }]
+      })
+    }).not.toThrowError()
   })
 })

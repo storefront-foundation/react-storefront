@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.51.0
+
+- `ImageSwitcher` now uses the product name for the `alt` prop on any images or thumbnails that do not have one.
+
 ### 6.50.2
 
 - Fixed an issue where elements inside a `Lazy` component are never rendered if they are initially above the fold.
