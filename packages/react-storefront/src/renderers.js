@@ -197,7 +197,7 @@ function getLocation(env) {
  * @param  {String} options.cssPrefix            A prefix to apply to css class names
  * @return {Object}                               Components for SSR
  */
-export function render({
+export async function render({
   component,
   state,
   theme,
@@ -221,7 +221,7 @@ export function render({
 
   const result = {
     html,
-    style: renderStyle({ registry }),
+    style: await renderStyle({ registry }),
     initialStateScript: renderInitialStateScript({ state, defer: false, initialStateProperty }),
     componentScript: getScripts({ stats, chunk: clientChunk }).map(renderScript)
   }

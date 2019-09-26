@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.51.1
+
+- The `renderers/render` method is now correctly marked `async`.
+
 ### 6.51.0
 
 - `ImageSwitcher` now uses the product name for the `alt` prop on any images or thumbnails that do not have one.
