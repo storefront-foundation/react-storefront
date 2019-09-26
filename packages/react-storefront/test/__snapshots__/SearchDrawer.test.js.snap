@@ -4,85 +4,179 @@ exports[`SearchDrawer should render with no props 1`] = `
 <TestContext>
   <div id="root">
     <TestProvider app={{...}} history={{...}}>
-      <Provider router={{...}} app={{...}} history={{...}}>
+      <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
         <MuiThemeProviderOld theme={{...}}>
           <WithStyles(inject-SearchDrawer)>
             <inject-SearchDrawer classes={{...}}>
-              <SearchDrawer classes={{...}} search={{...}} history={{...}} theme={[undefined]} placeholder="Search..." CloseButtonIcon={[Function: CloseButtonIcon]} blurBackground={true} searchButtonVariant="fab" showClearButton={true} createSubmitURL={[Function: createSubmitURL]}>
+              <SearchDrawer classes={{...}} search={{...}} history={{...}} theme={[undefined]} amp={false} placeholder="Search..." CloseButtonIcon={[Function: CloseButtonIcon]} blurBackground={true} searchButtonVariant="fab" searchURL="/search" searchFieldName="q" showClearButton={true} ampThumbnailWidth={120} ampThumbnailHeight={120}>
                 <WithStyles(Drawer) open={true} anchor="bottom" className="RSFSearchDrawer-root-1" classes={{...}} ModalProps={{...}}>
                   <Drawer open={true} anchor="bottom" className="RSFSearchDrawer-root-1" ModalProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}} variant="temporary">
-                    <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-17 MuiDrawer-modal-28 RSFSearchDrawer-root-1" open={true} onClose={[undefined]} hideBackdrop={true}>
-                      <Modal BackdropProps={{...}} className="MuiDrawer-root-17 MuiDrawer-modal-28 RSFSearchDrawer-root-1" open={true} onClose={[undefined]} hideBackdrop={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} keepMounted={false} manager={{...}}>
+                    <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-18 MuiDrawer-modal-29 RSFSearchDrawer-root-1" open={true} onClose={[undefined]} hideBackdrop={true}>
+                      <Modal BackdropProps={{...}} className="MuiDrawer-root-18 MuiDrawer-modal-29 RSFSearchDrawer-root-1" open={true} onClose={[undefined]} hideBackdrop={true} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} keepMounted={false} manager={{...}}>
                         <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
                           <Portal containerInfo={{...}}>
-                            <div className="mui-fixed MuiModal-root-29 MuiDrawer-root-17 MuiDrawer-modal-28 RSFSearchDrawer-root-1">
+                            <div className="mui-fixed MuiModal-root-30 MuiDrawer-root-18 MuiDrawer-modal-29 RSFSearchDrawer-root-1">
                               <RootRef rootRef={[Function]}>
                                 <WithTheme(Slide) in={true} direction="up" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
                                   <Slide theme={{...}} in={true} direction="up" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
                                     <EventListener target="window" onResize={[Function: debounced]}>
                                       <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={false} style={{...}} in={true} direction="up" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
-                                        <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-19 RSFSearchDrawer-paper-2 MuiDrawer-paperAnchorBottom-23 RSFSearchDrawer-paperAnchorBottom-3" style={{...}} direction="up" role="document" tabIndex="-1">
-                                          <Paper elevation={16} square={true} className="MuiDrawer-paper-19 RSFSearchDrawer-paper-2 MuiDrawer-paperAnchorBottom-23 RSFSearchDrawer-paperAnchorBottom-3" style={{...}} direction="up" role="document" tabIndex="-1" classes={{...}} component="div">
-                                            <div className="MuiPaper-root-31 MuiPaper-elevation16-49 MuiDrawer-paper-19 RSFSearchDrawer-paper-2 MuiDrawer-paperAnchorBottom-23 RSFSearchDrawer-paperAnchorBottom-3" style={{...}} direction="up" role="document" tabIndex="-1">
+                                        <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-20 RSFSearchDrawer-paper-2 MuiDrawer-paperAnchorBottom-24 RSFSearchDrawer-paperAnchorBottom-3" style={{...}} direction="up" role="document" tabIndex="-1">
+                                          <Paper elevation={16} square={true} className="MuiDrawer-paper-20 RSFSearchDrawer-paper-2 MuiDrawer-paperAnchorBottom-24 RSFSearchDrawer-paperAnchorBottom-3" style={{...}} direction="up" role="document" tabIndex="-1" classes={{...}} component="div">
+                                            <div className="MuiPaper-root-32 MuiPaper-elevation16-50 MuiDrawer-paper-20 RSFSearchDrawer-paper-2 MuiDrawer-paperAnchorBottom-24 RSFSearchDrawer-paperAnchorBottom-3" style={{...}} direction="up" role="document" tabIndex="-1">
                                               <div className="RSFSearchDrawer-wrap-4">
-                                                <form className="RSFSearchDrawer-header-5" onSubmit={[Function]}>
-                                                  <WithStyles(IconButton) className="RSFSearchDrawer-closeButton-6" variant="contained" color="primary" onClick={[Function]}>
-                                                    <IconButton className="RSFSearchDrawer-closeButton-6" variant="contained" color="primary" onClick={[Function]} classes={{...}} disabled={false}>
-                                                      <WithStyles(ButtonBase) className="MuiIconButton-root-58 MuiIconButton-colorPrimary-60 RSFSearchDrawer-closeButton-6" centerRipple={true} focusRipple={true} disabled={false} variant="contained" onClick={[Function]}>
-                                                        <ButtonBase className="MuiIconButton-root-58 MuiIconButton-colorPrimary-60 RSFSearchDrawer-closeButton-6" centerRipple={true} focusRipple={true} disabled={false} variant="contained" onClick={[Function]} classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
-                                                          <button className="MuiButtonBase-root-64 MuiIconButton-root-58 MuiIconButton-colorPrimary-60 RSFSearchDrawer-closeButton-6" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} variant="contained" onClick={[Function]}>
-                                                            <span className="MuiIconButton-label-63">
-                                                              <CloseButtonIcon>
-                                                                <pure(ClearIcon)>
-                                                                  <ClearIcon>
-                                                                    <WithStyles(SvgIcon)>
-                                                                      <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                        <svg className="MuiSvgIcon-root-67" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                                                          <path fill="none" d="M0 0h24v24H0z" />
-                                                                        </svg>
-                                                                      </SvgIcon>
-                                                                    </WithStyles(SvgIcon)>
-                                                                  </ClearIcon>
-                                                                </pure(ClearIcon)>
-                                                              </CloseButtonIcon>
-                                                            </span>
-                                                            <NoSsr defer={false} fallback={{...}}>
-                                                              <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
-                                                                <TouchRipple center={true} classes={{...}}>
-                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-108" childFactory={[Function: childFactory]}>
-                                                                    <span className="MuiTouchRipple-root-108" />
-                                                                  </TransitionGroup>
-                                                                </TouchRipple>
-                                                              </WithStyles(TouchRipple)>
-                                                            </NoSsr>
-                                                          </button>
-                                                        </ButtonBase>
-                                                      </WithStyles(ButtonBase)>
-                                                    </IconButton>
-                                                  </WithStyles(IconButton)>
-                                                  <Hbox>
-                                                    <WithStyles(Box) alignItems="center" flexDirection="row">
-                                                      <Box alignItems="center" flexDirection="row" classes={{...}}>
-                                                        <div className="RSFBox-root-76" style={{...}}>
-                                                          <WithStyles(Input) type="text" value="" placeholder="Search..." onChange={[Function: onChange]} onFocus={[Function]} disableUnderline={true} inputRef={[Function]} classes={{...}} endAdornment={false}>
-                                                            <Input type="text" value="" placeholder="Search..." onChange={[Function: onChange]} onFocus={[Function]} disableUnderline={true} inputRef={[Function]} endAdornment={false} classes={{...}}>
-                                                              <WithStyles(WithFormControlContext(InputBase)) classes={{...}} type="text" value="" placeholder="Search..." onChange={[Function: onChange]} onFocus={[Function]} inputRef={[Function]} endAdornment={false} fullWidth={false} inputComponent="input" multiline={false}>
-                                                                <WithFormControlContext(InputBase) type="text" value="" placeholder="Search..." onChange={[Function: onChange]} onFocus={[Function]} inputRef={[Function]} endAdornment={false} fullWidth={false} inputComponent="input" multiline={false} classes={{...}}>
-                                                                  <InputBase muiFormControl={[undefined]} type="text" value="" placeholder="Search..." onChange={[Function: onChange]} onFocus={[Function]} inputRef={[Function]} endAdornment={false} fullWidth={false} inputComponent="input" multiline={false} classes={{...}}>
-                                                                    <div className="MuiInputBase-root-91 MuiInput-root-78 RSFSearchDrawer-searchField-8" onClick={[Function]}>
-                                                                      <input aria-invalid={[undefined]} autoComplete={[undefined]} autoFocus={[undefined]} className="MuiInputBase-input-101 MuiInput-input-86 RSFSearchDrawer-searchInput-9" defaultValue={[undefined]} disabled={[undefined]} id={[undefined]} name={[undefined]} onBlur={[Function]} onChange={[Function]} onFocus={[Function]} onKeyDown={[undefined]} onKeyUp={[undefined]} placeholder="Search..." readOnly={[undefined]} required={[undefined]} rows={[undefined]} value="" type="text" />
-                                                                    </div>
-                                                                  </InputBase>
-                                                                </WithFormControlContext(InputBase)>
-                                                              </WithStyles(WithFormControlContext(InputBase))>
-                                                            </Input>
-                                                          </WithStyles(Input)>
-                                                        </div>
-                                                      </Box>
-                                                    </WithStyles(Box)>
-                                                  </Hbox>
-                                                </form>
+                                                <inject-AmpState id="rsfSearchDrawer" initialState={{...}}>
+                                                  <AmpState id="rsfSearchDrawer" initialState={{...}} amp={false}>
+                                                    <Provider ampStateId="rsfSearchDrawer">
+                                                      <inject-Track-with-app event="searchSubmitted" trigger="onSubmit" term="">
+                                                        <Track event="searchSubmitted" trigger="onSubmit" term="" app={{...}} onSuccess={[Function]} ampData={{...}}>
+                                                          <inject-WithStyles(AmpForm) onSubmit={[Function]} action="/search" mask={false}>
+                                                            <WithStyles(AmpForm) onSubmit={[Function]} action="/search" mask={false} app={{...}} nextId={[Function: nextId]} ampStateId="rsfSearchDrawer">
+                                                              <AmpForm onSubmit={[Function]} action="/search" mask={false} app={{...}} nextId={[Function: nextId]} ampStateId="rsfSearchDrawer" classes={{...}} target="_top" method="get">
+                                                                <form onSubmit={[Function]}>
+                                                                  <div className="RSFSearchDrawer-header-5">
+                                                                    <WithStyles(IconButton) className="RSFSearchDrawer-closeButton-6" color="primary" onClick={[Function]} on="tap:AMP.setState({ rsfSearchDrawer: { open: false } })">
+                                                                      <IconButton className="RSFSearchDrawer-closeButton-6" color="primary" onClick={[Function]} on="tap:AMP.setState({ rsfSearchDrawer: { open: false } })" classes={{...}} disabled={false}>
+                                                                        <WithStyles(ButtonBase) className="MuiIconButton-root-60 MuiIconButton-colorPrimary-62 RSFSearchDrawer-closeButton-6" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function]} on="tap:AMP.setState({ rsfSearchDrawer: { open: false } })">
+                                                                          <ButtonBase className="MuiIconButton-root-60 MuiIconButton-colorPrimary-62 RSFSearchDrawer-closeButton-6" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function]} on="tap:AMP.setState({ rsfSearchDrawer: { open: false } })" classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                                            <button className="MuiButtonBase-root-66 MuiIconButton-root-60 MuiIconButton-colorPrimary-62 RSFSearchDrawer-closeButton-6" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} on="tap:AMP.setState({ rsfSearchDrawer: { open: false } })">
+                                                                              <span className="MuiIconButton-label-65">
+                                                                                <CloseButtonIcon>
+                                                                                  <pure(ClearIcon)>
+                                                                                    <ClearIcon>
+                                                                                      <WithStyles(SvgIcon)>
+                                                                                        <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                          <svg className="MuiSvgIcon-root-69" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                                            <path fill="none" d="M0 0h24v24H0z" />
+                                                                                          </svg>
+                                                                                        </SvgIcon>
+                                                                                      </WithStyles(SvgIcon)>
+                                                                                    </ClearIcon>
+                                                                                  </pure(ClearIcon)>
+                                                                                </CloseButtonIcon>
+                                                                              </span>
+                                                                              <NoSsr defer={false} fallback={{...}}>
+                                                                                <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                  <TouchRipple center={true} classes={{...}}>
+                                                                                    <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-120" childFactory={[Function: childFactory]}>
+                                                                                      <span className="MuiTouchRipple-root-120" />
+                                                                                    </TransitionGroup>
+                                                                                  </TouchRipple>
+                                                                                </WithStyles(TouchRipple)>
+                                                                              </NoSsr>
+                                                                            </button>
+                                                                          </ButtonBase>
+                                                                        </WithStyles(ButtonBase)>
+                                                                      </IconButton>
+                                                                    </WithStyles(IconButton)>
+                                                                    <Hbox>
+                                                                      <WithStyles(Box) alignItems="center" flexDirection="row">
+                                                                        <Box alignItems="center" flexDirection="row" classes={{...}}>
+                                                                          <div className="RSFBox-root-78" style={{...}}>
+                                                                            <WithStyles(Input) type="text" name="q" value="" placeholder="Search..." onFocus={[Function]} onChange={[Function: onChange]} inputProps={{...}} on="input-debounced:AMP.setState({ rsfSearchDrawer: { searchText: rsfSearchDrawer.___moov_submitting ? rsfSearchDrawer.searchText : event.value } })" disableUnderline={true} inputRef={[Function]} classes={{...}} endAdornment={{...}}>
+                                                                              <Input type="text" name="q" value="" placeholder="Search..." onFocus={[Function]} onChange={[Function: onChange]} inputProps={{...}} on="input-debounced:AMP.setState({ rsfSearchDrawer: { searchText: rsfSearchDrawer.___moov_submitting ? rsfSearchDrawer.searchText : event.value } })" disableUnderline={true} inputRef={[Function]} endAdornment={{...}} classes={{...}}>
+                                                                                <WithStyles(WithFormControlContext(InputBase)) classes={{...}} type="text" name="q" value="" placeholder="Search..." onFocus={[Function]} onChange={[Function: onChange]} inputProps={{...}} on="input-debounced:AMP.setState({ rsfSearchDrawer: { searchText: rsfSearchDrawer.___moov_submitting ? rsfSearchDrawer.searchText : event.value } })" inputRef={[Function]} endAdornment={{...}} fullWidth={false} inputComponent="input" multiline={false}>
+                                                                                  <WithFormControlContext(InputBase) type="text" name="q" value="" placeholder="Search..." onFocus={[Function]} onChange={[Function: onChange]} inputProps={{...}} on="input-debounced:AMP.setState({ rsfSearchDrawer: { searchText: rsfSearchDrawer.___moov_submitting ? rsfSearchDrawer.searchText : event.value } })" inputRef={[Function]} endAdornment={{...}} fullWidth={false} inputComponent="input" multiline={false} classes={{...}}>
+                                                                                    <InputBase muiFormControl={[undefined]} type="text" name="q" value="" placeholder="Search..." onFocus={[Function]} onChange={[Function: onChange]} inputProps={{...}} on="input-debounced:AMP.setState({ rsfSearchDrawer: { searchText: rsfSearchDrawer.___moov_submitting ? rsfSearchDrawer.searchText : event.value } })" inputRef={[Function]} endAdornment={{...}} fullWidth={false} inputComponent="input" multiline={false} classes={{...}}>
+                                                                                      <div className="MuiInputBase-root-93 MuiInput-root-80 RSFSearchDrawer-searchField-8 MuiInputBase-adornedEnd-98" onClick={[Function]} on="input-debounced:AMP.setState({ rsfSearchDrawer: { searchText: rsfSearchDrawer.___moov_submitting ? rsfSearchDrawer.searchText : event.value } })">
+                                                                                        <input aria-invalid={[undefined]} autoComplete={[undefined]} autoFocus={[undefined]} className="MuiInputBase-input-103 MuiInput-input-88 RSFSearchDrawer-searchInput-9 MuiInputBase-inputAdornedEnd-109" defaultValue={[undefined]} disabled={[undefined]} id={[undefined]} name="q" onBlur={[Function]} onChange={[Function]} onFocus={[Function]} onKeyDown={[undefined]} onKeyUp={[undefined]} placeholder="Search..." readOnly={[undefined]} required={[undefined]} rows={[undefined]} value="" type="text" amp-bind="value=>rsfSearchDrawer.searchText" />
+                                                                                        <HideWhenEmpty>
+                                                                                          <div className="RSFSearchDrawer-hidden-17" amp-bind="class=>rsfSearchDrawer.searchText.length > 0 ? "" : "RSFSearchDrawer-hidden-17"">
+                                                                                            <WithStyles(IconButton) onClick={[Function]} className={[undefined]} rel="clear" on="tap:AMP.setState({ rsfSearchDrawer: { searchText: \\'\\' }})">
+                                                                                              <IconButton onClick={[Function]} className={[undefined]} rel="clear" on="tap:AMP.setState({ rsfSearchDrawer: { searchText: \\'\\' }})" classes={{...}} color="default" disabled={false}>
+                                                                                                <WithStyles(ButtonBase) className="MuiIconButton-root-60" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function]} rel="clear" on="tap:AMP.setState({ rsfSearchDrawer: { searchText: \\'\\' }})">
+                                                                                                  <ButtonBase className="MuiIconButton-root-60" centerRipple={true} focusRipple={true} disabled={false} onClick={[Function]} rel="clear" on="tap:AMP.setState({ rsfSearchDrawer: { searchText: \\'\\' }})" classes={{...}} component="button" disableRipple={false} disableTouchRipple={false} tabIndex="0" type="button">
+                                                                                                    <button className="MuiButtonBase-root-66 MuiIconButton-root-60" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} rel="clear" on="tap:AMP.setState({ rsfSearchDrawer: { searchText: \\'\\' }})">
+                                                                                                      <span className="MuiIconButton-label-65">
+                                                                                                        <pure(ClearIcon) rel="clear">
+                                                                                                          <ClearIcon rel="clear">
+                                                                                                            <WithStyles(SvgIcon) rel="clear">
+                                                                                                              <SvgIcon rel="clear" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                                                <svg className="MuiSvgIcon-root-69" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" rel="clear">
+                                                                                                                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                                                                  <path fill="none" d="M0 0h24v24H0z" />
+                                                                                                                </svg>
+                                                                                                              </SvgIcon>
+                                                                                                            </WithStyles(SvgIcon)>
+                                                                                                          </ClearIcon>
+                                                                                                        </pure(ClearIcon)>
+                                                                                                      </span>
+                                                                                                      <NoSsr defer={false} fallback={{...}}>
+                                                                                                        <WithStyles(TouchRipple) innerRef={[Function]} center={true}>
+                                                                                                          <TouchRipple center={true} classes={{...}}>
+                                                                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-120" childFactory={[Function: childFactory]}>
+                                                                                                              <span className="MuiTouchRipple-root-120" />
+                                                                                                            </TransitionGroup>
+                                                                                                          </TouchRipple>
+                                                                                                        </WithStyles(TouchRipple)>
+                                                                                                      </NoSsr>
+                                                                                                    </button>
+                                                                                                  </ButtonBase>
+                                                                                                </WithStyles(ButtonBase)>
+                                                                                              </IconButton>
+                                                                                            </WithStyles(IconButton)>
+                                                                                          </div>
+                                                                                        </HideWhenEmpty>
+                                                                                      </div>
+                                                                                    </InputBase>
+                                                                                  </WithFormControlContext(InputBase)>
+                                                                                </WithStyles(WithFormControlContext(InputBase))>
+                                                                              </Input>
+                                                                            </WithStyles(Input)>
+                                                                            <HideWhenEmpty>
+                                                                              <div className="RSFSearchDrawer-hidden-17" amp-bind="class=>rsfSearchDrawer.searchText.length > 0 ? "" : "RSFSearchDrawer-hidden-17"">
+                                                                                <SearchButton Component={[Function: WithStyles]} className="RSFSearchDrawer-searchFab-16">
+                                                                                  <WithStyles(Fab) rel="search" type="submit" className="RSFSearchDrawer-searchFab-16">
+                                                                                    <Fab rel="search" type="submit" className="RSFSearchDrawer-searchFab-16" classes={{...}} color="default" component="button" disabled={false} disableFocusRipple={false} size="large" variant="round">
+                                                                                      <WithStyles(ButtonBase) className="MuiFab-root-110 RSFSearchDrawer-searchFab-16" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-115" rel="search" type="submit" component="button">
+                                                                                        <ButtonBase className="MuiFab-root-110 RSFSearchDrawer-searchFab-16" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-115" rel="search" type="submit" component="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                                                                                          <button className="MuiButtonBase-root-66 MuiFab-root-110 RSFSearchDrawer-searchFab-16" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="submit" disabled={false} rel="search">
+                                                                                            <span className="MuiFab-label-111">
+                                                                                              <pure(SearchIcon)>
+                                                                                                <SearchIcon>
+                                                                                                  <WithStyles(SvgIcon)>
+                                                                                                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                                      <svg className="MuiSvgIcon-root-69" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                                                                                                        <path fill="none" d="M0 0h24v24H0z" />
+                                                                                                      </svg>
+                                                                                                    </SvgIcon>
+                                                                                                  </WithStyles(SvgIcon)>
+                                                                                                </SearchIcon>
+                                                                                              </pure(SearchIcon)>
+                                                                                            </span>
+                                                                                            <NoSsr defer={false} fallback={{...}}>
+                                                                                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                                                <TouchRipple center={false} classes={{...}}>
+                                                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-120" childFactory={[Function: childFactory]}>
+                                                                                                    <span className="MuiTouchRipple-root-120" />
+                                                                                                  </TransitionGroup>
+                                                                                                </TouchRipple>
+                                                                                              </WithStyles(TouchRipple)>
+                                                                                            </NoSsr>
+                                                                                          </button>
+                                                                                        </ButtonBase>
+                                                                                      </WithStyles(ButtonBase)>
+                                                                                    </Fab>
+                                                                                  </WithStyles(Fab)>
+                                                                                </SearchButton>
+                                                                              </div>
+                                                                            </HideWhenEmpty>
+                                                                          </div>
+                                                                        </Box>
+                                                                      </WithStyles(Box)>
+                                                                    </Hbox>
+                                                                  </div>
+                                                                </form>
+                                                              </AmpForm>
+                                                            </WithStyles(AmpForm)>
+                                                          </inject-WithStyles(AmpForm)>
+                                                        </Track>
+                                                      </inject-Track-with-app>
+                                                    </Provider>
+                                                  </AmpState>
+                                                </inject-AmpState>
                                               </div>
                                             </div>
                                           </Paper>

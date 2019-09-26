@@ -74,6 +74,12 @@ yarn release
 
 ## Changelog
 
+### 6.52.0
+
+- Added AMP functionality to the `SearchDrawer`. In order to make the search drawer work in AMP:
+  - Use the new `SearchButton` component in your app header to open the search drawer.
+  - In your `search/suggest-handler.js`, add `thumbnails: (true|false)` to each item in groups. Set to `true` when items in the group have a thumbnail, otherwise `false`.
+
 ### 6.51.1
 
 - The `renderers/render` method is now correctly marked `async`.

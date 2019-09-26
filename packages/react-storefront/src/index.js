@@ -50,6 +50,7 @@ export { default as Rating } from './Rating.js';
 export { default as Redbox } from './Redbox.js';
 export { default as ResponsiveTiles } from './ResponsiveTiles.js';
 export { default as Row } from './Row.js';
+export { default as SearchButton } from './SearchButton.js';
 export { default as SearchDrawer } from './SearchDrawer.js';
 export { default as SearchField } from './SearchField.js';
 export { default as SearchPopup } from './SearchPopup.js';

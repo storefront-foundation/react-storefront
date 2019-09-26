@@ -2,7 +2,7 @@
 
 exports[`UpdateNotification should accept a custom message 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <UpdateNotification message="Update available" reloadButtonText="RELOAD">
         <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="Update available" action={{...}}>
@@ -105,7 +105,7 @@ exports[`UpdateNotification should accept a custom message 1`] = `
 
 exports[`UpdateNotification should accept custom text for the reload button 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <UpdateNotification reloadButtonText="REFRESH" message="An new version of this app is available.">
         <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
@@ -208,7 +208,7 @@ exports[`UpdateNotification should accept custom text for the reload button 1`] 
 
 exports[`UpdateNotification should render without any props 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <UpdateNotification message="An new version of this app is available." reloadButtonText="RELOAD">
         <WithStyles(Snackbar) open={false} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>
@@ -222,7 +222,7 @@ exports[`UpdateNotification should render without any props 1`] = `
 
 exports[`UpdateNotification should show when moov-update-available is dispatched 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <UpdateNotification message="An new version of this app is available." reloadButtonText="RELOAD">
         <WithStyles(Snackbar) open={true} autoHideDuration={6000} onClose={[Function]} message="An new version of this app is available." action={{...}}>

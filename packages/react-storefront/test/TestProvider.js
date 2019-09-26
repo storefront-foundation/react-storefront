@@ -10,6 +10,9 @@ import createTheme from '../src/createTheme'
 import { MuiThemeProvider } from '@material-ui/core'
 import { Router } from '../src/router'
 
+let id = 0
+const nextId = () => id++
+
 export default function TestProvider({ app, history, children, ...stores }) {
   if (app == null || !app.applyState) {
     app = AppModelBase.create({
@@ -34,20 +37,13 @@ export default function TestProvider({ app, history, children, ...stores }) {
 
   const theme = createTheme({
     typography: {
-      useNextVariants: true,
+      useNextVariants: true
     }
   })
 
   return (
-    <Provider 
-      router={new Router()} 
-      app={app}
-      history={history}
-      {...stores}
-    >
-      <MuiThemeProvider theme={theme}>
-        {children}
-      </MuiThemeProvider>
+    <Provider router={new Router()} app={app} history={history} nextId={nextId} {...stores}>
+      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </Provider>
   )
 }

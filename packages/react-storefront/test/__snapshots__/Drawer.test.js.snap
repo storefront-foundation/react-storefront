@@ -2,7 +2,7 @@
 
 exports[`Drawer accepts a className prop 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) className="myClassName" onRequestClose={[Function]}>
         <inject-Drawer className="myClassName" onRequestClose={[Function]} classes={{...}}>
@@ -24,7 +24,7 @@ exports[`Drawer accepts a className prop 1`] = `
 
 exports[`Drawer accepts a paper class 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) classes={{...}} onRequestClose={[Function]}>
         <inject-Drawer onRequestClose={[Function]} classes={{...}}>
@@ -46,7 +46,7 @@ exports[`Drawer accepts a paper class 1`] = `
 
 exports[`Drawer sets up amp-bind when ampBindClosed is set 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-AmpState id="myState">
         <AmpState id="myState" amp={true} initialState={{...}}>
@@ -82,7 +82,7 @@ exports[`Drawer sets up amp-bind when ampBindClosed is set 1`] = `
 
 exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) open={true} onRequestClose={[Function]}>
         <inject-Drawer open={true} onRequestClose={[Function]} classes={{...}}>
@@ -174,7 +174,7 @@ exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
 
 exports[`Drawer uses a div for title 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) open={true} title="Title" onRequestClose={[Function]}>
         <inject-Drawer open={true} title="Title" onRequestClose={[Function]} classes={{...}}>

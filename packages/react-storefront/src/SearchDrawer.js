@@ -5,6 +5,7 @@
 import React, { Component, Fragment } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Button from '@material-ui/core/Button'
+import Fab from '@material-ui/core/Fab'
 import Input from '@material-ui/core/Input'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
@@ -21,8 +22,11 @@ import Container from './Container'
 import classnames from 'classnames'
 import Drawer from '@material-ui/core/Drawer'
 import { Hbox } from './Box'
-import analytics from './analytics'
 import Track from './Track'
+import AmpSearchDrawer from './amp/AmpSearchDrawer'
+import AmpSearchResults from './amp/AmpSearchResults'
+import AmpForm from './amp/AmpForm'
+import AmpState from './amp/AmpState'
 
 /**
  * A modal search UI that displays a single text search field and grouped results.  The
@@ -119,6 +123,7 @@ export const styles = theme => ({
     marginBottom: '10px'
   },
   results: {
+    position: 'relative', // TODO: Only set for AMP if this affects PWA
     flex: 1,
     overflowY: 'auto'
   },
@@ -126,7 +131,8 @@ export const styles = theme => ({
     display: 'flex',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    height: '100%'
   },
   searchFab: {
     height: '48px',
@@ -134,11 +140,14 @@ export const styles = theme => ({
     marginLeft: '10px',
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.secondary
+  },
+  hidden: {
+    display: 'none'
   }
 })
 
 @withStyles(styles, { name: 'RSFSearchDrawer' })
-@inject(({ app: { search }, history, theme }) => ({ search, history, theme }))
+@inject(({ app: { search, amp }, history, theme }) => ({ search, history, theme, amp }))
 @observer
 export default class SearchDrawer extends Component {
   static propTypes = {
@@ -174,11 +183,22 @@ export default class SearchDrawer extends Component {
      */
     initialContent: PropTypes.element,
     /**
-     * Use this function to customize the URL used to fetch results.  It is passed the search text:
-     * @example
-     * <SearchDrawer createSubmitURL={text => `/custom/search/path?q=${encodeURIComponent(text)}`}/>
+     * The URL to which the search is submitted.
      */
-    createSubmitURL: PropTypes.func
+    searchURL: PropTypes.string,
+    /**
+     * A name for the search field, which will be the name of the query string parameter
+     * through which the search string is submitted.
+     */
+    searchFieldName: PropTypes.string,
+    /**
+     * AMP Thumbnail Image Width. Defaults to 120
+     */
+    ampThumbnailWidth: PropTypes.number,
+    /**
+     * AMP Thumbnail Image Height. Defaults to 120
+     */
+    ampThumbnailHeight: PropTypes.number
   }
 
   static defaultProps = {
@@ -186,8 +206,11 @@ export default class SearchDrawer extends Component {
     CloseButtonIcon: () => <ClearIcon />,
     blurBackground: true,
     searchButtonVariant: 'fab',
+    searchURL: '/search',
+    searchFieldName: 'q',
     showClearButton: true,
-    createSubmitURL: queryText => `/search?q=${encodeURIComponent(queryText)}`
+    ampThumbnailWidth: 120,
+    ampThumbnailHeight: 120
   }
 
   constructor({ search }) {
@@ -211,86 +234,140 @@ export default class SearchDrawer extends Component {
     }
   }
 
-  render() {
+  renderContent() {
     const {
       classes,
       search,
       placeholder,
-      blurBackground,
       searchButtonVariant,
       showClearButton,
-      initialContent
+      searchURL,
+      searchFieldName
     } = this.props
-    const loading = search.loading
-    const contentReady = this.props.search.text && !loading
+
+    const HideWhenEmpty = ({ children }) => (
+      <div
+        className={search.text.length ? null : classes.hidden}
+        amp-bind={`class=>rsfSearchDrawer.searchText.length > 0 ? "" : "${classes.hidden}"`}
+      >
+        {children}
+      </div>
+    )
+
+    const SearchButton = ({ Component, ...others }) => (
+      <Component rel="search" type="submit" {...others}>
+        <SearchIcon />
+      </Component>
+    )
 
     return (
-      <Drawer
-        open={search.show}
-        anchor="bottom"
-        className={classes.root}
-        classes={{
-          paper: blurBackground ? classes.paper : '',
-          paperAnchorBottom: classes.paperAnchorBottom
-        }}
-        ModalProps={{
-          hideBackdrop: true
-        }}
-      >
-        <div className={classes.wrap}>
-          <form className={classes.header} onSubmit={this.onSearchFormSubmit}>
-            {this.renderCloseButton()}
-            <Hbox>
-              <Input
-                type="text"
-                value={search.text}
-                placeholder={placeholder}
-                onChange={e => this.onChangeSearchText(e.target.value)}
-                onFocus={this.onInputFocus}
-                disableUnderline
-                inputRef={this.inputRef}
-                classes={{
-                  root: classes.searchField,
-                  input: classes.searchInput
-                }}
-                endAdornment={
-                  search.text && showClearButton ? (
-                    <IconButton onClick={this.clearSearch} className={classes.searchReset}>
-                      <ClearIcon rel="clear" />
-                    </IconButton>
-                  ) : (
-                    searchButtonVariant === 'icon' && (
-                      <IconButton onClick={this.onSearchSubmit} className={classes.searchButton}>
-                        <SearchIcon rel="search" />
-                      </IconButton>
-                    )
-                  )
-                }
-              />
-              {searchButtonVariant === 'fab' && search.text.length > 0 && (
-                <Button variant="fab" className={classes.searchFab} onClick={this.onSearchSubmit}>
-                  <SearchIcon rel="search" />
-                </Button>
-              )}
-            </Hbox>
-          </form>
-          {loading && (
-            <div className={classes.loading}>
-              <CircularProgress />
-            </div>
-          )}
-          {this.renderResults()}
-        </div>
-      </Drawer>
+      <div className={classes.wrap}>
+        <AmpState id="rsfSearchDrawer" initialState={{ open: false, searchText: '' }}>
+          <Track event="searchSubmitted" trigger="onSubmit" term={this.props.search.text}>
+            <AmpForm onSubmit={this.onSearchFormSubmit} action={searchURL} mask={false}>
+              <div className={classes.header}>
+                {this.renderCloseButton()}
+                <Hbox>
+                  <Input
+                    type="text"
+                    name={searchFieldName}
+                    value={search.text}
+                    placeholder={placeholder}
+                    onFocus={this.onInputFocus}
+                    onChange={e => this.onChangeSearchText(e.target.value)}
+                    inputProps={{
+                      'amp-bind': 'value=>rsfSearchDrawer.searchText'
+                    }}
+                    on="input-debounced:AMP.setState({ rsfSearchDrawer: { searchText: rsfSearchDrawer.___moov_submitting ? rsfSearchDrawer.searchText : event.value } })"
+                    disableUnderline
+                    inputRef={this.inputRef}
+                    classes={{
+                      root: classes.searchField,
+                      input: classes.searchInput
+                    }}
+                    endAdornment={
+                      showClearButton ? (
+                        <HideWhenEmpty>
+                          <IconButton
+                            onClick={this.clearSearch}
+                            className={classes.searchReset}
+                            rel="clear"
+                            on="tap:AMP.setState({ rsfSearchDrawer: { searchText: '' }})"
+                          >
+                            <ClearIcon rel="clear" />
+                          </IconButton>
+                        </HideWhenEmpty>
+                      ) : (
+                        searchButtonVariant === 'icon' && (
+                          <SearchButton Component={Button} className={classes.searchButton} />
+                        )
+                      )
+                    }
+                  />
+                  {searchButtonVariant === 'fab' && (
+                    <HideWhenEmpty>
+                      <SearchButton Component={Fab} className={classes.searchFab} />
+                    </HideWhenEmpty>
+                  )}
+                </Hbox>
+              </div>
+            </AmpForm>
+          </Track>
+        </AmpState>
+        {search.loading && (
+          <div className={classes.loading}>
+            <CircularProgress />
+          </div>
+        )}
+        {this.renderResults()}
+      </div>
     )
+  }
+
+  render() {
+    const { classes, search, blurBackground, amp } = this.props
+
+    if (amp) {
+      return <AmpSearchDrawer>{this.renderContent()}</AmpSearchDrawer>
+    } else {
+      return (
+        <Drawer
+          open={search.show}
+          anchor="bottom"
+          className={classes.root}
+          classes={{
+            paper: blurBackground ? classes.paper : '',
+            paperAnchorBottom: classes.paperAnchorBottom
+          }}
+          ModalProps={{
+            hideBackdrop: true
+          }}
+        >
+          {this.renderContent()}
+        </Drawer>
+      )
+    }
   }
 
   renderResults() {
     const {
       search: { loading, results },
       classes,
-      initialContent
+      initialContent,
+      amp,
+      ampThumbnailHeight,
+      ampThumbnailWidth
     } = this.props
+
+    if (amp) {
+      return (
+        <AmpSearchResults
+          classes={classes}
+          ampThumbnailHeight={ampThumbnailHeight}
+          ampThumbnailWidth={ampThumbnailWidth}
+        />
+      )
+    }
 
     if (loading) {
       return null
@@ -320,9 +397,9 @@ export default class SearchDrawer extends Component {
           [classes.closeButton]: true,
           [classes.closeButtonText]: closeButtonText != null
         })}
-        variant="contained"
         color="primary"
         onClick={this.hide}
+        on="tap:AMP.setState({ rsfSearchDrawer: { open: false } })"
       >
         {closeButtonText || <CloseButtonIcon />}
       </ButtonElement>
@@ -405,9 +482,9 @@ export default class SearchDrawer extends Component {
    * Submits the search and hides the drawer
    */
   onSearchSubmit = () => {
-    const queryText = this.props.search.text
-    analytics.fire('searchSubmitted', { term: queryText })
-    const url = this.props.createSubmitURL(queryText)
+    const { searchURL, searchFieldName, search } = this.props
+    const separator = searchURL.indexOf('?') === -1 ? '?' : '&'
+    const url = `${searchURL}${separator}${searchFieldName}=${encodeURIComponent(search.text)}`
     this.props.history.push(url)
     this.hide()
   }

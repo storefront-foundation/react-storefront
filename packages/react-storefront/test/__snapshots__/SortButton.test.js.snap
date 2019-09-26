@@ -2,7 +2,7 @@
 
 exports[`SortButton passes drawerProps to the underlying Drawer component 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-SortButton-with-app title="Sort By" model={{...}} drawerProps={{...}}>
         <SortButton title="Sort By" model={{...}} drawerProps={{...}} app={{...}} variant="drawer" sortProps={{...}}>
@@ -62,7 +62,7 @@ exports[`SortButton passes drawerProps to the underlying Drawer component 1`] = 
 
 exports[`SortButton passes sortProps to the underlying Sort component 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-SortButton-with-app title="Sort By" model={{...}} sortProps={{...}}>
         <SortButton title="Sort By" model={{...}} sortProps={{...}} app={{...}} variant="drawer" drawerProps={{...}}>
@@ -122,7 +122,7 @@ exports[`SortButton passes sortProps to the underlying Sort component 1`] = `
 
 exports[`SortButton renders with a sort selected 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-SortButton-with-app model={{...}}>
         <SortButton model={{...}} app={{...}} title="Sort" variant="drawer" drawerProps={{...}} sortProps={{...}}>
@@ -182,7 +182,7 @@ exports[`SortButton renders with a sort selected 1`] = `
 
 exports[`SortButton renders with no sort selected 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-SortButton-with-app model={{...}}>
         <SortButton model={{...}} app={{...}} title="Sort" variant="drawer" drawerProps={{...}} sortProps={{...}}>
@@ -240,7 +240,7 @@ exports[`SortButton renders with no sort selected 1`] = `
 
 exports[`SortButton uses the title prop as the label and drawer header 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-SortButton-with-app title="Sort By" model={{...}}>
         <SortButton title="Sort By" model={{...}} app={{...}} variant="drawer" drawerProps={{...}} sortProps={{...}}>

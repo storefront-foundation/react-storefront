@@ -2,7 +2,7 @@
 
 exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) title="Filter By" model={{...}} drawerProps={{...}}>
         <inject-FilterButton-with-app title="Filter By" model={{...}} drawerProps={{...}} classes={{...}}>
@@ -154,7 +154,7 @@ exports[`FilterButton passes drawerProps onto the underlying Filter 1`] = `
 
 exports[`FilterButton renders with filters selected 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) model={{...}}>
         <inject-FilterButton-with-app model={{...}} classes={{...}}>
@@ -311,7 +311,7 @@ exports[`FilterButton renders with filters selected 1`] = `
 
 exports[`FilterButton renders with no filters selected 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) model={{...}}>
         <inject-FilterButton-with-app model={{...}} classes={{...}}>
@@ -463,7 +463,7 @@ exports[`FilterButton renders with no filters selected 1`] = `
 
 exports[`FilterButton uses the title prop as the label and drawer header 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-FilterButton-with-app) title="Filter By" model={{...}}>
         <inject-FilterButton-with-app title="Filter By" model={{...}} classes={{...}}>

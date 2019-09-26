@@ -66,6 +66,7 @@ export default class AmpForm extends Component {
       app,
       mask,
       classes,
+      className,
       method,
       target,
       id,
@@ -88,7 +89,7 @@ export default class AmpForm extends Component {
           (on ? on + ',' : '') +
           `valid:AMP.setState({ ${ampStateId}: { ___moov_submitting: true }})`
         bind =
-          (on ? on + ',' : '') +
+          (bind ? bind + ',' : '') +
           `class=>${ampStateId}.___moov_submitting ? 'moov-amp-form-mask' : null`
       }
 
@@ -99,6 +100,7 @@ export default class AmpForm extends Component {
             data-id={this.id}
             method={method}
             target={target}
+            className={className}
             {...{
               [method === 'post' ? 'action-xhr' : 'action']: action
             }}
@@ -120,7 +122,7 @@ export default class AmpForm extends Component {
         </Provider>
       )
     } else {
-      return <div {...others}>{children}</div>
+      return <form {...others}>{children}</form>
     }
   }
 }

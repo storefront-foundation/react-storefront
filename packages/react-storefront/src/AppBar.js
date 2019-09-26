@@ -12,6 +12,7 @@ import Hidden from '@material-ui/core/Hidden'
 import withStyles from '@material-ui/core/styles/withStyles'
 import ToolbarButton from './ToolbarButton'
 import MenuIcon from './MenuIcon'
+import AmpState from './amp/AmpState'
 
 export const styles = theme => ({
   root: {
@@ -147,7 +148,7 @@ export default class Header extends Component {
     const menuButton = (
       <Hidden mdUp implementation="css" key="menuButton">
         <a
-          on="tap:AMP.setState({ menuOpen: !menuOpen, list: '@' }),moov_menu.toggle"
+          on="tap:AMP.setState({ rsfMenu: { open: !rsfMenu.open, list: '@' } }), moov_menu.toggle"
           className={classes.link}
         >
           <ToolbarButton

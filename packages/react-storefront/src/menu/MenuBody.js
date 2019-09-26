@@ -25,7 +25,7 @@ export default class MenuBody extends Component {
     const isRoot = id === '@'
 
     const header = !isRoot && (
-      <ListItem divider button on={`tap:AMP.setState({ list: '${parentPath}' })`}>
+      <ListItem divider button on={`tap:AMP.setState({ rsfMenu: { list: '${parentPath}' } })`}>
         <ListItemIcon classes={{ root: classes.header }}>
           <ChevronLeft className={classes.icon} />
         </ListItemIcon>
@@ -42,7 +42,7 @@ export default class MenuBody extends Component {
           [classes.inFocus]: isRoot,
           [classes.hiddenRight]: !isRoot
         })}
-        amp-bind={`class=>list == '${id}'  ? '${classnames(
+        amp-bind={`class=>rsfMenu.list == '${id}'  ? '${classnames(
           classes.ampBody,
           classes.inFocus
         )}' : '${classnames(classes.ampBody, {

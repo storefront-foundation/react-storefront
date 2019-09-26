@@ -2,7 +2,7 @@
 
 exports[`BackToTop should render 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(BackToTop)>
         <BackToTop classes={{...}} showUnderY={250} instantBehaviorUnderY={3000} fadeTime={320} size="medium">
@@ -56,7 +56,7 @@ exports[`BackToTop should render 1`] = `
 
 exports[`BackToTop should render with custom icon 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(BackToTop) Icon={[Function: CustomIcon]}>
         <BackToTop Icon={[Function: CustomIcon]} classes={{...}} showUnderY={250} instantBehaviorUnderY={3000} fadeTime={320} size="medium">

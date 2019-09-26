@@ -2,7 +2,7 @@
 
 exports[`Skeleton ImageSwitcher should include hide thumbnails when thumbnails=false 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(ImageSwitcher) thumbnails={false}>
         <ImageSwitcher thumbnails={false} classes={{...}} loadingThumbnailProps={{...}}>
@@ -22,7 +22,7 @@ exports[`Skeleton ImageSwitcher should include hide thumbnails when thumbnails=f
 
 exports[`Skeleton ImageSwitcher should include thumbnails by default 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(ImageSwitcher)>
         <ImageSwitcher classes={{...}} thumbnails={true} loadingThumbnailProps={{...}}>

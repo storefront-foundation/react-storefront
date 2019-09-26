@@ -2,7 +2,7 @@
 
 exports[`AmpExpandableSection should render 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(AmpExpandableSection) title="Title">
         <AmpExpandableSection title="Title" classes={{...}} expanded={false} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
@@ -58,7 +58,7 @@ exports[`AmpExpandableSection should render 1`] = `
 
 exports[`AmpExpandableSection should render expanded 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(AmpExpandableSection) title="Title" expanded={true}>
         <AmpExpandableSection title="Title" expanded={true} classes={{...}} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>

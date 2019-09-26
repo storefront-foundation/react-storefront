@@ -2,7 +2,7 @@
 
 exports[`Pages can display no page at all 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
@@ -34,7 +34,7 @@ exports[`Pages can display no page at all 1`] = `
 
 exports[`Pages displays a custom default loading component 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) loading={[Function: loading]} components={{...}}>
         <inject-Pages loading={[Function: loading]} components={{...}} classes={{...}}>
@@ -73,7 +73,7 @@ exports[`Pages displays a custom default loading component 1`] = `
 
 exports[`Pages displays the correct page 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>
@@ -112,7 +112,7 @@ exports[`Pages displays the correct page 1`] = `
 
 exports[`Pages displays the default loading component 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Pages) components={{...}}>
         <inject-Pages components={{...}} classes={{...}}>

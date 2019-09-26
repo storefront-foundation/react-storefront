@@ -2,7 +2,7 @@
 
 exports[`AppBar should render 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(Header)>
         <WithStyles(Header) menu={{...}} amp={false} offline={false}>
@@ -17,7 +17,7 @@ exports[`AppBar should render 1`] = `
                           <WithStyles(HiddenCss) mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false}>
                             <HiddenCss mdUp={true} lgDown={false} lgUp={false} mdDown={false} smDown={false} smUp={false} xlDown={false} xlUp={false} xsDown={false} xsUp={false} classes={{...}}>
                               <div className="MuiPrivateHiddenCss-mdUp-23">
-                                <a on="tap:AMP.setState({ menuOpen: !menuOpen, list: \\'@\\' }),moov_menu.toggle" className="RSFAppBar-link-11">
+                                <a on="tap:AMP.setState({ rsfMenu: { open: !rsfMenu.open, list: \\'@\\' } }), moov_menu.toggle" className="RSFAppBar-link-11">
                                   <WithStyles(ToolbarButton) aria-label="Menu" color="inherit" onClick={[Function]} icon={{...}}>
                                     <ToolbarButton aria-label="Menu" color="inherit" onClick={[Function]} icon={{...}} classes={{...}}>
                                       <WithStyles(IconButton) classes={{...}} aria-label="Menu" color="inherit" onClick={[Function]}>

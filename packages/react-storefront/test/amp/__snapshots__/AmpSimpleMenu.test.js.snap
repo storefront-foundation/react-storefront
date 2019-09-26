@@ -2,7 +2,7 @@
 
 exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) simple={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} simple={true}>
@@ -17,7 +17,7 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                           <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} style={{...}} />
                         </SideEffect(NullComponent)>
                       </HelmetWrapper>
-                      <amp-sidebar id="moov_menu" class="RSFAmpSimpleMenu-root-106" layout="nodisplay" side="left" on="sidebarClose:AMP.setState({ menuOpen: false })">
+                      <amp-sidebar id="moov_menu" class="RSFAmpSimpleMenu-root-106" layout="nodisplay" side="left" on="sidebarClose:AMP.setState({ rsfMenu: { open: false } })">
                         <section>
                           <div>
                             <amp-accordion disable-session-states={true}>

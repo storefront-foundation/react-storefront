@@ -11,6 +11,8 @@ export { default as AmpHidden } from './AmpHidden.js';
 export { default as AmpImageSwitcher } from './AmpImageSwitcher.js';
 export { default as AmpMenu } from './AmpMenu.js';
 export { default as AmpModal } from './AmpModal.js';
+export { default as AmpSearchDrawer } from './AmpSearchDrawer.js';
+export { default as AmpSearchResults } from './AmpSearchResults.js';
 export { default as AmpSimpleMenu } from './AmpSimpleMenu.js';
 export { default as AmpState } from './AmpState.js';
 export { default as Empty } from './Empty.js';

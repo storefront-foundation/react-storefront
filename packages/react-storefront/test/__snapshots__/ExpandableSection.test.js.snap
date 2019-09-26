@@ -2,7 +2,7 @@
 
 exports[`ExpandableSection should render 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(WithTheme(inject-ExpandableSection)) title="Title">
         <WithTheme(inject-ExpandableSection) title="Title" classes={{...}}>
@@ -100,7 +100,7 @@ exports[`ExpandableSection should render 1`] = `
 
 exports[`ExpandableSection should render AmpExpandableSection when amp == true 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(WithTheme(inject-ExpandableSection)) title="Title">
         <WithTheme(inject-ExpandableSection) title="Title" classes={{...}}>
@@ -164,7 +164,7 @@ exports[`ExpandableSection should render AmpExpandableSection when amp == true 1
 
 exports[`ExpandableSection should render expanded when expanded=true 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(WithTheme(inject-ExpandableSection)) title="Title" expanded={true}>
         <WithTheme(inject-ExpandableSection) title="Title" expanded={true} classes={{...}}>

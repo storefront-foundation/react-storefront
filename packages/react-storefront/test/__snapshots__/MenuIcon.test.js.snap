@@ -2,12 +2,12 @@
 
 exports[`MenuIcon should render AMP version of closed menu icon 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(MenuIcon)-with-app>
         <WithStyles(MenuIcon) app={{...}}>
           <MenuIcon app={{...}} classes={{...}} open={false} label={true}>
-            <div amp-bind="class=>menuOpen == false ? \\'RSFMenuIcon-visible-23\\' : \\'RSFMenuIcon-hidden-22\\'">
+            <div amp-bind="class=>rsfMenu.open == false ? \\'RSFMenuIcon-visible-23\\' : \\'RSFMenuIcon-hidden-22\\'">
               <div className="RSFMenuIcon-root-19">
                 <div className="rsf-hamburger">
                   <span className="rsf-hamburger-box">
@@ -16,7 +16,7 @@ exports[`MenuIcon should render AMP version of closed menu icon 1`] = `
                 </div>
               </div>
             </div>
-            <div className="RSFMenuIcon-hidden-22" amp-bind="class=>menuOpen == true ? \\'RSFMenuIcon-visible-23\\' : \\'RSFMenuIcon-hidden-22\\'">
+            <div className="RSFMenuIcon-hidden-22" amp-bind="class=>rsfMenu.open == true ? \\'RSFMenuIcon-visible-23\\' : \\'RSFMenuIcon-hidden-22\\'">
               <div className="RSFMenuIcon-root-19 RSFMenuIcon-active-20">
                 <div className="rsf-hamburger">
                   <span className="rsf-hamburger-box">
@@ -35,12 +35,12 @@ exports[`MenuIcon should render AMP version of closed menu icon 1`] = `
 
 exports[`MenuIcon should render AMP version of open menu icon 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(MenuIcon)-with-app open={true}>
         <WithStyles(MenuIcon) open={true} app={{...}}>
           <MenuIcon open={true} app={{...}} classes={{...}} label={true}>
-            <div amp-bind="class=>menuOpen == false ? \\'RSFMenuIcon-visible-29\\' : \\'RSFMenuIcon-hidden-28\\'">
+            <div amp-bind="class=>rsfMenu.open == false ? \\'RSFMenuIcon-visible-29\\' : \\'RSFMenuIcon-hidden-28\\'">
               <div className="RSFMenuIcon-root-25">
                 <div className="rsf-hamburger">
                   <span className="rsf-hamburger-box">
@@ -49,7 +49,7 @@ exports[`MenuIcon should render AMP version of open menu icon 1`] = `
                 </div>
               </div>
             </div>
-            <div className="RSFMenuIcon-hidden-28" amp-bind="class=>menuOpen == true ? \\'RSFMenuIcon-visible-29\\' : \\'RSFMenuIcon-hidden-28\\'">
+            <div className="RSFMenuIcon-hidden-28" amp-bind="class=>rsfMenu.open == true ? \\'RSFMenuIcon-visible-29\\' : \\'RSFMenuIcon-hidden-28\\'">
               <div className="RSFMenuIcon-root-25 RSFMenuIcon-active-26">
                 <div className="rsf-hamburger">
                   <span className="rsf-hamburger-box">
@@ -68,7 +68,7 @@ exports[`MenuIcon should render AMP version of open menu icon 1`] = `
 
 exports[`MenuIcon should render a label 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(MenuIcon)-with-app label={true}>
         <WithStyles(MenuIcon) label={true} app={{...}}>
@@ -93,7 +93,7 @@ exports[`MenuIcon should render a label 1`] = `
 
 exports[`MenuIcon should show the close icon when opened 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(MenuIcon)-with-app open={true}>
         <WithStyles(MenuIcon) open={true} app={{...}}>
@@ -118,7 +118,7 @@ exports[`MenuIcon should show the close icon when opened 1`] = `
 
 exports[`MenuIcon should show the open icon when closed 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <inject-WithStyles(MenuIcon)-with-app>
         <WithStyles(MenuIcon) app={{...}}>

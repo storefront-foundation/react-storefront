@@ -2,7 +2,7 @@
 
 exports[`Video should render with amp-video in amp mode 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Video) src="haha.mp4">
         <inject-Video src="haha.mp4" classes={{...}}>
@@ -23,7 +23,7 @@ exports[`Video should render with amp-video in amp mode 1`] = `
 
 exports[`Video should render with video tag when in non-AMP mode 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Video) src="haha.mp4">
         <inject-Video src="haha.mp4" classes={{...}}>

@@ -2,7 +2,7 @@
 
 exports[`NavTabs does not require history 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>
@@ -131,7 +131,7 @@ exports[`NavTabs does not require history 1`] = `
 
 exports[`NavTabs renders 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>
@@ -260,7 +260,7 @@ exports[`NavTabs renders 1`] = `
 
 exports[`NavTabs uses prefetch 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>

@@ -2,7 +2,7 @@
 
 exports[`Filter renders with filters selected 1`] = `
 <TestProvider router={{...}} app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Filter-with-router) model={{...}}>
         <inject-Filter-with-router model={{...}} classes={{...}}>
@@ -224,7 +224,7 @@ exports[`Filter renders with filters selected 1`] = `
 
 exports[`Filter renders with no filters selected 1`] = `
 <TestProvider router={{...}} app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Filter-with-router) model={{...}}>
         <inject-Filter-with-router model={{...}} classes={{...}}>

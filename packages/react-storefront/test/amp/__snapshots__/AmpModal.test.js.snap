@@ -2,7 +2,7 @@
 
 exports[`AmpModal should render 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <Provider amp={true}>
         <WithStyles(AmpModal) id="my-modal">
@@ -27,7 +27,7 @@ exports[`AmpModal should render 1`] = `
 
 exports[`AmpModal should render with custom props 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <Provider amp={true}>
         <WithStyles(AmpModal) id="my-modal" animateIn="fly-in-bottom" on="amp-modal-custom-id:AMP.setState({ someStateId: { modalOpened: true }})">

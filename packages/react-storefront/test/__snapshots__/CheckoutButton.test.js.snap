@@ -2,7 +2,7 @@
 
 exports[`CheckoutButton renders 1`] = `
 <TestProvider>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-CheckoutButton-with-history) url="/checkout">
         <inject-CheckoutButton-with-history url="/checkout" classes={{...}}>

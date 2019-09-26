@@ -118,7 +118,7 @@ export default class AmpSimpleMenu extends Component {
           class={classnames(className, classes.root)}
           layout="nodisplay"
           side={align}
-          on="sidebarClose:AMP.setState({ menuOpen: false })"
+          on="sidebarClose:AMP.setState({ rsfMenu: { open: false } })"
         >
           {rootHeader}
           {this.renderItem(root)}

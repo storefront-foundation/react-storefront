@@ -9,6 +9,7 @@ import withTheme from '@material-ui/core/styles/withTheme'
 import { Helmet } from 'react-helmet'
 import MenuBody from '../menu/MenuBody'
 import classnames from 'classnames'
+import AmpState from './AmpState'
 
 export const styles = theme => ({
   root: {
@@ -117,6 +118,7 @@ export default class AmpMenu extends Component {
 
     return (
       <Fragment>
+        <AmpState id="rsfMenu" initialState={{ open: false }} />
         <Helmet key="helmet">
           <script
             async
@@ -140,7 +142,7 @@ export default class AmpMenu extends Component {
           class={classnames(className, classes.root)}
           layout="nodisplay"
           side={align}
-          on="sidebarClose:AMP.setState({ menuOpen: false })"
+          on="sidebarClose:AMP.setState({ rsfMenu: { open: false } })"
         >
           {bodies}
         </amp-sidebar>

@@ -2,20 +2,34 @@
 
 exports[`AmpMenu should render full AMP menu 1`] = `
 <TestProvider app={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-AmpMenu))>
         <WithStyles(inject-AmpMenu) theme={{...}}>
           <inject-AmpMenu theme={{...}} classes={{...}}>
             <AmpMenu theme={{...}} classes={{...}} menu={{...}} id="moov_menu">
+              <inject-AmpState id="rsfMenu" initialState={{...}}>
+                <AmpState id="rsfMenu" initialState={{...}} amp={true}>
+                  <Provider ampStateId="rsfMenu">
+                    <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                      <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                        <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+                      </SideEffect(NullComponent)>
+                    </HelmetWrapper>
+                    <amp-state id="rsfMenu">
+                      <script type="application/json" dangerouslySetInnerHTML={{...}} />
+                    </amp-state>
+                  </Provider>
+                </AmpState>
+              </inject-AmpState>
               <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
                 <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}} style={{...}}>
                   <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} style={{...}} />
                 </SideEffect(NullComponent)>
               </HelmetWrapper>
-              <amp-sidebar id="moov_menu" class="RSFAmpMenu-root-1" layout="nodisplay" side={[undefined]} on="sidebarClose:AMP.setState({ menuOpen: false })">
+              <amp-sidebar id="moov_menu" class="RSFAmpMenu-root-1" layout="nodisplay" side={[undefined]} on="sidebarClose:AMP.setState({ rsfMenu: { open: false } })">
                 <MenuBody rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true}>
-                  <div className="" amp-bind="class=>list == \\'@\\'  ? \\'\\' : \\'\\'">
+                  <div className="" amp-bind="class=>rsfMenu.list == \\'@\\'  ? \\'\\' : \\'\\'">
                     <WithStyles(List) classes={{...}}>
                       <List classes={{...}} component="ul" dense={false} disablePadding={false}>
                         <ul className="MuiList-root-2 MuiList-padding-3">
@@ -23,13 +37,13 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                             <Item rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0} app={{...}}>
                               <inject-Branch-with-app expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={0} useExpanders={true} simple={[undefined]}>
                                 <Branch expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={0} useExpanders={true} simple={[undefined]} app={{...}}>
-                                  <div amp-bind="class=>sublist == \\'0.0\\' ? \\'expanded\\' : \\'\\'">
-                                    <WithStyles(ListItem) className="menu-item" button={true} divider={true} on="tap:AMP.setState({ list: \\'@0\\' })">
-                                      <ListItem className="menu-item" button={true} divider={true} on="tap:AMP.setState({ list: \\'@0\\' })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
+                                  <div amp-bind="class=>rsfMenu.sublist == \\'0.0\\' ? \\'expanded\\' : \\'\\'">
+                                    <WithStyles(ListItem) className="menu-item" button={true} divider={true} on="tap:AMP.setState({ rsfMenu: { list: \\'@0\\' } })">
+                                      <ListItem className="menu-item" button={true} divider={true} on="tap:AMP.setState({ rsfMenu: { list: \\'@0\\' } })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                         <MergeListContext dense={false} alignItems="center">
-                                          <WithStyles(ButtonBase) className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" disabled={false} on="tap:AMP.setState({ list: \\'@0\\' })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8">
-                                            <ButtonBase className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" disabled={false} on="tap:AMP.setState({ list: \\'@0\\' })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                              <div className="MuiButtonBase-root-18 MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" on="tap:AMP.setState({ list: \\'@0\\' })">
+                                          <WithStyles(ButtonBase) className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" disabled={false} on="tap:AMP.setState({ rsfMenu: { list: \\'@0\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8">
+                                            <ButtonBase className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" disabled={false} on="tap:AMP.setState({ rsfMenu: { list: \\'@0\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                              <div className="MuiButtonBase-root-18 MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" on="tap:AMP.setState({ rsfMenu: { list: \\'@0\\' } })">
                                                 <inject-ItemContent-with-app expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={false} sublist="0.0">
                                                   <ItemContent expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={false} sublist="0.0" app={{...}}>
                                                     <WithStyles(ListItemText) className={[undefined]} primary="Group 1" disableTypography={true}>
@@ -89,16 +103,16 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                   </div>
                 </MenuBody>
                 <MenuBody rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true}>
-                  <div className="undefined" amp-bind="class=>list == \\'@0\\'  ? \\'\\' : \\'undefined\\'">
+                  <div className="undefined" amp-bind="class=>rsfMenu.list == \\'@0\\'  ? \\'\\' : \\'undefined\\'">
                     <WithStyles(List) classes={{...}}>
                       <List classes={{...}} component="ul" dense={false} disablePadding={false}>
                         <ul className="MuiList-root-2 MuiList-padding-3">
-                          <WithStyles(ListItem) divider={true} button={true} on="tap:AMP.setState({ list: \\'@\\' })">
-                            <ListItem divider={true} button={true} on="tap:AMP.setState({ list: \\'@\\' })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
+                          <WithStyles(ListItem) divider={true} button={true} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })">
+                            <ListItem divider={true} button={true} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                               <MergeListContext dense={false} alignItems="center">
-                                <WithStyles(ButtonBase) className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" disabled={false} on="tap:AMP.setState({ list: \\'@\\' })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8">
-                                  <ButtonBase className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" disabled={false} on="tap:AMP.setState({ list: \\'@\\' })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                    <div className="MuiButtonBase-root-18 MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" on="tap:AMP.setState({ list: \\'@\\' })">
+                                <WithStyles(ButtonBase) className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" disabled={false} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8">
+                                  <ButtonBase className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" disabled={false} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                    <div className="MuiButtonBase-root-18 MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })">
                                       <WithStyles(ListItemIcon) classes={{...}}>
                                         <ListItemIcon classes={{...}}>
                                           <div className="MuiListItemIcon-root-27">
@@ -152,13 +166,13 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                             <Item rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0} app={{...}}>
                               <inject-Branch-with-app expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={1} useExpanders={true} simple={[undefined]}>
                                 <Branch expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={1} useExpanders={true} simple={[undefined]} app={{...}}>
-                                  <div amp-bind="class=>sublist == \\'1.0\\' ? \\'expanded\\' : \\'\\'">
-                                    <WithStyles(ListItem) className="menu-item" button={true} divider={true} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })">
-                                      <ListItem className="menu-item" button={true} divider={true} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
+                                  <div amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'expanded\\' : \\'\\'">
+                                    <WithStyles(ListItem) className="menu-item" button={true} divider={true} on="tap:AMP.setState({ rsfMenu: { sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' } })">
+                                      <ListItem className="menu-item" button={true} divider={true} on="tap:AMP.setState({ rsfMenu: { sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' } })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                         <MergeListContext dense={false} alignItems="center">
-                                          <WithStyles(ButtonBase) className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" disabled={false} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8">
-                                            <ButtonBase className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" disabled={false} on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                              <div className="MuiButtonBase-root-18 MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" on="tap:AMP.setState({ sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' })">
+                                          <WithStyles(ButtonBase) className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" disabled={false} on="tap:AMP.setState({ rsfMenu: { sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8">
+                                            <ButtonBase className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" disabled={false} on="tap:AMP.setState({ rsfMenu: { sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                              <div className="MuiButtonBase-root-18 MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15 menu-item" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" on="tap:AMP.setState({ rsfMenu: { sublist: sublist == \\'1.0\\' ? null : \\'1.0\\' } })">
                                                 <inject-ItemContent-with-app expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.0">
                                                   <ItemContent expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.0" app={{...}}>
                                                     <WithStyles(ListItemText) className={[undefined]} primary="Item 1" disableTypography={true}>
@@ -173,11 +187,11 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                                                         <div className="MuiListItemIcon-root-27">
                                                           <inject-ExpanderIcon-with-app expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.0" app={{...}}>
                                                             <ExpanderIcon expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} leaf={false} showExpander={true} sublist="1.0" app={{...}}>
-                                                              <pure(ExpandLessIcon) className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
-                                                                <ExpandLessIcon className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
-                                                                  <WithStyles(SvgIcon) className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
-                                                                    <SvgIcon className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                      <svg className="MuiSvgIcon-root-28" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                              <pure(ExpandLessIcon) className={[undefined]} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                <ExpandLessIcon className={[undefined]} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                  <WithStyles(SvgIcon) className={[undefined]} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                    <SvgIcon className={[undefined]} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                      <svg className="MuiSvgIcon-root-28" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
                                                                         <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
                                                                         <path fill="none" d="M0 0h24v24H0z" />
                                                                       </svg>
@@ -185,11 +199,11 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                                                                   </WithStyles(SvgIcon)>
                                                                 </ExpandLessIcon>
                                                               </pure(ExpandLessIcon)>
-                                                              <pure(ExpandMoreIcon) className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
-                                                                <ExpandMoreIcon className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
-                                                                  <WithStyles(SvgIcon) className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
-                                                                    <SvgIcon className={[undefined]} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                      <svg className="MuiSvgIcon-root-28" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                              <pure(ExpandMoreIcon) className={[undefined]} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                <ExpandMoreIcon className={[undefined]} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                  <WithStyles(SvgIcon) className={[undefined]} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
+                                                                    <SvgIcon className={[undefined]} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                      <svg className="MuiSvgIcon-root-28" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation" amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined undefined\\' : \\'undefined undefined\\'">
                                                                         <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                                                                         <path fill="none" d="M0 0h24v24H0z" />
                                                                       </svg>
@@ -220,10 +234,10 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                                       </ListItem>
                                     </WithStyles(ListItem)>
                                   </div>
-                                  <WithStyles(Collapse) in={true} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" timeout="auto">
-                                    <Collapse in={true} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" timeout="auto" theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
-                                      <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={true} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
-                                        <div className="MuiCollapse-container-72 MuiCollapse-entered-73" style={{...}} amp-bind="class=>sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'">
+                                  <WithStyles(Collapse) in={true} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" timeout="auto">
+                                    <Collapse in={true} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" timeout="auto" theme={{...}} classes={{...}} collapsedHeight="0px" component="div">
+                                      <Transition onEnter={[Function]} onEntered={[Function]} onEntering={[Function]} onExit={[Function]} onExiting={[Function]} addEndListener={[Function]} timeout={{...}} in={true} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'" mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onExited={[Function: noop]}>
+                                        <div className="MuiCollapse-container-72 MuiCollapse-entered-73" style={{...}} amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'undefined\\' : \\'undefined\\'">
                                           <div className="MuiCollapse-wrapper-74">
                                             <div className="MuiCollapse-wrapperInner-75">
                                               <WithStyles(List) component="div" classes={{...}}>

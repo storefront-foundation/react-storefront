@@ -10,6 +10,7 @@ import AppModelBase from '../src/model/AppModelBase'
 import { createMemoryHistory } from 'history'
 import waitForAnalytics from './helpers/waitForAnalytics'
 import AnalyticsProvider from '../src/AnalyticsProvider'
+import TestProvider from './TestProvider'
 
 describe('SearchDrawer', () => {
   let TestContext, app, history
@@ -21,9 +22,9 @@ describe('SearchDrawer', () => {
 
     TestContext = ({ children }) => (
       <div id="root">
-        <Provider app={app} history={history}>
+        <TestProvider app={app} history={history}>
           {children}
-        </Provider>
+        </TestProvider>
       </div>
     )
   })
@@ -93,78 +94,6 @@ describe('SearchDrawer', () => {
     expect(document.body.classList.contains('moov-blur')).toBe(false)
   })
 
-  describe('searchButtonVariant', () => {
-    describe('fab', () => {
-      it('should render the search button as a separate fab when text is entered', () => {
-        const wrapper = mount(
-          <TestContext>
-            <SearchDrawer searchButtonVariant="fab" />
-          </TestContext>
-        )
-        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
-        expect(wrapper.find({ rel: 'search' }).exists()).toBe(true)
-        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
-      })
-    })
-    describe('icon', () => {
-      it('should not show the clear button when showClearButton is false and text is entered', () => {
-        const wrapper = mount(
-          <TestContext>
-            <SearchDrawer showClearButton={false} searchButtonVariant="icon" />
-          </TestContext>
-        )
-        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
-        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(false)
-      })
-      it('should show the clear text is entered', () => {
-        const wrapper = mount(
-          <TestContext>
-            <SearchDrawer searchButtonVariant="icon" />
-          </TestContext>
-        )
-        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
-        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
-        expect(wrapper.find({ rel: 'search' }).exists()).toBe(false)
-      })
-    })
-  })
-
-  describe('searchButtonVariant', () => {
-    describe('fab', () => {
-      it('should render the search button as a separate fab when text is entered', () => {
-        const wrapper = mount(
-          <TestContext>
-            <SearchDrawer searchButtonVariant="fab" />
-          </TestContext>
-        )
-        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
-        expect(wrapper.find({ rel: 'search' }).exists()).toBe(true)
-        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
-      })
-    })
-    describe('icon', () => {
-      it('should not show the clear button when showClearButton is false and text is entered', () => {
-        const wrapper = mount(
-          <TestContext>
-            <SearchDrawer showClearButton={false} searchButtonVariant="icon" />
-          </TestContext>
-        )
-        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
-        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(false)
-      })
-      it('should show the clear text is entered', () => {
-        const wrapper = mount(
-          <TestContext>
-            <SearchDrawer searchButtonVariant="icon" />
-          </TestContext>
-        )
-        wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
-        expect(wrapper.find({ rel: 'clear' }).exists()).toBe(true)
-        expect(wrapper.find({ rel: 'search' }).exists()).toBe(false)
-      })
-    })
-  })
-
   describe('initialContent', () => {
     it('should render when the search is blank', () => {
       const wrapper = mount(
@@ -183,32 +112,6 @@ describe('SearchDrawer', () => {
       )
       wrapper.find('input').simulate('change', { target: { value: 'My new value' } })
       expect(wrapper.find('div#initialContent')).toHaveLength(0)
-    })
-  })
-
-  describe('createSubmitURL', () => {
-    it('should change the url to this when the user submits the search', () => {
-      const createSubmitURL = jest.fn(text => '/submit')
-      app.search.setText('foo')
-      const wrapper = mount(
-        <TestContext>
-          <SearchDrawer createSubmitURL={createSubmitURL} />
-        </TestContext>
-      )
-      wrapper.find('SearchIcon').simulate('click')
-      expect(createSubmitURL).toHaveBeenCalledWith('foo')
-      expect(history.push).toHaveBeenCalledWith('/submit')
-    })
-
-    it('should use the default when not defined', () => {
-      app.search.setText('foo')
-      const wrapper = mount(
-        <TestContext>
-          <SearchDrawer />
-        </TestContext>
-      )
-      wrapper.find('SearchIcon').simulate('click')
-      expect(history.push).toHaveBeenCalledWith('/search?q=foo')
     })
   })
 
@@ -294,33 +197,12 @@ describe('SearchDrawer', () => {
       )
 
       wrapper
-        .find('Track')
+        .find('Track a')
         .at(0)
         .simulate('click')
 
       return waitForAnalytics(() => {
         expect(history.push).toHaveBeenCalledWith('/results/1', undefined)
-        expect(searchSubmitted).toHaveBeenCalledWith({ term: 'query' })
-      })
-    })
-
-    it('should fire submitted on search icon click', () => {
-      const searchSubmitted = jest.fn()
-
-      const wrapper = mount(
-        <Provider app={app} history={history}>
-          <AnalyticsProvider targets={() => [{ searchSubmitted }]}>
-            <SearchDrawer />
-          </AnalyticsProvider>
-        </Provider>
-      )
-
-      wrapper
-        .find('SearchIcon')
-        .at(0)
-        .simulate('click')
-
-      return waitForAnalytics(() => {
         expect(searchSubmitted).toHaveBeenCalledWith({ term: 'query' })
       })
     })

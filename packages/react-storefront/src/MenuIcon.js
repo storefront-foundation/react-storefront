@@ -170,12 +170,14 @@ export default class MenuIcon extends PureComponent {
     if (amp) {
       return (
         <Fragment>
-          <div amp-bind={`class=>menuOpen == false ? '${classes.visible}' : '${classes.hidden}'`}>
+          <div
+            amp-bind={`class=>rsfMenu.open == false ? '${classes.visible}' : '${classes.hidden}'`}
+          >
             {this.renderIcon(false)}
           </div>
           <div
             className={classes.hidden}
-            amp-bind={`class=>menuOpen == true ? '${classes.visible}' : '${classes.hidden}'`}
+            amp-bind={`class=>rsfMenu.open == true ? '${classes.visible}' : '${classes.hidden}'`}
           >
             {this.renderIcon(true)}
           </div>

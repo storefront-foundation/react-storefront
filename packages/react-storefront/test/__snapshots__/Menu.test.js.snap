@@ -2,7 +2,7 @@
 
 exports[`Menu custom renderers itemContentRenderer should be called for each item 1`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) simple={true} itemContentRenderer={[Function: mockConstructor]}>
         <WithStyles(inject-Menu-with-app) theme={{...}} simple={true} itemContentRenderer={[Function: mockConstructor]}>
@@ -43,7 +43,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
                                                         <Item drawerWidth={330} simple={true} theme={{...}} itemContentRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
                                                           <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                             <Branch expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                              <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                              <div amp-bind="class=>rsfMenu.sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                 <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                   <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                     <MergeListContext dense={false} alignItems="center">
@@ -86,7 +86,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
                                                                                   <Item expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                                     <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true}>
                                                                                       <Branch expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                        <div amp-bind="class=>sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                                        <div amp-bind="class=>rsfMenu.sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                                           <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                                             <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                                               <MergeListContext dense={false} alignItems="center">
@@ -316,7 +316,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
 
 exports[`Menu custom renderers itemRenderer should be called for each item 1`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) simple={true} itemRenderer={[Function: mockConstructor]}>
         <WithStyles(inject-Menu-with-app) theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]}>
@@ -444,7 +444,7 @@ exports[`Menu custom renderers itemRenderer should be called for each item 1`] =
 
 exports[`Menu custom renderers itemRenderer should render the default when null is returned 1`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) simple={true} itemRenderer={[Function: mockConstructor]}>
         <WithStyles(inject-Menu-with-app) theme={{...}} simple={true} itemRenderer={[Function: mockConstructor]}>
@@ -485,7 +485,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                                                         <Item drawerWidth={330} simple={true} theme={{...}} itemRenderer={[Function: mockConstructor]} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
                                                           <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                             <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                              <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                              <div amp-bind="class=>rsfMenu.sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                 <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                   <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                     <MergeListContext dense={false} alignItems="center">
@@ -554,7 +554,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                                                                                   <Item expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                                     <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true}>
                                                                                       <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                        <div amp-bind="class=>sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                                        <div amp-bind="class=>rsfMenu.sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                                           <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                                             <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                                               <MergeListContext dense={false} alignItems="center">
@@ -818,7 +818,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
 
 exports[`Menu should be able to render leaf as a top level item 1`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) simple={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} simple={true}>
@@ -859,7 +859,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                                                         <Item drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
                                                           <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                             <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                              <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                              <div amp-bind="class=>rsfMenu.sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                 <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                   <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                     <MergeListContext dense={false} alignItems="center">
@@ -928,7 +928,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                                                                                   <Item expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                                     <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true}>
                                                                                       <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                        <div amp-bind="class=>sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                                        <div amp-bind="class=>rsfMenu.sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                                           <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                                             <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                                               <MergeListContext dense={false} alignItems="center">
@@ -1192,7 +1192,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
 
 exports[`Menu should render in complex mode by default 1`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app))>
         <WithStyles(inject-Menu-with-app) theme={{...}}>
@@ -1234,7 +1234,7 @@ exports[`Menu should render in complex mode by default 1`] = `
                                                           <Item drawerWidth={330} simple={false} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false}>
                                                               <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false} app={{...}}>
-                                                                <div amp-bind="class=>sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                <div amp-bind="class=>rsfMenu.sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                   <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                     <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                       <MergeListContext dense={false} alignItems="center">
@@ -1363,7 +1363,7 @@ exports[`Menu should render in complex mode by default 1`] = `
 
 exports[`Menu should render in complex mode by default 2`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true}>
@@ -1405,7 +1405,7 @@ exports[`Menu should render in complex mode by default 2`] = `
                                                           <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false}>
                                                               <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false} app={{...}}>
-                                                                <div amp-bind="class=>sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                <div amp-bind="class=>rsfMenu.sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                   <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                     <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                       <MergeListContext dense={false} alignItems="center">
@@ -1534,7 +1534,7 @@ exports[`Menu should render in complex mode by default 2`] = `
 
 exports[`Menu should render in simple mode 1`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) simple={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} simple={true}>
@@ -1575,7 +1575,7 @@ exports[`Menu should render in simple mode 1`] = `
                                                         <Item drawerWidth={330} simple={true} theme={{...}} expandFirstItem={false} trackSelected={false} app={{...}} depth={1} item={{...}}>
                                                           <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true}>
                                                             <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                              <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                              <div amp-bind="class=>rsfMenu.sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                 <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                   <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                     <MergeListContext dense={false} alignItems="center">
@@ -1644,7 +1644,7 @@ exports[`Menu should render in simple mode 1`] = `
                                                                                   <Item expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                                     <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true}>
                                                                                       <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={2} useExpanders={[undefined]} simple={true} app={{...}}>
-                                                                                        <div amp-bind="class=>sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                                        <div amp-bind="class=>rsfMenu.sublist == \\'2.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                                           <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                                             <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                                               <MergeListContext dense={false} alignItems="center">
@@ -1851,7 +1851,7 @@ exports[`Menu should render in simple mode 1`] = `
 
 exports[`Menu should render without expand first not root item by default 1`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true}>
         <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true}>
@@ -1893,7 +1893,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                                           <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false}>
                                                               <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false} app={{...}}>
-                                                                <div amp-bind="class=>sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                <div amp-bind="class=>rsfMenu.sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                   <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                     <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                       <MergeListContext dense={false} alignItems="center">
@@ -2018,7 +2018,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                                           <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={1} classes={{...}}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={false}>
                                                               <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={false} app={{...}}>
-                                                                <div amp-bind="class=>sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                <div amp-bind="class=>rsfMenu.sublist == \\'1.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                   <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                     <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                       <MergeListContext dense={false} alignItems="center">
@@ -2147,7 +2147,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
 
 exports[`Menu should use custom icons 1`] = `
 <TestProvider app={{...}} history={{...}}>
-  <Provider router={{...}} app={{...}} history={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
       <WithTheme(WithStyles(inject-Menu-with-app)) useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
         <WithStyles(inject-Menu-with-app) theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
@@ -2189,7 +2189,7 @@ exports[`Menu should use custom icons 1`] = `
                                                           <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={0} classes={{...}}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false}>
                                                               <Branch expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]} theme={{...}} item={{...}} index={[undefined]} depth={0} useExpanders={[undefined]} simple={false} app={{...}}>
-                                                                <div amp-bind="class=>sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
+                                                                <div amp-bind="class=>rsfMenu.sublist == \\'0.undefined\\' ? \\'expanded\\' : \\'\\'">
                                                                   <WithStyles(ListItem) className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}}>
                                                                     <ListItem className="menu-item" button={true} divider={true} onClick={[Function: bound ]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
                                                                       <MergeListContext dense={false} alignItems="center">
