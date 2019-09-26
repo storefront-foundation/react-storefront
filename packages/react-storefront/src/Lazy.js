@@ -2,40 +2,49 @@
  * @license
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
-import React, { useState, useContext } from 'react'
+import React, { Component } from 'react'
 import ReactVisibilitySensor from 'react-visibility-sensor'
 import withStyles from '@material-ui/core/styles/withStyles'
 import classnames from 'classnames'
-import AppContext from './AppContext'
+import { inject, observer } from 'mobx-react'
 
 export const styles = () => ({
   root: {
-    minHeight: 10
+    minHeight: 1,
+    minWidth: 1
   }
 })
 
-/**
- * Lazy loads its children when the user scrolls near it
- *
- * Props are passed through to the container element
- *
- * @param {ReactChildren} props.children React elements to be loaded lazy
- */
-function Lazy({ children, className, classes, ...otherProps }) {
-  const [visible, setVisible] = useState(false)
-  const appContext = useContext(AppContext)
+@withStyles(styles, { name: 'RSFLazy' })
+@inject('app')
+@observer
+export default class Lazy extends Component {
+  state = {
+    visible: false
+  }
 
-  return (
-    <ReactVisibilitySensor
-      onChange={v => setVisible(!appContext.scrollResetPending && (visible || v))}
-      active={!visible}
-      partialVisibility
-    >
-      <div className={classnames(classes.root, className)} {...otherProps}>
-        {visible && children}
-      </div>
-    </ReactVisibilitySensor>
-  )
+  onChange = v => {
+    const { visible } = this.state
+
+    if (!visible && v) {
+      this.setState({ visible: true })
+    }
+  }
+
+  render() {
+    const { app, children, className, classes, ...otherProps } = this.props
+    const { visible } = this.state
+
+    return (
+      <ReactVisibilitySensor
+        onChange={this.onChange}
+        active={!visible && !app.scrollResetPending}
+        partialVisibility
+      >
+        <div className={classnames(classes.root, className)} {...otherProps}>
+          {visible && children}
+        </div>
+      </ReactVisibilitySensor>
+    )
+  }
 }
-
-export default withStyles(styles, { name: 'RSFLazy' })(Lazy)

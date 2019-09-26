@@ -132,6 +132,13 @@ export const LocationModel = types
 const AppModelBase = types
   .model('AppModelBase', {
     /**
+     * Will be `true` when the user has navigated to a new page but the viewport
+     * has not yet been scrolled back to the top.  This is used internally by
+     * React Storefront to keep lazy components from detecting whether or not
+     * they are below the fold before the scroll position is reset.
+     */
+    scrollResetPending: false,
+    /**
      * Will be `true` when rendering AMP, otherwise `false`.
      * @type {Boolean}
      * @memberof AppModelBase
@@ -312,6 +319,14 @@ const AppModelBase = types
     }
   }))
   .actions(self => ({
+    /**
+     * Updates scrollResetPending
+     * @param {Boolean} pending The new value
+     */
+    setScrollResetPending(pending) {
+      self.scrollResetPending = pending
+    },
+
     /**
      * Clears the thumbnail being injected into the product skeleton
      * @memberof AppModelBase

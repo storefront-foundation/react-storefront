@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.50.2
+
+- Fixed an issue where elements inside a `Lazy` component are never rendered if they are initially above the fold.
+
 ### 6.50.1
 
 - Fixed error when running apps in express due to `headers.get(name)` not being defined.

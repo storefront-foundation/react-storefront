@@ -47,7 +47,7 @@ export default class PWA extends Component {
 
   constructor({ app, history, router, errorReporter }) {
     super()
-    this.appContextValue = { app, history, router, errorReporter, scrollResetPending: false }
+    this.appContextValue = { app, history, router, errorReporter }
   }
 
   render() {
@@ -105,7 +105,7 @@ export default class PWA extends Component {
     // Otherwise we would see the current page scroll to the top and after some delay, the new
     // page would render
     if (action === 'PUSH') {
-      this.appContextValue.scrollResetPending = true
+      this.props.app.setScrollResetPending(true)
     }
   }
 
@@ -167,9 +167,11 @@ export default class PWA extends Component {
   }
 
   componentDidUpdate() {
-    if (this.appContextValue.scrollResetPending) {
+    const { app } = this.props
+
+    if (app.scrollResetPending) {
       this.resetPage()
-      this.appContextValue.scrollResetPending = false
+      app.setScrollResetPending(false)
     }
   }
 
