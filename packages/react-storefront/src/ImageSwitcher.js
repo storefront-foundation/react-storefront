@@ -357,9 +357,11 @@ export default class ImageSwitcher extends Component {
   componentDidMount() {
     if (this.props.resetSelectionWhenImagesChange || this.props.product) {
       this.disposeReaction = reaction(
-        () => this.props.images,
-        () => {
-          this.setState({ selectedIndex: 0, fullSizeImagesLoaded: false })
+        () => this.images,
+        images => {
+          if (JSON.stringify(images) !== JSON.stringify(this.state.images)) {
+            this.setState({ images, selectedIndex: 0, fullSizeImagesLoaded: false })
+          }
         }
       )
     }
