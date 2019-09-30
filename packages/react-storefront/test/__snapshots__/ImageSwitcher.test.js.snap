@@ -112,9 +112,9 @@ exports[`ImageSwitcher should render AmpImageSwitcher when amp=true 1`] = `
             <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
               <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
                 <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
-                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
-                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
-                      <AmpImageSwitcher product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
+                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) product={[undefined]} images={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false} thumbnails={{...}}>
+                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app product={[undefined]} images={{...}} className={[undefined]} arrows={true} indicators={false} thumbnails={{...}} classes={{...}}>
+                      <AmpImageSwitcher product={[undefined]} images={{...}} className={[undefined]} arrows={true} indicators={false} thumbnails={{...}} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
                         <div className="RSFAmpImageSwitcher-root-284 RSFImageSwitcher-root-257 RSFAmpImageSwitcher-rootImportant-285">
                           <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
                             <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
@@ -201,9 +201,9 @@ exports[`ImageSwitcher should render AmpImageSwitcher without product colors 1`]
             <WithStyles(inject-ImageSwitcher-with-app) images={{...}}>
               <inject-ImageSwitcher-with-app images={{...}} classes={{...}}>
                 <ImageSwitcher images={{...}} classes={{...}} app={{...}} thumbnails={{...}} viewerThumbnailsOnly={false} arrows={true} indicators={false} loadingThumbnailProps={{...}} imageProps={{...}} reactPinchZoomPanOptions={{...}}>
-                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false}>
-                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}}>
-                      <AmpImageSwitcher product={[undefined]} images={{...}} thumbnails={{...}} className={[undefined]} arrows={true} indicators={false} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
+                  <WithStyles(inject-AmpImageSwitcher-with-nextId-ampStateId-app) product={[undefined]} images={{...}} className={[undefined]} classes={{...}} arrows={true} indicators={false} thumbnails={{...}}>
+                    <inject-AmpImageSwitcher-with-nextId-ampStateId-app product={[undefined]} images={{...}} className={[undefined]} arrows={true} indicators={false} thumbnails={{...}} classes={{...}}>
+                      <AmpImageSwitcher product={[undefined]} images={{...}} className={[undefined]} arrows={true} indicators={false} thumbnails={{...}} classes={{...}} nextId={[Function: nextId]} ampStateId="moovAmpState" app={{...}} type="slides" ampStateProperty="selectedImage">
                         <div className="RSFAmpImageSwitcher-root-324 RSFImageSwitcher-root-297 RSFAmpImageSwitcher-rootImportant-325">
                           <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
                             <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>

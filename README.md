@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.52.2
+
+- Improves the patch from 6.52.1 to also handle the case when the product was rendered on the server.
+
 ### 6.52.1
 
 - Fixed a bug introduced in 6.52.0 where the product thumbnail shown over the main product images while loading would not be hidden when returning back to the same product as was previously viewed.
