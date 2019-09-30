@@ -12,6 +12,7 @@ import UserModelBase from './UserModelBase'
 import CartModelBase from './CartModelBase'
 import SearchModelBase from './SearchModelBase'
 import isEqual from 'lodash/isEqual'
+import merge from 'lodash/merge'
 
 /**
  * Represents a single breadcrumb
@@ -101,6 +102,9 @@ export const LocationModel = types
         self.hostname +
         (['443', '80'].includes(self.port) ? '' : `:${self.port}`)
       )
+    },
+    get uri() {
+      return self.pathname + self.search
     }
   }))
 
@@ -360,11 +364,26 @@ const AppModelBase = types
         const state = self.toJSON()
 
         for (let key in patch) {
-          const value = patch[key]
+          self.mergeSnapshotOntoBranch(key, state[key], patch[key])
+        }
+      }
+    },
 
-          if (!isEqual(value, state[key])) {
-            self[key] = value
-          }
+    /**
+     * Merges a snapshot onto a branch in the state tree.
+     * @param {String} branchName
+     * @param {Object} current The current value of the branch
+     * @param {Object} snapshot The snapshot to apply
+     */
+    mergeSnapshotOntoBranch(branchName, current, snapshot) {
+      if (!isEqual(snapshot, current)) {
+        if (snapshot != null && current != null && current.id && snapshot.id === current.id) {
+          // Use merge when updating an existing model instance so that late loaded
+          // values (usually from loadPersonalization) aren't overwritten when returning back
+          // to the the previous page
+          merge(self[branchName], snapshot)
+        } else {
+          self[branchName] = snapshot
         }
       }
     },
