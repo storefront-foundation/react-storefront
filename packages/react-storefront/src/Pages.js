@@ -98,7 +98,9 @@ export default class Pages extends Component {
     whenIdle(() => {
       for (let key in this.components) {
         try {
-          this.components[key].preload()
+          if (this.components[key].preload) {
+            this.components[key].preload()
+          }
         } catch (e) {
           console.warn('could not preload page component', key, e)
         }

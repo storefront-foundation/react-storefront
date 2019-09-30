@@ -93,7 +93,7 @@ export default class Breadcrumbs extends Component {
       return (
         <span key={i}>
           {arrow}
-          <Track event="breadcrumbClicked" breadcrumb={item}>
+          <Track event="breadcrumbClicked" breadcrumb={item.toJSON()}>
             <Link to={item.url} state={item.state}>
               {item.text}
             </Link>
