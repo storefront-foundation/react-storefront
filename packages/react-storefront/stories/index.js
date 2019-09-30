@@ -4,14 +4,13 @@ import { storiesOf, setAddon } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import JSXAddon from 'storybook-addon-jsx'
 import green from '@material-ui/core/colors/green'
-
+import wrapWithProvider from './wrapWithProvider'
 import ActionButton from '../src/ActionButton'
 import AddToCartButton from '../src/AddToCartButton'
-// import AppBar from '../src/AppBar'
+import Typography from '@material-ui/core/Typography'
 import BackToTop from '../src/BackToTop'
 import BottomDrawer from '../src/BottomDrawer'
 import Box from '../src/Box'
-import Breadcrumbs from '../src/Breadcrumbs'
 import ButtonSelector from '../src/ButtonSelector'
 import CartButton from '../src/CartButton'
 import CheckoutButton from '../src/CheckoutButton'
@@ -27,20 +26,12 @@ import HeaderLogo from '../src/HeaderLogo'
 import Image from '../src/Image'
 import ImageSwitcher from '../src/ImageSwitcher'
 import Link from '../src/Link'
-import Lazy from '../src/Lazy'
 import LoadMask from '../src/LoadMask'
-import Menu, { MenuItemModel, MenuModel } from '../src/Menu'
-import NavTabs, { TabsModel } from '../src/NavTabs'
+import Menu from '../src/Menu'
 import PromoBanner from '../src/PromoBanner'
 import QuantitySelector from '../src/QuantitySelector'
 import Rating from '../src/Rating'
 import ResponsiveTiles from '../src/ResponsiveTiles'
-import SearchPopup, {
-  SuggestedSearch,
-  CategorySearches,
-  ProductSuggestions,
-  SearchPopupModel
-} from '../src/SearchPopup'
 import SearchDrawer from '../src/SearchDrawer'
 import ShowMore from '../src/ShowMore'
 import { Skeleton, Row, Space, Content, BlankRow } from '../src/Skeleton'
@@ -57,14 +48,10 @@ import TabPanel from '../src/TabPanel'
 import TabsRow from '../src/TabsRow'
 import ToolbarButton from '../src/ToolbarButton'
 import BackNav from '../src/BackNav'
-import createTheme from '../src/createTheme'
 import Video from '../src/Video'
 
 // Models
-import { LocationModel } from '../src/model/AppModelBase'
-import CartModelBase from '../src/model/CartModelBase'
 import SearchModelBase, { ResultsGroupModel, ResultsModel } from '../src/model/SearchModelBase'
-import ProductModelBase from '../src/model/ProductModelBase'
 import SelectionModelBase from '../src/model/SelectionModelBase'
 import OptionModelBase from '../src/model/OptionModelBase'
 import SearchResultsModelBase, {
@@ -72,101 +59,14 @@ import SearchResultsModelBase, {
   FacetModelBase,
   SortBase
 } from '../src/model/SearchResultsModelBase'
-import { BreadcrumbModel } from '../src/model/AppModelBase'
-import { Provider, observer } from 'mobx-react'
 
-import { createBrowserHistory } from 'history'
-import JssProvider from 'react-jss/lib/JssProvider'
-import { create } from 'jss'
-import { createGenerateClassName, jssPreset, createMuiTheme } from '@material-ui/core/styles'
-import jssNested from 'jss-nested'
-import { MuiThemeProvider } from '@material-ui/core/styles'
 import PhotoCamera from '@material-ui/icons/PhotoCamera'
-
 import PaginationContainer from './PaginationContainer'
-import Helmet from 'react-helmet'
-
 import Pets from '@material-ui/icons/Pets'
 import ThumbUp from '@material-ui/icons/ThumbUp'
 import ThumbUpOutlined from '@material-ui/icons/ThumbUpOutlined'
 
 setAddon(JSXAddon)
-
-const history = createBrowserHistory()
-
-// JSS configuration
-const generateClassName = createGenerateClassName()
-const jss = create(jssPreset(), jssNested())
-const styleNode = document.createComment('jss-insertion-point')
-document.head.insertBefore(styleNode, document.head.firstChild)
-jss.options.insertionPoint = 'jss-insertion-point'
-
-// TODO: Pass state in if we need different state for other stories
-const wrapWithProvider = (extraState, themeOverrides) => story => {
-  const state = {
-    location: LocationModel.create({ pathname: '', search: '' }),
-    breadcrumbs: [
-      BreadcrumbModel.create({ url: '/', text: 'Home' }),
-      BreadcrumbModel.create({ url: '/tools', text: 'Tool Storage' }),
-      BreadcrumbModel.create({ text: 'Tool Carts' })
-    ],
-    cart: CartModelBase.create(),
-    menu: MenuModel.create({
-      open: true,
-      levels: [
-        MenuItemModel.create({
-          root: true,
-          items: [
-            MenuItemModel.create({ text: 'About', url: '#' }),
-            MenuItemModel.create({
-              text: 'Categories',
-              url: '#',
-              items: [
-                MenuItemModel.create({ text: 'Size', url: '#' }),
-                MenuItemModel.create({
-                  text: 'Color',
-                  url: '#',
-                  items: [
-                    MenuItemModel.create({ text: 'Red', url: '#' }),
-                    MenuItemModel.create({ text: 'Green', url: '#' }),
-                    MenuItemModel.create({ text: 'Blue', url: '#' })
-                  ]
-                }),
-                MenuItemModel.create({ text: 'Age', url: '#' })
-              ]
-            }),
-            MenuItemModel.create({ text: 'Search', url: '#' })
-          ]
-        })
-      ]
-    }),
-    tabs: TabsModel.create({
-      items: [
-        MenuItemModel.create({ text: 'Tab 1', url: '#' }),
-        MenuItemModel.create({ text: 'Tab 2', url: '#' }),
-        MenuItemModel.create({ text: 'Tab 3', url: '#' })
-      ]
-    }),
-    searchPopup: SearchPopupModel.create({ opened: true }),
-    search: SearchModelBase.create()
-  }
-
-  const theme = createTheme(themeOverrides)
-  theme.margins = {}
-
-  return (
-    <Provider app={Object.assign(state, extraState)} history={history} router={null}>
-      <JssProvider jss={jss} generateClassName={generateClassName}>
-        <MuiThemeProvider theme={theme}>
-          <Helmet>
-            <style>{`* { box-sizing: border-box }`}</style>
-          </Helmet>
-          {story()}
-        </MuiThemeProvider>
-      </JssProvider>
-    </Provider>
-  )
-}
 
 storiesOf('ActionButton', module)
   .addDecorator(wrapWithProvider())
@@ -193,53 +93,46 @@ storiesOf('AddToCartButton', module)
 storiesOf('BackToTop', module)
   .addDecorator(wrapWithProvider())
   .addWithJSX('with default props', () => (
-    <div>
-      <h1>Top</h1>
-      <div style={{ height: 5000 }}>TALL</div>
+    <Typography>
+      <div style={{ height: 5000 }}>Scroll down please...</div>
       <BackToTop />
-    </div>
+    </Typography>
   ))
   .addWithJSX('with custom icon', () => (
-    <div>
-      <h1>Top</h1>
-      <div style={{ height: 5000 }}>TALL</div>
+    <Typography>
+      <div style={{ height: 5000 }}>Scroll down please...</div>
       <BackToTop Icon={Pets} />
-    </div>
+    </Typography>
   ))
   .addWithJSX('with smaller size', () => (
-    <div>
-      <h1>Top</h1>
-      <div style={{ height: 5000 }}>TALL</div>
+    <Typography>
+      <div style={{ height: 5000 }}>Scroll down please...</div>
       <BackToTop size="small" />
-    </div>
+    </Typography>
   ))
   .addWithJSX('with larger size', () => (
-    <div>
-      <h1>Top</h1>
-      <div style={{ height: 5000 }}>TALL</div>
+    <Typography>
+      <div style={{ height: 5000 }}>Scroll down please...</div>
       <BackToTop size="large" />
-    </div>
+    </Typography>
   ))
   .addWithJSX('with farther showUnderY value', () => (
-    <div>
-      <h1>Top</h1>
-      <div style={{ height: 5000 }}>TALL</div>
+    <Typography>
+      <div style={{ height: 5000 }}>Scroll down please...</div>
       <BackToTop showUnderY={1000} />
-    </div>
+    </Typography>
   ))
   .addWithJSX('with closer instantBehaviorUnderY value', () => (
-    <div>
-      <h1>Top</h1>
-      <div style={{ height: 5000 }}>TALL</div>
+    <Typography>
+      <div style={{ height: 5000 }}>Scroll down please...</div>
       <BackToTop instantBehaviorUnderY={500} />
-    </div>
+    </Typography>
   ))
   .addWithJSX('with fadeTime of zero', () => (
-    <div>
-      <h1>Top</h1>
-      <div style={{ height: 5000 }}>TALL</div>
+    <Typography>
+      <div style={{ height: 5000 }}>Scroll down please...</div>
       <BackToTop fadeTime={0} />
-    </div>
+    </Typography>
   ))
 
 storiesOf('BottomDrawer', module)
@@ -272,18 +165,6 @@ storiesOf('BackNav', module)
   .addWithJSX('plain', () => <BackNav text="Rugs" url="/c/rugs" />)
   .addWithJSX('with layout controls', () => (
     <BackNav text="Rugs" url="/c/rugs" searchResults={SearchResultsModelBase.create({})} />
-  ))
-
-storiesOf('Breadcrumbs', module)
-  .addDecorator(wrapWithProvider())
-  .addWithJSX('with default props', () => (
-    <Breadcrumbs
-      items={[
-        { url: '#', text: 'Home' },
-        { url: '#', text: 'Tool Storage' },
-        { url: '#', text: 'Tool Carts' }
-      ]}
-    />
   ))
 
 const selectionModelWithImages = SelectionModelBase.create({
@@ -354,6 +235,8 @@ storiesOf('ButtonSelector', module)
     />
   ))
 
+require('./Breadcrumbs.stories')
+
 storiesOf('CartButton', module)
   .addDecorator(wrapWithProvider())
   .addWithJSX('with default props', () => <CartButton />)
@@ -398,7 +281,9 @@ storiesOf('CmsSlot', module)
 
 storiesOf('Container', module).addWithJSX('with default props', () => (
   <div>
-    <Container>{'<h1>Title</h1>'}</Container>
+    <Container>
+      <h1>Title</h1>
+    </Container>
   </div>
 ))
 
@@ -509,24 +394,7 @@ storiesOf('ImageSwitcher', module)
     />
   ))
 
-storiesOf('Lazy', module)
-  .addWithJSX('with defaults', () => (
-    <div>
-      <div style={{ height: '2000px' }}>Scroll Down</div>
-      <Lazy>
-        <div style={{ width: '100%', height: 500, background: '#abccba' }}>Hello World!</div>
-      </Lazy>
-    </div>
-  ))
-  .addWithJSX('with set height', () => (
-    <div>
-      <h1>Header</h1>
-      <Lazy style={{ height: 500 }}>
-        <img src="https://placehold.it/200x500" alt="placeholder" />
-      </Lazy>
-      <p>This text should not move</p>
-    </div>
-  ))
+require('./Lazy.stories')
 
 storiesOf('Link', module)
   .addDecorator(wrapWithProvider())
@@ -545,13 +413,8 @@ storiesOf('Menu', module)
   .addDecorator(wrapWithProvider())
   .addWithJSX('with default props', () => <Menu />)
 
-storiesOf('AMP Menu', module)
-  .addDecorator(wrapWithProvider({ amp: true }))
-  .addWithJSX('with default props', () => <Menu />)
-
-storiesOf('NavTabs', module)
-  .addDecorator(wrapWithProvider())
-  .addWithJSX('with default props', () => <NavTabs />)
+require('./AMPMenu.stories')
+require('./NavTabs.stories')
 
 storiesOf('PromoBanner', module)
   .addDecorator(wrapWithProvider())
@@ -601,69 +464,7 @@ storiesOf('ResponsiveTiles', module)
     </ResponsiveTiles>
   ))
 
-storiesOf('SearchDrawer', module)
-  .addDecorator(
-    wrapWithProvider({
-      search: SearchModelBase.create({
-        show: true
-      })
-    })
-  )
-  .addWithJSX('with initial content', () => (
-    <SearchDrawer
-      initialContent={
-        <div style={{ margin: 10 }}>
-          <h2>Initial Content</h2>
-          <h6>Subheading</h6>
-          <p>This will be rendered when the search field is blank</p>
-          <p>
-            Massa tempor nec feugiat nisl. Dictum fusce ut placerat orci nulla pellentesque
-            dignissim. Turpis massa sed elementum tempus egestas sed sed. Ac tincidunt vitae semper
-            quis lectus nulla at. Ac felis donec et odio pellentesque diam volutpat commodo sed.
-            Consectetur lorem donec massa sapien.
-          </p>
-          <p>Try typing in the search bar and watch this content disappear.</p>
-        </div>
-      }
-    />
-  ))
-
-storiesOf('SearchDrawer', module)
-  .addDecorator(
-    wrapWithProvider({
-      search: SearchModelBase.create({
-        text: 'Search Query',
-        show: true,
-        groups: [
-          ResultsGroupModel.create({
-            caption: 'Results',
-            results: [
-              ResultsModel.create({
-                text: 'Goto A',
-                url: '/#a',
-                thumbnail: 'https://placehold.it/300?text=A'
-              }),
-              ResultsModel.create({
-                text: 'Goto B',
-                url: '/#b',
-                thumbnail: 'https://placehold.it/300?text=B'
-              }),
-              ResultsModel.create({
-                text: 'Goto C',
-                url: '/#c',
-                thumbnail: 'https://placehold.it/300?text=C'
-              })
-            ]
-          })
-        ]
-      })
-    })
-  )
-  .addWithJSX('with default results', () => <SearchDrawer />)
-  .addWithJSX('with searchButtonVariant="icon"', () => <SearchDrawer searchButtonVariant="icon" />)
-  .addWithJSX('with showClearButton=false', () => (
-    <SearchDrawer searchButtonVariant="icon" showClearButton={false} />
-  ))
+require('./SearchDrawer.stories')
 
 storiesOf('ShowMore', module)
   .addDecorator(wrapWithProvider())

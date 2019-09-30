@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.52.3
+
+- Fixed the NavTabs storybook example.
+
 ### 6.52.2
 
 - Improves the patch from 6.52.1 to also handle the case when the product was rendered on the server.
