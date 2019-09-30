@@ -26,7 +26,7 @@ export const styles = theme => ({
     left: 0,
     bottom: 0,
     width: '100%',
-    zIndex: 1,
+    zIndex: 10,
     borderRadius: '0'
   },
   confirmation: {
@@ -71,18 +71,26 @@ export default class AddToCartButton extends Component {
     /**
      * Props to be applied to the Snackbar element in which the confirmation message is displayed.
      */
-    snackbarProps: PropTypes.object
+    snackbarProps: PropTypes.object,
+
+    /**
+     * The time in milliseconds to throttle clicking to prevent accidentally adding
+     * multiple items to the cart. Specify `false` to disable throttling.
+     */
+    throttleClick: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
   }
 
   static defaultProps = {
     docked: false,
     snackbarProps: {},
     cartURL: '/cart',
-    cartLinkText: 'View My Cart'
+    cartLinkText: 'View My Cart',
+    throttleClick: 500
   }
 
   state = {
-    messageOpen: false
+    messageOpen: false,
+    disabled: false
   }
 
   render() {
@@ -98,6 +106,8 @@ export default class AddToCartButton extends Component {
       snackbarProps,
       cartURL,
       cartLinkText,
+      throttleClick,
+      disabled,
       ...other
     } = this.props
 
@@ -115,6 +125,7 @@ export default class AddToCartButton extends Component {
             onClick={this.onClick}
             classes={{ root: classes.root }}
             className={classnames(className, { [classes.docked]: docked })}
+            disabled={disabled || this.state.disabled}
           >
             {children || 'Add to Cart'}
           </Button>
@@ -153,7 +164,12 @@ export default class AddToCartButton extends Component {
   }
 
   onClick = e => {
-    const { onClick } = this.props
+    const { onClick, throttleClick } = this.props
+
+    if (this.props.throttleClick) {
+      this.setState({ disabled: true })
+      setTimeout(() => this.setState({ disabled: false }), throttleClick)
+    }
 
     if (onClick) {
       onClick(e)

@@ -90,10 +90,11 @@ export default class Breadcrumbs extends Component {
     const arrow = i > 0 ? <ArrowRight className={classes.separator} /> : null
 
     if (item.url) {
+      const eventData = item.toJSON ? item.toJSON() : item
       return (
         <span key={i}>
           {arrow}
-          <Track event="breadcrumbClicked" breadcrumb={item.toJSON()}>
+          <Track event="breadcrumbClicked" breadcrumb={eventData}>
             <Link to={item.url} state={item.state}>
               {item.text}
             </Link>

@@ -74,8 +74,9 @@ yarn release
 
 ## Changelog
 
-### 6.52.3
+### 6.53.0
 
+- Added a `throttleClick` prop to `AddToCartButton` with a default of 250 milliseconds to help prevent users from adding a product to their cart multiple times by accident.
 - Fixed the NavTabs storybook example.
 
 ### 6.52.2
