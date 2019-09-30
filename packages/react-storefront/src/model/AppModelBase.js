@@ -12,7 +12,7 @@ import UserModelBase from './UserModelBase'
 import CartModelBase from './CartModelBase'
 import SearchModelBase from './SearchModelBase'
 import isEqual from 'lodash/isEqual'
-import merge from 'lodash/merge'
+import mergeWith from 'lodash/mergeWith'
 
 /**
  * Represents a single breadcrumb
@@ -102,9 +102,6 @@ export const LocationModel = types
         self.hostname +
         (['443', '80'].includes(self.port) ? '' : `:${self.port}`)
       )
-    },
-    get uri() {
-      return self.pathname + self.search
     }
   }))
 
@@ -376,15 +373,15 @@ const AppModelBase = types
      * @param {Object} snapshot The snapshot to apply
      */
     mergeSnapshotOntoBranch(branchName, current, snapshot) {
-      if (!isEqual(snapshot, current)) {
-        if (snapshot != null && current != null && current.id && snapshot.id === current.id) {
-          // Use merge when updating an existing model instance so that late loaded
-          // values (usually from loadPersonalization) aren't overwritten when returning back
-          // to the the previous page
-          merge(self[branchName], snapshot)
-        } else {
-          self[branchName] = snapshot
-        }
+      if (isEqual(snapshot, current)) return
+
+      if (snapshot != null && current != null && current.id != null && snapshot.id === current.id) {
+        // Use merge when updating an existing model instance so that late loaded
+        // values (usually from loadPersonalization) aren't overwritten when returning back
+        // to the the previous page
+        mergeWith(self[branchName], snapshot, takeSource)
+      } else {
+        self[branchName] = snapshot
       }
     },
 
@@ -480,5 +477,7 @@ function auditPatchOnPop(model, patch) {
     }
   }
 }
+
+const takeSource = (_target, source) => source
 
 export default AppModelBase

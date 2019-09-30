@@ -5,6 +5,7 @@
 import AppModelBase, { LocationModel } from '../../src/model/AppModelBase'
 import UserModelBase from '../../src/model/UserModelBase'
 import { types } from 'mobx-state-tree'
+import ProductModelBase from '../../src/model/ProductModelBase'
 
 describe('AppModelBase', () => {
   it('should provide a canonical url for amp pages', () => {
@@ -119,6 +120,78 @@ describe('AppModelBase', () => {
       expect(app.user).toBeNull()
       expect(app.loading).toBe(true)
     })
+
+    describe('merge/replace', () => {
+      let ProductModel, AppModel
+
+      beforeEach(() => {
+        ProductModel = types.compose(
+          ProductModelBase,
+          types.model('ProductModel', {
+            childProduct: types.maybeNull(types.late(() => ProductModel)),
+            recommendations: types.optional(types.array(types.late(() => ProductModel)), [])
+          })
+        )
+
+        AppModel = types.compose(
+          AppModelBase,
+          types.model('AppModel', {
+            product: types.maybeNull(ProductModel)
+          })
+        )
+      })
+
+      it('should merge the incoming patch with the state tree when the id matches current record', () => {
+        const app = AppModel.create({
+          product: {
+            id: '1',
+            recommendations: [{ id: '2' }, { id: '3' }]
+          }
+        })
+        expect(app.product.recommendations).toHaveLength(2)
+        app.applyState({ product: { id: '1', name: 'Test' } })
+        expect(app.product.name).toBe('Test')
+        expect(app.product.recommendations).toHaveLength(2)
+      })
+
+      it('should replace the existing branch when the incoming patch has a different id', () => {
+        const app = AppModel.create({
+          product: {
+            id: '1',
+            recommendations: [{ id: '2' }, { id: '3' }]
+          }
+        })
+        expect(app.product.recommendations).toHaveLength(2)
+        app.applyState({ product: { id: '2', name: 'Test' } })
+        expect(app.product.name).toBe('Test')
+        expect(app.product.id).toBe('2')
+        expect(app.product.recommendations).toHaveLength(0)
+      })
+
+      it('should handle deep merge of models', () => {
+        const app = AppModel.create({
+          product: {
+            id: '1',
+            childProduct: { id: '99', name: '99' },
+            recommendations: [{ id: '2' }, { id: '3' }]
+          }
+        })
+        expect(app.product.recommendations).toHaveLength(2)
+        app.applyState({
+          product: {
+            id: '1',
+            name: 'Test',
+            childProduct: { id: '100', name: '100' },
+            recommendations: [{ id: '1' }, { id: '3' }]
+          }
+        })
+        expect(app.product.childProduct.id).toBe('100')
+        expect(app.product.childProduct.name).toBe('100')
+        expect(app.product.recommendations).toHaveLength(2)
+        expect(app.product.recommendations[0].id).toBe('1')
+        expect(app.product.recommendations[1].id).toBe('3')
+      })
+    })
   })
 
   describe('clearProductThumbnail', () => {
@@ -213,6 +286,7 @@ describe('AppModelBase', () => {
       expect(app.user.email).toBe('test@domain.com')
     })
   })
+
   describe('setOffline', () => {
     it('should toggle offline', () => {
       const app = AppModelBase.create({
@@ -223,6 +297,15 @@ describe('AppModelBase', () => {
       expect(app.offline).toBe(true)
       app.setOffline(false)
       expect(app.offline).toBe(false)
+    })
+  })
+
+  describe('setScrollResetPending', () => {
+    it('should update scrollResetPending', () => {
+      const app = AppModelBase.create({})
+      expect(app.scrollResetPending).toBe(false)
+      app.setScrollResetPending(true)
+      expect(app.scrollResetPending).toBe(true)
     })
   })
 })
