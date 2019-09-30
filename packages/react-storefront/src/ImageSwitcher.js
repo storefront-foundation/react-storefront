@@ -16,11 +16,11 @@ import { ReactPinchZoomPan } from 'react-pinch-zoom-pan'
 import TabsRow from './TabsRow'
 import analytics from './analytics'
 import { inject, observer } from 'mobx-react'
-import { reaction } from 'mobx'
 import AmpImageSwitcher from './amp/AmpImageSwitcher'
 import LoadMask from './LoadMask'
 import Image from './Image'
 import Video from './Video'
+import isEqual from 'lodash/isEqual'
 
 const paletteIconTextColor = '#77726D'
 
@@ -329,41 +329,33 @@ export default class ImageSwitcher extends Component {
   }
 
   state = {
-    selectedIndex: 0,
-    productId: null,
+    fullSizeImagesLoaded: true,
     viewerActive: false,
-    fullSizeImagesLoaded: false,
     playingVideo: false
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { product } = nextProps
-    const { productId } = prevState
+    const nextState = {
+      images: normalizeImages(nextProps, 'images'),
+      thumbnails: normalizeImages(nextProps, 'thumbnails'),
+      selectedIndex:
+        nextProps.selectedIndex != null ? nextProps.selectedIndex : prevState.selectedIndex || 0
+    }
 
-    if (
-      typeof nextProps.selectedIndex === 'number' &&
-      nextProps.selectedIndex !== prevState.selectedIndex
-    ) {
-      // update the selectedIndex state if a new prop value is passed in
-      return { selectedIndex: nextProps.selectedIndex }
-    } else if (product && product.id !== productId) {
-      // reset the selectedIndex state if the product changes
-      return { productId: product.id, selectedIndex: 0 }
+    if (prevState.images && !isEqual(nextState.images, prevState.images)) {
+      // new images are loading in, show the loadingProduct.thumbnail
+      nextState.fullSizeImagesLoaded = false
+
+      // reset the selected index to the first image
+      if (!nextProps.selectedIndex) {
+        nextState.selectedIndex = 0
+      }
+
+      return nextState
+    } else if (prevState.selectedIndex == null) {
+      return nextState
     } else {
       return null
-    }
-  }
-
-  componentDidMount() {
-    if (this.props.resetSelectionWhenImagesChange || this.props.product) {
-      this.disposeReaction = reaction(
-        () => this.images,
-        images => {
-          if (JSON.stringify(images) !== JSON.stringify(this.state.images)) {
-            this.setState({ images, selectedIndex: 0, fullSizeImagesLoaded: false })
-          }
-        }
-      )
     }
   }
 
@@ -406,42 +398,9 @@ export default class ImageSwitcher extends Component {
     return <div key={index} className={classes} />
   }
 
-  get thumbnails() {
-    const { thumbnails, product } = this.props
-
-    if (thumbnails === false) {
-      return []
-    } else {
-      return this.normalizeImages(
-        thumbnails && thumbnails.length ? thumbnails : (product && product.thumbnails) || []
-      )
-    }
-  }
-
-  get images() {
-    const { images, product } = this.props
-
-    return this.normalizeImages(
-      images && images.length ? images : (product && product.images) || []
-    )
-  }
-
-  normalizeImages(images) {
-    const { product } = this.props
-    const productName = product && product.name
-
-    return images.map(e => {
-      if (typeof e === 'string') {
-        return { src: e, alt: productName, video: false }
-      } else {
-        return { ...e, alt: e.alt || productName }
-      }
-    })
-  }
-
   renderThumbnails() {
     const { classes, thumbnailsTitle, notFoundSrc } = this.props
-    const { thumbnails } = this
+    const { thumbnails } = this.state
     const modifiedThumbs = thumbnails && thumbnails.map(({ src, alt }) => ({ imageUrl: src, alt }))
     const { viewerActive, selectedIndex } = this.state
 
@@ -503,8 +462,8 @@ export default class ImageSwitcher extends Component {
       viewerThumbnailsOnly,
       notFoundSrc
     } = this.props
-    const { images, thumbnails } = this
-    const { fullSizeImagesLoaded } = this.state
+
+    const { fullSizeImagesLoaded, images, thumbnails } = this.state
 
     if (app.amp)
       return (
@@ -546,7 +505,7 @@ export default class ImageSwitcher extends Component {
                   <Image
                     key={src}
                     notFoundSrc={notFoundSrc}
-                    src={i === 0 && app.loading ? null : src} // need to clear src when app.loading is true so that the onLoad event will fire and the loading thumbnail will be removed
+                    src={src}
                     alt={alt}
                     onLoad={i === 0 ? this.onFullSizeImagesLoaded : null}
                     {...imageProps}
@@ -672,4 +631,31 @@ export default class ImageSwitcher extends Component {
     this.setState({ fullSizeImagesLoaded: true })
     this.props.app.applyState({ loadingProduct: null })
   }
+}
+
+/**
+ * Converts an array that can contain strings or MediaTypeModel instances into
+ * an array of objects with src, alt, and video
+ * @private
+ * @param {Object} props
+ * @param {String} key "images" or "thumbnails"
+ */
+function normalizeImages(props, key) {
+  const { product } = props
+  const productName = product && product.name
+  let images = props[key]
+
+  if (!images || !images.length) {
+    images = product && product[key]
+  }
+
+  return !images
+    ? []
+    : images.map(e => {
+        if (typeof e === 'string') {
+          return { src: e, alt: productName, video: false }
+        } else {
+          return { ...e, alt: e.alt || productName }
+        }
+      })
 }
