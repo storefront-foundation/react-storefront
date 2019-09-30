@@ -470,7 +470,6 @@ export default class ImageSwitcher extends Component {
         <AmpImageSwitcher
           product={product}
           images={images}
-          thumbnails={thumbnails}
           className={className}
           classes={{
             root: classes.root,
@@ -481,7 +480,7 @@ export default class ImageSwitcher extends Component {
           }}
           arrows={arrows}
           indicators={indicators}
-          thumbnails={viewerThumbnailsOnly ? null : this.thumbnails}
+          thumbnails={viewerThumbnailsOnly ? null : thumbnails}
         />
       )
 

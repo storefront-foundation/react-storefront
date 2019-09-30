@@ -162,6 +162,8 @@ export default class AmpImageSwitcher extends Component {
       className,
       app
     } = this.props
+
+    console.log('AmpImageSwitcher thumbnails', thumbnails)
     const { id } = this
 
     const pathname = app.location.pathname.replace(/\.amp/, '')
