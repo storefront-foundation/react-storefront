@@ -3,8 +3,15 @@
  * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
  */
 import { fetchLatest, StaleResponseError } from '../fetchLatest'
-import { abortPrefetches, resumePrefetches, getCachedResponse } from './serviceWorker'
-import { HANDLER, RESPONSE_TYPE, SURROGATE_KEY, REACT_STOREFRONT, API_VERSION } from './headers'
+import { abortPrefetches, resumePrefetches, isServiceWorkerReady } from './serviceWorker'
+import {
+  HANDLER,
+  RESPONSE_TYPE,
+  SURROGATE_KEY,
+  REACT_STOREFRONT,
+  API_VERSION,
+  CLIENT_IF
+} from './headers'
 import getAPIVersion from './getAPIVersion'
 
 let doFetch
@@ -17,20 +24,26 @@ let doFetch
  * @param {String} options.cache Set to "force-cache" to cache the response in the service worker.  Omit to skip the service worker cache.
  * @return {Object} A state patch
  */
-export async function fetch(url, { cache = 'default' } = {}) {
+export async function fetch(url, { cache = 'default', onlyHit = false } = {}) {
   abortPrefetches()
   doFetch = doFetch || fetchLatest(require('isomorphic-unfetch'))
 
   const { href } = location
 
+  const headers = {
+    [REACT_STOREFRONT]: 'true', // allows back end handlers to quickly identify PWA API requests,
+    [API_VERSION]: getAPIVersion() // needed for the service worker to determine the correct runtime cache name and ensure that we're not getting a cached response from a previous api version
+  }
+
+  if (onlyHit) {
+    headers[CLIENT_IF] = 'cache-hit'
+  }
+
   try {
     const result = await doFetch(url, {
       cache: cache || 'default',
       credentials: 'include',
-      headers: {
-        [REACT_STOREFRONT]: 'true', // allows back end handlers to quickly identify PWA API requests,
-        [API_VERSION]: getAPIVersion() // needed for the service worker to determine the correct runtime cache name and ensure that we're not getting a cached response from a previous api version
-      }
+      headers
     }).then(response => {
       const { redirected, url } = response
 
@@ -38,7 +51,12 @@ export async function fetch(url, { cache = 'default' } = {}) {
         redirectTo(url)
       } else {
         resumePrefetches()
-        return response.json()
+
+        if (response.status === 204) {
+          return null
+        } else {
+          return response.json()
+        }
       }
     })
 
@@ -151,8 +169,9 @@ export default function fromServer(handlerPath, getURL) {
       server: true,
       client: true // fromServer handlers run on the client too - we make an ajax request to get the state from the server
     },
-    getCachedResponse(cacheName) {
-      return getCachedResponse(`${cacheName}-json`, createURL())
+    async getCachedResponse(response) {
+      if (!isServiceWorkerReady()) return null
+      return await fetch(createURL(), { cache: response.clientCache, onlyHit: true })
     },
     async fn(params, request, response) {
       if (typeof handlerPath === 'string') {

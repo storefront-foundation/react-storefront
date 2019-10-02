@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.53.1
+
+- Fixes a bug introduced in 6.47.0 that caused responses cached in the browser to not expire properly
+
 ### 6.53.0
 
 - Added a `throttleClick` prop to `AddToCartButton` with a default of 250 milliseconds to help prevent users from adding a product to their cart multiple times by accident.

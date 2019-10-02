@@ -785,9 +785,7 @@ describe('Router:Node', function() {
       response.cacheOnClient = jest.fn()
       serverResponse = { product: { name: 'test' } }
 
-      serverHandler.getCachedResponse = jest.fn(() => ({
-        json: () => Promise.resolve(serverResponse)
-      }))
+      serverHandler.getCachedResponse = jest.fn(() => Promise.resolve(serverResponse))
 
       runAll = async router => {
         const results = []

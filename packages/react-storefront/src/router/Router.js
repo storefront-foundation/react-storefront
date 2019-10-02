@@ -273,8 +273,10 @@ export default class Router extends EventEmitter {
    * @return {Router} this
    */
   configureClientCache(options) {
-    this.clientCacheConfig = options
-    configureCache(options)
+    if (typeof window !== 'undefined') {
+      this.clientCacheConfig = { ...defaultClientCacheConfig, ...options }
+      configureCache(this.clientCacheConfig)
+    }
     return this
   }
 
@@ -306,18 +308,17 @@ export default class Router extends EventEmitter {
    * Returns a merged cached response for all specified fromServer handler.  Will return null
    * if we're missing a cached response for any of the handlers
    * @param {Object[]} fromServerHandlers
+   * @param {ClientContext} res
    * @return {Object}
    */
-  async getCachedPatch(route, fromServerHandlers) {
-    if (!this.isClientCachingEnabled(route)) return null
-
+  async getCachedPatch(fromServerHandlers, res) {
     const result = {}
 
     for (let handler of fromServerHandlers) {
-      const response = await handler.getCachedResponse(this.clientCacheConfig.cacheName)
+      const response = await handler.getCachedResponse(res)
 
       if (response) {
-        merge(result, await response.json())
+        merge(result, response)
       } else {
         return null
       }
@@ -357,7 +358,13 @@ export default class Router extends EventEmitter {
       if (this.isBrowser && !initialLoad) {
         const serverHandlers = handlers.filter(h => h.type === 'fromServer')
         const fromClientHandler = handlers.find(h => h.type === 'fromClient')
-        cachedFromServerResult = await this.getCachedPatch(match, serverHandlers)
+        const cacheHandler = handlers.find(h => h.type === 'cache')
+
+        // run the cache handler so the caching headers are set on the request for the service worker
+        if (cacheHandler && cacheHandler.client) {
+          cacheHandler.fn(params, request, response)
+          cachedFromServerResult = await this.getCachedPatch(serverHandlers, response)
+        }
 
         const historyStatePatch = {
           location: this.createLocation(),
@@ -384,8 +391,8 @@ export default class Router extends EventEmitter {
           }
         }
 
-        // skip state handlers on initial hydration - we just need to run cache and track
-        if (initialLoad && handler.type !== 'cache') {
+        // we've already run the cache handler on the client above
+        if (handler.type === 'cache' && this.isBrowser) {
           continue
         }
 

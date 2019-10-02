@@ -4,6 +4,11 @@ workbox.loadModule('workbox-strategies')
 
 const PREFETCH_CACHE_MISS = 412
 
+// If we used anything other than a 2xx status, chrome console will show a
+// failed fetch every time there is a cache miss.  If we return null, workbox
+// will show a warning and chrome console will show a fetch failure.
+const CLIENT_CACHE_MISS = 204
+
 let runtimeCacheOptions = {},
   baseCacheName,
   ssrCacheName
@@ -41,6 +46,10 @@ function configureRuntimeCaching({
 } = {}) {
   baseCacheName = cacheName
   ssrCacheName = `${cacheName}-html-{{version}}`
+
+  console.log(
+    `[react-storefront service worker] configureRuntimeCaching, maxEntries: ${maxEntries}, maxAgeSeconds: ${maxAgeSeconds}`
+  )
 
   runtimeCacheOptions = {
     plugins: [
@@ -205,7 +214,8 @@ function cacheState({ path, cacheData, apiVersion } = {}) {
     const res = new Response(blob, {
       status: 200,
       headers: {
-        'Content-Length': blob.size
+        'Content-Length': blob.size,
+        date: new Date().toString()
       }
     })
 
@@ -379,11 +389,25 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
       cachePath({ path: url.pathname + url.search }, true)
     }
 
-    const apiVersion = event.request.headers.get('x-moov-api-version') // set by fromServer
+    const headers = event.request.headers
+    const apiVersion = headers.get('x-moov-api-version') // set by fromServer
     const cacheName = getAPICacheName(apiVersion, url.pathname)
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
+    const onlyHit = headers.get('x-moov-client-if') === 'cache-hit'
 
-    if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
+    if (onlyHit) {
+      return workbox.strategies
+        .cacheOnly(cacheOptions)
+        .handle(context)
+        .then(res => {
+          return (
+            res ||
+            new Response(null, {
+              status: CLIENT_CACHE_MISS
+            })
+          )
+        })
+    } else if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
       return workbox.strategies
         .networkOnly(cacheOptions)
         .handle(context)

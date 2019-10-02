@@ -54,4 +54,9 @@ export const XDN_VERSION = 'x-moov-xdn-version'
  */
 export const ROUTES = 'x-rsf-routes'
 
+/**
+ * Instructs the service worker to only return a response if a match is found in the cache.
+ */
+export const CLIENT_IF = 'x-moov-client-if'
+
 export default null
