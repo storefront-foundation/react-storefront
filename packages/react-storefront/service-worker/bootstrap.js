@@ -394,10 +394,11 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     const cacheName = getAPICacheName(apiVersion, url.pathname)
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
     const onlyHit = headers.get('x-moov-client-if') === 'cache-hit'
+    const { cacheOnly, networkOnly, cacheFirst } = workbox.strategies
 
     if (onlyHit) {
-      return workbox.strategies
-        .cacheOnly(cacheOptions)
+      // will get here when trying to skip skeletons in fromServer#getCachedResponse
+      return cacheOnly(cacheOptions)
         .handle(context)
         .then(res => {
           return (
@@ -408,26 +409,26 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
           )
         })
     } else if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
-      return workbox.strategies
-        .networkOnly(cacheOptions)
+      // will get here when transitioning from AMP or if the developer serveSSRFromCache: true in their client webpack config
+      return networkOnly()
         .handle(context)
         .catch(() => offlineResponse(apiVersion, context))
-    } else if (event.request.cache === 'force-cache' /* set by cache and sent by fromServer */) {
-      return workbox.strategies.cacheFirst(cacheOptions).handle(context)
+    } else if (
+      apiVersion &&
+      event.request.cache === 'force-cache' /* set by cache and sent by fromServer */
+    ) {
+      // will get here when fetching state during client-side navigation
+      return cacheFirst(cacheOptions).handle(context)
     } else {
-      // Check the cache for all routes. If the result is not found, get it from the network.
-      return workbox.strategies
-        .cacheOnly(cacheOptions)
+      // will get here in all other cases
+      return networkOnly()
         .handle(context)
-        .then(result => {
-          return result || workbox.strategies.networkOnly().handle(context)
-        })
         .catch(() => offlineResponse(apiVersion, context))
     }
   } catch (e) {
     // if anything goes wrong, fallback to network
     // this is critical - if there is a bug in the service worker code, the whole site can stop working
     console.warn('[react-storefront service worker]', 'caught error in service worker', e)
-    return workbox.strategies.networkOnly().handle(context)
+    return networkOnly().handle(context)
   }
 })
