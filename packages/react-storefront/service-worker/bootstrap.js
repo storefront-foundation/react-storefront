@@ -148,7 +148,7 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
           .then(response => {
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
               if (response.status === 200) {
-                cache.put(path, response)
+                cache.put(path, response.clone())
                 console.log(`[react-storefront service worker] ${path} was prefetched.`)
               } else if (response.status === PREFETCH_CACHE_MISS) {
                 console.log(`[react-storefront service worker] ${path} was throttled.`)
@@ -396,38 +396,28 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     const onlyHit = headers.get('x-moov-client-if') === 'cache-hit'
 
     if (onlyHit) {
-      return workbox.strategies
-        .cacheOnly(cacheOptions)
-        .handle(context)
-        .then(res => {
-          return (
-            res ||
-            new Response(null, {
-              status: CLIENT_CACHE_MISS
-            })
-          )
+      return new workbox.strategies.CacheOnly(cacheOptions).handle(context).catch(res => {
+        return new Response(null, {
+          status: CLIENT_CACHE_MISS
         })
+      })
     } else if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
-      return workbox.strategies
-        .networkOnly(cacheOptions)
+      return new workbox.strategies.NetworkOnly(cacheOptions)
         .handle(context)
         .catch(() => offlineResponse(apiVersion, context))
     } else if (event.request.cache === 'force-cache' /* set by cache and sent by fromServer */) {
-      return workbox.strategies.cacheFirst(cacheOptions).handle(context)
+      return new workbox.strategies.CacheFirst(cacheOptions).handle(context)
     } else {
       // Check the cache for all routes. If the result is not found, get it from the network.
-      return workbox.strategies
-        .cacheOnly(cacheOptions)
+      return new workbox.strategies.CacheOnly(cacheOptions)
         .handle(context)
-        .then(result => {
-          return result || workbox.strategies.networkOnly().handle(context)
-        })
+        .catch(e => new workbox.strategies.NetworkOnly().handle(context))
         .catch(() => offlineResponse(apiVersion, context))
     }
   } catch (e) {
     // if anything goes wrong, fallback to network
     // this is critical - if there is a bug in the service worker code, the whole site can stop working
     console.warn('[react-storefront service worker]', 'caught error in service worker', e)
-    return workbox.strategies.networkOnly().handle(context)
+    return new workbox.strategies.NetworkOnly().handle(context)
   }
 })
