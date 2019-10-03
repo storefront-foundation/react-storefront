@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.54.1
+
+- Improved consistency of prefetch caching.
+
 ### 6.54.0
 
 - Upgrades workbox to 4.3.1

@@ -148,8 +148,12 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
           .then(response => {
             return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
               if (response.status === 200) {
-                cache.put(path, response.clone())
-                console.log(`[react-storefront service worker] ${path} was prefetched.`)
+                response.text().then(data => {
+                  addToCache(cache, path, data, response.headers.get('content-type'))
+                  console.log(
+                    `[react-storefront service worker] ${path} was prefetched and added to ${cacheName}`
+                  )
+                })
               } else if (response.status === PREFETCH_CACHE_MISS) {
                 console.log(`[react-storefront service worker] ${path} was throttled.`)
               } else {
@@ -192,6 +196,27 @@ function resumePrefetches() {
 }
 
 /**
+ * Adds a result to the cache
+ * @param {Cache} cache
+ * @param {String} path The URL path
+ * @param {String} data The response body
+ * @param {String} contentType The MIME type
+ */
+function addToCache(cache, path, data, contentType) {
+  const blob = new Blob([data], { type: contentType })
+
+  const res = new Response(blob, {
+    status: 200,
+    headers: {
+      'Content-Length': blob.size,
+      date: new Date().toString()
+    }
+  })
+
+  return cache.put(path, res)
+}
+
+/**
  * Adds the specified data to the cache
  * @param {Object} options A URL path
  * @param {String} options.path A URL path
@@ -209,19 +234,8 @@ function cacheState({ path, cacheData, apiVersion } = {}) {
       cacheData = JSON.stringify(cacheData, null, 2)
     }
 
-    const blob = new Blob([cacheData], { type })
-
-    const res = new Response(blob, {
-      status: 200,
-      headers: {
-        'Content-Length': blob.size,
-        date: new Date().toString()
-      }
-    })
-
+    addToCache(cache, path, cacheData, type)
     console.log('[react-storefront service worker]', `caching ${path}`)
-
-    return cache.put(path, res)
   })
 }
 
