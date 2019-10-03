@@ -74,6 +74,15 @@ yarn release
 
 ## Changelog
 
+### 6.54.1
+
+- Improved consistency of prefetch caching.
+
+### 6.54.0
+
+- Upgrades workbox to 4.3.1
+- Fixes a bug where prefetched data always results in a cache miss when navigating to a new page.
+
 ### 6.53.1
 
 - Fixes a bug introduced in 6.47.0 that caused responses cached in the browser to not expire properly

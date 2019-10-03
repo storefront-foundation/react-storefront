@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "6.53.1",
+  "version": "6.54.1",
   "description": "Build and deploy e-commerce progressive web apps in record time.",
   "browser": "src",
   "module": "./index.js",
@@ -126,7 +126,7 @@
     "tti-polyfill": "^0.2.2",
     "webpack-filter-warnings-plugin": "^1.2.1",
     "webpack-stats-plugin": "^0.2.1",
-    "workbox-webpack-plugin": "^3.2.0",
+    "workbox-webpack-plugin": "^4.3.1",
     "write-file-webpack-plugin": "^4.3.2"
   },
   "jest": {

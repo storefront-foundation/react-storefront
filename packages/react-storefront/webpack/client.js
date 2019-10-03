@@ -88,7 +88,8 @@ function createServiceWorkerPlugins({
             /robots\.txt/,
             /manifest\.json/,
             /icons\//,
-            /\.js\.map/
+            /\.js\.map/,
+            /.well-known\/*/
           ]
         },
         workboxConfig
