@@ -107,6 +107,14 @@ export default class Server {
     }
   }
 
+  getModeId() {
+    if (!global.env) return null
+    console.log('global.env.moovManifest', global.env.moovManifest)
+    const { moov_mode_name } = global.env
+    if (!moov_mode_name) return null
+    console.log('global.env.moovManifest.Modes', global.env.moovManifest.Modes)
+  }
+
   /**
    * Renders either a JSON or HTML response for the given state based on the path suffix.
    * @private
@@ -136,6 +144,7 @@ export default class Server {
       ...state,
       amp,
       initialWidth: amp ? 'xs' : state.initialWidth,
+      modeId: this.getModeId(),
       location: {
         ...history.location,
         port,
