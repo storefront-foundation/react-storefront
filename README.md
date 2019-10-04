@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.54.2
+
+- Fixed an issue where `<Image />` components with `lazy` parameter and no width are never rendered if they are initially above the fold.
+
 ### 6.54.1
 
 - Improved consistency of prefetch caching.

@@ -16,9 +16,10 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    // Without a minimum height, the container will not fire
+    // Without a minimum height and width, the container will not fire
     // the visibility change
-    minHeight: 1
+    minHeight: 1,
+    minWidth: 1
   },
   fit: {
     position: 'absolute',
