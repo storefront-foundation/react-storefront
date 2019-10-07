@@ -9,7 +9,7 @@ exports[`CartButton renders 1`] = `
           <Track event="cartClicked" app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
             <WithStyles(inject-Link) to="/cart" server={[undefined]} onClick={[Function]} anchorProps={{...}}>
               <inject-Link to="/cart" server={[undefined]} onClick={[Function]} anchorProps={{...}} classes={{...}}>
-                <Link to="/cart" server={[undefined]} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={[undefined]} location={{...}}>
+                <Link to="/cart" server={[undefined]} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={[undefined]} app={{...}} preserveScroll={false}>
                   <a data-th="cart-link" data-moov-link="on" className="RSFLink-root-3" style={[undefined]} onClick={[Function]} href="/cart">
                     <WithStyles(ToolbarButton) aria-label="Cart" color="inherit" icon={{...}}>
                       <ToolbarButton aria-label="Cart" color="inherit" icon={{...}} classes={{...}}>

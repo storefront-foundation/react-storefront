@@ -26,7 +26,7 @@ exports[`NavTabs does not require history 1`] = `
                                           <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                             <WithStyles(inject-Link) state={[Function]} className="RSFNavTab-link-545" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}}>
                                               <inject-Link state={[Function]} className="RSFNavTab-link-545" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}}>
-                                                <Link state={[Function]} className="RSFNavTab-link-545" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                <Link state={[Function]} className="RSFNavTab-link-545" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} app={{...}} preserveScroll={false}>
                                                   <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="nav" data-moov-link="on" className="RSFLink-root-549 RSFNavTab-link-545" style={[undefined]} onClick={[Function]} href="https://example.com/1">
                                                     <WithStyles(Tab) className="RSFNavTab-root-542 RSFTabsRow-tab-528 RSFNavTabs-tab-497" label="Tab 1" classes={{...}}>
                                                       <Tab className="RSFNavTab-root-542 RSFTabsRow-tab-528 RSFNavTabs-tab-497" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
@@ -68,7 +68,7 @@ exports[`NavTabs does not require history 1`] = `
                                           <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                             <WithStyles(inject-Link) state={[Function]} className="RSFNavTab-link-545" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}}>
                                               <inject-Link state={[Function]} className="RSFNavTab-link-545" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}}>
-                                                <Link state={[Function]} className="RSFNavTab-link-545" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                <Link state={[Function]} className="RSFNavTab-link-545" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} app={{...}} preserveScroll={false}>
                                                   <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="nav" data-moov-link="on" className="RSFLink-root-549 RSFNavTab-link-545" style={[undefined]} onClick={[Function]} href="https://example.com/2">
                                                     <WithStyles(Tab) className="RSFNavTab-root-542 RSFTabsRow-tab-528 RSFNavTabs-tab-497" label="Tab 1" classes={{...}}>
                                                       <Tab className="RSFNavTab-root-542 RSFTabsRow-tab-528 RSFNavTabs-tab-497" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
@@ -155,7 +155,7 @@ exports[`NavTabs renders 1`] = `
                                           <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                             <WithStyles(inject-Link) state={[Function]} className="RSFNavTab-link-53" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}}>
                                               <inject-Link state={[Function]} className="RSFNavTab-link-53" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}}>
-                                                <Link state={[Function]} className="RSFNavTab-link-53" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                <Link state={[Function]} className="RSFNavTab-link-53" to="/1" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} app={{...}} preserveScroll={false}>
                                                   <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="nav" data-moov-link="on" className="RSFLink-root-57 RSFNavTab-link-53" style={[undefined]} onClick={[Function]} href="https://example.com/1">
                                                     <WithStyles(Tab) className="RSFNavTab-root-50 RSFTabsRow-tab-36 RSFNavTabs-tab-5" label="Tab 1" classes={{...}}>
                                                       <Tab className="RSFNavTab-root-50 RSFTabsRow-tab-36 RSFNavTabs-tab-5" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
@@ -197,7 +197,7 @@ exports[`NavTabs renders 1`] = `
                                           <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                             <WithStyles(inject-Link) state={[Function]} className="RSFNavTab-link-53" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}}>
                                               <inject-Link state={[Function]} className="RSFNavTab-link-53" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}}>
-                                                <Link state={[Function]} className="RSFNavTab-link-53" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                <Link state={[Function]} className="RSFNavTab-link-53" to="/2" prefetch={{...}} onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} app={{...}} preserveScroll={false}>
                                                   <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="nav" data-moov-link="on" className="RSFLink-root-57 RSFNavTab-link-53" style={[undefined]} onClick={[Function]} href="https://example.com/2">
                                                     <WithStyles(Tab) className="RSFNavTab-root-50 RSFTabsRow-tab-36 RSFNavTabs-tab-5" label="Tab 1" classes={{...}}>
                                                       <Tab className="RSFNavTab-root-50 RSFTabsRow-tab-36 RSFNavTabs-tab-5" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
@@ -284,7 +284,7 @@ exports[`NavTabs uses prefetch 1`] = `
                                           <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                             <WithStyles(inject-Link) state={[Function]} className="RSFNavTab-link-135" to="/1" prefetch="always" onClick={[Function]} anchorProps={{...}}>
                                               <inject-Link state={[Function]} className="RSFNavTab-link-135" to="/1" prefetch="always" onClick={[Function]} anchorProps={{...}} classes={{...}}>
-                                                <Link state={[Function]} className="RSFNavTab-link-135" to="/1" prefetch="always" onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                <Link state={[Function]} className="RSFNavTab-link-135" to="/1" prefetch="always" onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} app={{...}} preserveScroll={false}>
                                                   <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="nav" data-moov-link="on" className="RSFLink-root-139 RSFNavTab-link-135" style={[undefined]} onClick={[Function]} href="https://example.com/1" data-rsf-prefetch="always">
                                                     <WithStyles(Tab) className="RSFNavTab-root-132 RSFTabsRow-tab-118 RSFNavTabs-tab-87" label="Tab 1" classes={{...}}>
                                                       <Tab className="RSFNavTab-root-132 RSFTabsRow-tab-118 RSFNavTabs-tab-87" label="Tab 1" classes={{...}} disabled={false} textColor="inherit">
@@ -326,7 +326,7 @@ exports[`NavTabs uses prefetch 1`] = `
                                           <Track event="topNavClicked" item={{...}} app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
                                             <WithStyles(inject-Link) state={[Function]} className="RSFNavTab-link-135" to="/2" prefetch="visible" onClick={[Function]} anchorProps={{...}}>
                                               <inject-Link state={[Function]} className="RSFNavTab-link-135" to="/2" prefetch="visible" onClick={[Function]} anchorProps={{...}} classes={{...}}>
-                                                <Link state={[Function]} className="RSFNavTab-link-135" to="/2" prefetch="visible" onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} location={{...}}>
+                                                <Link state={[Function]} className="RSFNavTab-link-135" to="/2" prefetch="visible" onClick={[Function]} anchorProps={{...}} classes={{...}} history={{...}} router={{...}} app={{...}} preserveScroll={false}>
                                                   <VisibilitySensor onChange={[Function]} partialVisibility={true} active={true} minTopValue={0} scrollCheck={false} scrollDelay={250} scrollThrottle={-1} resizeCheck={false} resizeDelay={250} resizeThrottle={-1} intervalCheck={true} intervalDelay={100} delayedCall={false} offset={{...}} containment={{...}}>
                                                     <a onMouseEnter={[Function]} onMouseLeave={[Function]} data-th="nav" data-moov-link="on" className="RSFLink-root-139 RSFNavTab-link-135" style={[undefined]} onClick={[Function]} href="https://example.com/2" data-rsf-prefetch="visible">
                                                       <WithStyles(Tab) className="RSFNavTab-root-132 RSFTabsRow-tab-118 RSFNavTabs-tab-87" label="Tab 1" classes={{...}}>

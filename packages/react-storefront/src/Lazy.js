@@ -3,7 +3,7 @@
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
 import React, { Component } from 'react'
-import ReactVisibilitySensor from 'react-visibility-sensor'
+import VisibilitySensor from './VisibilitySensor'
 import withStyles from '@material-ui/core/styles/withStyles'
 import classnames from 'classnames'
 import { inject, observer } from 'mobx-react'
@@ -36,15 +36,15 @@ export default class Lazy extends Component {
     const { visible } = this.state
 
     return (
-      <ReactVisibilitySensor
+      <VisibilitySensor
         onChange={this.onChange}
-        active={!visible && !app.scrollResetPending}
+        active={!visible && !app._navigation.scrollResetPending}
         partialVisibility
       >
         <div className={classnames(classes.root, className)} {...otherProps}>
           {visible && children}
         </div>
-      </ReactVisibilitySensor>
+      </VisibilitySensor>
     )
   }
 }

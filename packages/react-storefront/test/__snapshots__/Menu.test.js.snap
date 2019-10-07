@@ -131,7 +131,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
                                                                                                                 <Leaf expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                                                                   <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]}>
                                                                                                                     <inject-Link to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                                                                                                         <a data-moov-link="on" className="RSFLink-root-1073 RSFMenu-link-1050" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                                                                                                           <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
                                                                                                                             <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
@@ -201,7 +201,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
                                                             <Leaf expandFirstItem={false} itemContentRenderer={[Function: mockConstructor]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                               <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]}>
                                                                 <inject-Link to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                  <Link to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                  <Link to="/leaf" className="RSFMenu-link-1050" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                                                     <a data-moov-link="on" className="RSFLink-root-1073 RSFMenu-link-1050" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                                                       <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
                                                                         <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
@@ -264,7 +264,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -275,7 +275,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -284,7 +284,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
@@ -293,7 +293,7 @@ exports[`Menu custom renderers itemContentRenderer should be called for each ite
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/leaf">
                           <inject-Link to="/leaf" classes={{...}}>
-                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-1073" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                 Leaf
                               </a>
@@ -392,7 +392,7 @@ exports[`Menu custom renderers itemRenderer should be called for each item 1`] =
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-887" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -403,7 +403,7 @@ exports[`Menu custom renderers itemRenderer should be called for each item 1`] =
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-887" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -412,7 +412,7 @@ exports[`Menu custom renderers itemRenderer should be called for each item 1`] =
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-887" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
@@ -421,7 +421,7 @@ exports[`Menu custom renderers itemRenderer should be called for each item 1`] =
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/leaf">
                           <inject-Link to="/leaf" classes={{...}}>
-                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-887" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                 Leaf
                               </a>
@@ -625,7 +625,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                                                                                                                 <Leaf expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                                                                   <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-936" server={false} state={{...}} onClick={[Function]}>
                                                                                                                     <inject-Link to="/item1/child1" className="RSFMenu-link-936" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-936" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-936" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                                                                                                         <a data-moov-link="on" className="RSFLink-root-959 RSFMenu-link-936" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                                                                                                           <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
                                                                                                                             <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
@@ -699,7 +699,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                                                             <Leaf expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[Function: mockConstructor]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                               <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-936" server={false} state={{...}} onClick={[Function]}>
                                                                 <inject-Link to="/leaf" className="RSFMenu-link-936" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                  <Link to="/leaf" className="RSFMenu-link-936" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                  <Link to="/leaf" className="RSFMenu-link-936" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                                                     <a data-moov-link="on" className="RSFLink-root-959 RSFMenu-link-936" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                                                       <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
                                                                         <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
@@ -766,7 +766,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-959" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -777,7 +777,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-959" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -786,7 +786,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-959" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
@@ -795,7 +795,7 @@ exports[`Menu custom renderers itemRenderer should render the default when null 
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/leaf">
                           <inject-Link to="/leaf" classes={{...}}>
-                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-959" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                 Leaf
                               </a>
@@ -999,7 +999,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                                                                                                                 <Leaf expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                                                                   <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-750" server={false} state={{...}} onClick={[Function]}>
                                                                                                                     <inject-Link to="/item1/child1" className="RSFMenu-link-750" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-750" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-750" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                                                                                                         <a data-moov-link="on" className="RSFLink-root-773 RSFMenu-link-750" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                                                                                                           <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
                                                                                                                             <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
@@ -1073,7 +1073,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                                                             <Leaf expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={true} app={{...}}>
                                                               <WithStyles(inject-Link) to="/leaf" className="RSFMenu-link-750" server={false} state={{...}} onClick={[Function]}>
                                                                 <inject-Link to="/leaf" className="RSFMenu-link-750" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                  <Link to="/leaf" className="RSFMenu-link-750" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                  <Link to="/leaf" className="RSFMenu-link-750" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                                                     <a data-moov-link="on" className="RSFLink-root-773 RSFMenu-link-750" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                                                       <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
                                                                         <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
@@ -1140,7 +1140,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-773" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -1151,7 +1151,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-773" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -1160,7 +1160,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-773" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
@@ -1169,7 +1169,7 @@ exports[`Menu should be able to render leaf as a top level item 1`] = `
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/leaf">
                           <inject-Link to="/leaf" classes={{...}}>
-                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/leaf" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-773" style={[undefined]} onClick={[Function]} href="https://localhost/leaf">
                                 Leaf
                               </a>
@@ -1320,7 +1320,7 @@ exports[`Menu should render in complex mode by default 1`] = `
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-153" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -1331,7 +1331,7 @@ exports[`Menu should render in complex mode by default 1`] = `
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-153" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -1340,7 +1340,7 @@ exports[`Menu should render in complex mode by default 1`] = `
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-153" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
@@ -1491,7 +1491,7 @@ exports[`Menu should render in complex mode by default 2`] = `
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-263" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -1502,7 +1502,7 @@ exports[`Menu should render in complex mode by default 2`] = `
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-263" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -1511,7 +1511,7 @@ exports[`Menu should render in complex mode by default 2`] = `
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-263" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
@@ -1715,7 +1715,7 @@ exports[`Menu should render in simple mode 1`] = `
                                                                                                                 <Leaf expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={3} useExpanders={[undefined]} simple={true} app={{...}}>
                                                                                                                   <WithStyles(inject-Link) to="/item1/child1" className="RSFMenu-link-16" server={false} state={{...}} onClick={[Function]}>
                                                                                                                     <inject-Link to="/item1/child1" className="RSFMenu-link-16" server={false} state={{...}} onClick={[Function]} classes={{...}}>
-                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-16" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                                                                                                      <Link to="/item1/child1" className="RSFMenu-link-16" server={false} state={{...}} onClick={[Function]} classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                                                                                                         <a data-moov-link="on" className="RSFLink-root-39 RSFMenu-link-16" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                                                                                                           <WithStyles(ListItem) button={true} divider={true} selected={false} classes={{...}}>
                                                                                                                             <ListItem button={true} divider={true} selected={false} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false}>
@@ -1808,7 +1808,7 @@ exports[`Menu should render in simple mode 1`] = `
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-39" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -1819,7 +1819,7 @@ exports[`Menu should render in simple mode 1`] = `
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-39" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -1828,7 +1828,7 @@ exports[`Menu should render in simple mode 1`] = `
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-39" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
@@ -2104,7 +2104,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-628" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -2115,7 +2115,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-628" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -2124,7 +2124,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-628" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>
@@ -2275,7 +2275,7 @@ exports[`Menu should use custom icons 1`] = `
                   <div style={{...}}>
                     <WithStyles(inject-Link)>
                       <inject-Link classes={{...}}>
-                        <Link classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                        <Link classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                           <a data-moov-link="on" className="RSFLink-root-373" style={[undefined]} onClick={[Function]} href={{...}} />
                         </Link>
                       </inject-Link>
@@ -2286,7 +2286,7 @@ exports[`Menu should use custom icons 1`] = `
                       <nav style={{...}}>
                         <WithStyles(inject-Link) to="/item1">
                           <inject-Link to="/item1" classes={{...}}>
-                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-373" style={[undefined]} onClick={[Function]} href="https://localhost/item1">
                                 Item 1
                               </a>
@@ -2295,7 +2295,7 @@ exports[`Menu should use custom icons 1`] = `
                         </WithStyles(inject-Link)>
                         <WithStyles(inject-Link) to="/item1/child1">
                           <inject-Link to="/item1/child1" classes={{...}}>
-                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                            <Link to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                               <a data-moov-link="on" className="RSFLink-root-373" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                 Child 1
                               </a>

@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.55.0
+
+- Adds a `preserveScroll` prop to `Link` to allow you to prevent the app from scrolling to the top when the URL changes.
+
 ### 6.54.2
 
 - Fixed an issue where `<Image />` components with `lazy` parameter and no width are never rendered if they are initially above the fold.

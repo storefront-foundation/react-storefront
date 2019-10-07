@@ -12,6 +12,7 @@ import UserModelBase from './UserModelBase'
 import CartModelBase from './CartModelBase'
 import SearchModelBase from './SearchModelBase'
 import isEqual from 'lodash/isEqual'
+import NavigationModel from './NavigationModel'
 
 /**
  * Represents a single breadcrumb
@@ -132,12 +133,9 @@ export const LocationModel = types
 const AppModelBase = types
   .model('AppModelBase', {
     /**
-     * Will be `true` when the user has navigated to a new page but the viewport
-     * has not yet been scrolled back to the top.  This is used internally by
-     * React Storefront to keep lazy components from detecting whether or not
-     * they are below the fold before the scroll position is reset.
+     * @private
      */
-    scrollResetPending: false,
+    _navigation: types.optional(NavigationModel, {}),
     /**
      * Will be `true` when rendering AMP, otherwise `false`.
      * @type {Boolean}
@@ -319,14 +317,6 @@ const AppModelBase = types
     }
   }))
   .actions(self => ({
-    /**
-     * Updates scrollResetPending
-     * @param {Boolean} pending The new value
-     */
-    setScrollResetPending(pending) {
-      self.scrollResetPending = pending
-    },
-
     /**
      * Clears the thumbnail being injected into the product skeleton
      * @memberof AppModelBase

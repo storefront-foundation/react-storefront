@@ -8,7 +8,7 @@ exports[`HeaderLogo renders 1`] = `
         <Track event="logoClicked" app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
           <WithStyles(inject-Link) to="/" className="RSFHeaderLogo-logoWrap-1" onClick={[Function]}>
             <inject-Link to="/" className="RSFHeaderLogo-logoWrap-1" onClick={[Function]} classes={{...}}>
-              <Link to="/" className="RSFHeaderLogo-logoWrap-1" onClick={[Function]} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
+              <Link to="/" className="RSFHeaderLogo-logoWrap-1" onClick={[Function]} classes={{...}} history={{...}} router={[undefined]} app={{...}} anchorProps={{...}} preserveScroll={false}>
                 <a data-moov-link="on" className="RSFLink-root-3 RSFHeaderLogo-logoWrap-1" style={[undefined]} onClick={[Function]} href="/">
                   <span className="RSFHeaderLogo-altText-2">
                     brand logo

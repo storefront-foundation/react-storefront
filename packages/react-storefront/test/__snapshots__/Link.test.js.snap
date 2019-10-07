@@ -4,7 +4,7 @@ exports[`Link renders 1`] = `
 <Provider history={{...}} app={{...}}>
   <WithStyles(inject-Link) to="/p/1/" className="link" style={{...}}>
     <inject-Link to="/p/1/" className="link" style={{...}} classes={{...}}>
-      <Link to="/p/1/" className="link" style={{...}} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
+      <Link to="/p/1/" className="link" style={{...}} classes={{...}} history={{...}} router={[undefined]} app={{...}} anchorProps={{...}} preserveScroll={false}>
         <a data-moov-link="on" className="RSFLink-root-1 link" style={{...}} onClick={[Function]} href="https://example.com/p/1/">
           Red Shirt
         </a>

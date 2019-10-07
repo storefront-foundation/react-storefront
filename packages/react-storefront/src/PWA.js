@@ -105,7 +105,7 @@ export default class PWA extends Component {
     // Otherwise we would see the current page scroll to the top and after some delay, the new
     // page would render
     if (action === 'PUSH') {
-      this.props.app.setScrollResetPending(true)
+      this.props.app._navigation.setScrollResetPending(true)
     }
   }
 
@@ -115,6 +115,7 @@ export default class PWA extends Component {
     if (router) {
       router.watch(history, app.applyState)
       router.on('before', this.onBeforeRouteChange)
+      router.on('after', this.onAfterRouteChange)
     }
 
     this.bindAppStateToHistory()
@@ -166,19 +167,16 @@ export default class PWA extends Component {
     }
   }
 
-  componentDidUpdate() {
-    const { app } = this.props
-
-    if (app.scrollResetPending) {
-      this.resetPage()
-      app.setScrollResetPending(false)
-    }
-  }
-
   componentWillUnmount() {
     if (this.props.router) {
       this.props.router.removeListener('before', this.onBeforeRouteChange)
+      this.props.router.removeListener('after', this.onAfterRouteChange)
     }
+  }
+
+  onAfterRouteChange = () => {
+    this.resetPage()
+    this.props.app._navigation.finished()
   }
 
   /**
@@ -271,7 +269,14 @@ export default class PWA extends Component {
    * Resets the scroll position and closes the main menu.
    */
   resetPage = () => {
-    window.scrollTo(0, 0)
-    this.props.app.menu.close()
+    const {
+      app: { _navigation, menu }
+    } = this.props
+
+    if (_navigation.scrollResetPending) {
+      window.scrollTo(0, 0)
+    }
+
+    menu.close()
   }
 }

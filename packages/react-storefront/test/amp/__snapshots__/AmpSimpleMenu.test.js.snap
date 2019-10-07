@@ -90,7 +90,7 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                       <div>
                                         <WithStyles(inject-Link) className="RSFAmpSimpleMenu-item-107" to="/item1/child1">
                                           <inject-Link className="RSFAmpSimpleMenu-item-107" to="/item1/child1" classes={{...}}>
-                                            <Link className="RSFAmpSimpleMenu-item-107" to="/item1/child1" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                            <Link className="RSFAmpSimpleMenu-item-107" to="/item1/child1" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                               <a data-moov-link="on" className="RSFLink-root-156 RSFAmpSimpleMenu-item-107" style={[undefined]} onClick={[Function]} href="https://localhost/item1/child1">
                                                 <WithStyles(ListItemText)>
                                                   <ListItemText classes={{...}} disableTypography={false} inset={false}>
@@ -185,7 +185,7 @@ exports[`AmpSimpleMenu should match simple AMP menu snap 1`] = `
                                       <div>
                                         <WithStyles(inject-Link) className="RSFAmpSimpleMenu-item-107" to="/item2/child2">
                                           <inject-Link className="RSFAmpSimpleMenu-item-107" to="/item2/child2" classes={{...}}>
-                                            <Link className="RSFAmpSimpleMenu-item-107" to="/item2/child2" classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+                                            <Link className="RSFAmpSimpleMenu-item-107" to="/item2/child2" classes={{...}} history={{...}} router={{...}} app={{...}} anchorProps={{...}} preserveScroll={false}>
                                               <a data-moov-link="on" className="RSFLink-root-156 RSFAmpSimpleMenu-item-107" style={[undefined]} onClick={[Function]} href="https://localhost/item2/child2">
                                                 <WithStyles(ListItemText)>
                                                   <ListItemText classes={{...}} disableTypography={false} inset={false}>

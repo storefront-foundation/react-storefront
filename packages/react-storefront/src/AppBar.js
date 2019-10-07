@@ -86,7 +86,12 @@ export const styles = theme => ({
  * the left side of the header.  Children are placed directly to the right of the menu
  * button.
  */
-@inject(({ app }) => ({ menu: app.menu, amp: app.amp, offline: app.offline }))
+@inject(({ app }) => ({
+  menu: app.menu,
+  amp: app.amp,
+  offline: app.offline,
+  navigation: app._navigation
+}))
 @withStyles(styles, { name: 'RSFAppBar' })
 @observer
 export default class Header extends Component {
@@ -210,10 +215,11 @@ export default class Header extends Component {
   }
 
   onScroll = () => {
-    const height = 64,
-      { scrollY } = window,
-      { lastScrollY } = this
-    const { menu } = this.props
+    const height = 64
+    const { scrollY } = window
+    const { menu, navigation } = this.props
+
+    if (navigation.preserveScroll) return
 
     if (this.state.hidden) {
       if (scrollY <= 0) {

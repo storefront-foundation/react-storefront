@@ -21,7 +21,7 @@ export const styles = {
 }
 
 @withStyles(styles, { name: 'RSFLink' })
-@inject(({ history, router, app }) => ({ history, router, location: app.location }))
+@inject(({ history, router, app }) => ({ history, router, app }))
 export default class Link extends Component {
   prefetched = false
 
@@ -65,11 +65,18 @@ export default class Link extends Component {
     /**
      * A function to call when the link becomes visible
      */
-    onVisible: PropTypes.func
+    onVisible: PropTypes.func,
+
+    /**
+     * Set to `true` to preserve the scroll position during navigation.  By default
+     * the app will scroll to the top of the page when the URL changes.
+     */
+    preserveScroll: PropTypes.bool
   }
 
   static defaultProps = {
-    anchorProps: {}
+    anchorProps: {},
+    preserveScroll: false
   }
 
   constructor() {
@@ -113,10 +120,12 @@ export default class Link extends Component {
       children,
       prefetch,
       to,
-      location,
+      app,
       onVisible,
       ...others
     } = this.props
+
+    const { location } = app
 
     // Here we don't provide the pathname on purpose.  Doing so would cause every link to rerender
     // We used to do that and it caused a noticeable lag in the UI.
@@ -179,7 +188,7 @@ export default class Link extends Component {
   }
 
   onClick = e => {
-    let { server, onClick, to, state, history } = this.props
+    let { server, onClick, to, state, history, preserveScroll, app } = this.props
 
     if (onClick) {
       onClick(e)
@@ -202,6 +211,10 @@ export default class Link extends Component {
         // current state and going forward then back will yield a broken page.
         return
       } else {
+        if (preserveScroll) {
+          app._navigation.preserveScrollOnNextNavigation()
+        }
+
         history.push(url, state && state.toJSON ? state.toJSON() : state)
       }
     }
