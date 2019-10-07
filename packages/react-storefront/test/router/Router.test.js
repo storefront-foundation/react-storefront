@@ -1039,6 +1039,33 @@ describe('Router:Node', function() {
     })
   })
 
+  describe('navigate', () => {
+    it('should emit before-navgate', () => {
+      const handler = jest.fn()
+      const history = createMemoryHistory()
+      history.push = jest.fn()
+      router.watch(history, jest.fn())
+      router.on('before-navigate', handler)
+      router.navigate('/foo', { foo: 'bar' })
+      expect(handler).toHaveBeenCalledWith({ url: '/foo', state: { foo: 'bar' } })
+      expect(history.push).toHaveBeenCalledWith('/foo', { foo: 'bar' })
+    })
+  })
+
+  describe('goBack', () => {
+    it('should emit before-navgate', () => {
+      const handler = jest.fn()
+      const history = createMemoryHistory()
+      history.goBack = jest.fn()
+      history.push = jest.fn()
+      router.watch(history, jest.fn())
+      router.on('before-navigate', handler)
+      router.goBack()
+      expect(handler).toHaveBeenCalledWith({})
+      expect(history.goBack).toHaveBeenCalledWith()
+    })
+  })
+
   afterAll(() => {
     jest.unmock('../../src/router/serviceWorker')
   })

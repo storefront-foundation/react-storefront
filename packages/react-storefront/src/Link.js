@@ -179,7 +179,7 @@ export default class Link extends Component {
   }
 
   onClick = e => {
-    let { server, onClick, to, state, history } = this.props
+    let { server, onClick, to, state, history, router } = this.props
 
     if (onClick) {
       onClick(e)
@@ -191,10 +191,10 @@ export default class Link extends Component {
 
     const url = relativeURL(to)
 
-    if (!e.isDefaultPrevented() && !server && canUseClientSideNavigation(url, this.props.router)) {
+    if (!e.isDefaultPrevented() && !server && canUseClientSideNavigation(url, router)) {
       e.preventDefault()
 
-      if (!history) {
+      if (!router) {
         // Fallback to redirect
         window.location.href = url
       } else if (url === history.location.pathname + history.location.search) {
@@ -202,7 +202,7 @@ export default class Link extends Component {
         // current state and going forward then back will yield a broken page.
         return
       } else {
-        history.push(url, state && state.toJSON ? state.toJSON() : state)
+        router.navigate(url, state && state.toJSON ? state.toJSON() : state)
       }
     }
   }

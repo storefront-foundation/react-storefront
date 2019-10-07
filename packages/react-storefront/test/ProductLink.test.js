@@ -7,7 +7,7 @@ import ProductLink from '../src/ProductLink'
 import ProductModelBase from '../src/model/ProductModelBase'
 import AppModelBase from '../src/model/AppModelBase'
 import { mount } from 'enzyme'
-import { Provider } from 'mobx-react'
+import Provider from './TestProvider'
 import { createMemoryHistory } from 'history'
 
 describe('ProductLink', () => {

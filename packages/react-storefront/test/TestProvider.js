@@ -13,7 +13,7 @@ import { Router } from '../src/router'
 let id = 0
 const nextId = () => id++
 
-export default function TestProvider({ app, history, children, ...stores }) {
+export default function TestProvider({ app, history, router, children, ...stores }) {
   if (app == null || !app.applyState) {
     app = AppModelBase.create({
       location: {
@@ -34,6 +34,8 @@ export default function TestProvider({ app, history, children, ...stores }) {
   }
 
   history = history || createMemoryHistory({ initialEntries })
+  router = router || new Router()
+  router.history = history
 
   const theme = createTheme({
     typography: {
@@ -42,7 +44,7 @@ export default function TestProvider({ app, history, children, ...stores }) {
   })
 
   return (
-    <Provider router={new Router()} app={app} history={history} nextId={nextId} {...stores}>
+    <Provider router={router} app={app} history={history} nextId={nextId} {...stores}>
       <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </Provider>
   )

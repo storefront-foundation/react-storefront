@@ -147,7 +147,7 @@ export const styles = theme => ({
 })
 
 @withStyles(styles, { name: 'RSFSearchDrawer' })
-@inject(({ app: { search, amp }, history, theme }) => ({ search, history, theme, amp }))
+@inject(({ app: { search, amp }, router, theme }) => ({ search, router, theme, amp }))
 @observer
 export default class SearchDrawer extends Component {
   static propTypes = {
@@ -485,7 +485,7 @@ export default class SearchDrawer extends Component {
     const { searchURL, searchFieldName, search } = this.props
     const separator = searchURL.indexOf('?') === -1 ? '?' : '&'
     const url = `${searchURL}${separator}${searchFieldName}=${encodeURIComponent(search.text)}`
-    this.props.history.push(url)
+    this.props.router.navigate(url)
     this.hide()
   }
 

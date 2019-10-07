@@ -186,7 +186,7 @@ export default class PWA extends Component {
    * This makes restoring the page when going back really fast.
    */
   bindAppStateToHistory() {
-    const { app, history } = this.props
+    const { app, history, router } = this.props
 
     const recordState = snapshot => {
       const { pathname, search, hash = '' } = history.location
@@ -209,6 +209,9 @@ export default class PWA extends Component {
     // record app state in history.state restore it when going back or forward
     // see Router#onLocationChange
     onSnapshot(app, debounce(snapshot => !snapshot.loading && recordState(snapshot), 150))
+
+    // record state just before navigation
+    router.on('navigate', () => recordState(app.toJSON()))
 
     // record the initial state so that if the user comes back to the initial landing page the app state will be restored correctly.
     recordState(app.toJSON())
@@ -262,7 +265,7 @@ export default class PWA extends Component {
         e.preventDefault()
 
         // instead do the navigation client-side using the history API
-        this.props.history.push(delegateTarget.getAttribute('href'))
+        this.props.router.navigate(delegateTarget.getAttribute('href'))
       }
     })
   }

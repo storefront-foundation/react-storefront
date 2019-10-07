@@ -65,7 +65,7 @@ export const styles = theme => ({
 })
 
 @withStyles(styles, { name: 'RSFNavTabs' })
-@inject(({ app, history }) => ({ tabs: app.tabs, history }))
+@inject(({ app, router }) => ({ tabs: app.tabs, router }))
 @observer
 export default class NavTabs extends Component {
   static propTypes = {
@@ -90,7 +90,7 @@ export default class NavTabs extends Component {
   }
 
   render() {
-    const { tabs, classes, staticContext, history, elevation, ...tabsProps } = this.props
+    const { tabs, classes, staticContext, router, elevation, ...tabsProps } = this.props
     const { menu, overTab, overMenu, anchorEl } = this.state
     const open = overTab || overMenu
 
@@ -176,12 +176,12 @@ export default class NavTabs extends Component {
   }
 
   handleChange = (_event, newValue) => {
-    const { tabs, history } = this.props
+    const { tabs, router } = this.props
     const item = tabs.items[newValue]
     const url = relativeURL(item.url)
 
-    if (history) {
-      history.push(url, parseState(item.state))
+    if (router) {
+      router.navigate(url, parseState(item.state))
     } else {
       window.location.href = url
     }

@@ -6,7 +6,6 @@ jest.mock('../src/router/serviceWorker')
 
 import React from 'react'
 import { mount } from 'enzyme'
-import { Provider, inject } from 'mobx-react'
 import AppModelBase from '../src/model/AppModelBase'
 import PWA from '../src/PWA'
 import simulant from 'simulant'
@@ -15,6 +14,7 @@ import { Router, proxyUpstream } from '../src/router'
 import { createMemoryHistory } from 'history'
 import * as serviceWorker from '../src/router/serviceWorker'
 import TestProvider from './TestProvider'
+import { inject } from 'mobx-react'
 
 describe('PWA', () => {
   let history, app, userAgent, location
@@ -34,7 +34,7 @@ describe('PWA', () => {
 
   it('should render amp-install-service worker when amp==true', () => {
     const wrapper = mount(
-      <Provider
+      <TestProvider
         history={history}
         app={AppModelBase.create({
           amp: true,
@@ -44,7 +44,7 @@ describe('PWA', () => {
         <PWA>
           <div>Foo</div>
         </PWA>
-      </Provider>
+      </TestProvider>
     )
 
     expect(wrapper).toMatchSnapshot()
@@ -52,28 +52,28 @@ describe('PWA', () => {
 
   it('should call history.push when a link to the same domain is clicked', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a href="/foo">Foo</a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push).toHaveBeenCalledWith('/foo')
+    expect(history.push).toHaveBeenCalledWith('/foo', undefined)
   })
 
   it('should not call history.push when the link has a target other than _self', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a href="/foo" target="_blank">
             Foo
           </a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -84,28 +84,28 @@ describe('PWA', () => {
 
   it('should call history.push when a descendant element of a link is clicked', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a href="/foo">
             <p id="target">Foo</p>
           </a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
     simulant.fire(document.body.querySelector('#target'), 'click')
 
-    expect(history.push).toHaveBeenCalledWith('/foo')
+    expect(history.push).toHaveBeenCalledWith('/foo', undefined)
   })
 
   it('should not call history.push when the link has mailto:', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a href="mailto:user@domain.com">Foo</a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -116,11 +116,11 @@ describe('PWA', () => {
 
   it('should not call history.push when the link has tel:', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a href="tel:1111111111">Foo</a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -131,24 +131,24 @@ describe('PWA', () => {
 
   it('should not history.push when the link has target=_self', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a href="/foo" target="_self">
             Foo
           </a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push).toHaveBeenCalledWith('/foo')
+    expect(history.push).toHaveBeenCalledWith('/foo', undefined)
   })
 
   it('should not call history.push when a link to another domain is clicked', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a id="link1" href="http://www.google.com">
             Google 1
@@ -160,7 +160,7 @@ describe('PWA', () => {
             Google 3
           </a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -173,11 +173,11 @@ describe('PWA', () => {
     const router = new Router().get('/proxy', proxyUpstream('./proxyHandler'))
 
     const wrapper = mount(
-      <Provider history={history} app={app} router={router}>
+      <TestProvider history={history} app={app} router={router}>
         <PWA>
           <a href="/proxy">proxyUpstream</a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -189,24 +189,24 @@ describe('PWA', () => {
   it('should render children', () => {
     expect(
       mount(
-        <Provider history={history} app={app}>
+        <TestProvider history={history} app={app}>
           <PWA>
             <div>foo</div>
           </PWA>
-        </Provider>
+        </TestProvider>
       )
     ).toMatchSnapshot()
   })
 
   it('should reload the page when data-reload="on"', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a href="/foo" data-reload="on">
             Foo
           </a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -217,13 +217,13 @@ describe('PWA', () => {
 
   it('should reload the page when data-reload="true"', () => {
     const wrapper = mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA>
           <a href="/foo" data-reload="true">
             Foo
           </a>
         </PWA>
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -239,9 +239,9 @@ describe('PWA', () => {
       'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
 
     mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA />
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -255,9 +255,9 @@ describe('PWA', () => {
       'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Mobile Safari/537.36'
 
     mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA />
-      </Provider>,
+      </TestProvider>,
       { attachTo: document.body }
     )
 
@@ -266,9 +266,9 @@ describe('PWA', () => {
 
   it('should record app state in history.state', done => {
     mount(
-      <Provider history={history} app={app}>
+      <TestProvider history={history} app={app}>
         <PWA />
-      </Provider>
+      </TestProvider>
     )
 
     app.applyState({ title: 'updated' })
@@ -304,9 +304,9 @@ describe('PWA', () => {
     expect(history.location.state).toEqual({ page: 'Test' })
 
     mount(
-      <Provider history={mockHistory} app={app}>
+      <TestProvider history={mockHistory} app={app}>
         <PWA />
-      </Provider>
+      </TestProvider>
     )
 
     app.applyState({ title: 'updated' })
@@ -324,9 +324,9 @@ describe('PWA', () => {
       }
 
       mount(
-        <Provider history={history} app={app}>
+        <TestProvider history={history} app={app}>
           <PWA />
-        </Provider>
+        </TestProvider>
       )
 
       expect(serviceWorker.cache).toHaveBeenCalledWith('/.json', window.initialRouteData)
@@ -338,9 +338,9 @@ describe('PWA', () => {
       }
 
       mount(
-        <Provider history={history} app={app}>
+        <TestProvider history={history} app={app}>
           <PWA />
-        </Provider>
+        </TestProvider>
       )
 
       expect(serviceWorker.cache).toHaveBeenCalledWith(
@@ -355,9 +355,9 @@ describe('PWA', () => {
       const router = new Router().appShell(() => ({ loading: true }))
 
       mount(
-        <Provider history={history} app={app} router={router}>
+        <TestProvider history={history} app={app} router={router}>
           <PWA />
-        </Provider>
+        </TestProvider>
       )
 
       expect(serviceWorker.cache).toHaveBeenCalledWith('/.app-shell')
@@ -367,9 +367,9 @@ describe('PWA', () => {
       const router = new Router()
 
       mount(
-        <Provider history={history} app={app} router={router}>
+        <TestProvider history={history} app={app} router={router}>
           <PWA />
-        </Provider>
+        </TestProvider>
       )
 
       expect(serviceWorker.cache).not.toHaveBeenCalledWith('/.app-shell')

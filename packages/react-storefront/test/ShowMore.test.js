@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import ShowMore from '../src/ShowMore'
-import SubcategoryModelBase from '../src/model/SubcategoryModelBase';
+import SubcategoryModelBase from '../src/model/SubcategoryModelBase'
 import { mount } from 'enzyme'
 import Provider from './TestProvider'
 

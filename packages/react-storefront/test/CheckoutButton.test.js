@@ -32,7 +32,7 @@ describe('CheckoutButton', () => {
       .find('button')
       .simulate('click')
 
-    expect(history.push).toHaveBeenCalledWith('/checkout')
+    expect(history.push).toHaveBeenCalledWith('/checkout', undefined)
   })
 
   it('navigates via window location change when configured with a full url', () => {

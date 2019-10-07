@@ -1,15 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Link renders 1`] = `
-<Provider history={{...}} app={{...}}>
-  <WithStyles(inject-Link) to="/p/1/" className="link" style={{...}}>
-    <inject-Link to="/p/1/" className="link" style={{...}} classes={{...}}>
-      <Link to="/p/1/" className="link" style={{...}} classes={{...}} history={{...}} router={[undefined]} location={{...}} anchorProps={{...}}>
-        <a data-moov-link="on" className="RSFLink-root-1 link" style={{...}} onClick={[Function]} href="https://example.com/p/1/">
-          Red Shirt
-        </a>
-      </Link>
-    </inject-Link>
-  </WithStyles(inject-Link)>
-</Provider>
+<TestProvider history={{...}} app={{...}}>
+  <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
+    <MuiThemeProviderOld theme={{...}}>
+      <WithStyles(inject-Link) to="/p/1/" className="link" style={{...}}>
+        <inject-Link to="/p/1/" className="link" style={{...}} classes={{...}}>
+          <Link to="/p/1/" className="link" style={{...}} classes={{...}} history={{...}} router={{...}} location={{...}} anchorProps={{...}}>
+            <a data-moov-link="on" className="RSFLink-root-1 link" style={{...}} onClick={[Function]} href="https://example.com/p/1/">
+              Red Shirt
+            </a>
+          </Link>
+        </inject-Link>
+      </WithStyles(inject-Link)>
+    </MuiThemeProviderOld>
+  </Provider>
+</TestProvider>
 `;

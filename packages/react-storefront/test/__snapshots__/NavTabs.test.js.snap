@@ -6,7 +6,7 @@ exports[`NavTabs does not require history 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>
-          <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
+          <NavTabs classes={{...}} tabs={{...}} router={{...}} elevation={2}>
             <WithStyles(Paper) className="RSFNavTabs-root-494" elevation={2}>
               <Paper className="RSFNavTabs-root-494" elevation={2} classes={{...}} component="div" square={false}>
                 <div className="MuiPaper-root-498 MuiPaper-elevation2-502 MuiPaper-rounded-499 RSFNavTabs-root-494">
@@ -135,7 +135,7 @@ exports[`NavTabs renders 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>
-          <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
+          <NavTabs classes={{...}} tabs={{...}} router={{...}} elevation={2}>
             <WithStyles(Paper) className="RSFNavTabs-root-2" elevation={2}>
               <Paper className="RSFNavTabs-root-2" elevation={2} classes={{...}} component="div" square={false}>
                 <div className="MuiPaper-root-6 MuiPaper-elevation2-10 MuiPaper-rounded-7 RSFNavTabs-root-2">
@@ -264,7 +264,7 @@ exports[`NavTabs uses prefetch 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-NavTabs)>
         <inject-NavTabs classes={{...}}>
-          <NavTabs classes={{...}} tabs={{...}} history={{...}} elevation={2}>
+          <NavTabs classes={{...}} tabs={{...}} router={{...}} elevation={2}>
             <WithStyles(Paper) className="RSFNavTabs-root-84" elevation={2}>
               <Paper className="RSFNavTabs-root-84" elevation={2} classes={{...}} component="div" square={false}>
                 <div className="MuiPaper-root-88 MuiPaper-elevation2-92 MuiPaper-rounded-89 RSFNavTabs-root-84">

@@ -8,7 +8,7 @@ exports[`SearchDrawer should render with no props 1`] = `
         <MuiThemeProviderOld theme={{...}}>
           <WithStyles(inject-SearchDrawer)>
             <inject-SearchDrawer classes={{...}}>
-              <SearchDrawer classes={{...}} search={{...}} history={{...}} theme={[undefined]} amp={false} placeholder="Search..." CloseButtonIcon={[Function: CloseButtonIcon]} blurBackground={true} searchButtonVariant="fab" searchURL="/search" searchFieldName="q" showClearButton={true} ampThumbnailWidth={120} ampThumbnailHeight={120}>
+              <SearchDrawer classes={{...}} search={{...}} router={{...}} theme={[undefined]} amp={false} placeholder="Search..." CloseButtonIcon={[Function: CloseButtonIcon]} blurBackground={true} searchButtonVariant="fab" searchURL="/search" searchFieldName="q" showClearButton={true} ampThumbnailWidth={120} ampThumbnailHeight={120}>
                 <WithStyles(Drawer) open={true} anchor="bottom" className="RSFSearchDrawer-root-1" classes={{...}} ModalProps={{...}}>
                   <Drawer open={true} anchor="bottom" className="RSFSearchDrawer-root-1" ModalProps={{...}} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}} variant="temporary">
                     <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-18 MuiDrawer-modal-29 RSFSearchDrawer-root-1" open={true} onClose={[undefined]} hideBackdrop={true}>

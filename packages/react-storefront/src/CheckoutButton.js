@@ -29,7 +29,7 @@ export const styles = theme => ({
 })
 
 @withStyles(styles, { name: 'RSFCheckoutButton' })
-@inject('history')
+@inject('router')
 export default class CheckoutButton extends Component {
   static propTypes = {
     /**
@@ -68,12 +68,12 @@ export default class CheckoutButton extends Component {
   }
 
   onClick = () => {
-    const { history, url } = this.props
+    const { router, url } = this.props
 
     if (url.match(/^(https?:)?\/\//)) {
       window.location.href = url
     } else {
-      history.push(url)
+      router.navigate(url)
     }
   }
 }

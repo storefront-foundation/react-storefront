@@ -118,7 +118,7 @@ export const styles = theme => ({
 })
 
 @withStyles(styles, { name: 'RSFSearchPopup' })
-@inject(({ app: { searchPopup, search }, history }) => ({ searchPopup, search, history }))
+@inject(({ app: { searchPopup, search }, router }) => ({ searchPopup, search, router }))
 @observer
 export default class SearchPopup extends Component {
   state = {
@@ -172,8 +172,8 @@ export default class SearchPopup extends Component {
      */
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired
+    router: PropTypes.shape({
+      navigate: PropTypes.func.isRequired
     })
   }
 
@@ -194,10 +194,10 @@ export default class SearchPopup extends Component {
   }
 
   onSearchSubmit = event => {
-    const { history } = this.props
+    const { router } = this.props
     const term = this.state.search
     event.preventDefault()
-    history.push(`/search?text=${term}`)
+    router.navigate(`/search?text=${term}`)
     analytics.fire('searchSubmitted', { term })
     this.hidePopup()
   }

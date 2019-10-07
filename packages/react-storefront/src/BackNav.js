@@ -71,7 +71,7 @@ export const styles = theme => ({
 })
 
 @withStyles(styles, { name: 'RSFBackNav' })
-@inject('history')
+@inject('router')
 @observer
 export default class BackNav extends Component {
   static propTypes = {
@@ -152,7 +152,7 @@ export default class BackNav extends Component {
           >
             <ArrowLeft />
           </span>
-          {React.createElement(labelComponent, {className: classes.label}, text)}
+          {React.createElement(labelComponent, { className: classes.label }, text)}
           {this.renderViewToggle()}
         </Typography>
       </Paper>
@@ -160,12 +160,12 @@ export default class BackNav extends Component {
   }
 
   onBack = () => {
-    const { history, url } = this.props
+    const { url, router } = this.props
 
     if (url) {
-      history.push(url)
+      router.navigate(url)
     } else {
-      history.goBack()
+      router.goBack()
     }
   }
 }

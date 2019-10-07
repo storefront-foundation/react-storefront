@@ -4,14 +4,14 @@ exports[`CheckoutButton renders 1`] = `
 <TestProvider>
   <Provider router={{...}} app={{...}} history={{...}} nextId={[Function: nextId]}>
     <MuiThemeProviderOld theme={{...}}>
-      <WithStyles(inject-CheckoutButton-with-history) url="/checkout">
-        <inject-CheckoutButton-with-history url="/checkout" classes={{...}}>
-          <CheckoutButton url="/checkout" classes={{...}} history={{...}} docked={false}>
-            <WithStyles(Button) size="large" color="secondary" onClick={[Function]} variant="contained" data-th="checkout-link" history={{...}} classes={{...}} className="">
-              <Button size="large" color="secondary" onClick={[Function]} variant="contained" data-th="checkout-link" history={{...}} className="" classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} type="button">
-                <WithStyles(ButtonBase) className="MuiButton-root-3 RSFCheckoutButton-root-1 MuiButton-contained-14 MuiButton-containedSecondary-16 MuiButton-raised-17 MuiButton-raisedSecondary-19 MuiButton-sizeLarge-27" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function]} data-th="checkout-link" history={{...}} component="button" type="button">
-                  <ButtonBase className="MuiButton-root-3 RSFCheckoutButton-root-1 MuiButton-contained-14 MuiButton-containedSecondary-16 MuiButton-raised-17 MuiButton-raisedSecondary-19 MuiButton-sizeLarge-27" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function]} data-th="checkout-link" history={{...}} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-                    <button className="MuiButtonBase-root-29 MuiButton-root-3 RSFCheckoutButton-root-1 MuiButton-contained-14 MuiButton-containedSecondary-16 MuiButton-raised-17 MuiButton-raisedSecondary-19 MuiButton-sizeLarge-27" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} data-th="checkout-link" history={{...}}>
+      <WithStyles(inject-CheckoutButton-with-router) url="/checkout">
+        <inject-CheckoutButton-with-router url="/checkout" classes={{...}}>
+          <CheckoutButton url="/checkout" classes={{...}} router={{...}} docked={false}>
+            <WithStyles(Button) size="large" color="secondary" onClick={[Function]} variant="contained" data-th="checkout-link" router={{...}} classes={{...}} className="">
+              <Button size="large" color="secondary" onClick={[Function]} variant="contained" data-th="checkout-link" router={{...}} className="" classes={{...}} component="button" disabled={false} disableFocusRipple={false} fullWidth={false} mini={false} type="button">
+                <WithStyles(ButtonBase) className="MuiButton-root-3 RSFCheckoutButton-root-1 MuiButton-contained-14 MuiButton-containedSecondary-16 MuiButton-raised-17 MuiButton-raisedSecondary-19 MuiButton-sizeLarge-27" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function]} data-th="checkout-link" router={{...}} component="button" type="button">
+                  <ButtonBase className="MuiButton-root-3 RSFCheckoutButton-root-1 MuiButton-contained-14 MuiButton-containedSecondary-16 MuiButton-raised-17 MuiButton-raisedSecondary-19 MuiButton-sizeLarge-27" disabled={false} focusRipple={true} focusVisibleClassName="MuiButton-focusVisible-22" onClick={[Function]} data-th="checkout-link" router={{...}} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                    <button className="MuiButtonBase-root-29 MuiButton-root-3 RSFCheckoutButton-root-1 MuiButton-contained-14 MuiButton-containedSecondary-16 MuiButton-raised-17 MuiButton-raisedSecondary-19 MuiButton-sizeLarge-27" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} data-th="checkout-link" router={{...}}>
                       <span className="MuiButton-label-4">
                         Checkout
                       </span>
@@ -30,8 +30,8 @@ exports[`CheckoutButton renders 1`] = `
               </Button>
             </WithStyles(Button)>
           </CheckoutButton>
-        </inject-CheckoutButton-with-history>
-      </WithStyles(inject-CheckoutButton-with-history)>
+        </inject-CheckoutButton-with-router>
+      </WithStyles(inject-CheckoutButton-with-router)>
     </MuiThemeProviderOld>
   </Provider>
 </TestProvider>

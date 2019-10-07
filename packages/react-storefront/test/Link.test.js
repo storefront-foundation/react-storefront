@@ -7,7 +7,7 @@ jest.mock('../src/router/serviceWorker')
 import React from 'react'
 import { mount } from 'enzyme'
 import Link from '../src/Link'
-import { Provider } from 'mobx-react'
+import Provider from './TestProvider'
 import { createMemoryHistory } from 'history'
 import AppModelBase from '../src/model/AppModelBase'
 import * as serviceWorker from '../src/router/serviceWorker'
@@ -23,8 +23,8 @@ describe('Link', () => {
         procotol: 'https',
         hostname: 'example.com',
         pathname: '/',
-        search: '',
-      },
+        search: ''
+      }
     })
   })
 
@@ -46,7 +46,7 @@ describe('Link', () => {
         <Link to="/p/1/" state={{ page: 'product' }}>
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .at(0)
@@ -57,7 +57,7 @@ describe('Link', () => {
 
   it('should force server-side navigation when server prop is set to true', () => {
     const history = {
-      push: jest.fn(),
+      push: jest.fn()
     }
 
     mount(
@@ -65,7 +65,7 @@ describe('Link', () => {
         <Link to="/p/1/" server>
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .at(0)
@@ -80,7 +80,7 @@ describe('Link', () => {
         <Link to="/p/1" server>
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     )
 
     expect(serviceWorker.prefetchJsonFor.mock.calls.length).toEqual(0)
@@ -92,7 +92,7 @@ describe('Link', () => {
         <Link to="/p/1" server prefetch="always">
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     )
 
     expect(serviceWorker.prefetchJsonFor).toBeCalledWith('/p/1')
@@ -104,7 +104,7 @@ describe('Link', () => {
         <Link to="/p/1" prefetchURL="/local/ca/p/1" server prefetch="always">
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     )
 
     expect(serviceWorker.prefetchJsonFor).toBeCalledWith('/local/ca/p/1')
@@ -118,7 +118,7 @@ describe('Link', () => {
             Red Shirt
           </Link>
         </div>
-      </Provider>,
+      </Provider>
     )
 
     // react-visibility-sensor always reports that the component is visible in enzyme
@@ -131,7 +131,7 @@ describe('Link', () => {
         <Link to="https://domain.test/p/1" state={{ page: 'product' }}>
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .at(0)
@@ -149,7 +149,7 @@ describe('Link', () => {
     mount(
       <Provider history={history} app={app} router={router}>
         <Link to="/proxy">Proxy</Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .at(0)
@@ -166,7 +166,7 @@ describe('Link', () => {
     mount(
       <Provider history={history} app={app} router={router}>
         <Link to="/pwa">PWA</Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .at(0)
@@ -181,7 +181,7 @@ describe('Link', () => {
     mount(
       <Provider history={history} app={app}>
         <Link to="mailto:user@domain.com">Mail</Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .at(0)
@@ -196,7 +196,7 @@ describe('Link', () => {
     mount(
       <Provider history={history} app={app}>
         <Link to="tel:1111111111">Tel</Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .at(0)
@@ -209,7 +209,7 @@ describe('Link', () => {
     const href = mount(
       <Provider history={history} app={app}>
         <Link to="/p/1">Red Shirt</Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .getDOMNode()
@@ -225,8 +225,8 @@ describe('Link', () => {
           <Link to="/p/1" data-foo="bar">
             Red Shirt
           </Link>
-        </Provider>,
-      ).find('a[data-foo="bar"]').length,
+        </Provider>
+      ).find('a[data-foo="bar"]').length
     ).toBe(1)
   })
 
@@ -237,8 +237,8 @@ describe('Link', () => {
           <Link to="/p/1" anchorProps={{ target: '_blank' }}>
             Red Shirt
           </Link>
-        </Provider>,
-      ).find('a[target="_blank"]').length,
+        </Provider>
+      ).find('a[target="_blank"]').length
     ).toBe(1)
   })
 
@@ -251,7 +251,7 @@ describe('Link', () => {
         <Link to="/p/1" anchorProps={{ target: '_blank' }}>
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     )
       .find('a')
       .at(0)
@@ -266,7 +266,7 @@ describe('Link', () => {
         <Link to="/p/1" anchorProps={{ target: '_blank' }} onVisible={Function.prototype}>
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     ).find('VisibilitySensor')
 
     expect(sensor.length).toBe(1)
@@ -278,7 +278,7 @@ describe('Link', () => {
         <Link to="/p/1" anchorProps={{ target: '_blank' }} prefetch="visible">
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     ).find('VisibilitySensor')
 
     expect(sensor.length).toBe(1)
@@ -290,7 +290,7 @@ describe('Link', () => {
         <Link to="/p/1" anchorProps={{ target: '_blank' }}>
           Red Shirt
         </Link>
-      </Provider>,
+      </Provider>
     ).find('VisibilitySensor')
 
     expect(sensor.length).toBe(0)

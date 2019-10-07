@@ -110,6 +110,24 @@ export default class Router extends EventEmitter {
   }
 
   /**
+   * Navigates to a URL after recording the current app state in history.state
+   * @param {String} url The URL to navigate to
+   * @param {Object} state The next history state
+   */
+  navigate(url, state) {
+    this.emit('before-navigate', { url, state })
+    this.history.push(url, state)
+  }
+
+  /**
+   * Navigates to the previous URL after recording the current app state in history.state
+   */
+  goBack() {
+    this.emit('before-navigate', {})
+    this.history.goBack()
+  }
+
+  /**
    * Registers a GET route
    * @param {String} path A path pattern
    * @param {...any} handlers Handlers that return patches to be merged into the app state
