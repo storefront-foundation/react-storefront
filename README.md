@@ -76,6 +76,7 @@ yarn release
 
 ### 6.55.0
 
+- Added `renderLeafHeader` and `renderLeafFooter` to `Menu`. These allow developers to customize the header and footer sections for non-root menu cards.
 - Added `linkProps` prop to `HeaderLogo` for adding props into `Link` component.
 
 ### 6.54.3

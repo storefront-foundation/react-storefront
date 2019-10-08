@@ -7,7 +7,7 @@ import { inject } from 'mobx-react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import withTheme from '@material-ui/core/styles/withTheme'
 import { Helmet } from 'react-helmet'
-import MenuBody from '../menu/MenuBody'
+import AmpMenuBody from '../amp/AmpMenuBody'
 import classnames from 'classnames'
 import AmpState from './AmpState'
 
@@ -57,32 +57,16 @@ export default class AmpMenu extends Component {
   }
 
   render() {
-    const {
-      id,
-      menu,
-      classes,
-      theme,
-      className,
-      drawerWidth,
-      rootHeader,
-      rootFooter,
-      ExpandIcon,
-      CollapseIcon,
-      align
-    } = this.props
-
+    const { id, menu, classes, theme, className, align, drawerWidth, ...others } = this.props
     const root = menu.levels[0]
 
     if (!root) return null
 
     const bodies = [
-      <MenuBody
+      <AmpMenuBody
+        {...others}
         key={0}
-        rootHeader={rootHeader}
-        rootFooter={rootFooter}
         drawerWidth={drawerWidth}
-        ExpandIcon={ExpandIcon}
-        CollapseIcon={CollapseIcon}
         root={root}
         depth={0}
         path={[]}
@@ -97,13 +81,10 @@ export default class AmpMenu extends Component {
     root.items.forEach((node, index) => {
       if (node.items) {
         bodies.push(
-          <MenuBody
+          <AmpMenuBody
+            {...others}
             key={index + 1}
-            rootHeader={rootHeader}
-            rootFooter={rootFooter}
             drawerWidth={drawerWidth}
-            ExpandIcon={ExpandIcon}
-            CollapseIcon={CollapseIcon}
             root={node}
             depth={1}
             path={[index]}

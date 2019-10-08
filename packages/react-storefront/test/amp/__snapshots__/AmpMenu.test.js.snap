@@ -28,13 +28,13 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                 </SideEffect(NullComponent)>
               </HelmetWrapper>
               <amp-sidebar id="moov_menu" class="RSFAmpMenu-root-1" layout="nodisplay" side={[undefined]} on="sidebarClose:AMP.setState({ rsfMenu: { open: false } })">
-                <MenuBody rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true}>
+                <AmpMenuBody drawerWidth={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true}>
                   <div className="" amp-bind="class=>rsfMenu.list == \\'@\\'  ? \\'\\' : \\'\\'">
                     <WithStyles(List) classes={{...}}>
                       <List classes={{...}} component="ul" dense={false} disablePadding={false}>
                         <ul className="MuiList-root-2 MuiList-padding-3">
-                          <inject-Item-with-app rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0}>
-                            <Item rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0} app={{...}}>
+                          <inject-Item-with-app drawerWidth={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0}>
+                            <Item drawerWidth={[undefined]} root={{...}} depth={0} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0} app={{...}}>
                               <inject-Branch-with-app expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={0} useExpanders={true} simple={[undefined]}>
                                 <Branch expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={0} useExpanders={true} simple={[undefined]} app={{...}}>
                                   <div amp-bind="class=>rsfMenu.sublist == \\'0.0\\' ? \\'expanded\\' : \\'\\'">
@@ -101,69 +101,71 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                       </List>
                     </WithStyles(List)>
                   </div>
-                </MenuBody>
-                <MenuBody rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true}>
+                </AmpMenuBody>
+                <AmpMenuBody drawerWidth={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true}>
                   <div className="undefined" amp-bind="class=>rsfMenu.list == \\'@0\\'  ? \\'\\' : \\'undefined\\'">
                     <WithStyles(List) classes={{...}}>
                       <List classes={{...}} component="ul" dense={false} disablePadding={false}>
                         <ul className="MuiList-root-2 MuiList-padding-3">
-                          <WithStyles(ListItem) divider={true} button={true} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })">
-                            <ListItem divider={true} button={true} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
-                              <MergeListContext dense={false} alignItems="center">
-                                <WithStyles(ButtonBase) className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" disabled={false} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8">
-                                  <ButtonBase className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" disabled={false} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                    <div className="MuiButtonBase-root-18 MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })">
-                                      <WithStyles(ListItemIcon) classes={{...}}>
-                                        <ListItemIcon classes={{...}}>
-                                          <div className="MuiListItemIcon-root-27">
-                                            <pure(ChevronLeftIcon) className={[undefined]}>
-                                              <ChevronLeftIcon className={[undefined]}>
-                                                <WithStyles(SvgIcon) className={[undefined]}>
-                                                  <SvgIcon className={[undefined]} classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                    <svg className="MuiSvgIcon-root-28" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                                                      <path fill="none" d="M0 0h24v24H0z" />
-                                                    </svg>
-                                                  </SvgIcon>
-                                                </WithStyles(SvgIcon)>
-                                              </ChevronLeftIcon>
-                                            </pure(ChevronLeftIcon)>
-                                          </div>
-                                        </ListItemIcon>
-                                      </WithStyles(ListItemIcon)>
-                                      <WithStyles(ListItemText) classes={{...}} primary={{...}}>
-                                        <ListItemText primary={{...}} classes={{...}} disableTypography={false} inset={false}>
-                                          <div className="MuiListItemText-root-21">
-                                            <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-24" component="span">
-                                              <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-24" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                <span className="MuiTypography-root-37 MuiTypography-subtitle1-55 MuiListItemText-primary-24">
-                                                  <div className={[undefined]}>
-                                                    Group 1
-                                                     
-                                                  </div>
-                                                </span>
-                                              </Typography>
-                                            </WithStyles(Typography)>
-                                          </div>
-                                        </ListItemText>
-                                      </WithStyles(ListItemText)>
-                                      <NoSsr defer={false} fallback={{...}}>
-                                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                          <TouchRipple center={false} classes={{...}}>
-                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-77" childFactory={[Function: childFactory]}>
-                                              <span className="MuiTouchRipple-root-77" />
-                                            </TransitionGroup>
-                                          </TouchRipple>
-                                        </WithStyles(TouchRipple)>
-                                      </NoSsr>
-                                    </div>
-                                  </ButtonBase>
-                                </WithStyles(ButtonBase)>
-                              </MergeListContext>
-                            </ListItem>
-                          </WithStyles(ListItem)>
-                          <inject-Item-with-app rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0}>
-                            <Item rootHeader={[undefined]} rootFooter={[undefined]} drawerWidth={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0} app={{...}}>
+                          <LeafHeader parentPath="@" classes={{...}} list={{...}} render={[undefined]}>
+                            <WithStyles(ListItem) divider={true} button={true} onClick={[undefined]} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })">
+                              <ListItem divider={true} button={true} onClick={[undefined]} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
+                                <MergeListContext dense={false} alignItems="center">
+                                  <WithStyles(ButtonBase) className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" disabled={false} onClick={[undefined]} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8">
+                                    <ButtonBase className="MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" disabled={false} onClick={[undefined]} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-8" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                      <div className="MuiButtonBase-root-18 MuiListItem-root-6 MuiListItem-default-9 MuiListItem-gutters-14 MuiListItem-divider-13 MuiListItem-button-15" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" onClick={[undefined]} on="tap:AMP.setState({ rsfMenu: { list: \\'@\\' } })">
+                                        <WithStyles(ListItemIcon) classes={{...}}>
+                                          <ListItemIcon classes={{...}}>
+                                            <div className="MuiListItemIcon-root-27">
+                                              <pure(ChevronLeftIcon) className={[undefined]}>
+                                                <ChevronLeftIcon className={[undefined]}>
+                                                  <WithStyles(SvgIcon) className={[undefined]}>
+                                                    <SvgIcon className={[undefined]} classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                      <svg className="MuiSvgIcon-root-28" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                                                        <path fill="none" d="M0 0h24v24H0z" />
+                                                      </svg>
+                                                    </SvgIcon>
+                                                  </WithStyles(SvgIcon)>
+                                                </ChevronLeftIcon>
+                                              </pure(ChevronLeftIcon)>
+                                            </div>
+                                          </ListItemIcon>
+                                        </WithStyles(ListItemIcon)>
+                                        <WithStyles(ListItemText) classes={{...}} primary={{...}}>
+                                          <ListItemText primary={{...}} classes={{...}} disableTypography={false} inset={false}>
+                                            <div className="MuiListItemText-root-21">
+                                              <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-24" component="span">
+                                                <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-24" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                  <span className="MuiTypography-root-37 MuiTypography-subtitle1-55 MuiListItemText-primary-24">
+                                                    <div className={[undefined]}>
+                                                      Group 1
+                                                       
+                                                    </div>
+                                                  </span>
+                                                </Typography>
+                                              </WithStyles(Typography)>
+                                            </div>
+                                          </ListItemText>
+                                        </WithStyles(ListItemText)>
+                                        <NoSsr defer={false} fallback={{...}}>
+                                          <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                            <TouchRipple center={false} classes={{...}}>
+                                              <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-77" childFactory={[Function: childFactory]}>
+                                                <span className="MuiTouchRipple-root-77" />
+                                              </TransitionGroup>
+                                            </TouchRipple>
+                                          </WithStyles(TouchRipple)>
+                                        </NoSsr>
+                                      </div>
+                                    </ButtonBase>
+                                  </WithStyles(ButtonBase)>
+                                </MergeListContext>
+                              </ListItem>
+                            </WithStyles(ListItem)>
+                          </LeafHeader>
+                          <inject-Item-with-app drawerWidth={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0}>
+                            <Item drawerWidth={[undefined]} root={{...}} depth={1} path={{...}} classes={{...}} theme={{...}} useExpanders={true} item={{...}} index={0} app={{...}}>
                               <inject-Branch-with-app expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={1} useExpanders={true} simple={[undefined]}>
                                 <Branch expandFirstItem={[undefined]} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={[undefined]} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={0} depth={1} useExpanders={true} simple={[undefined]} app={{...}}>
                                   <div amp-bind="class=>rsfMenu.sublist == \\'1.0\\' ? \\'expanded\\' : \\'\\'">
@@ -304,11 +306,12 @@ exports[`AmpMenu should render full AMP menu 1`] = `
                               </inject-Branch-with-app>
                             </Item>
                           </inject-Item-with-app>
+                          <LeafFooter parentPath="@" classes={{...}} list={{...}} render={[undefined]} />
                         </ul>
                       </List>
                     </WithStyles(List)>
                   </div>
-                </MenuBody>
+                </AmpMenuBody>
               </amp-sidebar>
             </AmpMenu>
           </inject-AmpMenu>

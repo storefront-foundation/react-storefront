@@ -4,13 +4,11 @@
  */
 import React, { Component, Fragment } from 'react'
 import { observer, inject } from 'mobx-react'
-import ListItemText from '@material-ui/core/ListItemText'
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ChevronLeft from '@material-ui/icons/ChevronLeft'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Item from './Item'
 import MenuContext from './MenuContext'
+import LeafHeader from './LeafHeader'
+import LeafFooter from './LeafFooter'
 
 @inject('app')
 @observer
@@ -21,6 +19,8 @@ export default class Body extends Component {
     const {
       rootHeader,
       rootFooter,
+      renderLeafHeader,
+      renderLeafFooter,
       simple,
       drawerWidth,
       children,
@@ -47,18 +47,17 @@ export default class Body extends Component {
                 classes={{ root: classes.list, padding: classes.padding }}
                 key={depth}
               >
-                {list.root && rootHeader}
-                {!list.root && (
-                  <ListItem divider button onClick={this.goBack}>
-                    <ListItemIcon classes={{ root: classes.header }}>
-                      <ChevronLeft className={classes.icon} />
-                    </ListItemIcon>
-                    <ListItemText
-                      classes={{ root: classes.headerText }}
-                      primary={<div className={classes.headerText}>{list.text} </div>}
-                    />
-                  </ListItem>
+                {list.root ? (
+                  rootHeader
+                ) : (
+                  <LeafHeader
+                    classes={classes}
+                    goBack={this.goBack}
+                    list={list}
+                    render={renderLeafHeader}
+                  />
                 )}
+
                 {list.items &&
                   list.items.map((item, key) => (
                     <Item
@@ -69,7 +68,8 @@ export default class Body extends Component {
                       classes={{ list: classes.list, listItem: classes.listItem }}
                     />
                   ))}
-                {list.root && rootFooter}
+
+                {list.root ? rootFooter : <LeafFooter list={list} render={renderLeafFooter} />}
               </List>
             ))}
           </div>
