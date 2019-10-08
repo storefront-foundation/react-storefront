@@ -56,19 +56,25 @@ export default class HeaderLogo extends Component {
     /**
      * The alt text to use for accessibility.  Defaults to "brand logo"
      */
-    alt: PropTypes.string
+    alt: PropTypes.string,
+
+    /**
+     * Props for link component. See <Link /> component for details
+     */
+    linkProps: PropTypes.object,
   }
 
   static defaultProps = {
-    alt: 'brand logo'
+    alt: 'brand logo',
+    linkProps: {}
   }
 
   render() {
-    const { classes, children, alt } = this.props
+    const { classes, children, alt, linkProps } = this.props
 
     return (
       <Track event="logoClicked">
-        <Link to="/" className={classnames(classes.logoWrap)}>
+        <Link to="/" className={classnames(classes.logoWrap)} {...linkProps}>
           <span className={classes.altText}>{alt}</span>
           {children}
         </Link>

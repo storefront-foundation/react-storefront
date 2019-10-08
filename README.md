@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.55.0
+
+- Added `linkProps` prop to `HeaderLogo` for adding props into `Link` component.
+
 ### 6.54.3
 
 - Updated `Image` to leave `src` in place when the image fails to load and `notFoundSrc` is not defined.
