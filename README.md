@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.54.3
+
+- Fixes an issue where outdated state can be recorded in history if the app state changes immediately before navigation - [Issue #272](https://github.com/moovweb/react-storefront/issues/272)
+
 ### 6.54.2
 
 - Fixed an issue where `<Image />` components with `lazy` parameter and no width are never rendered if they are initially above the fold.

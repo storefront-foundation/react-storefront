@@ -12,8 +12,6 @@ import delegate from 'delegate'
 import { cache } from './router/serviceWorker'
 import { isSafari } from './utils/browser'
 import { connectReduxDevtools } from 'mst-middlewares'
-import { onSnapshot } from 'mobx-state-tree'
-import debounce from 'lodash/debounce'
 import AppContext from './AppContext'
 import ErrorBoundary from './ErrorBoundary'
 
@@ -47,7 +45,19 @@ export default class PWA extends Component {
 
   constructor({ app, history, router, errorReporter }) {
     super()
+    this.recordStateOnChange(history)
     this.appContextValue = { app, history, router, errorReporter }
+  }
+
+  recordStateOnChange(history) {
+    for (let method of ['push', 'go', 'goBack', 'goForward']) {
+      const original = history[method]
+
+      history[method] = (...args) => {
+        this.recordState()
+        original.call(history, ...args)
+      }
+    }
   }
 
   render() {
@@ -117,8 +127,6 @@ export default class PWA extends Component {
       router.on('before', this.onBeforeRouteChange)
     }
 
-    this.bindAppStateToHistory()
-
     // scroll to the top and close the when the router runs a PWA route
     this.watchLinkClicks()
 
@@ -182,36 +190,26 @@ export default class PWA extends Component {
   }
 
   /**
-   * Each time the app state changes, record the current app state as the history.state.
+   * Records the app state in the history state.
    * This makes restoring the page when going back really fast.
    */
-  bindAppStateToHistory() {
-    const { app, history } = this.props
+  recordState() {
+    const { history, app } = this.props
+    const { pathname, search, hash = '' } = history.location
 
-    const recordState = snapshot => {
-      const { pathname, search, hash = '' } = history.location
-
-      try {
-        history.replace(pathname + hash + search, snapshot)
-      } catch (e) {
-        // If recording the app state fails, clear out the history state
-        // we don't want the app restoring a stale state if the user navigates back/forward.
-        // Browsers impose a limit on the size of the state object.  Firefox's is the smallest
-        // at 640kB, IE11 is 1MB, and Chrome is at least 10MB. Exceeding this limit is the most
-        // likely reason for history.replace to fail.
-        history.replace(pathname + hash + search, null)
-        console.warn(
-          'Could not record app state in history.  Will fall back to fetching state from the server when navigating back and forward.'
-        )
-      }
+    try {
+      history.replace(pathname + hash + search, app.toJSON())
+    } catch (e) {
+      // If recording the app state fails, clear out the history state
+      // we don't want the app restoring a stale state if the user navigates back/forward.
+      // Browsers impose a limit on the size of the state object.  Firefox's is the smallest
+      // at 640kB, IE11 is 1MB, and Chrome is at least 10MB. Exceeding this limit is the most
+      // likely reason for history.replace to fail.
+      history.replace(pathname + hash + search, null)
+      console.warn(
+        'Could not record app state in history.  Will fall back to fetching state from the server when navigating back and forward.'
+      )
     }
-
-    // record app state in history.state restore it when going back or forward
-    // see Router#onLocationChange
-    onSnapshot(app, debounce(snapshot => !snapshot.loading && recordState(snapshot), 150))
-
-    // record the initial state so that if the user comes back to the initial landing page the app state will be restored correctly.
-    recordState(app.toJSON())
   }
 
   /**

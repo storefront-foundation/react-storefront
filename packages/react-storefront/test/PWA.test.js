@@ -17,18 +17,21 @@ import * as serviceWorker from '../src/router/serviceWorker'
 import TestProvider from './TestProvider'
 
 describe('PWA', () => {
-  let history, app, userAgent, location
+  let history, app, userAgent, location, push, listen, replace
 
   beforeEach(() => {
     jest.spyOn(global.console, 'error').mockImplementation()
     jest.spyOn(window.navigator, 'userAgent', 'get').mockImplementation(() => userAgent)
     location = { hostname: 'localhost', pathname: '/', search: '' }
     app = AppModelBase.create({ location })
+    push = jest.fn()
+    listen = jest.fn(() => Function.prototype)
+    replace = jest.fn()
     history = {
-      push: jest.fn(),
-      listen: jest.fn(() => Function.prototype),
+      push,
+      listen,
       location,
-      replace: jest.fn()
+      replace
     }
   })
 
@@ -62,7 +65,7 @@ describe('PWA', () => {
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push).toHaveBeenCalledWith('/foo')
+    expect(push).toHaveBeenCalledWith('/foo')
   })
 
   it('should not call history.push when the link has a target other than _self', () => {
@@ -79,7 +82,7 @@ describe('PWA', () => {
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push).not.toHaveBeenCalled()
+    expect(push).not.toHaveBeenCalled()
   })
 
   it('should call history.push when a descendant element of a link is clicked', () => {
@@ -96,7 +99,7 @@ describe('PWA', () => {
 
     simulant.fire(document.body.querySelector('#target'), 'click')
 
-    expect(history.push).toHaveBeenCalledWith('/foo')
+    expect(push).toHaveBeenCalledWith('/foo')
   })
 
   it('should not call history.push when the link has mailto:', () => {
@@ -111,7 +114,7 @@ describe('PWA', () => {
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push).not.toHaveBeenCalled()
+    expect(push).not.toHaveBeenCalled()
   })
 
   it('should not call history.push when the link has tel:', () => {
@@ -126,10 +129,10 @@ describe('PWA', () => {
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push).not.toHaveBeenCalled()
+    expect(push).not.toHaveBeenCalled()
   })
 
-  it('should not history.push when the link has target=_self', () => {
+  it('should not call history.push when the link has target=_self', () => {
     const wrapper = mount(
       <Provider history={history} app={app}>
         <PWA>
@@ -143,7 +146,7 @@ describe('PWA', () => {
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push).toHaveBeenCalledWith('/foo')
+    expect(push).toHaveBeenCalledWith('/foo')
   })
 
   it('should not call history.push when a link to another domain is clicked', () => {
@@ -166,7 +169,7 @@ describe('PWA', () => {
 
     document.body.querySelectorAll('a').forEach(a => simulant.fire(a, 'click'))
 
-    expect(history.push.mock.calls.length).toEqual(0)
+    expect(push.mock.calls.length).toEqual(0)
   })
 
   it('should not call history.push when a link points to a route with a proxyUpstream handler', () => {
@@ -183,7 +186,7 @@ describe('PWA', () => {
 
     document.body.querySelectorAll('a').forEach(a => simulant.fire(a, 'click'))
 
-    expect(history.push.mock.calls.length).toEqual(0)
+    expect(push.mock.calls.length).toEqual(0)
   })
 
   it('should render children', () => {
@@ -212,7 +215,7 @@ describe('PWA', () => {
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push.mock.calls.length).toEqual(0)
+    expect(push.mock.calls.length).toEqual(0)
   })
 
   it('should reload the page when data-reload="true"', () => {
@@ -229,7 +232,7 @@ describe('PWA', () => {
 
     simulant.fire(document.body.querySelector('a'), 'click')
 
-    expect(history.push.mock.calls.length).toEqual(0)
+    expect(push.mock.calls.length).toEqual(0)
   })
 
   it('should add the moov-safari class to the body when in safari', () => {
@@ -264,25 +267,37 @@ describe('PWA', () => {
     expect(document.body.classList.contains('moov-safari')).toBe(false)
   })
 
-  it('should record app state in history.state', done => {
+  it('should record app state in history.state', () => {
     mount(
       <Provider history={history} app={app}>
         <PWA />
       </Provider>
     )
-
     app.applyState({ title: 'updated' })
-
-    setTimeout(() => {
-      expect(history.replace).toHaveBeenCalledWith(
-        location.pathname + location.search,
-        app.toJSON()
-      )
-      done()
-    }, 200) // because state recording is debounced so it's async
+    history.push('/foo')
+    expect(replace).toHaveBeenCalledWith(location.pathname + location.search, app.toJSON())
   })
 
-  it('should catch errors that occur when attempting to record app state to history', done => {
+  it('should record history state when a link is clicked', () => {
+    const title = new Date().toString()
+    app.applyState({ title })
+
+    const wrapper = mount(
+      <Provider history={history} app={app}>
+        <PWA>
+          <a href="/foo">
+            <p id="target">Foo</p>
+          </a>
+        </PWA>
+      </Provider>,
+      { attachTo: document.body }
+    )
+
+    simulant.fire(document.body.querySelector('#target'), 'click')
+    expect(replace).toHaveBeenCalledWith(location.pathname + location.search, app.toJSON())
+  })
+
+  it('should catch errors that occur when attempting to record app state to history', () => {
     const history = createMemoryHistory({ initialEntries: ['/'] })
 
     // The reason for this test is to ensure that if a browser blocks storing of history state because
@@ -295,6 +310,7 @@ describe('PWA', () => {
           history.replace(path, state)
         }
       },
+      push: jest.fn(),
       location: history.location,
       listen: () => Function.prototype
     }
@@ -311,10 +327,9 @@ describe('PWA', () => {
 
     app.applyState({ title: 'updated' })
 
-    setTimeout(() => {
-      expect(history.location.state).toEqual(null)
-      done()
-    }, 200) // because state recording is debounced so it's async
+    history.push('/foo')
+
+    expect(history.location.state).toEqual(undefined)
   })
 
   describe('caching SSR', () => {
