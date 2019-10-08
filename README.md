@@ -76,6 +76,7 @@ yarn release
 
 ### 6.54.3
 
+- Fixes on-screen keyboard collapsing when search field was cleared
 - Fixes an issue where outdated state can be recorded in history if the app state changes immediately before navigation - [Issue #272](https://github.com/moovweb/react-storefront/issues/272)
 
 ### 6.54.2

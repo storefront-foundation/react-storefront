@@ -469,6 +469,7 @@ export default class SearchDrawer extends Component {
    */
   clearSearch = () => {
     this.onChangeSearchText('')
+    this.input.focus()
   }
 
   /**
