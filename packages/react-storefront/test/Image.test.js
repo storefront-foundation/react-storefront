@@ -99,4 +99,19 @@ describe('Image', () => {
       done()
     })
   })
+
+  it('should leave the original src in place when notFoundSrc is not defined', done => {
+    const wrapper = mount(
+      <Provider app={AppModelBase.create({ amp: false })}>
+        <Image src="/foo.png" aspectRatio={50} />
+      </Provider>
+    )
+    const image = wrapper.find('Image')
+
+    image.setState({ primaryNotFound: true }, () => {
+      const img = wrapper.find('img')
+      expect(img.prop('src')).toBe('/foo.png')
+      done()
+    })
+  })
 })

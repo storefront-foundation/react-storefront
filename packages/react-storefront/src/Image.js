@@ -175,7 +175,7 @@ export default class Image extends Component {
     // Overiding `src` prop if `quality` was set
     src = this.getOptimizedSrc()
 
-    if (primaryNotFound) {
+    if (primaryNotFound && notFoundSrc) {
       src = notFoundSrc
     }
 
