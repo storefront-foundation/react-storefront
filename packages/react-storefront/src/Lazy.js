@@ -19,8 +19,12 @@ export const styles = () => ({
 @inject('app')
 @observer
 export default class Lazy extends Component {
-  state = {
-    visible: false
+  constructor({ app }) {
+    super()
+
+    this.state = {
+      visible: app.amp
+    }
   }
 
   onChange = v => {

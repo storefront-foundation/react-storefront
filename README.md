@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.55.2
+
+- Elements inside `Lazy` are now shown in AMP.
+
 ### 6.55.1
 
 - Search how hides and disables the submit button until the user enters a non-whitespace character
