@@ -89,7 +89,8 @@ function createServiceWorkerPlugins({
             /manifest\.json/,
             /icons\//,
             /\.js\.map/,
-            /.well-known\/*/
+            /.well-known\/*/,
+            /uninstall-service-worker\/.*/
           ]
         },
         workboxConfig

@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.55.3
+
+- uninstall-service-worker.js is no longer prefetched.
+
 ### 6.55.2
 
 - Elements inside `Lazy` are now shown in AMP.
