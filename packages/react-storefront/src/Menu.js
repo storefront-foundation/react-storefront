@@ -187,6 +187,27 @@ export default class Menu extends Component {
     rootFooter: PropTypes.element,
 
     /**
+     * A function to render a custom header in leaf lists.  It is passed an object
+     * with:
+     *
+     * - list: The menu model being rendered
+     * - goBack: A function to call to go back to the previous list
+     *
+     * The function should return a React element or fragment.
+     */
+    renderLeafHeader: PropTypes.func,
+
+    /**
+     * A function to render a custom footer in leaf lists.  It is passed an object
+     * with:
+     *
+     * - list: The menu model being rendered
+     *
+     * The function should return a React element or fragment.
+     */
+    renderLeafFooter: PropTypes.func,
+
+    /**
      * Set to true to use expandable menu items below depth 1
      */
     useExpanders: PropTypes.bool,

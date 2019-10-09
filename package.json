@@ -73,7 +73,7 @@
     "release:middleware": "cd packages/react-storefront-middleware; yarn publish --non-interactive",
     "docs": "cd packages/react-storefront; yarn docs; cd ../../;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
-    "test": "lerna run test",
+    "test": "lerna run test --stream",
     "watch": "lerna run watch --stream",
     "add-license": "node ./tasks/addLicense",
     "upgrade-docs": "sh ./tasks/upgrade-docs.sh",

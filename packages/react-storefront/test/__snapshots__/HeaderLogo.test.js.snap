@@ -3,7 +3,7 @@
 exports[`HeaderLogo renders 1`] = `
 <Provider app={{...}} history={{...}}>
   <WithStyles(HeaderLogo)>
-    <HeaderLogo classes={{...}} alt="brand logo">
+    <HeaderLogo classes={{...}} alt="brand logo" linkProps={{...}}>
       <inject-Track-with-app event="logoClicked">
         <Track event="logoClicked" app={{...}} trigger="onClick" onSuccess={[Function]} ampData={{...}}>
           <WithStyles(inject-Link) to="/" className="RSFHeaderLogo-logoWrap-1" onClick={[Function]}>

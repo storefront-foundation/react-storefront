@@ -2,39 +2,32 @@
  * @license
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
-import React, { Component, Fragment } from 'react'
-import ListItemText from '@material-ui/core/ListItemText'
+import React, { Component } from 'react'
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ChevronLeft from '@material-ui/icons/ChevronLeft'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
 import classnames from 'classnames'
-import Item from './Item'
-import MenuContext from './MenuContext'
+import Item from '../menu/Item'
+import MenuContext from '../menu/MenuContext'
+import LeafHeader from '../menu/LeafHeader'
+import LeafFooter from '../menu/LeafFooter'
 
-export default class MenuBody extends Component {
+export default class AmpMenuBody extends Component {
   static contextType = MenuContext
 
   render() {
-    const { classes, rootHeader, rootFooter, root, path, depth } = this.props
+    const {
+      classes,
+      rootHeader,
+      rootFooter,
+      renderLeafHeader,
+      renderLeafFooter,
+      root,
+      path,
+      depth
+    } = this.props
 
     const parentPath = path.length ? '@' + path.slice(0, path.length - 1).join(',') : null
-
     const id = '@' + path.join(',')
-
     const isRoot = id === '@'
-
-    const header = !isRoot && (
-      <ListItem divider button on={`tap:AMP.setState({ rsfMenu: { list: '${parentPath}' } })`}>
-        <ListItemIcon classes={{ root: classes.header }}>
-          <ChevronLeft className={classes.icon} />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ root: classes.headerText }}
-          primary={<div className={classes.headerText}>{root.text} </div>}
-        />
-      </ListItem>
-    )
 
     return (
       <div
@@ -51,12 +44,29 @@ export default class MenuBody extends Component {
         })}'`}
       >
         <List classes={{ padding: classes.ampList }}>
-          {rootHeader}
-          {header}
+          {isRoot ? (
+            rootHeader
+          ) : (
+            <LeafHeader
+              parentPath={parentPath}
+              classes={classes}
+              list={root}
+              render={renderLeafHeader}
+            />
+          )}
           {root.items.map((item, i) => (
             <Item {...this.props} depth={depth} item={item} key={i} index={i} />
           ))}
-          {rootFooter}
+          {isRoot ? (
+            rootFooter
+          ) : (
+            <LeafFooter
+              parentPath={parentPath}
+              classes={classes}
+              list={root}
+              render={renderLeafFooter}
+            />
+          )}
         </List>
       </div>
     )

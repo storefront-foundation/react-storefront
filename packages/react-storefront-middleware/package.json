@@ -1,6 +1,6 @@
 {
   "name": "react-storefront-middleware",
-  "version": "6.54.1",
+  "version": "6.55.0",
   "description": "Express middleware for react-storefront",
   "author": "Moovweb",
   "license": "Apache-2.0",

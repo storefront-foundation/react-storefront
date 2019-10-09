@@ -1959,61 +1959,63 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                                   <WithStyles(List) style={{...}} classes={{...}}>
                                                     <List style={{...}} classes={{...}} component="ul" dense={false} disablePadding={false}>
                                                       <ul className="MuiList-root-658 RSFMenu-list-591 MuiList-padding-659" style={{...}}>
-                                                        <WithStyles(ListItem) divider={true} button={true} onClick={[Function]}>
-                                                          <ListItem divider={true} button={true} onClick={[Function]} classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
-                                                            <MergeListContext dense={false} alignItems="center">
-                                                              <WithStyles(ButtonBase) className="MuiListItem-root-662 MuiListItem-default-665 MuiListItem-gutters-670 MuiListItem-divider-669 MuiListItem-button-671" disabled={false} onClick={[Function]} component="div" focusVisibleClassName="MuiListItem-focusVisible-664">
-                                                                <ButtonBase className="MuiListItem-root-662 MuiListItem-default-665 MuiListItem-gutters-670 MuiListItem-divider-669 MuiListItem-button-671" disabled={false} onClick={[Function]} component="div" focusVisibleClassName="MuiListItem-focusVisible-664" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
-                                                                  <div className="MuiButtonBase-root-674 MuiListItem-root-662 MuiListItem-default-665 MuiListItem-gutters-670 MuiListItem-divider-669 MuiListItem-button-671" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" onClick={[Function]}>
-                                                                    <WithStyles(ListItemIcon) classes={{...}}>
-                                                                      <ListItemIcon classes={{...}}>
-                                                                        <div className="MuiListItemIcon-root-683 RSFMenu-header-598">
-                                                                          <pure(ChevronLeftIcon) className="RSFMenu-icon-599">
-                                                                            <ChevronLeftIcon className="RSFMenu-icon-599">
-                                                                              <WithStyles(SvgIcon) className="RSFMenu-icon-599">
-                                                                                <SvgIcon className="RSFMenu-icon-599" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                                  <svg className="MuiSvgIcon-root-684 RSFMenu-icon-599" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                                                                                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                                                                                    <path fill="none" d="M0 0h24v24H0z" />
-                                                                                  </svg>
-                                                                                </SvgIcon>
-                                                                              </WithStyles(SvgIcon)>
-                                                                            </ChevronLeftIcon>
-                                                                          </pure(ChevronLeftIcon)>
-                                                                        </div>
-                                                                      </ListItemIcon>
-                                                                    </WithStyles(ListItemIcon)>
-                                                                    <WithStyles(ListItemText) classes={{...}} primary={{...}}>
-                                                                      <ListItemText primary={{...}} classes={{...}} disableTypography={false} inset={false}>
-                                                                        <div className="MuiListItemText-root-677 RSFMenu-headerText-600">
-                                                                          <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-680" component="span">
-                                                                            <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-680" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                                              <span className="MuiTypography-root-700 MuiTypography-subtitle1-718 MuiListItemText-primary-680">
-                                                                                <div className="RSFMenu-headerText-600">
-                                                                                  Group 1
-                                                                                   
-                                                                                </div>
-                                                                              </span>
-                                                                            </Typography>
-                                                                          </WithStyles(Typography)>
-                                                                        </div>
-                                                                      </ListItemText>
-                                                                    </WithStyles(ListItemText)>
-                                                                    <NoSsr defer={false} fallback={{...}}>
-                                                                      <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                                        <TouchRipple center={false} classes={{...}}>
-                                                                          <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-693" childFactory={[Function: childFactory]}>
-                                                                            <span className="MuiTouchRipple-root-693" />
-                                                                          </TransitionGroup>
-                                                                        </TouchRipple>
-                                                                      </WithStyles(TouchRipple)>
-                                                                    </NoSsr>
-                                                                  </div>
-                                                                </ButtonBase>
-                                                              </WithStyles(ButtonBase)>
-                                                            </MergeListContext>
-                                                          </ListItem>
-                                                        </WithStyles(ListItem)>
+                                                        <LeafHeader classes={{...}} goBack={[Function]} list={{...}} render={[undefined]}>
+                                                          <WithStyles(ListItem) divider={true} button={true} onClick={[Function]} on="tap:AMP.setState({ rsfMenu: { list: \\'undefined\\' } })">
+                                                            <ListItem divider={true} button={true} onClick={[Function]} on="tap:AMP.setState({ rsfMenu: { list: \\'undefined\\' } })" classes={{...}} alignItems="center" ContainerComponent="li" dense={false} disabled={false} disableGutters={false} selected={false}>
+                                                              <MergeListContext dense={false} alignItems="center">
+                                                                <WithStyles(ButtonBase) className="MuiListItem-root-662 MuiListItem-default-665 MuiListItem-gutters-670 MuiListItem-divider-669 MuiListItem-button-671" disabled={false} onClick={[Function]} on="tap:AMP.setState({ rsfMenu: { list: \\'undefined\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-664">
+                                                                  <ButtonBase className="MuiListItem-root-662 MuiListItem-default-665 MuiListItem-gutters-670 MuiListItem-divider-669 MuiListItem-button-671" disabled={false} onClick={[Function]} on="tap:AMP.setState({ rsfMenu: { list: \\'undefined\\' } })" component="div" focusVisibleClassName="MuiListItem-focusVisible-664" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} focusRipple={false} tabIndex="0" type="button">
+                                                                    <div className="MuiButtonBase-root-674 MuiListItem-root-662 MuiListItem-default-665 MuiListItem-gutters-670 MuiListItem-divider-669 MuiListItem-button-671" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" role="button" onClick={[Function]} on="tap:AMP.setState({ rsfMenu: { list: \\'undefined\\' } })">
+                                                                      <WithStyles(ListItemIcon) classes={{...}}>
+                                                                        <ListItemIcon classes={{...}}>
+                                                                          <div className="MuiListItemIcon-root-683 RSFMenu-header-598">
+                                                                            <pure(ChevronLeftIcon) className="RSFMenu-icon-599">
+                                                                              <ChevronLeftIcon className="RSFMenu-icon-599">
+                                                                                <WithStyles(SvgIcon) className="RSFMenu-icon-599">
+                                                                                  <SvgIcon className="RSFMenu-icon-599" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                                    <svg className="MuiSvgIcon-root-684 RSFMenu-icon-599" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                                                                                      <path fill="none" d="M0 0h24v24H0z" />
+                                                                                    </svg>
+                                                                                  </SvgIcon>
+                                                                                </WithStyles(SvgIcon)>
+                                                                              </ChevronLeftIcon>
+                                                                            </pure(ChevronLeftIcon)>
+                                                                          </div>
+                                                                        </ListItemIcon>
+                                                                      </WithStyles(ListItemIcon)>
+                                                                      <WithStyles(ListItemText) classes={{...}} primary={{...}}>
+                                                                        <ListItemText primary={{...}} classes={{...}} disableTypography={false} inset={false}>
+                                                                          <div className="MuiListItemText-root-677 RSFMenu-headerText-600">
+                                                                            <WithStyles(Typography) variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-680" component="span">
+                                                                              <Typography variant="subheading" internalDeprecatedVariant={true} className="MuiListItemText-primary-680" component="span" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                                                <span className="MuiTypography-root-700 MuiTypography-subtitle1-718 MuiListItemText-primary-680">
+                                                                                  <div className="RSFMenu-headerText-600">
+                                                                                    Group 1
+                                                                                     
+                                                                                  </div>
+                                                                                </span>
+                                                                              </Typography>
+                                                                            </WithStyles(Typography)>
+                                                                          </div>
+                                                                        </ListItemText>
+                                                                      </WithStyles(ListItemText)>
+                                                                      <NoSsr defer={false} fallback={{...}}>
+                                                                        <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                          <TouchRipple center={false} classes={{...}}>
+                                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-693" childFactory={[Function: childFactory]}>
+                                                                              <span className="MuiTouchRipple-root-693" />
+                                                                            </TransitionGroup>
+                                                                          </TouchRipple>
+                                                                        </WithStyles(TouchRipple)>
+                                                                      </NoSsr>
+                                                                    </div>
+                                                                  </ButtonBase>
+                                                                </WithStyles(ButtonBase)>
+                                                              </MergeListContext>
+                                                            </ListItem>
+                                                          </WithStyles(ListItem)>
+                                                        </LeafHeader>
                                                         <inject-Item-with-app drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={1} classes={{...}}>
                                                           <Item drawerWidth={330} simple={false} theme={{...}} useexpanders={true} expandFirstItem={false} trackSelected={false} app={{...}} item={{...}} depth={1} classes={{...}}>
                                                             <inject-Branch-with-app expandFirstItem={false} itemContentRenderer={[undefined]} itemRenderer={[undefined]} trackSelected={false} ExpandIcon={[undefined]} CollapseIcon={[undefined]} theme={{...}} item={{...}} index={[undefined]} depth={1} useExpanders={[undefined]} simple={false}>
@@ -2078,6 +2080,7 @@ exports[`Menu should render without expand first not root item by default 1`] = 
                                                             </inject-Branch-with-app>
                                                           </Item>
                                                         </inject-Item-with-app>
+                                                        <LeafFooter list={{...}} render={[undefined]} />
                                                       </ul>
                                                     </List>
                                                   </WithStyles(List)>

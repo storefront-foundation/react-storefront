@@ -163,9 +163,7 @@ export default class AmpImageSwitcher extends Component {
       app
     } = this.props
 
-    console.log('AmpImageSwitcher thumbnails', thumbnails)
     const { id } = this
-
     const pathname = app.location.pathname.replace(/\.amp/, '')
 
     // This endpoint is only used to give AMP a valid initial `src` for AMP lists

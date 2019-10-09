@@ -74,6 +74,21 @@ yarn release
 
 ## Changelog
 
+### 6.55.0
+
+- Added `renderLeafHeader` and `renderLeafFooter` to `Menu`. These allow developers to customize the header and footer sections for non-root menu cards.
+- Added `linkProps` prop to `HeaderLogo` for adding props into `Link` component.
+
+### 6.54.3
+
+- Updated `Image` to leave `src` in place when the image fails to load and `notFoundSrc` is not defined.
+- Fixes on-screen keyboard collapsing when search field was cleared
+- Fixes an issue where outdated state can be recorded in history if the app state changes immediately before navigation - [Issue #272](https://github.com/moovweb/react-storefront/issues/272)
+
+### 6.54.2
+
+- Fixed an issue where `<Image />` components with `lazy` parameter and no width are never rendered if they are initially above the fold.
+
 ### 6.54.1
 
 - Improved consistency of prefetch caching.

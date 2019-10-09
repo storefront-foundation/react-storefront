@@ -224,6 +224,7 @@ describe('Menu', () => {
     describe('itemContentRenderer', () => {
       it('should be called for each item', () => {
         const renderer = jest.fn(item => <div>{item.text}</div>)
+
         expect(
           mount(
             <Provider app={appWithTopLevelLeaf} history={{}}>
@@ -231,12 +232,110 @@ describe('Menu', () => {
             </Provider>
           )
         ).toMatchSnapshot()
+
         expect(renderer.mock.calls[0][0].text).toEqual('Group 1')
         expect(renderer.mock.calls[1][0].text).toEqual('Item 1')
         expect(renderer.mock.calls[2][0].text).toEqual('Child 1')
         expect(renderer.mock.calls[3][0].text).toEqual('Leaf')
         expect(renderer.mock.calls).toHaveLength(4)
       })
+    })
+  })
+
+  describe('custom leaf renderers', () => {
+    let app
+
+    beforeEach(() => {
+      app = AppModelBase.create({
+        location: {
+          pathname: '/',
+          search: '',
+          hostname: 'localhost'
+        },
+        menu: {
+          level: 1,
+          levels: [
+            {
+              root: true,
+              items: [
+                {
+                  text: 'Group 1',
+                  items: [
+                    {
+                      text: 'Item 1',
+                      url: '/item1',
+                      items: [{ text: 'Child 1', url: '/item1/child1' }]
+                    }
+                  ]
+                },
+                {
+                  text: 'Leaf',
+                  url: '/leaf'
+                }
+              ]
+            },
+            {
+              text: 'Group 1',
+              root: false,
+              items: [
+                {
+                  text: 'Item 1',
+                  url: '/item1',
+                  items: [{ text: 'Child 1', url: '/item1/child1' }]
+                }
+              ]
+            }
+          ]
+        }
+      })
+    })
+
+    it('renderLeafHeader should be called and render the result', () => {
+      const renderLeafHeader = jest.fn(({ list, goBack }) => {
+        return <div id="header">{list.text}</div>
+      })
+
+      const wrapper = mount(
+        <Provider app={app} history={{}}>
+          <Menu renderLeafHeader={renderLeafHeader} />
+        </Provider>
+      )
+
+      expect(renderLeafHeader).toHaveBeenCalledWith({
+        list: app.menu.levels[1],
+        goBack: expect.any(Function),
+        backButtonAmpProps: expect.anything()
+      })
+
+      expect(
+        wrapper
+          .find('#header')
+          .first()
+          .text()
+      ).toBe('Group 1')
+    })
+
+    it('renderLeafFooter should be called and render the result', () => {
+      const renderLeafFooter = jest.fn(({ list }) => {
+        return <div id="footer">{list.text}</div>
+      })
+
+      const wrapper = mount(
+        <Provider app={app} history={{}}>
+          <Menu renderLeafFooter={renderLeafFooter} />
+        </Provider>
+      )
+
+      expect(renderLeafFooter).toHaveBeenCalledWith({
+        list: app.menu.levels[1]
+      })
+
+      expect(
+        wrapper
+          .find('#footer')
+          .first()
+          .text()
+      ).toBe('Group 1')
     })
   })
 

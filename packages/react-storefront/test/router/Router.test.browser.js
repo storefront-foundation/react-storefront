@@ -356,7 +356,7 @@ describe('Router:Browser', function() {
 
   describe('cache', function() {
     it('should be called on the client', async function() {
-      const cacheHandler = cache({ edge: { maxAgeSeconds: 300 } })
+      const cacheHandler = cache({ edge: { maxAgeSeconds: 300 }, client: true })
       cacheHandler.fn = sinon.fake()
 
       router.get(
