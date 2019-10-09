@@ -12,8 +12,8 @@ exports[`PWA should render amp-install-service worker when amp==true 1`] = `
                 <CssBaseline classes={{...}} />
               </WithStyles(CssBaseline)>
               <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}}>
-                  <NullComponent defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}} />
+                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} meta={{...}} link={{...}}>
+                  <NullComponent defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} meta={{...}} link={{...}} />
                 </SideEffect(NullComponent)>
               </HelmetWrapper>
               <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
@@ -46,8 +46,8 @@ exports[`PWA should render children 1`] = `
                 <CssBaseline classes={{...}} />
               </WithStyles(CssBaseline)>
               <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}}>
-                  <NullComponent defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} title={{...}} titleAttributes={{...}} meta={{...}} link={{...}} />
+                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} meta={{...}} link={{...}}>
+                  <NullComponent defer={true} encodeSpecialCharacters={true} htmlAttributes={{...}} meta={{...}} link={{...}} />
                 </SideEffect(NullComponent)>
               </HelmetWrapper>
               <div>

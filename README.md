@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.55.1
+
+- Fixes hiding `<title>` tag when `app.title` is `null`
+
 ### 6.55.0
 
 - Added `renderLeafHeader` and `renderLeafFooter` to `Menu`. These allow developers to customize the header and footer sections for non-root menu cards.

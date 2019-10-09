@@ -78,7 +78,7 @@ export default class PWA extends Component {
                 {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
                 {/* crossorigin="use-credentials" is needed when the site is password protected by basic auth*/}
                 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
-                <title>{app.title}</title>
+                {app.title ? <title>{app.title}</title> : null}
               </Helmet>
               {amp && (
                 <Helmet>

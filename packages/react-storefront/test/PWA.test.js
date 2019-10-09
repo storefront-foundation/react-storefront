@@ -5,6 +5,7 @@
 jest.mock('../src/router/serviceWorker')
 
 import React from 'react'
+import Helmet from 'react-helmet'
 import { mount } from 'enzyme'
 import { Provider, inject } from 'mobx-react'
 import AppModelBase from '../src/model/AppModelBase'
@@ -33,6 +34,47 @@ describe('PWA', () => {
       location,
       replace
     }
+  })
+
+  it('should not render title when not defined', () => {
+    const wrapper = mount(
+      <Provider
+        history={history}
+        app={AppModelBase.create({
+          amp: true,
+          location: { hostname: 'localhost', pathname: '/', search: '' }
+        })}
+      >
+        <PWA>
+          <div>Foo</div>
+        </PWA>
+      </Provider>
+    )
+
+    const helmet = Helmet.peek()
+
+    expect(helmet.title).toEqual(undefined)
+  })
+
+  it('should render title when defined', () => {
+    const wrapper = mount(
+      <Provider
+        history={history}
+        app={AppModelBase.create({
+          amp: true,
+          title: 'foo',
+          location: { hostname: 'localhost', pathname: '/', search: '' }
+        })}
+      >
+        <PWA>
+          <div>Foo</div>
+        </PWA>
+      </Provider>
+    )
+
+    const helmet = Helmet.peek()
+
+    expect(helmet.title).toEqual('foo')
   })
 
   it('should render amp-install-service worker when amp==true', () => {
