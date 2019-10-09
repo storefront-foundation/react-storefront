@@ -10,7 +10,7 @@
  */
 function getMoovManifest() {
   return (
-    global.env.moovManifest || {
+    global.moovManifest || {
       DefaultMode: '000-000-000', // stub mode to emulate the structure of moovManifest during development
       Modes: {
         '000-000-000': {
