@@ -74,9 +74,7 @@
     "docs": "cd packages/react-storefront; yarn docs; cd ../../;",
     "deploy-storybook": "gh-pages -d packages/react-storefront/storybook-static",
     "test": "lerna run test",
-    "watch": "concurrently \"yarn watch:rsf\" \"yarn watch:rsf-moov-xdn\"",
-    "watch:rsf": "pushd packages/react-storefront; yarn watch; popd;",
-    "watch:rsf-moov-xdn": "pushd packages/react-storefront-moov-xdn; yarn watch; popd;",
+    "watch": "lerna run watch --stream",
     "add-license": "node ./tasks/addLicense",
     "upgrade-docs": "sh ./tasks/upgrade-docs.sh",
     "link:all": "lerna run link --stream"

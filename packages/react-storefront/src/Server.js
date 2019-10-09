@@ -33,6 +33,7 @@ import requestContext from './requestContext'
  * @param {Boolean} config.deferScripts Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
  * @param {Function} config.transform A function to transform the rendered HTML before it is sent to the browser
  * @param {Function} config.errorReporter A function to call when an error occurs so that it can be logged
+ * @param {Object} config.state Initial state data to be added to the AppModel
  */
 export default class Server {
   constructor({
@@ -42,7 +43,8 @@ export default class Server {
     router,
     deferScripts = true,
     transform,
-    errorReporter = Function.prototype
+    errorReporter = Function.prototype,
+    state = {}
   }) {
     console.error = console.warn = console.log
 
@@ -53,7 +55,8 @@ export default class Server {
       router,
       deferScripts,
       transform,
-      errorReporter
+      errorReporter,
+      state
     })
   }
 
@@ -107,14 +110,6 @@ export default class Server {
     }
   }
 
-  getModeId() {
-    if (!global.env) return null
-    console.log('global.env.moovManifest', global.env.moovManifest)
-    const { moov_mode_name } = global.env
-    if (!moov_mode_name) return null
-    console.log('global.env.moovManifest.Modes', global.env.moovManifest.Modes)
-  }
-
   /**
    * Renders either a JSON or HTML response for the given state based on the path suffix.
    * @private
@@ -141,10 +136,10 @@ export default class Server {
     const sheetsRegistry = new SheetsRegistry()
 
     const model = this.model.create({
+      ...this.state,
       ...state,
       amp,
       initialWidth: amp ? 'xs' : state.initialWidth,
-      modeId: this.getModeId(),
       location: {
         ...history.location,
         port,

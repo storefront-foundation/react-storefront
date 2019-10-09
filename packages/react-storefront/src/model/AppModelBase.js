@@ -5,6 +5,7 @@
 import { types } from 'mobx-state-tree'
 import { MenuModel } from '../Menu'
 import { TabsModel } from '../NavTabs'
+import ModeModel from './ModeModel'
 import CategoryModelBase from './CategoryModelBase'
 import SubcategoryModelBase from './SubcategoryModelBase'
 import ProductModelBase from './ProductModelBase'
@@ -131,6 +132,11 @@ export const LocationModel = types
  */
 const AppModelBase = types
   .model('AppModelBase', {
+    /**
+     * The mode that served the request. This can be used to identify under which mode a
+     * request was served when running an A/B test.
+     */
+    mode: types.maybeNull(ModeModel),
     /**
      * Will be `true` when the user has navigated to a new page but the viewport
      * has not yet been scrolled back to the top.  This is used internally by

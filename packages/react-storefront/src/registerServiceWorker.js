@@ -69,7 +69,7 @@ export default function register() {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL || ''}/service-worker.js`
+      const swUrl = `${process.env.PUBLIC_URL || ''}/service-worker.js${getModeQueryString()}`
 
       if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
@@ -79,6 +79,22 @@ export default function register() {
         registerValidSW(swUrl)
       }
     })
+  }
+}
+
+/**
+ * Gets the query string to append to the service worker URL based on the current mode being served.
+ * This ensures that the service worker is fetched from the same mode as the app was service from
+ * when running an A/B test.
+ * @private
+ */
+function getModeQueryString() {
+  const { mode } = window.moov
+
+  if (mode) {
+    return `?moov_fetch_from=${encodeURIComponent(mode.id)}`
+  } else {
+    return ''
   }
 }
 
