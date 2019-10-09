@@ -20,7 +20,7 @@ if (!window.moov) {
 
 // The service worker derives the cache name from this, which is sent as the x-moov-api-version
 // request header in router/fromServer
-window.moov.apiVersion = __build_timestamp__
+window.moov.apiVersion = global.__build_timestamp__ || ''
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
@@ -69,7 +69,7 @@ export default function register() {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL || ''}/service-worker.js${getModeQueryString()}`
+      const swUrl = getServiceWorkerURL()
 
       if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
@@ -89,13 +89,20 @@ export default function register() {
  * @private
  */
 function getModeQueryString() {
-  const { mode } = window.moov
+  const { mode } = window.moov.state
 
   if (mode) {
     return `?moov_fetch_from=${encodeURIComponent(mode.id)}`
   } else {
     return ''
   }
+}
+
+/**
+ * Creates the url for the service worker
+ */
+export function getServiceWorkerURL() {
+  return `${process.env.PUBLIC_URL || ''}/service-worker.js${getModeQueryString()}`
 }
 
 function registerValidSW(swUrl) {

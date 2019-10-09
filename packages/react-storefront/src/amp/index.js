@@ -10,6 +10,7 @@ export { default as AmpForm } from './AmpForm.js';
 export { default as AmpHidden } from './AmpHidden.js';
 export { default as AmpImageSwitcher } from './AmpImageSwitcher.js';
 export { default as AmpMenu } from './AmpMenu.js';
+export { default as AmpMenuBody } from './AmpMenuBody.js';
 export { default as AmpModal } from './AmpModal.js';
 export { default as AmpSearchDrawer } from './AmpSearchDrawer.js';
 export { default as AmpSearchResults } from './AmpSearchResults.js';
