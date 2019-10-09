@@ -76,6 +76,7 @@ yarn release
 
 ### 6.55.1
 
+- Search how hides and disables the submit button until the user enters a non-whitespace character
 - Fixes hiding `<title>` tag when `app.title` is `null`
 
 ### 6.55.0

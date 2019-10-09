@@ -242,12 +242,13 @@ export default class SearchDrawer extends Component {
       searchButtonVariant,
       showClearButton,
       searchURL,
-      searchFieldName
+      searchFieldName,
+      amp
     } = this.props
 
     const HideWhenEmpty = ({ children }) => (
       <div
-        className={search.text.length ? null : classes.hidden}
+        className={search.text.trim().length ? null : classes.hidden}
         amp-bind={`class=>rsfSearchDrawer.searchText.length > 0 ? "" : "${classes.hidden}"`}
       >
         {children}
@@ -255,7 +256,12 @@ export default class SearchDrawer extends Component {
     )
 
     const SearchButton = ({ Component, ...others }) => (
-      <Component rel="search" type="submit" {...others}>
+      <Component
+        rel="search"
+        type="submit"
+        disabled={!amp && search.text.trim().length === 0}
+        {...others}
+      >
         <SearchIcon />
       </Component>
     )
@@ -263,7 +269,7 @@ export default class SearchDrawer extends Component {
     return (
       <div className={classes.wrap}>
         <AmpState id="rsfSearchDrawer" initialState={{ open: false, searchText: '' }}>
-          <Track event="searchSubmitted" trigger="onSubmit" term={this.props.search.text}>
+          <Track event="searchSubmitted" trigger="onSubmit" term={search.text}>
             <AmpForm onSubmit={this.onSearchFormSubmit} action={searchURL} mask={false}>
               <div className={classes.header}>
                 {this.renderCloseButton()}
