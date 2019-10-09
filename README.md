@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.56.0
+
+- The service worker URL now includes the mode ID to ensure that it is fetched from the same mode that served the request when running an A/B test.
+
 ### 6.55.0
 
 - Added `renderLeafHeader` and `renderLeafFooter` to `Menu`. These allow developers to customize the header and footer sections for non-root menu cards.

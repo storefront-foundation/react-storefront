@@ -164,6 +164,19 @@ describe('Server', () => {
       expect($.load(data.body)('meta[name=viewport]').attr('content')).toBe(viewport)
     })
 
+    it('should include the provided state in window.initialState', async () => {
+      const App = () => (
+        <PWA>
+          <div>test</div>
+        </PWA>
+      )
+
+      const state = { mode: { id: '0', name: 'default' } }
+      await new Server({ theme, model, router, blob, globals, App, state }).serve(request, response)
+      const data = global.sendResponse.mock.calls[0][0]
+      expect(data.body).toContain(JSON.stringify(state.mode))
+    })
+
     it('should call transform and return the result', async () => {
       const App = () => (
         <PWA>
