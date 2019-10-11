@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.55.4
+
+- Added `visibilitySensorProps` to `Lazy`.
+
 ### 6.55.3
 
 - uninstall-service-worker.js is no longer prefetched.

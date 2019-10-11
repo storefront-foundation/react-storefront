@@ -36,7 +36,7 @@ export default class Lazy extends Component {
   }
 
   render() {
-    const { app, children, className, classes, ...otherProps } = this.props
+    const { app, children, className, classes, visibilitySensorProps, ...otherProps } = this.props
     const { visible } = this.state
 
     return (
@@ -44,6 +44,7 @@ export default class Lazy extends Component {
         onChange={this.onChange}
         active={!visible && !app.scrollResetPending}
         partialVisibility
+        {...visibilitySensorProps}
       >
         <div className={classnames(classes.root, className)} {...otherProps}>
           {visible && children}
