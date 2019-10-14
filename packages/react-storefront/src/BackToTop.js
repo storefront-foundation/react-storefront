@@ -3,6 +3,7 @@
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
 import React, { Component, createRef } from 'react'
+import { inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import throttle from 'lodash/throttle'
 import ArrowUpward from '@material-ui/icons/ArrowUpward'
