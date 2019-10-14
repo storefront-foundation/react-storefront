@@ -32,6 +32,7 @@ const styles = () => ({
  * Customizable component which scrolls to top of the page
  */
 @withStyles(styles, { name: 'RSFBackToTop' })
+@inject(({ app }) => ({ amp: app.amp }))
 export default class BackToTop extends Component {
   static propTypes = {
     /**
@@ -101,7 +102,7 @@ export default class BackToTop extends Component {
   }
 
   render() {
-    const { classes, fadeTime, size } = this.props
+    const { classes, fadeTime, size, amp } = this.props
     const { visible } = this.state
     const Icon = this.props.Icon || ArrowUpward
 
