@@ -105,6 +105,24 @@ export default class BackToTop extends Component {
     const { visible } = this.state
     const Icon = this.props.Icon || ArrowUpward
 
+    if (amp) {
+      const target = document.createElement('div')
+      target.setAttribute('id', 'backToTopTarget')
+      document.body.prepend(target)
+
+      return (
+        <div className={classes.root}>
+          <button
+            id="scrollToTopButton"
+            on="tap:backToTopTarget.scrollTo(duration=200)"
+            className={classes.ampButton}
+          >
+            <Icon className={classes.icon} />
+          </button>
+        </div>
+      )
+    }
+
     return (
       <div className={classes.root} ref={this.el}>
         <Fade in={visible} timeout={fadeTime}>
