@@ -76,6 +76,7 @@ yarn release
 
 ### 6.56.0
 
+- Added `DrawerButton` component for creating drawers with custom content with support for anchoring from any side
 - `Lazy` no longer requires a `key` prop to automatically unmount it's children when the URL changes.
 
 ### 6.55.4

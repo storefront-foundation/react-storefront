@@ -6,11 +6,11 @@ exports[`Drawer accepts a className prop 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) className="myClassName" onRequestClose={[Function]}>
         <inject-Drawer className="myClassName" onRequestClose={[Function]} classes={{...}}>
-          <Drawer className="myClassName" onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
-            <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind={{...}} open={[undefined]} variant={[undefined]} className="myClassName">
-              <Drawer anchor="bottom" amp-bind={{...}} open={false} variant="temporary" className="myClassName" theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
-                <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-7 MuiDrawer-modal-18 myClassName" open={false} onClose={[undefined]} amp-bind={{...}}>
-                  <Modal BackdropProps={{...}} className="MuiDrawer-root-7 MuiDrawer-modal-18 myClassName" open={false} onClose={[undefined]} amp-bind={{...}} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}} />
+          <Drawer className="myClassName" onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}} variant="temporary" anchor="bottom">
+            <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind={{...}} open={[undefined]} variant="temporary" onClose={[Function]} className="myClassName">
+              <Drawer anchor="bottom" amp-bind={{...}} open={false} variant="temporary" onClose={[Function]} className="myClassName" theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
+                <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-8 RSFDrawer-root-1 MuiDrawer-modal-19 myClassName" open={false} onClose={[Function]} amp-bind={{...}}>
+                  <Modal BackdropProps={{...}} className="MuiDrawer-root-8 RSFDrawer-root-1 MuiDrawer-modal-19 myClassName" open={false} onClose={[Function]} amp-bind={{...}} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}} />
                 </WithStyles(Modal)>
               </Drawer>
             </WithStyles(Drawer)>
@@ -28,11 +28,11 @@ exports[`Drawer accepts a paper class 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) classes={{...}} onRequestClose={[Function]}>
         <inject-Drawer onRequestClose={[Function]} classes={{...}}>
-          <Drawer onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
-            <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind={{...}} open={[undefined]} variant={[undefined]}>
-              <Drawer anchor="bottom" amp-bind={{...}} open={false} variant="temporary" theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
-                <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-27 MuiDrawer-modal-38" open={false} onClose={[undefined]} amp-bind={{...}}>
-                  <Modal BackdropProps={{...}} className="MuiDrawer-root-27 MuiDrawer-modal-38" open={false} onClose={[undefined]} amp-bind={{...}} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}} />
+          <Drawer onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}} variant="temporary" anchor="bottom">
+            <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind={{...}} open={[undefined]} variant="temporary" onClose={[Function]}>
+              <Drawer anchor="bottom" amp-bind={{...}} open={false} variant="temporary" onClose={[Function]} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
+                <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-29 RSFDrawer-root-22 MuiDrawer-modal-40" open={false} onClose={[Function]} amp-bind={{...}}>
+                  <Modal BackdropProps={{...}} className="MuiDrawer-root-29 RSFDrawer-root-22 MuiDrawer-modal-40" open={false} onClose={[Function]} amp-bind={{...}} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}} />
                 </WithStyles(Modal)>
               </Drawer>
             </WithStyles(Drawer)>
@@ -61,11 +61,81 @@ exports[`Drawer sets up amp-bind when ampBindClosed is set 1`] = `
             </amp-state>
             <WithStyles(inject-Drawer) ampBindClosed="closed" onRequestClose={[Function]}>
               <inject-Drawer ampBindClosed="closed" onRequestClose={[Function]} classes={{...}}>
-                <Drawer ampBindClosed="closed" onRequestClose={[Function]} classes={{...}} amp={true} ampStateId="myState" showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
-                  <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-237\\' : null" open={[undefined]} variant={[undefined]}>
-                    <Drawer anchor="bottom" amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-237\\' : null" open={false} variant="temporary" theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
-                      <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-238 MuiDrawer-modal-249" open={false} onClose={[undefined]} amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-237\\' : null">
-                        <Modal BackdropProps={{...}} className="MuiDrawer-root-238 MuiDrawer-modal-249" open={false} onClose={[undefined]} amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-237\\' : null" classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}} />
+                <Drawer ampBindClosed="closed" onRequestClose={[Function]} classes={{...}} amp={true} ampStateId="myState" showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}} variant="temporary" anchor="bottom">
+                  <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-242\\' : null" open={true} variant="temporary" onClose={[Function]}>
+                    <Drawer anchor="bottom" amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-242\\' : null" open={true} variant="temporary" onClose={[Function]} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
+                      <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-243 RSFDrawer-root-236 MuiDrawer-modal-254" open={true} onClose={[Function]} amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-242\\' : null">
+                        <Modal BackdropProps={{...}} className="MuiDrawer-root-243 RSFDrawer-root-236 MuiDrawer-modal-254" open={true} onClose={[Function]} amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-242\\' : null" classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}}>
+                          <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
+                            <Portal containerInfo={{...}}>
+                              <div className="mui-fixed MuiModal-root-255 MuiDrawer-root-243 RSFDrawer-root-236 MuiDrawer-modal-254" amp-bind="class=>myState.closed ? \\'RSFDrawer-ampClosed-242\\' : null">
+                                <WithStyles(Backdrop) open={true} onClick={[Function]} transitionDuration={{...}}>
+                                  <Backdrop open={true} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
+                                    <WithTheme(Fade) in={true} timeout={{...}} onClick={[Function]}>
+                                      <Fade theme={{...}} in={true} timeout={{...}} onClick={[Function]}>
+                                        <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={true} timeout={{...}} onClick={[Function]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
+                                          <div className="MuiBackdrop-root-257" aria-hidden="true" style={{...}} onClick={[Function]} />
+                                        </Transition>
+                                      </Fade>
+                                    </WithTheme(Fade)>
+                                  </Backdrop>
+                                </WithStyles(Backdrop)>
+                                <RootRef rootRef={[Function]}>
+                                  <WithTheme(Slide) in={true} direction="up" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                                    <Slide theme={{...}} in={true} direction="up" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
+                                      <EventListener target="window" onResize={[Function: debounced]}>
+                                        <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={false} style={{...}} in={true} direction="up" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
+                                          <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-245 RSFDrawer-paper-240 RSFDrawer-ampClosed-242 MuiDrawer-paperAnchorBottom-249" style={{...}} direction="up" role="document" tabIndex="-1">
+                                            <Paper elevation={16} square={true} className="MuiDrawer-paper-245 RSFDrawer-paper-240 RSFDrawer-ampClosed-242 MuiDrawer-paperAnchorBottom-249" style={{...}} direction="up" role="document" tabIndex="-1" classes={{...}} component="div">
+                                              <div className="MuiPaper-root-259 MuiPaper-elevation16-277 MuiDrawer-paper-245 RSFDrawer-paper-240 RSFDrawer-ampClosed-242 MuiDrawer-paperAnchorBottom-249" style={{...}} direction="up" role="document" tabIndex="-1">
+                                                <div className="RSFDrawer-container-238">
+                                                  <WithStyles(Fab) color="primary" className="RSFDrawer-closeButton-237" onClick={[Function]} style={{...}} on="tap:AMP.setState({ myState: { closed: true }})">
+                                                    <Fab color="primary" className="RSFDrawer-closeButton-237" onClick={[Function]} style={{...}} on="tap:AMP.setState({ myState: { closed: true }})" classes={{...}} component="button" disabled={false} disableFocusRipple={false} size="large" type="button" variant="round">
+                                                      <WithStyles(ButtonBase) className="MuiFab-root-286 MuiFab-primary-288 RSFDrawer-closeButton-237" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-291" onClick={[Function]} style={{...}} on="tap:AMP.setState({ myState: { closed: true }})" component="button" type="button">
+                                                        <ButtonBase className="MuiFab-root-286 MuiFab-primary-288 RSFDrawer-closeButton-237" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-291" onClick={[Function]} style={{...}} on="tap:AMP.setState({ myState: { closed: true }})" component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                                                          <button className="MuiButtonBase-root-296 MuiFab-root-286 MuiFab-primary-288 RSFDrawer-closeButton-237" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} style={{...}} on="tap:AMP.setState({ myState: { closed: true }})">
+                                                            <span className="MuiFab-label-287">
+                                                              <pure(CloseIcon)>
+                                                                <CloseIcon>
+                                                                  <WithStyles(SvgIcon)>
+                                                                    <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                                                      <svg className="MuiSvgIcon-root-299" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                        <path fill="none" d="M0 0h24v24H0z" />
+                                                                      </svg>
+                                                                    </SvgIcon>
+                                                                  </WithStyles(SvgIcon)>
+                                                                </CloseIcon>
+                                                              </pure(CloseIcon)>
+                                                            </span>
+                                                            <NoSsr defer={false} fallback={{...}}>
+                                                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
+                                                                <TouchRipple center={false} classes={{...}}>
+                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-308" childFactory={[Function: childFactory]}>
+                                                                    <span className="MuiTouchRipple-root-308" />
+                                                                  </TransitionGroup>
+                                                                </TouchRipple>
+                                                              </WithStyles(TouchRipple)>
+                                                            </NoSsr>
+                                                          </button>
+                                                        </ButtonBase>
+                                                      </WithStyles(ButtonBase)>
+                                                    </Fab>
+                                                  </WithStyles(Fab)>
+                                                  <div className="RSFDrawer-content-239" />
+                                                </div>
+                                              </div>
+                                            </Paper>
+                                          </WithStyles(Paper)>
+                                        </Transition>
+                                      </EventListener>
+                                    </Slide>
+                                  </WithTheme(Slide)>
+                                </RootRef>
+                              </div>
+                            </Portal>
+                          </Portal>
+                        </Modal>
                       </WithStyles(Modal)>
                     </Drawer>
                   </WithStyles(Drawer)>
@@ -86,20 +156,20 @@ exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) open={true} onRequestClose={[Function]}>
         <inject-Drawer open={true} onRequestClose={[Function]} classes={{...}}>
-          <Drawer open={true} onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
-            <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind={{...}} open={true} variant={[undefined]}>
-              <Drawer anchor="bottom" amp-bind={{...}} open={true} variant="temporary" theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
-                <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-160 MuiDrawer-modal-171" open={true} onClose={[undefined]} amp-bind={{...}}>
-                  <Modal BackdropProps={{...}} className="MuiDrawer-root-160 MuiDrawer-modal-171" open={true} onClose={[undefined]} amp-bind={{...}} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}}>
+          <Drawer open={true} onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}} variant="temporary" anchor="bottom">
+            <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind={{...}} open={true} variant="temporary" onClose={[Function]}>
+              <Drawer anchor="bottom" amp-bind={{...}} open={true} variant="temporary" onClose={[Function]} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
+                <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-164 RSFDrawer-root-157 MuiDrawer-modal-175" open={true} onClose={[Function]} amp-bind={{...}}>
+                  <Modal BackdropProps={{...}} className="MuiDrawer-root-164 RSFDrawer-root-157 MuiDrawer-modal-175" open={true} onClose={[Function]} amp-bind={{...}} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}}>
                     <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
                       <Portal containerInfo={{...}}>
-                        <div className="mui-fixed MuiModal-root-172 MuiDrawer-root-160 MuiDrawer-modal-171" amp-bind={{...}}>
+                        <div className="mui-fixed MuiModal-root-176 MuiDrawer-root-164 RSFDrawer-root-157 MuiDrawer-modal-175" amp-bind={{...}}>
                           <WithStyles(Backdrop) open={true} onClick={[Function]} transitionDuration={{...}}>
                             <Backdrop open={true} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
                               <WithTheme(Fade) in={true} timeout={{...}} onClick={[Function]}>
                                 <Fade theme={{...}} in={true} timeout={{...}} onClick={[Function]}>
                                   <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={true} timeout={{...}} onClick={[Function]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
-                                    <div className="MuiBackdrop-root-174" aria-hidden="true" style={{...}} onClick={[Function]} />
+                                    <div className="MuiBackdrop-root-178" aria-hidden="true" style={{...}} onClick={[Function]} />
                                   </Transition>
                                 </Fade>
                               </WithTheme(Fade)>
@@ -110,21 +180,21 @@ exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
                               <Slide theme={{...}} in={true} direction="up" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
                                 <EventListener target="window" onResize={[Function: debounced]}>
                                   <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={false} style={{...}} in={true} direction="up" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
-                                    <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-162 RSFDrawer-paper-157 MuiDrawer-paperAnchorBottom-166" style={{...}} direction="up" role="document" tabIndex="-1">
-                                      <Paper elevation={16} square={true} className="MuiDrawer-paper-162 RSFDrawer-paper-157 MuiDrawer-paperAnchorBottom-166" style={{...}} direction="up" role="document" tabIndex="-1" classes={{...}} component="div">
-                                        <div className="MuiPaper-root-176 MuiPaper-elevation16-194 MuiDrawer-paper-162 RSFDrawer-paper-157 MuiDrawer-paperAnchorBottom-166" style={{...}} direction="up" role="document" tabIndex="-1">
-                                          <div className="RSFDrawer-container-155">
-                                            <WithStyles(Fab) color="primary" className="RSFDrawer-closeButton-154" onClick={[Function]} style={{...}} on={{...}}>
-                                              <Fab color="primary" className="RSFDrawer-closeButton-154" onClick={[Function]} style={{...}} on={{...}} classes={{...}} component="button" disabled={false} disableFocusRipple={false} size="large" type="button" variant="round">
-                                                <WithStyles(ButtonBase) className="MuiFab-root-203 MuiFab-primary-205 RSFDrawer-closeButton-154" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-208" onClick={[Function]} style={{...}} on={{...}} component="button" type="button">
-                                                  <ButtonBase className="MuiFab-root-203 MuiFab-primary-205 RSFDrawer-closeButton-154" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-208" onClick={[Function]} style={{...}} on={{...}} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-                                                    <button className="MuiButtonBase-root-213 MuiFab-root-203 MuiFab-primary-205 RSFDrawer-closeButton-154" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} style={{...}} on={{...}}>
-                                                      <span className="MuiFab-label-204">
+                                    <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-166 RSFDrawer-paper-161 MuiDrawer-paperAnchorBottom-170" style={{...}} direction="up" role="document" tabIndex="-1">
+                                      <Paper elevation={16} square={true} className="MuiDrawer-paper-166 RSFDrawer-paper-161 MuiDrawer-paperAnchorBottom-170" style={{...}} direction="up" role="document" tabIndex="-1" classes={{...}} component="div">
+                                        <div className="MuiPaper-root-180 MuiPaper-elevation16-198 MuiDrawer-paper-166 RSFDrawer-paper-161 MuiDrawer-paperAnchorBottom-170" style={{...}} direction="up" role="document" tabIndex="-1">
+                                          <div className="RSFDrawer-container-159">
+                                            <WithStyles(Fab) color="primary" className="RSFDrawer-closeButton-158" onClick={[Function]} style={{...}} on={{...}}>
+                                              <Fab color="primary" className="RSFDrawer-closeButton-158" onClick={[Function]} style={{...}} on={{...}} classes={{...}} component="button" disabled={false} disableFocusRipple={false} size="large" type="button" variant="round">
+                                                <WithStyles(ButtonBase) className="MuiFab-root-207 MuiFab-primary-209 RSFDrawer-closeButton-158" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-212" onClick={[Function]} style={{...}} on={{...}} component="button" type="button">
+                                                  <ButtonBase className="MuiFab-root-207 MuiFab-primary-209 RSFDrawer-closeButton-158" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-212" onClick={[Function]} style={{...}} on={{...}} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                                                    <button className="MuiButtonBase-root-217 MuiFab-root-207 MuiFab-primary-209 RSFDrawer-closeButton-158" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} style={{...}} on={{...}}>
+                                                      <span className="MuiFab-label-208">
                                                         <pure(CloseIcon)>
                                                           <CloseIcon>
                                                             <WithStyles(SvgIcon)>
                                                               <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                <svg className="MuiSvgIcon-root-216" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                <svg className="MuiSvgIcon-root-220" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                                   <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                                                                   <path fill="none" d="M0 0h24v24H0z" />
                                                                 </svg>
@@ -136,8 +206,8 @@ exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
                                                       <NoSsr defer={false} fallback={{...}}>
                                                         <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
                                                           <TouchRipple center={false} classes={{...}}>
-                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-225" childFactory={[Function: childFactory]}>
-                                                              <span className="MuiTouchRipple-root-225" />
+                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-229" childFactory={[Function: childFactory]}>
+                                                              <span className="MuiTouchRipple-root-229" />
                                                             </TransitionGroup>
                                                           </TouchRipple>
                                                         </WithStyles(TouchRipple)>
@@ -147,7 +217,7 @@ exports[`Drawer spreads props to the underlying MuiDrawer 1`] = `
                                                 </WithStyles(ButtonBase)>
                                               </Fab>
                                             </WithStyles(Fab)>
-                                            <div className="RSFDrawer-content-156" />
+                                            <div className="RSFDrawer-content-160" />
                                           </div>
                                         </div>
                                       </Paper>
@@ -178,20 +248,20 @@ exports[`Drawer uses a div for title 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(inject-Drawer) open={true} title="Title" onRequestClose={[Function]}>
         <inject-Drawer open={true} title="Title" onRequestClose={[Function]} classes={{...}}>
-          <Drawer open={true} title="Title" onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}}>
-            <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind={{...}} open={true} variant={[undefined]}>
-              <Drawer anchor="bottom" amp-bind={{...}} open={true} variant="temporary" theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
-                <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-47 MuiDrawer-modal-58" open={true} onClose={[undefined]} amp-bind={{...}}>
-                  <Modal BackdropProps={{...}} className="MuiDrawer-root-47 MuiDrawer-modal-58" open={true} onClose={[undefined]} amp-bind={{...}} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}}>
+          <Drawer open={true} title="Title" onRequestClose={[Function]} classes={{...}} amp={false} ampStateId={[undefined]} showCloseButton={true} autoAdjustBodyPadding={false} closeButtonProps={{...}} variant="temporary" anchor="bottom">
+            <WithStyles(Drawer) anchor="bottom" classes={{...}} amp-bind={{...}} open={true} variant="temporary" onClose={[Function]}>
+              <Drawer anchor="bottom" amp-bind={{...}} open={true} variant="temporary" onClose={[Function]} theme={{...}} classes={{...}} elevation={16} transitionDuration={{...}}>
+                <WithStyles(Modal) BackdropProps={{...}} className="MuiDrawer-root-50 RSFDrawer-root-43 MuiDrawer-modal-61" open={true} onClose={[Function]} amp-bind={{...}}>
+                  <Modal BackdropProps={{...}} className="MuiDrawer-root-50 RSFDrawer-root-43 MuiDrawer-modal-61" open={true} onClose={[Function]} amp-bind={{...}} classes={{...}} BackdropComponent={[Function: WithStyles]} disableAutoFocus={false} disableBackdropClick={false} disableEnforceFocus={false} disableEscapeKeyDown={false} disablePortal={false} disableRestoreFocus={false} hideBackdrop={false} keepMounted={false} manager={{...}}>
                     <Portal container={[undefined]} disablePortal={false} onRendered={[Function]}>
                       <Portal containerInfo={{...}}>
-                        <div className="mui-fixed MuiModal-root-59 MuiDrawer-root-47 MuiDrawer-modal-58" amp-bind={{...}}>
+                        <div className="mui-fixed MuiModal-root-62 MuiDrawer-root-50 RSFDrawer-root-43 MuiDrawer-modal-61" amp-bind={{...}}>
                           <WithStyles(Backdrop) open={true} onClick={[Function]} transitionDuration={{...}}>
                             <Backdrop open={true} onClick={[Function]} transitionDuration={{...}} classes={{...}} invisible={false}>
                               <WithTheme(Fade) in={true} timeout={{...}} onClick={[Function]}>
                                 <Fade theme={{...}} in={true} timeout={{...}} onClick={[Function]}>
                                   <Transition appear={true} onEnter={[Function]} onExit={[Function]} in={true} timeout={{...}} onClick={[Function]} mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntering={[Function: noop]} onEntered={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]}>
-                                    <div className="MuiBackdrop-root-61" aria-hidden="true" style={{...}} onClick={[Function]} />
+                                    <div className="MuiBackdrop-root-64" aria-hidden="true" style={{...}} onClick={[Function]} />
                                   </Transition>
                                 </Fade>
                               </WithTheme(Fade)>
@@ -202,28 +272,28 @@ exports[`Drawer uses a div for title 1`] = `
                               <Slide theme={{...}} in={true} direction="up" timeout={{...}} appear={false} onExited={[Function: chainedFunction]} role="document" tabIndex="-1">
                                 <EventListener target="window" onResize={[Function: debounced]}>
                                   <Transition onEnter={[Function]} onEntering={[Function]} onExit={[Function]} onExited={[Function]} appear={false} style={{...}} in={true} direction="up" timeout={{...}} role="document" tabIndex="-1" mountOnEnter={false} unmountOnExit={false} enter={true} exit={true} onEntered={[Function: noop]} onExiting={[Function: noop]}>
-                                    <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-49 RSFDrawer-paper-44 MuiDrawer-paperAnchorBottom-53" style={{...}} direction="up" role="document" tabIndex="-1">
-                                      <Paper elevation={16} square={true} className="MuiDrawer-paper-49 RSFDrawer-paper-44 MuiDrawer-paperAnchorBottom-53" style={{...}} direction="up" role="document" tabIndex="-1" classes={{...}} component="div">
-                                        <div className="MuiPaper-root-63 MuiPaper-elevation16-81 MuiDrawer-paper-49 RSFDrawer-paper-44 MuiDrawer-paperAnchorBottom-53" style={{...}} direction="up" role="document" tabIndex="-1">
-                                          <div className="RSFDrawer-container-42">
-                                            <WithStyles(Typography) className="RSFDrawer-title-45" variant="h6" component="div">
-                                              <Typography className="RSFDrawer-title-45" variant="h6" component="div" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                                                <div className="MuiTypography-root-90 MuiTypography-h6-107 RSFDrawer-title-45">
+                                    <WithStyles(Paper) elevation={16} square={true} className="MuiDrawer-paper-52 RSFDrawer-paper-47 MuiDrawer-paperAnchorBottom-56" style={{...}} direction="up" role="document" tabIndex="-1">
+                                      <Paper elevation={16} square={true} className="MuiDrawer-paper-52 RSFDrawer-paper-47 MuiDrawer-paperAnchorBottom-56" style={{...}} direction="up" role="document" tabIndex="-1" classes={{...}} component="div">
+                                        <div className="MuiPaper-root-66 MuiPaper-elevation16-84 MuiDrawer-paper-52 RSFDrawer-paper-47 MuiDrawer-paperAnchorBottom-56" style={{...}} direction="up" role="document" tabIndex="-1">
+                                          <div className="RSFDrawer-container-45">
+                                            <WithStyles(Typography) className="RSFDrawer-title-48" variant="h6" component="div">
+                                              <Typography className="RSFDrawer-title-48" variant="h6" component="div" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                                                <div className="MuiTypography-root-93 MuiTypography-h6-110 RSFDrawer-title-48">
                                                   Title
                                                 </div>
                                               </Typography>
                                             </WithStyles(Typography)>
-                                            <WithStyles(Fab) color="primary" className="RSFDrawer-closeButton-41" onClick={[Function]} style={{...}} on={{...}}>
-                                              <Fab color="primary" className="RSFDrawer-closeButton-41" onClick={[Function]} style={{...}} on={{...}} classes={{...}} component="button" disabled={false} disableFocusRipple={false} size="large" type="button" variant="round">
-                                                <WithStyles(ButtonBase) className="MuiFab-root-125 MuiFab-primary-127 RSFDrawer-closeButton-41" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-130" onClick={[Function]} style={{...}} on={{...}} component="button" type="button">
-                                                  <ButtonBase className="MuiFab-root-125 MuiFab-primary-127 RSFDrawer-closeButton-41" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-130" onClick={[Function]} style={{...}} on={{...}} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-                                                    <button className="MuiButtonBase-root-135 MuiFab-root-125 MuiFab-primary-127 RSFDrawer-closeButton-41" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} style={{...}} on={{...}}>
-                                                      <span className="MuiFab-label-126">
+                                            <WithStyles(Fab) color="primary" className="RSFDrawer-closeButton-44" onClick={[Function]} style={{...}} on={{...}}>
+                                              <Fab color="primary" className="RSFDrawer-closeButton-44" onClick={[Function]} style={{...}} on={{...}} classes={{...}} component="button" disabled={false} disableFocusRipple={false} size="large" type="button" variant="round">
+                                                <WithStyles(ButtonBase) className="MuiFab-root-128 MuiFab-primary-130 RSFDrawer-closeButton-44" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-133" onClick={[Function]} style={{...}} on={{...}} component="button" type="button">
+                                                  <ButtonBase className="MuiFab-root-128 MuiFab-primary-130 RSFDrawer-closeButton-44" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-133" onClick={[Function]} style={{...}} on={{...}} component="button" type="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                                                    <button className="MuiButtonBase-root-138 MuiFab-root-128 MuiFab-primary-130 RSFDrawer-closeButton-44" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="button" disabled={false} onClick={[Function]} style={{...}} on={{...}}>
+                                                      <span className="MuiFab-label-129">
                                                         <pure(CloseIcon)>
                                                           <CloseIcon>
                                                             <WithStyles(SvgIcon)>
                                                               <SvgIcon classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                                                                <svg className="MuiSvgIcon-root-138" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                                                <svg className="MuiSvgIcon-root-141" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
                                                                   <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                                                                   <path fill="none" d="M0 0h24v24H0z" />
                                                                 </svg>
@@ -235,8 +305,8 @@ exports[`Drawer uses a div for title 1`] = `
                                                       <NoSsr defer={false} fallback={{...}}>
                                                         <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
                                                           <TouchRipple center={false} classes={{...}}>
-                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-147" childFactory={[Function: childFactory]}>
-                                                              <span className="MuiTouchRipple-root-147" />
+                                                            <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-150" childFactory={[Function: childFactory]}>
+                                                              <span className="MuiTouchRipple-root-150" />
                                                             </TransitionGroup>
                                                           </TouchRipple>
                                                         </WithStyles(TouchRipple)>
@@ -246,7 +316,7 @@ exports[`Drawer uses a div for title 1`] = `
                                                 </WithStyles(ButtonBase)>
                                               </Fab>
                                             </WithStyles(Fab)>
-                                            <div className="RSFDrawer-content-43" />
+                                            <div className="RSFDrawer-content-46" />
                                           </div>
                                         </div>
                                       </Paper>
