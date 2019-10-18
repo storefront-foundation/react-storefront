@@ -7,6 +7,7 @@ import ReactVisibilitySensor from 'react-visibility-sensor'
 import withStyles from '@material-ui/core/styles/withStyles'
 import classnames from 'classnames'
 import { inject, observer } from 'mobx-react'
+import { reaction } from 'mobx'
 
 export const styles = () => ({
   root: {
@@ -24,6 +25,20 @@ export default class Lazy extends Component {
 
     this.state = {
       visible: app.amp
+    }
+  }
+
+  componentDidMount() {
+    this.dispose = reaction(() => this.props.app.location.uri, this.onRouteChange)
+  }
+
+  componentWillUnmount() {
+    this.dispose()
+  }
+
+  onRouteChange = () => {
+    if (this.state.visible) {
+      this.setState({ visible: false })
     }
   }
 

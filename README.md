@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.56.0
+
+- `Lazy` no longer requires a `key` prop to automatically unmount it's children when the URL changes.
+
 ### 6.55.4
 
 - Added `visibilitySensorProps` to `Lazy`.

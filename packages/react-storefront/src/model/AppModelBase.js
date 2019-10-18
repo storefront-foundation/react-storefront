@@ -101,6 +101,10 @@ export const LocationModel = types
         self.hostname +
         (['443', '80'].includes(self.port) ? '' : `:${self.port}`)
       )
+    },
+
+    get uri() {
+      return self.pathname + self.search
     }
   }))
 
