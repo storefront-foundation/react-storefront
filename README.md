@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.57.0
+
+- Removed css minification for non-amp request to speed up execution times.
+
 ### 6.56.0
 
 - Added `DrawerButton` component for creating drawers with custom content with support for anchoring from any side
