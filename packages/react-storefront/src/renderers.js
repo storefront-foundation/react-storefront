@@ -135,11 +135,11 @@ export function renderScript(src, defer) {
  * @param  {String} options.id        ID for style tag
  * @return {String}                   Style HTML
  */
-export async function renderStyle({ registry, id = 'ssr-css' }) {
+export async function renderStyle({ registry, id = 'ssr-css', minify }) {
   let css = registry.toString()
 
   // css might be undefined, e.g. after an error.
-  if (css) {
+  if (css && minify) {
     css = await minifyStyles(css)
   }
 
@@ -195,6 +195,7 @@ function getLocation(env) {
  * @param  {String} options.initialStateProperty  Optional window property name for initial state
  * @param  {Boolean} options.injectAssets          Defaults to true.  Set this to false to prevent scripts and css from automatically being injected into the document.
  * @param  {String} options.cssPrefix            A prefix to apply to css class names
+ * @param  {Boolean} options.minifyStyles         Whether to apply minification to styles. Defaults to false.
  * @return {Object}                               Components for SSR
  */
 export async function render({
@@ -205,6 +206,7 @@ export async function render({
   clientChunk,
   initialStateProperty,
   injectAssets = true,
+  minifyStyles = false,
   cssPrefix
 }) {
   const registry = new SheetsRegistry()
@@ -221,7 +223,7 @@ export async function render({
 
   const result = {
     html,
-    style: await renderStyle({ registry }),
+    style: await renderStyle({ registry, minify: minifyStyles }),
     initialStateScript: renderInitialStateScript({ state, defer: false, initialStateProperty }),
     componentScript: getScripts({ stats, chunk: clientChunk }).map(renderScript)
   }
