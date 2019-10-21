@@ -65,6 +65,15 @@ export const styles = theme => ({
     bottom: 0,
     padding: '5px'
   },
+  small: {
+    '& span': { padding: '2px' },
+    '& button': {
+      width: '25px',
+      minWidth: '25px',
+      height: '25px',
+      minHeight: '25px'
+    }
+  },
   image: {
     height: '100%',
     width: '100%'
@@ -148,7 +157,12 @@ export default class ButtonSelector extends Component {
     /**
      * The angle in degress for the disabled indicator.  Defaults to `45`.
      */
-    strikeThroughAngle: PropTypes.number
+    strikeThroughAngle: PropTypes.number,
+
+    /**
+     * Render image options at half size. Defaults to `false`
+     */
+    small: PropTypes.bool
   }
 
   static defaultProps = {
@@ -161,12 +175,12 @@ export default class ButtonSelector extends Component {
   }
 
   render() {
-    const { amp, model, ampStateId, name, showSelectedText, classes } = this.props
+    const { amp, model, ampStateId, name, showSelectedText, small, classes } = this.props
 
     if (!model) return null
 
     return (
-      <div className={classes.root}>
+      <div className={classnames(classes.root, { [classes.small]: small })}>
         {amp && (
           <input
             type="hidden"

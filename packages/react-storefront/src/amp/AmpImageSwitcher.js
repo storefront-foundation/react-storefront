@@ -164,10 +164,9 @@ export default class AmpImageSwitcher extends Component {
     } = this.props
 
     const { id } = this
-    const pathname = app.location.pathname.replace(/\.amp/, '')
 
     // This endpoint is only used to give AMP a valid initial `src` for AMP lists
-    const initialStateEndpoint = `${pathname}/images/${
+    const initialStateEndpoint = `/images/${product.id}/${
       product && product.color && product.color.length ? product.color[0].id : '000000'
     }.json`
 
@@ -191,7 +190,7 @@ export default class AmpImageSwitcher extends Component {
       <amp-list
         layout="fill"
         src={initialStateEndpoint}
-        amp-bind={`src=>'${pathname}/images/' + moovAmpState.color.selected.id + '.json'`}
+        amp-bind={`src=>'/images/${product.id}/' + moovAmpState.color.selected.id + '.json'`}
         {...props}
       >
         <template type="amp-mustache">{children}</template>
@@ -262,7 +261,9 @@ export default class AmpImageSwitcher extends Component {
         <amp-state
           id={ampStateId}
           // Do not refresh this state until a color has been interacted with
-          amp-bind={`src=>${ampStateId}.colorInteracted ? '${pathname}/images/' + moovAmpState.color.selected.id + '.json' : null`}
+          amp-bind={`src=>${ampStateId}.colorInteracted ? '/images/${
+            product.id
+          }' + moovAmpState.color.selected.id + '.json' : null`}
         />
         <div className={classes.carouselWrap}>
           <BeforeInteracted>

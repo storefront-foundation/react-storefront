@@ -5,6 +5,7 @@
 import { types, onPatch } from 'mobx-state-tree'
 import SelectionModelBase from './SelectionModelBase'
 import MediaTypeModel from './MediaTypeModel'
+import URL from 'url'
 
 /**
  * A base model for product pages.
@@ -40,14 +41,14 @@ const ProductModelBase = types
      */
     id: types.identifier,
     /**
-     * The id of the product.
+     * The URL of the product page
      * @type {String}
      * @memberof ProductModelBase
      * @instance
      */
     url: types.maybeNull(types.string),
     /**
-     * The URL of the product page
+     * The name of the product
      * @type {String}
      * @memberof ProductModelBase
      * @instance
@@ -170,15 +171,6 @@ const ProductModelBase = types
     }
   }))
   .actions(self => ({
-    afterCreate() {
-      onPatch(self, patch => {
-        if (patch.path === '/color/selected') {
-          // fetch images when a new color is selected
-          self.fetchImages()
-        }
-      })
-    },
-
     /**
      * Updates the quantity.
      * @param {Number} quantity The quantity to set
@@ -195,12 +187,11 @@ const ProductModelBase = types
      * @instance
      */
     fetchImages() {
-      const { pathname, search } = window.location
       const selected = self.color.selected
       self.loadingImages = true
 
       if (selected) {
-        fetch(`${pathname}/images/${selected.id}.json${search}`)
+        fetch(`/images/${self.id}/${selected.id}.json`)
           .then(res => res.json())
           .then(state => self.apply({ ...state, loadingImages: false }))
           .catch(e => {

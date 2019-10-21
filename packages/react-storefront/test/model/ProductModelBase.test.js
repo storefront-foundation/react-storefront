@@ -11,6 +11,7 @@ describe('ProductModelBase', () => {
   beforeEach(() => {
     global.fetch.resetMocks()
     product = createTestProduct({
+      id: 'foo',
       color: {
         options: [
           { id: 'red', text: 'red' },
@@ -21,7 +22,7 @@ describe('ProductModelBase', () => {
     })
   })
 
-  it('fetches images when the selected color changes', () => {
+  it('fetches images using product URL', () => {
     global.fetch.mockResponse(
       JSON.stringify({
         images: ['/1.jpeg', '2.jpeg']
@@ -29,12 +30,13 @@ describe('ProductModelBase', () => {
     )
 
     product.color.setSelected(product.color.options[0])
+    product.fetchImages()
+
     expect(product.loadingImages).toBe(true)
 
     return new Promise((resolve, reject) => {
       setImmediate(() => {
-        expect(product.images).toEqual(['/1.jpeg', '2.jpeg'])
-        expect(product.loadingImages).toBe(false)
+        expect(global.fetch).toHaveBeenCalledWith('/images/foo/red.json')
         resolve()
       })
     })
@@ -44,6 +46,7 @@ describe('ProductModelBase', () => {
     global.fetch.mockResponse([JSON.stringify({}), { status: 500 }])
 
     product.color.setSelected(product.color.options[0])
+    product.fetchImages()
     expect(product.loadingImages).toBe(true)
 
     return new Promise((resolve, reject) => {
@@ -56,6 +59,7 @@ describe('ProductModelBase', () => {
 
   it('should not fetch images if no color is selected', () => {
     product.color.setSelected(null)
+    product.fetchImages()
 
     return new Promise((resolve, reject) => {
       setImmediate(() => {

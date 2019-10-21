@@ -59,18 +59,19 @@ describe('ImageSwitcher', () => {
   it('should render AmpImageSwitcher when amp=true', () => {
     let app, history
 
+    const product = ProductModelBase.create({ id: '', color: { options: [{ id: 'foo' }] } })
+
     expect(
       mount(
         <Provider
           app={AppModelBase.create({
             amp: true,
-            location: { pathname: '', search: '' },
-            product: { id: '', color: { options: [{ id: 'foo' }] } }
+            location: { pathname: '', search: '' }
           })}
           nextId={() => '1'}
         >
           <AmpState>
-            <ImageSwitcher images={['/a.jpg', '/b.jpg', '/c.jpg']} />
+            <ImageSwitcher product={product} images={['/a.jpg', '/b.jpg', '/c.jpg']} />
           </AmpState>
         </Provider>
       )
@@ -80,18 +81,19 @@ describe('ImageSwitcher', () => {
   it('should render AmpImageSwitcher without product colors', () => {
     let app, history
 
+    const product = ProductModelBase.create({ id: '', color: { options: [{ id: 'foo' }] } })
+
     expect(
       mount(
         <Provider
           app={AppModelBase.create({
             amp: true,
-            location: { pathname: '', search: '' },
-            product: { id: '' }
+            location: { pathname: '', search: '' }
           })}
           nextId={() => '1'}
         >
           <AmpState>
-            <ImageSwitcher images={['/a.jpg', '/b.jpg', '/c.jpg']} />
+            <ImageSwitcher product={product} images={['/a.jpg', '/b.jpg', '/c.jpg']} />
           </AmpState>
         </Provider>
       )

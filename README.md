@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.58.0
+
+- Added `ProductColors` and `ProductThumbnail` components to support dynamic color swatches within a PLP page.
+
 ### 6.57.0
 
 - Removed css minification for non-amp request to speed up execution times.
