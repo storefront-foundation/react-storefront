@@ -54,9 +54,9 @@ export default class AmpForm extends Component {
     mask: true
   }
 
-  constructor({ id, nextId }) {
+  constructor({ id, nextId, app }) {
     super()
-    this.id = id || nextId()
+    this.id = id || (app.amp ? `rsf-form-${nextId()}` : null)
   }
 
   render() {

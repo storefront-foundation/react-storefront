@@ -77,6 +77,7 @@ yarn release
 ### 6.58.0
 
 - Added `ProductColors` and `ProductThumbnail` components to support dynamic color swatches within a PLP page.
+- Fixes a bug in `AmpForm` that caused errors when injected into non-PWA pages.
 
 ### 6.57.0
 
