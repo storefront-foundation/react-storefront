@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.59.1
+
+- Fixed AMP Menu bug which was causing sub menus not to close
+
 ### 6.59.0
 
 - Added `Accordion` component which only allows one child `ExpandableSection` to be open at a time.
