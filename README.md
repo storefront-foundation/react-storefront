@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.59.0
+
+- Added `Accordion` component which only allows one child `ExpandableSection` to be open at a time.
+
 ### 6.58.0
 
 - Added `ProductColors` and `ProductThumbnail` components to support dynamic color swatches within a PLP page.

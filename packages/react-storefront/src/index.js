@@ -5,6 +5,7 @@
 
 // @create-index {"ignore":["platform","registerServiceWorker","amp","launchClient","stats"]}
 
+export { default as Accordion } from './Accordion.js';
 export { default as ActionButton } from './ActionButton.js';
 export { default as AddToCartButton } from './AddToCartButton.js';
 export { default as AnalyticsProvider } from './AnalyticsProvider.js';

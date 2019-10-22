@@ -5,6 +5,7 @@
 
 // @create-index
 
+export { default as AmpAccordion } from './AmpAccordion.js';
 export { default as AmpDrawer } from './AmpDrawer.js';
 export { default as AmpExpandableSection } from './AmpExpandableSection.js';
 export { default as AmpForm } from './AmpForm.js';
