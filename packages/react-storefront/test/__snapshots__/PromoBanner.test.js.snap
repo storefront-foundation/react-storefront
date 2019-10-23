@@ -12,7 +12,7 @@ exports[`PromoBanner renders 1`] = `
                 <a data-moov-link="on" className="RSFLink-root-3 RSFPromoBanner-root-1" style={[undefined]} onClick={[Function]} href={[undefined]}>
                   <WithStyles(inject-Image) className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true}>
                     <inject-Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true} classes={{...}}>
-                      <Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true} classes={{...}} amp={false} quality={{...}} fill={false} lazy={false} lazyOffset={100} optimize={{...}} />
+                      <Image className="RSFPromoBanner-img-2" src={[undefined]} alt="promo" contain={true} classes={{...}} amp={false} location={{...}} quality={{...}} fill={false} lazy={false} lazyOffset={100} optimize={{...}} />
                     </inject-Image>
                   </WithStyles(inject-Image)>
                 </a>
