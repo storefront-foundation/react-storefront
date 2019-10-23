@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.59.3
+
+- Fixed bug in `Image` which caused relative sources to not work when optimized
+
 ### 6.59.2
 
 - Fix for `TabPanel` amp initial state
