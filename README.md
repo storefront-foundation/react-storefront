@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.59.2
+
+- Fix for `TabPanel` amp initial state
+
 ### 6.59.1
 
 - Fixed AMP Menu bug which was causing sub menus not to close
