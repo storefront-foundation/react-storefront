@@ -6,6 +6,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Image from '../src/Image'
 import { Provider } from 'mobx-react'
+import { createMemoryHistory } from 'history'
 import AppModelBase from '../src/model/AppModelBase'
 
 describe('Image', () => {
@@ -113,5 +114,24 @@ describe('Image', () => {
       expect(img.prop('src')).toBe('/foo.png')
       done()
     })
+  })
+
+  it('should handle relative urls when using the optimizer', () => {
+    const history = createMemoryHistory()
+    const app = AppModelBase.create({
+      location: {
+        procotol: 'https',
+        hostname: 'example.com',
+        pathname: '/',
+        search: ''
+      }
+    })
+    const wrapper = mount(
+      <Provider history={history} app={app}>
+        <Image quality={50} src="/foo.png" aspectRatio={50} />
+      </Provider>
+    )
+
+    expect(wrapper.find('img').prop('src')).toEqual('https://opt.moovweb.net/?img=https%3A%2F%2Fexample.com%2Ffoo.png&quality=50')
   })
 })

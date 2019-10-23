@@ -56,7 +56,7 @@ export const styles = theme => ({
  * by setting the `aspectRatio` prop.
  */
 @withStyles(styles, { name: 'RSFImage' })
-@inject(({ app }) => ({ amp: app.amp }))
+@inject(({ app }) => ({ amp: app.amp, location: app.location }))
 export default class Image extends Component {
   static propTypes = {
     /**
@@ -204,15 +204,15 @@ export default class Image extends Component {
         {amp ? (
           <amp-img {...assignedAttributes} />
         ) : (
-          loaded && (
-            <img
-              ref={this.ref}
-              {...assignedAttributes}
-              {...imgAttributes}
-              onError={this.handleNotFound}
-            />
-          )
-        )}
+            loaded && (
+              <img
+                ref={this.ref}
+                {...assignedAttributes}
+                {...imgAttributes}
+                onError={this.handleNotFound}
+              />
+            )
+          )}
       </div>
     )
 
@@ -253,10 +253,12 @@ export default class Image extends Component {
   }
 
   getOptimizedSrc() {
-    const { src, quality, optimize } = this.props
-
+    const { src, quality, optimize, location } = this.props
     if (quality || Object.keys(optimize).length > 0) {
-      const options = { ...optimize, img: src }
+      const options = {
+        ...optimize,
+        img: src.indexOf('/') === 0 && location ? location.urlBase + src : src
+      }
       if (quality) options.quality = quality
       return `https://opt.moovweb.net/?${qs.stringify(options)}`
     } else {
