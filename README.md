@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.59.3
+
+- Fixed scroll to top and lazy loading not working as expected when attributes `title`, `description` and `canonicalUrl` of `AppModel` set to null.
+
 ### 6.59.2
 
 - Fix for `TabPanel` amp initial state

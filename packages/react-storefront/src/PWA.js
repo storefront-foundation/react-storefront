@@ -62,6 +62,7 @@ export default class PWA extends Component {
 
   render() {
     const { amp, app, errorReporter } = this.props
+    const { scrollResetPending } = app
 
     return (
       <AppContext.Provider value={this.appContextValue}>
