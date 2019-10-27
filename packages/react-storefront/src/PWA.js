@@ -62,7 +62,11 @@ export default class PWA extends Component {
 
   render() {
     const { amp, app, errorReporter } = this.props
-    const { scrollResetPending } = app
+
+    // This line is needed to ensure that the app rerenders and scrolls to the top when the URL changes
+    // Note that we should *not* read app.scrollResetPending here, as it will cause the app to scroll
+    // to the top before the page is rerendered
+    const { uri } = app
 
     return (
       <AppContext.Provider value={this.appContextValue}>

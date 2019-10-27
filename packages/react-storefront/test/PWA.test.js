@@ -16,6 +16,7 @@ import { Router, proxyUpstream } from '../src/router'
 import { createMemoryHistory } from 'history'
 import * as serviceWorker from '../src/router/serviceWorker'
 import TestProvider from './TestProvider'
+import { types } from 'mobx-state-tree'
 
 describe('PWA', () => {
   let history, app, userAgent, location, push, listen, replace
@@ -485,6 +486,59 @@ describe('PWA', () => {
       )
 
       expect(provided).toBe(errorReporter)
+    })
+
+    it('should not react app.scrollResetPending', () => {
+      delete app.scrollResetPending
+
+      let read = false
+
+      Object.defineProperty(app, 'scrollResetPending', {
+        get: () => {
+          read = true
+          return false
+        }
+      })
+
+      const Test = () => <div>Test</div>
+
+      mount(
+        <TestProvider app={app}>
+          <PWA>
+            <Test />
+          </PWA>
+        </TestProvider>
+      )
+
+      expect(read).toBe(false)
+    })
+
+    it('should read URI', () => {
+      let read = false
+
+      const AppModel = types.compose(
+        AppModelBase,
+        types.model('AppModel', {}).views(self => ({
+          get uri() {
+            read = true
+            return self.pathname + self.search
+          }
+        }))
+      )
+
+      const app = AppModel.create({ location })
+
+      const Test = () => <div>Test</div>
+
+      mount(
+        <TestProvider app={app}>
+          <PWA>
+            <Test />
+          </PWA>
+        </TestProvider>
+      )
+
+      expect(read).toBe(true)
     })
   })
 
