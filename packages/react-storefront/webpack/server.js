@@ -37,7 +37,8 @@ module.exports = {
         'react-storefront',
         'stats',
         'getStatsInDev'
-      )
+      ),
+      jimp: path.join(root, 'node_modules', 'react-storefront', 'amp', 'Empty')
     }
 
     return ({ entry, plugins, output, target, resolve }) =>
@@ -94,7 +95,8 @@ module.exports = {
         'react-storefront',
         'stats',
         'getStats'
-      )
+      ),
+      jimp: path.join(root, 'node_modules', 'react-storefront', 'amp', 'Empty')
     }
 
     return ({ entry, plugins, output, target, resolve }) =>
