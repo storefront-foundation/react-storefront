@@ -74,6 +74,14 @@ yarn release
 
 ## Changelog
 
+### 6.59.5
+
+- Removed buggy optimization for ExpandableSection, it conflicted with MobX and caused rendering issues.
+
+### 6.59.4
+
+- Fixed bug where app would scroll to the top of the page before updating the UI during client side navigation.
+
 ### 6.59.3
 
 - Fixed scroll to top and lazy loading not working as expected when attributes `title`, `description` and `canonicalUrl` of `AppModel` set to null.
