@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.59.6
+
+- Removing the bloat of JIMP from the React Storefront server code. It was an unused dependency of the amp-optimizer
+
 ### 6.59.5
 
 - Removed buggy optimization for ExpandableSection, it conflicted with MobX and caused rendering issues.
