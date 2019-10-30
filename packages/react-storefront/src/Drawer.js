@@ -17,6 +17,10 @@ import classnames from 'classnames'
  * A slide-in drawer with fab close button.
  */
 export const styles = theme => ({
+  root: {
+    zIndex: theme.zIndex.modal + 10
+  },
+
   closeButton: {
     position: 'absolute',
     right: '10px',
@@ -91,13 +95,20 @@ export default class Drawer extends Component {
     /**
      * The name of a property the amp-state to bind to the closed state of the drawer.
      */
-    ampBindClosed: PropTypes.string
+    ampBindClosed: PropTypes.string,
+
+    /**
+     * Side from which the drawer will appear (top, left, right, bottom). Defaults to 'bottom'
+     */
+    anchor: PropTypes.string
   }
 
   static defaultProps = {
     showCloseButton: true,
     autoAdjustBodyPadding: false,
-    closeButtonProps: {}
+    closeButtonProps: {},
+    variant: 'temporary',
+    anchor: 'bottom'
   }
 
   constructor() {
@@ -119,13 +130,15 @@ export default class Drawer extends Component {
       children,
       classes,
       autoAdjustBodyPadding,
+      anchor,
       ...rest
     } = this.props
 
     return (
       <MUIDrawer
-        anchor="bottom"
+        anchor={anchor}
         classes={{
+          root: classes.root,
           paper: classnames({
             [classes.paper]: true,
             [classes.ampClosed]: amp && !open
@@ -138,6 +151,7 @@ export default class Drawer extends Component {
         }
         open={(amp && variant === 'temporary') || open}
         variant={variant}
+        onClose={onRequestClose && onRequestClose}
         {...rest}
       >
         <div className={classes.container} ref={this.drawer}>
@@ -147,7 +161,7 @@ export default class Drawer extends Component {
             </Typography>
           )}
 
-          {showCloseButton && (
+          {showCloseButton && anchor === 'bottom' && (
             <Fab
               color="primary"
               className={classes.closeButton}

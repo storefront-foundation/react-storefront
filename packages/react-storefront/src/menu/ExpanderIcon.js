@@ -37,15 +37,15 @@ export default class ExpanderIcon extends Component {
         <Fragment>
           <CollapseIcon
             className={classes.icon}
-            amp-bind={`class=>rsfMenu.sublist == '${sublist}' ? '${classes.visible} ${
+            amp-bind={`class=>rsfMenu.sublists['${sublist}'] ? '${classes.visible} ${
               classes.icon
-            }' : '${classes.hidden} ${classes.icon}'`}
+              }' : '${classes.hidden} ${classes.icon}'`}
           />
           <ExpandIcon
             className={classes.icon}
-            amp-bind={`class=>rsfMenu.sublist == '${sublist}' ? '${classes.hidden} ${
+            amp-bind={`class=>rsfMenu.sublists['${sublist}'] ? '${classes.hidden} ${
               classes.icon
-            }' : '${classes.visible} ${classes.icon}'`}
+              }' : '${classes.visible} ${classes.icon}'`}
           />
         </Fragment>
       )
@@ -53,8 +53,8 @@ export default class ExpanderIcon extends Component {
       return item.expanded ? (
         <CollapseIcon className={classes.icon} />
       ) : (
-        <ExpandIcon className={classes.icon} />
-      )
+          <ExpandIcon className={classes.icon} />
+        )
     }
   }
 }

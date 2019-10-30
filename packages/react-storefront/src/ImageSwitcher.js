@@ -465,7 +465,7 @@ export default class ImageSwitcher extends Component {
 
     const { fullSizeImagesLoaded, images, thumbnails } = this.state
 
-    if (app.amp)
+    if (app.amp) {
       return (
         <AmpImageSwitcher
           product={product}
@@ -483,6 +483,7 @@ export default class ImageSwitcher extends Component {
           thumbnails={viewerThumbnailsOnly ? null : thumbnails}
         />
       )
+    }
 
     const { selectedIndex, viewerActive } = this.state
     const selectedImage = images[selectedIndex]

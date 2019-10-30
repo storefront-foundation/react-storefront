@@ -5,6 +5,7 @@
 
 // @create-index {"ignore":["platform","registerServiceWorker","amp","launchClient","stats"]}
 
+export { default as Accordion } from './Accordion.js';
 export { default as ActionButton } from './ActionButton.js';
 export { default as AddToCartButton } from './AddToCartButton.js';
 export { default as AnalyticsProvider } from './AnalyticsProvider.js';
@@ -16,6 +17,7 @@ export { default as BottomDrawer } from './BottomDrawer.js';
 export { default as Box } from './Box.js';
 export { default as Breadcrumbs } from './Breadcrumbs.js';
 export { default as ButtonSelector } from './ButtonSelector.js';
+export { default as Carousel } from './Carousel.js';
 export { default as CartButton } from './CartButton.js';
 export { default as CheckoutButton } from './CheckoutButton.js';
 export { default as CmsSlot } from './CmsSlot.js';
@@ -24,6 +26,7 @@ export { default as Container } from './Container.js';
 export { default as DialogClose } from './DialogClose.js';
 export { default as Divider } from './Divider.js';
 export { default as Drawer } from './Drawer.js';
+export { default as DrawerButton } from './DrawerButton.js';
 export { default as ErrorBoundary } from './ErrorBoundary.js';
 export { default as ExpandableSection } from './ExpandableSection.js';
 export { default as Filter } from './Filter.js';
@@ -43,7 +46,9 @@ export { default as Offline } from './Offline.js';
 export { default as PWA } from './PWA.js';
 export { default as PageLink } from './PageLink.js';
 export { default as Pages } from './Pages.js';
+export { default as ProductColors } from './ProductColors.js';
 export { default as ProductLink } from './ProductLink.js';
+export { default as ProductThumbnail } from './ProductThumbnail.js';
 export { default as PromoBanner } from './PromoBanner.js';
 export { default as QuantitySelector } from './QuantitySelector.js';
 export { default as Rating } from './Rating.js';

@@ -228,4 +228,46 @@ describe('SearchDrawer', () => {
       })
     })
   })
+
+  it('should disable the submit button unless text is entered', () => {
+    app.search.setText('   ')
+
+    expect(
+      mount(
+        <TestContext>
+          <SearchDrawer />
+        </TestContext>
+      )
+        .find('button[type="submit"]')
+        .props().disabled
+    ).toBe(true)
+  })
+
+  it('should enable the submit button when text is entered', () => {
+    app.search.setText('test')
+
+    expect(
+      mount(
+        <TestContext>
+          <SearchDrawer />
+        </TestContext>
+      )
+        .find('button[type="submit"]')
+        .props().disabled
+    ).toBe(false)
+  })
+
+  it('should enable the submit button when in AMP', () => {
+    app.applyState({ amp: true })
+
+    expect(
+      mount(
+        <TestContext>
+          <SearchDrawer />
+        </TestContext>
+      )
+        .find('button[type="submit"]')
+        .props().disabled
+    ).toBe(false)
+  })
 })

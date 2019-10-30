@@ -188,7 +188,8 @@ export default class Image extends Component {
       layout: amp ? this.ampLayout() : null,
       height,
       width,
-      alt
+      alt,
+      'amp-bind': imgAttributes['amp-bind']
     }
 
     let result = (

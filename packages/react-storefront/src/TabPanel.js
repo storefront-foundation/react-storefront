@@ -121,7 +121,7 @@ export default class TabPanel extends Component {
         label = (
           <div
             className={classnames('label', { selected: selected === i })}
-            amp-bind={`class=>${ampStateId}.${ampStateProperty} == "tab${i}" ? 'label selected' : 'label'`}
+            amp-bind={`class=>${ampStateId}.${ampStateProperty} == "tab${i}" || (${i} == 0 && !${ampStateId}.${ampStateProperty}) ? 'label selected' : 'label'`}
           >
             {label}
           </div>

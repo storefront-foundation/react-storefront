@@ -158,6 +158,9 @@ export default class Track extends Component {
 
     for (let target of getTargets()) {
       const handler = target[event]
+
+      if (!target.getAmpAnalyticsType) continue
+
       const type = target.getAmpAnalyticsType()
 
       if (handler && type) {
@@ -216,7 +219,8 @@ export function renderAmpAnalyticsTags(app) {
     return Object.keys(ampAnalyticsTypes)
       .map(type => {
         const target = getTargets().find(t => t.getAmpAnalyticsType() === type)
-        const ampData = typeof target.getAmpAnalyticsData === 'function' ? target.getAmpAnalyticsData(app) : {}
+        const ampData =
+          typeof target.getAmpAnalyticsData === 'function' ? target.getAmpAnalyticsData(app) : {}
 
         const attributes =
           target && target.getAmpAnalyticsAttributes ? target.getAmpAnalyticsAttributes() : { type }

@@ -6,49 +6,53 @@ exports[`AmpExpandableSection should render 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(AmpExpandableSection) title="Title">
         <AmpExpandableSection title="Title" classes={{...}} expanded={false} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
-          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
-              <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
-            </SideEffect(NullComponent)>
-          </HelmetWrapper>
-          <amp-accordion disable-session-states={true} class="RSFAmpExpandableSection-accordion-1">
-            <section className="RSFAmpExpandableSection-section-3">
-              <WithStyles(Typography) variant="subtitle1" component="h3" className="RSFAmpExpandableSection-title-2">
-                <Typography variant="subtitle1" component="h3" className="RSFAmpExpandableSection-title-2" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                  <h3 className="MuiTypography-root-8 MuiTypography-subtitle1-26 RSFAmpExpandableSection-title-2">
-                    Title
-                    <pure(ExpandMoreIcon) className="RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-expand-5">
-                      <ExpandMoreIcon className="RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-expand-5">
-                        <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-expand-5">
-                          <SvgIcon className="RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-expand-5" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                            <svg className="MuiSvgIcon-root-43 RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-expand-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-                              <path fill="none" d="M0 0h24v24H0z" />
-                            </svg>
-                          </SvgIcon>
-                        </WithStyles(SvgIcon)>
-                      </ExpandMoreIcon>
-                    </pure(ExpandMoreIcon)>
-                    <pure(ExpandLessIcon) className="RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-collapse-6">
-                      <ExpandLessIcon className="RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-collapse-6">
-                        <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-collapse-6">
-                          <SvgIcon className="RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-collapse-6" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                            <svg className="MuiSvgIcon-root-43 RSFAmpExpandableSection-toggle-4 RSFAmpExpandableSection-collapse-6" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                              <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
-                              <path fill="none" d="M0 0h24v24H0z" />
-                            </svg>
-                          </SvgIcon>
-                        </WithStyles(SvgIcon)>
-                      </ExpandLessIcon>
-                    </pure(ExpandLessIcon)>
-                  </h3>
-                </Typography>
-              </WithStyles(Typography)>
-              <div className="RSFAmpExpandableSection-body-7">
-                Foo
-              </div>
-            </section>
-          </amp-accordion>
+          <WithStyles(AmpAccordion)>
+            <AmpAccordion classes={{...}}>
+              <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                  <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+                </SideEffect(NullComponent)>
+              </HelmetWrapper>
+              <amp-accordion expand-single-section={true} disable-session-states={true} class="RSFAmpAccordion-accordion-7">
+                <section className="RSFAmpExpandableSection-section-1">
+                  <WithStyles(Typography) variant="subtitle1" component="h3" className="RSFAmpExpandableSection-title-2">
+                    <Typography variant="subtitle1" component="h3" className="RSFAmpExpandableSection-title-2" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                      <h3 className="MuiTypography-root-8 MuiTypography-subtitle1-26 RSFAmpExpandableSection-title-2">
+                        Title
+                        <pure(ExpandMoreIcon) className="RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-expand-4">
+                          <ExpandMoreIcon className="RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-expand-4">
+                            <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-expand-4">
+                              <SvgIcon className="RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-expand-4" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                <svg className="MuiSvgIcon-root-43 RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-expand-4" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                  <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                  <path fill="none" d="M0 0h24v24H0z" />
+                                </svg>
+                              </SvgIcon>
+                            </WithStyles(SvgIcon)>
+                          </ExpandMoreIcon>
+                        </pure(ExpandMoreIcon)>
+                        <pure(ExpandLessIcon) className="RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-collapse-5">
+                          <ExpandLessIcon className="RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-collapse-5">
+                            <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-collapse-5">
+                              <SvgIcon className="RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-collapse-5" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                <svg className="MuiSvgIcon-root-43 RSFAmpExpandableSection-toggle-3 RSFAmpExpandableSection-collapse-5" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                  <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+                                  <path fill="none" d="M0 0h24v24H0z" />
+                                </svg>
+                              </SvgIcon>
+                            </WithStyles(SvgIcon)>
+                          </ExpandLessIcon>
+                        </pure(ExpandLessIcon)>
+                      </h3>
+                    </Typography>
+                  </WithStyles(Typography)>
+                  <div className="RSFAmpExpandableSection-body-6">
+                    Foo
+                  </div>
+                </section>
+              </amp-accordion>
+            </AmpAccordion>
+          </WithStyles(AmpAccordion)>
         </AmpExpandableSection>
       </WithStyles(AmpExpandableSection)>
     </MuiThemeProviderOld>
@@ -62,49 +66,53 @@ exports[`AmpExpandableSection should render expanded 1`] = `
     <MuiThemeProviderOld theme={{...}}>
       <WithStyles(AmpExpandableSection) title="Title" expanded={true}>
         <AmpExpandableSection title="Title" expanded={true} classes={{...}} ExpandIcon={[Function: ShouldUpdate]} CollapseIcon={[Function: ShouldUpdate]}>
-          <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
-            <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
-              <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
-            </SideEffect(NullComponent)>
-          </HelmetWrapper>
-          <amp-accordion disable-session-states={true} class="RSFAmpExpandableSection-accordion-52">
-            <section className="RSFAmpExpandableSection-section-54" expanded="">
-              <WithStyles(Typography) variant="subtitle1" component="h3" className="RSFAmpExpandableSection-title-53">
-                <Typography variant="subtitle1" component="h3" className="RSFAmpExpandableSection-title-53" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
-                  <h3 className="MuiTypography-root-59 MuiTypography-subtitle1-77 RSFAmpExpandableSection-title-53">
-                    Title
-                    <pure(ExpandMoreIcon) className="RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-expand-56">
-                      <ExpandMoreIcon className="RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-expand-56">
-                        <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-expand-56">
-                          <SvgIcon className="RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-expand-56" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                            <svg className="MuiSvgIcon-root-94 RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-expand-56" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-                              <path fill="none" d="M0 0h24v24H0z" />
-                            </svg>
-                          </SvgIcon>
-                        </WithStyles(SvgIcon)>
-                      </ExpandMoreIcon>
-                    </pure(ExpandMoreIcon)>
-                    <pure(ExpandLessIcon) className="RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-collapse-57">
-                      <ExpandLessIcon className="RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-collapse-57">
-                        <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-collapse-57">
-                          <SvgIcon className="RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-collapse-57" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
-                            <svg className="MuiSvgIcon-root-94 RSFAmpExpandableSection-toggle-55 RSFAmpExpandableSection-collapse-57" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
-                              <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
-                              <path fill="none" d="M0 0h24v24H0z" />
-                            </svg>
-                          </SvgIcon>
-                        </WithStyles(SvgIcon)>
-                      </ExpandLessIcon>
-                    </pure(ExpandLessIcon)>
-                  </h3>
-                </Typography>
-              </WithStyles(Typography)>
-              <div className="RSFAmpExpandableSection-body-58">
-                Foo
-              </div>
-            </section>
-          </amp-accordion>
+          <WithStyles(AmpAccordion)>
+            <AmpAccordion classes={{...}}>
+              <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+                <SideEffect(NullComponent) defer={true} encodeSpecialCharacters={true} script={{...}}>
+                  <NullComponent defer={true} encodeSpecialCharacters={true} script={{...}} />
+                </SideEffect(NullComponent)>
+              </HelmetWrapper>
+              <amp-accordion expand-single-section={true} disable-session-states={true} class="RSFAmpAccordion-accordion-58">
+                <section className="RSFAmpExpandableSection-section-52" expanded="">
+                  <WithStyles(Typography) variant="subtitle1" component="h3" className="RSFAmpExpandableSection-title-53">
+                    <Typography variant="subtitle1" component="h3" className="RSFAmpExpandableSection-title-53" theme={{...}} classes={{...}} align="inherit" color="default" gutterBottom={false} headlineMapping={{...}} noWrap={false} paragraph={false}>
+                      <h3 className="MuiTypography-root-59 MuiTypography-subtitle1-77 RSFAmpExpandableSection-title-53">
+                        Title
+                        <pure(ExpandMoreIcon) className="RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-expand-55">
+                          <ExpandMoreIcon className="RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-expand-55">
+                            <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-expand-55">
+                              <SvgIcon className="RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-expand-55" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                <svg className="MuiSvgIcon-root-94 RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-expand-55" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                  <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                  <path fill="none" d="M0 0h24v24H0z" />
+                                </svg>
+                              </SvgIcon>
+                            </WithStyles(SvgIcon)>
+                          </ExpandMoreIcon>
+                        </pure(ExpandMoreIcon)>
+                        <pure(ExpandLessIcon) className="RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-collapse-56">
+                          <ExpandLessIcon className="RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-collapse-56">
+                            <WithStyles(SvgIcon) className="RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-collapse-56">
+                              <SvgIcon className="RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-collapse-56" classes={{...}} color="inherit" component="svg" fontSize="default" viewBox="0 0 24 24">
+                                <svg className="MuiSvgIcon-root-94 RSFAmpExpandableSection-toggle-54 RSFAmpExpandableSection-collapse-56" focusable="false" viewBox="0 0 24 24" color={[undefined]} aria-hidden="true" role="presentation">
+                                  <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+                                  <path fill="none" d="M0 0h24v24H0z" />
+                                </svg>
+                              </SvgIcon>
+                            </WithStyles(SvgIcon)>
+                          </ExpandLessIcon>
+                        </pure(ExpandLessIcon)>
+                      </h3>
+                    </Typography>
+                  </WithStyles(Typography)>
+                  <div className="RSFAmpExpandableSection-body-57">
+                    Foo
+                  </div>
+                </section>
+              </amp-accordion>
+            </AmpAccordion>
+          </WithStyles(AmpAccordion)>
         </AmpExpandableSection>
       </WithStyles(AmpExpandableSection)>
     </MuiThemeProviderOld>

@@ -49,11 +49,11 @@ export default class Branch extends Component {
       on:
         depth === 0
           ? `tap:AMP.setState({ rsfMenu: { list: '@${index}' } })`
-          : `tap:AMP.setState({ rsfMenu: { sublist: sublist == '${sublist}' ? null : '${sublist}' } })`
+          : `tap:AMP.setState({ rsfMenu: { sublists: { ['${sublist}']: !rsfMenu.sublists['${sublist}'] } } })`
     }
 
     const elements = [
-      <div key="item" amp-bind={`class=>rsfMenu.sublist == '${sublist}' ? 'expanded' : ''`}>
+      <div key="item" amp-bind={`class=>rsfMenu.sublists['${sublist}'] ? 'expanded' : ''`}>
         <ListItem className="menu-item" button divider {...(amp ? ampProps : interactionProps)}>
           <ItemContent
             {...others}
@@ -69,11 +69,11 @@ export default class Branch extends Component {
     if (showExpander) {
       const props = amp
         ? {
-            in: true,
-            'amp-bind': `class=>rsfMenu.sublist == '${sublist}' ? '${classes.visible}' : '${
-              classes.hidden
+          in: true,
+          'amp-bind': `class=>rsfMenu.sublists['${sublist}'] ? '${classes.visible}' : '${
+            classes.hidden
             }'`
-          }
+        }
         : { in: item.expanded }
       elements.push(
         <Collapse {...props} timeout="auto" key="collapse">

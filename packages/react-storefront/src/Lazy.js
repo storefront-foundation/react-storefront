@@ -7,6 +7,7 @@ import ReactVisibilitySensor from 'react-visibility-sensor'
 import withStyles from '@material-ui/core/styles/withStyles'
 import classnames from 'classnames'
 import { inject, observer } from 'mobx-react'
+import { reaction } from 'mobx'
 
 export const styles = () => ({
   root: {
@@ -19,8 +20,26 @@ export const styles = () => ({
 @inject('app')
 @observer
 export default class Lazy extends Component {
-  state = {
-    visible: false
+  constructor({ app }) {
+    super()
+
+    this.state = {
+      visible: app.amp
+    }
+  }
+
+  componentDidMount() {
+    this.dispose = reaction(() => this.props.app.location.uri, this.onRouteChange)
+  }
+
+  componentWillUnmount() {
+    this.dispose()
+  }
+
+  onRouteChange = () => {
+    if (this.state.visible) {
+      this.setState({ visible: false })
+    }
   }
 
   onChange = v => {
@@ -32,7 +51,7 @@ export default class Lazy extends Component {
   }
 
   render() {
-    const { app, children, className, classes, ...otherProps } = this.props
+    const { app, children, className, classes, visibilitySensorProps, ...otherProps } = this.props
     const { visible } = this.state
 
     return (
@@ -40,6 +59,7 @@ export default class Lazy extends Component {
         onChange={this.onChange}
         active={!visible && !app.scrollResetPending}
         partialVisibility
+        {...visibilitySensorProps}
       >
         <div className={classnames(classes.root, className)} {...otherProps}>
           {visible && children}

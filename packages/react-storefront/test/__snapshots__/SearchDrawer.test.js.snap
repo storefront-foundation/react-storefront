@@ -127,11 +127,11 @@ exports[`SearchDrawer should render with no props 1`] = `
                                                                             <HideWhenEmpty>
                                                                               <div className="RSFSearchDrawer-hidden-17" amp-bind="class=>rsfSearchDrawer.searchText.length > 0 ? "" : "RSFSearchDrawer-hidden-17"">
                                                                                 <SearchButton Component={[Function: WithStyles]} className="RSFSearchDrawer-searchFab-16">
-                                                                                  <WithStyles(Fab) rel="search" type="submit" className="RSFSearchDrawer-searchFab-16">
-                                                                                    <Fab rel="search" type="submit" className="RSFSearchDrawer-searchFab-16" classes={{...}} color="default" component="button" disabled={false} disableFocusRipple={false} size="large" variant="round">
-                                                                                      <WithStyles(ButtonBase) className="MuiFab-root-110 RSFSearchDrawer-searchFab-16" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-115" rel="search" type="submit" component="button">
-                                                                                        <ButtonBase className="MuiFab-root-110 RSFSearchDrawer-searchFab-16" disabled={false} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-115" rel="search" type="submit" component="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
-                                                                                          <button className="MuiButtonBase-root-66 MuiFab-root-110 RSFSearchDrawer-searchFab-16" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="0" type="submit" disabled={false} rel="search">
+                                                                                  <WithStyles(Fab) rel="search" type="submit" disabled={true} className="RSFSearchDrawer-searchFab-16">
+                                                                                    <Fab rel="search" type="submit" disabled={true} className="RSFSearchDrawer-searchFab-16" classes={{...}} color="default" component="button" disableFocusRipple={false} size="large" variant="round">
+                                                                                      <WithStyles(ButtonBase) className="MuiFab-root-110 MuiFab-disabled-116 RSFSearchDrawer-searchFab-16" disabled={true} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-115" rel="search" type="submit" component="button">
+                                                                                        <ButtonBase className="MuiFab-root-110 MuiFab-disabled-116 RSFSearchDrawer-searchFab-16" disabled={true} focusRipple={true} focusVisibleClassName="MuiFab-focusVisible-115" rel="search" type="submit" component="button" classes={{...}} centerRipple={false} disableRipple={false} disableTouchRipple={false} tabIndex="0">
+                                                                                          <button className="MuiButtonBase-root-66 MuiButtonBase-disabled-67 MuiFab-root-110 MuiFab-disabled-116 RSFSearchDrawer-searchFab-16" onBlur={[Function]} onFocus={[Function]} onKeyDown={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseLeave={[Function]} onMouseUp={[Function]} onTouchEnd={[Function]} onTouchMove={[Function]} onTouchStart={[Function]} tabIndex="-1" type="submit" disabled={true} rel="search">
                                                                                             <span className="MuiFab-label-111">
                                                                                               <pure(SearchIcon)>
                                                                                                 <SearchIcon>
@@ -146,15 +146,6 @@ exports[`SearchDrawer should render with no props 1`] = `
                                                                                                 </SearchIcon>
                                                                                               </pure(SearchIcon)>
                                                                                             </span>
-                                                                                            <NoSsr defer={false} fallback={{...}}>
-                                                                                              <WithStyles(TouchRipple) innerRef={[Function]} center={false}>
-                                                                                                <TouchRipple center={false} classes={{...}}>
-                                                                                                  <TransitionGroup component="span" enter={true} exit={true} className="MuiTouchRipple-root-120" childFactory={[Function: childFactory]}>
-                                                                                                    <span className="MuiTouchRipple-root-120" />
-                                                                                                  </TransitionGroup>
-                                                                                                </TouchRipple>
-                                                                                              </WithStyles(TouchRipple)>
-                                                                                            </NoSsr>
                                                                                           </button>
                                                                                         </ButtonBase>
                                                                                       </WithStyles(ButtonBase)>

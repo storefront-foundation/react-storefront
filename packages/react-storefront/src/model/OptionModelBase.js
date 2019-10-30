@@ -22,6 +22,10 @@ const OptionModelBase = types.model('OptionModelBase', {
    */
   image: types.maybeNull(types.string),
   /**
+   * A URL for the product thumbnail to display when this option is selected.
+   */
+  thumbnail: types.maybeNull(types.string),
+  /**
    * An accessbility label for the image.  If left blank, text will be used as the accesibility label.
    */
   alt: types.maybe(types.string),

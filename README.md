@@ -74,9 +74,72 @@ yarn release
 
 ## Changelog
 
-### 6.56.0
+### 6.61.0
 
 - The service worker URL now includes the mode ID to ensure that it is fetched from the same mode that served the request when running an A/B test.
+
+### 6.60.0
+
+- Added a `Carousel` component that supports AMP
+
+### 6.59.6
+
+- Added `redirected` flag to response context for downstream event handlers
+
+### 6.59.5
+
+- Removed buggy optimization for ExpandableSection, it conflicted with MobX and caused rendering issues.
+
+### 6.59.4
+
+- Fixed bug where app would scroll to the top of the page before updating the UI during client side navigation.
+
+### 6.59.3
+
+- Fixed scroll to top and lazy loading not working as expected when attributes `title`, `description` and `canonicalUrl` of `AppModel` set to null.
+
+### 6.59.2
+
+- Fix for `TabPanel` amp initial state
+
+### 6.59.1
+
+- Fixed AMP Menu bug which was causing sub menus not to close
+
+### 6.59.0
+
+- Added `Accordion` component which only allows one child `ExpandableSection` to be open at a time.
+
+### 6.58.0
+
+- Added `ProductColors` and `ProductThumbnail` components to support dynamic color swatches within a PLP page.
+- Fixes a bug in `AmpForm` that caused errors when injected into non-PWA pages.
+
+### 6.57.0
+
+- Removed css minification for non-amp request to speed up execution times.
+
+### 6.56.0
+
+- Added `DrawerButton` component for creating drawers with custom content with support for anchoring from any side
+- `Lazy` no longer requires a `key` prop to automatically unmount it's children when the URL changes.
+
+### 6.55.4
+
+- Added `visibilitySensorProps` to `Lazy`.
+
+### 6.55.3
+
+- uninstall-service-worker.js is no longer prefetched.
+
+### 6.55.2
+
+- Elements inside `Lazy` are now shown in AMP.
+
+### 6.55.1
+
+- Search how hides and disables the submit button until the user enters a non-whitespace character
+- Fixes hiding `<title>` tag when `app.title` is `null`
 
 ### 6.55.0
 

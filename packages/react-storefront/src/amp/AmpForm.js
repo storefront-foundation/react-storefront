@@ -54,9 +54,9 @@ export default class AmpForm extends Component {
     mask: true
   }
 
-  constructor({ id, nextId }) {
+  constructor({ id, nextId, app }) {
     super()
-    this.id = id || nextId()
+    this.id = id || (app.amp ? `rsf-form-${nextId()}` : null)
   }
 
   render() {
@@ -90,7 +90,7 @@ export default class AmpForm extends Component {
           `valid:AMP.setState({ ${ampStateId}: { ___moov_submitting: true }})`
         bind =
           (bind ? bind + ',' : '') +
-          `class=>${ampStateId}.___moov_submitting ? 'moov-amp-form-mask' : null`
+          `class=>${ampStateId}.___moov_submitting ? 'moov-amp-form-mask' : ''`
       }
 
       return (

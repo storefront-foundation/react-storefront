@@ -14,6 +14,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import AmpExpandableSection from './amp/AmpExpandableSection'
 import { inject } from 'mobx-react'
 import withTheme from '@material-ui/core/styles/withTheme'
+import { withAccordionContext } from './Accordion'
 
 export const styles = theme => ({
   root: {
@@ -81,7 +82,7 @@ export const styles = theme => ({
 @withStyles(styles, { name: 'RSFExpandableSection' })
 @withTheme()
 @inject(({ app }) => ({ amp: app.amp }))
-export default class ExpandableSection extends Component {
+class ExpandableSection extends Component {
   static propTypes = {
     /**
      * The title for the header of the expandable section
@@ -116,19 +117,28 @@ export default class ExpandableSection extends Component {
     /**
      * Defaults the panel to being expanded, without controlling the state.  Defaults to false
      */
-    defaultExpanded: PropTypes.bool
+    defaultExpanded: PropTypes.bool,
+
+    /**
+     * Section ID used by Accordion, defaults to title prop
+     */
+    sectionId: PropTypes.string
   }
 
   static defaultProps = {
     margins: true
   }
 
-  static getDerivedStateFromProps({ expanded }) {
+  static getDerivedStateFromProps({ expanded, expandedSectionId, sectionId, title }) {
     if (typeof expanded !== 'undefined') {
       return { expanded }
-    } else {
-      return {}
     }
+    if (expandedSectionId !== undefined) {
+      const id = sectionId || title
+      return { expanded: expandedSectionId === id }
+    }
+    // Do not update the component state from props
+    return null
   }
 
   constructor({ expanded, defaultExpanded, ExpandIcon, CollapseIcon, theme }) {
@@ -150,19 +160,27 @@ export default class ExpandableSection extends Component {
       children = [],
       title,
       caption,
-      expanded,
       defaultExpanded,
       ExpandIcon: ei,
       CollapseIcon: ci,
       margins,
+      sectionId,
+      expandedSectionId,
       ...others
     } = this.props
+
+    const { expanded } = this.state
 
     const { ExpandIcon, CollapseIcon } = this
 
     if (amp) {
       return (
-        <AmpExpandableSection ExpandIcon={ExpandIcon} CollapseIcon={CollapseIcon} title={title}>
+        <AmpExpandableSection
+          expandedSectionId={expandedSectionId}
+          ExpandIcon={ExpandIcon}
+          CollapseIcon={CollapseIcon}
+          title={title}
+        >
           {children}
         </AmpExpandableSection>
       )
@@ -233,9 +251,16 @@ export default class ExpandableSection extends Component {
   }
 
   onChange = (e, expanded) => {
-    if (this.props.onChange) {
-      this.props.onChange(e, expanded)
+    const { setExpandedSectionId, onChange, sectionId, title } = this.props
+    if (onChange) {
+      onChange(e, expanded)
     }
-    this.setState({ expanded })
+    if (setExpandedSectionId) {
+      setExpandedSectionId(expanded ? sectionId || title : null)
+    } else {
+      this.setState({ expanded })
+    }
   }
 }
+
+export default withAccordionContext(ExpandableSection)

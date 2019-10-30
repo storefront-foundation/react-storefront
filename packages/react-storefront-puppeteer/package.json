@@ -1,6 +1,6 @@
 {
   "name": "react-storefront-puppeteer",
-  "version": "6.56.0-alpha.2",
+  "version": "6.60.0",
   "description": "Helpers for writing puppeter tests for React Storefront",
   "author": "Moovweb",
   "license": "Apache-2.0",

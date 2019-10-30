@@ -63,6 +63,11 @@ export default class PWA extends Component {
   render() {
     const { amp, app, errorReporter } = this.props
 
+    // This line is needed to ensure that the app rerenders and scrolls to the top when the URL changes
+    // Note that we should *not* read app.scrollResetPending here, as it will cause the app to scroll
+    // to the top before the page is rerendered
+    const { uri } = app
+
     return (
       <AppContext.Provider value={this.appContextValue}>
         <Provider nextId={this.nextId} errorReporter={errorReporter}>
@@ -78,7 +83,7 @@ export default class PWA extends Component {
                 {app.canonicalURL ? <link rel="canonical" href={app.canonicalURL} /> : null}
                 {/* crossorigin="use-credentials" is needed when the site is password protected by basic auth*/}
                 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
-                <title>{app.title}</title>
+                {app.title ? <title>{app.title}</title> : null}
               </Helmet>
               {amp && (
                 <Helmet>
