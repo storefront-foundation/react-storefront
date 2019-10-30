@@ -27,12 +27,12 @@ function getModeName() {
  */
 export function getMode() {
   const name = getModeName()
-  const modes = getMoovManifest().modes
+  const modes = getMoovManifest().Modes
 
   for (let id in modes) {
     const mode = modes[id]
 
-    if (mode.name === name) {
+    if (mode.Name === name) {
       return { id, name }
     }
   }
