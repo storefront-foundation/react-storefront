@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.60.1
+
+- Fixed `Response`'s handling of cookies. Now able to set multiple cookies.
+
 ### 6.60.0
 
 - Added a `Carousel` component that supports AMP
