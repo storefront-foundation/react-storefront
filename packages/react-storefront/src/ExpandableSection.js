@@ -152,14 +152,6 @@ class ExpandableSection extends Component {
     }
   }
 
-  // Only re-render this component if expanded has changed
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.expanded !== this.state.expanded) {
-      return true
-    }
-    return false
-  }
-
   render() {
     let {
       amp,
