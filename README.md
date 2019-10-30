@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.60.0
+
+- Added a `Carousel` component that supports AMP
+
 ### 6.59.6
 
 - Added `redirected` flag to response context for downstream event handlers
