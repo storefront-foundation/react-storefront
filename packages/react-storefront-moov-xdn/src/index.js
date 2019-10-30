@@ -46,6 +46,7 @@ export default function responseRewriter({
 
     const request = (env.rsf_request = new Request())
     const response = (env.rsf_response = new Response(request))
+    const mode = getMode()
 
     new Server({
       theme,
@@ -54,7 +55,7 @@ export default function responseRewriter({
       router,
       transform,
       errorReporter,
-      state: { mode: getMode() }
+      state: { mode }
     }).serve(request, response)
   }
 }

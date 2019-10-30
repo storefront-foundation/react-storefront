@@ -9,19 +9,7 @@
  * @return {Object}
  */
 function getMoovManifest() {
-  return (
-    global.moovManifest || {
-      DefaultMode: '000-000-000', // stub mode to emulate the structure of moovManifest during development
-      Modes: {
-        '000-000-000': {
-          Name: 'default',
-          Slug: '000-000-000/000-000-000',
-          BlobS3Path: '',
-          Status: 'live'
-        }
-      }
-    }
-  )
+  return global.moovManifest
 }
 
 /**
@@ -39,12 +27,12 @@ function getModeName() {
  */
 export function getMode() {
   const name = getModeName()
-  const modes = getMoovManifest().Modes
+  const modes = getMoovManifest().modes
 
   for (let id in modes) {
     const mode = modes[id]
 
-    if (mode.Name === name) {
+    if (mode.name === name) {
       return { id, name }
     }
   }
