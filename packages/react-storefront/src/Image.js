@@ -9,6 +9,7 @@ import { inject } from 'mobx-react'
 import classnames from 'classnames'
 import VisibilitySensor from 'react-visibility-sensor'
 import qs from 'qs'
+import { absoluteURL } from './utils/url'
 
 export const styles = theme => ({
   root: {
@@ -204,15 +205,15 @@ export default class Image extends Component {
         {amp ? (
           <amp-img {...assignedAttributes} />
         ) : (
-            loaded && (
-              <img
-                ref={this.ref}
-                {...assignedAttributes}
-                {...imgAttributes}
-                onError={this.handleNotFound}
-              />
-            )
-          )}
+          loaded && (
+            <img
+              ref={this.ref}
+              {...assignedAttributes}
+              {...imgAttributes}
+              onError={this.handleNotFound}
+            />
+          )
+        )}
       </div>
     )
 
@@ -257,7 +258,7 @@ export default class Image extends Component {
     if (quality || Object.keys(optimize).length > 0) {
       const options = {
         ...optimize,
-        img: src.indexOf('/') === 0 && location ? location.urlBase + src : src
+        img: absoluteURL(src, location || {})
       }
       if (quality) options.quality = quality
       return `https://opt.moovweb.net/?${qs.stringify(options)}`
