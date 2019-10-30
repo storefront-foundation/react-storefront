@@ -140,11 +140,11 @@ export default class Response {
    */
   set(name, value) {
     if (name.match(/set-cookie/i)) {
-      console.warn(
-        '[react-storefront response]',
-        'Please use response.cookie(name, value) to set cookies'
-      )
-      return
+      if (env.shouldSendCookies === false) {
+        console.warn('[react-storefront response]', 'Cannot set cookies on cached route')
+      }
+      this.cookies.push(value)
+      return this
     }
     if (name == null) throw new Error('name cannot be null in call to response.set')
     this.headers[name] = value
