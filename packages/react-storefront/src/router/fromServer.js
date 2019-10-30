@@ -22,9 +22,10 @@ let doFetch
  * @param {String} url The url to fetch
  * @param {Object} options
  * @param {String} options.cache Set to "force-cache" to cache the response in the service worker.  Omit to skip the service worker cache.
+ * @param {Object} originalResponse Response object/context which can be modified on the client
  * @return {Object} A state patch
  */
-export async function fetch(url, { cache = 'default', onlyHit = false } = {}) {
+export async function fetch(url, { cache = 'default', onlyHit = false } = {}, originalResponse) {
   abortPrefetches()
   doFetch = doFetch || fetchLatest(require('isomorphic-unfetch'))
 
@@ -49,6 +50,10 @@ export async function fetch(url, { cache = 'default', onlyHit = false } = {}) {
 
       if (redirected) {
         redirectTo(url)
+        // This allows downstream event handlers to know if a response was redirected
+        if (originalResponse) {
+          originalResponse.redirected = true
+        }
       } else {
         resumePrefetches()
 
@@ -176,7 +181,7 @@ export default function fromServer(handlerPath, getURL) {
     async fn(params, request, response) {
       if (typeof handlerPath === 'string') {
         // handler path has not been transpiled, fetch the data from the server and return the result.
-        return fetch(createURL(), { cache: response.clientCache })
+        return fetch(createURL(), { cache: response.clientCache }, response)
       } else {
         // indicate handler path and asset class in a response header so we can track it in logs
         response.set(HANDLER, handlerPath.path)

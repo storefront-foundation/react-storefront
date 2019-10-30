@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.59.6
+
+- Added `redirected` flag to response context for downstream event handlers
+
 ### 6.59.5
 
 - Removed buggy optimization for ExpandableSection, it conflicted with MobX and caused rendering issues.
