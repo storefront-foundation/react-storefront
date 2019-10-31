@@ -67,5 +67,6 @@ export default function hydrate({
     target,
     removeSSRStyles
   )
+  window.moov.hydrated = true
   return state
 }

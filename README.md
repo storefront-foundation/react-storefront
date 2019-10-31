@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.60.2
+
+- Fixed a bug where the main image on a PDP will flash in on the first client-side transition from a PLP.
+
 ### 6.60.1
 
 - Fixed `Response`'s handling of cookies. Now able to set multiple cookies.

@@ -342,7 +342,7 @@ export default class ImageSwitcher extends Component {
         nextProps.selectedIndex != null ? nextProps.selectedIndex : prevState.selectedIndex || 0
     }
 
-    if (prevState.images && !isEqual(nextState.images, prevState.images)) {
+    if (!prevState.images || !isEqual(nextState.images, prevState.images)) {
       // new images are loading in, show the loadingProduct.thumbnail
       nextState.fullSizeImagesLoaded = false
 
