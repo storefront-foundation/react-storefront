@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.61.0
+
+- HTTP/2 Server Push can now be disabled.
+
 ### 6.60.3
 
 - Removing the bloat of JIMP from the React Storefront server code. It was an unused dependency of the amp-optimizer

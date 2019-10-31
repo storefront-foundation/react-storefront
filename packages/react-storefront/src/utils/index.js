@@ -11,6 +11,7 @@ export { default as cookie } from './cookie.js';
 export { default as createGenerateClassName } from './createGenerateClassName.js';
 export { default as dataProps } from './dataProps.js';
 export { default as hydrate } from './hydrate.js';
+export { default as isSSR } from './isSSR.js';
 export { default as lazyLoadImages } from './lazyLoadImages.js';
 export { default as minifyStyles } from './minifyStyles.js';
 export { default as optimizeImages } from './optimizeImages.js';

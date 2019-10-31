@@ -21,6 +21,7 @@ useMoovAsyncTransformer()
  * @param {String} blob The blob
  * @param {Function} transform A function to transform the rendered HTML before it is sent to the browser
  * @param {Function} errorReporter A function to call when an error occurs so that it can be logged
+ * @param {Boolean} pushScripts Set to `false` to disable http 2 server push of javascript bundles
  */
 export default function responseRewriter({
   theme,
@@ -29,7 +30,8 @@ export default function responseRewriter({
   router,
   blob,
   transform,
-  errorReporter = Function.prototype
+  errorReporter = Function.prototype,
+  pushScripts = true
 }) {
   if (env.secure !== 'true') {
     // Always redirect on non-secure requests.
@@ -46,6 +48,9 @@ export default function responseRewriter({
     const request = (env.rsf_request = new Request())
     const response = (env.rsf_response = new Response(request))
 
-    new Server({ theme, model, App, router, transform, errorReporter }).serve(request, response)
+    new Server({ theme, model, App, router, transform, errorReporter, pushScripts }).serve(
+      request,
+      response
+    )
   }
 }

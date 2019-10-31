@@ -33,6 +33,7 @@ import requestContext from './requestContext'
  * @param {Boolean} config.deferScripts Adds the defer attribute to all script tags to speed up initial page render. Defaults to true.
  * @param {Function} config.transform A function to transform the rendered HTML before it is sent to the browser
  * @param {Function} config.errorReporter A function to call when an error occurs so that it can be logged
+ * @param {Boolean} pushScripts Set to `false` to disable http 2 server push of javascript bundles
  */
 export default class Server {
   constructor({
@@ -42,7 +43,8 @@ export default class Server {
     router,
     deferScripts = true,
     transform,
-    errorReporter = Function.prototype
+    errorReporter = Function.prototype,
+    pushScripts = true
   }) {
     console.error = console.warn = console.log
 
@@ -53,7 +55,8 @@ export default class Server {
       router,
       deferScripts,
       transform,
-      errorReporter
+      errorReporter,
+      pushScripts
     })
   }
 
@@ -176,7 +179,9 @@ export default class Server {
 
       // Set prefetch headers so that our scripts will be fetched
       // and loaded as fast as possible
-      response.set('link', scripts.map(renderPreloadHeader).join(', '))
+      if (this.pushScripts) {
+        response.set('link', scripts.map(renderPreloadHeader).join(', '))
+      }
 
       html = `
         <!DOCTYPE html>
