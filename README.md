@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.60.3
+
+- Removing the bloat of JIMP from the React Storefront server code. It was an unused dependency of the amp-optimizer
+
 ### 6.60.2
 
 - Fixed a bug where the main image on a PDP will flash in on the first client-side transition from a PLP.
