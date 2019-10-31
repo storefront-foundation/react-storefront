@@ -11,7 +11,7 @@ describe('Response', () => {
     oldFns = global.fns
     global.fns = { export: jest.fn() }
     global.env = {}
-    request = { sendResponse: jest.fn(), hostname: "localhost" }
+    request = { sendResponse: jest.fn(), hostname: 'localhost' }
     response = new Response(request)
   })
 
@@ -43,7 +43,7 @@ describe('Response', () => {
 
     it('should relay upstream cookies', () => {
       env.MUR_SET_COOKIES = {
-        "www.example.com": [
+        'www.example.com': [
           'JSESSIONID=EB9FC0F82486EF5F36C7851A56BB3CB2; Domain=www.example.com; Path=/; HttpOnly;'
         ]
       }
@@ -68,14 +68,12 @@ describe('Response', () => {
 
     it('should not relay upstream cookies if relayUpstreamCookies(false) is called', () => {
       env.MUR_SET_COOKIES = {
-        "www.example.com": [
+        'www.example.com': [
           'JSESSIONID=EB9FC0F82486EF5F36C7851A56BB3CB2; Domain=www.example.com; Path=/; HttpOnly;'
         ]
       }
 
-      response
-        .relayUpstreamCookies(false)
-        .send('foo')
+      response.relayUpstreamCookies(false).send('foo')
 
       expect(global.fns.export).toBeCalledWith('MOOV_PWA_RESPONSE', {
         statusCode: 200,
@@ -91,15 +89,17 @@ describe('Response', () => {
     })
 
     it('should call request.sendResponse', () => {
-      response
-        .send('foo')
+      response.send('foo')
 
       expect(request.sendResponse).toBeCalledWith({ body: 'foo', htmlparsed: true })
     })
 
     it('should be able to use response.json shortcut and get same response', () => {
       response.json({ foo: { bar: 'Hello World!' }, x: 123, y: false })
-      expect(request.sendResponse).toBeCalledWith({ body: '{"foo":{"bar":"Hello World!"},"x":123,"y":false}', htmlparsed: true })
+      expect(request.sendResponse).toBeCalledWith({
+        body: '{"foo":{"bar":"Hello World!"},"x":123,"y":false}',
+        htmlparsed: true
+      })
       expect(response.headers['content-type']).toEqual('application/json')
     })
 
@@ -132,7 +132,7 @@ describe('Response', () => {
     it('should return the response', () => {
       expect(response.status(404)).toBe(response)
     })
-    
+
     it('should set statusCode and statusText', () => {
       response.status(404, 'not found')
       expect(response.statusCode).toBe(404)
@@ -144,7 +144,7 @@ describe('Response', () => {
     it('should return the response', () => {
       expect(response.redirect('/foo')).toBe(response)
     })
-    
+
     it('should set redirectTo and statusCode', () => {
       response.redirect('/foo', 302)
       expect(response.redirectTo).toBe('/foo')
@@ -183,13 +183,15 @@ describe('Response', () => {
 
   it('should set cookie manually', () => {
     response.set('set-cookie', 'foo=bar')
-    expect(response.headers['set-cookie']).toEqual('foo=bar')
+    expect(response.cookies[0]).toEqual('foo=bar')
   })
 
-  it('should transform cookies', () => {
-    response.set('set-cookie', 'foo=max;name=max')
+  it('should set multiple cookies', () => {
+    response.set('set-cookie', 'foo=max')
     response.cookie('ssid', 'abc012', { maxAge: 999 })
     response.cookie('foo', 'bar', { httpOnly: true, maxAge: 1000 })
-    expect(response.headers['set-cookie']).toEqual('foo=bar; Max-Age=1000; HttpOnly;name=max;ssid=abc012;Max-Age=999')
+    expect(response.cookies[0]).toEqual('foo=max')
+    expect(response.cookies[1]).toEqual('ssid=abc012; Max-Age=999')
+    expect(response.cookies[2]).toEqual('foo=bar; Max-Age=1000; HttpOnly')
   })
 })
