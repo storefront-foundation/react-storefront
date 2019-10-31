@@ -17,6 +17,7 @@ export { default as BottomDrawer } from './BottomDrawer.js';
 export { default as Box } from './Box.js';
 export { default as Breadcrumbs } from './Breadcrumbs.js';
 export { default as ButtonSelector } from './ButtonSelector.js';
+export { default as Carousel } from './Carousel.js';
 export { default as CartButton } from './CartButton.js';
 export { default as CheckoutButton } from './CheckoutButton.js';
 export { default as CmsSlot } from './CmsSlot.js';

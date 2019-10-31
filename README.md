@@ -74,9 +74,17 @@ yarn release
 
 ## Changelog
 
-### 6.59.6
+### 6.60.1
 
 - Removing the bloat of JIMP from the React Storefront server code. It was an unused dependency of the amp-optimizer
+
+### 6.60.0
+
+- Added a `Carousel` component that supports AMP
+
+### 6.59.6
+
+- Added `redirected` flag to response context for downstream event handlers
 
 ### 6.59.5
 
