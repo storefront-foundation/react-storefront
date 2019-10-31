@@ -9,6 +9,8 @@
 
 React Storefront is a standalone PWA storefront for your eCommerce, possible to connect with any eCommerce backend (through the API).
 
+Crafted with ❤️ by <a href="https://moovweb.com">Moovweb</a> and developed with <a href="https://vuestorefront.io">Vue Storefront</a> team
+
 ## Ludicrous Speed
 
 React Storefront goes the extra mile to squeeze speed out of every possible real and user perceived performance optimization including:
@@ -70,6 +72,8 @@ You can create a local copy of the demo site using `create-react-storefront` to 
 npm install -g create-react-storefront
 create-react-storefront my-site
 ```
+
+Check out [the source code of the demo site](https://github.com/DivanteLtd/react-storefront-boilerplate).
 
 ## Development
 
@@ -160,6 +164,11 @@ This is how we will use the donations:
 - Fees for money handling
 
 **If you would like to support us please just let us know: contributors@reactstorefront.io**
+
+## Works best on Moovweb CDN
+
+React Storefront runs best on <a href="https://moovweb.com">Moovweb XDN</a>
+Moovweb provides a platform-as-a-service called the XDN (Experience Delivery Network) that is available for purchase. Features that are available for purchase are listed are tagged with "XDN" in the table of contents
 
 ## Partners
 
