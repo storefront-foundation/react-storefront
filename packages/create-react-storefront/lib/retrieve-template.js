@@ -20,7 +20,7 @@ const _deleteTemplate = () => {
 }
 
 const _calculateTemplateUrl = branch => {
-  return `https://github.com/moovweb/react-storefront-boilerplate/zipball/${branch}`
+  return `https://github.com/DivanteLtd/react-storefront-boilerplate/zipball/${branch}`
 }
 
 const _downloadTemplate = async ({ templateUrl } = {}) => {
