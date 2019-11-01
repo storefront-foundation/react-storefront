@@ -5,6 +5,7 @@
 import { types, onPatch } from 'mobx-state-tree'
 import SelectionModelBase from './SelectionModelBase'
 import MediaTypeModel from './MediaTypeModel'
+import { fetch as fetchFromServer } from './../router/fromServer'
 import URL from 'url'
 
 /**
@@ -191,8 +192,7 @@ const ProductModelBase = types
       self.loadingImages = true
 
       if (selected) {
-        fetch(`/images/${self.id}/${selected.id}.json`)
-          .then(res => res.json())
+        fetchFromServer(`/images/${self.id}/${selected.id}.json`)
           .then(state => self.apply({ ...state, loadingImages: false }))
           .catch(e => {
             console.error(e)

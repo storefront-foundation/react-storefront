@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.60.6
+
+- Fixed caching for Product images
+
 ### 6.60.5
 
 - Fixed bug in Router that allowed internal location state to get out of sync

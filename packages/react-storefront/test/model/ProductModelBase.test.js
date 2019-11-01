@@ -4,12 +4,12 @@
  */
 import { createTestProduct } from '../fixtures/Product'
 import ProductModelBase from '../../src/model/ProductModelBase'
+import * as fromServer from '../../src/router/fromServer'
 
 describe('ProductModelBase', () => {
   let product
 
   beforeEach(() => {
-    global.fetch.resetMocks()
     product = createTestProduct({
       id: 'foo',
       color: {
@@ -23,11 +23,8 @@ describe('ProductModelBase', () => {
   })
 
   it('fetches images using product URL', () => {
-    global.fetch.mockResponse(
-      JSON.stringify({
-        images: ['/1.jpeg', '2.jpeg']
-      })
-    )
+    const mockFetch = jest.fn(() => Promise.resolve({}))
+    fromServer.fetch = mockFetch
 
     product.color.setSelected(product.color.options[0])
     product.fetchImages()
@@ -36,14 +33,15 @@ describe('ProductModelBase', () => {
 
     return new Promise((resolve, reject) => {
       setImmediate(() => {
-        expect(global.fetch).toHaveBeenCalledWith('/images/foo/red.json')
+        expect(mockFetch).toHaveBeenCalledWith('/images/foo/red.json')
         resolve()
       })
     })
   })
 
   it('should set loadingImages to false if the fetch call returns an error status', () => {
-    global.fetch.mockResponse([JSON.stringify({}), { status: 500 }])
+    const mockFetch = jest.fn(() => Promise.reject())
+    fromServer.fetch = mockFetch
 
     product.color.setSelected(product.color.options[0])
     product.fetchImages()
@@ -58,12 +56,15 @@ describe('ProductModelBase', () => {
   })
 
   it('should not fetch images if no color is selected', () => {
+    const mockFetch = jest.fn()
+    fromServer.fetch = mockFetch
+
     product.color.setSelected(null)
     product.fetchImages()
 
     return new Promise((resolve, reject) => {
       setImmediate(() => {
-        expect(global.fetch).not.toHaveBeenCalled()
+        expect(mockFetch).not.toHaveBeenCalled()
         resolve()
       })
     })
