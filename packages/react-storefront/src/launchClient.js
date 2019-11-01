@@ -17,6 +17,7 @@ import PWA from './PWA'
  * @param {HTMLElement} options.target The DOM element to mount onto
  * @param {Function} options.errorReporter A function to call when an error occurs so that it can be logged, typically located in `src/errorReporter.js`.
  * @param {Boolean} options.serviceWorker A flag for controlling if a service worker is registered
+ * @param {Boolean} options.delayHydrationUntilPageLoad If `true` hydration will not occur until the window load event.  This helps improve initial page load time, especially largest image render.
  */
 export default function launchClient({
   App,
@@ -25,28 +26,44 @@ export default function launchClient({
   router,
   target = document.getElementById('root'),
   errorReporter = Function.prototype,
-  serviceWorker = true
+  serviceWorker = true,
+  delayHydrationUntilPageLoad = false
 }) {
-  const history = createBrowserHistory()
+  scheduleHydration(delayHydrationUntilPageLoad, () => {
+    const history = createBrowserHistory()
 
-  hydrate({
-    component: (
-      <PWA errorReporter={errorReporter}>
-        <App />
-      </PWA>
-    ),
-    model,
-    theme,
-    target,
-    providerProps: {
-      history,
-      router
-    }
+    hydrate({
+      component: (
+        <PWA errorReporter={errorReporter}>
+          <App />
+        </PWA>
+      ),
+      model,
+      theme,
+      target,
+      providerProps: {
+        history,
+        router
+      }
+    })
   })
 
   if (serviceWorker) {
     registerServiceWorker()
   } else {
     unregister()
+  }
+}
+
+/**
+ * Schedules hydration based on the specified options
+ * @param {Boolean} options.delayHydrationUntilPageLoad If `true` hydration will not occur until the window load event.  This helps improve initial page load time, especially largest image render.
+ * @param {Function} delayHydrationUntilPageLoad A function that hydrates the react app
+ */
+function scheduleHydration(delayHydrationUntilPageLoad, hydrate) {
+  if (delayHydrationUntilPageLoad && document.readyState !== 'complete') {
+    return window.addEventListener('load', hydrate, { once: true })
+  } else {
+    hydrate()
   }
 }

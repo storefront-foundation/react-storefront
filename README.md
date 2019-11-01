@@ -74,6 +74,28 @@ yarn release
 
 ## Changelog
 
+### 6.61.0
+
+- You can now delay hydration until after the window's `load` event fires to improve largest image render times.
+
+```js
+// src/client.js
+
+import App from './App'
+import launchClient from 'react-storefront/launchClient'
+import model from './AppModel'
+import router from './routes'
+import theme from './theme'
+
+launchClient({
+  App,
+  router,
+  theme,
+  model,
+  delayHydrationUntilPageLoad: true
+})
+```
+
 ### 6.60.6
 
 - Fixed caching for Product images
