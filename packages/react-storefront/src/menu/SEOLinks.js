@@ -3,13 +3,16 @@
  * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
  */
 import React, { Component, Fragment } from 'react'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 import Link from '../Link'
 import NoScript from '../NoScript'
 
 @inject('app')
-@observer
 export default class SEOLinks extends Component {
+  shouldComponentUpdate() {
+    return false
+  }
+
   render() {
     const levels = this.props.app.menu.levels
     const root = levels.length && levels[0]

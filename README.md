@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.60.4
+
+- Improves the performance of the Menu component by only rendering the SEO links on the server.
+
 ### 6.60.3
 
 - Removing the bloat of JIMP from the React Storefront server code. It was an unused dependency of the amp-optimizer
