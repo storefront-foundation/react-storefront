@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.60.5
+
+- Fixed bug in Router that allowed internal location state to get out of sync
+
 ### 6.60.4
 
 - Improves the performance of the Menu component by only rendering the SEO links on the server.

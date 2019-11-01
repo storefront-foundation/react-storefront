@@ -553,6 +553,24 @@ describe('Router:Node', function() {
     })
   })
 
+  describe('onLocationChange', () => {
+    it('should update previous location on replace action', () => {
+      const history = createMemoryHistory()
+      history.push('/s/1?c=2')
+      const handler = jest.fn()
+
+      router.watch(history, jest.fn()).get('/s/:id', fromClient(handler))
+
+      // There would be an underlying fetch that updates the state
+      history.replace('/s/1?c=2&filters%5B0%5D=red')
+
+      // Now back to same subcategory, but unfiltered
+      history.push('/s/1?c=2')
+
+      expect(handler).toHaveBeenCalled()
+    })
+  })
+
   describe('watch', () => {
     it('should run route when history changes', () => {
       const history = createMemoryHistory()

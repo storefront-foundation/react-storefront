@@ -554,10 +554,9 @@ export default class Router extends EventEmitter {
    * @param {Object} location The new location
    */
   onLocationChange = async (callback, location, action) => {
-    if (action === 'REPLACE') return
-
     // no need to run the route if the location hasn't changed
     if (
+      this.prevLocation &&
       location.pathname === this.prevLocation.pathname &&
       location.search === this.prevLocation.search
     ) {
@@ -565,6 +564,8 @@ export default class Router extends EventEmitter {
     }
 
     this.prevLocation = location // this needs to come before handlers are called or going back while async handlers are running will lead to a broken state
+
+    if (action === 'REPLACE') return
 
     const { pathname, search } = location
     const request = { path: pathname, search, query: qs.parse(search), method: 'GET' }
