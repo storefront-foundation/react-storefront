@@ -1,11 +1,11 @@
 # React Storefront - headless PWA for any eCommerce
 
-<img src="https://divante.com/github/react-storefront/React%20Storefront%20Logo.png"></img>
+<img src="https://divante.com/github/react-storefront/React%20Storefront%20Logo.png" width="430px" ></img>
 
 ![version](https://img.shields.io/badge/node-v8.x-blue.svg)
 ![Branch stable](https://img.shields.io/badge/stable%20branch-master-blue.svg)
 ![Branch Develop](https://img.shields.io/badge/dev%20branch-develop-blue.svg)
-<a href="https://slack.vuestorefront.io">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
+<a href="https://slack.reactstorefront.io">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
 React Storefront is a standalone PWA storefront for your eCommerce, possible to connect with any eCommerce backend (through the API). BigCommerce is officialy supported. <a href="">Read the full story.</a>
 
@@ -25,7 +25,7 @@ React Storefront goes the extra mile to squeeze speed out of every possible real
 
 Bottom Line: sub-second page loads that are unmatched in the industry!
 
-<a href="https://demo.reactstorefront.io"><img width="430px" src="https://divante.com/github/react-storefront/React%20Storefront%20GitHub.png" alt="Most popular eCommerce PWA now available for React"/></a>
+<a href="https://demo.reactstorefront.io"><img src="https://divante.com/github/react-storefront/React%20Storefront%20GitHub.png" alt="Most popular eCommerce PWA now available for React"/></a>
 
 ## A Different Approach
 
@@ -98,7 +98,7 @@ If you like to contribute please feel free to **Raise an issue** with bug or fea
 
 ## Join the community on Slack
 
-If you have any questions or ideas feel free to join our slack: https://vuestorefront.slack.com via [invitation link](https://join.slack.com/t/vuestorefront/shared_invite/enQtNTAwODYzNzI3MjAzLWFkZjc0YjVjODA1Y2I2MTdlNmM0NThjY2M5MzgzN2U2NzE4YmE2YzA4YTM0MTY3OWQzZjBhMjBlZDhmYjAyNGI)
+If you have any questions or ideas feel free to join our slack: [invitation link](https://slack.reactstorefront.io)
 
 ## Roadmap
 
@@ -124,7 +124,7 @@ Vue Storefront was created to solve a set of key business challenges from the wo
 
 **React Storefront is and always will be Open Source, released under Apache2 Licence.**
 
-Most of the core team members, RS contributors and contributors in the ecosystem do this open source work in their free time. If you use Vue Storefront for a serious task, and you'd like us to invest more time on it, you can donate the project! You can support us in various ways:
+Most of the core team members, RS contributors and contributors in the ecosystem do this open source work in their free time. If you use React Storefront for a serious task, and you'd like us to invest more time on it, you can donate the project! You can support us in various ways:
 
 - **Contribute** - this is how the Core Team is supporting the project!
 - **Evangelize** - tweet about us, take some speaking slot at tech conference etc.
