@@ -46,7 +46,8 @@ describe('PromoBanner', () => {
     return waitForAnalytics(() => {
       expect(promoBannerClicked).toHaveBeenCalledWith({
         name: 'promo',
-        imageUrl: '/promo.jpeg'
+        imageUrl: '/promo.jpeg',
+        metadata: expect.anything()
       })
     })
   })

@@ -203,7 +203,10 @@ describe('SearchDrawer', () => {
 
       return waitForAnalytics(() => {
         expect(history.push).toHaveBeenCalledWith('/results/1', undefined)
-        expect(searchSubmitted).toHaveBeenCalledWith({ term: 'query' })
+        expect(searchSubmitted).toHaveBeenCalledWith({
+          term: 'query',
+          metadata: expect.anything()
+        })
       })
     })
 
@@ -224,7 +227,10 @@ describe('SearchDrawer', () => {
         .simulate('submit')
 
       return waitForAnalytics(() => {
-        expect(searchSubmitted).toHaveBeenCalledWith({ term: 'query' })
+        expect(searchSubmitted).toHaveBeenCalledWith({
+          term: 'query',
+          metadata: expect.anything()
+        })
       })
     })
   })

@@ -96,6 +96,20 @@ launchClient({
 })
 ```
 
+### 6.61.0
+
+- Adds a `metadata` object to all analytics events with the following keys:
+
+```js
+metadata: {
+  title: document.title,
+  pathname: location.pathname,
+  search: location.search,
+  uri: location.pathname + location.search,
+  referrer: document.referrer
+}
+```
+
 ### 6.60.6
 
 - Fixed caching for Product images

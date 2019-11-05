@@ -98,7 +98,8 @@ describe('Breadcrumbs', () => {
           text: 'Home',
           url: '/',
           state: undefined
-        }
+        },
+        metadata: expect.anything()
       })
     })
   })

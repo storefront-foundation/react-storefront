@@ -41,7 +41,7 @@ describe('Track', () => {
       .simulate('click')
 
     return waitForAnalytics(() => {
-      expect(testEvent).toHaveBeenCalledWith({ foo: 'bar' })
+      expect(testEvent).toHaveBeenCalledWith({ foo: 'bar', metadata: expect.anything() })
     })
   })
 

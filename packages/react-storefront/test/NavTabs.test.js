@@ -104,7 +104,8 @@ describe('NavTabs', () => {
           state: '{"page":"product"}',
           text: 'Tab 1',
           url: '/1'
-        }
+        },
+        metadata: expect.anything()
       })
     )
   })
