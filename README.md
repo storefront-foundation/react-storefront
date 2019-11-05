@@ -96,6 +96,10 @@ launchClient({
 })
 ```
 
+### 6.61.1
+
+- Fixes metadata for analytics events that get queued before the app becomes interactive.
+
 ### 6.61.0
 
 - Adds a `metadata` object to all analytics events with the following keys:
