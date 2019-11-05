@@ -25,7 +25,7 @@ React Storefront goes the extra mile to squeeze speed out of every possible real
 
 Bottom Line: sub-second page loads that are unmatched in the industry!
 
-<a href="https://demo.reactstorefront.io"><img src="https://divante.com/github/react-storefront/React%20Storefront%20GitHub.png" alt="Most popular eCommerce PWA now available for React"/></a>
+<a href="https://demo.reactstorefront.io"><img width="430px" src="https://divante.com/github/react-storefront/React%20Storefront%20GitHub.png" alt="Most popular eCommerce PWA now available for React"/></a>
 
 ## A Different Approach
 
@@ -89,50 +89,12 @@ npm install -g create-react-storefront
 create-react-storefront my-site
 npm run start:express
 ```
-
+<a href="https://pwa.moovweb.com">Read the Tutorial.</a>
 Check out [the source code of the demo site](https://github.com/DivanteLtd/react-storefront-boilerplate).
 
 ## Development
 
-First, clone the repo and run yarn to install dependencies
-
-```
-yarn
-```
-
-To use your local copy of react-storefront when developing apps, in your clone of this repo, run:
-
-```
-yarn link:all
-```
-
-To automatically transpile your code when you make changes, run:
-
-```
-yarn watch
-```
-
-Then, in your app's root directory run:
-
-```
-npm link react-storefront && npm link babel-plugin-react-storefront && npm link react-storefront-moov-xdn && npm link react-storefront-middleware
-```
-
-### Setup prettier with Visual Studio Code
-
-`prettier-vscode` can be installed using the extension sidebar.
-
-To format on save, just update your `editor.formatOnSave` setting.
-
-_For other editors, https://prettier.io/docs/en/editors.html_
-
-## Publishing
-
-To publish a release, run:
-
-```
-yarn release
-```
+If you like to contribute please feel free to **Raise an issue** with bug or feature request report or just open a **Pull Request** with the proposed changes. In any case [read the CONTRIBUTING.md first](./CONTRIBUTING.md)
 
 ## Join the community on Slack
 

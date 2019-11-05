@@ -17,6 +17,48 @@ To contribute to react-storefront:
 5. Add an item to the Change Log in readme.md. Use your best judgement as to whether your change is a patch, minor release, or major release. We'll ensure that the correct version number is assigned before it is released.
 6. Create a PR.
 
+## Development - getting started
+
+First, clone the repo and run yarn to install dependencies
+
+```
+yarn
+```
+
+To use your local copy of react-storefront when developing apps, in your clone of this repo, run:
+
+```
+yarn link:all
+```
+
+To automatically transpile your code when you make changes, run:
+
+```
+yarn watch
+```
+
+Then, in your app's root directory run:
+
+```
+npm link react-storefront && npm link babel-plugin-react-storefront && npm link react-storefront-moov-xdn && npm link react-storefront-middleware
+```
+
+### Setup prettier with Visual Studio Code
+
+`prettier-vscode` can be installed using the extension sidebar.
+
+To format on save, just update your `editor.formatOnSave` setting.
+
+_For other editors, https://prettier.io/docs/en/editors.html_
+
+## Publishing
+
+To publish a release, run:
+
+```
+yarn release
+```
+
 ## Issue reporting guidelines:
 
 Always define the type of issue:
