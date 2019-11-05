@@ -74,7 +74,7 @@ yarn release
 
 ## Changelog
 
-### 6.61.0
+### 6.62.0
 
 - You can now delay hydration until after the window's `load` event fires to improve largest image render times.
 
