@@ -94,6 +94,27 @@ describe('analytics', () => {
         uri: '/foo?bar=1'
       })
     })
+
+    it('should handle a null data argument', () => {
+      let md
+      window.history.pushState({}, 'Title', '/foo?bar=1')
+
+      const target = {
+        pageView({ metadata }) {
+          md = metadata
+        }
+      }
+      configureAnalytics(target)
+      analytics.fire('pageView')
+      activate()
+      expect(md).toEqual({
+        pathname: '/foo',
+        referrer: 'https://www.google.com',
+        search: '?bar=1',
+        title: 'Title',
+        uri: '/foo?bar=1'
+      })
+    })
   })
 
   it('displays a warning when a target does not support a method', () => {

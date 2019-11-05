@@ -70,6 +70,8 @@ export function activate() {
 }
 
 function fire(event, data, ...args) {
+  data = data || {}
+
   if (typeof document !== 'undefined' && !data.metadata) {
     Object.assign(data, {
       metadata: {

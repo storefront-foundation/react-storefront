@@ -74,6 +74,14 @@ yarn release
 
 ## Changelog
 
+### 6.62.2
+
+- Fixes metadata for analytics events that have no arguments
+
+### 6.62.1
+
+- Fixes metadata for analytics events that get queued before the app becomes interactive.
+
 ### 6.62.0
 
 - You can now delay hydration until after the window's `load` event fires to improve largest image render times.
@@ -95,10 +103,6 @@ launchClient({
   delayHydrationUntilPageLoad: true
 })
 ```
-
-### 6.62.1
-
-- Fixes metadata for analytics events that get queued before the app becomes interactive.
 
 ### 6.61.0
 
