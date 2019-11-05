@@ -66,7 +66,12 @@ export default class AnalyticsProvider extends Component {
     /**
      * Set to true to delay loading of analytics until the app is interactive
      */
-    delayUntilInteractive: PropTypes.bool
+    delayUntilInteractive: PropTypes.bool,
+
+    /**
+     * Delays loading analytics for a number of milliseconds
+     */
+    delay: PropTypes.number
   }
 
   constructor(props) {
@@ -87,11 +92,15 @@ export default class AnalyticsProvider extends Component {
   }
 
   async componentDidMount() {
-    const { delayUntilInteractive } = this.props
+    const { delayUntilInteractive, delay } = this.props
 
     if (this.props.targets) {
       if (delayUntilInteractive) {
         await ttiPolyfill.getFirstConsistentlyInteractive()
+      }
+
+      if (delay) {
+        await sleep(delay)
       }
 
       if (this.anayticsEnabled()) {
@@ -118,4 +127,10 @@ export default class AnalyticsProvider extends Component {
   render() {
     return <Provider analytics={analytics}>{this.props.children}</Provider>
   }
+}
+
+function sleep(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time)
+  })
 }

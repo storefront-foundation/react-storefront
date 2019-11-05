@@ -74,6 +74,18 @@ yarn release
 
 ## Changelog
 
+### 6.63.0
+
+- Added an optional `delay` prop to `AnalyticsProvider` which allows you to delay analytics for an arbitrary number of milliseconds.
+
+Example:
+
+```js
+<AnalyticsProvider targets={targets} delay={1000}>
+  {/* delays analytics for 1 second */}
+</AnalyticsProvider>
+```
+
 ### 6.62.0
 
 - You can now delay hydration until after the window's `load` event fires to improve largest image render times.
