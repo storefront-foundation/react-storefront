@@ -8,6 +8,8 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import classnames from 'classnames'
 import { inject, observer } from 'mobx-react'
 import { reaction } from 'mobx'
+import isSSR from './utils/isSSR'
+import { isClient } from './environment'
 
 export const styles = () => ({
   root: {
@@ -20,11 +22,22 @@ export const styles = () => ({
 @inject('app')
 @observer
 export default class Lazy extends Component {
-  constructor({ app }) {
+  static defaultProps = {
+    server: true,
+    client: true
+  }
+
+  constructor({ app, client, server }) {
     super()
 
     this.state = {
       visible: app.amp
+    }
+
+    if (isSSR() && server === false) {
+      this.state.visible = true
+    } else if (isClient() && client === false) {
+      this.state.visible = true
     }
   }
 
@@ -51,7 +64,17 @@ export default class Lazy extends Component {
   }
 
   render() {
-    const { app, children, className, classes, visibilitySensorProps, ...otherProps } = this.props
+    const {
+      app,
+      children,
+      className,
+      classes,
+      visibilitySensorProps,
+      server,
+      client,
+      ...otherProps
+    } = this.props
+
     const { visible } = this.state
 
     return (
