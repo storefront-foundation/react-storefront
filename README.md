@@ -26,7 +26,7 @@ React Storefront goes the extra mile to squeeze speed out of every possible real
 
 Bottom Line: sub-second page loads that are unmatched in the industry!
 
-<a href="https://demo.reactstorefront.io"><img src="https://divante.com/github/react-storefront/React%20Storefront%20GitHub.png" alt="Most popular eCommerce PWA now available for React"/></a>
+<a href="https://demo.reactstorefront.io"><img src="https://divante.com/github/react-storefront/React%20Storefront%20GitHub.png" alt="Subsecond PWA now available for React devs"/></a>
 
 ## A Different Approach
 
