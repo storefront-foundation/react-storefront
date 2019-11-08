@@ -1,4 +1,4 @@
-# React Storefront - headless PWA for any eCommerce
+# React Storefront - the fastest, headless eCommerce PWA
 
 <img src="https://divante.com/github/react-storefront/RSF.png" width="430px" ></img>
 
@@ -131,7 +131,7 @@ Most of the core team members, React Storefront contributors and contributors in
 
 ## Works best on Moovweb CDN
 
-React Storefront runs best on <a href="https://www.moovweb.com">the Moovweb XDN</a>
+React Storefront runs best on <a href="https://www.moovweb.com">the Moovweb XDN</a>. 
 Moovweb provides a serverless platform-as-a-service called the XDN (Experience Delivery Network) that is available for purchase. The XDN helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. Features that are available for purchase are listed are tagged with "XDN" in the table of contents.
 
 ## React Storefront and Vue Storefront
