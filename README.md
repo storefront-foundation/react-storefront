@@ -26,7 +26,7 @@ React Storefront goes the extra mile to squeeze speed out of every possible real
 
 Bottom Line: sub-second page loads that are unmatched in the industry!
 
-<a href="https://demo.reactstorefront.io"><img src="https://divante.com/github/react-storefront/React%20Storefront%20GitHub.png" alt="Subsecond PWA now available for React devs"/></a>
+<a href="https://demo.reactstorefront.io"><img src="https://divante.com/github/react-storefront/rsf-github.png" alt="Subsecond PWA now available for React devs"/></a>
 
 ## A Different Approach
 
@@ -53,7 +53,7 @@ The project is in the **production ready** phase. Already supporting live retail
       <td align="center" valign="middle">
         <a href="https://demo.reactstorefront.io">
           <img
-            src="https://divante.com/github/react-storefront/GitHub-RSF-Readme-Try-Demo%20(1).png"
+            src="https://divante.com/github/react-storefront/rsf-github-try-demo.png"
             alt="B2C Theme demo"
             style="width: 100px;">
         </a>
@@ -69,7 +69,7 @@ The project is in the **production ready** phase. Already supporting live retail
 
 React Storefront can be easily integrated with any eCommerce platform by [implementing the synthetic API](https://pwa.moovweb.com/guides/calling_apis). To make life easier we're preparing some out-of-the-box integrations. Currently we support **BigCommerce** out of the box. More platforms to come soon!
 
-<a href="https://github.com/moovweb/BigCommerce"><img src="https://divante.com/github/react-storefront/BC%20Supported.png" alt="BigCommerce is officialy supported"/></a>
+<a href="https://github.com/moovweb/BigCommerce"><img src="https://divante.com/github/react-storefront/rsf-github-bc-supported.png" alt="BigCommerce is officialy supported"/></a>
 
 ## How to get started?
 
