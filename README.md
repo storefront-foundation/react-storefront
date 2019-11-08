@@ -43,9 +43,7 @@ React Storefront is and always will be open source. Anyone can use and support t
 
 The project is in the **production ready** phase. Already supporting live retailer sites with 10M$ + to 1B$+ in annual eCommerce revenue!
 
-**We are looking for butors and Designers willing to help us in the solution development.**
-
-PS: Check [StorefrontUI](https://github.com/DivanteLtd/storefront-ui/) - our UI library for eCommerce. We plan to port it from Vue.js to React in the nearest future
+**We are looking for Contributors and Designers willing to help us in the solution development.**
 
 ## See it in action
 
@@ -136,9 +134,19 @@ Most of the core team members, React Storefront contributors and contributors in
 React Storefront runs best on <a href="https://www.moovweb.com">the Moovweb XDN</a>
 Moovweb provides a serverless platform-as-a-service called the XDN (Experience Delivery Network) that is available for purchase. The XDN helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. Features that are available for purchase are listed are tagged with "XDN" in the table of contents.
 
+## React Storefront and Vue Storefront
+
+This project has been created by Moovweb. Divante has recently joined and we decided to open it and develop towards general purpose PWA framework. Divante folks created <a href="https://vuestorefront.io">Vue Storefront</a> - the most popular PWA framework for eCommerce and Vue.js.
+
+The products, despite the common name are totally different at this point.
+
+Our goal joining the forces is to build a vibrant community. We started the cooperation with the natural step of adding BigCommerce support to the framework. Both React and BigCommerce were not available in the frameworks we used yet! The next steps are to work on providing the different deployment options, to optimize the UI and to hear your feedback and improve the product!
+
+PS: Check [StorefrontUI](https://github.com/DivanteLtd/storefront-ui/) - our UI library for eCommerce. We plan to port it from Vue.js to React in the nearest future
+
 ## Partners
 
-Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a> and developed with <a href="https://vuestorefront.io">Vue Storefront</a> team. <a href="">Read the full story.</a>
+Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a> and developed with <a href="https://divante.com">Divante</a> team. <a href="">Read the full story.</a>
 
 React Storefront is a Community effort brought to You by our great Core Team and supported by the following companies.
 
