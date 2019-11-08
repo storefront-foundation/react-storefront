@@ -1,15 +1,16 @@
 # React Storefront - headless PWA for any eCommerce
 
-<img src="https://divante.com/github/react-storefront/React%20Storefront%20Logo.png" width="430px" ></img>
+<img src="https://divante.com/github/react-storefront/RSF.png" width="430px" ></img>
 
 ![version](https://img.shields.io/badge/node-v8.x-blue.svg)
 ![Branch stable](https://img.shields.io/badge/stable%20branch-master-blue.svg)
 ![Branch Develop](https://img.shields.io/badge/dev%20branch-develop-blue.svg)
 <a href="https://slack.reactstorefront.io">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
-React Storefront a standalone PWA storefront for your eCommerce websites that works with any eCommerce platform or backend system. 
+React Storefront a standalone PWA storefront for your eCommerce websites that works with any eCommerce platform or backend system.
 
-Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a> and developed with <a href="https://vuestorefront.io">Vue Storefront</a> team.
+Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a>. Developed with <a href="https://divante.com">Divante</a> team and the Community.
+Our goal is to build a vibrant open source community around the project and solid PWA framework React developers will love :)
 
 ## Ludicrous Speed
 
@@ -40,19 +41,11 @@ React Storefront takes a bold new approach that values developer productivity so
 
 React Storefront is and always will be open source. Anyone can use and support the project, we want it to be a tool to improve  the online shopping experience for everyone.
 
-The project is in the **production ready** phase. Already supporting live retailer sites with 10M$ + to 1B$+ in annual eCOmmerce revenue!
+The project is in the **production ready** phase. Already supporting live retailer sites with 10M$ + to 1B$+ in annual eCommerce revenue!
 
-**We are looking for Contributors and Designers willing to help us in the solution development.**
+**We are looking for butors and Designers willing to help us in the solution development.**
 
-PS: Check [StorefrontUI](https://github.com/DivanteLtd/storefront-ui/) - our UI library for eCommerce.
-
-## React Storefront vs. Vue Storefront
-
-React Storefront is being developed by <a href="https://www.moovweb.com">Moovweb</a> and <a href="https://vuestorefront.io">Vue Storefront</a> teams. The architecture differs from <a href="https://github.com/DivanteLtd/vue-storefront">Vue Storefront</a> project and the purpose is wider.
-
-React Storefront’s architecture is pretty much open, it’s simple. It lets you use the **parts of a legacy page**, add **caching**, **AMP rendering** and **PWA features**. You can re-do the entire site from scratch as well. And it doesn't have to be an eCommerce site. We love this openness. **We created this forked repository and applied Vue Storefront-like branding in order to show our dedication to this new storefront family member.**
-
-<a href="https://pwa.moovweb.com">Read more about React Storefront's architecture.</a>
+PS: Check [StorefrontUI](https://github.com/DivanteLtd/storefront-ui/) - our UI library for eCommerce. We plan to port it from Vue.js to React in the nearest future
 
 ## See it in action
 
@@ -90,11 +83,13 @@ create-react-storefront my-site
 npm run start:express
 ```
 <a href="https://pwa.moovweb.com">Read the Tutorial.</a>
-Check out [the source code of the demo site](https://github.com/DivanteLtd/react-storefront-boilerplate).
+Check out [the source code of the demo site](https://github.com/react-storefront-community/react-storefront-boilerplate).
 
 ## Development
 
 If you like to contribute please feel free to **Raise an issue** with a bug or feature request report, or just open a **Pull Request** with the proposed changes. In any case [read the CONTRIBUTING.md first](./CONTRIBUTING.md)
+
+Please feel invited to join our React Storefront Community!
 
 ## Join the community on Slack
 
@@ -102,11 +97,16 @@ If you have any questions or ideas feel free to join our slack: [invitation link
 
 ## Roadmap
 
-[Here](https://github.com/DivanteLtd/react-storefront/milestones) you can find the roadmap for current milestone and what you can expect with the next release.
+[Here](https://github.com/react-storefront-community/react-storefront/milestones) you can find the roadmap for current milestone and what you can expect with the next release.
+
+Our short and mid-term plans include:
+- adding alternative production build and deployment options,
+- optimize the UI layer,
+- long term plan - to port <a href="https://storefrontui.io">Storefront UI</a> to React and use it in the project.
 
 ## Documentation
 
-The documentation is always THE HARDEST PART of each open source project! But we're trying hard :-) 
+The documentation is always THE HARDEST PART of each open source project! But we're trying hard :-)
 [Full Guides, API Documentation, and Examples](https://pwa.moovweb.com/)
 
 ## The business challenges
@@ -154,9 +154,8 @@ If you like to become our Partner just let us know via contributors@reactstorefr
 
 ## The license
 
-React Storefront source code is completely free and released under the [Apache2 License](https://github.com/DivanteLtd/react-storefront/blob/master/LICENSE).
+React Storefront source code is completely free and released under the [Apache2 License](https://github.com/react-storefront-community/react-storefront/blob/master/LICENSE).
 
 ## Changelog
 
 With any new Pull Request please make sure you've updated the [CHANGELOG file](CHANGELOG.md).
-
