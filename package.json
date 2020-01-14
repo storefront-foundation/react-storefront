@@ -3,6 +3,7 @@
   "version": "7.0.0",
   "description": "React Storefront",
   "module": "./index.js",
+  "license": "Apache-2.0",
   "directories": {
     "test": "test"
   },
