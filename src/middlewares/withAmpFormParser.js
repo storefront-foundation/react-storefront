@@ -1,0 +1,39 @@
+import formidable from 'formidable'
+
+/**
+ * Wraps the provided handler in a middleware that parses AMP form submissions correctly.  By
+ * default, next.js's body parser doesn't handle multipart form posts properly, so you
+ * won't be able to receive data posted from a form in AMP.
+ *
+ * When using this middleware, you should always disable next's default body parser by adding
+ * the following to your api endpoint:
+ *
+ * ```js
+ * export const config = {
+ *   api: {
+ *     bodyParser: false
+ *   }
+ * }
+ * ```
+ *
+ * @param {Function} handler An API endpoint
+ * @return {Function} Your API function with body parsing middleware added.
+ */
+export default function withAmpFormParser(handler) {
+  return (req, res) => {
+    const form = new formidable.IncomingForm()
+
+    if (req.method === 'POST') {
+      return form.parse(req, (err, fields, files) => {
+        if (err) {
+          res.status(500).end(err.message)
+        } else {
+          req.body = fields
+          return handler(req, res)
+        }
+      })
+    } else {
+      return handler(req, res)
+    }
+  }
+}
