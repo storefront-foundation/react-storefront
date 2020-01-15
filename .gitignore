@@ -28,3 +28,6 @@ yarn-error.log*
 
 # IDEs
 .idea/*
+
+# Index files are built automatically by create-index
+src/**/index.js
