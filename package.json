@@ -15,7 +15,8 @@
   "watch": {
     "push-build": {
       "patterns": [
-        "src"
+        "src",
+        "plugins"
       ],
       "ignore": "*/index.js",
       "extensions": "js",
@@ -25,13 +26,13 @@
   "scripts": {
     "release": "yarn build && cd dist && yarn publish && cd ..",
     "test": "jest",
-    "watch": "npm-watch",
+    "watch": "yalc publish && npm-watch",
     "push-build": "yarn build && cd dist && yalc push && cd ..",
     "create-indexes": "create-index -ri src",
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
     "build": "yarn build:prep && yarn build:assets && NODE_ENV=production yarn build:sources",
     "build:prep": "yarn run clean && yarn create-indexes && cp package.json dist",
-    "build:assets": "sync-folders --type copy webpack service-worker dist",
+    "build:assets": "sync-folders --type copy plugins service-worker dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
     "storybook": "start-storybook -c ./.storybook"
   },
@@ -40,6 +41,7 @@
     "@material-ui/icons": "latest",
     "@material-ui/lab": "^4.0.0-alpha.35",
     "@material-ui/styles": "latest",
+    "chalk": "^3.0.0",
     "clsx": "^1.0.4",
     "delegate": "^3.2.0",
     "formidable": "^1.2.1",
@@ -63,6 +65,7 @@
     "@storybook/react": "^5.2.6",
     "@svgr/webpack": "^4.3.3",
     "babel-loader": "^8.0.6",
+    "create-index": "^2.5.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
@@ -75,7 +78,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "sync-folders": "^2.0.0"
+    "sync-folders": "^2.0.0",
+    "yalc": "^1.0.0-pre.34"
   },
   "peerDependencies": {
     "next": "^9.1.6"
