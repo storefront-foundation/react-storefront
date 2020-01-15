@@ -1,7 +1,3 @@
-/**
- * @license
- * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
- */
 import React, { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import throttle from 'lodash/throttle'

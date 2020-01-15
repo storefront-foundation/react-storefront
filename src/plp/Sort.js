@@ -1,7 +1,3 @@
-/**
- * @license
- * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
- */
 import React, { memo, forwardRef, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, MenuItem } from '@material-ui/core'

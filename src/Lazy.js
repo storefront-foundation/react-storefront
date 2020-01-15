@@ -1,7 +1,3 @@
-/**
- * @license
- * Copyright © 2017-2019 Moov Corporation.  All rights reserved.
- */
 import React, { useContext, useState } from 'react'
 import ReactVisibilitySensor from 'react-visibility-sensor'
 import clsx from 'clsx'

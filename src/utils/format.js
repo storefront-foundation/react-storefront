@@ -1,8 +1,4 @@
 /**
- * @license
- * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
- */
-/**
  * Formats a price for display.
  * @param {Number} price The price as a floating point number
  * @param {Object} options

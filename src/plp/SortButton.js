@@ -1,7 +1,3 @@
-/**
- * @license
- * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
- */
 import React, { memo, useState, useEffect, useContext, useRef } from 'react'
 import ActionButton from '../ActionButton'
 import Sort from './Sort'

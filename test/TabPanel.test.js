@@ -1,7 +1,4 @@
-/**
- * @license
- * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
- */
+
 import React from 'react'
 import { mount } from 'enzyme'
 import TabPanel from 'react-storefront/TabPanel'

@@ -1,7 +1,3 @@
-/**
- * @license
- * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
- */
 import React, { useRef } from 'react'
 import { GridListTile } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'

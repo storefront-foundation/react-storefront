@@ -1,7 +1,3 @@
-/**
- * @license
- * Copyright © 2017-2018 Moov Corporation.  All rights reserved.
- */
 import React from 'react'
 import { Star, StarBorder, StarHalf } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
