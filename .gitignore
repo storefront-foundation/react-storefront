@@ -21,9 +21,6 @@
 .env*
 .serverless_nextjs
 
-# moovweb xdn
-.moov
-
 # debug
 npm-debug.log*
 yarn-debug.log*

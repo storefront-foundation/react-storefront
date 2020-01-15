@@ -142,7 +142,7 @@ Most of the core team members, React Storefront contributors and contributors in
 
 **If you would like to support us please just let us know: contributors@reactstorefront.io**
 
-## Works best on Moovweb CDN
+## Works best on Moovweb XDN
 
 React Storefront runs best on <a href="https://www.moovweb.com">the Moovweb XDN</a>.
 Moovweb provides a serverless platform-as-a-service called the XDN (Experience Delivery Network) that is available for purchase. The XDN helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. Features that are available for purchase are listed are tagged with "XDN" in the table of contents.
