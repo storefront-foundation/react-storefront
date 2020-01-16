@@ -31,7 +31,7 @@ function copyBootstrap({
     .update(swBootstrapCode)
     .digest('hex')
 
-  const swBootstrapOutputFile = `serviceWorkerBootstrap.${swHash}.js`
+  const swBootstrapOutputFile = `static/serviceWorkerBootstrap.${swHash}.js`
 
   return {
     bootstrapPath: swBootstrapOutputFile,
@@ -39,11 +39,8 @@ function copyBootstrap({
       from: swBootstrap,
       to: path.join(root, swBootstrapOutputFile),
       transform: () => swBootstrapCode,
-    })
+    }),
   }
 }
 
-module.exports = copyBootstrap;
-
-
-
+module.exports = copyBootstrap

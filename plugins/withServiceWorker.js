@@ -1,4 +1,5 @@
 const withOffline = require('next-offline')
+const path = require('path')
 
 module.exports = function withServiceWorker(config, bootstrapPath) {
   return withOffline({
@@ -6,7 +7,7 @@ module.exports = function withServiceWorker(config, bootstrapPath) {
     workboxOpts: {
       clientsClaim: true,
       skipWaiting: true,
-      importScripts: [bootstrapPath],
+      importScripts: [path.join('_next', bootstrapPath)],
     },
   })
 }
