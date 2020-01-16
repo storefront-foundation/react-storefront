@@ -88,7 +88,7 @@ export default function QuantitySelector({
       <input
         onChange={handleChange}
         value={value}
-        name={name || 'quantity'}
+        name={name}
         {...{ 'aria-label': ariaLabel }}
         className={clsx([classes.input, classes.underline, inputClasses])}
         {...inputProps}

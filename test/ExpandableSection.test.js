@@ -83,17 +83,37 @@ describe('ExpandableSection', () => {
     wrapper = mount(<ExpandableSection expanded CollapseIcon={TestIcon} />)
 
     expect(wrapper.find(TestIcon).exists()).toBe(true)
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(true)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(true)
     wrapper.find(ExpansionPanelSummary).simulate('click')
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(true)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(true)
   })
 
   it('should manage expanded state internally', () => {
     wrapper = mount(<ExpandableSection />)
 
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(false)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(false)
     wrapper.find(ExpansionPanelSummary).simulate('click')
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(true)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(true)
   })
 
   it('should trigger provided onChange function', () => {
@@ -114,13 +134,23 @@ describe('ExpandableSection', () => {
 
     expect(wrapper.find(ExpandMoreIcon).exists()).toBe(false)
     expect(wrapper.find(TestIcon).exists()).toBe(true)
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(true)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(true)
 
     wrapper.find(ExpansionPanelSummary).simulate('click')
 
     expect(wrapper.find(ExpandMoreIcon).exists()).toBe(true)
     expect(wrapper.find(TestIcon).exists()).toBe(false)
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(false)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(false)
   })
 
   it('should not change expanded state when onChange prevents default', () => {
@@ -134,11 +164,24 @@ describe('ExpandableSection', () => {
 
     wrapper = mount(<Test />)
 
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(false)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(false)
 
-    wrapper.find(ExpansionPanelSummary).simulate('click')
+    wrapper
+      .find(ExpansionPanel)
+      .childAt(0)
+      .simulate('click')
 
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(false)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(false)
   })
 
   it('should change expanded state when onChange does not prevent default', () => {
@@ -150,10 +193,20 @@ describe('ExpandableSection', () => {
 
     wrapper = mount(<Test />)
 
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(false)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(false)
 
     wrapper.find(ExpansionPanelSummary).simulate('click')
 
-    expect(wrapper.find(ExpansionPanelSummary).prop('expanded')).toBe(true)
+    expect(
+      wrapper
+        .find(ExpansionPanel)
+        .childAt(0)
+        .prop('expanded'),
+    ).toBe(true)
   })
 })

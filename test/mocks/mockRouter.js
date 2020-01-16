@@ -26,13 +26,12 @@ export const useRouter = jest.fn(() => routerMocks)
 export default routerMocks
 
 export function navigate(url) {
-  events.emit('beforeHistoryChange')
-  window.history.pushState(null, null, url)
+  events.emit('routeChangeStart')
   events.emit('routeChangeComplete')
 }
 
 export function goBack() {
   if (beforePopState() !== false) {
-    window.history.back()
+    beforePopState()
   }
 }

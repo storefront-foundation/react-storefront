@@ -1,35 +1,44 @@
 import React, { createRef } from 'react'
 import { mount } from 'enzyme'
-import supressActWarnings from '../config/suppressActWarnings'
 import { goBack, navigate } from '../mocks/mockRouter'
+import { windowLocationMock, historyMock } from '../mocks/mockHelper'
 import LinkContext from 'react-storefront/link/LinkContext'
 import useLazyStore from 'react-storefront/hooks/useLazyStore'
+import { act } from 'react-dom/test-utils'
+
+jest.useFakeTimers()
 
 describe('useLazyStore', () => {
-  let restore, values, Test, updateStore, additionalData, wrapper
+  let values, updateStore, additionalData, wrapper, historyData
+
+  const replaceStateMock = jest.fn((data, url, title) => (historyData = data))
+
+  const Test = props => {
+    const [store, setStore] = useLazyStore(props, additionalData)
+    values.push(store)
+    updateStore = setStore
+    return null
+  }
 
   beforeAll(() => {
-    restore = supressActWarnings()
-  })
-
-  afterAll(() => {
-    restore()
-    jest.restoreAllMocks()
+    windowLocationMock('/testurl')
   })
 
   beforeEach(() => {
+    historyMock(replaceStateMock)
     values = []
-    additionalData = null
-    Test = props => {
-      const returned = useLazyStore(props, additionalData)
-      values.push(returned[0])
-      updateStore = returned[1]
-      return null
-    }
+    additionalData = undefined
+    updateStore = undefined
+    historyData = undefined
+    replaceStateMock.mockClear()
   })
 
   afterEach(() => {
-    if (wrapper) wrapper.unmount()
+    if (wrapper.exists()) wrapper.unmount()
+  })
+
+  afterAll(() => {
+    jest.restoreAllMocks()
   })
 
   it('should return props and do nothing if there are no lazy props', () => {
@@ -51,91 +60,98 @@ describe('useLazyStore', () => {
     })
   })
 
-  it('should render again once lazyProps have been resolved', () => {
-    global.fetch.mockResponseOnce(JSON.stringify({ pageData: { again: true } }))
-    wrapper = mount(<Test lazy="/data" />)
+  it('should render again once lazyProps have been resolved', async () => {
+    fetch.mockResponseOnce(JSON.stringify({ pageData: { again: true } }))
+    wrapper = mount(<Test pageData={{ again: false }} />)
 
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        expect(values).toHaveLength(2)
-        expect(values[0]).toEqual({ loading: true, pageData: {} })
-        expect(values[1]).toEqual({ loading: false, pageData: { again: true } })
-        resolve()
-      }, 100)
+    expect(values).toHaveLength(1)
+    expect(values[0]).toEqual({ loading: false, pageData: { again: false } })
+
+    await act(async () => {
+      await wrapper.setProps({ lazy: 'test' })
     })
+
+    expect(values[2]).toEqual({ loading: true, pageData: { again: false } })
+    expect(values[3]).toEqual({ loading: false, pageData: { again: true } })
   })
 
-  it('should record lazy pageData in history when navigating', () => {
-    global.fetch.mockResponseOnce(JSON.stringify({ pageData: { lazy: true } }))
-    wrapper = mount(<Test lazy="/data" />)
+  it('should record lazy pageData in history when navigating', async () => {
+    fetch.mockResponseOnce(JSON.stringify({ pageData: { lazy: true } }))
 
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        navigate('/next')
-        goBack()
-      }, 100)
-      setTimeout(() => {
-        expect(window.history.state).toEqual({ as: '/', rsf: { '/': { lazy: true } } })
-        resolve()
-      }, 200)
+    await act(async () => {
+      wrapper = await mount(<Test lazy="test" />)
     })
+
+    navigate()
+
+    expect(historyData).toEqual({ as: '/testurl', rsf: { '/testurl': { lazy: true } } })
   })
 
   it('should record eager pageData in history when navigating', () => {
     wrapper = mount(<Test pageData={{ eager: true }} />)
 
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        navigate('/next')
-        goBack()
-      }, 100)
-      setTimeout(() => {
-        expect(window.history.state).toEqual({ as: '/', rsf: { '/': { eager: true } } })
-        resolve()
-      }, 200)
+    navigate()
+
+    expect(historyData).toEqual({ as: '/testurl', rsf: { '/testurl': { eager: true } } })
+  })
+
+  it('should not record pageData when going back', async () => {
+    wrapper = mount(<Test pageData={{ x: 'y' }} />)
+
+    navigate() // Called once
+    goBack()
+
+    expect(replaceStateMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('should not record pageData when loading is true', async () => {
+    fetch.mockResponseOnce(async () => {
+      await sleep(1000)
+      return { body: JSON.stringify({}) }
+    })
+
+    wrapper = mount(<Test />)
+
+    wrapper.setProps({ lazy: 'test' })
+    navigate()
+    expect(replaceStateMock).toHaveBeenCalledTimes(0)
+
+    await act(async () => {
+      await jest.runOnlyPendingTimers()
     })
   })
 
-  it('should not record pageData when going back', () => {
-    navigate('/previous')
-    navigate('/next')
+  it('should update the store if lazy prop changes', async () => {
+    wrapper = mount(<Test pageData={{ test: true }} />)
 
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        wrapper = mount(<Test pageData={{ x: 'y' }} />)
-        goBack()
-      }, 100)
+    fetch.mockResponseOnce(JSON.stringify({ pageData: { value: 1 } }))
+    await act(async () => {
+      await wrapper.setProps({ lazy: '/data/1' })
+    })
 
-      setTimeout(() => {
-        expect(window.history.state).toEqual(null)
-        resolve()
-      }, 200)
+    expect(values[0]).toEqual({ loading: false, pageData: { test: true } })
+    expect(values[2]).toEqual({ loading: true, pageData: { test: true } })
+    expect(values[3]).toEqual({ loading: false, pageData: { test: true, value: 1 } })
+
+    fetch.mockResponseOnce(JSON.stringify({ pageData: { value: 2 } }))
+    await act(async () => {
+      await wrapper.setProps({ lazy: '/data/2' })
+    })
+
+    expect(values[values.length - 1]).toEqual({
+      loading: false,
+      pageData: { test: true, value: 2 },
     })
   })
 
-  it('should update the store if lazy prop changes', () => {
-    return new Promise((resolve, reject) => {
-      global.fetch.mockResponseOnce(JSON.stringify({ pageData: { value: 1 } }))
-      wrapper = mount(<Test lazy="/data/1" />)
+  // This use case is when you start going back
+  it('should update the store when requestId changes ', async () => {
+    wrapper = mount(<Test value={1} />)
 
-      setTimeout(() => {
-        global.fetch.mockResponseOnce(JSON.stringify({ pageData: { value: 2 } }))
-        wrapper.setProps({ lazy: '/data/2' })
-      }, 100)
-
-      setTimeout(() => {
-        expect(values).toHaveLength(4)
-        expect(values[3]).toEqual({ loading: false, pageData: { value: 2 } })
-        resolve()
-      }, 200)
+    await act(async () => {
+      await wrapper.setProps({ value: 2, requestId: 1 })
     })
-  })
-
-  it('should not update the store if eager props change', () => {
-    wrapper = mount(<Test value={1} lazy="/data/1" />)
-    wrapper.setProps({ value: 2, lazy: '/data/1' })
-    expect(values).toHaveLength(2)
-    expect(values[1].value).toBe(1)
+    expect(values[2].value).toBe(2)
   })
 
   it('should apply pageData from LinkContext', () => {

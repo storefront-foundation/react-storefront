@@ -1,11 +1,13 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import { windowLocationMock } from '../mocks/mockHelper'
 import SearchResultsContext from 'react-storefront/plp/SearchResultsContext'
-import { Router } from '../mocks/mockRouter'
 import Drawer from 'react-storefront/drawer/Drawer'
 import { Menu } from '@material-ui/core'
+import * as useMediaQuery from '@material-ui/core/useMediaQuery/useMediaQuery'
 import Sort from 'react-storefront/plp/Sort'
 import ActionButton from 'react-storefront/ActionButton'
+import SortButton from 'react-storefront/plp/SortButton'
 import { act } from 'react-dom/test-utils'
 
 describe('SortButton', () => {
@@ -16,18 +18,17 @@ describe('SortButton', () => {
     { name: 'Highest Rated', code: 'rating' },
   ]
 
+  const mockMediaQuery = jest.spyOn(useMediaQuery, 'default')
+
   let wrapper,
-    SortButton,
     title,
     selectedSort = '',
     drawerProps,
     sortProps,
-    onClickHandler,
-    mockMediaQuery = jest.fn()
+    onClickHandler
 
   afterEach(() => {
     wrapper.unmount()
-    jest.restoreAllMocks()
     title = undefined
     selectedSort = ''
     drawerProps = undefined
@@ -35,12 +36,8 @@ describe('SortButton', () => {
     onClickHandler = undefined
   })
 
-  beforeEach(() => {
-    jest.isolateModules(() => {
-      jest.mock('@material-ui/core/useMediaQuery', () => mockMediaQuery)
-
-      SortButton = require('react-storefront/plp/SortButton').default
-    })
+  afterAll(() => {
+    jest.restoreAllMocks()
   })
 
   const Test = () => (
@@ -181,7 +178,7 @@ describe('SortButton', () => {
 
   it('should open sort if location have openSort', async () => {
     mockMediaQuery.mockReturnValue(true)
-    jest.spyOn(global.window, 'location', 'get').mockReturnValue({ search: '?openSort=1' })
+    windowLocationMock('/', '?openSort=1')
 
     wrapper = mount(<Test />)
 

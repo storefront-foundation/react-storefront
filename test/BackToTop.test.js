@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import BackToTop from 'react-storefront/BackToTop'
 import { ArrowBack as CustomIcon } from '@material-ui/icons'
+import { eventListenersMock } from './mocks/mockHelper'
 import { Fab } from '@material-ui/core'
 import { act } from 'react-dom/test-utils'
 
@@ -11,17 +12,18 @@ describe('BackToTop', () => {
   const initialPageYOffset = window.pageYOffset
   let wrapper
 
-  beforeEach(() => {
-    jest.spyOn(window, 'addEventListener').mockImplementation((event, cb) => {
-      map[event] = cb
-    })
-    jest.spyOn(window, 'scrollTo').mockImplementation(options => options)
+  beforeAll(() => {
+    eventListenersMock(map)
     jest.spyOn(HTMLElement.prototype, 'offsetParent', 'get').mockImplementation(() => true)
+    jest.spyOn(window, 'scrollTo').mockImplementation(options => options)
+  })
+
+  afterAll(() => {
+    jest.restoreAllMocks()
   })
 
   afterEach(() => {
     wrapper.unmount()
-    jest.restoreAllMocks()
     window.scrollY = initialScrollY
     window.pageYOffset = initialPageYOffset
   })
