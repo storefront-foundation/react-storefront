@@ -1,6 +1,6 @@
 import delegate from 'delegate'
 import fetch from 'isomorphic-unfetch'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import Router from 'next/router'
 import qs from 'qs'
 
@@ -11,6 +11,11 @@ import qs from 'qs'
  */
 export default function useSimpleNavigation() {
   const routes = useRef({})
+  const nextNavigation = useRef(false)
+
+  const onNextNavigation = useCallback(() => {
+    nextNavigation.current = true
+  }, [])
 
   useEffect(() => {
     async function doEffect() {
@@ -19,18 +24,22 @@ export default function useSimpleNavigation() {
         const as = delegateTarget.getAttribute('href')
         const href = getRoute(as, routes.current)
 
-        if (href) {
+        // catch if not next link
+        if (href && !nextNavigation.current) {
           e.preventDefault()
           const url = toNextURL(href)
-          // temporarily disabled as this was causing double fetching of props
-          // Router.push(url, as)
+          Router.push(url, as)
         }
+        nextNavigation.current = false
       })
 
       routes.current = await fetchRouteManifest()
     }
 
     doEffect()
+    Router.events.on('routeChangeStart', onNextNavigation)
+
+    return () => Router.events.off('routeChangeStart', onNextNavigation)
   }, [])
 }
 
