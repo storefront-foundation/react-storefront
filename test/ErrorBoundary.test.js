@@ -1,22 +1,24 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import { eventListenersMock } from './mocks/mockHelper'
 import ErrorBoundary from 'react-storefront/ErrorBoundary'
 
 describe('ErrorBoundary', () => {
   const errorText = 'Test Error'
   const map = {}
-  let wrapper, logger, spy
+  let wrapper, logger
 
   afterEach(() => {
     wrapper.unmount()
-    spy.mockRestore()
     logger = undefined
   })
 
-  beforeEach(() => {
-    spy = jest.spyOn(window, 'addEventListener').mockImplementation((event, cb) => {
-      map[event] = cb
-    })
+  beforeAll(() => {
+    eventListenersMock(map)
+  })
+
+  afterAll(() => {
+    jest.restoreAllMocks()
   })
 
   const Test = () => {

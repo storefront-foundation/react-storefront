@@ -34,8 +34,10 @@ const useStyles = makeStyles(theme => ({
  * ```
  */
 export default function Fill({ height, children, className, ...props }) {
+  children = Children.only(children)
+
   if (height == null) {
-    return Children.only(children)
+    return children
   }
 
   const classes = useStyles()

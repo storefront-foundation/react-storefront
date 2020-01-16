@@ -12,6 +12,8 @@ import DrawerCloseButton from './DrawerCloseButton'
 export const styles = theme => ({
   root: {},
 
+  closeButton: {},
+
   fullscreen: {
     height: '100vh',
   },

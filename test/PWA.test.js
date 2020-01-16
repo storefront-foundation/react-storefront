@@ -10,6 +10,7 @@ describe('PWA', () => {
   })
 
   it('should render children', () => {
+    fetch.mockResponseOnce(JSON.stringify({}))
     wrapper = mount(
       <PWA>
         <div id="test">test</div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import AppBar from 'react-storefront/AppBar'
 import PWAContext from 'react-storefront/PWAContext'
+import { eventListenersMock } from './mocks/mockHelper'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import { Toolbar } from '@material-ui/core'
 import { act } from 'react-dom/test-utils'
@@ -57,9 +58,11 @@ describe('AppBar', () => {
       .prop('className')
 
   beforeEach(() => {
-    jest.spyOn(window, 'addEventListener').mockImplementation((event, cb) => {
-      map[event] = cb
-    })
+    eventListenersMock(map)
+  })
+
+  afterAll(() => {
+    jest.restoreAllMocks()
   })
 
   afterEach(async () => {
@@ -67,13 +70,12 @@ describe('AppBar', () => {
       jest.runAllTimers()
     })
     wrapper.unmount()
-    jest.restoreAllMocks()
     window.scrollY = initialScrollY
-    map = {}
     offline = undefined
     open = undefined
     offlineMessage = undefined
     fixed = undefined
+    map = {}
   })
 
   const Test = () => {
