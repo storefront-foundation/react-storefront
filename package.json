@@ -24,14 +24,14 @@
     }
   },
   "scripts": {
-    "release": "yarn build && cd dist && yarn publish && cd ..",
+    "release": "npm run build && cd dist && npm publish && cd ..",
     "test": "jest",
     "watch": "npm-watch",
     "push-build": "yarn build && cd dist && yalc push && cd ..",
     "create-indexes": "create-index -ri src",
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
-    "build": "yarn build:prep && yarn build:assets && NODE_ENV=production yarn build:sources",
-    "build:prep": "yarn run clean && yarn create-indexes && cp package.json dist",
+    "build": "npm run build:prep && npm run build:assets && NODE_ENV=production npm run build:sources",
+    "build:prep": "npm run clean && npm run create-indexes && cp package.json dist",
     "build:assets": "sync-folders --type copy plugins service-worker dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
     "storybook": "start-storybook -c ./.storybook"
