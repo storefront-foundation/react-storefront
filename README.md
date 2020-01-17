@@ -93,13 +93,38 @@ Please feel invited to join our React Storefront Community!
 
 ## Local development
 
-Publish to local yalc store:
-`yalc publish`
+After cloning the repo, run:
 
-Run `yarn watch` to push updated builds to yalc store on changes.
+```
+npm i
+```
 
-In project:
-`yalc add react-storefront`
+To use your local clone of react-storefront in projects, use `yalc`.
+
+To publish react-storefront to your local yalc store:
+
+```
+yalc publish
+```
+
+Then run the following to push updated builds to yalc store on changes.
+
+```
+npm run watch
+```
+
+Finally, in your project run:
+
+```
+yalc add react-storefront
+```
+
+This will change your project's package.json to use a file path in the dependency entry for react-storefront. To revert this change, run:
+
+```
+yalc remove react-storefront # or yalc remove --all
+npm i
+```
 
 ## Join the community on Slack
 
