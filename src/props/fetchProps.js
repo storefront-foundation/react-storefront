@@ -45,14 +45,14 @@ import { waitForServiceWorker } from '../serviceWorker'
  * })(fetchProps(({ query }) => `/api/p/${encodeURIComponent(query.productId)}`))
  * ```
  *
- * @param {Function} createAPIURL
+ * @param {Function} createApiUrl
  */
-export default function fetchProps(createAPIURL) {
+export default function fetchProps(createApiUrl) {
   return options => {
     const server = typeof window === 'undefined'
     const host = server ? options.req.headers['host'] : ''
     const protocol = server ? (host.startsWith('localhost') ? 'http://' : 'https://') : ''
-    const apiURL = `${protocol}${host}${createAPIURL(options)}`
+    const apiURL = `${protocol}${host}${createApiUrl(options)}`
     return createLazyProps(options.asPath, apiURL, options.rsf_app_shell === '1')
   }
 }

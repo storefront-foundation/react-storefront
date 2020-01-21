@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 /**
  * A wrapper component which scrolls the first new child into view when
@@ -18,14 +18,19 @@ const AutoScrollToNewChildren = ({ children }) => {
     }
   }, [childCount, setPriorChildCount, priorChildCount])
 
-  return React.Children.map(children, (child, index) => {
-    return (
-      <Fragment>
-        {child}
-        {index === priorChildCount ? <div ref={firstNewChild} /> : null}
-      </Fragment>
-    )
-  })
+  return (
+    // wrapped in a Fragment so react-docgen recognizes this as a Component:
+    <>
+      {React.Children.map(children, (child, index) => {
+        return (
+          <>
+            {child}
+            {index === priorChildCount ? <div ref={firstNewChild} /> : null}
+          </>
+        )
+      })}
+    </>
+  )
 }
 
 export default AutoScrollToNewChildren
