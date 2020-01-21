@@ -42,12 +42,6 @@ export const basic = () => {
   const [color, setColor] = useState(colors[0])
 
   return (
-    <ProductOptionSelector
-      options={colors}
-      optionProps={{
-        selectedOption: color,
-        onSelectedOptionChange: color => setColor(color),
-      }}
-    />
+    <ProductOptionSelector options={colors} value={color} onChange={color => setColor(color)} />
   )
 }

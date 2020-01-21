@@ -29,6 +29,8 @@ export default function ProductOptionSelector({
   classes,
   optionProps,
   skeleton,
+  value,
+  onChange,
   variant,
   OptionComponent,
 }) {
@@ -40,11 +42,19 @@ export default function ProductOptionSelector({
 
   if (!options) return null
 
+  const onSelectedOptionChange = newValue => {
+    if (onChange) {
+      onChange(newValue)
+    }
+  }
+
   return (
     <div data-id="ProductOptionSelector" className={classes.root}>
       {options.map((option, i) => {
         return (
           <OptionComponent
+            selectedOption={value}
+            onSelectedOptionChange={onSelectedOptionChange}
             {...optionProps}
             variant={variant || (option.image || option.color ? 'swatch' : 'text')}
             name={name}
@@ -78,6 +88,12 @@ ProductOptionSelector.propTypes = {
   name: PropTypes.string,
 
   /**
+   * Function to call when a new option is selected. Called with the new selected
+   * option or `null` when a selected option is deselected.
+   */
+  onChange: PropTypes.func,
+
+  /**
    * Props to apply to each `SwatchProductOption` or `TextProductOption` element.
    */
   optionProps: PropTypes.object,
@@ -87,6 +103,11 @@ ProductOptionSelector.propTypes = {
    * displaying the actual buttons.
    */
   skeleton: PropTypes.number,
+
+  /**
+   * Current selected value among provided options or `null` when no option is selected.
+   */
+  value: PropTypes.object,
 
   /**
    * Allows you to override the default component which is used to render a product option.
