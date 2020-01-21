@@ -71,7 +71,12 @@ const Link = ({
   } else {
     return (
       <NextLink href={href} prefetch={false} as={as} passHref>
-        {React.cloneElement(children, { ref, onClick: handleClick, ...other })}
+        {React.cloneElement(children, {
+          ref: ref,
+          innerRef: ref,
+          onClick: handleClick,
+          ...other,
+        })}
       </NextLink>
     )
   }

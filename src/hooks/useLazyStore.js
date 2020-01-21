@@ -18,7 +18,6 @@ export default function useLazyStore(lazyProps, additionalData = {}) {
 
   const createInitialState = () => {
     return merge({}, additionalData, { pageData: linkPageData }, props, {
-      loading: lazyProps.lazy != null,
       pageData: {},
     })
   }
@@ -44,7 +43,7 @@ export default function useLazyStore(lazyProps, additionalData = {}) {
         setState(createInitialState)
       }
     }
-  }, [lazyProps.lazy, lazyProps.requestId])
+  }, [lazyProps, lazyProps.requestId])
 
   useEffect(() => {
     isInitialMount.current = false

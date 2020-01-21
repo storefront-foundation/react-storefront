@@ -80,10 +80,6 @@ async function createLazyProps(as, apiURL, shell) {
   }
 
   const doFetch = (onlyHit = false) => {
-    if (onlyHit && process.env.NODE_ENV === 'development') {
-      return Promise.resolve({ status: 204 })
-    }
-
     const headers = {
       'x-rsf-api-version': process.env.RSF_API_VERSION,
     }
@@ -113,7 +109,6 @@ async function createLazyProps(as, apiURL, shell) {
       /* this is written useLazyStore's recordState function when the user navigates (not back) */
       return {
         pageData: rsf[as],
-        requestId: nextRequestId() /* Need to send requestId or going back twice won't update the state correctly */,
       }
     } else if (serviceWorkerReady) {
       const res = await doFetch(true)
