@@ -5,7 +5,6 @@ import FilterButton from 'react-storefront/plp/FilterButton'
 import Filter from 'react-storefront/plp/Filter'
 import ActionButton from 'react-storefront/ActionButton'
 import Drawer from 'react-storefront/drawer/Drawer'
-import { Router } from '../mocks/mockRouter'
 import { act } from 'react-dom/test-utils'
 
 describe('FilterButton', () => {
