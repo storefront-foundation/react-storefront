@@ -4,10 +4,16 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     position: 'relative',
     width: '100%',
   },
+  /**
+   * Styles applied to the wrapper element for the children.
+   */
   child: {
     position: 'absolute',
     top: 0,

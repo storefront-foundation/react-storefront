@@ -8,14 +8,24 @@ import { Badge } from '@material-ui/core'
 import clsx from 'clsx'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the [`Link`](/apiReference/link%2fLink) element used as the root.
+   */
+  link: {
+    color: 'inherit',
+  },
+  /**
+   * Styles passed through to the [`Badge`](https://material-ui.com/api/badge/#css) element's
+   * `badge` CSS rule.
+   */
   badge: {
     border: '2px solid white',
     padding: '0 4px',
   },
+  /**
+   * Styles applied to the button icon.
+   */
   icon: {},
-  link: {
-    color: 'inherit',
-  },
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFCartButton' })
@@ -26,7 +36,7 @@ const useStyles = makeStyles(styles, { name: 'RSFCartButton' })
  * Example:
  *
  * ```js
- * <CartButton href="/cart" quantity={1}/>
+ * <CartButton href="/cart" quantity={1} />
  * ```
  */
 export default function CartButton({
@@ -68,43 +78,44 @@ export default function CartButton({
 
 CartButton.propTypes = {
   /**
-   * The url path to cart.  Defaults to "/cart"
+   * The url path to the cart page.
    */
   href: PropTypes.string,
 
   /**
-   * Set to true to force server side navigation.  Defaults to false
+   * Set to `true` to force server-side navigation.
    */
   server: PropTypes.bool,
 
   /**
-   * CSS classes
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 
   /**
-   * Optional Custom cart icon
+   * Optional custom cart icon.
    */
-  icon: PropTypes.element,
+  icon: PropTypes.node,
 
   /**
-   * Props for the Button element.
+   * Props passed through to the [`ToolbarButton`](/apiReference/ToolbarButton#props) element.
    */
   buttonProps: PropTypes.object,
 
   /**
-   * Props for the Badge element.
+   * Props passed through to the [`Badge`](https://material-ui.com/api/badge/#props) element.
    */
   badgeProps: PropTypes.object,
 
   /**
-   * Props for the Link element.
+   * Props passed through to the [`Link`](/apiReference/link%2fLink#props) element.
    */
   linkProps: PropTypes.object,
 }
 
 CartButton.defaultProps = {
   href: '/cart',
+  server: false,
   badgeProps: {
     color: 'primary',
   },

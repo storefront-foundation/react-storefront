@@ -8,11 +8,15 @@ import {
   Typography,
 } from '@material-ui/core'
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons'
+import isNil from 'lodash/isNil'
 import { makeStyles } from '@material-ui/core/styles'
 import useStateFromProp from './hooks/useStateFromProp'
 import withDefaultHandler from './utils/withDefaultHandler'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -28,36 +32,48 @@ export const styles = theme => ({
     },
   },
 
+  /**
+   * Styles applied to the root element if [`margins`](#prop-margins) is `true`.
+   */
   margins: {
     padding: `0 ${theme.spacing(2)}px`,
   },
 
+  /**
+   * Styles applied to the caption element.
+   */
   caption: {
     transition: 'opacity .2s linear',
   },
 
+  /**
+   * Styles applied to the caption element when the section is expanded.
+   */
   expandedCaption: {
     opacity: 0,
   },
 
-  largeTitle: {
-    fontSize: '18px',
-    fontWeight: 'bold',
-    color: '#444',
-  },
-
+  /**
+   * Styles applied to the body element of the expansion panel.
+   */
   details: {
     padding: theme.spacing(0, 0, 2, 0),
     display: 'flex',
     flexDirection: 'column',
   },
 
+  /**
+   * Styles applied to the summary element of the expansion panel.
+   */
   summary: {
     '&:first-child': {
       padding: theme.spacing(1, 0),
     },
   },
 
+  /**
+   * Styles applied to the content of the summary element of the expansion panel.
+   */
   summaryContent: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -68,26 +84,54 @@ export const styles = theme => ({
     },
   },
 
+  /**
+   * Styles applied to the summary element of the expansion panel when the section is expanded.
+   */
   summaryExpanded: {},
+
+  /**
+   * Styles applied to the expand icon of the expansion panel when the section is expanded if the
+   * [`ExpandIcon`](#prop-ExpandIcon) is different than the [`CollapseIcon`](#prop-CollapseIcon).
+   */
   expandIconExpanded: {},
 
-  withCollapseIcon: {
-    transform: 'rotate(0deg) !important',
-  },
-
+  /**
+   * Styles applied to the expand icon of the expansion panel when the [`ExpandIcon`](#prop-ExpandIcon)
+   * is different than the [`CollapseIcon`](#prop-CollapseIcon).
+   */
   summaryIconWrap: {
     right: 0,
     padding: theme.spacing(0, 1),
   },
 
+  /**
+   * Styles applied to the summary element of the expansion panel.
+   */
+  withCollapseIcon: {
+    transform: 'rotate(0deg) !important',
+  },
+
+  /**
+   * Styles applied to the root element when the section is expanded.
+   */
   expandedPanel: {
     '&$root': {
       margin: 0,
     },
   },
 
+  /**
+   * Styles applied to the title element.
+   */
   title: {},
+
+  /**
+   * Styles applied to the expand icon element.
+   */
   expandIcon: {},
+  /**
+   * Styles applied to the collapse icon element.
+   */
   collapseIcon: {},
 })
 
@@ -144,7 +188,7 @@ export default function ExpandableSection(props) {
   }
 
   const handleChange = withDefaultHandler(onChange, (e, expanded) => {
-    if (props.expanded == null) {
+    if (isNil(props.expanded)) {
       setExpandedState(expanded)
     }
   })
@@ -195,43 +239,45 @@ export default function ExpandableSection(props) {
 
 ExpandableSection.propTypes = {
   /**
-   * The title for the header of the expandable section
+   * The title for the header of the expandable section.
    */
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 
   /**
-   * Text to display to the right of the heading
+   * Text to display to the right of the heading.
    */
   caption: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 
   /**
-   * The icon to use for collapsed groups
+   * The icon to use for collapsed groups.
    */
   ExpandIcon: PropTypes.object,
 
   /**
-   * The icon to use for expanded groups
+   * The icon to use for expanded groups.
    */
   CollapseIcon: PropTypes.object,
 
   /**
-   * Set to false to remove the default left and right margins. Defaults to `true`.
+   * If `false`, the default left and right margins are removed.
    */
   margins: PropTypes.bool,
 
   /**
-   * Controls the expanded state.  Defaults to false
+   * Can be defined to control the expanded state externally with props, rather than having it
+   * controlled internally by state.
    */
   expanded: PropTypes.bool,
 
   /**
-   * Defaults the panel to being expanded, without controlling the state.  Defaults to false
+   * Defaults the panel to being expanded, without controlling the state.
    */
   defaultExpanded: PropTypes.bool,
 }
 
 ExpandableSection.defaultProps = {
   margins: true,
+  defaultExpanded: false,
   ExpandIcon: ExpandMoreIcon,
   CollapseIcon: ExpandMoreIcon,
 }

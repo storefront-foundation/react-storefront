@@ -198,7 +198,7 @@ NavTab.propTypes = {
    */
   href: PropTypes.string.isRequired,
   /**
-   * An object of style classes to apply.
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 }

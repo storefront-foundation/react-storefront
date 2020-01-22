@@ -39,7 +39,7 @@ export const styles = theme => ({
     },
   },
   lightboxThumbs: {
-    paddingBottom: theme.margins.container,
+    paddingBottom: theme.spacing(2),
   },
 })
 

@@ -22,7 +22,7 @@ export const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFCarouselArrows' })
 
-export default function CarouselArrows({ className, classes, selected, count, setSelected, show }) {
+export default function CarouselArrows({ className, classes, selected, count, setSelected }) {
   classes = useStyles({ classes })
 
   const createOnClickArrow = useCallback(

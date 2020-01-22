@@ -23,7 +23,7 @@ export const styles = theme => ({
     transition: 'left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   },
   tabsRoot: {
-    marginTop: theme.margins.container,
+    marginTop: theme.spacing(2),
   },
   noSelection: {
     visibility: 'hidden',

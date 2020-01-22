@@ -9,6 +9,9 @@ import CarouselArrows from './CarouselArrows'
 import Fill from '../Fill'
 
 const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -19,6 +22,9 @@ const styles = theme => ({
     },
   },
 
+  /**
+   * Styles applied to wrapper element of the swipe container.
+   */
   swipeWrap: {
     position: 'relative',
     overflow: 'hidden',
@@ -101,7 +107,6 @@ const Carousel = React.forwardRef((props, ref) => {
               selected={selected}
               setSelected={setSelected}
               count={count}
-              selected={selected}
             />
           )}
           {indicators && <CarouselDots count={count} selected={selected} />}
@@ -114,13 +119,34 @@ const Carousel = React.forwardRef((props, ref) => {
 
 Carousel.propTypes = {
   /**
-   * Set to `false` to hide arrows, 'desktop' to only show them
-   * on non-touch devices, 'all' to always show arrows.
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * Set to `false` to hide arrows, `'desktop'` to only show them
+   * on non-touch devices, `'all'` to always show arrows.
    */
   arrows: PropTypes.oneOf([false, 'desktop', 'all']),
+
+  /**
+   * Nodes to render above the Carousel.
+   */
   aboveAdornments: PropTypes.arrayOf(PropTypes.element),
+
+  /**
+   * Nodes to render below the Carousel.
+   */
   belowAdornments: PropTypes.arrayOf(PropTypes.element),
+
+  /**
+   * If `true`, the Carousel will automatically cycle through the media elements.
+   */
   autoplay: PropTypes.bool,
+
+  /**
+   * The interval time (in milliseconds) for [`autoplay`](#prop-autoplay).
+   */
   interval: PropTypes.number,
 }
 

@@ -7,7 +7,6 @@ import LoadMask from '../LoadMask'
 
 export const styles = theme => ({
   root: {
-    
     flex: 1,
     overflowY: 'auto',
   },

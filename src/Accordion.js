@@ -42,5 +42,8 @@ export default function Accordion({ children }) {
 }
 
 Accordion.propTypes = {
+  /**
+   * A list of `ExpandableSection`s that will be controlled.
+   */
   children: PropTypes.node,
 }

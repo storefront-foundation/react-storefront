@@ -4,6 +4,9 @@ import { IconButton } from '@material-ui/core'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the content wrapper element inside the button
+   */
   wrap: {
     display: 'flex',
     flexDirection: 'column',
@@ -19,8 +22,6 @@ const useStyles = makeStyles(styles, { name: 'RSFToolbarButton' })
  * A toolbar button with optional label.  Use these in your AppBar. All additional
  * props are spread to the underlying material-ui IconButton.
  */
-// export default function ToolbarButton({ icon, label, classes, children, ...others }) {
-
 const ToolbarButton = forwardRef(({ icon, label, classes = {}, children, ...others }, ref) => {
   let { wrap, ...buttonClasses } = classes
   classes = useStyles({ classes: { wrap } })
@@ -38,12 +39,17 @@ const ToolbarButton = forwardRef(({ icon, label, classes = {}, children, ...othe
 
 ToolbarButton.propTypes = {
   /**
-   * The icon
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * The icon to use for the button.
    */
   icon: PropTypes.element,
 
   /**
-   * The label text (optional)
+   * The label text for the button.
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 }

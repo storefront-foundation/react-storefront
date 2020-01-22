@@ -4,19 +4,32 @@ import { Button, Typography } from '@material-ui/core'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({
+  /**
+   * Styles passed through to the [`Button`](https://material-ui.com/api/button/#css) element's
+   * `label` CSS rule.
+   */
   label: {
     justifyContent: 'space-between',
     alignItems: 'baseline',
     textTransform: 'none',
   },
+  /**
+   * Styles applied to the label container.
+   */
   caption: {
     textTransform: 'none',
     fontWeight: 'bold',
   },
+  /**
+   * Styles passed through to the `.MuiButton-container` class.
+   */
   button: {
     boxShadow: 'none',
     backgroundColor: theme.palette.grey[200],
   },
+  /**
+   * Styles applied to the values container.
+   */
   value: {
     color: theme.palette.text.primary,
     whiteSpace: 'nowrap',
@@ -33,7 +46,7 @@ const useStyles = makeStyles(styles, { name: 'RSFActionButton' })
  * Example:
  *
  * ```js
- *  <ActionButton label="Sort" value="Lowest Price" onClick={openSortMenu}/>
+ *  <ActionButton label="Sort" value="Lowest Price" onClick={openSortMenu} />
  * ```
  */
 const ActionButton = forwardRef(({ label, value, children, classes = {}, ...props }, ref) => {
@@ -63,12 +76,17 @@ const ActionButton = forwardRef(({ label, value, children, classes = {}, ...prop
 
 ActionButton.propTypes = {
   /**
-   * The label to display on the left side of the button
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * The label to display on the left side of the button.
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 
   /**
-   * The value to display on the right side of the button
+   * The value to display on the right side of the button.
    */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 }

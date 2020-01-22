@@ -7,6 +7,9 @@ import PropTypes from 'prop-types'
 import { useAmp } from 'next/amp'
 
 export const styles = () => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     minHeight: 1,
     minWidth: 1,
@@ -52,6 +55,14 @@ export default function Lazy({ ssrOnly, className, classes, children, ...otherPr
 }
 
 Lazy.propTypes = {
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
+   * CSS class to apply to the root element
+   */
+  className: PropTypes.string,
   /**
    * Set to `true` to render children immediately when this component is mounted after initial hydration.
    */
