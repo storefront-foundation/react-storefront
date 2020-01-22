@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const reactDocGen = require('react-docgen')
+const documentation = require('documentation')
 import { createMuiTheme } from '@material-ui/core/styles'
 import getStylesCreator from '@material-ui/styles/getStylesCreator'
 import moduleParser from './moduleParser'
@@ -11,9 +12,10 @@ import globby from 'globby'
 const RESOLVER = reactDocGen.resolver.findAllComponentDefinitions
 const COMPONENTS_PATH = path.join(__dirname, '../src')
 const REACT_DOC_FILEPATH = path.join(__dirname, 'build/components.js')
-const MODULE_DOC_FILEPATH = path.join(__dirname, 'build/modules.js')
 
 const theme = createMuiTheme()
+// todo: remove when createTheme() is done
+theme.zIndex.amp = { modal: 999 }
 
 function getComponentName(filepath) {
   let name = path.basename(filepath)
@@ -75,7 +77,7 @@ function isComponentParsed(x) {
   return !!x
 }
 
-function getStyles({ filename, filepath } = {}) {
+async function getStyles({ filename, filepath, src } = {}) {
   const styles = {
     classes: [],
     name: null,
@@ -84,11 +86,25 @@ function getStyles({ filename, filepath } = {}) {
   try {
     const component = require(filepath)
 
+    const docs = await documentation.build(filepath, {
+      shallow: true,
+    })
+
     if (component.styles && component.default) {
+      const globalClassPrefixMatch = src.match(/makeStyles\(.*,\s*{\s*name:\s*'(.*)'\s*}\s*\)/)
       // Collect the customization points of the `classes` property.
-      styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
-        className => !className.match(/^(@media|@keyframes)/),
-      )
+      styles.classes = Object.keys(getStylesCreator(component.styles).create(theme))
+        .filter(className => !className.match(/^(@media|@keyframes)/))
+        .map(ruleName => {
+          const styleDocs = docs.find(
+            doc => doc.namespace === `.${ruleName}` && !doc.memberof.includes('.propTypes'),
+          )
+          return {
+            ruleName,
+            globalClass: globalClassPrefixMatch ? `.${globalClassPrefixMatch[1]}-${ruleName}` : '',
+            description: styleDocs ? styleDocs.description : '',
+          }
+        })
       styles.name = component.default.name
     }
   } catch (e) {
@@ -104,7 +120,7 @@ function getProps({ props } = {}) {
     .map(propName => {
       return {
         name: propName,
-        props: props[propName],
+        ...props[propName],
       }
     })
 }
@@ -135,40 +151,38 @@ const main = async () => {
     }
   }
 
-  const componentsData = data
+  const componentsData = await data
     .filter(item => item.component)
     .filter(ignoreInternalComponents)
-    .reduce(
-      (result, componentObject) => {
-        const responseObject = { ...componentObject }
-        const fullPath = responseObject.filepath
-          .replace(/.js$/, '')
-          .substr(responseObject.filepath.indexOf('/src/') + 5)
-        const splitPath = fullPath.split('/')
-        const root = splitPath[0]
-        const isRootFile = root === fullPath
-        const menuItem = {
-          text: splitPath[1] || fullPath,
-          href: '/apiReference/[module]',
-          as: `/apiReference/${encodeURIComponent(fullPath)}`,
-        }
+    .reduce(async (result, componentObject) => {
+      const responseObject = { ...componentObject }
+      const fullPath = responseObject.filepath
+        .replace(/.js$/, '')
+        .substr(responseObject.filepath.indexOf('/src/') + 5)
+      const splitPath = fullPath.split('/')
+      const root = splitPath[0]
+      const isRootFile = root === fullPath
+      const menuItem = {
+        text: splitPath[1] || fullPath,
+        href: '/apiReference/[module]',
+        as: `/apiReference/${encodeURIComponent(fullPath)}`,
+      }
 
-        responseObject.styles = getStyles(responseObject)
-        responseObject.props = getProps(responseObject)
-        responseObject.type = 'component'
-        responseObject.import = `import ${responseObject.filename} from 'react-storefront/${fullPath}'`
+      responseObject.styles = await getStyles(responseObject)
+      responseObject.props = getProps(responseObject)
+      responseObject.type = 'component'
+      responseObject.import = `import ${responseObject.filename} from 'react-storefront/${fullPath}'`
 
-        delete responseObject.id
-        delete responseObject.filepath
-        delete responseObject.component
+      delete responseObject.id
+      delete responseObject.filepath
+      delete responseObject.component
 
-        result.exports[fullPath] = responseObject
-        addMenu(result, isRootFile, root, menuItem)
+      const newPromise = await Promise.resolve(result)
+      newPromise.exports[fullPath] = responseObject
+      addMenu(newPromise, isRootFile, root, menuItem)
 
-        return result
-      },
-      { menu: {}, exports: {} },
-    )
+      return newPromise
+    }, Promise.resolve({ menu: {}, exports: {} }))
 
   const modulesData = data
     .filter(item => !item.component)
@@ -207,7 +221,6 @@ const main = async () => {
   })
 
   saveJsFile(componentsData, REACT_DOC_FILEPATH)
-  saveJsFile(modulesData, MODULE_DOC_FILEPATH)
 }
 
 main()
