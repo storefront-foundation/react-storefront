@@ -58,11 +58,6 @@ export default function fetchProps(createAPIURL) {
 }
 
 let serviceWorkerReady = false
-let requestId = 0
-
-function nextRequestId() {
-  return requestId++
-}
 
 if (typeof window !== 'undefined') {
   waitForServiceWorker().then(() => {
@@ -126,7 +121,6 @@ async function createLazyProps(as, apiURL, shell) {
       // getInitialProps is called, otherwise pages that use replace state to add data to the query string
       // when state changes such as subcategory won't properly reset when the user clicks a link back
       // to the same page without the query string
-      requestId: nextRequestId(),
     }
   }
 }
