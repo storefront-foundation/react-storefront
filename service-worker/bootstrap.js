@@ -324,7 +324,7 @@ function isSecure(context) {
  * @return {Boolean}
  */
 function isStaticAsset(context) {
-  return context.url.pathname.startsWith('/pwa/')
+  return context.url.pathname.startsWith('/_next/static/')
 }
 
 /**
