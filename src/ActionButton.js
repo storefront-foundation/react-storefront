@@ -21,7 +21,8 @@ export const styles = theme => ({
     fontWeight: 'bold',
   },
   /**
-   * Styles passed through to the `.MuiButton-container` class.
+   * Styles passed through to the [`Button`](https://material-ui.com/api/button/#css) element's
+   * `contained` CSS rule.
    */
   button: {
     boxShadow: 'none',

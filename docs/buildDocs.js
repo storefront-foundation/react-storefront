@@ -11,7 +11,7 @@ import globby from 'globby'
 
 const RESOLVER = reactDocGen.resolver.findAllComponentDefinitions
 const COMPONENTS_PATH = path.join(__dirname, '../src')
-const REACT_DOC_FILEPATH = path.join(__dirname, 'build/components.js')
+const REACT_DOC_FILEPATH = path.join(__dirname, 'build/modules.json')
 
 const theme = createMuiTheme()
 // todo: remove when createTheme() is done
@@ -176,6 +176,7 @@ const main = async () => {
       delete responseObject.id
       delete responseObject.filepath
       delete responseObject.component
+      delete responseObject.src
 
       const newPromise = await Promise.resolve(result)
       newPromise.exports[fullPath] = responseObject
@@ -227,5 +228,5 @@ main()
 
 function saveJsFile(data, filepath) {
   const json = JSON.stringify(data)
-  fs.writeFileSync(filepath, `const data = ${json};\nexport default data;`, 'utf8')
+  fs.writeFileSync(filepath, json, 'utf8')
 }

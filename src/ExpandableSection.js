@@ -8,7 +8,6 @@ import {
   Typography,
 } from '@material-ui/core'
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons'
-import isNil from 'lodash/isNil'
 import { makeStyles } from '@material-ui/core/styles'
 import useStateFromProp from './hooks/useStateFromProp'
 import withDefaultHandler from './utils/withDefaultHandler'
@@ -188,7 +187,7 @@ export default function ExpandableSection(props) {
   }
 
   const handleChange = withDefaultHandler(onChange, (e, expanded) => {
-    if (isNil(props.expanded)) {
+    if (props.expanded == null) {
       setExpandedState(expanded)
     }
   })
