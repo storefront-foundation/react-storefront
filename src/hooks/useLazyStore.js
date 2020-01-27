@@ -37,7 +37,7 @@ export default function useLazyStore(lazyProps, additionalData = {}) {
       return setState(state => {
         stateRef.current = finalState(state)
 
-        return finalState(state)
+        return stateRef.current
       })
     }
   }
