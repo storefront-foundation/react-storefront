@@ -84,9 +84,7 @@ async function createLazyProps(as, apiURL, shell) {
       return Promise.resolve({ status: 204 })
     }
 
-    const headers = {
-      'x-rsf-api-version': process.env.RSF_API_VERSION,
-    }
+    const headers = {}
 
     if (onlyHit) {
       headers['x-rsf-client-if'] = 'cache-hit'
