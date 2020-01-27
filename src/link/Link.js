@@ -73,7 +73,7 @@ const Link = ({
       <NextLink href={href} prefetch={false} as={as} passHref>
         {React.cloneElement(children, {
           ref: ref,
-          innerRef: ref,
+          innerRef: ref, // We use innerRef for all Material-ui components, ref for those is undefined
           onClick: handleClick,
           ...other,
         })}
