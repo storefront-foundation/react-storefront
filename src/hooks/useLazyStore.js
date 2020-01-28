@@ -35,7 +35,9 @@ export default function useLazyStore(lazyProps, additionalData = {}) {
   useEffect(() => {
     if (lazyProps.lazy) {
       setState(state => ({ ...state, loading: true }))
-      fetch(lazyProps.lazy)
+      fetch(lazyProps.lazy, {
+        headers: { 'x-rsf-api-version': process.env.RSF_API_VERSION || '1' },
+      })
         .then(res => res.json())
         .then(props => setState(state => merge({}, state, props, { loading: false })))
     } else {

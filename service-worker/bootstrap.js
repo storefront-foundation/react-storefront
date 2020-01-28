@@ -370,7 +370,7 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     }
 
     const headers = event.request.headers
-    const apiVersion = headers.get('x-rsf-api-version') // set via monkey-patched xhr
+    const apiVersion = headers.get('x-rsf-api-version')
     const cacheName = getAPICacheName(apiVersion)
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
     const onlyHit = headers.get('x-rsf-client-if') === 'cache-hit'
@@ -395,30 +395,22 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
       return new workbox.strategies.CacheOnly(cacheOptions)
         .handle(context)
         .catch(() =>
-          new workbox.strategies.NetworkOnly()
-            .handle(context)
-            .then(apiRes => {
-              // 1. withReactStorefront should create a api_version value, which can just be the timestamp of the build
-              // 2. it provide that to client and server build as a webpack define
-              // 3. we should monkey-patch xhr to send x-moov-api-version as a request header on all requests
+          new workbox.strategies.NetworkOnly().handle(context).then(apiRes => {
+            // 1. withReactStorefront should create a api_version value, which can just be the timestamp of the build
+            // 2. it provide that to client and server build as a webpack define
+            // 3. we should monkey-patch xhr to send x-moov-api-version as a request header on all requests
 
-              if (apiRes.headers.get('x-rsf-cache-control')) {
-                console.log('YEAY')
-                console.log('event', apiRes)
-                console.log('log', context)
-                console.log('apiVersion', apiVersion)
+            if (apiRes.headers.get('x-rsf-cache-control') && apiVersion) {
+              const path = url.pathname
 
-                console.log('getCacheName', cacheName)
+              caches.open(cacheName).then(cache => {
+                cache.put(path, apiRes)
+                console.log('[react-storefront service worker]', `caching ${path}`)
+              })
+            }
 
-                caches.open(cacheName).then(cache => {
-                  cache.put(path, apiRes)
-                  console.log('[react-storefront service worker]', `caching ${path}`)
-                })
-              }
-
-              return apiRes
-            })
-            .catch(e => console.log('error', e)),
+            return apiRes.clone()
+          }),
         )
         .catch(() => offlineResponse(apiVersion, context))
     }

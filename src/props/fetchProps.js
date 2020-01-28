@@ -85,13 +85,13 @@ async function createLazyProps(as, apiURL, shell) {
     }
 
     const headers = {}
+    headers['x-rsf-api-version'] = process.env.RSF_API_VERSION || '1' // remove later
 
     if (onlyHit) {
       headers['x-rsf-client-if'] = 'cache-hit'
     }
 
     return fetch(apiURL, {
-      cache: 'force-cache',
       headers,
     })
   }
