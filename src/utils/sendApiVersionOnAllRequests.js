@@ -5,13 +5,13 @@
  */
 export default function sendApiVersionOnAllRequests() {
   if (typeof XMLHttpRequest !== 'undefined') {
-    console.log('GettingIntoFunction')
     const open = XMLHttpRequest.prototype.open
 
     XMLHttpRequest.prototype.open = function() {
-      console.log('isWorking')
       const res = open.apply(this, arguments)
+
       this.setRequestHeader('x-rsf-api-version', process.env.RSF_API_VERSION || '1')
+
       return res
     }
   }
