@@ -2,6 +2,7 @@ import React, { useContext, useRef, useEffect } from 'react'
 import NextLink from 'next/link'
 import LinkContext from './LinkContext'
 import PropTypes from 'prop-types'
+import { RootRef } from '@material-ui/core'
 import useIntersectionObserver from '../hooks/useIntersectionObserver'
 import { prefetch as doPrefetch } from '../serviceWorker'
 import withDefaultHandler from '../utils/withDefaultHandler'
@@ -70,14 +71,15 @@ const Link = ({
     )
   } else {
     return (
-      <NextLink href={href} prefetch={false} as={as} passHref>
-        {React.cloneElement(children, {
-          ref: ref,
-          innerRef: ref, // We use innerRef for all Material-ui components, ref for those is undefined
-          onClick: handleClick,
-          ...other,
-        })}
-      </NextLink>
+      // This way we can get a ref of Material-ui components
+      <RootRef rootRef={ref}>
+        <NextLink href={href} prefetch={false} as={as} passHref>
+          {React.cloneElement(children, {
+            onClick: handleClick,
+            ...other,
+          })}
+        </NextLink>
+      </RootRef>
     )
   }
 }
