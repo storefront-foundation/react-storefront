@@ -228,7 +228,7 @@ function cacheState({ path, cacheData, apiVersion } = {}) {
 self.addEventListener('message', function(event) {
   if (event.data && event.data.action) {
     const { action } = event.data
-    console.log('event', event.data)
+
     if (action === 'cache-path') {
       cachePath(event.data)
     } else if (action === 'cache-state') {
