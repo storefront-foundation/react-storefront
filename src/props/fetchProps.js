@@ -58,11 +58,6 @@ export default function fetchProps(createAPIURL) {
 }
 
 let serviceWorkerReady = false
-let requestId = 0
-
-function nextRequestId() {
-  return requestId++
-}
 
 if (typeof window !== 'undefined') {
   waitForServiceWorker().then(() => {
@@ -80,12 +75,9 @@ async function createLazyProps(as, apiURL, shell) {
   }
 
   const doFetch = (onlyHit = false) => {
-    if (onlyHit && process.env.NODE_ENV === 'development') {
-      return Promise.resolve({ status: 204 })
+    const headers = {
+      'x-rsf-api-version': process.env.RSF_API_VERSION || '1', // remove later
     }
-
-    const headers = {}
-    headers['x-rsf-api-version'] = process.env.RSF_API_VERSION || '1' // remove later
 
     if (onlyHit) {
       headers['x-rsf-client-if'] = 'cache-hit'
@@ -111,7 +103,6 @@ async function createLazyProps(as, apiURL, shell) {
       /* this is written useLazyStore's recordState function when the user navigates (not back) */
       return {
         pageData: rsf[as],
-        requestId: nextRequestId() /* Need to send requestId or going back twice won't update the state correctly */,
       }
     } else if (serviceWorkerReady) {
       const res = await doFetch(true)
@@ -129,7 +120,6 @@ async function createLazyProps(as, apiURL, shell) {
       // getInitialProps is called, otherwise pages that use replace state to add data to the query string
       // when state changes such as subcategory won't properly reset when the user clicks a link back
       // to the same page without the query string
-      requestId: nextRequestId(),
     }
   }
 }

@@ -25,7 +25,7 @@ export const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFPWA' })
 
-export default function PWA({ children, errorReporter, sessionUrl }) {
+export default function PWA({ children, errorReporter }) {
   useStyles()
   const thumbnail = useRef(null)
 
