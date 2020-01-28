@@ -58,7 +58,7 @@ const useStyles = makeStyles(styles, { name: 'RSFNavTab' })
  *
  * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the NavTab is focused.
  */
-function NavTab({ classes, href, as, children, ...props }) {
+function NavTab({ classes, href, as, prefetch, children, ...props }) {
   classes = useStyles({ classes })
 
   const [overTab, setOverTab] = useState(false)
@@ -135,7 +135,7 @@ function NavTab({ classes, href, as, children, ...props }) {
         onClick={hideMenu} // Does not work in dev, because next consumes focus in production everything is good
         onMouseEnter={showMenu}
         onMouseLeave={hideMenu}
-        prefetch="visible"
+        prefetch={prefetch}
       >
         <Tab
           onKeyDown={handleTabKeyDown}
