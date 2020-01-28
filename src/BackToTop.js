@@ -35,8 +35,8 @@ const styles = () => ({
 const useStyles = makeStyles(styles, { name: 'RSFBackToTop' })
 
 /**
- * A floating action button that appears when the user scrolls down
- * and scrolls to the top of the page when clicked.
+ * A floating action button that appears when the user scrolls down,
+ * which scrolls back to the top of the page when clicked.
  */
 export default function BackToTop({
   Icon,

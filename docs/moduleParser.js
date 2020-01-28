@@ -148,8 +148,8 @@ export default async function moduleParser(filePath, importPath, exported = true
 
   const item = {
     text: fileName,
-    href: haveItems ? undefined : '/apiReference/[module]',
-    as: haveItems ? undefined : `/apiReference/${encodeURIComponent(importPath)}`,
+    href: haveItems ? undefined : '/[module]',
+    as: haveItems ? undefined : `/${encodeURIComponent(importPath)}`,
     items: haveItems ? results.items : undefined,
   }
 

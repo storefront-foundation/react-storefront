@@ -6,24 +6,36 @@ import PropTypes from 'prop-types'
 import Router from 'next/router'
 
 const styles = theme => ({
+  /**
+   * Styles applied to the Popover element for desktop users.
+   */
   popover: {
     pointerEvents: 'none',
   },
+  /**
+   * Styles applied to the `Tab` element.
+   */
   tab: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },
+  /**
+   * Styles applied to the root [`Link`](/apiReference/link%2fLink) element.
+   */
   link: {
     textDecoration: 'none',
     color: 'inherit',
     fontWeight: 100,
   },
-  menu: {
-    zIndex: theme.zIndex.appBar,
-  },
+  /**
+   * Styles applied to the root element of the `Tab`'s `TouchRippleProps` classes.
+   */
   ripple: {
     zIndex: 2,
   },
+  /**
+   * Styles applied to the Popover element's `Paper` element for desktop users.
+   */
   paper: {
     pointerEvents: 'all',
     paddingTop: 2, // we add 2 pixels of transparent padding and move the menu up two pixels to cover the tab indicator
@@ -31,6 +43,9 @@ const styles = theme => ({
     background: 'transparent',
     boxShadow: '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14)',
   },
+  /**
+   * Styles applied to the Popover element's `Paper` element for desktop users.
+   */
   innerPaper: {
     borderTop: `1px solid ${theme.palette.divider}`,
   },
@@ -56,7 +71,7 @@ const useStyles = makeStyles(styles, { name: 'RSFNavTab' })
  *
  * Accessibility:
  *
- * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the NavTab is focused.
+ * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the `NavTab` is focused.
  */
 function NavTab({ classes, href, as, children, ...props }) {
   classes = useStyles({ classes })

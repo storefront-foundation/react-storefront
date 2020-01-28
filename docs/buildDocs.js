@@ -164,8 +164,8 @@ const main = async () => {
       const isRootFile = root === fullPath
       const menuItem = {
         text: splitPath[1] || fullPath,
-        href: '/apiReference/[module]',
-        as: `/apiReference/${encodeURIComponent(fullPath)}`,
+        href: '/[module]',
+        as: `/${encodeURIComponent(fullPath)}`,
       }
 
       responseObject.styles = await getStyles(responseObject)

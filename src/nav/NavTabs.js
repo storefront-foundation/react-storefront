@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
@@ -6,9 +7,15 @@ import MuiTabScrollButton from '@material-ui/core/Tabs/TabScrollButton'
 import { useRouter } from 'next/router'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element when no tab is selected.
+   */
   indicatorNoSelection: {
     display: 'none',
   },
+  /**
+   * Styles passed through to the `scrollButtons` rule in [`Tabs`](https://material-ui.com/api/tabs/#css)'.
+   */
   scrollButtons: {
     position: 'absolute',
     height: '100%',
@@ -22,6 +29,9 @@ export const styles = theme => ({
       background: theme.palette.background.paper,
     },
   },
+  /**
+   * Styles applied to the root [`Tabs`](https://material-ui.com/api/tabs/) component.
+   */
   root: {
     maxWidth: theme.breakpoints.values.lg,
     flex: 1,
@@ -45,6 +55,10 @@ export const styles = theme => ({
         'linear-gradient(to left, rgba(255, 255, 255, 1.0) 0%, rgba(255, 255, 255, 0.0) 100%)',
     },
   },
+  /**
+   * Styles applied to the root element of the[`Tabs`](https://material-ui.com/api/tabs/)'
+   * `ScrollButtonComponent` component.
+   */
   ripple: {
     zIndex: 2,
   },
@@ -77,7 +91,7 @@ export default function NavTabs({ classes = {}, children, ...others }) {
       classes={{
         ...classNames,
         indicator: clsx(classes.indicator, {
-          [classes.indicatorNoSelection]: value === -1, // To cancel wierd animation when going from plp to pdp
+          [classes.indicatorNoSelection]: value === -1, // To cancel weird animation when going from plp to pdp
         }),
       }}
       value={value === -1 ? false : value}
@@ -88,6 +102,15 @@ export default function NavTabs({ classes = {}, children, ...others }) {
   )
 }
 
-NavTabs.propTypes = {}
+NavTabs.propTypes = {
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
+   * Child tabs.
+   */
+  children: PropTypes.node,
+}
 
 NavTabs.defaultProps = {}
