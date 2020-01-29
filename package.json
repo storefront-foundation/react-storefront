@@ -73,7 +73,7 @@
     "jest-enzyme": "^7.1.2",
     "jest-fetch-mock": "^2.1.2",
     "jsdom": "^15.2.1",
-    "next": "^9.1.6",
+    "next": "^9.1.8",
     "npm-watch": "^0.6.0",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
@@ -87,7 +87,7 @@
     "@material-ui/icons": "4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.35",
     "@material-ui/styles": "4.5.2",
-    "next": "^9.1.6"
+    "next": "^9.1.8"
   },
   "babel": {
     "presets": [
