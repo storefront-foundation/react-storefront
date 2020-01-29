@@ -16,7 +16,7 @@ module.exports = (nextConfig = {}) => {
       usePreact
         ? chalk.green('preact') +
           '. Set "preact" environment variable to "false" to use react instead.'
-        : chalk.blur('react') +
+        : chalk.blue('react') +
           '. Set "preact" environment variable to "true" to use preact instead.'
     }`,
   )
