@@ -400,21 +400,11 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     const apiVersion = headers.get('x-rsf-api-version') // set by fromServer
     const cacheName = getAPICacheName(apiVersion, url.pathname)
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
-    const onlyHit = headers.get('x-rsf-client-if') === 'cache-hit'
 
-    if (onlyHit) {
-      return new workbox.strategies.CacheOnly(cacheOptions).handle(context).catch(res => {
-        console.log('[service-worker]', 'returning 204')
-        return new Response(null, {
-          status: CLIENT_CACHE_MISS,
-        })
-      })
-    } else if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
+    if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
       return new workbox.strategies.NetworkOnly(cacheOptions)
         .handle(context)
         .catch(() => offlineResponse(apiVersion, context))
-    } else if (event.request.cache === 'force-cache' /* set by cache and sent by fromServer */) {
-      return new workbox.strategies.CacheFirst(cacheOptions).handle(context)
     } else {
       // Check the cache for all routes. If the result is not found, get it from the network.
       return new workbox.strategies.CacheOnly(cacheOptions)

@@ -74,53 +74,54 @@ async function createLazyProps(as, apiURL, shell) {
     }
   }
 
-  const doFetch = (onlyHit = false) => {
-    const headers = {
-      'x-rsf-api-version': process.env.RSF_API_VERSION,
-    }
-
-    if (onlyHit) {
-      headers['x-rsf-client-if'] = 'cache-hit'
-    }
-
-    return fetch(apiURL, {
-      cache: 'force-cache',
-      headers,
+  const fetchFromAPI = () =>
+    fetch(apiURL, {
+      headers: {
+        'x-rsf-api-version': process.env.RSF_API_VERSION,
+      },
     })
-  }
 
   if (typeof window === 'undefined') {
     // server
     if (shell) {
       return { lazy: apiURL }
     } else {
-      return (await doFetch()).json()
+      return (await fetchFromAPI()).json()
     }
   } else {
     // client
     const { rsf } = window.history.state
+
     if (rsf && rsf[as]) {
       // going back or forward
       /* this is written useLazyStore's recordState function when the user navigates (not back) */
       return {
         pageData: rsf[as],
       }
-    } else if (serviceWorkerReady) {
-      const res = await doFetch(true)
+    } else {
+      return new Promise((resolve, reject) => {
+        const fetchPromise = fetchFromAPI().then(res => res.json())
 
-      if (res.status !== 204) {
-        // response was found in the cache, return immediately
-        return res.json()
-      }
-    }
+        let resolved = false
 
-    // normal client side navigation, fetch from network
-    return {
-      lazy: apiURL,
-      // requestId forces useLazyProps to refetch from the server, which should be done every time
-      // getInitialProps is called, otherwise pages that use replace state to add data to the query string
-      // when state changes such as subcategory won't properly reset when the user clicks a link back
-      // to the same page without the query string
+        setTimeout(() => {
+          if (!resolved) {
+            resolved = true
+            resolve({ lazy: fetchPromise })
+          }
+        }, 50)
+
+        fetchPromise
+          .then(result => {
+            if (!resolved) {
+              resolved = true
+              resolve(result)
+            }
+          })
+          .catch(e => {
+            reject(e)
+          })
+      })
     }
   }
 }

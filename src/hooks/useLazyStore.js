@@ -49,9 +49,10 @@ export default function useLazyStore(lazyProps, additionalData = {}) {
 
     if (lazyProps.lazy) {
       updateState(state => ({ ...state, loading: true }))
-      fetch(lazyProps.lazy)
-        .then(res => res.json())
-        .then(props => updateState(state => merge({}, state, props, { loading: false })))
+
+      lazy.then(props => {
+        updateState(state => merge({}, state, props, { loading: false }))
+      })
     } else {
       if (!isInitialMount.current) {
         // there is no need to do this if we just mounted since createInitialState will return the same thing as the current state
