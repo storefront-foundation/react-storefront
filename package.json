@@ -34,6 +34,7 @@
     "build:prep": "npm run clean && npm run create-indexes && cp package.json dist",
     "build:assets": "sync-folders --type copy plugins service-worker dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
+    "docs": "mkdir -p docs/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node docs/buildDocs d.js",
     "storybook": "start-storybook -c ./.storybook"
   },
   "dependencies": {
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.8.0",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.7",
@@ -67,6 +69,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-imports": "^2.0.0",
     "create-index": "^2.5.0",
+    "documentation": "moovweb/documentation#feature/preserve-markdown",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
@@ -78,6 +81,7 @@
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.0",
+    "react-docgen": "^5.1.0",
     "react-dom": "^16.8.0",
     "sync-folders": "^2.0.0",
     "yalc": "^1.0.0-pre.34"

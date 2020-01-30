@@ -6,18 +6,27 @@ import { Fab, Fade } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const styles = () => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     zIndex: 1,
     position: 'fixed',
     bottom: 24,
     right: 16,
   },
+  /**
+   * Styles applied to the floating action button element.
+   */
   fab: {
     background: 'rgba(0,0,0,.85)',
     '&:hover': {
       background: 'rgb(0,0,0)',
     },
   },
+  /**
+   * Styles applied to the icon element.
+   */
   icon: {
     color: 'white',
   },
@@ -26,8 +35,8 @@ const styles = () => ({
 const useStyles = makeStyles(styles, { name: 'RSFBackToTop' })
 
 /**
- * A floating action buttion that appears when the user scrolls down
- * and scrolls to the top of the page when clicked.
+ * A floating action button that appears when the user scrolls down,
+ * which scrolls back to the top of the page when clicked.
  */
 export default function BackToTop({
   Icon,
@@ -74,11 +83,15 @@ export default function BackToTop({
 
 BackToTop.propTypes = {
   /**
-   * The icon to use within Fab component
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
+   * The icon to use within the `Fab` component.
    */
   Icon: PropTypes.func,
   /**
-   * value which controls where along the Y position the BackToTop component is shown
+   * Value which controls where along the Y position the `BackToTop` component is shown.
    */
   showUnderY: PropTypes.number,
   /**
@@ -87,13 +100,13 @@ BackToTop.propTypes = {
    */
   instantBehaviorUnderY: PropTypes.number,
   /**
-   * Fade in/out animation time of icon
+   * Duration of the fade in/out animation for the icon.
    */
   fadeTime: PropTypes.number,
   /**
-   * Controls size of component. Values allowed are [small, medium, large]
+   * Controls size of component.
    */
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 }
 
 BackToTop.defaultProps = {

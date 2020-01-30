@@ -6,7 +6,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import PWAContext from './PWAContext'
 
 export const styles = theme => ({
-  image: {},
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     position: 'relative',
     display: 'flex',
@@ -17,6 +19,13 @@ export const styles = theme => ({
     minHeight: 1,
     minWidth: 1,
   },
+  /**
+   * Styles applied to the image element.
+   */
+  image: {},
+  /**
+   * Styles applied to the image element when [`aspectRatio`](#prop-aspectRatio) is defined.
+   */
   fit: {
     position: 'absolute',
     top: 0,
@@ -27,6 +36,9 @@ export const styles = theme => ({
     width: '100%',
     height: '100%',
   },
+  /**
+   * Styles applied to the root element when [`contain`](#prop-contain) is `true`.
+   */
   contain: {
     '& img': {
       objectFit: 'contain',
@@ -34,6 +46,9 @@ export const styles = theme => ({
       maxWidth: '100%',
     },
   },
+  /**
+   * Styles applied to the root element when [`fill`](#prop-fill) is `true`.
+   */
   fill: {
     width: '100%',
     height: '100%',
@@ -150,29 +165,29 @@ export default function Image({
 
 Image.propTypes = {
   /**
-   * The URL for the image
+   * The URL for the image.
    */
   src: PropTypes.string,
 
   /**
-   * The URL of the image to use in case the primary image fails to load
+   * The URL of the image to use in case the primary image fails to load.
    */
   notFoundSrc: PropTypes.string,
 
   /**
-   * The ratio of height/width as a float.  For example: 1 when the height and width match,
-   * 0.5 when height is half of the width.
+   * The ratio of height/width as a float.  For example: `1` when the height and width match,
+   * `0.5` when height is half of the width.
    */
   aspectRatio: PropTypes.number,
 
   /**
-   * Set to true to apply object-fit:contain to the image so that it automatically
+   * Set to `true` to apply object-fit:contain to the image so that it automatically
    * fits within the element's height and width.
    */
   contain: PropTypes.bool,
 
   /**
-   * The same as contain, except images are stretched to fill the element's height and width.
+   * The same as `contain`, except images are stretched to fill the element's height and width.
    */
   fill: PropTypes.bool,
 
@@ -184,7 +199,7 @@ Image.propTypes = {
 
   /**
    * Sets the minimum amount of pixels the image can be scrolled out of view before it
-   * is lazy loaded.  Defaults to 100.  You must set `lazy` in order for this setting to take effect.
+   * is lazy loaded.  You must set `lazy` in order for this setting to take effect.
    */
   lazyOffset: PropTypes.number,
 }

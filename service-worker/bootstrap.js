@@ -9,9 +9,7 @@ const PREFETCH_CACHE_MISS = 412
 // will show a warning and chrome console will show a fetch failure.
 const CLIENT_CACHE_MISS = 204
 
-let runtimeCacheOptions = {},
-  baseCacheName,
-  ssrCacheName
+let runtimeCacheOptions = {}
 let abortControllers = new Set()
 let toResume = new Set()
 let deployTime, prefetchFullRampUpTime
@@ -34,14 +32,7 @@ try {
  * @param {Object} options.maxEntries The max number of entries to store in the cache
  * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
  */
-function configureRuntimeCaching({
-  cacheName = 'runtime',
-  maxEntries = 200,
-  maxAgeSeconds = 60 * 60 * 24,
-} = {}) {
-  baseCacheName = cacheName
-  ssrCacheName = `${cacheName}-html-{{version}}`
-
+function configureRuntimeCaching({ maxEntries = 200, maxAgeSeconds = 60 * 60 * 24 } = {}) {
   console.log(
     `[react-storefront service worker] configureRuntimeCaching, maxEntries: ${maxEntries}, maxAgeSeconds: ${maxAgeSeconds}`,
   )
@@ -59,7 +50,7 @@ function configureRuntimeCaching({
 configureRuntimeCaching()
 
 /**
- * Fetches and caches all links with moov-rel="prefetch"
+ * Fetches and caches all links with data-rsf-prefetch="prefetch"
  * @param {Object} response
  */
 function precacheLinks(response) {
@@ -75,23 +66,6 @@ function precacheLinks(response) {
 }
 
 /**
- * Controls the ramp-up of prefetching after a deploy based on the prefetchRampUpTime injected in
- * the webpack client build
- */
-function isPrefetchRampedUp() {
-  const timeSinceDeploy = new Date().getTime() - deployTime
-
-  if (timeSinceDeploy >= prefetchFullRampUpTime) {
-    return true
-  } else {
-    // Probabilistically ramp up prefetching based on how close to prefetchFullRampUpTime we are.
-    // As we get closer to prefetchFullRampUpTime, which indicates the time from deploy when we always prefetch,
-    // this will return true progressively more often (linear)
-    return timeSinceDeploy / prefetchFullRampUpTime > Math.random()
-  }
-}
-
-/**
  * Fetches and caches the specified path.
  * @param {Object} options A URL path
  * @param {String} options.path A URL path
@@ -99,19 +73,11 @@ function isPrefetchRampedUp() {
  * @param {Boolean} cacheLinks Set to true to fetch and cache all links in the HTML returned
  */
 function cachePath({ path, apiVersion } = {}, cacheLinks) {
-  const cacheName = getAPICacheName(apiVersion, path)
+  const cacheName = getAPICacheName(apiVersion)
 
   return caches.open(cacheName).then(cache => {
     cache.match(path).then(match => {
       if (!match) {
-        if (!isPrefetchRampedUp()) {
-          console.log(
-            '[react-storefront service worker]',
-            `skipping prefetch of ${path}, not yet ramped up.`,
-          )
-          return
-        }
-
         console.log('[react-storefront service worker]', 'prefetching', path)
 
         // Create an abort controller so we can abort the prefetch if a more important
@@ -123,15 +89,7 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         abortControllers.add(abort)
 
         const headers = {
-          'x-rsf-prefetch': '1',
-        }
-
-        if (
-          '{{allowPrefetchThrottling}}' === 'true' &&
-          // never throttle the app shell because it's only prefetched and never hit directly
-          path !== appShellPath
-        ) {
-          headers['X-Moov-If-Match'] = 'cache-hit'
+          'x-prefetch': '1',
         }
 
         // We connect the fetch with the abort controller here with the signal
@@ -217,7 +175,7 @@ function addToCache(cache, path, data, contentType) {
  * @param {String} options.apiVersion The version of the api that the client is running.
  */
 function cacheState({ path, cacheData, apiVersion } = {}) {
-  const cacheName = getAPICacheName(apiVersion, path)
+  const cacheName = getAPICacheName(apiVersion)
 
   return caches.open(cacheName).then(cache => {
     let type = 'text/html'
@@ -244,8 +202,6 @@ self.addEventListener('message', function(event) {
       cacheState(event.data)
     } else if (action === 'configure-runtime-caching') {
       configureRuntimeCaching(event.data.options)
-    } else if (action === 'remove-old-caches') {
-      removeOldRuntimeCaches(event.data.apiVersion)
     } else if (action === 'abort-prefetches') {
       abortPrefetches()
     } else if (action === 'resume-prefetches') {
@@ -254,24 +210,6 @@ self.addEventListener('message', function(event) {
   }
 })
 
-let cachesCleared = false
-
-/**
- * Deletes all runtime caches except the one for the current api version
- * @param {String} currentVersion
- */
-function removeOldRuntimeCaches(currentVersion) {
-  const apiCacheName = getAPICacheName(currentVersion, '.json')
-
-  // delete old caches
-  caches.keys().then(keys => {
-    for (let key of keys) {
-      if (!key.startsWith('workbox-precache') && key !== apiCacheName && key !== ssrCacheName)
-        caches.delete(key)
-    }
-  })
-}
-
 const isApiRequest = path => path.match(/^\/api\//)
 
 /**
@@ -279,34 +217,36 @@ const isApiRequest = path => path.match(/^\/api\//)
  * @param {String} apiVersion The api version
  * @return {String} A cache name
  */
-function getAPICacheName(apiVersion, path) {
-  if (isApiRequest(path) && apiVersion) {
-    return `${baseCacheName}-json-${apiVersion}`
-  } else {
-    return ssrCacheName
-  }
+function getAPICacheName(apiVersion) {
+  return `runtime-${apiVersion}`
 }
 
 self.addEventListener('install', event => {
-  if (!cachesCleared) {
-    cachesCleared = true
+  // Deletes all runtime caches except the one for the current api version
+  // We do this since we create a new versioned cache name every time we release
+  // a new version of the app.  So if we didn't delete the old ones, we would just keep
+  // using up local storage
+  caches.keys().then(keys => {
+    for (let key of keys) {
+      if (!key.startsWith('workbox-precache')) caches.delete(key)
+    }
+  })
 
-    // Cache non-amp version of pages when users land on AMP page
-    clients
-      .matchAll({
-        includeUncontrolled: true,
-      })
-      .then(allClients => {
-        allClients
-          .map(client => {
-            const url = new URL(client.url)
-            return url.pathname + url.search
-          })
-          .filter(path => path.match(/\.amp$/))
-          .map(path => path.replace('.amp', ''))
-          .forEach(path => cachePath({ path }, true))
-      })
-  }
+  // Cache non-amp version of pages when users land on AMP page
+  clients
+    .matchAll({
+      includeUncontrolled: true,
+    })
+    .then(allClients => {
+      allClients
+        .map(client => {
+          const url = new URL(client.url)
+          return url.pathname + url.search
+        })
+        .filter(path => path.match(/\.amp$/))
+        .map(path => path.replace('.amp', ''))
+        .forEach(path => cachePath({ path }, true))
+    })
 })
 
 /**
@@ -324,7 +264,7 @@ function isSecure(context) {
  * @return {Boolean}
  */
 function isStaticAsset(context) {
-  return context.url.pathname.startsWith('/_next/static/')
+  return context.url.pathname.startsWith('/pwa/')
 }
 
 /**
@@ -382,7 +322,7 @@ function offlineResponse(apiVersion, context) {
     })
   } else {
     // If not API request, find and send app shell
-    const cacheName = getAPICacheName(apiVersion, appShellPath)
+    const cacheName = getAPICacheName(apiVersion)
     const req = new Request(appShellPath)
     return caches.open(cacheName).then(cache => cache.match(req))
   }
@@ -397,21 +337,32 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     }
 
     const headers = event.request.headers
-    const apiVersion = headers.get('x-rsf-api-version') // set by fromServer
-    const cacheName = getAPICacheName(apiVersion, url.pathname)
+    const apiVersion = headers.get('x-rsf-api-version')
+    const cacheName = getAPICacheName(apiVersion)
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
 
-    if (cacheOptions.cacheName === ssrCacheName && !shouldServeHTMLFromCache(url, event)) {
-      return new workbox.strategies.NetworkOnly(cacheOptions)
-        .handle(context)
-        .catch(() => offlineResponse(apiVersion, context))
-    } else {
-      // Check the cache for all routes. If the result is not found, get it from the network.
-      return new workbox.strategies.CacheOnly(cacheOptions)
-        .handle(context)
-        .catch(e => new workbox.strategies.NetworkOnly().handle(context))
-        .catch(() => offlineResponse(apiVersion, context))
-    }
+    // Check the cache for all routes. If the result is not found, get it from the network.
+    return new workbox.strategies.CacheOnly(cacheOptions)
+      .handle(context)
+      .catch(() =>
+        new workbox.strategies.NetworkOnly().handle(context).then(apiRes => {
+          // 1. withReactStorefront should create a api_version value, which can just be the timestamp of the build
+          // 2. it provide that to client and server build as a webpack define
+          // 3. we should monkey-patch xhr to send x-rsf-api-version as a request header on all requests
+
+          if (apiRes.headers.get('x-rsf-cache-control') && apiVersion) {
+            const path = url.pathname
+
+            caches.open(cacheName).then(cache => {
+              cache.put(path, apiRes)
+              console.log('[react-storefront service worker]', `caching ${path}`)
+            })
+          }
+
+          return apiRes.clone()
+        }),
+      )
+      .catch(() => offlineResponse(apiVersion, context))
   } catch (e) {
     // if anything goes wrong, fallback to network
     // this is critical - if there is a bug in the service worker code, the whole site can stop working

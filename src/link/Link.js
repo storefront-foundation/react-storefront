@@ -11,8 +11,8 @@ import withDefaultHandler from '../utils/withDefaultHandler'
  * Use this component for all Links in your React Storefront app.  You can
  * pass props to display on the next page while data is loading from the server
  * using the `pageData` prop. This component accepts all props that would
- * normally be passed to a Next.js `Link` component.  All other props are spread
- * to the underlying HTML anchor element.
+ * normally be passed to a [Next.js `Link` component](https://nextjs.org/docs/api-reference/next/link).
+ * All other props are spread to the underlying HTML anchor element.
  *
  * Example:
  *
@@ -24,17 +24,7 @@ import withDefaultHandler from '../utils/withDefaultHandler'
  * </Link>
  * ```
  */
-const Link = ({
-  as,
-  href,
-  prefetch,
-  prefetchURL,
-  pageData,
-  onClick,
-  anchorProps,
-  children,
-  ...other
-}) => {
+const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ...other }) => {
   const ref = useRef(null)
   const linkPageData = useContext(LinkContext)
 
@@ -86,7 +76,7 @@ const Link = ({
 
 Link.propTypes = {
   /**
-   * The URL path for the underlying anchor element's href.  This is required for dynamic routes.
+   * The URL path for the underlying anchor element's `href`.  This is required for dynamic routes.
    */
   as: PropTypes.string,
 
@@ -103,7 +93,7 @@ Link.propTypes = {
   prefetch: PropTypes.oneOf(['always', 'visible', false]),
 
   /**
-   * The URL to prefetch.  If omitted, /api/{href} will be prefetched.
+   * The URL to prefetch.  If omitted, `/api/{href}` will be prefetched.
    */
   prefetchURL: PropTypes.string,
 
@@ -113,6 +103,16 @@ Link.propTypes = {
    * is fetched from the server.
    */
   pageData: PropTypes.object,
+
+  /**
+   * An optional function to run when the Link is clicked.
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * Content children of the link element.
+   */
+  children: PropTypes.node,
 }
 
 export default Link

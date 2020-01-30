@@ -7,6 +7,9 @@ import { useAmp } from 'next/amp'
 import PWAContext from './PWAContext'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element when user is not `offline`.
+   */
   root: {
     height: 64,
     boxSizing: 'content-box',
@@ -14,22 +17,34 @@ export const styles = theme => ({
     zIndex: theme.zIndex.modal + 10,
   },
 
+  /**
+   * Styles applied to the root element when Amp is used.
+   */
   withAmp: {
     zIndex: theme.zIndex.amp.modal + 1,
   },
 
+  /**
+   * Styles applied to the offline warning element.
+   */
   offline: {
     textAlign: 'center',
     backgroundColor: '#f34c4c',
     color: 'white',
   },
 
-  toolBar: {
+  /**
+   * Styles applied to the `Toolbar` element.
+   */
+  toolbar: {
     height: '64px',
     maxWidth: theme.maxWidth,
     flex: 1,
   },
 
+  /**
+   * Styles applied to the element wrapped around the `Toolbar`.
+   */
   wrap: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     position: 'absolute',
@@ -42,14 +57,24 @@ export const styles = theme => ({
     justifyContent: 'center',
   },
 
+  /**
+   * Styles applied to the `Toolbar` wrapper when the `AppBar` is unstuck.
+   */
   unstuck: {
     transform: 'translateY(-100%)',
   },
 
+  /**
+   * Styles applied to the `Toolbar` wrapper element when the user has scrolled and the `AppBar`
+   * will animate back into place.
+   */
   animate: {
     transition: 'transform .15s ease-in',
   },
 
+  /**
+   * Styles applied to the `Toolbar` wrapper element the user has scrolled and the `AppBar` is hidden.
+   */
   hidden: {
     position: 'fixed',
     zIndex: theme.zIndex.modal + 10,
@@ -59,12 +84,11 @@ export const styles = theme => ({
     right: 0,
   },
 
+  /**
+   * Styles applied to the `Toolbar` wrapper element when [`fixed`](#prop-fixed) is `true`.
+   */
   fixed: {
     position: 'fixed',
-  },
-
-  link: {
-    textDecoration: 'none',
   },
 })
 
@@ -144,7 +168,7 @@ export default function AppBar({ classes, children, fixed, offlineWarning }) {
             [classes.animate]: animate && window.scrollY > 0,
           })}
         >
-          <Toolbar disableGutters classes={{ root: classes.toolBar }}>
+          <Toolbar disableGutters classes={{ root: classes.toolbar }}>
             {items}
           </Toolbar>
         </div>
@@ -155,17 +179,17 @@ export default function AppBar({ classes, children, fixed, offlineWarning }) {
 
 AppBar.propTypes = {
   /**
-   * CSS classes
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 
   /**
-   * Fixed AppBar
+   * Set as `true` if the AppBar should be fixed position.
    */
   fixed: PropTypes.bool,
 
   /**
-   * String or Element to render within the offline warning container at the top of the app
+   * String or Element to render within the offline warning container at the top of the app.
    */
   offlineWarning: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 }
