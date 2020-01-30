@@ -7,9 +7,15 @@ import { makeStyles } from '@material-ui/core/styles'
  * A flex container.  All additional props are spread to the style of the underlying div.
  */
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     display: 'flex',
   },
+  /**
+   * Styles applied to the root element if [`split`](#prop-split) is `true`.
+   */
   split: {
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -42,12 +48,12 @@ export default function Box({
 
 Box.propTypes = {
   /**
-   * CSS classes to apply
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 
   /**
-   * True to split items on opposite sides of the box by applying justify-content: 'space-between'
+   * If `true`, split items on opposite sides of the box by applying justify-content: 'space-between'
    */
   split: PropTypes.bool,
 
@@ -88,22 +94,22 @@ export function Hbox(props) {
 
 Hbox.propTypes = {
   /**
-   * CSS classes to apply
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 
   /**
-   * True to split items on opposite sides of the box by applying justify-content: 'space-between'
+   * True to split items on opposite sides of the box by applying `justify-content: 'space-between'`.
    */
   split: PropTypes.bool,
 
   /**
-   * CSS value for align-items
+   * CSS value for `align-items` style.
    */
   align: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'stretch', 'baseline']),
 
   /**
-   * CSS value for justify-content
+   * CSS value for `justify-content` style
    */
   justify: PropTypes.oneOf([
     'flex-start',
@@ -134,17 +140,17 @@ export function Vbox(props) {
 
 Vbox.propTypes = {
   /**
-   * CSS classes to apply
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 
   /**
-   * CSS value for align-items
+   * CSS value for `align-items` style.
    */
   align: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'stretch', 'baseline']),
 
   /**
-   * CSS value for justify-content
+   * CSS value for `justify-content` style.
    */
   justify: PropTypes.oneOf([
     'flex-start',

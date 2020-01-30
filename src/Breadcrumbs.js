@@ -7,6 +7,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   breadcrumbs: {
     backgroundColor: '#F4F2F1',
     padding: '12px 0',
@@ -17,6 +20,9 @@ export const styles = theme => ({
     },
   },
 
+  /**
+   * Styles applied to the separators.
+   */
   separator: {
     height: '12px',
     position: 'relative',
@@ -24,6 +30,9 @@ export const styles = theme => ({
     width: '16px',
   },
 
+  /**
+   * Styles applied to the currently active breadcrumb's element.
+   */
   current: {
     fontWeight: 'bold',
     color: theme.palette.text.primary,
@@ -69,7 +78,19 @@ export default function Breadcrumbs({ items, classes }) {
 
 Breadcrumbs.propTypes = {
   /**
-   * The items to display, each with url, text, and state.
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
-  items: PropTypes.arrayOf(PropTypes.objectOf),
+  classes: PropTypes.object,
+
+  /**
+   * The items to display, each with text, [`href`](/apiReference/link%2fLink#prop-href), and
+   * [`as`](/apiReference/link%2fLink#props-as) values.
+   */
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string,
+      as: PropTypes.string,
+      href: PropTypes.string,
+    }),
+  ),
 }

@@ -1,5 +1,5 @@
 /**
- * Observes the visibility of all img elements inside the specified element
+ * Observes the visibility of all `img` elements inside the specified element
  * that match the specified selector. When an image becomes visible, the `data-src`
  * attribute is copied to `src`.
  *

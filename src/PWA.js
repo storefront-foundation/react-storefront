@@ -7,6 +7,9 @@ import LinkContextProvider from './link/LinkContextProvider'
 import useSimpleNavigation from './router/useSimpleNavigation'
 import './hooks/useTraceUpdate'
 import './profile'
+import sendApiVersionOnAllRequests from './utils/sendApiVersionOnAllRequests'
+
+sendApiVersionOnAllRequests()
 
 export const styles = theme => ({
   '@global': {

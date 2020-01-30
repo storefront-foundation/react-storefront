@@ -7,6 +7,9 @@ import { AddCircleOutline as Icon } from '@material-ui/icons'
 import clsx from 'clsx'
 
 const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     position: 'absolute',
     bottom: 30,
@@ -15,6 +18,9 @@ const styles = theme => ({
     justifyContent: 'center',
     width: '100%',
   },
+  /**
+   * Styles applied to the content wrapper element.
+   */
   wrap: {
     borderRadius: 25,
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
@@ -24,19 +30,34 @@ const styles = theme => ({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  /**
+   * Styles applied to the magnification icon element.
+   */
   icon: {
     height: 16,
     width: 16,
     color: theme.palette.grey[300],
   },
+  /**
+   * Styles applied to the elements containing each of the text captions.
+   */
   text: {
     marginLeft: 5,
     color: theme.palette.grey[300],
     position: 'relative',
     top: 1,
   },
+  /**
+   * Styles applied to the root element when [`over`](#prop-over) is `true`.
+   */
   over: {},
+  /**
+   * Styles applied to the root element when [`zoomDisabled`](#prop-zoomDisabled) is `true`.
+   */
   zoomDisabled: {},
+  /**
+   * Styles applied to the root element when [`expandDisabled`](#prop-expandDisabled) is `true`.
+   */
   expandDisabled: {
     // hide the whole component when:
     // - both zoom and expand are disabled
@@ -48,6 +69,9 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  /**
+   * Styles applied to the element containing the [zoomTextDesktop](#prop-zoomTextDesktop) caption.
+   */
   zoomTextDesktop: {
     display: 'block',
     // hide zoom text when:
@@ -61,12 +85,18 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  /**
+   * Styles applied to the element containing the [expandTextMobile](#prop-expandTextMobile) caption.
+   */
   expandTextMobile: {
     display: 'none',
     '@media (hover:none)': {
       display: 'block',
     },
   },
+  /**
+   * Styles applied to the element containing the [expandTextDesktop](#prop-expandTextDesktop) caption.
+   */
   expandTextDesktop: {
     display: 'none',
 
@@ -81,6 +111,10 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFMagnifyHint' })
 
+/**
+ * An element overlaid on a [`Carousel`](/apiReference/carousel%f2Carousel) that displays a tip for a
+ * user to hover/click the Carousel in order to zoom in.
+ */
 export default function MagnifyHint({
   zoomTextDesktop,
   expandTextMobile,
@@ -119,12 +153,44 @@ export default function MagnifyHint({
 }
 
 MagnifyHint.propTypes = {
-  zoomTextDesktop: PropTypes.string,
-  expandTextMobile: PropTypes.string,
-  expandTextDesktop: PropTypes.string,
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * CSS class to apply to the root element.
+   */
   className: PropTypes.string,
+
+  /**
+   * The text displayed to tell the user to hover to zoom.
+   */
+  zoomTextDesktop: PropTypes.string,
+
+  /**
+   * The text displayed to tell a mobile user to tap to expand.
+   */
+  expandTextMobile: PropTypes.string,
+
+  /**
+   * The text displayed to tell a desktop user to click to expand.
+   */
+  expandTextDesktop: PropTypes.string,
+
+  /**
+   * If `true`, the Carousel is currently being hovered upon.
+   */
   open: PropTypes.bool,
+
+  /**
+   * If `true`, zooming is disabled and the hint for zooming is not shown.
+   */
   disableZoom: PropTypes.bool,
+
+  /**
+   * If `true`, expanding is disabled and the hint for expanding is not shown.
+   */
   disableExpand: PropTypes.bool,
 }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 /**
- * The same as React's useState, but automatically updated when the specified prop value changes.
+ * The same as React's `useState`, but automatically updated when the specified prop value changes.
  * @param {Object} prop
  * @return {Array} The same as what's returned from React's useState hook.
  */
