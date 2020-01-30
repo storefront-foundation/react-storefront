@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-unfetch'
-import { waitForServiceWorker } from '../serviceWorker'
 
 /**
  * Creates a `getInitialProps` props function that fetches props from an API endpoint. Use this
@@ -46,26 +45,25 @@ import { waitForServiceWorker } from '../serviceWorker'
  * ```
  *
  * @param {Function} createApiUrl A function to use to create the URL
+ * @param {Object} options
+ * @param {Object} options.showSkeletonsAfterMS The max duration to wait before resolving so that the page
+ *  component will be rendered and can display a skeleton
  */
-export default function fetchProps(createApiUrl) {
+export default function fetchProps(createApiUrl, { showSkeletonsAfterMS = 50 } = {}) {
   return options => {
     const server = typeof window === 'undefined'
     const host = server ? options.req.headers['host'] : ''
     const protocol = server ? (host.startsWith('localhost') ? 'http://' : 'https://') : ''
     const apiURL = `${protocol}${host}${createApiUrl(options)}`
-    return createLazyProps(options.asPath, apiURL, options.rsf_app_shell === '1')
+
+    return createLazyProps(options.asPath, apiURL, {
+      shell: options.rsf_app_shell === '1',
+      showSkeletonsAfterMS,
+    })
   }
 }
 
-let serviceWorkerReady = false
-
-if (typeof window !== 'undefined') {
-  waitForServiceWorker().then(() => {
-    serviceWorkerReady = true
-  })
-}
-
-async function createLazyProps(as, apiURL, shell) {
+async function createLazyProps(as, apiURL, { shell, showSkeletonsAfterMS = 50 } = {}) {
   if (typeof window === 'undefined') {
     if (apiURL.indexOf('?') === -1) {
       apiURL = apiURL + '?_includeAppData=1'
@@ -109,7 +107,7 @@ async function createLazyProps(as, apiURL, shell) {
             resolved = true
             resolve({ lazy: fetchPromise })
           }
-        }, 50)
+        }, showSkeletonsAfterMS)
 
         fetchPromise
           .then(result => {
