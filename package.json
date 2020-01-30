@@ -136,12 +136,18 @@
       "./node_modules/jest-enzyme/lib/index.js"
     ],
     "collectCoverage": true,
-    "collectCoverageFrom": [
+    "forceCoverageMatch": [
       "./src/**/*.{js,jsx}",
       "!**/index.js"
     ],
     "moduleNameMapper": {
       "react-storefront/(.*)": "<rootDir>/src/$1"
-    }
+    },
+    "roots": [
+      "test"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
