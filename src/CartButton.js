@@ -43,7 +43,6 @@ export default function CartButton({
   classes,
   href,
   as,
-  server,
   onClick,
   icon,
   quantity,
@@ -60,7 +59,6 @@ export default function CartButton({
       className={clsx(classes.link, linkProps.className)}
       href={href}
       as={as}
-      server={server}
       onClick={onClick}
     >
       <ToolbarButton {...buttonProps}>
@@ -81,11 +79,6 @@ CartButton.propTypes = {
    * The url path to the cart page.
    */
   href: PropTypes.string,
-
-  /**
-   * Set to `true` to force server-side navigation.
-   */
-  server: PropTypes.bool,
 
   /**
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
@@ -115,7 +108,6 @@ CartButton.propTypes = {
 
 CartButton.defaultProps = {
   href: '/cart',
-  server: false,
   badgeProps: {
     color: 'primary',
   },

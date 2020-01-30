@@ -112,8 +112,6 @@ function CarouselThumbnails({ thumbnails, selected, setSelected, classes, classN
   )
 }
 
-export default React.memo(CarouselThumbnails)
-
 CarouselThumbnails.propTypes = {
   /**
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
@@ -145,3 +143,5 @@ CarouselThumbnails.propTypes = {
     }),
   ),
 }
+
+export default React.memo(CarouselThumbnails)
