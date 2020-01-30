@@ -76,7 +76,7 @@ async function createLazyProps(as, apiURL, shell) {
 
   const doFetch = (onlyHit = false) => {
     const headers = {
-      'x-rsf-api-version': process.env.RSF_API_VERSION,
+      'x-rsf-api-version': process.env.RSF_API_VERSION || '1', // remove later
     }
 
     if (onlyHit) {
@@ -84,7 +84,6 @@ async function createLazyProps(as, apiURL, shell) {
     }
 
     return fetch(apiURL, {
-      cache: 'force-cache',
       headers,
     })
   }
