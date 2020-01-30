@@ -6,6 +6,7 @@ import MenuCard from 'react-storefront/menu/MenuCard'
 import MenuFooter from 'react-storefront/menu/MenuFooter'
 import MenuHeader from 'react-storefront/menu/MenuHeader'
 import { ListItem } from '@material-ui/core'
+import { ChevronLeft } from '@material-ui/icons'
 
 describe('Menu', () => {
   let wrapper
@@ -158,9 +159,7 @@ describe('Menu', () => {
         }}
       />,
     )
-    expect(wrapper.find('.MuiExpansionPanelDetails-root a .MuiListItemText-root').text()).toBe(
-      'bar',
-    )
+    expect(wrapper.find(ListItem).text()).toBe('bar')
   })
 
   it('should render back icon with in secondary menu', () => {
@@ -194,9 +193,9 @@ describe('Menu', () => {
       />,
     )
     wrapper
-      .find('.MuiListItem-root')
+      .find(ListItem)
       .at(0)
       .simulate('click')
-    expect(wrapper.find('.MuiSvgIcon-root').length).toBeGreaterThan(1)
+    expect(wrapper.find(ChevronLeft).length).toBe(1)
   })
 })
