@@ -28,23 +28,37 @@ export default function useLazyStore(lazyProps, additionalData = {}) {
   const [state, setState] = useState(createInitialState)
   const stateRef = useRef(state)
 
-  useEffect(() => {
-    stateRef.current = state
-  }, [state])
+  const updateState = finalState => {
+    if (typeof finalState !== 'function') {
+      stateRef.current = finalState
+
+      return setState(finalState)
+    } else {
+      return setState(state => {
+        stateRef.current = finalState(state)
+
+        return stateRef.current
+      })
+    }
+  }
 
   useEffect(() => {
+    if (stateRef.current.loading && !isInitialMount.current) {
+      return
+    }
+
     if (lazyProps.lazy) {
-      setState(state => ({ ...state, loading: true }))
+      updateState(state => ({ ...state, loading: true }))
       fetch(lazyProps.lazy)
         .then(res => res.json())
-        .then(props => setState(state => merge({}, state, props, { loading: false })))
+        .then(props => updateState(state => merge({}, state, props, { loading: false })))
     } else {
       if (!isInitialMount.current) {
         // there is no need to do this if we just mounted since createInitialState will return the same thing as the current state
-        setState(createInitialState)
+        updateState(createInitialState())
       }
     }
-  }, [lazyProps.lazy, lazyProps.requestId])
+  }, [lazyProps])
 
   useEffect(() => {
     isInitialMount.current = false
@@ -80,7 +94,7 @@ export default function useLazyStore(lazyProps, additionalData = {}) {
     goingBack.current = false
   }, [])
 
-  return [state, setState]
+  return [state, updateState]
 }
 
 /**
