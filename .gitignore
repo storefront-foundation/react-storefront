@@ -16,6 +16,9 @@
 /build
 /dist
 
+# docs
+/docs/build
+
 # misc
 .DS_Store
 .env*

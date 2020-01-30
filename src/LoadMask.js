@@ -5,6 +5,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { CircularProgress } from '@material-ui/core'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     position: 'absolute',
     top: 0,
@@ -17,6 +20,9 @@ export const styles = theme => ({
     background: theme.palette.background.default,
     zIndex: 1,
   },
+  /**
+   * Styles applied to the root element when [`fullscreen`](#prop-fullscreen) is `true`.
+   */
   fullscreen: {
     height: `calc(100vh - ${theme.loadMaskOffsetTop}px)`,
     bottom: 'initial',
@@ -27,13 +33,22 @@ export const styles = theme => ({
       opacity: 0.8,
     },
   },
+  /**
+   * Styles applied to the root element when [`transparent`](#prop-transparent) is `true`.
+   */
   transparent: {
     backgroundColor: 'rgba(255,255,255,0.5)',
   },
+  /**
+   * Styles applied to the root element when [`align`](#prop-align) is `'top'`.
+   */
   alignTop: {
     alignItems: 'flex-start',
     paddingTop: '200px',
   },
+  /**
+   * Styles applied to the root element when [`show`](#prop-show) is `true`.
+   */
   show: {
     display: 'flex',
   },
@@ -42,7 +57,7 @@ export const styles = theme => ({
 const useStyles = makeStyles(styles, { name: 'RSFLoadMask' })
 
 /**
- * The load mask displays when fetching data from the server.
+ * A load mask to display when fetching data from the server.
  */
 export default function LoadMask({
   classes,
@@ -71,9 +86,7 @@ export default function LoadMask({
   return (
     <div
       style={style}
-      className={clsx({
-        [classes.root]: true,
-        [className]: className != null,
+      className={clsx(className, classes.root, {
         [classes.show]: show !== false,
         [classes.fullscreen]: fullscreen,
         [classes.transparent]: transparent,
@@ -87,30 +100,32 @@ export default function LoadMask({
 
 LoadMask.propTypes = {
   /**
-   * Set to true to display the load mask, otherwise it will be hidden.
-   * Defaults to false.
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * If defined, `true` will display the load mask, while `false` will be hide it.
    */
   show: PropTypes.bool,
 
   /**
-   * Set to true to toggle the overflow style on the body when showing.
-   * Defaults to false
+   * Set to `true` to toggle the overflow style on the body when showing.
    */
   fullscreen: PropTypes.bool,
 
   /**
-   * Set to true to show partially background through the load mask
+   * Set to `true` to show partially background through the load mask
    */
   transparent: PropTypes.bool,
 
   /**
-   * Set to top to show the spinner near the top. Defaults to 'center'
+   * Set to `'top'` to show the spinner near the top.
    */
   align: PropTypes.oneOf(['center', 'top']),
 }
 
 LoadMask.defaultProps = {
-  show: null,
   fullscreen: false,
   transparent: false,
   align: 'center',

@@ -17,7 +17,7 @@ export default function ResponsiveTiles(props) {
 
 ResponsiveTiles.propTypes = {
   /**
-   * Whether to automatically scroll to the first new tile when the
+   * If `true`, automatically scroll to the first new tile when the
    * number of tiles is increased.
    */
   autoScrollToNewTiles: PropTypes.bool,
@@ -33,13 +33,17 @@ ResponsiveTiles.propTypes = {
    *    xl: 5
    *  }}
    * ```
-   *
-   * The amounts shown in the example above are the defaults.
    */
-  cols: PropTypes.object,
+  cols: PropTypes.shape({
+    xs: PropTypes.number,
+    sm: PropTypes.number,
+    md: PropTypes.number,
+    lg: PropTypes.number,
+    xl: PropTypes.number,
+  }),
 
   /**
-   * The spacing between the tiles in theme spacing units. Defaults to 1
+   * The spacing between the tiles in theme spacing units.
    */
   spacing: PropTypes.number,
 }
