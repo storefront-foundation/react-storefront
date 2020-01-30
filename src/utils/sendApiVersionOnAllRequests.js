@@ -7,6 +7,7 @@ export default function sendApiVersionOnAllRequests() {
   if (typeof XMLHttpRequest !== 'undefined') {
     const open = XMLHttpRequest.prototype.open
 
+    //TODO Not working
     XMLHttpRequest.prototype.open = function() {
       const res = open.apply(this, arguments)
 
