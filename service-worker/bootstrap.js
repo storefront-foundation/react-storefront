@@ -89,7 +89,7 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
         abortControllers.add(abort)
 
         const headers = {
-          'x-prefetch': '1',
+          'x-rsf-prefetch': '1',
         }
 
         // We connect the fetch with the abort controller here with the signal
