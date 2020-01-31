@@ -34,3 +34,5 @@ yarn-error.log*
 
 # Index files are built automatically by create-index
 src/**/index.js
+
+.vscode
