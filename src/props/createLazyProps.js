@@ -15,7 +15,6 @@
  *
  * ```js
  * import useLazyState from 'react-storefront/hooks/useLazyState'
- * import fetchProps from 'react-storefront/props/fetchProps'
  * import fetchFromAPI from 'react-storefront/props/fetchFromAPI'
  *
  * function Product(lazyProps) {
