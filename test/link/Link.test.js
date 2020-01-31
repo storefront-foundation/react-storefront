@@ -19,7 +19,7 @@ describe('Link', () => {
     wrapper.unmount()
   })
 
-  it('should forward pageData to useLazyStore', () => {
+  it('should forward pageData to useLazyState', () => {
     const ref = createRef(null)
 
     const product = {

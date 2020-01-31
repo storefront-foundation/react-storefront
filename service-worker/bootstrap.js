@@ -50,7 +50,7 @@ function configureRuntimeCaching({ maxEntries = 200, maxAgeSeconds = 60 * 60 * 2
 configureRuntimeCaching()
 
 /**
- * Fetches and caches all links with moov-rel="prefetch"
+ * Fetches and caches all links with data-rsf-prefetch="prefetch"
  * @param {Object} response
  */
 function precacheLinks(response) {
@@ -66,23 +66,6 @@ function precacheLinks(response) {
 }
 
 /**
- * Controls the ramp-up of prefetching after a deploy based on the prefetchRampUpTime injected in
- * the webpack client build
- */
-function isPrefetchRampedUp() {
-  const timeSinceDeploy = new Date().getTime() - deployTime
-
-  if (timeSinceDeploy >= prefetchFullRampUpTime) {
-    return true
-  } else {
-    // Probabilistically ramp up prefetching based on how close to prefetchFullRampUpTime we are.
-    // As we get closer to prefetchFullRampUpTime, which indicates the time from deploy when we always prefetch,
-    // this will return true progressively more often (linear)
-    return timeSinceDeploy / prefetchFullRampUpTime > Math.random()
-  }
-}
-
-/**
  * Fetches and caches the specified path.
  * @param {Object} options A URL path
  * @param {String} options.path A URL path
@@ -95,14 +78,6 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
   return caches.open(cacheName).then(cache => {
     cache.match(path).then(match => {
       if (!match) {
-        if (!isPrefetchRampedUp()) {
-          console.log(
-            '[react-storefront service worker]',
-            `skipping prefetch of ${path}, not yet ramped up.`,
-          )
-          return
-        }
-
         console.log('[react-storefront service worker]', 'prefetching', path)
 
         // Create an abort controller so we can abort the prefetch if a more important
@@ -115,14 +90,6 @@ function cachePath({ path, apiVersion } = {}, cacheLinks) {
 
         const headers = {
           'x-rsf-prefetch': '1',
-        }
-
-        if (
-          '{{allowPrefetchThrottling}}' === 'true' &&
-          // never throttle the app shell because it's only prefetched and never hit directly
-          path !== appShellPath
-        ) {
-          headers['X-Moov-If-Match'] = 'cache-hit'
         }
 
         // We connect the fetch with the abort controller here with the signal
@@ -373,47 +340,29 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     const apiVersion = headers.get('x-rsf-api-version')
     const cacheName = getAPICacheName(apiVersion)
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
-    const onlyHit = headers.get('x-rsf-client-if') === 'cache-hit'
 
-    if (onlyHit) {
-      // 1. The user clicks a link to initial a client-side navigation
-      // 2. Next.js router runs, finds the corresponding page component and calls getInitialProps
-      // 3. fetchProps makes a fetch request with x-rsf-client-if: cache-hit.
-      // 4. If the URL is in the cache, we return the cached response, otherwise we return a 204 status
-      // 5. If fetchProps receives a 204, it returns a props object like { lazy: (url) }. This indicates that the component should display a skeleton
-      // 6. useLazyStore will fetch the lazy URL from the network
-      // 7. The followup request will be intercepted by the service worker and fall to the else block below
-      return new workbox.strategies.CacheOnly(cacheOptions).handle(context).catch(res => {
-        console.log('[service-worker]', 'returning 204')
-        return new Response(null, {
-          status: CLIENT_CACHE_MISS,
-        })
-      })
-    } else {
-      // see notes on step 7 above
-      // Check the cache for all routes. If the result is not found, get it from the network.
-      return new workbox.strategies.CacheOnly(cacheOptions)
-        .handle(context)
-        .catch(() =>
-          new workbox.strategies.NetworkOnly().handle(context).then(apiRes => {
-            // 1. withReactStorefront should create a api_version value, which can just be the timestamp of the build
-            // 2. it provide that to client and server build as a webpack define
-            // 3. we should monkey-patch xhr to send x-moov-api-version as a request header on all requests
+    // Check the cache for all routes. If the result is not found, get it from the network.
+    return new workbox.strategies.CacheOnly(cacheOptions)
+      .handle(context)
+      .catch(() =>
+        new workbox.strategies.NetworkOnly().handle(context).then(apiRes => {
+          // 1. withReactStorefront should create a api_version value, which can just be the timestamp of the build
+          // 2. it provide that to client and server build as a webpack define
+          // 3. we should monkey-patch xhr to send x-rsf-api-version as a request header on all requests
 
-            if (apiRes.headers.get('x-rsf-cache-control') && apiVersion) {
-              const path = url.pathname
+          if (apiRes.headers.get('x-rsf-cache-control') && apiVersion) {
+            const path = url.pathname
 
-              caches.open(cacheName).then(cache => {
-                cache.put(path, apiRes)
-                console.log('[react-storefront service worker]', `caching ${path}`)
-              })
-            }
+            caches.open(cacheName).then(cache => {
+              cache.put(path, apiRes)
+              console.log('[react-storefront service worker]', `caching ${path}`)
+            })
+          }
 
-            return apiRes.clone()
-          }),
-        )
-        .catch(() => offlineResponse(apiVersion, context))
-    }
+          return apiRes.clone()
+        }),
+      )
+      .catch(() => offlineResponse(apiVersion, context))
   } catch (e) {
     // if anything goes wrong, fallback to network
     // this is critical - if there is a bug in the service worker code, the whole site can stop working
