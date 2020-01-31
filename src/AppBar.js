@@ -1,187 +1,108 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
-import PropTypes from 'prop-types'
-import clsx from 'clsx'
-import { Toolbar } from '@material-ui/core'
+import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { useAmp } from 'next/amp'
+import { AppBar as MUIAppBar, Container, Toolbar, useScrollTrigger, Slide } from '@material-ui/core'
+import PropTypes from 'prop-types'
 import PWAContext from './PWAContext'
 
-export const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   /**
-   * Styles applied to the root element when user is not `offline`.
+   * Styles applied to the root element.
    */
   root: {
-    height: 64,
-    boxSizing: 'content-box',
-    position: 'relative',
+    boxSizing: 'border-box',
+    backgroundColor: theme.palette.background.default,
+    boxShadow: 'none',
+    borderBottom: `1px solid ${theme.palette.divider}`,
     zIndex: theme.zIndex.modal + 10,
   },
-
   /**
-   * Styles applied to the root element when Amp is used.
+   * Styles applied to the spacer that fills the height behind the floating toolbar.
    */
-  withAmp: {
-    zIndex: theme.zIndex.amp.modal + 1,
+  spacer: {
+    boxSizing: 'border-box',
   },
-
+  /**
+   * Styles applied to the `Toolbar` element.
+   */
+  toolbar: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  /**
+   * Styles applied to the inner `Container` element.
+   */
+  container: {
+    padding: 0,
+  },
   /**
    * Styles applied to the offline warning element.
    */
   offline: {
     textAlign: 'center',
     backgroundColor: '#f34c4c',
+    zIndex: 999999,
+    width: '100vw',
     color: 'white',
   },
+}))
 
-  /**
-   * Styles applied to the `Toolbar` element.
-   */
-  toolbar: {
-    height: '64px',
-    maxWidth: theme.maxWidth,
-    flex: 1,
-  },
+export default function AppBar({ height, maxWidth, children, style, fixed, offlineWarning }) {
+  const trigger = useScrollTrigger()
+  const classes = useStyles()
 
-  /**
-   * Styles applied to the element wrapped around the `Toolbar`.
-   */
-  wrap: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: theme.palette.background.paper,
-    zIndex: theme.zIndex.modal + 10,
-    display: 'flex',
-    justifyContent: 'center',
-  },
-
-  /**
-   * Styles applied to the `Toolbar` wrapper when the `AppBar` is unstuck.
-   */
-  unstuck: {
-    transform: 'translateY(-100%)',
-  },
-
-  /**
-   * Styles applied to the `Toolbar` wrapper element when the user has scrolled and the `AppBar`
-   * will animate back into place.
-   */
-  animate: {
-    transition: 'transform .15s ease-in',
-  },
-
-  /**
-   * Styles applied to the `Toolbar` wrapper element the user has scrolled and the `AppBar` is hidden.
-   */
-  hidden: {
-    position: 'fixed',
-    zIndex: theme.zIndex.modal + 10,
-    boxShadow: theme.shadows[2],
-    top: 0,
-    left: 0,
-    right: 0,
-  },
-
-  /**
-   * Styles applied to the `Toolbar` wrapper element when [`fixed`](#prop-fixed) is `true`.
-   */
-  fixed: {
-    position: 'fixed',
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFAppBar' })
-
-export default function AppBar({ classes, children, fixed, offlineWarning }) {
-  classes = useStyles({ classes })
-
-  const [state, applyState] = useState({
-    stuck: false,
-    hidden: false,
-    animate: false,
-  })
-  const { stuck, hidden, animate } = state
-  const setState = newState => applyState({ ...state, ...newState })
-  const lastScrollY = useRef()
-  const unstickAt = useRef()
-  const stickAt = useRef()
   const { offline } = useContext(PWAContext)
-  const items = React.Children.toArray(children)
 
-  const onScroll = () => {
-    const height = 64,
-      { scrollY } = window,
-      unstickBufferZone = 30
+  let appBar = (
+    <MUIAppBar
+      className={classes.root}
+      style={{
+        height,
+        ...style,
+      }}
+    >
+      <Container maxWidth={maxWidth} className={classes.container}>
+        <Toolbar disableGutters className={classes.toolbar}>
+          {children}
+        </Toolbar>
+      </Container>
+    </MUIAppBar>
+  )
 
-    if (scrollY === 0) {
-      setState({ hidden: false, stuck: false, animate: false })
-    } else if (scrollY > height && !hidden) {
-      setState({ hidden: true })
-    }
-
-    if (scrollY < stickAt.current && !stuck) {
-      stickAt.current = null
-      unstickAt.current = scrollY + unstickBufferZone
-      setState({ stuck: true })
-    } else if (scrollY > unstickAt.current && stuck) {
-      unstickAt.current = null
-      stickAt.current = scrollY - unstickBufferZone
-      setState({ stuck: false })
-    }
-
-    if (lastScrollY.current > scrollY && stuck) {
-      unstickAt.current = scrollY + unstickBufferZone
-    }
-
-    if (lastScrollY.current < scrollY && !stuck) {
-      stickAt.current = scrollY - unstickBufferZone
-    }
-
-    lastScrollY.current = scrollY
+  if (!fixed) {
+    appBar = (
+      <Slide appear={false} direction="down" in={!trigger}>
+        {appBar}
+      </Slide>
+    )
   }
 
-  useEffect(() => {
-    if (!fixed) {
-      window.addEventListener('scroll', onScroll, { passive: true })
-      return () => window.removeEventListener('scroll', onScroll, { passive: true })
-    }
-  }, [state])
-
-  useEffect(() => {
-    if (hidden && !animate) {
-      setTimeout(() => setState({ animate: true }), 100)
-    }
-  }, [hidden])
-
   return (
-    <div>
+    <>
+      <div style={{ height }} className={classes.spacer} />
       {offline && <div className={classes.offline}>{offlineWarning}</div>}
-      <div className={clsx({ [classes.root]: true, [classes.withAmp]: useAmp() })}>
-        <div
-          className={clsx({
-            [classes.wrap]: true,
-            [classes.fixed]: fixed,
-            [classes.hidden]: hidden,
-            [classes.unstuck]: hidden && !stuck,
-            [classes.animate]: animate && window.scrollY > 0,
-          })}
-        >
-          <Toolbar disableGutters classes={{ root: classes.toolbar }}>
-            {items}
-          </Toolbar>
-        </div>
-      </div>
-    </div>
+      {appBar}
+    </>
   )
 }
 
+/**
+ * The height of the AppBar
+ */
 AppBar.propTypes = {
   /**
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+
+  /**
+   * The height of the AppBar in pixels
+   */
+  height: PropTypes.number,
+
+  /**
+   * The max width for the inner toolbar
+   */
+  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
 
   /**
    * Set as `true` if the AppBar should be fixed position.
@@ -195,6 +116,8 @@ AppBar.propTypes = {
 }
 
 AppBar.defaultProps = {
+  height: 58,
+  maxWidth: 'lg',
   offlineWarning: 'Your device lost its internet connection.',
   fixed: false,
 }
