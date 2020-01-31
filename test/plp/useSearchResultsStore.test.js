@@ -1,13 +1,13 @@
-import * as useLazyStore from 'react-storefront/hooks/useLazyStore'
+import * as useLazyState from 'react-storefront/hooks/useLazyState'
 import useSearchResultsStore from 'react-storefront/plp/useSearchResultsStore'
 
 describe('useSearchResultsStore', () => {
-  it('should call useLazyStore with right params and return useLazyStore result', () => {
+  it('should call useLazyState with right params and return useLazyState result', () => {
     const testObj = {
       test: 'test',
     }
 
-    const lazyStoreSpy = jest.spyOn(useLazyStore, 'default').mockReturnValue(true)
+    const lazyStoreSpy = jest.spyOn(useLazyState, 'default').mockReturnValue(true)
     const res = useSearchResultsStore(testObj)
 
     expect(res).toBe(true)

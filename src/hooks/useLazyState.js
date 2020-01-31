@@ -2,13 +2,12 @@ import { useEffect, useRef, useState, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import merge from '../utils/merge'
 import LinkContext from '../link/LinkContext'
-import fetch from 'isomorphic-unfetch'
 import get from 'lodash/get'
 import storeInitialPropsInHistory from '../router/storeInitialPropsInHistory'
 
 storeInitialPropsInHistory()
 
-export default function useLazyStore(lazyProps, additionalData = {}) {
+export default function useLazyState(lazyProps, additionalData = {}) {
   const isInitialMount = useRef(true)
   const Router = useRouter()
 

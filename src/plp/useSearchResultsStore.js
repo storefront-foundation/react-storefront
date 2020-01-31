@@ -1,4 +1,4 @@
-import useLazyStore from '../hooks/useLazyStore'
+import useLazyState from '../hooks/useLazyState'
 
 export default function useSearchResultsStore(lazyProps) {
   const additionalData = {
@@ -14,5 +14,5 @@ export default function useSearchResultsStore(lazyProps) {
     }),
   }
 
-  return useLazyStore(lazyProps, additionalData)
+  return useLazyState(lazyProps, additionalData)
 }

@@ -98,7 +98,7 @@ Link.propTypes = {
   prefetchURL: PropTypes.string,
 
   /**
-   * Data to be added to the `pageData` key returned by `react-storefront/hooks/useLazyStore` in the
+   * Data to be added to the `pageData` key returned by `react-storefront/hooks/useLazyState` in the
    * destination page component.  Use this to display partial data in the skeleton while the full dataset
    * is fetched from the server.
    */
