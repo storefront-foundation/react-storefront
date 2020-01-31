@@ -91,7 +91,7 @@ CarouselArrows.propTypes = {
   className: PropTypes.string,
 
   /**
-   * Index of the currently selected slide in the [`Carousel`](/apiReference/carousel%2fCarousel).
+   * Index of the currently selected slide in the [`Carousel`](/apiReference/carousel/Carousel).
    */
   selected: PropTypes.number,
 
@@ -101,7 +101,7 @@ CarouselArrows.propTypes = {
   setSelected: PropTypes.func,
 
   /**
-   * Total number of slides in the [`Carousel`](/apiReference/carousel%2fCarousel).
+   * Total number of slides in the [`Carousel`](/apiReference/carousel/Carousel).
    */
   count: PropTypes.number,
 }

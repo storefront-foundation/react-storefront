@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { useMemo, useContext } from 'react'
 import SearchResultsContext from './SearchResultsContext'
 import { makeStyles } from '@material-ui/core/styles'
@@ -6,19 +7,25 @@ import TextProductOption from '../option/TextProductOption'
 import { Hbox } from '../Box'
 
 const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  wrap: {
-    margin: theme.spacing(0, 1, 1, 0),
-  },
+  /**
+   * Styles applied to the matching text.
+   */
   matches: {
     display: 'inline',
     ...theme.typography.caption,
     marginLeft: 2,
     color: theme.palette.grey[700],
   },
+  /**
+   * Styles applied to each button element.
+   */
   button: {
     fontWeight: 'normal',
     margin: theme.spacing(0, 0.5, 0.5, 0),
@@ -27,6 +34,9 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFButtonFilterGroup' })
 
+/**
+ * A UI for grouping filters using buttons.
+ */
 export default function ButtonFilterGroup(props) {
   const { group, submitOnChange } = props
   const {
@@ -65,4 +75,24 @@ export default function ButtonFilterGroup(props) {
     ),
     [filters, ...Object.values(props)],
   )
+}
+
+ButtonFilterGroup.propTypes = {
+  /**
+   * Contains data for the group to be rendered.
+   */
+  group: PropTypes.shape({
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        code: PropTypes.string,
+        name: PropTypes.string,
+        matches: PropTypes.string,
+        image: PropTypes.object,
+      }),
+    ),
+  }),
+  /**
+   * Function called when the filter changes are submitted
+   */
+  submitOnChange: PropTypes.func,
 }

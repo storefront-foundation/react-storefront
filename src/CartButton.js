@@ -9,7 +9,7 @@ import clsx from 'clsx'
 
 export const styles = theme => ({
   /**
-   * Styles applied to the [`Link`](/apiReference/link%2fLink) element used as the root.
+   * Styles applied to the [`Link`](/apiReference/link/Link) element used as the root.
    */
   link: {
     color: 'inherit',
@@ -101,7 +101,7 @@ CartButton.propTypes = {
   badgeProps: PropTypes.object,
 
   /**
-   * Props passed through to the [`Link`](/apiReference/link%2fLink#props) element.
+   * Props passed through to the [`Link`](/apiReference/link/Link#props) element.
    */
   linkProps: PropTypes.object,
 }

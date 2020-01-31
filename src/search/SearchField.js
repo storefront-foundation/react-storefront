@@ -10,10 +10,16 @@ import { Fab, Button } from '@material-ui/core'
 import clsx from 'clsx'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     display: 'flex',
     alignItems: 'center',
   },
+  /**
+   * Styles applied to the wrapper element.
+   */
   inputWrap: {
     display: 'flex',
     flexGrow: 1,
@@ -23,6 +29,9 @@ export const styles = theme => ({
     margin: 0,
     height: '48px',
   },
+  /**
+   * Styles applied to the input element.
+   */
   input: {
     border: 'none',
     background: 'none',
@@ -33,6 +42,10 @@ export const styles = theme => ({
       outline: 'none',
     },
   },
+  /**
+   * Styles applied to the submit button element if [submitButtonVariant](#prop-submitButtonVariant)
+   * is `'fab'`.
+   */
   searchFab: {
     height: '48px',
     width: '48px',
@@ -40,6 +53,9 @@ export const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.secondary,
   },
+  /**
+   * Styles applied to the clear and submit buttons if the search field is empty.
+   */
   hidden: {
     display: 'none',
   },
@@ -48,7 +64,8 @@ export const styles = theme => ({
 const useStyles = makeStyles(styles, { name: 'RSFSearchField' })
 
 /**
- * A search text field. Additional props are spread to the underlying input.
+ * A search text field. Additional props are spread to the underlying
+ * [Input](https://material-ui.com/api/input/).
  */
 export default function SearchField({
   classes,
@@ -139,29 +156,37 @@ export default function SearchField({
 
 SearchField.propTypes = {
   /**
-   * The component to use for the submit button
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
-  SubmitButtonComponent: PropTypes.func,
+  classes: PropTypes.object,
   /**
-   * The type of submit button to display
+   * The component to use for the submit button.
+   */
+  SubmitButtonComponent: PropTypes.elementType,
+  /**
+   * The type of submit button to display.
    */
   submitButtonVariant: PropTypes.oneOf(['icon', 'fab']),
   /**
-   * `true` to show the clear button when text is entered.
+   * If `true`, show the clear button when text is entered.
    */
   showClearButton: PropTypes.bool,
   /**
-   * Additional props for the clearButton
+   * Additional props for the clear button.
    */
   clearButtonProps: PropTypes.object,
   /**
-   * Additional props for the Material UI Input
+   * Additional props for the Material UI [Input](https://material-ui.com/api/input/).
    */
   inputProps: PropTypes.object,
   /**
-   * Additional props for the submit button
+   * Additional props for the submit button.
    */
   submitButtonProps: PropTypes.object,
+  /**
+   * A function to call when the search query value is changed.
+   */
+  onChange: PropTypes.func,
 }
 
 SearchField.defaultProps = {

@@ -83,8 +83,8 @@ Breadcrumbs.propTypes = {
   classes: PropTypes.object,
 
   /**
-   * The items to display, each with text, [`href`](/apiReference/link%2fLink#prop-href), and
-   * [`as`](/apiReference/link%2fLink#props-as) values.
+   * The items to display, each with text, [`href`](/apiReference/link/Link#prop-href), and
+   * [`as`](/apiReference/link/Link#props-as) values.
    */
   items: PropTypes.arrayOf(
     PropTypes.shape({

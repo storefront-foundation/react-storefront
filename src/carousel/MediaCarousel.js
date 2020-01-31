@@ -278,12 +278,12 @@ MediaCarousel.propTypes = {
   CarouselThumbnailsComponent: PropTypes.elementType,
 
   /**
-   * An optional `className` to use for the [`MagnifyHint`](/apiReference/carousel%2fMagnifyHint) component
+   * An optional `className` to use for the [`MagnifyHint`](/apiReference/carousel/MagnifyHint) component
    */
   magnifyHintClassName: PropTypes.string,
   /**
-   * Props passed through to each [`Media`](/apiReference/carousel%2fMedia)'s
-   * [`imageProps`](/apiReference/carousel%2fMedia#prop-imageProps).
+   * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
+   * [`imageProps`](/apiReference/carousel/Media#prop-imageProps).
    */
   imageProps: PropTypes.object,
   /**
@@ -291,8 +291,8 @@ MediaCarousel.propTypes = {
    */
   media: PropTypes.arrayOf(PropTypes.object),
   /**
-   * Props passed through to each [`Media`](/apiReference/carousel%2fMedia)'s
-   * [`magnifyProps`](/apiReference/carousel%2fMedia#prop-magnifyProps).
+   * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
+   * [`magnifyProps`](/apiReference/carousel/Media#prop-magnifyProps).
    */
   magnifyProps: PropTypes.object,
   /**
@@ -301,7 +301,7 @@ MediaCarousel.propTypes = {
   MediaComponent: PropTypes.elementType,
 
   /**
-   * Props passed through to the [`Lightbox`](/apiReference/carousel%2fLightbox).
+   * Props passed through to the [`Lightbox`](/apiReference/carousel/Lightbox).
    */
   lightboxProps: PropTypes.object,
 

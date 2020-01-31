@@ -128,17 +128,17 @@ Rating.propTypes = {
   /**
    * Custom full point icon.
    */
-  iconFull: PropTypes.func,
+  iconFull: PropTypes.elementType,
 
   /**
    * Custom half point icon.
    */
-  iconHalf: PropTypes.func,
+  iconHalf: PropTypes.elementType,
 
   /**
    * Custom empty icon; will override `fillEmpty` icon.
    */
-  iconEmpty: PropTypes.func,
+  iconEmpty: PropTypes.elementType,
 
   /**
    * If `true`, use a filled icon with light gray background for empty icon

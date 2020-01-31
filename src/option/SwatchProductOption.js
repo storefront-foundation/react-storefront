@@ -166,7 +166,7 @@ SwatchProductOption.propTypes = {
   /**
    * The component to use to display images
    */
-  ImageComponent: PropTypes.func,
+  ImageComponent: PropTypes.elementType,
 }
 
 SwatchProductOption.defaultProps = {
