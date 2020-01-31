@@ -41,5 +41,7 @@ export default function fetchFromAPI({ req, asPath }) {
     }
   }
 
-  return fetch(`${protocol}${host}${uri}`).then(res => res.json())
+  return fetch(`${protocol}${host}${uri}`, {
+    headers: { 'x-rsf-api-version': process.env.RSF_API_VERSION || '1' },
+  }).then(res => res.json())
 }
