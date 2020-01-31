@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -7,6 +8,9 @@ import { makeStyles } from '@material-ui/core/styles'
  * css generated for an app.
  */
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     flex: 1,
   },
@@ -22,4 +26,11 @@ const useStyles = makeStyles(styles, { name: 'RSFSpacer' })
 export default function Spacer(props) {
   const classes = useStyles(props)
   return <div className={classes.root} />
+}
+
+Spacer.propTypes = {
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
 }

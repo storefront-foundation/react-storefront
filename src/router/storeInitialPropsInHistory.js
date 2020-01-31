@@ -1,6 +1,6 @@
 /**
- * Patches history.pushState and history.replaceState to stores the props of the
- * current main component in history.state before navigating.  This allows us to instantly
+ * Patches `history.pushState` and `history.replaceState` to stores the props of the
+ * current main component in `history.state` before navigating.  This allows us to instantly
  * render the main component when the user goes back
  */
 export default function storeInitialPropsInHistory() {

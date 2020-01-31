@@ -6,23 +6,41 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     backgroundColor: theme.palette.divider,
     border: 'none',
     width: '110px',
     padding: 0,
   },
+  /**
+   * Styles applied to the icon elements.
+   */
   icon: {
     fontSize: '1.3125rem',
     position: 'relative',
   },
+  /**
+   * Styles applied to the icon button elements.
+   */
   button: {
     height: '36px',
     width: '36px',
     padding: 0,
   },
+  /**
+   * Styles applied to the subtract icon button element.
+   */
   subtract: { marginRight: theme.spacing(-4.5) },
+  /**
+   * Styles applied to the add icon button element.
+   */
   add: { marginLeft: theme.spacing(-4.5) },
+  /**
+   * Styles applied to the text input element.
+   */
   input: {
     width: 100,
     color: theme.palette.text.primary,
@@ -32,11 +50,6 @@ export const styles = theme => ({
     border: 'none',
     fontSize: theme.spacing(2),
     outline: 'none',
-  },
-  focused: {
-    backgroundColor: theme.palette.divider,
-  },
-  underline: {
     '&::before': {
       display: 'none',
     },
@@ -90,7 +103,7 @@ export default function QuantitySelector({
         value={value}
         name={name}
         {...{ 'aria-label': ariaLabel }}
-        className={clsx([classes.input, classes.underline, inputClasses])}
+        className={clsx([classes.input, inputClasses])}
         {...inputProps}
         readOnly
       />
@@ -115,32 +128,32 @@ QuantitySelector.propTypes = {
   name: PropTypes.string,
 
   /**
-   * CSS classes
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 
   /**
-   * The plus icon
+   * The plus icon.
    */
   addIcon: PropTypes.element,
 
   /**
-   * The minus icon
+   * The minus icon.
    */
   subtractIcon: PropTypes.element,
 
   /**
-   * The current value
+   * The current value.
    */
   value: PropTypes.number,
 
   /**
-   * The minimum value.  Defaults to 1.
+   * The minimum value.
    */
   minValue: PropTypes.number,
 
   /**
-   * The maximum value.  Defaults to 100.
+   * The maximum value.
    */
   maxValue: PropTypes.number,
 
@@ -150,7 +163,8 @@ QuantitySelector.propTypes = {
   onChange: PropTypes.func,
 
   /**
-   * The accessibility label.  Add and subtract button aria-label values are derived from this as "add one {ariaLabel}" and "subtract one {ariaLabel}"
+   * The accessibility label.  Add and subtract button `aria-label` values are derived from this as
+   * `"add one {ariaLabel}"` and `"subtract one {ariaLabel}"`.
    */
   ariaLabel: PropTypes.string,
 }

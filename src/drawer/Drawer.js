@@ -6,22 +6,34 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import DrawerCloseButton from './DrawerCloseButton'
 
-/**
- * A slide-in drawer with fab close button.
- */
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {},
 
+  /**
+   * Styles applied to the close button element.
+   */
   closeButton: {},
 
+  /**
+   * Styles applied to the drawer's `Paper` component.
+   */
+  paper: {
+    overflowY: 'visible',
+  },
+
+  /**
+   * Styles applied to the drawer's `Paper` component if [`fullscreen`](#prop-fullscreen) is `true`.
+   */
   fullscreen: {
     height: '100vh',
   },
 
-  header: {
-    position: 'relative',
-  },
-
+  /**
+   * Styles applied to the drawer's wrapper element.
+   */
   container: {
     height: '100%',
     boxSizing: 'border-box',
@@ -30,15 +42,24 @@ export const styles = theme => ({
     flexDirection: 'column',
   },
 
+  /**
+   * Styles applied to the drawer's header element.
+   */
+  header: {
+    position: 'relative',
+  },
+
+  /**
+   * Styles applied to the wrapper around the drawer's children.
+   */
   content: {
     flexBasis: '100%',
     overflow: 'auto',
   },
 
-  paper: {
-    overflowY: 'visible',
-  },
-
+  /**
+   * Styles applied to the drawer's title element.
+   */
   title: {
     flexBasis: 'auto',
     flexGrow: 0,
@@ -53,9 +74,11 @@ export const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFDrawer' })
 
+/**
+ * A slide-in drawer with fab close button.
+ */
 export default function Drawer({
   variant,
-  closeButtonProps,
   showCloseButton,
   open,
   onClose,
@@ -110,14 +133,6 @@ export default function Drawer({
     }
   }, [])
 
-  // useEffect(() => {
-  //   if (open) {
-  //     setPadding()
-  //   } else {
-  //     closeDrawer()
-  //   }
-  // }, [open])
-
   return (
     <MUIDrawer
       elevation={2}
@@ -163,42 +178,60 @@ export default function Drawer({
 }
 Drawer.propTypes = {
   /**
-   * Set to false to hide the close button. Defaults to true
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * CSS class to apply to the root element.
+   */
+  className: PropTypes.string,
+
+  /**
+   * Child nodes to show inside the Drawer.
+   */
+  children: PropTypes.node.isRequired,
+
+  /**
+   * If `false`, the close button will be hidden.
    */
   showCloseButton: PropTypes.bool,
 
   /**
-   * Called when the user closes the drawer
+   * If `true`, the drawer will cover the whole screen.
+   */
+  fullscreen: PropTypes.bool,
+
+  /**
+   * A function that is called when the user closes the drawer.
    */
   onClose: PropTypes.func.isRequired,
 
   /**
-   * The title to display at the top of the drawer
+   * The title to display at the top of the drawer.
    */
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 
   /**
-   * Set to true to automatically add padding to the body when the drawer
+   * If `true`, padding will be automatically added to the body when the drawer
    * is open so that the user is able to scroll and see all of the body content.
-   * Defaults to false.
    */
   autoAdjustBodyPadding: PropTypes.bool,
 
   /**
-   * Props to apply to the closeButton
+   * Side from which the drawer will appear (top, left, right, bottom).
    */
-  closeButtonProps: PropTypes.object,
+  anchor: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
 
   /**
-   * Side from which the drawer will appear (top, left, right, bottom). Defaults to 'bottom'
+   * The variant to use for the MaterialUI [`Drawer`)(https://material-ui.com/api/drawer/#props).
    */
-  anchor: PropTypes.string,
+  variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 }
 
 Drawer.defaultProps = {
   showCloseButton: true,
   autoAdjustBodyPadding: false,
-  closeButtonProps: {},
   variant: 'temporary',
   anchor: 'bottom',
 }

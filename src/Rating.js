@@ -9,6 +9,9 @@ import { Hbox } from './Box'
  * Displays a star rating corresponding to the provided value
  */
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     display: 'flex',
     '& svg': {
@@ -18,14 +21,23 @@ export const styles = theme => ({
       display: 'block',
     },
   },
+  /**
+   * Styles applied to an empty rating icon.
+   */
   filledEmpty: {
     fill: theme.palette.divider,
   },
+  /**
+   * Styles applied to the root element when [`value`](#prop-value) is `0`.
+   */
   blank: {
     '& svg': {
       color: theme.palette.divider,
     },
   },
+  /**
+   * Styles applied to the label element.
+   */
   reviewsLabel: {
     marginLeft: '3px',
   },
@@ -87,18 +99,17 @@ export default function Rating({
 
 Rating.propTypes = {
   /**
-   * CSS classes to apply
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 
   /**
-   * The number of stars to display.  Can be an integer or a float
-   * ending in .5.
+   * The number of stars to display.  Can be an integer or a float ending in .5.
    */
   value: PropTypes.number,
 
   /**
-   * The number of reviews
+   * The number of reviews.
    */
   reviewCount: PropTypes.number,
 
@@ -110,27 +121,27 @@ Rating.propTypes = {
   label: PropTypes.func,
 
   /**
-   * You can set this instead of setting value and reviewCount individually.
+   * Can be used to as an alternative to setting `value` and `reviewCount` individually.
    */
   product: PropTypes.object,
 
   /**
-   * Custom full point icon
+   * Custom full point icon.
    */
   iconFull: PropTypes.func,
 
   /**
-   * Custom half point icon
+   * Custom half point icon.
    */
   iconHalf: PropTypes.func,
 
   /**
-   * Custom empty icon, will override fillEmpty icon
+   * Custom empty icon; will override `fillEmpty` icon.
    */
   iconEmpty: PropTypes.func,
 
   /**
-   * Use filled icon with light grey background for empty icon
+   * If `true`, use a filled icon with light gray background for empty icon
    */
   fillEmpty: PropTypes.bool,
 }

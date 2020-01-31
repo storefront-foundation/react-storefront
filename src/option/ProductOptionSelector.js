@@ -42,19 +42,13 @@ export default function ProductOptionSelector({
 
   if (!options) return null
 
-  const onSelectedOptionChange = newValue => {
-    if (onChange) {
-      onChange(newValue)
-    }
-  }
-
   return (
     <div data-id="ProductOptionSelector" className={classes.root}>
       {options.map((option, i) => {
         return (
           <OptionComponent
             selectedOption={value}
-            onSelectedOptionChange={onSelectedOptionChange}
+            onSelectedOptionChange={onChange}
             {...optionProps}
             variant={variant || (option.image || option.color ? 'swatch' : 'text')}
             name={name}
