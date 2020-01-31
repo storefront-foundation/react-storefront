@@ -15,6 +15,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Publish to npm and push API docs
         run: |
+          npm ci
           OUTPUT=$(npm run release)
           VERSION=v$(echo $OUTPUT | rev | cut -d'@' -f 1 | rev)
           cd ..
