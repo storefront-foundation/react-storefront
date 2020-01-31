@@ -2,31 +2,24 @@ import React, { useState } from 'react'
 import { mount } from 'enzyme'
 import ProductOptionSelector from 'react-storefront/option/ProductOptionSelector'
 import ProductOption from 'react-storefront/option/ProductOption'
-import PWAContext from 'react-storefront/PWAContext'
 
 describe('ProductOptionSelector', () => {
-  let colors
-  let sizes
+  const colors = [
+    {
+      text: 'Color1',
+      id: 'color1',
+      image: {
+        src: 'src1',
+        alt: 'alt1',
+      },
+    },
+  ]
+  const sizes = [{ id: 'sm', text: 'sm' }]
+
   let wrapper
 
-  beforeEach(() => {
-    colors = [
-      {
-        text: 'Color1',
-        id: 'color1',
-        image: {
-          src: 'src1',
-          alt: 'alt1',
-        },
-      },
-    ]
-    sizes = [{ id: 'sm', text: 'sm' }]
-  })
-
   afterEach(() => {
-    try {
-      wrapper.unmount()
-    } catch (e) {}
+    wrapper.unmount()
   })
 
   it('should render the right variant depending on options', () => {
