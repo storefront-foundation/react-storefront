@@ -140,7 +140,7 @@
       "./node_modules/jest-enzyme/lib/index.js"
     ],
     "collectCoverage": true,
-    "forceCoverageMatch": [
+    "collectCoverageFrom": [
       "./src/**/*.{js,jsx}",
       "!**/index.js"
     ],
@@ -149,9 +149,6 @@
     },
     "roots": [
       "test"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/"
     ]
   }
 }

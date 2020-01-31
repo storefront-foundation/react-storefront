@@ -1,4 +1,10 @@
 describe('fetchFromAPI', () => {
+  const headers = {
+    headers: { 'x-rsf-api-version': '1' },
+  }
+
+  fetch.mockResponse(JSON.stringify({}))
+
   let fetchFromAPI,
     isBrowser = true
 
@@ -7,6 +13,10 @@ describe('fetchFromAPI', () => {
       jest.doMock('react-storefront/utils/isBrowser', () => () => isBrowser)
       fetchFromAPI = require('react-storefront/props/fetchFromAPI').default
     })
+  })
+
+  afterAll(() => {
+    jest.resetAllMocks()
   })
 
   describe('in the browser', () => {
@@ -18,14 +28,14 @@ describe('fetchFromAPI', () => {
       fetchFromAPI({
         asPath: '/p/1',
       })
-      expect(global.fetch).toHaveBeenCalledWith('/api/p/1')
+      expect(fetch).toHaveBeenCalledWith('/api/p/1', headers)
     })
 
     it('should call /api when the path is /', () => {
       fetchFromAPI({
         asPath: '/',
       })
-      expect(global.fetch).toHaveBeenCalledWith('/api')
+      expect(fetch).toHaveBeenCalledWith('/api', headers)
     })
   })
 
@@ -43,7 +53,10 @@ describe('fetchFromAPI', () => {
           },
         },
       })
-      expect(global.fetch).toHaveBeenCalledWith('https://www.domain.com/api/p/1?_includeAppData=1')
+      expect(fetch).toHaveBeenCalledWith(
+        'https://www.domain.com/api/p/1?_includeAppData=1',
+        headers,
+      )
     })
 
     it('should use http:// for localhost', () => {
@@ -55,7 +68,7 @@ describe('fetchFromAPI', () => {
           },
         },
       })
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost/api/p/1?_includeAppData=1')
+      expect(fetch).toHaveBeenCalledWith('http://localhost/api/p/1?_includeAppData=1', headers)
     })
 
     it('should append _includeAppData to the existing query string', () => {
@@ -67,7 +80,7 @@ describe('fetchFromAPI', () => {
           },
         },
       })
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost/api/foo?x=1&_includeAppData=1')
+      expect(fetch).toHaveBeenCalledWith('http://localhost/api/foo?x=1&_includeAppData=1', headers)
     })
   })
 })

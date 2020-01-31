@@ -27,7 +27,6 @@ describe('useLazyState', () => {
 
   beforeEach(() => {
     historyMock(replaceStateMock)
-    values = []
     additionalData = undefined
     historyData = undefined
     state = undefined
