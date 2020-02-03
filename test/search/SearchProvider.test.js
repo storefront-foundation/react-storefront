@@ -58,11 +58,7 @@ describe('SearchProvider', () => {
       </SearchProvider>,
     )
 
-    await act(async () => {
-      await sleep(300) // to trigger debounce
-      await wrapper.update()
-      expect(context.state.groups).toBe(undefined) // check that suggestions aren't fetched on mount
-    })
+    expect(context.state.groups).toBe(undefined) // check that suggestions aren't fetched on mount
 
     await act(async () => {
       wrapper.setProps({ open: true })
