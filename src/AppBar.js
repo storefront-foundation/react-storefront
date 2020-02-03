@@ -14,12 +14,17 @@ const useStyles = makeStyles(theme => ({
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
     zIndex: theme.zIndex.modal + 10,
+    height: theme.headerHeight,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
   },
   /**
    * Styles applied to the spacer that fills the height behind the floating toolbar.
    */
   spacer: {
     boxSizing: 'border-box',
+    height: theme.headerHeight,
   },
   /**
    * Styles applied to the `Toolbar` element.
@@ -27,12 +32,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  /**
-   * Styles applied to the inner `Container` element.
-   */
-  container: {
-    padding: 0,
+    flex: 1,
   },
   /**
    * Styles applied to the offline warning element.
@@ -46,9 +46,9 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function AppBar({ height, maxWidth, children, style, fixed, offlineWarning }) {
+export default function AppBar({ children, style, fixed, offlineWarning, classes }) {
   const trigger = useScrollTrigger()
-  const classes = useStyles()
+  classes = useStyles({ classes })
 
   const { offline } = useContext(PWAContext)
 
@@ -56,15 +56,12 @@ export default function AppBar({ height, maxWidth, children, style, fixed, offli
     <MUIAppBar
       className={classes.root}
       style={{
-        height,
         ...style,
       }}
     >
-      <Container maxWidth={maxWidth} className={classes.container}>
-        <Toolbar disableGutters className={classes.toolbar}>
-          {children}
-        </Toolbar>
-      </Container>
+      <Toolbar disableGutters className={classes.toolbar}>
+        {children}
+      </Toolbar>
     </MUIAppBar>
   )
 
@@ -78,31 +75,18 @@ export default function AppBar({ height, maxWidth, children, style, fixed, offli
 
   return (
     <>
-      <div style={{ height }} className={classes.spacer} />
+      <div className={classes.spacer} />
       {offline && <div className={classes.offline}>{offlineWarning}</div>}
       {appBar}
     </>
   )
 }
 
-/**
- * The height of the AppBar
- */
 AppBar.propTypes = {
   /**
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
-
-  /**
-   * The height of the AppBar in pixels
-   */
-  height: PropTypes.number,
-
-  /**
-   * The max width for the inner toolbar
-   */
-  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
 
   /**
    * Set as `true` if the AppBar should be fixed position.
@@ -116,8 +100,6 @@ AppBar.propTypes = {
 }
 
 AppBar.defaultProps = {
-  height: 58,
-  maxWidth: 'lg',
   offlineWarning: 'Your device lost its internet connection.',
   fixed: false,
 }
