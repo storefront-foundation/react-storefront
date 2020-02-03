@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import SessionContext from './SessionContext'
 import PropTypes from 'prop-types'
-import fetch from 'isomorphic-unfetch'
+import fetch from '../fetch'
 
 /**
  * Fetches user session data from a specific URL and provides it to descendant components via `SessionContext`.
