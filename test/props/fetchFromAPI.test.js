@@ -3,7 +3,7 @@ describe('fetchFromAPI', () => {
     headers: { 'x-rsf-api-version': '1' },
   }
 
-  fetch.mockResponse(JSON.stringify({}))
+  fetchMock.mockResponse(JSON.stringify({}))
 
   let fetchFromAPI,
     isBrowser = true
@@ -28,14 +28,14 @@ describe('fetchFromAPI', () => {
       fetchFromAPI({
         asPath: '/p/1',
       })
-      expect(fetch).toHaveBeenCalledWith('/api/p/1', headers)
+      expect(fetchMock).toHaveBeenCalledWith('/api/p/1', headers)
     })
 
     it('should call /api when the path is /', () => {
       fetchFromAPI({
         asPath: '/',
       })
-      expect(fetch).toHaveBeenCalledWith('/api', headers)
+      expect(fetchMock).toHaveBeenCalledWith('/api', headers)
     })
   })
 
@@ -53,7 +53,7 @@ describe('fetchFromAPI', () => {
           },
         },
       })
-      expect(fetch).toHaveBeenCalledWith(
+      expect(fetchMock).toHaveBeenCalledWith(
         'https://www.domain.com/api/p/1?_includeAppData=1',
         headers,
       )
@@ -68,7 +68,7 @@ describe('fetchFromAPI', () => {
           },
         },
       })
-      expect(fetch).toHaveBeenCalledWith('http://localhost/api/p/1?_includeAppData=1', headers)
+      expect(fetchMock).toHaveBeenCalledWith('http://localhost/api/p/1?_includeAppData=1', headers)
     })
 
     it('should append _includeAppData to the existing query string', () => {
@@ -80,7 +80,10 @@ describe('fetchFromAPI', () => {
           },
         },
       })
-      expect(fetch).toHaveBeenCalledWith('http://localhost/api/foo?x=1&_includeAppData=1', headers)
+      expect(fetchMock).toHaveBeenCalledWith(
+        'http://localhost/api/foo?x=1&_includeAppData=1',
+        headers,
+      )
     })
   })
 })

@@ -43,7 +43,7 @@ describe('SearchResultsProvider', () => {
     it('fetchMore', async () => {
       const products = [{ id: 'test' }]
 
-      fetch.mockResponseOnce(
+      fetchMock.mockResponseOnce(
         JSON.stringify({
           pageData: {
             products,
@@ -97,7 +97,7 @@ describe('SearchResultsProvider', () => {
     })
 
     it('toggleFilter - with submit', async () => {
-      fetch.mockResponseOnce(
+      fetchMock.mockResponseOnce(
         JSON.stringify({
           pageData: {
             products: [],
@@ -133,7 +133,7 @@ describe('SearchResultsProvider', () => {
 
     it('clearFilters - with submit', async () => {
       initialStore.pageData.appliedFilters = ['blue']
-      fetch.mockResponseOnce(
+      fetchMock.mockResponseOnce(
         JSON.stringify({
           pageData: {
             products: [],
@@ -158,7 +158,7 @@ describe('SearchResultsProvider', () => {
       const windowSpy = jest
         .spyOn(global.window, 'location', 'get')
         .mockReturnValue({ search: '?more=1', hash: '', pathname: '/test' })
-      fetch.mockResponseOnce(
+      fetchMock.mockResponseOnce(
         JSON.stringify({
           pageData: {
             products: [],
@@ -178,7 +178,7 @@ describe('SearchResultsProvider', () => {
     })
 
     it('applyFilters', async () => {
-      fetch.mockResponseOnce(
+      fetchMock.mockResponseOnce(
         JSON.stringify({
           pageData: {
             products: [],
@@ -199,7 +199,7 @@ describe('SearchResultsProvider', () => {
     })
 
     it('setSort', async () => {
-      fetch.mockResponseOnce(
+      fetchMock.mockResponseOnce(
         JSON.stringify({
           pageData: {
             products: [],

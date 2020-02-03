@@ -13,7 +13,7 @@ describe('ShowMore', () => {
   afterEach(() => {
     try {
       wrapper.unmount()
-      fetch.resetMocks()
+      fetchMock.resetMocks()
       jest.restoreAllMocks()
     } catch (e) {}
   })
@@ -133,7 +133,7 @@ describe('ShowMore', () => {
 
       wrapper = mount(<Test />)
 
-      fetch.mockResponseOnce(async () => {
+      fetchMock.mockResponseOnce(async () => {
         await sleep(1000)
         return { body: JSON.stringify({}) }
       })

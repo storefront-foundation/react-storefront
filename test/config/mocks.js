@@ -1,6 +1,6 @@
 import { IntersectionObserver, resetIntersectionObserver } from '../mocks/mockIntersectionObserver'
 import fetchMock from 'jest-fetch-mock'
-global.fetch = fetchMock
+global.fetch = global.fetchMock = fetchMock
 global.IntersectionObserver = IntersectionObserver
 global.HTMLElement.prototype.scrollIntoView = () => {}
 
