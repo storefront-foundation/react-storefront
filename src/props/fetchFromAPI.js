@@ -30,6 +30,7 @@ export default function fetchFromAPI({ req, asPath }) {
   const protocol = server ? (host.startsWith('localhost') ? 'http://' : 'https://') : ''
 
   if (asPath === '/') asPath = ''
+  if (asPath.startsWith('/?')) asPath = asPath.substring(1)
 
   let uri = `/api${asPath}`
 

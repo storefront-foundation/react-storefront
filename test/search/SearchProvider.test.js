@@ -49,7 +49,7 @@ describe('SearchProvider', () => {
     expect(onCloseMock).toHaveBeenCalled()
   })
 
-  it('should fetch suggestions', async () => {
+  it('should fetch suggestions the first time open is set to true', async () => {
     fetch.mockResponseOnce(JSON.stringify({ groups: 'test' }))
 
     wrapper = mount(
@@ -58,12 +58,15 @@ describe('SearchProvider', () => {
       </SearchProvider>,
     )
 
+    expect(context.state.groups).toBe(undefined) // check that suggestions aren't fetched on mount
+
     await act(async () => {
-      await sleep(250) // to trigger debounce
+      wrapper.setProps({ open: true })
+      await sleep(300) // to trigger debounce
       await wrapper.update()
     })
 
-    expect(context.state.groups).toBe('test')
+    expect(context.state.groups).toBe('test') // check that suggestions are fetched only after open is set to true
   })
 
   it('should catch fetch errors and set loading to false', async () => {

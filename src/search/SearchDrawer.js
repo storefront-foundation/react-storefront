@@ -19,7 +19,7 @@ export default function SearchDrawer({ DrawerComponent, classes, open, onClose, 
   classes = useStyles({ classes })
 
   return (
-    <SearchProvider onClose={onClose}>
+    <SearchProvider onClose={onClose} open={open}>
       <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
         {children}
       </DrawerComponent>

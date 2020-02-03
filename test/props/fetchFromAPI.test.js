@@ -37,6 +37,13 @@ describe('fetchFromAPI', () => {
       })
       expect(fetch).toHaveBeenCalledWith('/api', headers)
     })
+
+    it('should append query params directly to api if the root with query params is called', () => {
+      fetchFromAPI({
+        asPath: '/?test=1',
+      })
+      expect(fetch).toHaveBeenCalledWith('/api?test=1', headers)
+    })
   })
 
   describe('on the server', () => {
