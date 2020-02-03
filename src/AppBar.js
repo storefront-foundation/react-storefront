@@ -67,7 +67,7 @@ export default function AppBar({ children, style, fixed, offlineWarning, classes
 
   if (!fixed) {
     appBar = (
-      <Slide in={!trigger}>
+      <Slide appear={false} in={!trigger}>
         {appBar}
       </Slide>
     )
