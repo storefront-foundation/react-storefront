@@ -11,9 +11,7 @@ export const styles = theme => ({
   /**
    * Styles applied to the [`Link`](/apiReference/link%2fLink) element used as the root.
    */
-  link: {
-    color: 'inherit',
-  },
+  link: {},
   /**
    * Styles passed through to the [`Badge`](https://material-ui.com/api/badge/#css) element's
    * `badge` CSS rule.
@@ -25,7 +23,9 @@ export const styles = theme => ({
   /**
    * Styles applied to the button icon.
    */
-  icon: {},
+  icon: {
+    color: theme.palette.action.active,
+  },
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFCartButton' })
