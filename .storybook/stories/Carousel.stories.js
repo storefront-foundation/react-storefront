@@ -20,8 +20,6 @@ const slides = [
   <div style={{ ...slideStyle, background: '#26de81' }}>Green</div>,
 ]
 
-export const defaults = () => <Carousel>{slides}</Carousel>
-
 export const withArrows = () => <Carousel arrows="all">{slides}</Carousel>
 
 export const noIndicators = () => <Carousel indicators={false}>{slides}</Carousel>
