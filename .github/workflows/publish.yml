@@ -16,6 +16,7 @@ jobs:
       - name: Publish to npm and push API docs
         run: |
           npm ci
+          npm run docs
           OUTPUT=$(npm run release)
           VERSION=v$(echo $OUTPUT | rev | cut -d'@' -f 1 | rev)
           cd ..
@@ -25,8 +26,10 @@ jobs:
           git pull
           mkdir ${VERSION}
           cp ../react-storefront/docs/build/modules.json ${VERSION}
+          cp ./guides/* ${VERSION}
+          mv ${VERSION}/guides/guides.json ${VERSION}
           sed -i "$ s/$/,\n${VERSION}/" versions.csv
-          git add ${VERSION}/modules.json versions.csv
+          git add -A
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m "Docs for version ${VERSION}" -a
