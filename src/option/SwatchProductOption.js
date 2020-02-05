@@ -9,7 +9,13 @@ import PropTypes from 'prop-types'
 import { Skeleton } from '@material-ui/lab'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {},
+  /**
+   * Styles applied to the button element.
+   */
   button: {
     position: 'relative',
     marginBottom: theme.spacing(0.5),
@@ -25,11 +31,17 @@ export const styles = theme => ({
       outline: 0,
     },
   },
+  /**
+   * Styles applied to the image element.
+   */
   image: {
     height: '100%',
     width: '100%',
     borderRadius: '50%',
   },
+  /**
+   * Styles applied for mobile devices.
+   */
   '@media (hover: none)': {
     SwatchButton: {
       '&:hover': {
@@ -37,6 +49,9 @@ export const styles = theme => ({
       },
     },
   },
+  /**
+   * Styles applied to the wrapper element of the selected icon.
+   */
   checkMark: {
     transition: 'opacity 0.1s linear',
     opacity: 0,
@@ -58,12 +73,21 @@ export const styles = theme => ({
       opacity: 1,
     },
   },
+  /**
+   * Styles applied to the wrapper element of the selected icon when this option is selected.
+   */
   selected: {
     opacity: 1,
   },
+  /**
+   * Styles applied to the label element when this option is selected.
+   */
   selectedLabel: {
     fontWeight: 'bold',
   },
+  /**
+   * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'default'`.
+   */
   default: {
     height: 48,
     width: 48,
@@ -72,6 +96,9 @@ export const styles = theme => ({
       width: 24,
     },
   },
+  /**
+   * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'small'`.
+   */
   small: {
     height: 32,
     width: 32,
@@ -80,6 +107,9 @@ export const styles = theme => ({
       width: 16,
     },
   },
+  /**
+   * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'tiny'`.
+   */
   tiny: {
     height: 24,
     width: 24,
@@ -91,6 +121,10 @@ export const styles = theme => ({
 })
 const useStyles = makeStyles(styles, { name: 'RSFSwatchProductOption' })
 
+/**
+ * A variant of [`ProductOption`](/apiReference/option/ProductOption] that shows an image swatch to
+ * represent a product option.
+ */
 export default function SwatchProductOption({
   selected,
   label,
@@ -152,21 +186,49 @@ export default function SwatchProductOption({
 
 SwatchProductOption.propTypes = {
   /**
-   * Text to display below the button
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
+   * A CSS class to apply to the option.
+   */
+  className: PropTypes.string,
+  /**
+   * Text to display below the button.
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   /**
-   * Props for the `Image` element
+   * Props for the `Image` element.
    */
   imageProps: PropTypes.shape(Image.propTypes),
   /**
-   * Controls the size of the button
+   * Controls the size of the button.
    */
   size: PropTypes.oneOf(['default', 'small', 'tiny']),
   /**
-   * The component to use to display images
+   * The component type to use to display images.
    */
   ImageComponent: PropTypes.elementType,
+  /**
+   * If `true`, this option is selected.
+   */
+  selected: PropTypes.bool,
+  /**
+   * A function to call when this option is clicked.
+   */
+  onClick: PropTypes.func,
+  /**
+   * An icon component type to display for when this option is selected.
+   */
+  SelectedIcon: PropTypes.elementType,
+  /**
+   * If `true`, show this option as just a skeleton.
+   */
+  skeleton: PropTypes.bool,
+  /**
+   * Props to pass to the button element.
+   */
+  buttonProps: PropTypes.object,
 }
 
 SwatchProductOption.defaultProps = {
