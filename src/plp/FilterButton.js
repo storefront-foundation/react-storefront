@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, memo, useContext } from 'react'
+import React, { useState, useCallback, memo, useContext } from 'react'
 import ActionButton from '../ActionButton'
 import SearchResultsContext from './SearchResultsContext'
 import Filter from './Filter'
@@ -8,6 +8,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the drawer element.
+   */
   drawer: {
     height: '75vh',
   },
@@ -28,8 +31,8 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
   } = useContext(SearchResultsContext)
 
   const openFilter = useRouter().query.openFilter === '1'
-  const [state, setState] = useState({ open: openFilter, loading: false, mountDrawer: openFilter })
-  const { open, mountDrawer, loading } = state
+  const [state, setState] = useState({ open: openFilter, mountDrawer: openFilter })
+  const { open, mountDrawer } = state
   const { clear, clearDisabled, drawer, ...buttonClasses } = useStyles(classes)
 
   const toggleOpen = open => {
@@ -102,12 +105,12 @@ FilterButton.propTypes = {
   classes: PropTypes.object,
 
   /**
-   * Props for the underlying `Filter` component
+   * Props for the underlying `Filter` component.
    */
   drawerProps: PropTypes.object,
 
   /**
-   * The label for the button and the drawer header.  Defaults to "Filter".
+   * The label for the button and the drawer header.
    */
   title: PropTypes.string,
 
@@ -115,6 +118,11 @@ FilterButton.propTypes = {
    * When specified, clicking the button will navigate to the specified URL with a full page reload.
    */
   href: PropTypes.string,
+
+  /**
+   * A function that will be called when the button is clicked.
+   */
+  onClick: PropTypes.func,
 }
 
 FilterButton.defaultProps = {

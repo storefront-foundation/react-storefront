@@ -33,7 +33,7 @@ export default function CheckboxFilterGroup(props) {
     actions: { toggleFilter },
   } = useContext(SearchResultsContext)
 
-  const classes = useStyles()
+  const classes = useStyles(props.classes)
 
   return useMemo(
     () => (
@@ -65,6 +65,10 @@ export default function CheckboxFilterGroup(props) {
 }
 
 CheckboxFilterGroup.propTypes = {
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
   /**
    * Contains data for the group to be rendered.
    */

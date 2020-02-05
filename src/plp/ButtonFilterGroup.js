@@ -44,7 +44,7 @@ export default function ButtonFilterGroup(props) {
     actions: { toggleFilter },
   } = useContext(SearchResultsContext)
 
-  const classes = useStyles()
+  const classes = useStyles(props.classes)
 
   return useMemo(
     () => (
@@ -79,6 +79,10 @@ export default function ButtonFilterGroup(props) {
 
 ButtonFilterGroup.propTypes = {
   /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
    * Contains data for the group to be rendered.
    */
   group: PropTypes.shape({
@@ -92,7 +96,7 @@ ButtonFilterGroup.propTypes = {
     ),
   }),
   /**
-   * Function called when the filter changes are submitted
+   * Function called when the filter changes are submitted.
    */
   submitOnChange: PropTypes.func,
 }

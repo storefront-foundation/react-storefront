@@ -5,25 +5,14 @@ import PropTypes from 'prop-types'
 import Drawer from '../drawer/Drawer'
 import { Menu, useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
-import { useRouter } from 'next/router'
 import SearchResultsContext from './SearchResultsContext'
 
 /**
  * A button that when clicked, opens a drawer containing the `Sort` view. The name of the currently
- * selected sortOption is display in the button text.
+ * selected sort option is displayed in the button text.
  */
-function SortButton({
-  variant,
-  title,
-  drawerProps,
-  onClick,
-  sortProps,
-  drawerBreakpoint,
-  href,
-  ...props
-}) {
+function SortButton({ title, drawerProps, onClick, sortProps, drawerBreakpoint, href, ...props }) {
   const theme = useTheme()
-  const openSort = useRouter().query.openSort === '1'
   const [state, setState] = useState({
     open: false,
     mountDrawer: false,
@@ -113,24 +102,29 @@ SortButton.propTypes = {
   drawerProps: PropTypes.object,
 
   /**
-   * Props to pass to the underlying `Sort` component.
+   * Props to pass to the underlying [`Sort`](/apiReference/plp/Sort) component.
    */
   sortProps: PropTypes.object,
 
   /**
-   * Text for the button label and the drawer header.  Defaults to "Sort".
+   * Text for the button label and the drawer header.
    */
   title: PropTypes.string,
 
   /**
    * The breakpoint in your theme below which a drawer UI should be used in favor of the menu UI.
    */
-  drawerBreakpoint: PropTypes.string,
+  drawerBreakpoint: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
 
   /**
    * When specified, clicking the button will navigate to the specified URL with a full page reload.
    */
   href: PropTypes.string,
+
+  /**
+   * A function that is called when the button is clicked.
+   */
+  onCLick: PropTypes.func,
 }
 
 SortButton.defaultProps = {

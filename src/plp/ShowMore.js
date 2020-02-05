@@ -7,17 +7,26 @@ import SearchResultsContext from './SearchResultsContext'
 import VisibilitySensor from 'react-visibility-sensor'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     margin: '15px 0',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
   },
+  /**
+   * Styles applied to the button element.
+   */
   button: {
     [theme.breakpoints.down('xs')]: {
       flex: 1,
     },
   },
+  /**
+   * Styles applied to the loading icon.
+   */
   loading: {
     display: 'flex',
     height: 45,
@@ -123,25 +132,25 @@ export default function ShowMore({
 
 ShowMore.propTypes = {
   /**
-   * A renderer for the loading icon.  Uses CircularPropgress by default.
+   * A renderer for the loading icon.  Uses `<CircularProgress />` by default.
    */
   renderLoadingIcon: PropTypes.func,
   /**
-   * Which variant to use. One of 'button' or 'infinite'.
+   * Which variant to use. One of `'button'` or `'infinite'`.
    *
-   * When variant is set to 'button':
-   *   A button is rendered with contents of {props.children} or 'Show More'.
+   * When variant is set to `'button'`:
+   *   A button is rendered with contents of `{props.children}` or `'Show More'`.
    *
-   * When variant is set to 'infinite':
+   * When variant is set to `'infinite'`:
    *   The loading icon is rendered and contents of next page loaded when user
    *   scrolls to the end of the page.
    *
-   * In AMP the 'button' variant is always used.
+   * In AMP the `'button'` variant is always used.
    */
   variant: PropTypes.oneOf([VARIANTS.BUTTON, VARIANTS.INFINITE]),
   /**
    * Minimum amount of pixels from the bottom of the page to where the user has
-   * scrolled before the new page is loaded. Used in conjunction with 'infinite'
+   * scrolled before the new page is loaded. Used in conjunction with `'infinite'`
    * variant. Defaults to 200.
    */
   infiniteLoadOffset: PropTypes.number,
@@ -149,6 +158,14 @@ ShowMore.propTypes = {
    * When specified, clicking the button will navigate to the specified URL with a full page reload.
    */
   href: PropTypes.string,
+  /**
+   * A CSS class to apply to the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * CSS styles to be added to the root element.
+   */
+  style: PropTypes.object,
 }
 
 ShowMore.defaultProps = {
