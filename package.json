@@ -35,7 +35,9 @@
     "build:assets": "sync-folders --type copy plugins service-worker dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
     "docs": "mkdir -p docs/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node docs/buildDocs d.js",
-    "storybook": "start-storybook -c ./.storybook"
+    "storybook": "start-storybook -c ./.storybook",
+    "storybook-docs": "mkdir -p .storybook/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node .storybook/createMetadata d.js",
+    "build-storybook": "build-storybook -c .storybook -o .storybook/build && npm run storybook-docs"
   },
   "dependencies": {
     "chalk": "^3.0.0",
