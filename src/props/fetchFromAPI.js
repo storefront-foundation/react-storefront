@@ -24,15 +24,11 @@ import isBrowser from '../utils/isBrowser'
  * @param {Object} opts The options object provided to `getInitialProps`
  * @return {Promise} A promise that resolves to the data that the page should display
  */
-export default function fetchFromAPI({ req, asPath }) {
+export default function fetchFromAPI({ req }) {
   const server = !isBrowser()
   const host = server ? req.headers['host'] : ''
   const protocol = server ? (host.startsWith('localhost') ? 'http://' : 'https://') : ''
-
-  if (asPath === '/') asPath = ''
-  if (asPath.startsWith('/?')) asPath = asPath.substring(1)
-
-  let uri = `/api${asPath}`
+  const uri = getApiUrl(req)
 
   if (server) {
     if (uri.indexOf('?') === -1) {
@@ -45,4 +41,16 @@ export default function fetchFromAPI({ req, asPath }) {
   return fetch(`${protocol}${host}${uri}`, {
     headers: { 'x-rsf-api-version': process.env.RSF_API_VERSION || '1' },
   }).then(res => res.json())
+}
+
+/**
+ * Gets the URL path for the api endpoint corresponding to the HTML page being requested.
+ * @param {Request} req
+ * @return {String}
+ */
+function getApiUrl(req) {
+  let url = req.url
+  if (url === '/') url = ''
+  if (url.startsWith('/?')) url = url.substring(1)
+  return `/api${url}`
 }
