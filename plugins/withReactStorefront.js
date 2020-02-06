@@ -28,7 +28,7 @@ module.exports = (nextConfig = {}) => {
       serveSSRFromCache: false,
     }
 
-    // if debugging service workers, options can be change in Dev phase:
+    // if debugging service workers, options can be changed in Dev phase:
     if (phase === PHASE_DEVELOPMENT_SERVER) {
       bootstrapOptions.allowPrefetchThrottling = true
     }
