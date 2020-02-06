@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import PWAContext from './PWAContext'
 import PropTypes from 'prop-types'
 import ErrorBoundary from './ErrorBoundary'
@@ -25,12 +25,14 @@ const useStyles = makeStyles(styles, { name: 'RSFPWA' })
 export default function PWA({ children, errorReporter }) {
   useStyles()
   const thumbnail = useRef(null)
+  const [offline, setOffline] = useState(typeof navigator !== 'undefined' && !navigator.onLine)
 
   const context = useMemo(
     () => ({
       thumbnail,
+      offline,
     }),
-    [],
+    [offline],
   )
 
   // enable client-side navigation when the user clicks a simple HTML anchor element
@@ -39,17 +41,16 @@ export default function PWA({ children, errorReporter }) {
   useEffect(() => {
     context.hydrating = false
 
-    // const handleOnline = () => (app.offline = false)
-    // const handleOffline = () => (app.offline = true)
+    const handleOnline = () => setOffline(false)
+    const handleOffline = () => setOffline(true)
 
-    // app.offline = !navigator.onLine
-    // window.addEventListener('online', handleOnline)
-    // window.addEventListener('offline', handleOffline)
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
 
-    // return () => {
-    //   window.removeEventListener('online', handleOnline)
-    //   window.removeEventListener('offline', handleOffline)
-    // }
+    return () => {
+      window.removeEventListener('online', handleOnline)
+      window.removeEventListener('offline', handleOffline)
+    }
   }, [])
 
   return (

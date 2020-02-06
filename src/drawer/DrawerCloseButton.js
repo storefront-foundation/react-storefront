@@ -37,6 +37,7 @@ export const styles = theme => ({
     right: '10px',
     top: '-28px',
     zIndex: 1,
+    color: 'white',
   },
   /**
    * Styles applied to hide the `Fab` button when [`open`](#prop-open) is `false`.

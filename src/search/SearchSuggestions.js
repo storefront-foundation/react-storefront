@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 import SearchSuggestionGroup from './SearchSuggestionGroup'
 import SearchContext from './SearchContext'
 import LoadMask from '../LoadMask'
@@ -8,6 +7,7 @@ import LoadMask from '../LoadMask'
 export const styles = theme => ({
   root: {
     flex: 1,
+    position: 'relative',
     overflowY: 'auto',
   },
   group: {
