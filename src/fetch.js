@@ -22,14 +22,12 @@ export default function fetch(url, opts = {}) {
  * Adds x-rsf-api-version to all xhr
  */
 function monkeyPatchXHR() {
-  if (typeof XMLHttpRequest !== 'undefined') {
-    const open = XMLHttpRequest.prototype.open
+  const open = XMLHttpRequest.prototype.open
 
-    XMLHttpRequest.prototype.open = function() {
-      const res = open.apply(this, arguments)
-      this.setRequestHeader(RSF_VERSION_HEADER, apiVersion)
-      return res
-    }
+  XMLHttpRequest.prototype.open = function() {
+    const res = open.apply(this, arguments)
+    this.setRequestHeader(RSF_VERSION_HEADER, apiVersion)
+    return res
   }
 }
 
@@ -37,7 +35,10 @@ function monkeyPatchXHR() {
  * Adds x-rsf-api-version to all fetch requests
  */
 function monkeyPatchFetch() {
-  window.fetch = fetch
+  // We don't add fetch if it's not there, so browsers will not try to detect it
+  if (window.fetch) {
+    window.fetch = fetch
+  }
 }
 
 if (typeof window !== 'undefined') {

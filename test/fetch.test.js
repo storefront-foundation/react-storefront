@@ -1,31 +1,29 @@
 describe('fetch', () => {
-  const originalXHR = XMLHttpRequest
-  let fetch, mockUnfetch, mockSetRequestHeader, originalWindow
+  const mockSetRequestHeader = jest.fn()
+  let fetch
 
-  afterEach(() => {
-    global.XMLHttpRequest = originalXHR
-    global.window = originalWindow
+  afterAll(() => {
+    jest.restoreAllMocks()
+  })
+
+  beforeAll(() => {
+    fetchMock.mockResponse(JSON.stringify({}))
+
+    jest
+      .spyOn(XMLHttpRequest.prototype, 'setRequestHeader')
+      .mockImplementation(mockSetRequestHeader)
   })
 
   describe('in browser', () => {
-    beforeEach(() => {
+    beforeAll(() => {
       jest.isolateModules(() => {
-        mockUnfetch = jest.fn()
-        jest.mock('isomorphic-unfetch', () => mockUnfetch)
-        mockSetRequestHeader = jest.fn()
-
-        global.XMLHttpRequest = class XHR {
-          open() {}
-          setRequestHeader = mockSetRequestHeader
-        }
-
         fetch = require('react-storefront/fetch').default
       })
     })
 
     it('should send x-rsf-api-version', () => {
       fetch('test')
-      expect(mockUnfetch).toHaveBeenCalledWith(
+      expect(fetchMock).toHaveBeenCalledWith(
         'test',
         expect.objectContaining({
           headers: expect.objectContaining({
@@ -38,7 +36,7 @@ describe('fetch', () => {
     it('should preserve existing headers', () => {
       fetch('test', { headers: { foo: 'bar' } })
 
-      expect(mockUnfetch).toHaveBeenCalledWith(
+      expect(fetchMock).toHaveBeenCalledWith(
         'test',
         expect.objectContaining({
           headers: expect.objectContaining({
@@ -61,18 +59,37 @@ describe('fetch', () => {
   })
 
   describe('on server', () => {
-    it('should not require XMLHttpRequest to be present', () => {
+    beforeAll(() => {
+      jest.spyOn(global, 'window', 'get').mockImplementation(() => undefined)
       jest.isolateModules(() => {
-        global.XMLHttpRequest = undefined
-        expect(() => require('react-storefront/fetch').default).not.toThrowError()
+        fetch = require('react-storefront/fetch').default
       })
     })
 
-    it('should work on the server', () => {
+    it('should work on the server', async () => {
+      const fetchMockRes = { test: 'test' }
+
+      fetchMock.mockResponseOnce(JSON.stringify(fetchMockRes))
+
+      const fetchRes = await fetch('test').then(res => res.json())
+
+      expect(window).toBe(undefined)
+      expect(fetchRes).toStrictEqual(fetchMockRes)
+    })
+  })
+
+  describe('window is defined but window fetch is not defined', () => {
+    beforeAll(() => {
+      jest.spyOn(global, 'window', 'get').mockImplementation(() => ({
+        fetch: undefined,
+      }))
       jest.isolateModules(() => {
-        global.window = undefined
-        expect(() => require('react-storefront/fetch').default).not.toThrowError()
+        fetch = require('react-storefront/fetch').default
       })
+    })
+
+    it('should not overwrite it with our fetch', async () => {
+      expect(window.fetch).toBe(undefined)
     })
   })
 })
