@@ -18,7 +18,7 @@ export async function prefetch(url) {
  */
 export function prefetchJsonFor(url) {
   const parsed = new URL(url)
-  return prefetch(`/api/${parsed.path}${parsed.search}`)
+  return prefetch(`/api${parsed.pathname}${parsed.search}`)
 }
 
 /**
