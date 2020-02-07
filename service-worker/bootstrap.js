@@ -39,7 +39,7 @@ function configureRuntimeCaching({ maxEntries = 200, maxAgeSeconds = 60 * 60 * 2
 
   runtimeCacheOptions = {
     plugins: [
-      new workbox.expiration.Plugin({
+      new workbox.expiration.ExpirationPlugin({
         maxEntries,
         maxAgeSeconds,
       }),
@@ -264,7 +264,7 @@ function isSecure(context) {
  * @return {Boolean}
  */
 function isStaticAsset(context) {
-  return context.url.pathname.startsWith('/pwa/')
+  return context.url.pathname.startsWith('/_next/static/')
 }
 
 /**
