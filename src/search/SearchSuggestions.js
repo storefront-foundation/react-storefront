@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import SearchSuggestionGroup from './SearchSuggestionGroup'
 import SearchContext from './SearchContext'
 import LoadMask from '../LoadMask'
+import PropTypes from 'prop-types'
 
 export const styles = theme => ({
   /**
