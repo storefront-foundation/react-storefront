@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import SearchContext from './SearchContext'
-import _fetch from 'isomorphic-unfetch'
+import _fetch from '../fetch'
 import debounce from 'lodash/debounce'
 import { fetchLatest, StaleResponseError } from '../utils/fetchLatest'
 import useNavigationEvent from '../hooks/useNavigationEvent'

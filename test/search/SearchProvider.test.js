@@ -15,7 +15,7 @@ describe('SearchProvider', () => {
 
   afterEach(() => {
     wrapper.unmount()
-    fetch.resetMocks()
+    fetchMock.resetMocks()
     jest.restoreAllMocks()
     context = undefined
   })
@@ -27,7 +27,7 @@ describe('SearchProvider', () => {
   }
 
   it('should call navigation event and context should provide onClose', async () => {
-    fetch.mockResponseOnce(JSON.stringify({}))
+    fetchMock.mockResponseOnce(JSON.stringify({}))
     const onCloseMock = jest.fn()
 
     wrapper = mount(
@@ -50,7 +50,7 @@ describe('SearchProvider', () => {
   })
 
   it('should fetch suggestions the first time open is set to true', async () => {
-    fetch.mockResponseOnce(JSON.stringify({ groups: 'test' }))
+    fetchMock.mockResponseOnce(JSON.stringify({ groups: 'test' }))
 
     wrapper = mount(
       <SearchProvider>
@@ -70,7 +70,7 @@ describe('SearchProvider', () => {
   })
 
   it('should catch fetch errors and set loading to false', async () => {
-    fetch.mockRejectOnce(new Error('test error'))
+    fetchMock.mockRejectOnce(new Error('test error'))
 
     wrapper = mount(
       <SearchProvider initialGroups={[{}, {}]}>
@@ -89,7 +89,7 @@ describe('SearchProvider', () => {
   })
 
   it('should catch fetch Stale errors and not set loading to false', async () => {
-    fetch.mockRejectOnce(new StaleResponseError('test error'))
+    fetchMock.mockRejectOnce(new StaleResponseError('test error'))
 
     wrapper = mount(
       <SearchProvider initialGroups={[{}, {}]}>

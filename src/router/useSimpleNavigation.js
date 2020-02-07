@@ -1,5 +1,5 @@
 import delegate from 'delegate'
-import fetch from 'isomorphic-unfetch'
+import fetch from '../fetch'
 import { useEffect, useRef, useCallback } from 'react'
 import Router from 'next/router'
 import qs from 'qs'

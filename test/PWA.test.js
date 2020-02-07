@@ -31,7 +31,7 @@ describe('PWA', () => {
   })
 
   beforeEach(() => {
-    fetch.mockResponseOnce(JSON.stringify({}))
+    fetchMock.mockResponseOnce(JSON.stringify({}))
     jest.spyOn(window, 'navigator', 'get').mockImplementation(options => ({ ...options, onLine }))
   })
 
