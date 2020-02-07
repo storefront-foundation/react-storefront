@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 import SearchIcon from '@material-ui/icons/Search'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {},
+  /**
+   * Styles applied to the label element.
+   */
   label: {
     display: 'flex',
   },
@@ -33,11 +39,15 @@ export default function SearchSubmitButton({ Component, classes, text, ...others
 
 SearchSubmitButton.propTypes = {
   /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
    * A Material UI button component to display.
    */
   Component: PropTypes.elementType.isRequired,
   /**
-   * The current search text
+   * The current search text.
    */
   text: PropTypes.string.isRequired,
 }

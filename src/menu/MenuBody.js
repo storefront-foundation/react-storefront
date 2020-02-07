@@ -41,7 +41,7 @@ MenuBody.propTypes = {
   /**
    * Overrides the default component used to display menu cards
    */
-  CardComponent: PropTypes.func.isRequired,
+  CardComponent: PropTypes.elementType.isRequired,
 }
 
 MenuBody.defaultProps = {

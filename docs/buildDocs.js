@@ -43,11 +43,7 @@ function readFileContent(file) {
 async function maybeParseModule(module) {
   try {
     if (module.filename !== 'index') {
-      // Documentation.js can't parse models comments right with documentExported:true
-      // that is why parsing model folder we put documentExported:false
-      const isModel = module.importPath.split('/')[0] === 'model'
-      const result = await moduleParser(module.filepath, module.importPath, !isModel)
-
+      const result = await moduleParser(module.filepath, module.importPath)
       return Object.keys(result.exports).length === 0
         ? undefined
         : Object.assign({}, module, result, { component: false })
@@ -164,8 +160,7 @@ const main = async () => {
       const isRootFile = root === fullPath
       const menuItem = {
         text: splitPath[1] || fullPath,
-        href: '/[module]',
-        as: `/${encodeURIComponent(fullPath)}`,
+        as: fullPath,
       }
 
       responseObject.styles = await getStyles(responseObject)

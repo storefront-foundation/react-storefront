@@ -89,7 +89,7 @@ BackToTop.propTypes = {
   /**
    * The icon to use within the `Fab` component.
    */
-  Icon: PropTypes.func,
+  Icon: PropTypes.elementType,
   /**
    * Value which controls where along the Y position the `BackToTop` component is shown.
    */

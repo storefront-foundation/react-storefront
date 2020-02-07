@@ -124,7 +124,7 @@ CarouselThumbnails.propTypes = {
   className: PropTypes.string,
 
   /**
-   * Index of the currently selected slide in the [`Carousel`](/apiReference/carousel%2fCarousel).
+   * Index of the currently selected slide in the [`Carousel`](/apiReference/carousel/Carousel).
    */
   selected: PropTypes.number,
 

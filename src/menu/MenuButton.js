@@ -50,7 +50,7 @@ MenuButton.propTypes = {
   /**
    * A react component to use for the menu icon
    */
-  MenuIcon: PropTypes.func,
+  MenuIcon: PropTypes.elementType,
 
   /**
    * Props for the menu icon

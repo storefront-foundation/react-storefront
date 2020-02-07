@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import SearchContext from './SearchContext'
 import _fetch from '../fetch'
@@ -46,17 +46,6 @@ export default function SearchProvider({ children, initialGroups, onClose, open 
       }
     }
   }, 250)
-
-  // const context = useMemo(
-  //   () => ({
-  //     state,
-  //     setState,
-  //     fetchSuggestions,
-  //     onClose,
-  //     submit
-  //   }),
-  //   [state]
-  // )
 
   const context = {
     state,

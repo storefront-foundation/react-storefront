@@ -1,9 +1,13 @@
-import React, { useRef, useState } from 'react'
+import PropTypes from 'prop-types'
+import React, { useRef } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { useRouter } from 'next/router'
 import qs from 'qs'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     position: 'relative',
     height: '100%',
@@ -13,6 +17,9 @@ export const styles = theme => ({
 })
 const useStyles = makeStyles(styles, { name: 'RSFSearchForm' })
 
+/**
+ * A form used to submit a search query.
+ */
 export default function SearchForm({ classes, children, action }) {
   classes = useStyles({ classes })
 
@@ -41,7 +48,22 @@ export default function SearchForm({ classes, children, action }) {
   )
 }
 
-SearchForm.propTypes = {}
+SearchForm.propTypes = {
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * Children to be rendered inside the form.
+   */
+  children: PropTypes.node,
+
+  /**
+   * An `action` attribute to use for the `<form>` element.
+   */
+  action: PropTypes.string,
+}
 
 SearchForm.defaultProps = {
   action: '/search',

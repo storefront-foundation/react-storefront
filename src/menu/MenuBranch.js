@@ -84,7 +84,7 @@ MenuBranch.propTypes = {
   /**
    * Overrides the default component for expandable items
    */
-  ExpanderComponent: PropTypes.func.isRequired,
+  ExpanderComponent: PropTypes.elementType.isRequired,
   /**
    * Additional props for the underlying ListItem
    */

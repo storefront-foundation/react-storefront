@@ -1,11 +1,13 @@
 import React, { useMemo, useContext } from 'react'
 import { Hbox } from '../Box'
-import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import SearchResultsContext from './SearchResultsContext'
 
 const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   header: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     [theme.breakpoints.down('xs')]: {
@@ -15,6 +17,9 @@ const styles = theme => ({
       padding: theme.spacing(1, 2, 2, 2),
     },
   },
+  /**
+   * Styles applied to the title element.
+   */
   title: {
     [theme.breakpoints.down('xs')]: {
       ...theme.typography.h6,
@@ -25,6 +30,9 @@ const styles = theme => ({
       fontWeight: 'bold',
     },
   },
+  /**
+   * Styles applied to the clear link.
+   */
   clear: {
     ...theme.typography.caption,
     display: 'block',
@@ -38,9 +46,12 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFFilterHeader' })
 
+/**
+ * A header to be placed at the top of the [`Filter`](/apiReference/plp/Filter).
+ */
 export default function FilterHeader(props) {
   const { title, clearLinkText, hideClearLink, submitOnChange } = props
-  const classes = useStyles()
+  const classes = useStyles(props.classes)
   const {
     actions,
     pageData: { filters },
@@ -51,12 +62,7 @@ export default function FilterHeader(props) {
       <Hbox justify="center" className={classes.header}>
         <div className={classes.title}>{title}</div>
         {hideClearLink || !filters || filters.length === 0 ? null : (
-          <button
-            onClick={() => actions.clearFilters(submitOnChange)}
-            className={clsx({
-              [classes.clear]: true,
-            })}
-          >
+          <button onClick={() => actions.clearFilters(submitOnChange)} className={classes.clear}>
             {clearLinkText}
           </button>
         )}
@@ -67,7 +73,25 @@ export default function FilterHeader(props) {
 }
 
 FilterHeader.propTypes = {
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
+   * An optional title to display at the top of the component.
+   */
   title: PropTypes.string,
+  /**
+   * Set to `true` to refresh the results when the user toggles a filter.
+   */
+  submitOnChange: PropTypes.bool,
+  /**
+   * If `true`, the clear link is hidden.
+   */
+  hideClearLink: PropTypes.bool,
+  /**
+   * Text to use for the clear link.
+   */
   clearLinkText: PropTypes.string,
 }
 

@@ -4,14 +4,16 @@ import { Button, MenuItem } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import SearchResultsContext from './SearchResultsContext'
 
-/**
- * UI for sorting an instance of SearchResultModelBase.  This component can be used on its own, or you can use
- * SortButton to automatically display this component in a drawer that slides up from the bottom of the viewport.
- */
 export const styles = theme => ({
+  /**
+   * Styles applied to the root container if [`variant`](#prop-variant) is `'buttons'`.
+   */
   container: {
     padding: '15px 0 0 15px',
   },
+  /**
+   * Styles applied to each option if [`variant`](#prop-variant) is `'buttons'`.
+   */
   option: {
     boxShadow: 'none',
     width: 'calc(50% - 15px)',
@@ -21,6 +23,11 @@ export const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFSort' })
 
+/**
+ * UI for sorting a list of products.  This component can be used on its own, or you can use
+ * [`SortButton`](/apiReference/plp/SortButton) to automatically display this component in a drawer
+ * that slides up from the bottom of the viewport.
+ */
 function Sort({ variant, classes, onSelect }) {
   classes = useStyles({ classes })
 
@@ -76,13 +83,18 @@ function Sort({ variant, classes, onSelect }) {
 
 Sort.propTypes = {
   /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
    * A function to call when a sort option is selected.  The option and event are passed.
    * The default behavior can be prevented by called `preventDefault()` on the passed in event.
    */
   onSelect: PropTypes.func,
 
   /**
-   * Controls how sort options are displayed.  Can be "menu-items" or "buttons".  Defaults to "buttons"
+   * Controls how sort options are displayed.
    */
   variant: PropTypes.oneOf(['menu-items', 'buttons']),
 }

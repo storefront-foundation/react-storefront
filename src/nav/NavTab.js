@@ -20,7 +20,7 @@ const styles = theme => ({
     paddingRight: theme.spacing(2),
   },
   /**
-   * Styles applied to the root [`Link`](/apiReference/link%2fLink) element.
+   * Styles applied to the root [`Link`](/apiReference/link/Link) element.
    */
   link: {
     textDecoration: 'none',

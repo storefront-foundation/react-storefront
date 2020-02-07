@@ -99,7 +99,7 @@ const parseInfo = (data, results, path, hasNamedExports) => {
     results.exports[fullPath] = exportsObject
   }
 
-  const item = { text: name, url: fullPath }
+  const item = { text: name, as: fullPath }
 
   // Populate menu items
   if (hasNamedExports && !isClassMember) {
@@ -112,12 +112,11 @@ const parseInfo = (data, results, path, hasNamedExports) => {
   }
 }
 
-export default async function moduleParser(filePath, importPath, exported = true) {
+export default async function moduleParser(filePath, importPath) {
   const fileName = importPath.split('/').pop()
   const build = (
     await documentation.build(filePath, {
       shallow: true,
-      documentExported: exported,
     })
   ).filter(item => !item.license && !item.private)
   const isJsDoc = item => (item.tags && item.tags.length) || item.description
@@ -148,8 +147,7 @@ export default async function moduleParser(filePath, importPath, exported = true
 
   const item = {
     text: fileName,
-    href: haveItems ? undefined : '/[module]',
-    as: haveItems ? undefined : `/${encodeURIComponent(importPath)}`,
+    as: haveItems ? undefined : importPath,
     items: haveItems ? results.items : undefined,
   }
 

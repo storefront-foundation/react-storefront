@@ -66,9 +66,32 @@ export default function SearchSuggestionItem({
 
 SearchSuggestionItem.propTypes = {
   /**
-   * The component to use to display images.
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
-  ImageComponent: PropTypes.func,
+  classes: PropTypes.object,
+  /**
+   * Child nodes that can be used for the link body. If not included, will default to using the
+   * [item](prop-item)'s `thumbnail` and `text`.
+   */
+  children: PropTypes.node,
+  /**
+   * Contains all the metadata needed to display the search suggestion item.
+   */
+  item: PropTypes.shape({
+    as: PropTypes.string,
+    href: PropTypes.string,
+    text: PropTypes.string,
+    pageData: PropTypes.object,
+    thumbnail: PropTypes.object,
+  }),
+  /**
+   * Props to be passed to the image for thumbnails.
+   */
+  thumbnailProps: PropTypes.object,
+  /**
+   * The component type to use to display images.
+   */
+  ImageComponent: PropTypes.elementType,
 }
 
 SearchSuggestionItem.defaultProps = {

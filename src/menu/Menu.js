@@ -193,12 +193,12 @@ Menu.propTypes = {
   /**
    * The icon to use for collapsed groups
    */
-  ExpandIcon: PropTypes.func,
+  ExpandIcon: PropTypes.elementType,
 
   /**
    * The icon to use for expanded groups
    */
-  CollapseIcon: PropTypes.func,
+  CollapseIcon: PropTypes.elementType,
 
   /**
    * Sets the side of the screen from which the menu appears.

@@ -73,7 +73,7 @@ Offline.propTypes = {
   /**
    * An icon to display.
    */
-  Icon: PropTypes.func,
+  Icon: PropTypes.elementType,
 }
 
 Offline.defaultProps = {
