@@ -2,8 +2,13 @@ const withOffline = require('next-offline')
 const path = require('path')
 
 module.exports = function withServiceWorker(config, bootstrapPath) {
+  const generateInDevMode = process.env.serviceWorker === 'true'
+  if (generateInDevMode) {
+    console.log('> Using service worker in development mode')
+  }
   return withOffline({
     ...config,
+    generateInDevMode,
     workboxOpts: {
       clientsClaim: true,
       skipWaiting: true,
@@ -16,12 +21,11 @@ module.exports = function withServiceWorker(config, bootstrapPath) {
       // The asset names for page chunks contain square brackets, eg [productId].js
       // Next internally injects these chunks encoded, eg %5BproductId%5D.js
       // For precaching to work the cache keys need to match the name of the assets
-      // requested, therefore we need to tranform the manifest entries with encoding.
+      // requested, therefore we need to transform the manifest entries with encoding.
       manifestTransforms: [
         manifestEntries => {
           const manifest = manifestEntries.map(entry => {
-            const newUrl = encodeURI(entry.url)
-            entry.url = newUrl
+            entry.url = encodeURI(entry.url)
             return entry
           })
           return { manifest, warnings: [] }
