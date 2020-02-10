@@ -90,13 +90,13 @@ ButtonFilterGroup.propTypes = {
       PropTypes.shape({
         code: PropTypes.string,
         name: PropTypes.string,
-        matches: PropTypes.string,
+        matches: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         image: PropTypes.object,
       }),
     ),
   }),
   /**
-   * Function called when the filter changes are submitted.
+   * Set to `true` if the filters will be submitted when changed. In this case, the footer will not be shown.
    */
-  submitOnChange: PropTypes.func,
+  submitOnChange: PropTypes.bool,
 }

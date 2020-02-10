@@ -80,9 +80,9 @@ FacetGroup.propTypes = {
    */
   group: PropTypes.object,
   /**
-   * Function called when the filter changes are submitted.
+   * Set to `true` to refresh the results when the user toggles a filter.
    */
-  submitOnChange: PropTypes.func,
+  submitOnChange: PropTypes.bool,
   /**
    * If `true`, the group is expanded by default.
    */

@@ -77,13 +77,13 @@ CheckboxFilterGroup.propTypes = {
       PropTypes.shape({
         code: PropTypes.string,
         name: PropTypes.string,
-        matches: PropTypes.string,
+        matches: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         image: PropTypes.object,
       }),
     ),
   }),
   /**
-   * Function called when the filter changes are submitted
+   * Set to `true` to refresh the results when the user toggles a filter.
    */
-  submitOnChange: PropTypes.func,
+  submitOnChange: PropTypes.bool,
 }
