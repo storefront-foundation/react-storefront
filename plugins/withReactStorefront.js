@@ -9,7 +9,7 @@ const ClearRequireCachePlugin = require('webpack-clear-require-cache-plugin')
 const chalk = require('chalk')
 
 module.exports = (nextConfig = {}) => {
-  const usePreact = process.env.preact !== 'false'
+  const usePreact = process.env.preact === 'true'
 
   console.log(
     `> Using ${
