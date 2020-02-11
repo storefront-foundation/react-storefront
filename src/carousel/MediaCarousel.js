@@ -256,18 +256,25 @@ MediaCarousel.propTypes = {
   classes: PropTypes.object,
 
   /**
-   * Array of objects containing the data for an image to be used for thumbnails
+   * Array of objects containing the data for an image to be used for thumbnails. If `false`, no
+   * thumbnails will be displayed.
    */
-  thumbnails: PropTypes.arrayOf(
-    PropTypes.shape({
-      src: PropTypes.string,
-      alt: PropTypes.string,
-    }),
-  ),
+  thumbnails: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        src: PropTypes.string,
+        alt: PropTypes.string,
+      }),
+    ),
+    PropTypes.bool,
+  ]),
   /**
-   * If `true`, the carousel will have thumbnails below it.
+   * Data for an image to be used for a thumbnail when the images are not yet loaded.
    */
-  thumbnail: PropTypes.bool,
+  thumbnail: PropTypes.shape({
+    src: PropTypes.string,
+    alt: PropTypes.string,
+  }),
   /**
    * An optional `className` to use for the thumbnails component.
    */
@@ -278,7 +285,7 @@ MediaCarousel.propTypes = {
   CarouselThumbnailsComponent: PropTypes.elementType,
 
   /**
-   * An optional `className` to use for the [`MagnifyHint`](/apiReference/carousel/MagnifyHint) component
+   * An optional `className` to use for the [`MagnifyHint`](/apiReference/carousel/MagnifyHint) component.
    */
   magnifyHintClassName: PropTypes.string,
   /**
@@ -287,9 +294,12 @@ MediaCarousel.propTypes = {
    */
   imageProps: PropTypes.object,
   /**
-   * List of media components to make up the carousel.
+   * Data for all the media objects to show in the carousel.
    */
-  media: PropTypes.arrayOf(PropTypes.object),
+  media: PropTypes.shape({
+    full: PropTypes.arrayOf(PropTypes.object),
+    thumbnails: PropTypes.arrayOf(PropTypes.object),
+  }),
   /**
    * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
    * [`magnifyProps`](/apiReference/carousel/Media#prop-magnifyProps).
