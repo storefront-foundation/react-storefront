@@ -4,11 +4,6 @@ workbox.loadModule('workbox-strategies')
 
 const PREFETCH_CACHE_MISS = 412
 
-// If we used anything other than a 2xx status, chrome console will show a
-// failed fetch every time there is a cache miss.  If we return null, workbox
-// will show a warning and chrome console will show a fetch failure.
-const CLIENT_CACHE_MISS = 204
-
 let runtimeCacheOptions = {}
 let abortControllers = new Set()
 let toResume = new Set()
@@ -28,7 +23,6 @@ try {
 /**
  * Configures parameters for cached routes.
  * @param {Object} options
- * @param {Object} options.cacheName The name of the runtime cache
  * @param {Object} options.maxEntries The max number of entries to store in the cache
  * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
  */
@@ -67,7 +61,7 @@ function precacheLinks(response) {
 
 /**
  * Fetches and caches the specified path.
- * @param {Object} options A URL path
+ * @param {Object} options Cache path options
  * @param {String} options.path A URL path
  * @param {String} options.apiVersion The version of the api that the client is running
  * @param {Boolean} cacheLinks Set to true to fetch and cache all links in the HTML returned
@@ -169,7 +163,7 @@ function addToCache(cache, path, data, contentType) {
 
 /**
  * Adds the specified data to the cache
- * @param {Object} options A URL path
+ * @param {Object} options Cache state options
  * @param {String} options.path A URL path
  * @param {Boolean} options.cacheData The data to cache
  * @param {String} options.apiVersion The version of the api that the client is running.
@@ -247,6 +241,20 @@ self.addEventListener('install', event => {
         .map(path => path.replace('.amp', ''))
         .forEach(path => cachePath({ path }, true))
     })
+})
+
+self.addEventListener('fetch', event => {
+  // Catches all non-prefetch requests and aborts in-progress prefetches
+  // until the request finishes, then resumes prefetching
+  abortPrefetches()
+  event.respondWith(
+    (async function() {
+      return fetch(event.request).then(resp => {
+        resumePrefetches()
+        return resp
+      })
+    })(),
+  )
 })
 
 /**
