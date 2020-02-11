@@ -1,6 +1,5 @@
 import React, { createRef } from 'react'
 import { mount } from 'enzyme'
-import sleep from '../config/sleep'
 import LinkContext from 'react-storefront/link/LinkContext'
 
 describe('Link', () => {

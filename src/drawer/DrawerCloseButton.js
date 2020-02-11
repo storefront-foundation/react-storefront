@@ -73,7 +73,7 @@ export default function DrawerCloseButton({
     ButtonElement = IconButton
   } else {
     ButtonElement = props => (
-      <Fab color="primary" className={clsx(!open && classes.hidden)} {...props}>
+      <Fab color="primary" {...props} className={clsx(props.className, !open && classes.hidden)}>
         <Icon />
       </Fab>
     )

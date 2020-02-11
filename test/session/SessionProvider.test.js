@@ -43,6 +43,24 @@ describe('SessionProvider', () => {
     expect(wrapper.find(Button).text()).toBe('Total:5')
   })
 
+  it('should not fetch session data if url is not provided', async () => {
+    wrapper = mount(
+      <SessionProvider>
+        <Test />
+      </SessionProvider>,
+    )
+
+    expect(wrapper.find(Button).text()).toBe('Total:0')
+
+    await act(async () => {
+      await wrapper.update()
+    })
+
+    expect(wrapper.find(Button).text()).toBe('Total:0')
+
+    expect(fetchMock).not.toBeCalled()
+  })
+
   describe('actions - updateCartCount', () => {
     it('should update cartCount', async () => {
       wrapper = mount(

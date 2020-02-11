@@ -94,7 +94,7 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
   const menuItemBlurPending = useRef(false)
 
   // accessibility: open the menu when the user presses enter with the tab focused
-  const handleTabKeyDown = useCallback(e => {
+  const handleEnterKeyDown = useCallback(e => {
     if (e.key === 'Enter') {
       e.preventDefault()
       setAnchorEl(e.currentTarget)
@@ -108,11 +108,7 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
     // So we need to let the event loop finish one cycle to see if another item in the menu receives focus before
     // determining that the menu has lost focus and should be closed.
     menuItemBlurPending.current = false
-
-    if (!focused) {
-      setFocused(true)
-    }
-  }, [focused])
+  }, [])
 
   // When a menu item loses focus, we close the menu if another menu item doesn't immediately gain focus
   const handleMenuItemBlur = useCallback(() => {
@@ -153,7 +149,7 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
         prefetch={prefetch}
       >
         <Tab
-          onKeyDown={handleTabKeyDown}
+          onKeyDown={handleEnterKeyDown}
           classes={{ root: classes.tab }}
           aria-haspopup={children != null}
           aria-expanded={open}
