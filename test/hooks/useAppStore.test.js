@@ -3,20 +3,27 @@ import { mount } from 'enzyme'
 import useAppStore from 'react-storefront/hooks/useAppStore'
 
 describe('useAppStore', () => {
-  it('should update when the prop changes', () => {
-    let renderCount = 0,
-      lastState
-
-    const Test = ({ value }) => {
-      const [state, setState] = useAppStore(value)
-      renderCount++
-      lastState = state
+  it('should update when the appData changes', () => {
+    const Test = props => {
+      const [state, _] = useAppStore(props)
       return <div>{state}</div>
     }
 
-    const wrapper = mount(<Test value={1} />)
-    wrapper.setProps({ value: 2 })
-    expect(renderCount).toBe(3)
-    expect(lastState).toBe(2)
+    const wrapper = mount(<Test />)
+    expect(wrapper.text()).toBe('')
+    wrapper.setProps({ appData: 'test' })
+    expect(wrapper.text()).toBe('test')
+  })
+
+  it('should not update when props changes but not AppData', () => {
+    const Test = props => {
+      const [state, _] = useAppStore(props)
+      return <div>{state}</div>
+    }
+
+    const wrapper = mount(<Test appData="test" />)
+    expect(wrapper.text()).toBe('test')
+    wrapper.setProps({ other: 'test2' })
+    expect(wrapper.text()).toBe('test')
   })
 })

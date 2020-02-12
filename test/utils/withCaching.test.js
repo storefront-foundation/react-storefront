@@ -12,7 +12,7 @@ describe('withCaching', () => {
   it('should not set header if maxAgeSeconds are not present on the browser', () => {
     const res = { setHeader: jest.fn() }
 
-    withCaching(jest.fn(), { browser: {} })({}, res)a
+    withCaching(jest.fn(), { browser: {} })({}, res)
 
     expect(res.setHeader).not.toBeCalled()
   })
