@@ -43,7 +43,7 @@
  * }, { timeout: 50 })
  * ```
  *
- * @param {Function} createApiUrl A function to use to create the URL
+ * @param {Function} fetchCallback A function to use to create the URL
  * @param {Object} options
  * @param {Object} options.timeout The max duration to wait before resolving so that the page
  *  component will be rendered and can display a skeleton while waiting for the promise returned
@@ -68,21 +68,13 @@ export default function createLazyProps(fetchCallback, { timeout = 50 } = {}) {
         return new Promise((resolve, reject) => {
           const fetchPromise = fetchCallback(options)
 
-          let resolved = false
-
           setTimeout(() => {
-            if (!resolved) {
-              resolved = true
-              resolve({ lazy: fetchPromise })
-            }
+            resolve({ lazy: fetchPromise })
           }, timeout)
 
           fetchPromise
             .then(result => {
-              if (!resolved) {
-                resolved = true
-                resolve(result)
-              }
+              resolve(result)
             })
             .catch(e => {
               reject(e)
