@@ -131,8 +131,7 @@
           }
         }
       ],
-      "@babel/plugin-proposal-class-properties",
-      "babel-plugin-rewire"
+      "@babel/plugin-proposal-class-properties"
     ]
   },
   "jest": {
@@ -148,6 +147,7 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**/*.{js,jsx}",
+      "./service-worker/*.{js,jsx}",
       "!**/index.js"
     ],
     "moduleNameMapper": {
@@ -155,6 +155,9 @@
     },
     "roots": [
       "test"
-    ]
+    ],
+    "transform": {
+      ".*": "./test/config/babelTransformer.js"
+    }
   }
 }
