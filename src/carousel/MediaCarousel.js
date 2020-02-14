@@ -213,7 +213,7 @@ function MediaCarousel(props) {
               onLoad={i === 0 ? onFullSizeImagesLoaded : null}
               magnifyProps={magnifyProps}
               {...item}
-              magnify={lightboxActive && !isSmall ? false : item.magnify}
+              magnify={isSmall ? undefined : item.magnify}
               imageProps={
                 lightboxActive && !isSmall
                   ? {
@@ -256,18 +256,13 @@ MediaCarousel.propTypes = {
   classes: PropTypes.object,
 
   /**
-   * Array of objects containing the data for an image to be used for thumbnails
-   */
-  thumbnails: PropTypes.arrayOf(
-    PropTypes.shape({
-      src: PropTypes.string,
-      alt: PropTypes.string,
-    }),
-  ),
-  /**
    * If `true`, the carousel will have thumbnails below it.
    */
-  thumbnail: PropTypes.bool,
+  thumbnails: PropTypes.bool,
+  /**
+   * If exists, the carousel will have preloaded thumbnail below it.
+   */
+  thumbnail: PropTypes.object,
   /**
    * An optional `className` to use for the thumbnails component.
    */
@@ -289,7 +284,10 @@ MediaCarousel.propTypes = {
   /**
    * List of media components to make up the carousel.
    */
-  media: PropTypes.arrayOf(PropTypes.object),
+  media: PropTypes.shape({
+    full: PropTypes.array,
+    thumbnails: PropTypes.array,
+  }),
   /**
    * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
    * [`magnifyProps`](/apiReference/carousel/Media#prop-magnifyProps).
