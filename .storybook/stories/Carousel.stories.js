@@ -1,7 +1,8 @@
 import React from 'react'
+import { withKnobs, boolean, number, select } from '@storybook/addon-knobs'
 import Carousel from '../../src/carousel/Carousel'
 
-export default { title: 'Carousel' }
+export default { title: 'Carousel', decorators: [withKnobs] }
 
 const slideStyle = {
   width: '100%',
@@ -20,14 +21,13 @@ const slides = [
   <div style={{ ...slideStyle, background: '#26de81' }}>Green</div>,
 ]
 
-export const withArrows = () => <Carousel arrows="all">{slides}</Carousel>
-
-export const noIndicators = () => <Carousel indicators={false}>{slides}</Carousel>
-
-export const autoplay = () => <Carousel autoplay>{slides}</Carousel>
-
-export const customInterval = () => (
-  <Carousel autoplay interval={1000}>
+export const options = () => (
+  <Carousel
+    indicators={boolean('Indicators', true)}
+    autoplay={boolean('Autoplay')}
+    interval={number('Interval', 1000)}
+    arrows={select('Arrows', { None: false, Desktop: 'desktop', All: 'all' }, 'all')}
+  >
     {slides}
   </Carousel>
 )

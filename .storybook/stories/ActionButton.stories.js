@@ -1,8 +1,9 @@
 import React from 'react'
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs'
 import ActionButton from '../../src/ActionButton'
 
-export default { title: 'ActionButton' }
+export default { title: 'ActionButton', decorators: [withKnobs] }
 
-export const withLabel = () => <ActionButton label="Sort" />
-export const withValue = () => <ActionButton value="Lowest Price" />
-export const withBoth = () => <ActionButton label="Sort" value="Lowest Price" />
+export const options = () => (
+  <ActionButton label={text('Label', 'Sort')} value={text('Value', 'Lowest Price')} />
+)

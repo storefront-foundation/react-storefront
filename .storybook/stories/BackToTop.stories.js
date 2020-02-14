@@ -1,8 +1,9 @@
 import React from 'react'
 import { Pets } from '@material-ui/icons'
+import { withKnobs, select } from '@storybook/addon-knobs'
 import BackToTop from '../../src/BackToTop'
 
-export default { title: 'BackToTop' }
+export default { title: 'BackToTop', decorators: [withKnobs] }
 
 const styles = {
   background: '#7f8fa6',
@@ -15,24 +16,12 @@ const styles = {
   height: 1500,
 }
 
-export const medium = () => (
+export const sizes = () => (
   <div>
     <div style={styles}>Please scroll down</div>
-    <BackToTop />
-  </div>
-)
-
-export const small = () => (
-  <div>
-    <div style={styles}>Please scroll down</div>
-    <BackToTop size="small" />
-  </div>
-)
-
-export const large = () => (
-  <div>
-    <div style={styles}>Please scroll down</div>
-    <BackToTop size="large" />
+    <BackToTop
+      size={select('Size', { small: 'small', medium: 'medium', large: 'large' }, 'medium')}
+    />
   </div>
 )
 
