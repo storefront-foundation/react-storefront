@@ -143,10 +143,7 @@ describe('SortButton', () => {
     wrapper.find(ActionButton).simulate('click')
     expect(wrapper.find(Drawer).prop('open')).toBe(true)
 
-    await act(async () => {
-      await wrapper.find(Drawer).invoke('onClose')()
-      await wrapper.update()
-    })
+    wrapper.find(Drawer).invoke('onClose')()
 
     expect(wrapper.find(Drawer).prop('open')).toBe(false)
   })
