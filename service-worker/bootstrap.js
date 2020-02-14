@@ -131,7 +131,9 @@ function abortPrefetches() {
   abortControllers.clear()
 }
 
-/** Resume queued prefetch requests which were cancelled to allow for more important requests */
+/**
+ * Resume queued prefetch requests which were cancelled to allow for more important requests
+ */
 function resumePrefetches() {
   console.log('[react-storefront service worker] resuming prefetches')
   for (let args of toResume) {
@@ -165,7 +167,7 @@ function addToCache(cache, path, data, contentType) {
  * Adds the specified data to the cache
  * @param {Object} options Cache state options
  * @param {String} options.path A URL path
- * @param {Boolean} options.cacheData The data to cache
+ * @param {Object|String} options.cacheData The data to cache. Objects will be converted to JSON.
  * @param {String} options.apiVersion The version of the api that the client is running.
  */
 function cacheState({ path, cacheData, apiVersion } = {}) {
@@ -248,12 +250,12 @@ self.addEventListener('fetch', event => {
   // until the request finishes, then resumes prefetching
   abortPrefetches()
   event.respondWith(
-    (async function() {
-      return fetch(event.request).then(resp => {
+    fetch(event.request).then(resp => {
+      if (toResume.size) {
         resumePrefetches()
-        return resp
-      })
-    })(),
+      }
+      return resp
+    }),
   )
 })
 
@@ -282,21 +284,6 @@ function isStaticAsset(context) {
  */
 function isAmp(url) {
   return !!url.pathname.match(/\.amp$/)
-}
-
-/**
- * Only deliver HTML from the cache when transitioning from AMP or launching from the homescreen.
- * @param {String} url The url being fetched
- * @param {Event} event The fetch event
- * @return {Boolean}
- */
-function shouldServeHTMLFromCache(url, event) {
-  return (
-    '{{serveSSRFromCache}}' === 'true' ||
-    isAmp({ pathname: event.request.referrer }) ||
-    /\?source=pwa/.test(url.search) ||
-    /(\?|&)powerlink/.test(url.search)
-  )
 }
 
 /**
