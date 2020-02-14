@@ -70,6 +70,7 @@
     "@storybook/react": "^5.2.6",
     "@svgr/webpack": "^4.3.3",
     "babel-loader": "^8.0.6",
+    "babel-plugin-rewire": "^1.2.0",
     "babel-plugin-transform-imports": "^2.0.0",
     "create-index": "^2.5.0",
     "documentation": "moovweb/documentation#feature/preserve-markdown",
@@ -130,7 +131,8 @@
           }
         }
       ],
-      "@babel/plugin-proposal-class-properties"
+      "@babel/plugin-proposal-class-properties",
+      "babel-plugin-rewire"
     ]
   },
   "jest": {
