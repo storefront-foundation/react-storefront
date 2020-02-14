@@ -341,6 +341,13 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     const cacheName = getAPICacheName(apiVersion)
     const cacheOptions = { ...runtimeCacheOptions, cacheName }
 
+    if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
+      return
+    }
+
+    if (!apiVersion) {
+      return new workbox.strategies.NetworkOnly().handle(context)
+    }
     // Check the cache for all routes. If the result is not found, get it from the network.
     return new workbox.strategies.CacheOnly(cacheOptions)
       .handle(context)
@@ -350,7 +357,7 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
           // 2. it provide that to client and server build as a webpack define
           // 3. we should monkey-patch xhr to send x-rsf-api-version as a request header on all requests
 
-          if (apiRes.headers.get('x-rsf-cache-control') && apiVersion) {
+          if (apiRes.headers.get('x-rsf-cache-control')) {
             const path = url.pathname
 
             caches.open(cacheName).then(cache => {

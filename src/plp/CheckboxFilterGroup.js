@@ -77,7 +77,7 @@ CheckboxFilterGroup.propTypes = {
       PropTypes.shape({
         code: PropTypes.string,
         name: PropTypes.string,
-        matches: PropTypes.string,
+        matches: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         image: PropTypes.object,
       }),
     ),

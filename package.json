@@ -16,7 +16,8 @@
     "push-build": {
       "patterns": [
         "src",
-        "plugins"
+        "plugins",
+        "service-worker"
       ],
       "ignore": "*/index.js",
       "extensions": "js",

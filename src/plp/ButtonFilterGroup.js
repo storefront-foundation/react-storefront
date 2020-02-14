@@ -96,7 +96,7 @@ ButtonFilterGroup.propTypes = {
     ),
   }),
   /**
-   * Set to `true` to refresh the results when the user toggles a filter.
+   * Set to `true` if the filters will be submitted when changed. In this case, the footer will not be shown.
    */
   submitOnChange: PropTypes.bool,
 }
