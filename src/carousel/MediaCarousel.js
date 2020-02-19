@@ -212,7 +212,7 @@ function MediaCarousel(props) {
               onLoad={i === 0 ? onFullSizeImagesLoaded : null}
               magnifyProps={magnifyProps}
               {...item}
-              magnify={lightboxActive && !isSmall ? false : item.magnify}
+              magnify={isSmall ? undefined : item.magnify}
               imageProps={
                 lightboxActive && !isSmall
                   ? {
@@ -255,18 +255,9 @@ MediaCarousel.propTypes = {
   classes: PropTypes.object,
 
   /**
-   * Array of objects containing the data for an image to be used for thumbnails. If `false`, no
-   * thumbnails will be displayed.
+   * If `true`, the carousel will have thumbnails below it.
    */
-  thumbnails: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        src: PropTypes.string,
-        alt: PropTypes.string,
-      }),
-    ),
-    PropTypes.bool,
-  ]),
+  thumbnails: PropTypes.bool,
   /**
    * Data for an image to be used for a thumbnail when the images are not yet loaded.
    */

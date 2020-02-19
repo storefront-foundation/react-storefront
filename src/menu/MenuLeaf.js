@@ -12,7 +12,7 @@ function MenuLeaf({ item, trackSelected, ...others }) {
       as={item.as}
       className={classes.link}
       server={item.server}
-      state={item.state ? () => JSON.parse(item.state) : null}
+      pageData={item.pageData ? item.pageData : null}
       onClick={close}
     >
       <a>

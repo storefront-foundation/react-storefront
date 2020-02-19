@@ -150,9 +150,6 @@
     ],
     "moduleNameMapper": {
       "react-storefront/(.*)": "<rootDir>/src/$1"
-    },
-    "roots": [
-      "test"
-    ]
+    }
   }
 }
