@@ -84,13 +84,16 @@ Breadcrumbs.propTypes = {
 
   /**
    * The items to display, each with text, [`href`](/apiReference/link/Link#prop-href), and
-   * [`as`](/apiReference/link/Link#props-as) values.
+   * [`as`](/apiReference/link/Link#props-as) values. If `false`, no breadcrumbs will be displayed.
    */
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string,
-      as: PropTypes.string,
-      href: PropTypes.string,
-    }),
-  ),
+  items: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        text: PropTypes.string,
+        as: PropTypes.string,
+        href: PropTypes.string,
+      }),
+    ),
+    PropTypes.bool,
+  ]),
 }

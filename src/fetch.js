@@ -8,9 +8,9 @@ const apiVersion = process.env.RSF_API_VERSION || '1'
  * always use this to fetch data on both the client and server to ensure that React Storefront's
  * service worker serves responses cached by the service worker.
  *
- * @param {String} url
- * @param {Object} opts
- * @return {Promise}
+ * @param {String} url URL to `fetch`.
+ * @param {Object} opts Options passed to the `fetch` call.
+ * @return {Promise} The `Promise` returned from the `fetch` call.
  */
 export default function fetch(url, opts = {}) {
   const headers = opts.headers || {}
@@ -19,6 +19,7 @@ export default function fetch(url, opts = {}) {
 }
 
 /**
+ * @private
  * Adds x-rsf-api-version to all xhr
  */
 function monkeyPatchXHR() {
@@ -32,6 +33,7 @@ function monkeyPatchXHR() {
 }
 
 /**
+ * @private
  * Adds x-rsf-api-version to all fetch requests
  */
 function monkeyPatchFetch() {

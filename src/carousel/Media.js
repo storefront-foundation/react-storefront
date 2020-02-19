@@ -56,7 +56,8 @@ Media.propTypes = {
   src: PropTypes.string,
 
   /**
-   * If exists, the media is able to be magnified and should use `ReactImageMagnify`.
+   * An object to pass to pass to `ReactImageMagnify` containing the data for the magnified image.
+   * If `false`, the media is not able to be magnified.
    */
-  magnify: PropTypes.object,
+  magnify: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 }

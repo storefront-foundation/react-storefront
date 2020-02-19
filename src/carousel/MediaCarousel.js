@@ -273,7 +273,7 @@ MediaCarousel.propTypes = {
   CarouselThumbnailsComponent: PropTypes.elementType,
 
   /**
-   * An optional `className` to use for the [`MagnifyHint`](/apiReference/carousel/MagnifyHint) component
+   * An optional `className` to use for the [`MagnifyHint`](/apiReference/carousel/MagnifyHint) component.
    */
   magnifyHintClassName: PropTypes.string,
   /**
@@ -282,11 +282,11 @@ MediaCarousel.propTypes = {
    */
   imageProps: PropTypes.object,
   /**
-   * List of media components to make up the carousel.
+   * Data for all the media objects to show in the carousel.
    */
   media: PropTypes.shape({
-    full: PropTypes.array,
-    thumbnails: PropTypes.array,
+    full: PropTypes.arrayOf(PropTypes.object),
+    thumbnails: PropTypes.arrayOf(PropTypes.object),
   }),
   /**
    * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
