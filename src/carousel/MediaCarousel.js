@@ -262,7 +262,10 @@ MediaCarousel.propTypes = {
   /**
    * Data for an image to be used for a thumbnail when the images are not yet loaded.
    */
-  thumbnail: PropTypes.object,
+  thumbnail: PropTypes.shape({
+    src: PropTypes.string,
+    alt: PropTypes.string,
+  }),
   /**
    * An optional `className` to use for the thumbnails component.
    */
