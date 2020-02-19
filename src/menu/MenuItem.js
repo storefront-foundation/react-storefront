@@ -26,7 +26,7 @@ export default function MenuItem({ BranchComponent, LeafComponent, item, ...prop
 }
 
 MenuItem.propTypes = {
-  BranchComponent: PropTypes.func.isRequired,
+  BranchComponent: PropTypes.elementType.isRequired,
   LeafComponent: PropTypes.any,
 }
 

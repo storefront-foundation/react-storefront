@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
-import clsx from 'clsx'
 import SearchSuggestionItem from './SearchSuggestionItem'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     listStyle: 'none',
     margin: theme.spacing(2),
@@ -14,6 +16,9 @@ export const styles = theme => ({
       color: 'inherit',
     },
   },
+  /**
+   * Styles applied to the group's caption element.
+   */
   caption: {
     textTransform: 'uppercase',
     fontWeight: 'bold',
@@ -21,6 +26,9 @@ export const styles = theme => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
     margin: theme.spacing(0, 0, 1, 0),
   },
+  /**
+   * Styles applied to the group's list element.
+   */
   list: {
     '&[data-ui=list]': {
       padding: 0,
@@ -58,11 +66,28 @@ export default function SearchSuggestionGroup({ classes, ui, caption, links, chi
 
 SearchSuggestionGroup.propTypes = {
   /**
-   * An array of links to suggested searches.
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
-  links: PropTypes.array,
+  classes: PropTypes.object,
   /**
-   * A title for the list
+   * Child nodes that can be used for the suggestion group instead of mapping the [links](#prop-links).
+   */
+  children: PropTypes.node,
+  /**
+   * An array of props to pass to a [SearchSuggestionItem](/apiReference/search/SearchSuggestionItem)
+   * with data for suggested searches.
+   */
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      as: PropTypes.string,
+      href: PropTypes.string,
+      text: PropTypes.string,
+      pageData: PropTypes.object,
+      thumbnail: PropTypes.object,
+    }),
+  ),
+  /**
+   * A title for the list.
    */
   caption: PropTypes.string.isRequired,
 }

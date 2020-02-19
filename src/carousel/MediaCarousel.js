@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -11,6 +12,9 @@ import CarouselThumbnails from './CarouselThumbnails'
 import get from 'lodash/get'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the image wrapper element.
+   */
   imageWrap: {
     height: '100%',
     width: '100%',
@@ -23,6 +27,9 @@ export const styles = theme => ({
       objectFit: 'contain',
     },
   },
+  /**
+   * Styles applied to each of the thumbnail elements.
+   */
   thumbnail: {
     position: 'absolute',
     top: 0,
@@ -30,6 +37,9 @@ export const styles = theme => ({
     height: '100%',
     width: '100%',
   },
+  /**
+   * Styles applied to the carousel component when the lightbox is shown.
+   */
   lightboxCarousel: {
     flex: 1,
     justifyContent: 'center',
@@ -38,8 +48,11 @@ export const styles = theme => ({
       margin: '0 !important',
     },
   },
+  /**
+   * Styles applied to the thumbnails in the lightbox.
+   */
   lightboxThumbs: {
-    paddingBottom: theme.margins.container,
+    paddingBottom: theme.spacing(2),
   },
 })
 
@@ -233,6 +246,83 @@ function MediaCarousel(props) {
       </Lightbox>
     </>
   )
+}
+
+MediaCarousel.propTypes = {
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * Array of objects containing the data for an image to be used for thumbnails. If `false`, no
+   * thumbnails will be displayed.
+   */
+  thumbnails: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        src: PropTypes.string,
+        alt: PropTypes.string,
+      }),
+    ),
+    PropTypes.bool,
+  ]),
+  /**
+   * Data for an image to be used for a thumbnail when the images are not yet loaded.
+   */
+  thumbnail: PropTypes.shape({
+    src: PropTypes.string,
+    alt: PropTypes.string,
+  }),
+  /**
+   * An optional `className` to use for the thumbnails component.
+   */
+  thumbsClassName: PropTypes.string,
+  /**
+   * A component type to use for the thumbnails.
+   */
+  CarouselThumbnailsComponent: PropTypes.elementType,
+
+  /**
+   * An optional `className` to use for the [`MagnifyHint`](/apiReference/carousel/MagnifyHint) component.
+   */
+  magnifyHintClassName: PropTypes.string,
+  /**
+   * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
+   * [`imageProps`](/apiReference/carousel/Media#prop-imageProps).
+   */
+  imageProps: PropTypes.object,
+  /**
+   * Data for all the media objects to show in the carousel.
+   */
+  media: PropTypes.shape({
+    full: PropTypes.arrayOf(PropTypes.object),
+    thumbnails: PropTypes.arrayOf(PropTypes.object),
+  }),
+  /**
+   * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
+   * [`magnifyProps`](/apiReference/carousel/Media#prop-magnifyProps).
+   */
+  magnifyProps: PropTypes.object,
+  /**
+   * A component type to use for each media object in the carousel.
+   */
+  MediaComponent: PropTypes.elementType,
+
+  /**
+   * Props passed through to the [`Lightbox`](/apiReference/carousel/Lightbox).
+   */
+  lightboxProps: PropTypes.object,
+
+  /**
+   * An `id` attribute to use for the carousel's root element.
+   */
+  id: PropTypes.string,
+
+  /**
+   * A component type to use for the main carousel component.
+   */
+  CarouselComponent: PropTypes.elementType,
 }
 
 MediaCarousel.defaultProps = {

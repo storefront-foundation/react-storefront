@@ -82,17 +82,17 @@ export default function CmsSlot({
 }
 CmsSlot.proptypes = {
   /**
-   * Use inline prop to use display:inline style
+   * If `true`, will use `display: inline` style.
    */
   inline: PropTypes.boolean,
 
   /**
-   * Set to true to lazy load images that have been preprocessed with `$.lazyLoadImages()`.
+   * If `true` to lazy load images that have been preprocessed with `$.lazyLoadImages()`.
    */
   lazyLoadImages: PropTypes.boolean,
 
   /**
-   * Set to true to prefetch links that have a data-rsf-prefetch attribute.
+   * If `true`, prefetch links that have a `data-rsf-prefetch` attribute.
    */
   prefetchLinks: false,
 }

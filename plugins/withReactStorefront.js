@@ -9,14 +9,14 @@ const ClearRequireCachePlugin = require('webpack-clear-require-cache-plugin')
 const chalk = require('chalk')
 
 module.exports = (nextConfig = {}) => {
-  const usePreact = process.env.preact !== 'false'
+  const usePreact = process.env.preact === 'true'
 
   console.log(
     `> Using ${
       usePreact
         ? chalk.green('preact') +
           '. Set "preact" environment variable to "false" to use react instead.'
-        : chalk.blur('react') +
+        : chalk.blue('react') +
           '. Set "preact" environment variable to "true" to use preact instead.'
     }`,
   )
@@ -28,7 +28,7 @@ module.exports = (nextConfig = {}) => {
       serveSSRFromCache: false,
     }
 
-    // if debugging service workers, options can be change in Dev phase:
+    // if debugging service workers, options can be changed in Dev phase:
     if (phase === PHASE_DEVELOPMENT_SERVER) {
       bootstrapOptions.allowPrefetchThrottling = true
     }

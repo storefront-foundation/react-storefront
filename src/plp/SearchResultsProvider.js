@@ -223,12 +223,12 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
 
 SearchResultsProvider.propTypes = {
   /**
-   * A store returned from `react-storefront/plp/useSearchResultsStore`.
+   * A store returned from [`useSearchResultsStore`](/apiReference/plp/useSearchResultsStore).
    */
   store: PropTypes.object.isRequired,
 
   /**
-   * The update function returned from `react-storefront/plp/useSearchResultsStore`.
+   * The update function returned from [`useSearchResultsStore`](/apiReference/plp/useSearchResultsStore).
    */
   updateStore: PropTypes.func.isRequired,
 }

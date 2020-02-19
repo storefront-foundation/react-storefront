@@ -5,9 +5,15 @@ import PropTypes from 'prop-types'
 import SearchProvider from './SearchProvider'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the paper component in the [Drawer](/apiReference/drawer/Drawer).
+   */
   paper: {
     display: 'flex',
   },
+  /**
+   * Styles applied to the root element in the [DrawerCloseButton](/apiReference/drawer/DrawerCloseButton).
+   */
   closeButton: {
     color: theme.palette.primary.contrastText,
   },
@@ -19,7 +25,7 @@ export default function SearchDrawer({ DrawerComponent, classes, open, onClose, 
   classes = useStyles({ classes })
 
   return (
-    <SearchProvider onClose={onClose}>
+    <SearchProvider onClose={onClose} open={open}>
       <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
         {children}
       </DrawerComponent>
@@ -28,7 +34,30 @@ export default function SearchDrawer({ DrawerComponent, classes, open, onClose, 
 }
 
 SearchDrawer.propTypes = {
-  DrawerComponent: PropTypes.func,
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * Children to be rendered inside the drawer.
+   */
+  children: PropTypes.node,
+
+  /**
+   * If `true`, the search drawer should be open.
+   */
+  open: PropTypes.bool,
+
+  /**
+   * A function that is called when the user closes the drawer.
+   */
+  onClose: PropTypes.func,
+
+  /**
+   * A component type to use for the drawer.
+   */
+  DrawerComponent: PropTypes.elementType,
 }
 
 SearchDrawer.defaultProps = {

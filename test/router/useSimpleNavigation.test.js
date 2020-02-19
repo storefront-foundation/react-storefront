@@ -7,7 +7,7 @@ describe('useSimpleNavigation', () => {
   let wrapper
 
   beforeEach(() => {
-    global.fetch.mockResponseOnce(
+    global.fetchMock.mockResponseOnce(
       JSON.stringify({
         '/s/.*': {
           as: '/s/[subcategoryId]',

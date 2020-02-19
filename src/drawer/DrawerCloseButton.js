@@ -6,6 +6,9 @@ import { Clear as ClearIcon } from '@material-ui/icons'
 import { Fab, IconButton, Button } from '@material-ui/core'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   button: {
     color: '#999',
     alignSelf: 'flex-end',
@@ -18,16 +21,27 @@ export const styles = theme => ({
       fontWeight: 'bold',
     },
   },
+  /**
+   * Styles applied to the root element, if [`text`](#prop-text) is defined.
+   */
   buttonText: {
     border: `1px solid #999`,
     margin: '0 0 10px 0',
   },
+  /**
+   * Styles applied to the root element, if [`text`](#prop-text) is not defined and
+   * [`fullscreen`](#prop-fullscreen) is `false`.
+   */
   buttonFab: {
     position: 'absolute',
     right: '10px',
     top: '-28px',
     zIndex: 1,
+    color: 'white',
   },
+  /**
+   * Styles applied to hide the `Fab` button when [`open`](#prop-open) is `false`.
+   */
   hidden: {
     display: 'none',
   },
@@ -47,7 +61,6 @@ export default function DrawerCloseButton({
   Icon,
   fullscreen,
   open,
-  contrast,
   ...others
 }) {
   classes = useStyles({ classes })
@@ -85,7 +98,17 @@ export default function DrawerCloseButton({
 
 DrawerCloseButton.propTypes = {
   /**
-   * The name of the amp state corresponding to the drawer
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * CSS class to apply to the root element.
+   */
+  className: PropTypes.string,
+
+  /**
+   * The name of the amp state corresponding to the drawer.
    */
   ampState: PropTypes.string,
 
@@ -101,14 +124,19 @@ DrawerCloseButton.propTypes = {
   text: PropTypes.string,
 
   /**
-   * Overrides the default icon
+   * Overrides the default icon.
    */
   Icon: PropTypes.elementType,
 
   /**
-   * Set to `true` when the drawer is open
+   * If `true`, the drawer is open
    */
   open: PropTypes.bool,
+
+  /**
+   * If `true`, the drawer is fullscreen and the close button will therefore be a `Fab` button.
+   */
+  fullscreen: PropTypes.bool,
 }
 
 DrawerCloseButton.defaultProps = {

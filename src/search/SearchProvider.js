@@ -1,24 +1,24 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import SearchContext from './SearchContext'
-import _fetch from 'isomorphic-unfetch'
+import _fetch from '../fetch'
 import debounce from 'lodash/debounce'
 import { fetchLatest, StaleResponseError } from '../utils/fetchLatest'
 import useNavigationEvent from '../hooks/useNavigationEvent'
 
 const fetch = fetchLatest(_fetch)
 
-export default function SearchProvider({ children, initialGroups, onClose }) {
+export default function SearchProvider({ children, initialGroups, onClose, open }) {
   const [state, setState] = useState({
     groups: initialGroups,
     loading: true,
   })
 
   useEffect(() => {
-    if (state.groups == null) {
+    if (open && state.groups == null) {
       fetchSuggestions('')
     }
-  }, [])
+  }, [open])
 
   useNavigationEvent(onClose)
 
@@ -47,17 +47,6 @@ export default function SearchProvider({ children, initialGroups, onClose }) {
     }
   }, 250)
 
-  // const context = useMemo(
-  //   () => ({
-  //     state,
-  //     setState,
-  //     fetchSuggestions,
-  //     onClose,
-  //     submit
-  //   }),
-  //   [state]
-  // )
-
   const context = {
     state,
     setState,
@@ -69,6 +58,7 @@ export default function SearchProvider({ children, initialGroups, onClose }) {
 }
 
 SearchProvider.propTypes = {
+  open: PropTypes.bool,
   initialGroups: PropTypes.array,
   onClose: PropTypes.func,
 }

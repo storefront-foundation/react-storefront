@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
@@ -6,6 +6,9 @@ import { Button } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     '.rsf-po-selected &': {
       borderColor: theme.palette.primary.main,
@@ -30,7 +33,7 @@ const useStyles = makeStyles(styles, { name: 'RSFTextProductOption' })
  * Example:
  *
  * ```js
- * <TextProductOption label="SM" selected/>
+ * <TextProductOption label="SM" selected />
  * ```
  */
 export default function TextProductOption({
@@ -63,11 +66,19 @@ export default function TextProductOption({
 
 TextProductOption.propTypes = {
   /**
-   * Set to true to display a skeleton instead of the actual button
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
+   * A CSS class to apply to the option.
+   */
+  className: PropTypes.string,
+  /**
+   * Set to `true` to display a skeleton instead of the actual button.
    */
   skeleton: PropTypes.bool,
   /**
-   * The text for the button
+   * The text for the button.
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   /**
@@ -75,10 +86,18 @@ TextProductOption.propTypes = {
    */
   selected: PropTypes.bool,
   /**
-   * This prop is intentionally ignored so that TextProductOption can be used interchangably with
-   * SwatchProductOption without displaying a warning.
+   * This prop is intentionally ignored so that `TextProductOption` can be used interchangeably with
+   * `SwatchProductOption without` displaying a warning.
    */
   imageProps: PropTypes.object,
+  /**
+   * Props to pass to the button element.
+   */
+  buttonProps: PropTypes.object,
+  /**
+   * A function to call when this option is clicked.
+   */
+  onClick: PropTypes.func,
 }
 
 TextProductOption.defaultProps = {

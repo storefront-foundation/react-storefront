@@ -6,17 +6,19 @@ import FilterHeader from './FilterHeader'
 import FilterFooter from './FilterFooter'
 import SearchResultsContext from './SearchResultsContext'
 
-/**
- * UI for filtering an instance of SearchResultModelBase.  This component can be used on its own, or you can use
- * FilterButton to automatically display this component in a drawer that slides up from the bottom of the viewport.
- */
 export const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
   },
+  /**
+   * Styles applied to the wrapper element around the facet groups.
+   */
   facetGroups: {
     overflow: 'auto',
     overflowX: 'hidden',
@@ -27,6 +29,11 @@ export const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFFilter' })
 
+/**
+ * UI for filtering a list of products.  This component can be used on its own, or you can use
+ * [`FilterButton`](/apiReference/plp/FilterButton) to automatically display this component in a
+ * drawer that slides up from the bottom of the viewport.
+ */
 function Filter({
   expandAll,
   hideClearLink,
@@ -69,7 +76,7 @@ function Filter({
 
 Filter.propTypes = {
   /**
-   * CSS classes
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
 
@@ -81,7 +88,7 @@ Filter.propTypes = {
 
   /**
    * The query string parameter that should be updated when filters are changed.  The value will be an array
-   * of codes for each selected facet.  Defaults to "filters"
+   * of codes for each selected facet.
    */
   queryParam: PropTypes.string,
 
@@ -91,14 +98,29 @@ Filter.propTypes = {
   title: PropTypes.string,
 
   /**
-   * Set to `true` to expand all groups on initial render
+   * Set to `true` to expand all groups on initial render.
    */
   expandAll: PropTypes.bool,
 
   /**
-   * Set to `true` to refresh the results when the user toggles a filter
+   * Set to `true` to refresh the results when the user toggles a filter.
    */
   submitOnChange: PropTypes.bool,
+
+  /**
+   * If `true`, the clear link is hidden.
+   */
+  hideClearLink: PropTypes.bool,
+
+  /**
+   * Text to use for the clear link.
+   */
+  clearLinkText: PropTypes.string,
+
+  /**
+   * CSS styles to add to the root component.
+   */
+  style: PropTypes.object,
 }
 
 Filter.defaultProps = {

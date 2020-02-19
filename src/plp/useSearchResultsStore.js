@@ -1,5 +1,10 @@
-import useLazyStore from '../hooks/useLazyStore'
+import useLazyState from '../hooks/useLazyState'
 
+/**
+ * Allows for using search results.
+ * @param lazyProps
+ * @return {*[]}
+ */
 export default function useSearchResultsStore(lazyProps) {
   const additionalData = {
     reloading: false,
@@ -14,5 +19,5 @@ export default function useSearchResultsStore(lazyProps) {
     }),
   }
 
-  return useLazyStore(lazyProps, additionalData)
+  return useLazyState(lazyProps, additionalData)
 }

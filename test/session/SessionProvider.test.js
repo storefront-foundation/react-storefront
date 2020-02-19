@@ -9,12 +9,12 @@ describe('SessionProvider', () => {
   let wrapper
 
   beforeEach(() => {
-    fetch.mockResponseOnce(JSON.stringify({ itemsInCart: 5 }))
+    fetchMock.mockResponseOnce(JSON.stringify({ itemsInCart: 5 }))
   })
 
   afterEach(() => {
     wrapper.unmount()
-    fetch.resetMocks()
+    fetchMock.resetMocks()
   })
 
   const Test = () => {

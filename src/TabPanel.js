@@ -4,18 +4,26 @@ import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-export const useStyles = makeStyles(
-  theme => ({
-    root: {},
-    panel: {
-      margin: `${theme.spacing(2)}px 0`,
-    },
-    hidden: {
-      display: 'none',
-    },
-  }),
-  { name: 'RSFTabPanel' },
-)
+const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
+  root: {},
+  /**
+   * Styles applied to the wrapper around each panel element.
+   */
+  panel: {
+    margin: `${theme.spacing(2)}px 0`,
+  },
+  /**
+   * Styles applied to the wrapper around each panel element when that panel is hidden.
+   */
+  hidden: {
+    display: 'none',
+  },
+})
+
+export const useStyles = makeStyles(styles, { name: 'RSFTabPanel' })
 
 /**
  * A simple tab panel that is AMP-compatible.  Tab names are pull from the label prop of the child elements.
@@ -99,15 +107,21 @@ export default function TabPanel({
 
 TabPanel.propTypes = {
   /**
-   * Set to false to prevent the tabs from scrolling
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * Set to false to prevent the tabs from scrolling.
    */
   scrollable: PropTypes.bool,
+
   /**
-   * Selected tab index
+   * Selected tab index.
    */
   selected: PropTypes.number,
   /**
-   * On change callback
+   * Called when the selected tab is changed.
    */
   onChange: PropTypes.func,
 
@@ -118,7 +132,7 @@ TabPanel.propTypes = {
    * - index: The index of the child
    * - selected: The index of the currently selected element
    *
-   * ... and returns props for the corresponding Material UI `Tab` element
+   * ... and returns props for the corresponding Material UI `Tab` element.
    */
   tabProps: PropTypes.func,
 
@@ -129,17 +143,17 @@ TabPanel.propTypes = {
    * - index: The index of the child
    * - selected: The index of the currently selected element
    *
-   * ... and returns props for the corresponding panel `div` element
+   * ... and returns props for the corresponding panel `div` element.
    */
   panelProps: PropTypes.func,
 
   /**
-   * Props for the Material UI `Tabs` element
+   * Props for the Material UI `Tabs` element.
    */
   tabsProps: PropTypes.object,
 
   /**
-   * A function that takes the panels as an argument and returns a react element to render
+   * A function that takes the panels as an argument and returns a react element to render.
    */
   renderPanels: PropTypes.func,
 }

@@ -42,19 +42,13 @@ export default function ProductOptionSelector({
 
   if (!options) return null
 
-  const onSelectedOptionChange = newValue => {
-    if (onChange) {
-      onChange(newValue)
-    }
-  }
-
   return (
     <div data-id="ProductOptionSelector" className={classes.root}>
       {options.map((option, i) => {
         return (
           <OptionComponent
             selectedOption={value}
-            onSelectedOptionChange={onSelectedOptionChange}
+            onSelectedOptionChange={onChange}
             {...optionProps}
             variant={variant || (option.image || option.color ? 'swatch' : 'text')}
             name={name}
@@ -73,9 +67,9 @@ export default function ProductOptionSelector({
 
 ProductOptionSelector.propTypes = {
   /**
-   * Overridable classes object to allow customization of component
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.objectOf(PropTypes.string),
+  classes: PropTypes.object,
 
   /**
    * Props for displayed images. See <Image /> component for details
@@ -112,7 +106,7 @@ ProductOptionSelector.propTypes = {
   /**
    * Allows you to override the default component which is used to render a product option.
    */
-  OptionComponent: PropTypes.func,
+  OptionComponent: PropTypes.elementType,
 }
 
 ProductOptionSelector.defaultProps = {

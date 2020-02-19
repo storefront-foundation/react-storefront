@@ -13,7 +13,34 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm run release
+      - name: Publish to npm
+        run: |
+          npm ci
+          OUTPUT=$(npm run release)
+          VERSION=v$(echo $OUTPUT | rev | cut -d'@' -f 1 | rev)
+          echo "::set-env name=VERSION::${VERSION}"
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: Push API docs to GitHub Pages
+        run: |
+          npm ci
+          npm run docs
+          npm run build-storybook
+          VERSION=${{ env.VERSION }}
+          cd ..
+          git clone https://react-storefront-community:${{ secrets.GITHUB_TOKEN }}@github.com/react-storefront-community/react-storefront-community.github.io.git
+          git clone https://${{ secrets.MOOVWEB_GITHUB_USER }}:${{ secrets.MOOVWEB_GITHUB_TOKEN }}@github.com/moovweb/react-storefront-docs.git
+          cd react-storefront-community.github.io
+          git fetch
+          git pull
+          mkdir ${VERSION}
+          mv ../react-storefront/.storybook/build ${VERSION}/storybook
+          cp ../react-storefront/docs/build/modules.json ${VERSION}
+          cp -r ../react-storefront-docs/guides ${VERSION}
+          mv ${VERSION}/guides/guides.json ${VERSION}
+          sed -i "$ s/$/,\n${VERSION}/" versions.csv
+          git add -A
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Docs for version ${VERSION}" -a
+          git push -u origin

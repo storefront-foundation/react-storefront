@@ -5,6 +5,9 @@ import { CloudOff as CloseOffIcon } from '@material-ui/icons'
 import PropTypes from 'prop-types'
 
 const styles = theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -13,11 +16,20 @@ const styles = theme => ({
     marginTop: '40px',
     color: '#999',
   },
+  /**
+   * Styles applied to the icon element.
+   */
   icon: {
     fontSize: 60,
     color: '#999',
   },
+  /**
+   * Styles applied to the heading element.
+   */
   heading: {},
+  /**
+   * Styles applied to the message element.
+   */
   message: {},
 })
 
@@ -44,19 +56,24 @@ export default function Offline({ classes, heading, message, Icon }) {
 
 Offline.propTypes = {
   /**
-   * Text or an element to display as the heading.
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * Text (or an element) to display as the heading.
    */
   heading: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 
   /**
-   * Text or an element to deplay as the message.
+   * Text (or an element) to display as the message.
    */
   message: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 
   /**
    * An icon to display.
    */
-  Icon: PropTypes.func,
+  Icon: PropTypes.elementType,
 }
 
 Offline.defaultProps = {

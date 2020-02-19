@@ -4,10 +4,16 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
+  /**
+   * Styles applied to the root element.
+   */
   root: {
     position: 'relative',
     width: '100%',
   },
+  /**
+   * Styles applied to the wrapper element for the children.
+   */
   child: {
     position: 'absolute',
     top: 0,
@@ -53,7 +59,7 @@ export default function Fill({ height, children, className, ...props }) {
 Fill.propTypes = {
   /**
    * The height as a percentage of the width in a css compatible expression.  For example:
-   * "100%" or "calc(100% + 50px)", etc...  If omitted, this component does nothing except render
+   * `"100%"` or `"calc(100% + 50px)"`, etc...  If omitted, this component does nothing except render
    * the provided child.
    */
   height: PropTypes.string,

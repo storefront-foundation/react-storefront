@@ -2,13 +2,12 @@ import { useEffect, useRef, useState, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import merge from '../utils/merge'
 import LinkContext from '../link/LinkContext'
-import fetch from 'isomorphic-unfetch'
 import get from 'lodash/get'
 import storeInitialPropsInHistory from '../router/storeInitialPropsInHistory'
 
 storeInitialPropsInHistory()
 
-export default function useLazyStore(lazyProps, additionalData = {}) {
+export default function useLazyState(lazyProps, additionalData = {}) {
   const isInitialMount = useRef(true)
   const Router = useRouter()
 
@@ -49,9 +48,12 @@ export default function useLazyStore(lazyProps, additionalData = {}) {
 
     if (lazyProps.lazy) {
       updateState(state => ({ ...state, loading: true }))
-      fetch(lazyProps.lazy)
-        .then(res => res.json())
-        .then(props => updateState(state => merge({}, state, props, { loading: false })))
+
+      lazy.then(props =>
+        updateState(
+          merge({}, additionalData, { pageData: linkPageData }, props, { loading: false }),
+        ),
+      )
     } else {
       if (!isInitialMount.current) {
         // there is no need to do this if we just mounted since createInitialState will return the same thing as the current state
