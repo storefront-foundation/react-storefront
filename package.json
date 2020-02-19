@@ -41,6 +41,7 @@
     "build-storybook": "build-storybook -c .storybook -o .storybook/build && npm run storybook-docs"
   },
   "dependencies": {
+    "@storybook/addon-knobs": "^5.3.13",
     "chalk": "^3.0.0",
     "clsx": "^1.0.4",
     "delegate": "^3.2.0",

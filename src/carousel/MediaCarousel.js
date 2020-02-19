@@ -81,15 +81,14 @@ const useStyles = makeStyles(styles, { name: 'RSFMediaCarousel' })
  *
  * ```js
  *  <MediaCarousel
- *    product={{
- *      media: [
+ *      media={[
  *        { src: 'https://domain.com/path/to/image.jpg', alt: 'Red Shirt', type: 'image' },
  *        { src: 'https://domain.com/path/to/image.mpeg', alt: 'Demonstration', type: 'video' },
  *      ],
  *      thumbnail: {
  *        src: 'https://domain.com/path/to/thumbnail.jpg', alt: 'thumbnail'
  *      }
- *    }}
+ *    }]}
  *  />
  * ```
  */
