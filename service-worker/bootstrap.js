@@ -250,12 +250,19 @@ self.addEventListener('fetch', event => {
   // until the request finishes, then resumes prefetching
   abortPrefetches()
   event.respondWith(
-    fetch(event.request).then(resp => {
-      if (toResume.size) {
-        resumePrefetches()
-      }
-      return resp
-    }),
+    fetch(event.request)
+      .then(resp => {
+        if (toResume.size) {
+          resumePrefetches()
+        }
+        return resp
+      })
+      .catch(e => {
+        if (toResume.size) {
+          resumePrefetches()
+        }
+        throw e
+      }),
   )
 })
 

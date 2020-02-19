@@ -93,5 +93,15 @@ describe('bootstrap', () => {
       await self.trigger('fetch')
       expect(toResume.size).toEqual(0)
     })
+
+    it('should resume prefetches even when non-prefetch fetch fails', async () => {
+      const toResume = sw.__get__('toResume')
+      toResume.add([{ path: '', apiVersion: 'v1' }])
+      global.fetch = () => Promise.reject('failed')
+      try {
+        await self.trigger('fetch')
+      } catch (e) {}
+      expect(toResume.size).toEqual(0)
+    })
   })
 })
