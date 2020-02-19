@@ -260,7 +260,7 @@ MediaCarousel.propTypes = {
    */
   thumbnails: PropTypes.bool,
   /**
-   * If exists, the carousel will have preloaded thumbnail below it.
+   * Data for an image to be used for a thumbnail when the images are not yet loaded.
    */
   thumbnail: PropTypes.object,
   /**
