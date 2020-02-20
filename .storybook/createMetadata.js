@@ -22,7 +22,9 @@ const main = async () => {
 
   dirContents.forEach(async file => {
     const contents = require(path.join(STORIES_PATH, file))
-    stories[contents.default.title] = Object.keys(contents).filter(key => key !== 'default')
+    if (contents.default) {
+      stories[contents.default.title] = Object.keys(contents).filter(key => key !== 'default')
+    }
   })
 
   fs.writeFileSync(METADATA_FILEPATH, JSON.stringify(stories), 'utf8')
