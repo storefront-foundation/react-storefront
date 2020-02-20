@@ -30,7 +30,7 @@ export default function ProductOption(props) {
 
   const handleClick = withDefaultHandler(onClick, _e => {
     if (onSelectedOptionChange) {
-      onSelectedOptionChange(value === selectedOption ? null : value)
+      onSelectedOptionChange(selected ? null : value)
     }
   })
 
