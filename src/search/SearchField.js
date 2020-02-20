@@ -75,6 +75,7 @@ export default function SearchField({
   SubmitButtonComponent,
   clearButtonProps,
   inputProps,
+  onFocus,
   submitButtonProps,
   ...others
 }) {
@@ -86,6 +87,9 @@ export default function SearchField({
 
   const handleInputFocus = () => {
     inputRef.current.setSelectionRange(0, inputRef.current.value.length)
+    if (onFocus) {
+      onFocus(inputRef)
+    }
   }
 
   const handleChange = withDefaultHandler(onChange, e => {
@@ -166,7 +170,7 @@ SearchField.propTypes = {
   /**
    * The type of submit button to display.
    */
-  submitButtonVariant: PropTypes.oneOf(['icon', 'fab']),
+  submitButtonVariant: PropTypes.oneOf(['icon', 'fab', 'none']),
   /**
    * If `true`, show the clear button when text is entered.
    */

@@ -8,7 +8,7 @@ import useNavigationEvent from '../hooks/useNavigationEvent'
 
 const fetch = fetchLatest(_fetch)
 
-export default function SearchProvider({ children, initialGroups, onClose, open }) {
+export default function SearchProvider({ children, onFetchFinish, initialGroups, onClose, open }) {
   const [state, setState] = useState({
     groups: initialGroups,
     loading: true,
@@ -37,6 +37,10 @@ export default function SearchProvider({ children, initialGroups, onClose, open 
         loading: false,
         groups,
       }))
+
+      if (onFetchFinish) {
+        onFetchFinish()
+      }
     } catch (e) {
       if (!StaleResponseError.is(e)) {
         setState(state => ({
