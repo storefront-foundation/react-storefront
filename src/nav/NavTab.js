@@ -25,7 +25,7 @@ const styles = theme => ({
   link: {
     textDecoration: 'none',
     color: 'inherit',
-    fontWeight: 100,
+    fontWeight: 300,
   },
   /**
    * Styles applied to the root element of the `Tab`'s `TouchRippleProps` classes.
