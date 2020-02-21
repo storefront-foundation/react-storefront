@@ -1,5 +1,5 @@
 import React from 'react'
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs'
+import { withKnobs, text } from '@storybook/addon-knobs'
 import ActionButton from '../../src/ActionButton'
 
 export default { title: 'ActionButton', decorators: [withKnobs] }

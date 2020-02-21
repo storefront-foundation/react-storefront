@@ -26,7 +26,7 @@ const styles = theme => ({
 export const useStyles = makeStyles(styles, { name: 'RSFTabPanel' })
 
 /**
- * A simple tab panel that is AMP-compatible.  Tab names are pull from the label prop of the child elements.
+ * A simple tab panel that is AMP-compatible.  Tab names are pulled from the label prop of the child elements.
  * Any type of element can be a child.
  *
  * Example:
