@@ -17,6 +17,11 @@ describe('MediaCarousel', () => {
 
   const mockMediaQuery = jest.spyOn(useMediaQuery, 'default')
 
+  beforeEach(() => {
+    window.innerWidth = 1024
+    window.dispatchEvent(new Event('resize'))
+  })
+
   afterEach(() => {
     wrapper.unmount()
   })
