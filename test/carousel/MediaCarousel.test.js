@@ -114,6 +114,13 @@ describe('MediaCarousel', () => {
       contain: true,
       src: media.full[0].magnify.src,
     })
+
+    expect(
+      wrapper
+        .find(Media)
+        .first()
+        .prop('src'),
+    ).toEqual(media.full[0].magnify.src)
   })
 
   it('should pass height 100% to Carousel if window size is small and lightbox is opened', () => {
@@ -128,6 +135,21 @@ describe('MediaCarousel', () => {
         .first()
         .prop('height'),
     ).toBe('100%')
+  })
+
+  it('should hide the magnify hint if the lightbox is opened and the window is wider than the image', () => {
+    wrapper = mount(<MediaCarousel media={media} />)
+    wrapper.find(Carousel).simulate('click')
+    console.log(wrapper.find(MagnifyHint))
+    expect(wrapper.find(MagnifyHint)).toExist()
+
+    window.innerWidth = 1300
+    window.dispatchEvent(new Event('resize'))
+
+    wrapper = mount(<MediaCarousel media={media} />)
+    wrapper.find(Carousel).simulate('click')
+    console.log(wrapper.find(MagnifyHint))
+    expect(wrapper.find(MagnifyHint)).not.toExist()
   })
 
   it('should pass thumbnail to render below the Carousel if image is not loaded and thumbnail is passed as prop ', () => {

@@ -118,6 +118,7 @@ function MediaCarousel(props) {
   const [lightboxActive, setLightboxActive] = useState()
   const theme = useTheme()
   const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
+  const isTouchScreen = useMediaQuery('(hover:none)')
 
   useEffect(() => {
     // Reset selection index when media changes
@@ -167,14 +168,24 @@ function MediaCarousel(props) {
   }
 
   if (media && media.full && media.full.some(item => item.magnify)) {
-    belowAdornments.push(
-      <MagnifyHint
-        key="magnify-hint"
-        over={over}
-        disableExpand={lightboxActive}
-        className={magnifyHintClassName}
-      />,
-    )
+    let showHint = true
+    if (typeof window !== 'undefined') {
+      const { innerWidth } = window
+      const mediaWidth = get(media.full[selected], 'magnify.width', 10000)
+      if (mediaWidth <= innerWidth) {
+        showHint = false
+      }
+    }
+    if (showHint) {
+      belowAdornments.push(
+        <MagnifyHint
+          key="magnify-hint"
+          over={over}
+          disableExpand={lightboxActive}
+          className={magnifyHintClassName}
+        />,
+      )
+    }
   }
 
   if (lightboxActive) {
@@ -212,9 +223,10 @@ function MediaCarousel(props) {
               onLoad={i === 0 ? onFullSizeImagesLoaded : null}
               magnifyProps={magnifyProps}
               {...item}
-              magnify={isSmall ? undefined : item.magnify}
+              magnify={isTouchScreen ? undefined : item.magnify}
+              src={get(item, 'magnify.src', item.src)}
               imageProps={
-                lightboxActive && !isSmall
+                lightboxActive && !isTouchScreen
                   ? {
                       fill: false,
                       contain: true,
