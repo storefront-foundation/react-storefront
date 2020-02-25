@@ -179,11 +179,6 @@ MagnifyHint.propTypes = {
   expandTextDesktop: PropTypes.string,
 
   /**
-   * If `true`, the Carousel is currently being hovered upon.
-   */
-  open: PropTypes.bool,
-
-  /**
    * If `true`, zooming is disabled and the hint for zooming is not shown.
    */
   disableZoom: PropTypes.bool,

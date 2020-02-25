@@ -9,7 +9,7 @@
  * @param {Function} options.pageData An async function that return data for the page component
  * @return {Object} the result of `appData` and `pageData` merged into a single object.
  */
-export default async function fulfillAPIRequest(req, { appData, pageData } = {}) {
+export default async function fulfillAPIRequest(req, { appData, pageData }) {
   const promises = [pageData(req).then(pageData => ({ pageData }))]
 
   if (req.query._includeAppData === '1') {

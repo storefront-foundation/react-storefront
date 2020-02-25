@@ -123,7 +123,7 @@ export default function Drawer({
       drawerResize.current = new ResizeObserver(() => {
         document.body.style.paddingBottom = el && el.clientHeight + 'px'
       })
-      drawerResize.observe(el)
+      drawerResize.current.observe(el)
     }
 
     return () => {

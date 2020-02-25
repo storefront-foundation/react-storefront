@@ -49,7 +49,7 @@ function SortButton({ title, drawerProps, onClick, sortProps, drawerBreakpoint, 
     if (open) {
       setState({ mountDrawer: true, open: true, anchorEl: anchorEl })
     } else {
-      setState({ open: false, anchorEl: null })
+      setState({ ...state, open: false, anchorEl: null })
     }
   }
 

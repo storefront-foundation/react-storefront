@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ProductOptionSelector from '../../src/option/ProductOptionSelector'
+import SwatchProductOption from '../../src/option/SwatchProductOption'
 
 export default { title: 'ProductOptionSelector' }
 
@@ -38,10 +39,23 @@ const colors = [
   },
 ]
 
-export const basic = () => {
+export const swatch = () => {
   const [color, setColor] = useState(colors[0])
 
   return (
     <ProductOptionSelector options={colors} value={color} onChange={color => setColor(color)} />
+  )
+}
+
+export const text = () => {
+  const [color, setColor] = useState(colors[0])
+
+  return (
+    <ProductOptionSelector
+      options={colors}
+      value={color}
+      onChange={color => setColor(color)}
+      variant="text"
+    />
   )
 }

@@ -1,8 +1,9 @@
-export class IntersectionObserver {
+export class Observer {
   disconnected = false
 
   constructor(callback) {
     IntersectionObserver.instance = this
+    ResizeObserver.instance = this
     this.callback = callback
   }
 
@@ -14,12 +15,18 @@ export class IntersectionObserver {
     this.ref = r
   }
 
+  unobserve(r) {
+    this.ref = undefined
+  }
+
   disconnect() {
     this.disconnected = true
   }
 }
 
-export function resetIntersectionObserver() {
+export function resetObservers() {
   delete IntersectionObserver.instance
+  delete ResizeObserver.instance
   delete IntersectionObserver.ref
+  delete ResizeObserver.ref
 }
