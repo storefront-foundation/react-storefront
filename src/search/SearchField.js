@@ -36,12 +36,16 @@ export const styles = theme => ({
     border: 'none',
     background: 'none',
     flex: 1,
-    padding: '0 0 0 20px',
+    padding: theme.spacing(0, 2.5, 0, 2.5),
     ...theme.typography.body1,
     '&:focus': {
       outline: 'none',
     },
   },
+  inputClearIcon: {
+    paddingRight: 0,
+  },
+
   /**
    * Styles applied to the submit button element if [submitButtonVariant](#prop-submitButtonVariant)
    * is `'fab'`.
@@ -88,7 +92,7 @@ export default function SearchField({
   const handleInputFocus = () => {
     inputRef.current.setSelectionRange(0, inputRef.current.value.length)
     if (onFocus) {
-      onFocus(inputRef)
+      onFocus()
     }
   }
 
@@ -114,7 +118,7 @@ export default function SearchField({
           onChange={handleChange}
           onFocus={handleInputFocus}
           ref={inputRef}
-          className={classes.input}
+          className={clsx(classes.input, showClearButton && classes.inputClearIcon)}
           {...inputProps}
         />
         {showClearButton ? (

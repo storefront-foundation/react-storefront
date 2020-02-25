@@ -20,7 +20,7 @@ const useStyles = makeStyles(styles, { name: 'RSFSearchForm' })
 /**
  * A form used to submit a search query.
  */
-export default function SearchForm({ classes, children, action }) {
+export default function SearchForm({ classes, children, action, autoComplete }) {
   classes = useStyles({ classes })
 
   const ref = useRef()
@@ -42,7 +42,14 @@ export default function SearchForm({ classes, children, action }) {
   }
 
   return (
-    <form ref={ref} action={action} onSubmit={handleSubmit} className={classes.root} target="_top">
+    <form
+      ref={ref}
+      action={action}
+      onSubmit={handleSubmit}
+      className={classes.root}
+      target="_top"
+      autoComplete={autoComplete ? 'on' : 'off'}
+    >
       {children}
     </form>
   )
@@ -63,8 +70,14 @@ SearchForm.propTypes = {
    * An `action` attribute to use for the `<form>` element.
    */
   action: PropTypes.string,
+
+  /**
+   * Form auto complete
+   */
+  autoComplete: PropTypes.bool,
 }
 
 SearchForm.defaultProps = {
   action: '/search',
+  autoComplete: false,
 }
