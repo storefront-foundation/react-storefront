@@ -79,7 +79,14 @@ const useStyles = makeStyles(styles, { name: 'RSFCarouselThumbnails' })
  * be clicked to switch to the given slide. Internally, `CarouselThumbnails` uses MaterialUI's
  * [`Tabs`](https://material-ui.com/api/tabs) component to indicate which slide is selected
  */
-function CarouselThumbnails({ thumbnails, selected, setSelected, classes, className }) {
+function CarouselThumbnails({
+  thumbnails,
+  selected,
+  setSelected,
+  classes,
+  className,
+  ImageComponent,
+}) {
   const styles = useStyles({ classes })
 
   return (
@@ -94,7 +101,7 @@ function CarouselThumbnails({ thumbnails, selected, setSelected, classes, classN
         }}
       >
         {thumbnails.map(({ src, alt }, i) => {
-          const icon = <Image contain className={styles.thumb} src={src} alt={alt} />
+          const icon = <ImageComponent contain className={styles.thumb} src={src} alt={alt} />
           return (
             <Tab
               classes={{
@@ -134,6 +141,11 @@ CarouselThumbnails.propTypes = {
   setSelected: PropTypes.func,
 
   /**
+   * The component type to use to display images.
+   */
+  ImageComponent: PropTypes.elementType,
+
+  /**
    * Array of objects containing the data for an image to be used for each thumbnail
    */
   thumbnails: PropTypes.arrayOf(
@@ -144,4 +156,8 @@ CarouselThumbnails.propTypes = {
   ),
 }
 
-export default React.memo(CarouselThumbnails)
+CarouselThumbnails.defaultProps = {
+  ImageComponent: Image,
+}
+
+export default CarouselThumbnails

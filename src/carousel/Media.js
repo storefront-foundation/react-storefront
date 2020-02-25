@@ -2,12 +2,25 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Image from '../Image'
 import ReactImageMagnify from 'react-image-magnify'
+import qs from 'qs'
+
+function getOptimizedSrc(url, options) {
+  return `https://opt.moovweb.net/?${qs.stringify({ ...options, img: url })}`
+}
 
 /**
  * An element that determines the proper tag to use for a media node within a
  * [`Carousel`](/apiReference/carousel%f2Carousel).
  */
-export default function Media({ magnifyProps, imageProps, src, alt, magnify, type = 'image' }) {
+export default function Media({
+  magnifyProps,
+  imageProps,
+  src,
+  alt,
+  magnify,
+  type = 'image',
+  ImageComponent,
+}) {
   if (type === 'video') {
     return <video src={src} alt={alt} />
   } else if (magnify) {
@@ -16,7 +29,7 @@ export default function Media({ magnifyProps, imageProps, src, alt, magnify, typ
         enlargedImagePosition="over"
         {...magnifyProps}
         smallImage={{
-          src: src,
+          src: getOptimizedSrc(src, imageProps.optimize),
           alt: alt,
           isFluidWidth: true,
         }}
@@ -24,7 +37,7 @@ export default function Media({ magnifyProps, imageProps, src, alt, magnify, typ
       />
     )
   } else {
-    return <Image key={src} src={src} alt={alt} fill {...imageProps} />
+    return <ImageComponent key={src} src={src} alt={alt} fill {...imageProps} />
   }
 }
 
@@ -46,6 +59,11 @@ Media.propTypes = {
   imageProps: PropTypes.object,
 
   /**
+   * The component type to use to display images.
+   */
+  ImageComponent: PropTypes.elementType,
+
+  /**
    * Used as the `alt` tag for an `'image'` type.
    */
   alt: PropTypes.string,
@@ -60,4 +78,9 @@ Media.propTypes = {
    * If `false`, the media is not able to be magnified.
    */
   magnify: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+}
+
+Media.defaultProps = {
+  imageProps: {},
+  ImageComponent: Image,
 }
