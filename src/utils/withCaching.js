@@ -3,13 +3,13 @@
  * handler calls `e.preventDefault()`.
  *
  * @param {Function} handler The original event handle supplied to the component
- * @param {Function} defaultHandler A handler to run unless `e.preventDefault()` was called.
+ * @param {Number} maxAgeSeconds The time in seconds that a result should be kept in the service worker cache.
  * @return {Function}
  */
-export default function withCaching(handler, { browser, edge }) {
+export default function withCaching(handler, maxAgeSeconds) {
   return (req, res) => {
-    if (browser.maxAgeSeconds) {
-      res.setHeader('x-rsf-cache-control', `max-age: ${browser.maxAgeSeconds}`)
+    if (maxAgeSeconds) {
+      res.setHeader('x-sw-cache-control', `max-age: ${maxAgeSeconds}`)
     }
 
     return handler(req, res)

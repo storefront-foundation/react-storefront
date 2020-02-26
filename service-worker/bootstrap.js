@@ -355,7 +355,7 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
           // 2. it provide that to client and server build as a webpack define
           // 3. we should monkey-patch xhr to send x-rsf-api-version as a request header on all requests
 
-          if (apiRes.headers.get('x-rsf-cache-control')) {
+          if (apiRes.headers.get('x-sw-cache-control')) {
             const path = url.pathname
 
             caches.open(cacheName).then(cache => {

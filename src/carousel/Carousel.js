@@ -157,7 +157,6 @@ Carousel.propTypes = {
 }
 
 Carousel.defaultProps = {
-  inset: 0,
   indicators: true,
   arrows: 'desktop',
   autoplay: false,

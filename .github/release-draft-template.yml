@@ -7,7 +7,9 @@ categories:
     labels:
       - 'bug'
   - title: '🧰 Maintenance'
-    label: 'chore'
+    labels:
+      - 'chore'
+      - 'documentation'
 template: |
   ## What's Changed
 

@@ -4,6 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles'
 import { GridListTile } from '@material-ui/core'
 import ResponsiveTiles from 'react-storefront/ResponsiveTiles'
 import AutoScrollToNewChildren from 'react-storefront/AutoScrollToNewChildren'
+import * as makeStyles from '@material-ui/core/styles/makeStyles'
 
 describe('ResponsiveTiles', () => {
   let wrapper
@@ -69,5 +70,37 @@ describe('ResponsiveTiles', () => {
     )
   })
 
-  it.todo('should be able to pass custom column breakpoints')
+  it('should be able to pass custom column breakpoints', () => {
+    const theme = createMuiTheme()
+    const root = document.createElement('div')
+    document.body.appendChild(root)
+
+    const makeStylesSpy = jest.spyOn(makeStyles, 'default')
+
+    wrapper = mount(
+      <ResponsiveTiles
+        cols={{
+          xs: 2,
+          sm: 2,
+          md: 2,
+          lg: 2,
+          xl: 2,
+        }}
+      >
+        <div id="test">Test1</div>
+        <div>Test2</div>
+      </ResponsiveTiles>,
+      { attachTo: root },
+    )
+
+    const tiles = Object.values(makeStylesSpy.mock.calls[0][0](theme).tile).map(item => item.width)
+
+    tiles.forEach(tile => {
+      if (tile) {
+        expect(tile).toBe('50%')
+      }
+    })
+
+    makeStylesSpy.mockClear()
+  })
 })

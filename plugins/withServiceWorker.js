@@ -10,6 +10,7 @@ module.exports = function withServiceWorker(config, bootstrapPath) {
     ...config,
     generateInDevMode,
     workboxOpts: {
+      swDest: 'static/service-worker.js',
       clientsClaim: true,
       skipWaiting: true,
       importScripts: [
