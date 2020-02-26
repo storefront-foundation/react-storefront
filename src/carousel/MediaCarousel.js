@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import PropTypes from 'prop-types'
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
@@ -100,6 +101,7 @@ function MediaCarousel(props) {
     magnifyHintClassName,
     imageProps,
     lightboxProps,
+    preloadFirstImage,
     classes,
     media,
     magnifyProps,
@@ -190,8 +192,21 @@ function MediaCarousel(props) {
     setLightboxActive(false)
   }, [])
 
+  let preloader = null
+  if (preloadFirstImage) {
+    const firstImage = get(media, 'full[0].src')
+    if (firstImage) {
+      preloader = (
+        <Head>
+          <link rel="preload" as="image" href={firstImage} />
+        </Head>
+      )
+    }
+  }
+
   const body = (
     <>
+      {preloader}
       <CarouselComponent
         id={id}
         ref={ref}
@@ -291,6 +306,10 @@ MediaCarousel.propTypes = {
     thumbnails: PropTypes.arrayOf(PropTypes.object),
   }),
   /**
+   * If `true`, the first image in the carousel will be preloaded in the page `<head>`.
+   */
+  preloadFirstImage: PropTypes.bool,
+  /**
    * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
    * [`magnifyProps`](/apiReference/carousel/Media#prop-magnifyProps).
    */
@@ -320,6 +339,7 @@ MediaCarousel.defaultProps = {
   lightboxProps: {},
   magnifyProps: {},
   thumbnails: true,
+  preloadFirstImage: true,
   MediaComponent: Media,
   CarouselComponent: Carousel,
   CarouselThumbnailsComponent: CarouselThumbnails,
