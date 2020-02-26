@@ -28,16 +28,17 @@ export default function SearchSuggestions({ classes }) {
   const { state } = useContext(SearchContext)
 
   return (
-    <div className={classes.root}>
+    <>
       <LoadMask show={state.loading} transparent />
-
-      {state.groups &&
-        state.groups.map((group, i) => (
-          <div key={i} className={classes.group}>
-            <SearchSuggestionGroup {...group} />
-          </div>
-        ))}
-    </div>
+      <div className={classes.root}>
+        {state.groups &&
+          state.groups.map((group, i) => (
+            <div key={i} className={classes.group}>
+              <SearchSuggestionGroup {...group} />
+            </div>
+          ))}
+      </div>
+    </>
   )
 }
 

@@ -79,21 +79,29 @@ export default function SearchField({
   SubmitButtonComponent,
   clearButtonProps,
   inputProps,
+  fetchOnFirstFocus,
   onFocus,
   submitButtonProps,
   ...others
 }) {
   classes = useStyles({ classes })
   const inputRef = useRef(null)
+  const firstFocus = useRef(true)
   const { fetchSuggestions } = useContext(SearchContext)
   const [text, setText] = useState('')
   const empty = text.trim().length === 0
 
   const handleInputFocus = () => {
-    inputRef.current.setSelectionRange(0, inputRef.current.value.length)
+    if (firstFocus.current && fetchOnFirstFocus) {
+      fetchSuggestions('')
+    }
+
     if (onFocus) {
       onFocus()
     }
+
+    inputRef.current.setSelectionRange(0, inputRef.current.value.length)
+    firstFocus.current = false
   }
 
   const handleChange = withDefaultHandler(onChange, e => {
@@ -195,6 +203,10 @@ SearchField.propTypes = {
    * A function to call when the search query value is changed.
    */
   onChange: PropTypes.func,
+  /**
+   * If true will fetch suggestions immediately after focusing for the first time
+   */
+  fetchOnFirstFocus: PropTypes.bool,
 }
 
 SearchField.defaultProps = {
@@ -203,4 +215,5 @@ SearchField.defaultProps = {
   showClearButton: true,
   placeholder: 'Search...',
   name: 'q',
+  fetchOnFirstFocus: false,
 }

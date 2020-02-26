@@ -8,7 +8,7 @@ import useNavigationEvent from '../hooks/useNavigationEvent'
 
 const fetch = fetchLatest(_fetch)
 
-export default function SearchProvider({ children, onFetchFinish, initialGroups, onClose, open }) {
+export default function SearchProvider({ children, onFetch, initialGroups, onClose, open }) {
   const [state, setState] = useState({
     groups: initialGroups,
     loading: true,
@@ -29,6 +29,10 @@ export default function SearchProvider({ children, onFetchFinish, initialGroups,
         loading: true,
       }))
 
+      if (onFetch) {
+        onFetch()
+      }
+
       const url = `/api/suggestions?q=${encodeURIComponent(text.trim())}`
       const { groups } = await fetch(url, { credentials: 'include' }).then(res => res.json())
 
@@ -37,10 +41,6 @@ export default function SearchProvider({ children, onFetchFinish, initialGroups,
         loading: false,
         groups,
       }))
-
-      if (onFetchFinish) {
-        onFetchFinish()
-      }
     } catch (e) {
       if (!StaleResponseError.is(e)) {
         setState(state => ({
