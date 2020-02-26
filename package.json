@@ -71,6 +71,7 @@
     "@storybook/react": "^5.2.6",
     "@svgr/webpack": "^4.3.3",
     "babel-loader": "^8.0.6",
+    "babel-plugin-rewire": "^1.2.0",
     "babel-plugin-transform-imports": "^2.0.0",
     "create-index": "^2.5.0",
     "documentation": "moovweb/documentation#feature/preserve-markdown",
@@ -87,6 +88,7 @@
     "react": "^16.8.0",
     "react-docgen": "^5.1.0",
     "react-dom": "^16.8.0",
+    "service-worker-mock": "^2.0.5",
     "sync-folders": "^2.0.0",
     "yalc": "^1.0.0-pre.34"
   },
@@ -146,10 +148,14 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**/*.{js,jsx}",
+      "./service-worker/*.{js,jsx}",
       "!**/index.js"
     ],
     "moduleNameMapper": {
       "react-storefront/(.*)": "<rootDir>/src/$1"
+    },
+    "transform": {
+      ".*": "./test/config/babelTransformer.js"
     }
   }
 }
