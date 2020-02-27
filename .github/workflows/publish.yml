@@ -1,9 +1,11 @@
-name: Publish docs
+name: Publish to NPM
 
-on: [push]
+on:
+  release:
+    types: [published]
 
 jobs:
-  publish-docs:
+  publish-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -11,12 +13,20 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - name: Publish to npm
+        run: |
+          npm ci
+          OUTPUT=$(npm run release)
+          VERSION=v$(echo $OUTPUT | rev | cut -d'@' -f 1 | rev)
+          echo "::set-env name=VERSION::${VERSION}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
       - name: Push API docs to GitHub Pages
         run: |
           npm ci
           npm run docs
           npm run build-storybook
-          VERSION=7.6.0
+          VERSION=${{ env.VERSION }}
           cd ..
           git clone https://react-storefront-community:${{ secrets.GITHUB_TOKEN }}@github.com/react-storefront-community/react-storefront-community.github.io.git
           git clone https://${{ secrets.MOOVWEB_GITHUB_USER }}:${{ secrets.MOOVWEB_GITHUB_TOKEN }}@github.com/moovweb/react-storefront-docs.git
@@ -33,7 +43,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m "Docs for version ${VERSION}" -a
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          GITHUB_TOKEN: ${{ secrets.MOOVWEB_GITHUB_TOKEN }}
+          git push -u origin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
