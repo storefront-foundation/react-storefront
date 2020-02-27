@@ -44,3 +44,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -m "Docs for version ${VERSION}" -a
           git push -u origin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
