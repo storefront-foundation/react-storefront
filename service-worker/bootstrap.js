@@ -4,11 +4,6 @@ workbox.loadModule('workbox-strategies')
 
 const PREFETCH_CACHE_MISS = 412
 
-// If we used anything other than a 2xx status, chrome console will show a
-// failed fetch every time there is a cache miss.  If we return null, workbox
-// will show a warning and chrome console will show a fetch failure.
-const CLIENT_CACHE_MISS = 204
-
 let runtimeCacheOptions = {}
 let abortControllers = new Set()
 let toResume = new Set()
@@ -28,7 +23,6 @@ try {
 /**
  * Configures parameters for cached routes.
  * @param {Object} options
- * @param {Object} options.cacheName The name of the runtime cache
  * @param {Object} options.maxEntries The max number of entries to store in the cache
  * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
  */
@@ -67,7 +61,7 @@ function precacheLinks(response) {
 
 /**
  * Fetches and caches the specified path.
- * @param {Object} options A URL path
+ * @param {Object} options Cache path options
  * @param {String} options.path A URL path
  * @param {String} options.apiVersion The version of the api that the client is running
  * @param {Boolean} cacheLinks Set to true to fetch and cache all links in the HTML returned
@@ -137,7 +131,9 @@ function abortPrefetches() {
   abortControllers.clear()
 }
 
-/** Resume queued prefetch requests which were cancelled to allow for more important requests */
+/**
+ * Resume queued prefetch requests which were cancelled to allow for more important requests
+ */
 function resumePrefetches() {
   console.log('[react-storefront service worker] resuming prefetches')
   for (let args of toResume) {
@@ -169,9 +165,9 @@ function addToCache(cache, path, data, contentType) {
 
 /**
  * Adds the specified data to the cache
- * @param {Object} options A URL path
+ * @param {Object} options Cache state options
  * @param {String} options.path A URL path
- * @param {Boolean} options.cacheData The data to cache
+ * @param {Object|String} options.cacheData The data to cache. Objects will be converted to JSON.
  * @param {String} options.apiVersion The version of the api that the client is running.
  */
 function cacheState({ path, cacheData, apiVersion } = {}) {
@@ -249,6 +245,23 @@ self.addEventListener('install', event => {
     })
 })
 
+self.addEventListener('fetch', event => {
+  // Catches all non-prefetch requests and aborts in-progress prefetches
+  // until the request finishes, then resumes prefetching
+  abortPrefetches()
+  event.respondWith(
+    (async function() {
+      try {
+        return await fetch(event.request)
+      } finally {
+        if (toResume.size) {
+          resumePrefetches()
+        }
+      }
+    })(),
+  )
+})
+
 /**
  * Returns true if the URL uses https
  * @param {Object} context
@@ -274,21 +287,6 @@ function isStaticAsset(context) {
  */
 function isAmp(url) {
   return !!url.pathname.match(/\.amp$/)
-}
-
-/**
- * Only deliver HTML from the cache when transitioning from AMP or launching from the homescreen.
- * @param {String} url The url being fetched
- * @param {Event} event The fetch event
- * @return {Boolean}
- */
-function shouldServeHTMLFromCache(url, event) {
-  return (
-    '{{serveSSRFromCache}}' === 'true' ||
-    isAmp({ pathname: event.request.referrer }) ||
-    /\?source=pwa/.test(url.search) ||
-    /(\?|&)powerlink/.test(url.search)
-  )
 }
 
 /**
