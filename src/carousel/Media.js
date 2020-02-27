@@ -2,11 +2,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Image from '../Image'
 import ReactImageMagnify from 'react-image-magnify'
-import qs from 'qs'
-
-function getOptimizedSrc(url, options) {
-  return `https://opt.moovweb.net/?${qs.stringify({ ...options, img: url })}`
-}
 
 /**
  * An element that determines the proper tag to use for a media node within a
@@ -20,20 +15,22 @@ export default function Media({
   magnify,
   type = 'image',
   ImageComponent,
+  ImageMagnifyComponent,
 }) {
   if (type === 'video') {
     return <video src={src} alt={alt} />
   } else if (magnify) {
     return (
-      <ReactImageMagnify
+      <ImageMagnifyComponent
         enlargedImagePosition="over"
         {...magnifyProps}
         smallImage={{
-          src: getOptimizedSrc(src, imageProps.optimize),
-          alt: alt,
+          src,
+          alt,
           isFluidWidth: true,
         }}
         largeImage={magnify}
+        optimize={imageProps.optimize}
       />
     )
   } else {
@@ -64,6 +61,11 @@ Media.propTypes = {
   ImageComponent: PropTypes.elementType,
 
   /**
+   * The component type to use to display magnified images.
+   */
+  ImageMagnifyComponent: PropTypes.elementType,
+
+  /**
    * Used as the `alt` tag for an `'image'` type.
    */
   alt: PropTypes.string,
@@ -83,4 +85,5 @@ Media.propTypes = {
 Media.defaultProps = {
   imageProps: {},
   ImageComponent: Image,
+  ImageMagnifyComponent: ReactImageMagnify,
 }
