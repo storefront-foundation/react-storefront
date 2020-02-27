@@ -21,7 +21,6 @@ jobs:
           git clone https://react-storefront-community:${{ secrets.GITHUB_TOKEN }}@github.com/react-storefront-community/react-storefront-community.github.io.git
           git clone https://${{ secrets.MOOVWEB_GITHUB_USER }}:${{ secrets.MOOVWEB_GITHUB_TOKEN }}@github.com/moovweb/react-storefront-docs.git
           cd react-storefront-community.github.io
-          git remote set-url origin https://react-storefront-community:${{ secrets.GITHUB_TOKEN }}@github.com/react-storefront-community/react-storefront-community.github.io.git
           git fetch
           git pull
           mkdir ${VERSION}
@@ -34,6 +33,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m "Docs for version ${VERSION}" -a
-          git push -u origin
-        env:
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
           GITHUB_TOKEN: ${{ secrets.MOOVWEB_GITHUB_TOKEN }}
