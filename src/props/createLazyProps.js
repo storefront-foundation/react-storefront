@@ -49,7 +49,7 @@
  *  component will be rendered and can display a skeleton while waiting for the promise returned
  *  by `fetchCallback` to resolve
  */
-export default function createLazyProps(fetchCallback, { timeout = 50 } = {}) {
+export default function createLazyProps(fetchCallback, { timeout = 100 } = {}) {
   return (options /* from getInitialProps */) => {
     if (typeof window === 'undefined') {
       // server
