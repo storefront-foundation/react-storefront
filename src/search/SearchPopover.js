@@ -10,6 +10,7 @@ export const styles = theme => ({
     boxShadow: '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14)',
     minWidth: theme.spacing(84),
     minHeight: theme.spacing(75),
+    border: `1px solid ${theme.palette.divider}`,
   },
 })
 

@@ -41,9 +41,17 @@ export const styles = theme => ({
     },
     [theme.breakpoints.up('sm')]: {
       border: '1px solid',
+      borderColor: theme.palette.divider,
       borderRadius: theme.spacing(1),
       margin: theme.spacing(0.5, 0, 0.5, 0),
-      zIndex: 99999,
+      zIndex: 9999,
+      transition: 'border-color linear 0.1s',
+      '&:hover': {
+        borderColor: fade(theme.palette.divider, 0.25),
+      },
+      '&:focus': {
+        borderColor: theme.palette.primary.main,
+      },
     },
   },
   inputClearIcon: {
