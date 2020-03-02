@@ -1,8 +1,6 @@
-import React, { useState, useRef, useContext } from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import React, { useRef, forwardRef } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import withDefaultHandler from '../utils/withDefaultHandler'
-import SearchContext from './SearchContext'
 import { IconButton } from '@material-ui/core'
 import ClearIcon from '@material-ui/icons/Clear'
 import SearchSubmitButton from './SearchSubmitButton'
@@ -41,6 +39,12 @@ export const styles = theme => ({
     '&:focus': {
       outline: 'none',
     },
+    [theme.breakpoints.up('sm')]: {
+      border: '1px solid',
+      borderRadius: theme.spacing(1),
+      margin: theme.spacing(0.5, 0, 0.5, 0),
+      zIndex: 99999,
+    },
   },
   inputClearIcon: {
     paddingRight: 0,
@@ -71,104 +75,93 @@ const useStyles = makeStyles(styles, { name: 'RSFSearchField' })
  * A search text field. Additional props are spread to the underlying
  * [Input](https://material-ui.com/api/input/).
  */
-export default function SearchField({
-  classes,
-  onChange,
-  submitButtonVariant,
-  showClearButton,
-  SubmitButtonComponent,
-  clearButtonProps,
-  inputProps,
-  fetchOnFirstFocus,
-  onFocus,
-  submitButtonProps,
-  ...others
-}) {
-  classes = useStyles({ classes })
-  const inputRef = useRef(null)
-  const firstFocus = useRef(true)
-  const { fetchSuggestions } = useContext(SearchContext)
-  const [text, setText] = useState('')
-  const empty = text.trim().length === 0
+const SearchField = forwardRef(
+  (
+    {
+      classes,
+      onChange,
+      submitButtonVariant,
+      showClearButton,
+      SubmitButtonComponent,
+      clearButtonProps,
+      inputProps,
+      value,
+      onFocus,
+      submitButtonProps,
+      ...others
+    },
+    ref,
+  ) => {
+    classes = useStyles({ classes })
+    const inputRef = ref || useRef(null)
+    const empty = value.trim().length === 0
 
-  const handleInputFocus = () => {
-    if (firstFocus.current && fetchOnFirstFocus) {
-      fetchSuggestions('')
+    const handleInputFocus = () => {
+      if (onFocus) {
+        onFocus()
+      }
+
+      inputRef.current.setSelectionRange(0, inputRef.current.value.length)
     }
 
-    if (onFocus) {
-      onFocus()
+    const handleClearClick = () => {
+      onChange('')
     }
 
-    inputRef.current.setSelectionRange(0, inputRef.current.value.length)
-    firstFocus.current = false
-  }
-
-  const handleChange = withDefaultHandler(onChange, e => {
-    const text = e.target.value
-    setText(text)
-    fetchSuggestions(text)
-  })
-
-  const handleClearClick = () => {
-    const text = ''
-    setText(text)
-    fetchSuggestions(text)
-  }
-
-  return (
-    <div className={classes.root} data-empty={text.trim().length === 0 ? 'on' : 'off'}>
-      <div className={classes.inputWrap}>
-        <input
-          {...others}
-          type="text"
-          value={text}
-          onChange={handleChange}
-          onFocus={handleInputFocus}
-          ref={inputRef}
-          className={clsx(classes.input, showClearButton && classes.inputClearIcon)}
-          {...inputProps}
-        />
-        {showClearButton ? (
-          <IconButton
-            {...clearButtonProps}
-            onClick={handleClearClick}
-            rel="clear"
-            className={clsx({
-              [classes.searchReset]: true,
-              [classes.hidden]: empty,
-            })}
-          >
-            <ClearIcon rel="clear" />
-          </IconButton>
-        ) : (
-          submitButtonVariant === 'icon' && (
-            <SubmitButtonComponent
-              Component={Button}
+    return (
+      <div className={classes.root} data-empty={value.trim().length === 0 ? 'on' : 'off'}>
+        <div className={classes.inputWrap}>
+          <input
+            {...others}
+            type="text"
+            value={value}
+            onChange={e => onChange(e.target.value)}
+            onFocus={handleInputFocus}
+            ref={inputRef}
+            className={clsx(classes.input, showClearButton && classes.inputClearIcon)}
+            {...inputProps}
+          />
+          {showClearButton ? (
+            <IconButton
+              {...clearButtonProps}
+              onClick={handleClearClick}
+              rel="clear"
               className={clsx({
-                [classes.searchButton]: true,
+                [classes.searchReset]: true,
                 [classes.hidden]: empty,
               })}
-              text={text}
-              {...submitButtonProps}
-            />
-          )
+            >
+              <ClearIcon rel="clear" />
+            </IconButton>
+          ) : (
+            submitButtonVariant === 'icon' && (
+              <SubmitButtonComponent
+                Component={Button}
+                className={clsx({
+                  [classes.searchButton]: true,
+                  [classes.hidden]: empty,
+                })}
+                text={value}
+                {...submitButtonProps}
+              />
+            )
+          )}
+        </div>
+        {submitButtonVariant === 'fab' && (
+          <SubmitButtonComponent
+            Component={Fab}
+            className={clsx({
+              [classes.searchFab]: true,
+              [classes.hidden]: empty,
+            })}
+            text={value}
+            {...submitButtonProps}
+          />
         )}
       </div>
-      {submitButtonVariant === 'fab' && (
-        <SubmitButtonComponent
-          Component={Fab}
-          className={clsx({
-            [classes.searchFab]: true,
-            [classes.hidden]: empty,
-          })}
-          text={text}
-          {...submitButtonProps}
-        />
-      )}
-    </div>
-  )
-}
+    )
+  },
+)
 
 SearchField.propTypes = {
   /**
@@ -203,10 +196,6 @@ SearchField.propTypes = {
    * A function to call when the search query value is changed.
    */
   onChange: PropTypes.func,
-  /**
-   * If true will fetch suggestions immediately after focusing for the first time
-   */
-  fetchOnFirstFocus: PropTypes.bool,
 }
 
 SearchField.defaultProps = {
@@ -215,5 +204,6 @@ SearchField.defaultProps = {
   showClearButton: true,
   placeholder: 'Search...',
   name: 'q',
-  fetchOnFirstFocus: false,
 }
+
+export default SearchField

@@ -2,7 +2,6 @@ import React from 'react'
 import Drawer from '../drawer/Drawer'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import SearchProvider from './SearchProvider'
 
 export const styles = theme => ({
   /**
@@ -25,11 +24,9 @@ export default function SearchDrawer({ DrawerComponent, classes, open, onClose, 
   classes = useStyles({ classes })
 
   return (
-    <SearchProvider onClose={onClose} open={open}>
-      <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
-        {children}
-      </DrawerComponent>
-    </SearchProvider>
+    <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
+      {children}
+    </DrawerComponent>
   )
 }
 

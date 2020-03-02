@@ -8,17 +8,17 @@ import useNavigationEvent from '../hooks/useNavigationEvent'
 
 const fetch = fetchLatest(_fetch)
 
-export default function SearchProvider({ children, onFetch, initialGroups, onClose, open }) {
+export default function SearchProvider({ children, query, initialGroups, onClose, active }) {
   const [state, setState] = useState({
     groups: initialGroups,
     loading: true,
   })
 
   useEffect(() => {
-    if (open && state.groups == null) {
-      fetchSuggestions('')
+    if (active) {
+      fetchSuggestions(query)
     }
-  }, [open])
+  }, [active, query])
 
   useNavigationEvent(onClose)
 
@@ -28,10 +28,6 @@ export default function SearchProvider({ children, onFetch, initialGroups, onClo
         ...state,
         loading: true,
       }))
-
-      if (onFetch) {
-        onFetch()
-      }
 
       const url = `/api/suggestions?q=${encodeURIComponent(text.trim())}`
       const { groups } = await fetch(url, { credentials: 'include' }).then(res => res.json())

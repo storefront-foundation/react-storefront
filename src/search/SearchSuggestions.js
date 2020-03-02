@@ -23,7 +23,7 @@ export const styles = theme => ({
 })
 const useStyles = makeStyles(styles, { name: 'RSFSearchSuggestions' })
 
-export default function SearchSuggestions({ classes }) {
+export default function SearchSuggestions({ classes, render }) {
   classes = useStyles({ classes })
   const { state } = useContext(SearchContext)
 
@@ -31,12 +31,14 @@ export default function SearchSuggestions({ classes }) {
     <>
       <LoadMask show={state.loading} transparent />
       <div className={classes.root}>
-        {state.groups &&
-          state.groups.map((group, i) => (
-            <div key={i} className={classes.group}>
-              <SearchSuggestionGroup {...group} />
-            </div>
-          ))}
+        {render
+          ? render(state)
+          : state.groups &&
+            state.groups.map((group, i) => (
+              <div key={i} className={classes.group}>
+                <SearchSuggestionGroup {...group} />
+              </div>
+            ))}
       </div>
     </>
   )
