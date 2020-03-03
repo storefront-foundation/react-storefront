@@ -215,7 +215,7 @@ SearchField.propTypes = {
   /**
    * A function to call when input is focused.
    */
-  onFocus,
+  onFocus: PropTypes.func,
 }
 
 SearchField.defaultProps = {
