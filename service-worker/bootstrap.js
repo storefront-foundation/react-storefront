@@ -252,6 +252,10 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     (async function() {
       try {
+        const cacheResponse = await caches.match(event.request)
+        if (cacheResponse) {
+          return cacheResponse
+        }
         return await fetch(event.request)
       } finally {
         if (toResume.size) {
