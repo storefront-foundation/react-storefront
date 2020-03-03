@@ -54,6 +54,10 @@ export const styles = theme => ({
       },
     },
   },
+
+  /**
+   * Styles applied to the input if showClearnButton prop is true.
+   */
   inputClearIcon: {
     paddingRight: 0,
   },
@@ -208,6 +212,10 @@ SearchField.propTypes = {
    * Input value.
    */
   value: PropTypes.string,
+  /**
+   * A function to call when input is focused.
+   */
+  onFocus,
 }
 
 SearchField.defaultProps = {

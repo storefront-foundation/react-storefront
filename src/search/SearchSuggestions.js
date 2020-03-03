@@ -34,8 +34,8 @@ export default function SearchSuggestions({ classes, render }) {
         {render
           ? render(state)
           : state.groups &&
-            state.groups.map((group, i) => (
-              <div key={i} className={classes.group}>
+            state.groups.map(group => (
+              <div key={group.caption} className={classes.group}>
                 <SearchSuggestionGroup {...group} />
               </div>
             ))}
