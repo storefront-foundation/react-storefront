@@ -30,9 +30,7 @@ export default function SearchPopover({ classes, children, open, onClose, anchor
       setQuery('')
     }
 
-    if (anchor.current) {
-      anchor.current.blur()
-    }
+    anchor.current.blur()
   }
 
   useNavigationEvent(handleNavigation)
@@ -81,7 +79,7 @@ SearchPopover.propTypes = {
   /**
    * Function, which is triggered on navigation and popover close.
    */
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   /**
    * Popover anchor
    */

@@ -22,6 +22,16 @@ describe('SearchSuggestions', () => {
     expect(wrapper.find(LoadMask).prop('show')).toBe(true)
   })
 
+  it('should render custom children when render prop provided', () => {
+    wrapper = mount(
+      <SearchContext.Provider value={{ state: { groups: 'testContent' } }}>
+        <SearchSuggestions render={state => <div id="test">{state.groups}</div>} />
+      </SearchContext.Provider>,
+    )
+
+    expect(wrapper.find('#test').text()).toBe('testContent')
+  })
+
   it('should render search suggestion groups', () => {
     wrapper = mount(
       <SearchContext.Provider

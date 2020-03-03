@@ -204,6 +204,10 @@ SearchField.propTypes = {
    * A function to call when the search query value is changed.
    */
   onChange: PropTypes.func,
+  /**
+   * Input value.
+   */
+  value: PropTypes.string,
 }
 
 SearchField.defaultProps = {
@@ -212,6 +216,7 @@ SearchField.defaultProps = {
   showClearButton: true,
   placeholder: 'Search...',
   name: 'q',
+  value: '',
 }
 
 export default SearchField
