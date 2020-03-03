@@ -24,7 +24,13 @@ const useStyles = makeStyles(styles, { name: 'RSFSearch' })
 export default function SearchDrawer({ DrawerComponent, classes, open, onClose, children }) {
   classes = useStyles({ classes })
 
-  useNavigationEvent(onClose)
+  const handleNavigation = () => {
+    if (onClose) {
+      onClose()
+    }
+  }
+
+  useNavigationEvent(handleNavigation)
 
   return (
     <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
@@ -52,7 +58,7 @@ SearchDrawer.propTypes = {
   /**
    * A function that is called when the user closes the drawer.
    */
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
 
   /**
    * A component type to use for the drawer.

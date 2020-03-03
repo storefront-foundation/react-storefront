@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React, { ElementType } from 'react'
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import { Popover } from '@material-ui/core'
 import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
-import SearchContext from './SearchContext'
 
 export const styles = theme => ({
   /**
@@ -18,17 +18,24 @@ export const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFSearchPopover' })
 
-export default function SearchPopover({ classes, children, open, onClose, anchor }) {
+export default function SearchPopover({ classes, children, open, onClose, anchor, setQuery }) {
   classes = useStyles({ classes })
-  const { setQuery } = useContext(SearchContext)
 
-  const onNavigation = () => {
-    onClose()
-    setQuery('')
-    anchor.current.blur()
+  const handleNavigation = () => {
+    if (onClose) {
+      onClose()
+    }
+
+    if (setQuery) {
+      setQuery('')
+    }
+
+    if (anchor.current) {
+      anchor.current.blur()
+    }
   }
 
-  useNavigationEvent(onNavigation)
+  useNavigationEvent(handleNavigation)
 
   return (
     <Popover
@@ -56,4 +63,31 @@ export default function SearchPopover({ classes, children, open, onClose, anchor
       {children}
     </Popover>
   )
+}
+
+SearchPopover.propTypes = {
+  /**
+   * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
+  /**
+   * A list of `ExpandableSection`s that will be controlled.
+   */
+  children: PropTypes.node,
+  /**
+   * Boolean, which controls if popover is open.
+   */
+  open: PropTypes.bool,
+  /**
+   * Function, which is triggered on navigation and popover close.
+   */
+  onClose: PropTypes.func.isRequired,
+  /**
+   * Popover anchor
+   */
+  anchor: PropTypes.shape({ current: PropTypes.any }),
+  /**
+   * Function, for setting query to empty after navigation
+   */
+  setQuery: PropTypes.func,
 }

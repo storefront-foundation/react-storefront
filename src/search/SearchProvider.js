@@ -7,7 +7,7 @@ import { fetchLatest, StaleResponseError } from '../utils/fetchLatest'
 
 const fetch = fetchLatest(_fetch)
 
-export default function SearchProvider({ children, query, setQuery, initialGroups, active }) {
+export default function SearchProvider({ children, query, initialGroups, active }) {
   const [state, setState] = useState({
     groups: initialGroups,
     loading: true,
@@ -48,7 +48,6 @@ export default function SearchProvider({ children, query, setQuery, initialGroup
     state,
     setState,
     fetchSuggestions,
-    setQuery,
   }
 
   return <SearchContext.Provider value={context}>{children}</SearchContext.Provider>
