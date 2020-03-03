@@ -1,5 +1,4 @@
 import makeServiceWorkerEnv from 'service-worker-mock'
-import makeFetchMock from 'service-worker-mock/fetch'
 
 let sw
 
@@ -15,7 +14,7 @@ describe('bootstrap', () => {
       expiration: { ExpirationPlugin: jest.fn() },
       routing: { registerRoute: jest.fn() },
     }
-    Object.assign(global, serviceWorkerEnv, makeFetchMock())
+    Object.assign(global, serviceWorkerEnv)
     jest.resetModules()
     sw = require('../service-worker/bootstrap')
   })
@@ -90,7 +89,7 @@ describe('bootstrap', () => {
     it('should resume prefetches when non-prefetch fetch is done', async () => {
       const toResume = sw.__get__('toResume')
       toResume.add([{ path: '', apiVersion: 'v1' }])
-      await self.trigger('fetch')
+      await self.trigger('fetch', '')
       expect(toResume.size).toEqual(0)
     })
 
