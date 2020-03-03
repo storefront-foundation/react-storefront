@@ -4,11 +4,10 @@ import SearchContext from './SearchContext'
 import _fetch from '../fetch'
 import debounce from 'lodash/debounce'
 import { fetchLatest, StaleResponseError } from '../utils/fetchLatest'
-import useNavigationEvent from '../hooks/useNavigationEvent'
 
 const fetch = fetchLatest(_fetch)
 
-export default function SearchProvider({ children, query, initialGroups, onClose, active }) {
+export default function SearchProvider({ children, query, setQuery, initialGroups, active }) {
   const [state, setState] = useState({
     groups: initialGroups,
     loading: true,
@@ -19,8 +18,6 @@ export default function SearchProvider({ children, query, initialGroups, onClose
       fetchSuggestions(query)
     }
   }, [active, query])
-
-  useNavigationEvent(onClose)
 
   const fetchSuggestions = debounce(async text => {
     try {
@@ -51,7 +48,7 @@ export default function SearchProvider({ children, query, initialGroups, onClose
     state,
     setState,
     fetchSuggestions,
-    onClose,
+    setQuery,
   }
 
   return <SearchContext.Provider value={context}>{children}</SearchContext.Provider>
@@ -60,5 +57,4 @@ export default function SearchProvider({ children, query, initialGroups, onClose
 SearchProvider.propTypes = {
   open: PropTypes.bool,
   initialGroups: PropTypes.array,
-  onClose: PropTypes.func,
 }

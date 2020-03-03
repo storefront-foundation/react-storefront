@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Popover } from '@material-ui/core'
+import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
+import SearchContext from './SearchContext'
 
 export const styles = theme => ({
   /**
@@ -18,6 +20,15 @@ const useStyles = makeStyles(styles, { name: 'RSFSearchPopover' })
 
 export default function SearchPopover({ classes, children, open, onClose, anchor }) {
   classes = useStyles({ classes })
+  const { setQuery } = useContext(SearchContext)
+
+  const onNavigation = () => {
+    onClose()
+    setQuery('')
+    anchor.current.blur()
+  }
+
+  useNavigationEvent(onNavigation)
 
   return (
     <Popover
@@ -28,7 +39,7 @@ export default function SearchPopover({ classes, children, open, onClose, anchor
       disablePortal
       keepMounted
       onClose={onClose}
-      anchorEl={anchor}
+      anchorEl={anchor.current}
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'right',

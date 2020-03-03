@@ -2,6 +2,7 @@ import React from 'react'
 import Drawer from '../drawer/Drawer'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
 
 export const styles = theme => ({
   /**
@@ -22,6 +23,8 @@ const useStyles = makeStyles(styles, { name: 'RSFSearch' })
 
 export default function SearchDrawer({ DrawerComponent, classes, open, onClose, children }) {
   classes = useStyles({ classes })
+
+  useNavigationEvent(onClose)
 
   return (
     <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
