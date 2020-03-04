@@ -11,7 +11,7 @@ module.exports = function withServiceWorker(config) {
     generateInDevMode,
     generateSw: false,
     workboxOpts: {
-      swSrc: path.join(__dirname, '..', 'service-worker', 'bootstrap.js'),
+      swSrc: path.join(__dirname, '..', 'service-worker', 'service-worker.js'),
       swDest: 'static/service-worker.js',
       // The asset names for page chunks contain square brackets, eg [productId].js
       // Next internally injects these chunks encoded, eg %5BproductId%5D.js

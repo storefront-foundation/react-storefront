@@ -12,7 +12,7 @@ describe('service-worker', () => {
     })
     Object.assign(global, serviceWorkerEnv)
     jest.resetModules()
-    sw = require('../service-worker/bootstrap')
+    sw = require('../service-worker/service-worker')
   })
 
   describe('message listener', () => {
