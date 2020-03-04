@@ -11,4 +11,7 @@ module.exports = {
   transform: {
     '.*': './test/config/babelTransformer.js',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(workbox-expiration|workbox-core|workbox-routing|workbox-strategies|workbox-precaching)/)'
+  ],
 }
