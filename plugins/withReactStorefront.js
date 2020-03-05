@@ -11,16 +11,6 @@ const chalk = require('chalk')
 module.exports = (nextConfig = {}) => {
   const usePreact = process.env.preact === 'true'
 
-  console.log(
-    `> Using ${
-      usePreact
-        ? chalk.green('preact') +
-          '. Set "preact" environment variable to "false" to use react instead.'
-        : chalk.blue('react') +
-          '. Set "preact" environment variable to "true" to use preact instead.'
-    }`,
-  )
-
   return phase => {
     const bootstrapOptions = {
       prefetchRampUpTime: -5000,
