@@ -168,10 +168,14 @@ function MediaCarousel(props) {
   }
 
   if (media && media.full && media.full.some(item => item.magnify)) {
+    // we use the media's magnify.width prop to test if the image is larger than the screen size, and
+    // hide the magnify hint if so. this is a magic large number just used to ensure that the hint is
+    // shown if the width property is not defined for the given media
+    const MAX_WIDTH = 10000
     let showHint = true
     if (typeof window !== 'undefined') {
       const { innerWidth } = window
-      const mediaWidth = get(media.full[selected], 'magnify.width', 10000)
+      const mediaWidth = get(media.full[selected], 'magnify.width', MAX_WIDTH)
       if (mediaWidth <= innerWidth) {
         showHint = false
       }
