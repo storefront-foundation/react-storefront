@@ -3,7 +3,7 @@ import PWAContext from './PWAContext'
 
 /**
  * Wrap product links in this component to reuse the thumbnail as the main image in the product
- * skeleton when transitioning to the PDP to make the transition feel instance. This component
+ * skeleton when transitioning to the PDP to make the transition feel instant. This component
  * sets the `thumbnail` ref on the provided `PWAContext` to the `src` prop of the first `img`
  * element found amongst the descendant elements in the tree.
  *

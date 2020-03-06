@@ -104,6 +104,7 @@ const Carousel = React.forwardRef((props, ref) => {
             slideStyle={slideStyle}
             autoplay={autoplay}
             interval={interval}
+            containerStyle={{ alignItems: 'center' }}
           >
             {children}
           </AutoPlaySwipeableViews>

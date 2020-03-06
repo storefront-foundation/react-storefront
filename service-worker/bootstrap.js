@@ -2,12 +2,9 @@ console.log('[react-storefront service worker]', 'Using React Storefront Service
 
 workbox.loadModule('workbox-strategies')
 
-const PREFETCH_CACHE_MISS = 412
+const IS_AMP_REGEX = /([?&]amp=1)(&.*)?$/
 
-// If we used anything other than a 2xx status, chrome console will show a
-// failed fetch every time there is a cache miss.  If we return null, workbox
-// will show a warning and chrome console will show a fetch failure.
-const CLIENT_CACHE_MISS = 204
+const PREFETCH_CACHE_MISS = 412
 
 let runtimeCacheOptions = {}
 let abortControllers = new Set()
@@ -28,7 +25,6 @@ try {
 /**
  * Configures parameters for cached routes.
  * @param {Object} options
- * @param {Object} options.cacheName The name of the runtime cache
  * @param {Object} options.maxEntries The max number of entries to store in the cache
  * @param {Object} options.maxAgeSeconds The TTL in seconds for entries
  */
@@ -67,7 +63,7 @@ function precacheLinks(response) {
 
 /**
  * Fetches and caches the specified path.
- * @param {Object} options A URL path
+ * @param {Object} options Cache path options
  * @param {String} options.path A URL path
  * @param {String} options.apiVersion The version of the api that the client is running
  * @param {Boolean} cacheLinks Set to true to fetch and cache all links in the HTML returned
@@ -137,7 +133,9 @@ function abortPrefetches() {
   abortControllers.clear()
 }
 
-/** Resume queued prefetch requests which were cancelled to allow for more important requests */
+/**
+ * Resume queued prefetch requests which were cancelled to allow for more important requests
+ */
 function resumePrefetches() {
   console.log('[react-storefront service worker] resuming prefetches')
   for (let args of toResume) {
@@ -169,9 +167,9 @@ function addToCache(cache, path, data, contentType) {
 
 /**
  * Adds the specified data to the cache
- * @param {Object} options A URL path
+ * @param {Object} options Cache state options
  * @param {String} options.path A URL path
- * @param {Boolean} options.cacheData The data to cache
+ * @param {Object|String} options.cacheData The data to cache. Objects will be converted to JSON.
  * @param {String} options.apiVersion The version of the api that the client is running.
  */
 function cacheState({ path, cacheData, apiVersion } = {}) {
@@ -210,7 +208,7 @@ self.addEventListener('message', function(event) {
   }
 })
 
-const isApiRequest = path => path.match(/^\/api\//)
+const isApiRequest = path => !!path.match(/^\/api\//)
 
 /**
  * Gets the name of the versioned runtime cache
@@ -239,14 +237,36 @@ self.addEventListener('install', event => {
     })
     .then(allClients => {
       allClients
-        .map(client => {
-          const url = new URL(client.url)
-          return url.pathname + url.search
+        .filter(path => path.url.match(IS_AMP_REGEX))
+        .map(path => {
+          const url = new URL(path.url)
+          // remove "amp=1" from anywhere in url.search:
+          const fixedSearch = (url.search || '').replace(IS_AMP_REGEX, '$2').replace(/^&/, '?')
+          return url.pathname + fixedSearch
         })
-        .filter(path => path.match(/\.amp$/))
-        .map(path => path.replace('.amp', ''))
         .forEach(path => cachePath({ path }, true))
     })
+})
+
+self.addEventListener('fetch', event => {
+  // Catches all non-prefetch requests and aborts in-progress prefetches
+  // until the request finishes, then resumes prefetching
+  abortPrefetches()
+  event.respondWith(
+    (async function() {
+      try {
+        const cacheResponse = await caches.match(event.request)
+        if (cacheResponse) {
+          return cacheResponse
+        }
+        return await fetch(event.request)
+      } finally {
+        if (toResume.size) {
+          resumePrefetches()
+        }
+      }
+    })(),
+  )
 })
 
 /**
@@ -273,22 +293,7 @@ function isStaticAsset(context) {
  * @return {Boolean}
  */
 function isAmp(url) {
-  return !!url.pathname.match(/\.amp$/)
-}
-
-/**
- * Only deliver HTML from the cache when transitioning from AMP or launching from the homescreen.
- * @param {String} url The url being fetched
- * @param {Event} event The fetch event
- * @return {Boolean}
- */
-function shouldServeHTMLFromCache(url, event) {
-  return (
-    '{{serveSSRFromCache}}' === 'true' ||
-    isAmp({ pathname: event.request.referrer }) ||
-    /\?source=pwa/.test(url.search) ||
-    /(\?|&)powerlink/.test(url.search)
-  )
+  return !!(url.search || '').match(IS_AMP_REGEX)
 }
 
 /**
@@ -297,7 +302,7 @@ function shouldServeHTMLFromCache(url, event) {
  * @return {Boolean}
  */
 function isVideo(context) {
-  return context.url.pathname.match(/\.mp4$/)
+  return !!context.url.pathname.match(/\.mp4(\?.*)?$/)
 }
 
 const matchRuntimePath = context => {
