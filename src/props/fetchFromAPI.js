@@ -27,7 +27,11 @@ import isBrowser from '../utils/isBrowser'
 export default function fetchFromAPI({ req, asPath }) {
   const server = !isBrowser()
   const host = server ? req.headers['host'] : ''
-  const protocol = server ? (host.startsWith('localhost') ? 'http://' : 'https://') : ''
+  let protocol = 'https://'
+
+  if (host.startsWith('localhost') || host === '127.0.0.1') {
+    protocol = 'http://'
+  }
 
   if (asPath === '/') asPath = ''
   if (asPath.startsWith('/?')) asPath = asPath.substring(1)
