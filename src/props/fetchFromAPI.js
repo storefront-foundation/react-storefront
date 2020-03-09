@@ -1,5 +1,4 @@
 import fetch from '../fetch'
-import isBrowser from '../utils/isBrowser'
 
 /**
  * A convenience function to be used in `getInitialProps` to fetch data for the page from an
@@ -24,27 +23,37 @@ import isBrowser from '../utils/isBrowser'
  * @param {Object} opts The options object provided to `getInitialProps`
  * @return {Promise} A promise that resolves to the data that the page should display
  */
-export default function fetchFromAPI({ req, asPath }) {
-  const server = !isBrowser()
-  const host = server ? req.headers['host'] : ''
+export default function fetchFromAPI({ req, asPath, pathname }) {
+  const host = req ? process.env.API_HOST || req.headers['host'] : ''
+  const [path, search] = asPath.split('?')
+
   let protocol = 'https://'
 
   if (host.startsWith('localhost') || host === '127.0.0.1') {
     protocol = 'http://'
   }
 
-  if (asPath === '/') asPath = ''
-  if (asPath.startsWith('/?')) asPath = asPath.substring(1)
+  let uri = `/api${path.replace(/\/$/, '')}`
 
-  let uri = `/api${asPath}`
+  if (search) {
+    uri += `?${search}`
+  }
 
-  if (server) {
+  let headers = {}
+
+  if (req) {
+    // on the server
     if (uri.indexOf('?') === -1) {
       uri = uri + '?_includeAppData=1'
     } else {
       uri = uri + '&_includeAppData=1'
     }
+
+    headers = {
+      host: req.headers['host'],
+      'x-next-page': `/api${pathname.replace(/\/$/, '')}`,
+    }
   }
 
-  return fetch(`${protocol}${host}${uri}`).then(res => res.json())
+  return fetch(`${protocol}${host}${uri}`, { headers }).then(res => res.json())
 }

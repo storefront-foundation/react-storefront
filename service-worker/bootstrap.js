@@ -2,6 +2,8 @@ console.log('[react-storefront service worker]', 'Using React Storefront Service
 
 workbox.loadModule('workbox-strategies')
 
+const IS_AMP_REGEX = /([?&]amp=1)(&.*)?$/
+
 const PREFETCH_CACHE_MISS = 412
 
 let runtimeCacheOptions = {}
@@ -206,7 +208,7 @@ self.addEventListener('message', function(event) {
   }
 })
 
-const isApiRequest = path => path.match(/^\/api\//)
+const isApiRequest = path => !!path.match(/^\/api\//)
 
 /**
  * Gets the name of the versioned runtime cache
@@ -235,12 +237,13 @@ self.addEventListener('install', event => {
     })
     .then(allClients => {
       allClients
-        .map(client => {
-          const url = new URL(client.url)
-          return url.pathname + url.search
+        .filter(path => path.url.match(IS_AMP_REGEX))
+        .map(path => {
+          const url = new URL(path.url)
+          // remove "amp=1" from anywhere in url.search:
+          const fixedSearch = (url.search || '').replace(IS_AMP_REGEX, '$2').replace(/^&/, '?')
+          return url.pathname + fixedSearch
         })
-        .filter(path => path.match(/\.amp$/))
-        .map(path => path.replace('.amp', ''))
         .forEach(path => cachePath({ path }, true))
     })
 })
@@ -252,6 +255,10 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     (async function() {
       try {
+        const cacheResponse = await caches.match(event.request)
+        if (cacheResponse) {
+          return cacheResponse
+        }
         return await fetch(event.request)
       } finally {
         if (toResume.size) {
@@ -286,7 +293,7 @@ function isStaticAsset(context) {
  * @return {Boolean}
  */
 function isAmp(url) {
-  return !!url.pathname.match(/\.amp$/)
+  return !!(url.search || '').match(IS_AMP_REGEX)
 }
 
 /**
@@ -295,7 +302,7 @@ function isAmp(url) {
  * @return {Boolean}
  */
 function isVideo(context) {
-  return context.url.pathname.match(/\.mp4$/)
+  return !!context.url.pathname.match(/\.mp4(\?.*)?$/)
 }
 
 const matchRuntimePath = context => {
