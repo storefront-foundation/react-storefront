@@ -1,12 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
 
 const registries = []
-
 const generateClassName = createGenerateClassName()
 
+/*
+  This component renders the server side rendered stylesheets for the
+  lazy hydrated components. Once they become hydrated, these stylesheets
+  will be removed.
+*/
 export function LazyStyleElements() {
   return (
     <>
@@ -37,6 +42,7 @@ const isBrowser =
   typeof window.document !== 'undefined' &&
   typeof window.document.createElement !== 'undefined'
 
+// Used for detecting when the wrapped component becomes visible
 const io =
   isBrowser && IntersectionObserver
     ? new IntersectionObserver(entries => {
@@ -48,7 +54,7 @@ const io =
       })
     : null
 
-function LazyHydrate({ hydrated, ssrOnly, children, on, index, ...rest }) {
+function LazyHydrateInstance({ hydrated, ssrOnly, children, on, index, ...rest }) {
   const childRef = React.useRef(null)
   const [_hydrated, setHydrated] = React.useState(!isBrowser)
 
@@ -57,9 +63,7 @@ function LazyHydrate({ hydrated, ssrOnly, children, on, index, ...rest }) {
 
     function hydrate() {
       setHydrated(true)
-    }
-
-    if (hydrated || _hydrated) {
+      // Remove the server side generated stylesheet
       const stylesheet = window.document.getElementById(`jss-lazy-${index}`)
       if (stylesheet) {
         stylesheet.remove()
@@ -106,10 +110,32 @@ function LazyHydrate({ hydrated, ssrOnly, children, on, index, ...rest }) {
   }
 }
 
-export default function({ children, ...props }) {
+/**
+ * LazyHydrate
+ *
+ * @param {*} param0
+ *
+ * Example:
+ *
+ *  <LazyHydrate on="visible">
+ *    <div>some expensive component</div>
+ *  </LazyHydrate>
+ *
+ */
+
+function LazyHydrate({ children, ...props }) {
   return (
-    <LazyHydrate {...props} index={registries.length}>
+    <LazyHydrateInstance {...props} index={registries.length}>
       <LazyStylesProvider>{children}</LazyStylesProvider>
-    </LazyHydrate>
+    </LazyHydrateInstance>
   )
 }
+
+LazyHydrate.propTypes = {
+  // Force component to never hydrate
+  ssrOnly: PropTypes.bool,
+  // Event to trigger hydration
+  on: PropTypes.oneOf(['visible', 'click']),
+}
+
+export default LazyHydrate
