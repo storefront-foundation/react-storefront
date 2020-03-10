@@ -173,7 +173,7 @@ function MediaCarousel(props) {
     // shown if the width property is not defined for the given media
     const MAX_WIDTH = 10000
     let showHint = true
-    if (typeof window !== 'undefined') {
+    if (lightboxActive) {
       const { innerWidth } = window
       const mediaWidth = get(media.full[selected], 'magnify.width', MAX_WIDTH)
       if (mediaWidth <= innerWidth) {
