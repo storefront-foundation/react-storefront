@@ -32,7 +32,7 @@ export default function fetchFromAPI({ req, asPath, pathname }) {
   if (req) {
     protocol = 'https://'
 
-    if (host.startsWith('localhost') || host === '127.0.0.1') {
+    if (host.startsWith('localhost') || host.startsWith('127.0.0.1')) {
       protocol = 'http://'
     }
   }
@@ -59,5 +59,9 @@ export default function fetchFromAPI({ req, asPath, pathname }) {
     }
   }
 
-  return fetch(`${protocol}${host}${uri}`, { headers }).then(res => res.json())
+  const url = `${protocol}${host}${uri}`
+
+  console.log('url', url)
+
+  return fetch(url, { headers }).then(res => res.json())
 }
