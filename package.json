@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "7.7.2",
+  "version": "7.7.3",
   "description": "Build and deploy e-commerce progressive web apps (PWAs) in record time.",
   "module": "./index.js",
   "license": "Apache-2.0",

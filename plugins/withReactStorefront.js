@@ -8,17 +8,20 @@ const chalk = require('chalk')
 module.exports = (nextConfig = {}) => {
   const usePreact = process.env.preact === 'true'
 
-  console.log(
-    `> Using ${
-      usePreact
-        ? chalk.green('preact') +
-          '. Set "preact" environment variable to "false" to use react instead.'
-        : chalk.blue('react') +
-          '. Set "preact" environment variable to "true" to use preact instead.'
-    }`,
-  )
+  return phase => {
+    const bootstrapOptions = {
+      prefetchRampUpTime: -5000,
+      allowPrefetchThrottling: false,
+      serveSSRFromCache: false,
+    }
 
-  return () => {
+    // if debugging service workers, options can be changed in Dev phase:
+    if (phase === PHASE_DEVELOPMENT_SERVER) {
+      bootstrapOptions.allowPrefetchThrottling = true
+    }
+
+    const { bootstrapPath, makeCopyOptions } = copyBootstrap(bootstrapOptions)
+
     return withServiceWorker(
       {
         ...nextConfig,
