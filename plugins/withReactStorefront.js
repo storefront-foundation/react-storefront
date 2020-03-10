@@ -1,10 +1,7 @@
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const API_VERSION = new Date().getTime()
-const CopyPlugin = require('copy-webpack-plugin')
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 const withServiceWorker = require('./withServiceWorker')
-const copyBootstrap = require('react-storefront/service-worker/copyBootstrap')
 const ClearRequireCachePlugin = require('webpack-clear-require-cache-plugin')
 const chalk = require('chalk')
 
@@ -49,8 +46,6 @@ module.exports = (nextConfig = {}) => {
             }),
           )
 
-          config.plugins.push(new CopyPlugin([makeCopyOptions(config.output.path)]))
-
           if (process.env.NODE_ENV === 'development') {
             // This makes it easier to develop apps against a local clone of react-storefront linked with yalc. Here
             // we ensure that the server build recompiles when any linked dependency changes.
@@ -87,7 +82,6 @@ module.exports = (nextConfig = {}) => {
           return config
         },
       },
-      bootstrapPath,
     )
   }
 }

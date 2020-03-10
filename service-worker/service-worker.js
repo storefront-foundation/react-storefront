@@ -1,6 +1,10 @@
-console.log('[react-storefront service worker]', 'Using React Storefront Service Worker')
+import { ExpirationPlugin } from 'workbox-expiration'
+import { registerRoute } from 'workbox-routing'
+import { CacheOnly, NetworkOnly, NetworkFirst } from 'workbox-strategies'
+import { skipWaiting, clientsClaim } from 'workbox-core'
+import { precacheAndRoute, getCacheKeyForURL } from 'workbox-precaching'
 
-workbox.loadModule('workbox-strategies')
+console.log('[react-storefront service worker]', 'Using React Storefront Service Worker')
 
 const IS_AMP_REGEX = /([?&]amp=1)(&.*)?$/
 
@@ -9,18 +13,8 @@ const PREFETCH_CACHE_MISS = 412
 let runtimeCacheOptions = {}
 let abortControllers = new Set()
 let toResume = new Set()
-let deployTime, prefetchFullRampUpTime
 
 const appShellPath = '/.app-shell'
-
-try {
-  // injected via webpack client build
-  deployTime = parseInt('{{deployTime}}')
-  prefetchFullRampUpTime = parseInt('{{prefetchRampUpTime}}')
-} catch {
-  deployTime = 0
-  prefetchFullRampUpTime = 1
-}
 
 /**
  * Configures parameters for cached routes.
@@ -35,7 +29,7 @@ function configureRuntimeCaching({ maxEntries = 200, maxAgeSeconds = 60 * 60 * 2
 
   runtimeCacheOptions = {
     plugins: [
-      new workbox.expiration.ExpirationPlugin({
+      new ExpirationPlugin({
         maxEntries,
         maxAgeSeconds,
       }),
@@ -259,6 +253,10 @@ self.addEventListener('fetch', event => {
         if (cacheResponse) {
           return cacheResponse
         }
+        const preCacheResponse = await caches.match(getCacheKeyForURL(event.request.url) || {})
+        if (preCacheResponse) {
+          return preCacheResponse
+        }
         return await fetch(event.request)
       } finally {
         if (toResume.size) {
@@ -333,7 +331,7 @@ function offlineResponse(apiVersion, context) {
   }
 }
 
-workbox.routing.registerRoute(matchRuntimePath, async context => {
+registerRoute(matchRuntimePath, async context => {
   try {
     const { url, event } = context
 
@@ -351,13 +349,13 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     }
 
     if (!apiVersion) {
-      return new workbox.strategies.NetworkOnly().handle(context)
+      return new NetworkOnly().handle(context)
     }
     // Check the cache for all routes. If the result is not found, get it from the network.
-    return new workbox.strategies.CacheOnly(cacheOptions)
+    return new CacheOnly(cacheOptions)
       .handle(context)
       .catch(() =>
-        new workbox.strategies.NetworkOnly().handle(context).then(apiRes => {
+        new NetworkOnly().handle(context).then(apiRes => {
           // 1. withReactStorefront should create a api_version value, which can just be the timestamp of the build
           // 2. it provide that to client and server build as a webpack define
           // 3. we should monkey-patch xhr to send x-rsf-api-version as a request header on all requests
@@ -379,6 +377,24 @@ workbox.routing.registerRoute(matchRuntimePath, async context => {
     // if anything goes wrong, fallback to network
     // this is critical - if there is a bug in the service worker code, the whole site can stop working
     console.warn('[react-storefront service worker]', 'caught error in service worker', e)
-    return new workbox.strategies.NetworkOnly().handle(context)
+    return new NetworkOnly().handle(context)
   }
 })
+
+skipWaiting()
+clientsClaim()
+precacheAndRoute(self.__WB_MANIFEST || [])
+
+registerRoute(
+  /^https?.*/,
+  new NetworkFirst({
+    cacheName: 'offlineCache',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 200,
+        purgeOnQuotaError: true,
+      }),
+    ],
+  }),
+  'GET',
+)

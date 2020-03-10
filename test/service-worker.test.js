@@ -1,29 +1,18 @@
 import makeServiceWorkerEnv from 'service-worker-mock'
-import url from 'url';
+import url from 'url'
 
 let sw
 
-describe('bootstrap', () => {
+describe('service-worker', () => {
   beforeEach(() => {
     const serviceWorkerEnv = makeServiceWorkerEnv()
     Object.defineProperty(serviceWorkerEnv, 'addEventListener', {
       value: serviceWorkerEnv.addEventListener,
       enumerable: true,
     })
-    serviceWorkerEnv.workbox = {
-      loadModule: () => null,
-      expiration: {
-        ExpirationPlugin: class ExpirationPlugin {
-          constructor(params) {
-            Object.assign(this, params)
-          }
-        },
-      },
-      routing: { registerRoute: jest.fn() },
-    }
     Object.assign(global, serviceWorkerEnv)
     jest.resetModules()
-    sw = require('../service-worker/bootstrap')
+    sw = require('../service-worker/service-worker')
   })
 
   describe('message listener', () => {
@@ -68,8 +57,8 @@ describe('bootstrap', () => {
         },
       })
       const options = sw.__get__('runtimeCacheOptions')
-      expect(options.plugins[0].maxEntries).toEqual(100)
-      expect(options.plugins[0].maxAgeSeconds).toEqual(1)
+      expect(options.plugins[0]._config.maxEntries).toEqual(100)
+      expect(options.plugins[0]._config.maxAgeSeconds).toEqual(1)
     })
 
     it('should listen for messages to abort prefetches', async () => {
@@ -175,7 +164,7 @@ describe('bootstrap', () => {
     it('should resume prefetches when non-prefetch fetch is done', async () => {
       const toResume = sw.__get__('toResume')
       toResume.add([{ path: '', apiVersion: 'v1' }])
-      await self.trigger('fetch', '')
+      await self.trigger('fetch', { request: new Request('') })
       expect(toResume.size).toEqual(0)
     })
 
@@ -184,33 +173,21 @@ describe('bootstrap', () => {
       toResume.add([{ path: '', apiVersion: 'v1' }])
       global.fetch = () => Promise.reject('failed')
       try {
-        await self.trigger('fetch')
+        await self.trigger('fetch', { request: new Request('') })
       } catch (e) {}
       expect(toResume.size).toEqual(0)
-    })
-
-    it('should fetch from the cache if the request is cached', async () => {
-      const getAPICacheName = sw.__get__('getAPICacheName')
-      const addToCache = sw.__get__('addToCache')
-      const cache = await caches.open(getAPICacheName('v1'))
-      await addToCache(cache, '/api/p/1', 'data')
-      global.fetch = jest.fn()
-      await self.trigger('fetch', { respondWith: () => null, request: '/api/p/1' })
-      expect(global.fetch).not.toHaveBeenCalled()
-      await self.trigger('fetch', { respondWith: () => null, request: '/api/p/2' })
-      expect(global.fetch).toHaveBeenCalled()
     })
   })
 
   describe('util functions', () => {
     it('should detect if a path is for an API request', () => {
-      const isApiRequest = sw.__get__('isApiRequest');
+      const isApiRequest = sw.__get__('isApiRequest')
       expect(isApiRequest('/api/p/1')).toEqual(true)
       expect(isApiRequest('/p/1')).toEqual(false)
     })
 
     it('should detect if a request is using a secure connection', () => {
-      const isSecure = sw.__get__('isSecure');
+      const isSecure = sw.__get__('isSecure')
       const secureUrl = url.parse('https://wwww.example.com')
       const localhostUrl = url.parse('http://localhost:3000')
       const insecureUrl = url.parse('http://wwww.example.com')
@@ -220,7 +197,7 @@ describe('bootstrap', () => {
     })
 
     it('should detect if a request is for a static asset', () => {
-      const isStaticAsset = sw.__get__('isStaticAsset');
+      const isStaticAsset = sw.__get__('isStaticAsset')
       const staticUrl = url.parse('https://wwww.example.com/_next/static/asset.png')
       const nonStaticUrl = url.parse('https://www.example.com/p/1')
       expect(isStaticAsset({ url: staticUrl })).toEqual(true)
@@ -228,7 +205,7 @@ describe('bootstrap', () => {
     })
 
     it('should detect if a request is using amp', () => {
-      const isAmp = sw.__get__('isAmp');
+      const isAmp = sw.__get__('isAmp')
       const firstParamUrl = url.parse('https://wwww.example.com/p/1?amp=1')
       const laterParamUrl = url.parse('https://wwww.example.com/p/1?param1=test&amp=1')
       const innerParamUrl = url.parse('https://wwww.example.com/p/1?param1=test&amp=1&param2=test')
@@ -240,7 +217,7 @@ describe('bootstrap', () => {
     })
 
     it('should detect if a request is for a video', () => {
-      const isVideo = sw.__get__('isVideo');
+      const isVideo = sw.__get__('isVideo')
       const videoUrl = url.parse('https://wwww.example.com/p/vid.mp4')
       const videoWithParamsUrl = url.parse('https://wwww.example.com/p/vid.mp4?autoplay=true')
       const nonVideoUrl = url.parse('https://www.example.com/p/1')
@@ -271,26 +248,28 @@ describe('bootstrap', () => {
   })
 
   describe('matchRuntimePath', () => {
-    it ('should return true for routes that are cacheable', () => {
-      const matchRuntimePath = sw.__get__('matchRuntimePath');
+    it('should return true for routes that are cacheable', () => {
+      const matchRuntimePath = sw.__get__('matchRuntimePath')
       expect(matchRuntimePath({ url: url.parse('http://example.com/p/1') })).toEqual(false)
-      expect(matchRuntimePath({ url: url.parse('https://example.com/_next/static/asset') })).toEqual(false)
+      expect(
+        matchRuntimePath({ url: url.parse('https://example.com/_next/static/asset') }),
+      ).toEqual(false)
       expect(matchRuntimePath({ url: url.parse('https://example.com/p/1.mp4') })).toEqual(false)
       expect(matchRuntimePath({ url: url.parse('https://example.com/p/1') })).toEqual(true)
     })
   })
 
   describe('offlineResponse', () => {
-    it ('should send back a standard response for API calls', async () => {
-      const offlineResponse = sw.__get__('offlineResponse');
+    it('should send back a standard response for API calls', async () => {
+      const offlineResponse = sw.__get__('offlineResponse')
       const resp = await offlineResponse('v1', { url: url.parse('/api/p/1') })
       expect(JSON.parse(resp.body.parts[0])).toEqual({ page: 'Offline' })
     })
 
-    it ('should send back the app shell for non-API calls', async () => {
-      const appShellPath = sw.__get__('appShellPath');
+    it('should send back the app shell for non-API calls', async () => {
+      const appShellPath = sw.__get__('appShellPath')
       const testCachedData = 'test-cache-data'
-      const offlineResponse = sw.__get__('offlineResponse');
+      const offlineResponse = sw.__get__('offlineResponse')
       const apiVersion = 'v1'
       const apiCacheName = sw.__get__('getAPICacheName')(apiVersion)
       const addToCache = sw.__get__('addToCache')
