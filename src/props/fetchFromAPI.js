@@ -25,8 +25,17 @@ import fetch from '../fetch'
  */
 export default function fetchFromAPI({ req, asPath, pathname }) {
   const host = req ? process.env.API_HOST || req.headers['host'] : ''
-  const protocol = req ? (host.startsWith('localhost') ? 'http://' : 'https://') : ''
   const [path, search] = asPath.split('?')
+
+  let protocol = ''
+
+  if (req) {
+    protocol = 'https://'
+
+    if (host.startsWith('localhost') || host === '127.0.0.1') {
+      protocol = 'http://'
+    }
+  }
 
   let uri = `/api${path.replace(/\/$/, '')}`
 
