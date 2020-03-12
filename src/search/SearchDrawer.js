@@ -2,7 +2,7 @@ import React from 'react'
 import Drawer from '../drawer/Drawer'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import SearchProvider from './SearchProvider'
+import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
 
 export const styles = theme => ({
   /**
@@ -24,12 +24,18 @@ const useStyles = makeStyles(styles, { name: 'RSFSearch' })
 export default function SearchDrawer({ DrawerComponent, classes, open, onClose, children }) {
   classes = useStyles({ classes })
 
+  const handleNavigation = () => {
+    if (onClose) {
+      onClose()
+    }
+  }
+
+  useNavigationEvent(handleNavigation)
+
   return (
-    <SearchProvider onClose={onClose} open={open}>
-      <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
-        {children}
-      </DrawerComponent>
-    </SearchProvider>
+    <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
+      {children}
+    </DrawerComponent>
   )
 }
 
@@ -52,7 +58,7 @@ SearchDrawer.propTypes = {
   /**
    * A function that is called when the user closes the drawer.
    */
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
 
   /**
    * A component type to use for the drawer.

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { mount } from 'enzyme'
 import SearchField from 'react-storefront/search/SearchField'
 import SearchContext from 'react-storefront/search/SearchContext'
@@ -7,46 +7,42 @@ import { Fab, Button } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
 
 describe('SearchField', () => {
-  let wrapper
+  let wrapper, getQuery
   const suggestionsSpy = jest.fn()
 
   afterEach(() => {
     wrapper.unmount()
     suggestionsSpy.mockReset()
+    getQuery = undefined
   })
 
-  it('should fetch suggestions on input change', async () => {
-    wrapper = mount(
-      <SearchContext.Provider value={{ fetchSuggestions: suggestionsSpy }}>
-        <SearchField />
-      </SearchContext.Provider>,
-    )
+  const TestComponent = props => {
+    const [query, setQuery] = useState('')
+    getQuery = query
+
+    return <SearchField onChange={value => setQuery(value)} value={query} {...props} />
+  }
+
+  it('should change query on input change', async () => {
+    wrapper = mount(<TestComponent />)
 
     wrapper.find('input').simulate('change', { target: { value: 'test' } })
 
-    expect(suggestionsSpy).toHaveBeenCalledTimes(1)
+    expect(getQuery).toBe('test')
 
     wrapper.find('input').simulate('change', { target: { value: 'test2' } })
 
-    expect(suggestionsSpy).toHaveBeenCalledTimes(2)
+    expect(getQuery).toBe('test2')
   })
 
   it('should spread props to the search field', async () => {
-    wrapper = mount(
-      <SearchContext.Provider value={{ fetchSuggestions: suggestionsSpy }}>
-        <SearchField spreadprops="spread" />
-      </SearchContext.Provider>,
-    )
+    wrapper = mount(<SearchField spreadprops="spread" />)
 
     expect(wrapper.find(SearchField).prop('spreadprops')).toBe('spread')
   })
 
   it('should reset input value on clear click', async () => {
-    wrapper = mount(
-      <SearchContext.Provider value={{ fetchSuggestions: suggestionsSpy }}>
-        <SearchField />
-      </SearchContext.Provider>,
-    )
+    wrapper = mount(<TestComponent />)
 
     wrapper.find('input').simulate('change', { target: { value: 'test' } })
 
@@ -60,11 +56,7 @@ describe('SearchField', () => {
   it('should select whole text on focus', async () => {
     const selectionSpy = jest.spyOn(HTMLInputElement.prototype, 'setSelectionRange')
 
-    wrapper = mount(
-      <SearchContext.Provider value={{ fetchSuggestions: suggestionsSpy }}>
-        <SearchField />
-      </SearchContext.Provider>,
-    )
+    wrapper = mount(<TestComponent />)
 
     wrapper.find('input').simulate('change', { target: { value: 'test' } })
     wrapper.find('input').simulate('focus')
@@ -74,11 +66,7 @@ describe('SearchField', () => {
   })
 
   it('should hide clear button when input has no value', async () => {
-    wrapper = mount(
-      <SearchContext.Provider value={{ fetchSuggestions: suggestionsSpy }}>
-        <SearchField />
-      </SearchContext.Provider>,
-    )
+    wrapper = mount(<TestComponent />)
 
     expect(wrapper.find(SearchSubmitButton).prop('className')).toContain('hidden')
 
@@ -88,24 +76,31 @@ describe('SearchField', () => {
   })
 
   it('should by default render submit button as fab', async () => {
-    wrapper = mount(
-      <SearchContext.Provider value={{ fetchSuggestions: suggestionsSpy }}>
-        <SearchField />
-      </SearchContext.Provider>,
-    )
+    wrapper = mount(<SearchField />)
 
     expect(wrapper.find(Fab)).toExist()
     expect(wrapper.find(Button)).not.toExist()
   })
 
   it('should by render icon button when submitButtonVariant prop is icon', async () => {
-    wrapper = mount(
-      <SearchContext.Provider value={{ fetchSuggestions: suggestionsSpy }}>
-        <SearchField submitButtonVariant="icon" showClearButton={false} />
-      </SearchContext.Provider>,
-    )
+    wrapper = mount(<TestComponent submitButtonVariant="icon" showClearButton={false} />)
 
     expect(wrapper.find(Fab)).not.toExist()
     expect(wrapper.find(Button)).toExist()
+  })
+
+  it('should call onFocus method if provided, when focusing', async () => {
+    const onFocusSpy = jest.fn()
+    wrapper = mount(<TestComponent onFocus={onFocusSpy} />)
+
+    wrapper.find('input').simulate('focus')
+
+    expect(onFocusSpy).toBeCalled()
+  })
+
+  it('should not display any submit buttons when submitButtonVariant prop value is none', async () => {
+    wrapper = mount(<TestComponent submitButtonVariant="none" showClearButton={false} />)
+
+    expect(wrapper.find('button')).not.toExist()
   })
 })
