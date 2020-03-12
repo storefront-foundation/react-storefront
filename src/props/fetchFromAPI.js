@@ -61,7 +61,5 @@ export default function fetchFromAPI({ req, asPath, pathname }) {
 
   const url = `${protocol}${host}${uri}`
 
-  console.log('url', url)
-
   return fetch(url, { headers }).then(res => res.json())
 }
