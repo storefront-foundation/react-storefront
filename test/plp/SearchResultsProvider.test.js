@@ -9,7 +9,6 @@ describe('SearchResultsProvider', () => {
     pageData: {
       test: 'test',
       page: 0,
-      appliedFilters: [],
       filters: ['blue'],
       products: [{ id: 'first' }],
     },
@@ -81,7 +80,7 @@ describe('SearchResultsProvider', () => {
 
     it('toggleFilter - toggle existing filter', async () => {
       const facet = { code: 'blue' }
-      initialStore.pageData.appliedFilters = ['blue']
+      initialStore.pageData.filters = ['blue']
 
       wrapper = mount(<Test />)
 
@@ -92,8 +91,6 @@ describe('SearchResultsProvider', () => {
 
       expect(getStore.pageData.filters).toStrictEqual([])
       expect(getStore.pageData.filtersChanged).toBe(true)
-
-      initialStore.pageData.appliedFilters = []
     })
 
     it('toggleFilter - with submit', async () => {
@@ -113,9 +110,7 @@ describe('SearchResultsProvider', () => {
         await wrapper.update()
       })
 
-      expect(getStore.pageData.appliedFilters).toStrictEqual(
-        initialStore.pageData.filters.concat(facet.code),
-      )
+      expect(getStore.pageData.filters).toStrictEqual(['blue', 'red'])
       expect(getStore.pageData.filtersChanged).toBe(false)
       expect(fetch).toHaveBeenCalled()
     })
@@ -132,7 +127,6 @@ describe('SearchResultsProvider', () => {
     })
 
     it('clearFilters - with submit', async () => {
-      initialStore.pageData.appliedFilters = ['blue']
       fetchMock.mockResponseOnce(
         JSON.stringify({
           pageData: {
@@ -148,10 +142,7 @@ describe('SearchResultsProvider', () => {
       })
 
       expect(getStore.pageData.filters).toStrictEqual([])
-      expect(getStore.pageData.appliedFilters).toStrictEqual([])
       expect(fetch).toHaveBeenCalled()
-
-      initialStore.pageData.appliedFilters = []
     })
 
     it('refresh - should always remove "more" query param if sees it', async () => {
@@ -194,7 +185,6 @@ describe('SearchResultsProvider', () => {
 
       expect(getStore.pageData.filtersChanged).toBe(false)
       expect(getStore.pageData.page).toBe(0)
-      expect(getStore.pageData.appliedFilters).toStrictEqual(initialStore.pageData.filters)
       expect(fetch).toHaveBeenCalled()
     })
 

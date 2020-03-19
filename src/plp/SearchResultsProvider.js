@@ -25,31 +25,42 @@ import replaceState from '../router/replaceState'
  */
 export default function SearchResultsProvider({ store, updateStore, children }) {
   useEffect(() => {
-    setState({
-      pageData: {
-        ...store.pageData,
-        appliedFilters: store.pageData.filters,
-      },
-    })
-  }, [])
+    if (store.reloading) {
+      async function refresh() {
+        const query = getQueryForState()
+        const apiUrl = getURLForState(query)
 
-  const setState = state => {
-    store = { ...store, ...state }
-    updateStore(store)
-  }
+        // Don't show page for user
+        delete query.page
+        replaceState(null, null, getURLForState(query))
+
+        const {
+          pageData: { products },
+        } = await fetch(`/api${apiUrl}`).then(res => res.json())
+        updateStore(store => ({
+          reloading: false,
+          pageData: {
+            ...store.pageData,
+            products:
+              store.pageData.page === 0 ? products : store.pageData.products.concat(products),
+          },
+        }))
+      }
+      refresh()
+    }
+  }, [store])
 
   /**
    * Fetches the next page of results
    */
   const fetchMore = () => {
-    setState({
+    updateStore(store => ({
+      reloading: true,
       pageData: {
         ...store.pageData,
         page: store.pageData.page + 1,
       },
-    })
-
-    return refresh()
+    }))
   }
 
   /**
@@ -86,38 +97,33 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
    * @param {Boolean} submit If true, fetches new results from the server
    */
   const setFilters = (filters, submit) => {
-    const { appliedFilters } = store.pageData
     const filtersChanged =
       JSON.stringify(filters.map(v => v.toLowerCase()).sort()) !==
-      JSON.stringify(appliedFilters.map(v => v.toLowerCase()).sort())
+      JSON.stringify(store.pageData.filters.map(v => v.toLowerCase()).sort())
 
-    setState({
+    updateStore(store => ({
+      reloading: Boolean(submit),
       pageData: {
         ...store.pageData,
         filters,
-        filtersChanged,
+        filtersChanged: submit ? false : filtersChanged,
+        page: submit ? 0 : store.pageData.page,
       },
-    })
-
-    if (submit) {
-      applyFilters()
-    }
+    }))
   }
 
   /**
    * Applies the selected filters, resets the page to 0 and fetches new results from the server.
    */
   const applyFilters = () => {
-    setState({
+    updateStore(store => ({
+      reloading: true,
       pageData: {
         ...store.pageData,
         filtersChanged: false,
-        appliedFilters: [...store.pageData.filters],
         page: 0,
       },
-    })
-
-    refresh()
+    }))
   }
 
   /**
@@ -162,45 +168,15 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
     return pathname + qs.stringify(query, { addQueryPrefix: true }) + hash
   }
 
-  /**
-   * Fetches new results from the server
-   * @param {Object} options
-   */
-  const refresh = async () => {
-    const query = getQueryForState()
-    const apiUrl = getURLForState(query)
-
-    // Don't show page for user
-    delete query.page
-    replaceState(null, null, getURLForState(query))
-
-    if (store.pageData.page === 0) {
-      setState({ reloading: true })
-    }
-
-    const {
-      pageData: { products },
-    } = await fetch(`/api${apiUrl}`).then(res => res.json())
-
-    setState({
-      reloading: false,
-      pageData: {
-        ...store.pageData,
-        products: store.pageData.page === 0 ? products : store.pageData.products.concat(products),
-      },
-    })
-  }
-
   const setSort = option => {
-    setState({
+    updateStore(store => ({
+      reloading: true,
       pageData: {
         ...store.pageData,
         sort: option.code,
         page: 0,
       },
-    })
-
-    refresh()
+    }))
   }
 
   return (
