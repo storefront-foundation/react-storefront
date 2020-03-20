@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Fill from '../Fill'
 import Carousel from './Carousel'
 import Image from '../Image'
 import Lightbox from './Lightbox'
@@ -13,9 +14,9 @@ import get from 'lodash/get'
 
 export const styles = theme => ({
   /**
-   * Styles applied to the image wrapper element.
+   * Styles applied to the wrapper element of each media component.
    */
-  imageWrap: {
+  mediaWrap: {
     height: '100%',
     width: '100%',
     display: 'flex',
@@ -46,6 +47,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     [theme.breakpoints.down('xs')]: {
       margin: '0 !important',
+      width: '100% !important',
     },
   },
   /**
@@ -217,28 +219,31 @@ function MediaCarousel(props) {
         onClick={onClickCarousel}
         selected={selected}
         setSelected={setSelected}
+        height={'100%'}
         {...others}
       >
         {media &&
           media.full &&
           media.full.map((item, i) => (
-            <MediaComponent
-              key={i}
-              onLoad={i === 0 ? onFullSizeImagesLoaded : null}
-              magnifyProps={magnifyProps}
-              {...item}
-              magnify={isTouchScreen ? undefined : item.magnify}
-              src={get(item, 'magnify.src', item.src)}
-              imageProps={
-                lightboxActive && !isTouchScreen
-                  ? {
-                      fill: false,
-                      contain: true,
-                      src: get(item, 'magnify.src', item.src),
-                    }
-                  : item.imageProps
-              }
-            />
+            <Fill height="100%">
+              <MediaComponent
+                key={i}
+                onLoad={i === 0 ? onFullSizeImagesLoaded : null}
+                magnifyProps={magnifyProps}
+                {...item}
+                magnify={isTouchScreen ? undefined : item.magnify}
+                src={get(item, 'magnify.src', item.src)}
+                imageProps={
+                  lightboxActive && !isTouchScreen
+                    ? {
+                        fill: false,
+                        contain: true,
+                        src: get(item, 'magnify.src', item.src),
+                      }
+                    : item.imageProps
+                }
+              />
+            </Fill>
           ))}
       </CarouselComponent>
       {thumbnails && media && (
