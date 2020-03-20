@@ -13,7 +13,6 @@ export default function useSearchResultsStore(lazyProps) {
       filters: [],
       sort: 'rating',
       sortSaved: 'rating',
-      appliedFilters: [],
       sortOptions: [],
       filtersChanged: false,
     }),
