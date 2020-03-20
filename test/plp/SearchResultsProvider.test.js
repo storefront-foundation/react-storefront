@@ -11,6 +11,7 @@ describe('SearchResultsProvider', () => {
       page: 0,
       filters: ['blue'],
       products: [{ id: 'first' }],
+      total: 50,
     },
   }
   let wrapper, context, getStore
@@ -173,6 +174,7 @@ describe('SearchResultsProvider', () => {
         JSON.stringify({
           pageData: {
             products: [],
+            total: 0,
           },
         }),
       )
@@ -185,6 +187,7 @@ describe('SearchResultsProvider', () => {
 
       expect(getStore.pageData.filtersChanged).toBe(false)
       expect(getStore.pageData.page).toBe(0)
+      expect(getStore.pageData.total).toBe(0)
       expect(fetch).toHaveBeenCalled()
     })
 

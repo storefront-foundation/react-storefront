@@ -35,12 +35,13 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
         replaceState(null, null, getURLForState(query))
 
         const {
-          pageData: { products },
+          pageData: { products, total },
         } = await fetch(`/api${apiUrl}`).then(res => res.json())
         updateStore(store => ({
           reloading: false,
           pageData: {
             ...store.pageData,
+            total,
             products:
               store.pageData.page === 0 ? products : store.pageData.products.concat(products),
           },
