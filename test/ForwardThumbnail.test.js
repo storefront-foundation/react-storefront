@@ -30,6 +30,24 @@ describe('ForwardThumbnail', () => {
     expect(wrapper.find('#test2').prop('src')).toBe('test2')
   })
 
+  it('should render when no img selector in children', () => {
+    const Test = () => {
+      thumbnail = useRef(null)
+
+      return (
+        <PWAContext.Provider value={{ thumbnail }}>
+          <ForwardThumbnail>
+            <div id="test1">test1</div>
+          </ForwardThumbnail>
+        </PWAContext.Provider>
+      )
+    }
+
+    wrapper = mount(<Test />)
+
+    expect(wrapper.find('#test1').text()).toBe('test1')
+  })
+
   it('should set context thumbnail onClick', async () => {
     wrapper = mount(<Test />)
 
