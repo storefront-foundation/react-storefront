@@ -3,7 +3,8 @@ import React from 'react'
 import clsx from 'clsx'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Image from '../Image'
 
 export const styles = theme => ({
@@ -35,7 +36,47 @@ export const styles = theme => ({
   /**
    * Styles applied to the root element of the Tabs element
    */
-  tabsRoot: {
+  tabsRoot: {},
+  /**
+   * Styles applied the to the root element of the Tabs element when `thumbnailPosition` is `left` or `right`.
+   */
+  tabsVertical: {
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'column',
+    },
+  },
+  /**
+   * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `left`.
+   */
+  tabsRootLeft: {
+    [theme.breakpoints.down('xs')]: {
+      marginTop: theme.spacing(2),
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginRight: theme.spacing(2),
+    },
+  },
+  /**
+   * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `right`.
+   */
+  tabsRootRight: {
+    [theme.breakpoints.down('xs')]: {
+      marginTop: theme.spacing(2),
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(2),
+    },
+  },
+  /**
+   * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `top`.
+   */
+  tabsRootTop: {
+    marginBottom: theme.spacing(2),
+  },
+  /**
+   * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `bottom`.
+   */
+  tabsRootBottom: {
     marginTop: theme.spacing(2),
   },
   /**
@@ -79,8 +120,18 @@ const useStyles = makeStyles(styles, { name: 'RSFCarouselThumbnails' })
  * be clicked to switch to the given slide. Internally, `CarouselThumbnails` uses MaterialUI's
  * [`Tabs`](https://material-ui.com/api/tabs) component to indicate which slide is selected
  */
-function CarouselThumbnails({ thumbnails, selected, setSelected, classes, className }) {
+function CarouselThumbnails({
+  thumbnails,
+  selected,
+  setSelected,
+  classes,
+  className,
+  thumbnailPosition,
+}) {
   const styles = useStyles({ classes })
+  const theme = useTheme()
+  const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
+  const isVertical = !isSmall && ['left', 'right'].includes(thumbnailPosition)
 
   return (
     <div className={clsx(className, styles.thumbs)}>
@@ -88,8 +139,15 @@ function CarouselThumbnails({ thumbnails, selected, setSelected, classes, classN
         value={selected}
         variant="scrollable"
         onChange={(_, index) => setSelected(index)}
+        orientation={isVertical ? 'vertical' : 'horizontal'}
         classes={{
-          root: styles.tabsRoot,
+          root: clsx(styles.tabsRoot, {
+            [styles.tabsVertical]: isVertical,
+            [styles.tabsRootLeft]: thumbnailPosition === 'left',
+            [styles.tabsRootRight]: thumbnailPosition === 'right',
+            [styles.tabsRootTop]: thumbnailPosition === 'top',
+            [styles.tabsRootBottom]: thumbnailPosition === 'bottom',
+          }),
           indicator: styles.tabsIndicator,
         }}
       >
@@ -134,7 +192,7 @@ CarouselThumbnails.propTypes = {
   setSelected: PropTypes.func,
 
   /**
-   * Array of objects containing the data for an image to be used for each thumbnail
+   * Array of objects containing the data for an image to be used for each thumbnail.
    */
   thumbnails: PropTypes.arrayOf(
     PropTypes.shape({
@@ -142,6 +200,11 @@ CarouselThumbnails.propTypes = {
       alt: PropTypes.string,
     }),
   ),
+
+  /**
+   * Position of the thumbnails, relative to the main carousel image.
+   */
+  thumbnailPosition: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
 }
 
 export default React.memo(CarouselThumbnails)
