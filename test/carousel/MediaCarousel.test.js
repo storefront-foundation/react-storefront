@@ -145,7 +145,6 @@ describe('MediaCarousel', () => {
   it('should hide the magnify hint if the lightbox is opened and the window is wider than the image', () => {
     wrapper = mount(<MediaCarousel media={media} />)
     wrapper.find(Carousel).simulate('click')
-    console.log(wrapper.find(MagnifyHint))
     expect(wrapper.find(MagnifyHint)).toExist()
 
     window.innerWidth = 1300
@@ -153,7 +152,6 @@ describe('MediaCarousel', () => {
 
     wrapper = mount(<MediaCarousel media={media} />)
     wrapper.find(Carousel).simulate('click')
-    console.log(wrapper.find(MagnifyHint))
     expect(wrapper.find(MagnifyHint)).not.toExist()
   })
 

@@ -114,7 +114,7 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
   const handleMenuItemBlur = useCallback(() => {
     menuItemBlurPending.current = true
 
-    setImmediate(() => {
+    setTimeout(() => {
       if (menuItemBlurPending.current) {
         setFocused(false)
       }
