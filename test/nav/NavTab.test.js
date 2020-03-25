@@ -15,9 +15,13 @@ describe('NavTab', () => {
     document.body.removeChild(root)
     root = null
     wrapper.unmount()
+    jest.clearAllMocks()
   })
 
   beforeEach(() => {
+    // setImmediate seems to be much more stable than set timeout for tests, so we us it here to prevent intermittant failures
+    jest.spyOn(global, 'setTimeout').mockImplementation(setImmediate)
+
     document.createRange = () => ({
       setStart: () => {},
       setEnd: () => {},

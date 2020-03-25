@@ -86,10 +86,10 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
     setAnchorEl(event.currentTarget)
   }, [])
 
-  // We use setImmediate here to delay the tab and menu exit events give time for the user to enter
+  // We use setTimeout here to delay the tab and menu exit events give time for the user to enter
   // the tab or menu so that the menu doesn't flash when the user is transitioning between tab and menu.
-  const hideMenu = useCallback(() => setImmediate(() => setOverTab(false)), [])
-  const leaveMenu = useCallback(() => setImmediate(() => setOverMenu(false)), [])
+  const hideMenu = useCallback(() => setTimeout(() => setOverTab(false)), [])
+  const leaveMenu = useCallback(() => setTimeout(() => setOverMenu(false)), [])
   const enterMenu = useCallback(() => setOverMenu(true), [])
   const menuItemBlurPending = useRef(false)
 
