@@ -172,13 +172,25 @@ describe('NavTab', () => {
         .find(Link)
         .first()
         .simulate('keydown', { key: 'Enter' })
-      setImmediate(() => wrapper.update())
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          wrapper.update()
+          resolve()
+        })
+      })
     })
     expect(wrapper.find(Popover).prop('open')).toBe(true)
 
     await act(async () => {
       await navigate()
-      setImmediate(() => wrapper.update())
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          wrapper.update()
+          resolve()
+        })
+      })
     })
 
     expect(wrapper.find(Popover).prop('open')).toBe(false)
@@ -249,7 +261,13 @@ describe('NavTab', () => {
           .find('a')
           .first()
           .simulate('blur')
-        setImmediate(() => wrapper.update())
+
+        return new Promise(resolve => {
+          setTimeout(() => {
+            wrapper.update()
+            resolve()
+          }, 1)
+        })
       })
 
       expect(wrapper.find(Popover).prop('open')).toBe(false)

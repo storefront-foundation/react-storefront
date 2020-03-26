@@ -204,4 +204,30 @@ describe('useLazyState', () => {
       value: 1,
     })
   })
+
+  it('should expose rsf_toggleLoading', () => {
+    wrapper = mount(<Test value={1} />)
+    act(() => window.rsf_toggleLoading())
+    expect(state.loading).toBe(true)
+    wrapper.unmount()
+    expect(window.rsf_toggleLoading).not.toBeDefined()
+  })
+
+  describe('production', () => {
+    let { NODE_ENV } = process.env
+
+    beforeAll(() => {
+      process.env.NODE_ENV = 'production'
+    })
+
+    afterAll(() => {
+      process.env.NODE_ENV = NODE_ENV
+    })
+
+    it('should not expose rsf_toggleLoading in production', () => {
+      wrapper = mount(<Test value={1} />)
+      act(() => {})
+      expect(window.rsf_toggleLoading).not.toBeDefined()
+    })
+  })
 })
