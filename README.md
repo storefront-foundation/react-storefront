@@ -9,7 +9,7 @@
 
 React Storefront a standalone PWA storefront for your eCommerce websites that works with any eCommerce platform or backend system.
 
-Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a>. Developed with <a href="https://divante.com">Divante</a> team and the Community.
+Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a> and our community.
 Our goal is to build a vibrant open source community around the project and solid PWA framework React developers will love :)
 
 ## Ludicrous Speed
