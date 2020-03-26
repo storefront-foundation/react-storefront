@@ -172,16 +172,6 @@ Most of the core team members, React Storefront contributors and contributors in
 React Storefront runs best on <a href="https://www.moovweb.com">the Moovweb XDN</a>.
 Moovweb provides a serverless platform-as-a-service called the XDN (Experience Delivery Network) that is available for purchase. The XDN helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. Features that are available for purchase are listed are tagged with "XDN" in the table of contents.
 
-## React Storefront and Vue Storefront
-
-This project has been created by Moovweb.
-
-The products, despite the common name are totally different at this point.
-
-Our goal joining the forces is to build a vibrant community. We started the cooperation with the natural step of adding BigCommerce support to the framework. Both React and BigCommerce were not available in the frameworks we used yet! The next steps are to work on providing the different deployment options, to optimize the UI and to hear your feedback and improve the product!
-
-PS: Check [StorefrontUI](https://github.com/DivanteLtd/storefront-ui/) - our UI library for eCommerce. We plan to port it from Vue.js to React in the nearest future
-
 ## Partners
 
 Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a>
