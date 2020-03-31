@@ -245,7 +245,11 @@ function MediaCarousel(props) {
   }, [])
 
   const body = (
-    <div className={clsx(styles.root, !lightboxActive && isThumbsSide && styles.rootSideThumbs)}>
+    <div
+      className={clsx(styles.root, {
+        [styles.rootSideThumbs]: !lightboxActive && isThumbsSide,
+      })}
+    >
       <CarouselComponent
         id={id}
         ref={ref}
