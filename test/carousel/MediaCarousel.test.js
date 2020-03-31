@@ -63,6 +63,20 @@ describe('MediaCarousel', () => {
     expect(wrapper.find(CarouselThumbnails)).not.toExist()
   })
 
+  it('should show thumbnails in the right position', () => {
+    wrapper = mount(<MediaCarousel media={media} thumbnailPosition="left" />)
+    expect(wrapper.find(CarouselThumbnails).prop('thumbnailPosition')).toBe('left')
+
+    wrapper = mount(<MediaCarousel media={media} thumbnailPosition="right" />)
+    expect(wrapper.find(CarouselThumbnails).prop('thumbnailPosition')).toBe('right')
+
+    wrapper = mount(<MediaCarousel media={media} thumbnailPosition="top" />)
+    expect(wrapper.find(CarouselThumbnails).prop('thumbnailPosition')).toBe('top')
+
+    wrapper = mount(<MediaCarousel media={media} thumbnailPosition="bottom" />)
+    expect(wrapper.find(CarouselThumbnails).prop('thumbnailPosition')).toBe('bottom')
+  })
+
   it('should open lightbox on MediaCarousel click', () => {
     wrapper = mount(<MediaCarousel media={media} />)
 
@@ -155,13 +169,13 @@ describe('MediaCarousel', () => {
     expect(wrapper.find(MagnifyHint)).not.toExist()
   })
 
-  it('should pass thumbnail to render below the Carousel if image is not loaded and thumbnail is passed as prop ', () => {
+  it('should pass thumbnail to render below the Carousel if image is not loaded and thumbnail is passed as prop', () => {
     wrapper = mount(<MediaCarousel media={media} thumbnail={{ test: 'test' }} />)
 
     expect(wrapper.find(Image).filterWhere(el => el.prop('test'))).toExist()
   })
 
-  it('should not pass thumbnail to render below the Carousel if image is loaded  ', async () => {
+  it('should not pass thumbnail to render below the Carousel if image is loaded ', async () => {
     const map = {}
     const loadMock = jest
       .spyOn(HTMLImageElement.prototype, 'addEventListener')
