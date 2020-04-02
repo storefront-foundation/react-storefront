@@ -17,6 +17,7 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'stretch',
     position: 'relative',
+    flexBasis: '100%',
     '& img': {
       display: 'block',
     },

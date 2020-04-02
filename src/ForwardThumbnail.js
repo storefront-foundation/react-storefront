@@ -25,11 +25,18 @@ export default function ForwardThumbnail({ children }) {
   const context = useContext(PWAContext)
   const srcRef = useRef(null)
 
-  useEffect(() => {
-    srcRef.current = ref.current.querySelector('img').getAttribute('src')
-  }, [children])
+  const setSrcRef = useCallback(() => {
+    if (ref.current.querySelector('img')) {
+      srcRef.current = ref.current.querySelector('img').getAttribute('src')
+    }
+  }, [])
+
+  useEffect(setSrcRef, [children])
 
   const handleClick = useCallback(() => {
+    if (!srcRef.current) {
+      setSrcRef()
+    }
     context.thumbnail.current = { src: srcRef.current }
   }, [])
 

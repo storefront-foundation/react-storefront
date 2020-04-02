@@ -1,8 +1,10 @@
+import { light } from '@material-ui/core/styles/createPalette'
 import PropTypes from 'prop-types'
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Fill from '../Fill'
 import Carousel from './Carousel'
 import Image from '../Image'
 import Lightbox from './Lightbox'
@@ -13,9 +15,28 @@ import get from 'lodash/get'
 
 export const styles = theme => ({
   /**
-   * Styles applied to the image wrapper element.
+   * Styles applied to the root component.
    */
-  imageWrap: {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    [theme.breakpoints.up('sm')]: {
+      overflow: 'hidden',
+    },
+  },
+  /**
+   * Styles applied to the root component when `thumbnailPosition` is `left` or `right`.
+   */
+  rootSideThumbs: {
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+    },
+  },
+  /**
+   * Styles applied to the wrapper element of each media component.
+   */
+  mediaWrap: {
     height: '100%',
     width: '100%',
     display: 'flex',
@@ -38,15 +59,26 @@ export const styles = theme => ({
     width: '100%',
   },
   /**
+   * Styles applied to the thumbnail component when thumbnailPosition is `left`.
+   */
+  thumbnailsLeft: {
+    [theme.breakpoints.up('sm')]: {
+      order: -1,
+    },
+  },
+  /**
+   * Styles applied to the thumbnail component when thumbnailPosition is `top`.
+   */
+  thumbnailsTop: {
+    order: -1,
+  },
+  /**
    * Styles applied to the carousel component when the lightbox is shown.
    */
   lightboxCarousel: {
     flex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
-    [theme.breakpoints.down('xs')]: {
-      margin: '0 !important',
-    },
   },
   /**
    * Styles applied to the thumbnails in the lightbox.
@@ -97,9 +129,11 @@ function MediaCarousel(props) {
     thumbnails,
     thumbnail,
     thumbsClassName,
+    thumbnailPosition,
     magnifyHintClassName,
     imageProps,
     lightboxProps,
+    lightboxClassName,
     classes,
     media,
     magnifyProps,
@@ -119,6 +153,7 @@ function MediaCarousel(props) {
   const theme = useTheme()
   const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
   const isTouchScreen = useMediaQuery('(hover:none)')
+  const isThumbsSide = ['right', 'left'].includes(thumbnailPosition)
 
   useEffect(() => {
     // Reset selection index when media changes
@@ -195,7 +230,11 @@ function MediaCarousel(props) {
   if (lightboxActive) {
     Object.assign(others, {
       autoplay: false,
-      className: clsx(others.className, styles.lightboxCarousel),
+      className: clsx(
+        others.className,
+        styles.lightboxCarousel,
+        lightboxActive && lightboxClassName,
+      ),
       height: isSmall ? '100%' : null,
       slideStyle: { ...(others.slideStyle || {}), display: 'flex', justifyContent: 'center' },
     })
@@ -206,7 +245,11 @@ function MediaCarousel(props) {
   }, [])
 
   const body = (
-    <>
+    <div
+      className={clsx(styles.root, {
+        [styles.rootSideThumbs]: !lightboxActive && isThumbsSide,
+      })}
+    >
       <CarouselComponent
         id={id}
         ref={ref}
@@ -217,41 +260,49 @@ function MediaCarousel(props) {
         onClick={onClickCarousel}
         selected={selected}
         setSelected={setSelected}
+        height={'100%'}
         {...others}
       >
         {media &&
           media.full &&
           media.full.map((item, i) => (
-            <MediaComponent
-              key={i}
-              onLoad={i === 0 ? onFullSizeImagesLoaded : null}
-              magnifyProps={magnifyProps}
-              {...item}
-              magnify={isTouchScreen ? undefined : item.magnify}
-              src={get(item, 'magnify.src', item.src)}
-              imageProps={
-                lightboxActive && !isTouchScreen
-                  ? {
-                      fill: false,
-                      contain: true,
-                      src: get(item, 'magnify.src', item.src),
-                    }
-                  : item.imageProps
-              }
-            />
+            <Fill height="100%" key={i}>
+              <MediaComponent
+                onLoad={i === 0 ? onFullSizeImagesLoaded : null}
+                magnifyProps={magnifyProps}
+                {...item}
+                magnify={isTouchScreen ? undefined : item.magnify}
+                src={get(item, 'magnify.src', item.src)}
+                imageProps={
+                  lightboxActive && !isTouchScreen
+                    ? {
+                        fill: false,
+                        contain: true,
+                        src: get(item, 'magnify.src', item.src),
+                      }
+                    : item.imageProps
+                }
+              />
+            </Fill>
           ))}
       </CarouselComponent>
       {thumbnails && media && (
         <CarouselThumbnailsComponent
-          className={clsx(thumbsClassName, lightboxActive && styles.lightboxThumbs)}
+          className={clsx(
+            thumbsClassName,
+            lightboxActive && styles.lightboxThumbs,
+            !lightboxActive && thumbnailPosition === 'left' && styles.thumbnailsLeft,
+            !lightboxActive && thumbnailPosition === 'top' && styles.thumbnailsTop,
+          )}
           bind={`${id}.index`}
           carouselId={id}
           selected={selected}
           setSelected={setSelected}
           thumbnails={media.thumbnails}
+          thumbnailPosition={lightboxActive ? 'bottom' : thumbnailPosition}
         />
       )}
-    </>
+    </div>
   )
 
   return (
@@ -285,6 +336,17 @@ MediaCarousel.propTypes = {
    * An optional `className` to use for the thumbnails component.
    */
   thumbsClassName: PropTypes.string,
+  /**
+   * An optional `className` to use for the carousel component when the lightbox is open.
+   */
+  lightboxClassName: PropTypes.string,
+  /**
+   * Position of thumbnails, relative to the main carousel image. For small screens, the position
+   * will revert to `top` when this value is set to `left` or `right`.
+   *
+   * This property will have no effect in Amp.
+   */
+  thumbnailPosition: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
   /**
    * A component type to use for the thumbnails.
    */
@@ -336,6 +398,7 @@ MediaCarousel.defaultProps = {
   lightboxProps: {},
   magnifyProps: {},
   thumbnails: true,
+  thumbnailPosition: 'bottom',
   MediaComponent: Media,
   CarouselComponent: Carousel,
   CarouselThumbnailsComponent: CarouselThumbnails,
