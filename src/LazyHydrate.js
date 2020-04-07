@@ -89,7 +89,7 @@ function LazyHydrateInstance({ hydrated, ssrOnly, children, on, index, ...rest }
       if (el) io.unobserve(el)
       childRef.current.removeEventListener(on, hydrate)
     }
-  }, [])
+  }, [ssrOnly, hydrated, on])
 
   if (hydrated || _hydrated) {
     return (
@@ -132,6 +132,8 @@ function LazyHydrate({ children, ...props }) {
 }
 
 LazyHydrate.propTypes = {
+  // Control the hydration of the component externally with this prop
+  hydrated: PropTypes.bool,
   // Force component to never hydrate
   ssrOnly: PropTypes.bool,
   // Event to trigger hydration
