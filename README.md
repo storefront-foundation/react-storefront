@@ -9,7 +9,7 @@
 
 React Storefront a standalone PWA storefront for your eCommerce websites that works with any eCommerce platform or backend system.
 
-Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a>. Developed with <a href="https://divante.com">Divante</a> team and the Community.
+Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a> and our community.
 Our goal is to build a vibrant open source community around the project and solid PWA framework React developers will love :)
 
 ## Ludicrous Speed
@@ -172,26 +172,9 @@ Most of the core team members, React Storefront contributors and contributors in
 React Storefront runs best on <a href="https://www.moovweb.com">the Moovweb XDN</a>.
 Moovweb provides a serverless platform-as-a-service called the XDN (Experience Delivery Network) that is available for purchase. The XDN helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. Features that are available for purchase are listed are tagged with "XDN" in the table of contents.
 
-## React Storefront and Vue Storefront
-
-This project has been created by Moovweb. Divante has recently joined and we decided to open it and develop towards general purpose PWA framework. Divante folks created <a href="https://vuestorefront.io">Vue Storefront</a> - the most popular PWA framework for eCommerce and Vue.js.
-
-The products, despite the common name are totally different at this point.
-
-Our goal joining the forces is to build a vibrant community. We started the cooperation with the natural step of adding BigCommerce support to the framework. Both React and BigCommerce were not available in the frameworks we used yet! The next steps are to work on providing the different deployment options, to optimize the UI and to hear your feedback and improve the product!
-
-PS: Check [StorefrontUI](https://github.com/DivanteLtd/storefront-ui/) - our UI library for eCommerce. We plan to port it from Vue.js to React in the nearest future
-
 ## Partners
 
-Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a> and developed with <a href="https://divante.com">Divante</a> team. <a href="">Read the full story.</a>
-
-React Storefront is a Community effort brought to You by our great Core Team and supported by the following companies.
-
-<a href="https://www.moovweb.com"><img alt="Moovweb logo" height="50px" src="https://divante.com/github/react-storefront/partner_logo_moovweb.png"/></a>
-<a href="https://divante.com"><img alt="Divante logo" height="50px" src="https://divante.com/github/react-storefront/divante_partner_logo.png"/></a>
-<a href="https://vuestorefront.io"><img alt="Vue Storefront logo" height="50px" src="https://divante.com/github/react-storefront/vuestorefront.png"/></a>
-<a href="https://bigcommerce.com"><img alt="BigCommerce logo" height="50px" src="https://divante.com/github/react-storefront/big_commerce_logo.png"/></a>
+Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a>
 
 Partners are encouraged to support the project in various ways - mostly by contributing to the source code, marketing activities, evangelizing and of course - implementing the production projects. We do support our partners by dedicated contact channels, workshops and by sharing the leads from merchants interested in implementations.
 
