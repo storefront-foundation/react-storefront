@@ -3,18 +3,14 @@ import { registerRoute } from 'workbox-routing'
 import { CacheOnly, NetworkOnly, NetworkFirst } from 'workbox-strategies'
 import { skipWaiting, clientsClaim } from 'workbox-core'
 import { precacheAndRoute, getCacheKeyForURL } from 'workbox-precaching'
+import { IS_AMP_REGEX } from './environment'
+import { resumePrefetches, abortPrefetches, prefetch } from './prefetch'
+import { offlineResponse } from './offline'
+import { getAPICacheName } from './cache'
 
 console.log('[react-storefront service worker]', 'Using React Storefront Service Worker')
 
-const IS_AMP_REGEX = /([?&]amp=1)(&.*)?$/
-
-const PREFETCH_CACHE_MISS = 412
-
 let runtimeCacheOptions = {}
-let abortControllers = new Set()
-let toResume = new Set()
-
-const appShellPath = '/.app-shell'
 
 /**
  * Configures parameters for cached routes.
@@ -39,149 +35,6 @@ function configureRuntimeCaching({ maxEntries = 200, maxAgeSeconds = 60 * 60 * 2
 
 configureRuntimeCaching()
 
-/**
- * Fetches and caches all links with data-rsf-prefetch="prefetch"
- * @param {Object} response
- */
-function precacheLinks(response) {
-  return response.text().then(html => {
-    const matches = html.match(/href="([^"]+)"\sdata-rsf-prefetch/g)
-    if (matches) {
-      return Promise.all(
-        matches.map(match => match.match(/href="([^"]+)"/)[1]).map(path => cachePath({ path })),
-      )
-    }
-    return Promise.resolve()
-  })
-}
-
-/**
- * Fetches and caches the specified path.
- * @param {Object} options Cache path options
- * @param {String} options.path A URL path
- * @param {String} options.apiVersion The version of the api that the client is running
- * @param {Boolean} cacheLinks Set to true to fetch and cache all links in the HTML returned
- */
-function cachePath({ path, apiVersion } = {}, cacheLinks) {
-  const cacheName = getAPICacheName(apiVersion)
-
-  return caches.open(cacheName).then(cache => {
-    cache.match(path).then(match => {
-      if (!match) {
-        console.log('[react-storefront service worker]', 'prefetching', path)
-
-        // Create an abort controller so we can abort the prefetch if a more important
-        // request is sent.
-        const abort = new AbortController()
-
-        // Save prefetching arguments if we need to resume a cancelled request
-        abort.args = [{ path, apiVersion }, cacheLinks]
-        abortControllers.add(abort)
-
-        const headers = {
-          'x-rsf-prefetch': '1',
-        }
-
-        // We connect the fetch with the abort controller here with the signal
-        fetch(path, {
-          credentials: 'include',
-          signal: abort.signal,
-          headers,
-        })
-          .then(response => {
-            return (cacheLinks ? precacheLinks(response.clone()) : Promise.resolve()).then(() => {
-              if (response.status === 200) {
-                response.text().then(data => {
-                  addToCache(cache, path, data, response.headers.get('content-type'))
-                  console.log(
-                    `[react-storefront service worker] ${path} was prefetched and added to ${cacheName}`,
-                  )
-                })
-              } else if (response.status === PREFETCH_CACHE_MISS) {
-                console.log(`[react-storefront service worker] ${path} was throttled.`)
-              } else {
-                console.log(
-                  `[react-storefront service worker] ${path} was not prefetched, returned status ${response.status}.`,
-                )
-              }
-            })
-          })
-          .then(() => abortControllers.delete(abort))
-          .catch(error => {
-            console.log('[react-storefront service worker] aborted prefetch for', path)
-          })
-      }
-    })
-  })
-}
-
-/**
- * Abort and queue all in progress prefetch requests for later. You can call this method to ensure
- * that prefetch requests do not block more important requests, like page navigation.
- */
-function abortPrefetches() {
-  for (let controller of abortControllers) {
-    toResume.add(controller.args)
-    controller.abort()
-  }
-  abortControllers.clear()
-}
-
-/**
- * Resume queued prefetch requests which were cancelled to allow for more important requests
- */
-function resumePrefetches() {
-  console.log('[react-storefront service worker] resuming prefetches')
-  for (let args of toResume) {
-    cachePath(...args)
-  }
-  toResume.clear()
-}
-
-/**
- * Adds a result to the cache
- * @param {Cache} cache
- * @param {String} path The URL path
- * @param {String} data The response body
- * @param {String} contentType The MIME type
- */
-function addToCache(cache, path, data, contentType) {
-  const blob = new Blob([data], { type: contentType })
-
-  const res = new Response(blob, {
-    status: 200,
-    headers: {
-      'Content-Length': blob.size,
-      date: new Date().toString(),
-    },
-  })
-
-  return cache.put(path, res)
-}
-
-/**
- * Adds the specified data to the cache
- * @param {Object} options Cache state options
- * @param {String} options.path A URL path
- * @param {Object|String} options.cacheData The data to cache. Objects will be converted to JSON.
- * @param {String} options.apiVersion The version of the api that the client is running.
- */
-function cacheState({ path, cacheData, apiVersion } = {}) {
-  const cacheName = getAPICacheName(apiVersion)
-
-  return caches.open(cacheName).then(cache => {
-    let type = 'text/html'
-
-    if (typeof cacheData === 'object') {
-      type = 'application/json'
-      cacheData = JSON.stringify(cacheData, null, 2)
-    }
-
-    addToCache(cache, path, cacheData, type)
-    console.log('[react-storefront service worker]', `caching ${path}`)
-  })
-}
-
 // provide the message interface that allows the PWA to prefetch
 // and cache resources.
 self.addEventListener('message', function(event) {
@@ -189,7 +42,7 @@ self.addEventListener('message', function(event) {
     const { action } = event.data
 
     if (action === 'cache-path') {
-      cachePath(event.data)
+      prefetch(event.data)
     } else if (action === 'cache-state') {
       cacheState(event.data)
     } else if (action === 'configure-runtime-caching') {
@@ -201,17 +54,6 @@ self.addEventListener('message', function(event) {
     }
   }
 })
-
-const isApiRequest = path => !!path.match(/^\/api\//)
-
-/**
- * Gets the name of the versioned runtime cache
- * @param {String} apiVersion The api version
- * @return {String} A cache name
- */
-function getAPICacheName(apiVersion) {
-  return `runtime-${apiVersion}`
-}
 
 self.addEventListener('install', event => {
   // Deletes all runtime caches except the one for the current api version
@@ -242,30 +84,33 @@ self.addEventListener('install', event => {
     })
 })
 
-self.addEventListener('fetch', event => {
-  // Catches all non-prefetch requests and aborts in-progress prefetches
-  // until the request finishes, then resumes prefetching
-  abortPrefetches()
-  event.respondWith(
-    (async function() {
-      try {
-        const cacheResponse = await caches.match(event.request)
-        if (cacheResponse) {
-          return cacheResponse
-        }
-        const preCacheResponse = await caches.match(getCacheKeyForURL(event.request.url) || {})
-        if (preCacheResponse) {
-          return preCacheResponse
-        }
-        return await fetch(event.request)
-      } finally {
-        if (toResume.size) {
-          resumePrefetches()
-        }
-      }
-    })(),
-  )
-})
+// Catches all non-prefetch requests and aborts in-progress prefetches
+// until the request finishes, then resumes prefetching
+// self.addEventListener('fetch', event => {
+//   abortPrefetches()
+
+//   event.respondWith(
+//     (async function() {
+//       try {
+//         const cacheResponse = await caches.match(event.request)
+
+//         if (cacheResponse) {
+//           return cacheResponse
+//         }
+
+//         const preCacheResponse = await caches.match(getCacheKeyForURL(event.request.url) || {})
+
+//         if (preCacheResponse) {
+//           return preCacheResponse
+//         }
+
+//         return await fetch(event.request)
+//       } finally {
+//         resumePrefetches()
+//       }
+//     })(),
+//   )
+// })
 
 /**
  * Returns true if the URL uses https
@@ -311,32 +156,12 @@ const matchRuntimePath = context => {
   ) /* Safari has a known issue with service workers and videos: https://adactio.com/journal/14452 */
 }
 
-function offlineResponse(apiVersion, context) {
-  if (isApiRequest(context.url.pathname)) {
-    const offlineData = { page: 'Offline' }
-    const blob = new Blob([JSON.stringify(offlineData, null, 2)], {
-      type: 'application/json',
-    })
-    return new Response(blob, {
-      status: 200,
-      headers: {
-        'Content-Length': blob.size,
-      },
-    })
-  } else {
-    // If not API request, find and send app shell
-    const cacheName = getAPICacheName(apiVersion)
-    const req = new Request(appShellPath)
-    return caches.open(cacheName).then(cache => cache.match(req))
-  }
-}
-
 registerRoute(matchRuntimePath, async context => {
   try {
     const { url, event } = context
 
     if (isAmp(url)) {
-      cachePath({ path: url.pathname + url.search }, true)
+      prefetch({ path: url.pathname + url.search }, true)
     }
 
     const headers = event.request.headers

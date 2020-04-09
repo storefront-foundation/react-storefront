@@ -12,6 +12,10 @@ export async function prefetch(url) {
   }
 }
 
+if (typeof window !== 'undefined') {
+  window.prefetch = prefetch
+}
+
 /**
  * Prefetches the JSON API results for a given page
  * @param {String} url The page URL.
