@@ -37,14 +37,20 @@ function LazyStylesProvider({ children }) {
   )
 }
 
-const isBrowser =
-  typeof window !== 'undefined' &&
-  typeof window.document !== 'undefined' &&
-  typeof window.document.createElement !== 'undefined'
+const isBrowser = () => {
+  if (process.env.NODE_ENV === 'test') {
+    return process.env.IS_BROWSER === 'true'
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.document !== 'undefined' &&
+    typeof window.document.createElement !== 'undefined'
+  )
+}
 
 // Used for detecting when the wrapped component becomes visible
 const io =
-  isBrowser && IntersectionObserver
+  isBrowser() && IntersectionObserver
     ? new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting || entry.intersectionRatio > 0) {
@@ -56,10 +62,14 @@ const io =
 
 function LazyHydrateInstance({ hydrated, ssrOnly, children, on, index, ...rest }) {
   const childRef = React.useRef(null)
-  const [_hydrated, setHydrated] = React.useState(!isBrowser)
+  const [_hydrated, setHydrated] = React.useState(!isBrowser())
 
   React.useEffect(() => {
     if (ssrOnly || hydrated) return
+
+    if (on === undefined && hydrated === undefined) {
+      throw new Error('"on" must be defined in LazyHydrate if not controlled')
+    }
 
     function hydrate() {
       setHydrated(true)
