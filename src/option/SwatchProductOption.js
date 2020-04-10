@@ -32,6 +32,13 @@ export const styles = theme => ({
     },
   },
   /**
+   * Styles applied to the button element when [`disabled`](#prop-disabled) is `true`.
+   */
+  buttonDisabled: {
+    cursor: 'default',
+    borderColor: theme.palette.grey['A100'],
+  },
+  /**
    * Styles applied to the image element.
    */
   image: {
@@ -118,6 +125,47 @@ export const styles = theme => ({
       width: 12,
     },
   },
+  /**
+   * Styles applied to the root element when [`disabled`](#prop-disabled) is `true`.
+   */
+  disabled: {
+    opacity: 0.3,
+  },
+  /**
+   * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
+   * [`strikeThroughDisabled`](#prop-disabled) are both `true`.
+   */
+  strikeThrough: {
+    height: '7px',
+    borderWidth: '2px 0',
+    borderStyle: 'solid',
+    borderColor: '#f2f2f2',
+    backgroundColor: '#666',
+    position: 'relative',
+    width: '100%',
+    borderRadius: 10,
+  },
+  /**
+   * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
+   * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'default'`.
+   */
+  defaultStrikeThrough: {
+    top: -24,
+  },
+  /**
+   * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
+   * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'small'`.
+   */
+  smallStrikeThrough: {
+    top: -16,
+  },
+  /**
+   * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
+   * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'tiny'`.
+   */
+  tinyStrikeThrough: {
+    top: -12,
+  },
 })
 const useStyles = makeStyles(styles, { name: 'RSFSwatchProductOption' })
 
@@ -137,6 +185,9 @@ export default function SwatchProductOption({
   ImageComponent,
   className,
   buttonProps,
+  disabled,
+  strikeThroughDisabled,
+  strikeThroughAngle,
 }) {
   classes = useStyles({ classes })
 
@@ -158,11 +209,12 @@ export default function SwatchProductOption({
       <button
         {...buttonProps}
         type="button"
-        onClick={onClick}
+        onClick={disabled ? Function.prototype : onClick}
         className={clsx({
           [className]: className != null,
           [classes.button]: true,
           [classes[size]]: true,
+          [classes.buttonDisabled]: disabled,
         })}
       >
         <div
@@ -173,7 +225,24 @@ export default function SwatchProductOption({
         >
           <SelectedIcon className={classes.icon} />
         </div>
-        <ImageComponent classes={{ image: classes.image }} fill aspectRatio={1} {...imageProps} />
+        <ImageComponent
+          className={clsx({
+            [classes.disabled]: disabled,
+          })}
+          classes={{ image: classes.image }}
+          fill
+          aspectRatio={1}
+          {...imageProps}
+        />
+        {disabled && strikeThroughDisabled && (
+          <div
+            className={clsx({
+              [classes.strikeThrough]: true,
+              [classes[`${size}StrikeThrough`]]: disabled,
+            })}
+            style={{ transform: `rotate(${strikeThroughAngle}deg)` }}
+          />
+        )}
       </button>
       {label && (
         <Typography variant="caption" className={clsx({ [classes.selectedLabel]: selected })}>
@@ -214,6 +283,18 @@ SwatchProductOption.propTypes = {
    */
   selected: PropTypes.bool,
   /**
+   * Set to `true` to make the option disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Set to `true` to show a slash through the item when disabled.
+   */
+  strikeThroughDisabled: PropTypes.bool,
+  /**
+   * The angle in degrees for the disabled indicator.
+   */
+  strikeThroughAngle: PropTypes.number,
+  /**
    * A function to call when this option is clicked.
    */
   onClick: PropTypes.func,
@@ -237,4 +318,6 @@ SwatchProductOption.defaultProps = {
   ImageComponent: Image,
   size: 'default',
   buttonProps: {},
+  strikeThroughDisabled: false,
+  strikeThroughAngle: 45,
 }

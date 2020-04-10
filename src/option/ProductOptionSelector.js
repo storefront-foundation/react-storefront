@@ -32,6 +32,7 @@ export default function ProductOptionSelector({
   value,
   onChange,
   variant,
+  strikeThroughDisabled,
   OptionComponent,
 }) {
   classes = useStyles({ classes })
@@ -58,6 +59,7 @@ export default function ProductOptionSelector({
             imageProps={option.image}
             value={option}
             skeleton={skeleton != null}
+            strikeThroughDisabled={strikeThroughDisabled}
           />
         )
       })}
@@ -104,6 +106,11 @@ ProductOptionSelector.propTypes = {
   value: PropTypes.object,
 
   /**
+   * If `true`, disabled options will have a line through them.
+   */
+  strikeThroughDisabled: PropTypes.bool,
+
+  /**
    * Allows you to override the default component which is used to render a product option.
    */
   OptionComponent: PropTypes.elementType,
@@ -114,4 +121,5 @@ ProductOptionSelector.defaultProps = {
   optionProps: {},
   imageProps: {},
   OptionComponent: ProductOption,
+  strikeThroughDisabled: false,
 }

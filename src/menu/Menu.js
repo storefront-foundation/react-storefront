@@ -75,7 +75,7 @@ const Menu = React.memo(props => {
     })
   }
 
-  // it is implortant to memoize the context, otherwise it will cause all consumers rerender
+  // it is important to memoize the context, otherwise it will cause all consumers to rerender
   // every time Menu rerenders
   const context = useMemo(
     () => ({
