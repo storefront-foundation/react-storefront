@@ -126,7 +126,7 @@ export const styles = theme => ({
     },
   },
   /**
-   * Styles applied to the root element when [`disabled`](#prop-disabled) is `true`.
+   * Styles applied to the image element when [`disabled`](#prop-disabled) is `true`.
    */
   disabled: {
     opacity: 0.3,
