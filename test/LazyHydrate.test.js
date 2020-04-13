@@ -5,10 +5,6 @@ import LazyHydrate from 'react-storefront/LazyHydrate'
 describe.only('LazyHydrate', () => {
   let wrapper
 
-  beforeEach(() => {
-    // process.env.IS_BROWSER = false
-  })
-
   afterEach(() => {
     wrapper.unmount()
   })
