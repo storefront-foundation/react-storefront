@@ -1,4 +1,4 @@
-# React Storefront - the fastest, headless eCommerce PWA
+# React Storefront - the fastest, headless eCommerce PWA based on Next.js
 
 <img src="https://divante.com/github/react-storefront/RSF.png" width="430px" ></img>
 
@@ -7,25 +7,23 @@
 ![Branch Develop](https://img.shields.io/badge/dev%20branch-develop-blue.svg)
 <a href="https://slack.reactstorefront.io">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
-React Storefront a standalone PWA storefront for your eCommerce websites that works with any eCommerce platform or backend system.
-
-Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a> and our community.
-Our goal is to build a vibrant open source community around the project and solid PWA framework React developers will love :)
+React Storefront (RSF) is a standalone responsive PWA storefront for your eCommerce websites that works with any eCommerce platform or backend system. React storefront extends Next.js to include everything you need for an eCommerce storefront. Try <a href="https://www.thetiebar.com/">The Tie Bar</a>, <a href="https://www.shopakira.com/">Akira</a>, and <a href="https://pwa.www.1800flowers.com/">1-800-FLOWERS.COM</a> on your phone to see how fast sites on RSF can be!
 
 ## Ludicrous Speed
 
 React Storefront goes the extra mile to squeeze speed out of every possible real and user perceived performance optimization including:
 
+- High cache hit rates for dynamic data
 - Server Side Rendering
 - Automatic AMP creation
-- Predictive prefetching
+- Predictive prefetching of dynamic data
 - Code splitting
 - Cache optimization
 - Client data reuse
 - Skeletons
 - and more
 
-Bottom Line: sub-second page loads that are unmatched in the industry!
+Bottom Line: RSF is built for speed!
 
 <a href="https://demo.reactstorefront.io"><img src="https://divante.com/github/react-storefront/rsf-github.png" alt="Subsecond PWA now available for React devs"/></a>
 
@@ -143,7 +141,7 @@ Our short and mid-term plans include:
 ## Documentation
 
 The documentation is always THE HARDEST PART of each open source project! But we're trying hard :-)
-[Full Guides, API Documentation, and Examples](https://pwa.moovweb.com/)
+[Full Guides, API Documentation, and Examples](https://docs.react-storefront.io/)
 
 ## The business challenges
 
@@ -167,14 +165,13 @@ Most of the core team members, React Storefront contributors and contributors in
 
 **If you would like to support us please just let us know: contributors@reactstorefront.io**
 
-## Works best on Moovweb XDN
+## Try it on the XDN. Deploy it anywhere.
 
-React Storefront runs best on <a href="https://www.moovweb.com">the Moovweb XDN</a>.
-Moovweb provides a serverless platform-as-a-service called the XDN (Experience Delivery Network) that is available for purchase. The XDN helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. Features that are available for purchase are listed are tagged with "XDN" in the table of contents.
+Like any Next.js project, React Storefront is deployable to any environment that runs Node.js. The easiest way to test drive and deploy React Storefront is on the <a href="https://www.moovweb.com">Moovweb Experience Delivery Network (XDN)</a>, a serverless PaaS that helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. A free tier is available. Inquire through Moovweb's website.
 
 ## Partners
 
-Crafted with ❤️ by <a href="https://www.moovweb.com">Moovweb</a>
+RSF was created by a group of eCommerce site, eCommerce agency, and eCommerce platform engineers.
 
 Partners are encouraged to support the project in various ways - mostly by contributing to the source code, marketing activities, evangelizing and of course - implementing the production projects. We do support our partners by dedicated contact channels, workshops and by sharing the leads from merchants interested in implementations.
 
