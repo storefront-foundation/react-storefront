@@ -165,10 +165,9 @@ Most of the core team members, React Storefront contributors and contributors in
 
 **If you would like to support us please just let us know: contributors@reactstorefront.io**
 
-## Works best on Moovweb XDN
+## Try it on the XDN. Deploy it anywhere.
 
-React Storefront runs best on <a href="https://www.moovweb.com">the Moovweb XDN</a>.
-Moovweb provides a serverless platform-as-a-service called the XDN (Experience Delivery Network) that is available for purchase. The XDN helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. A free tier is available. Inquire through Moovweb's website.
+Like any Next.js project, React Storefront is deployable to any environment that runs Node.js. The easiest way to test drive and deploy React Storefront is on the <a href="https://www.moovweb.com">Moovweb Experience Delivery Network (XDN)</a>, a serverless PaaS that helps developers optimize speed across the entire stack to deliver dynamic websites that load in a blink of the eye. A free tier is available. Inquire through Moovweb's website.
 
 ## Partners
 
