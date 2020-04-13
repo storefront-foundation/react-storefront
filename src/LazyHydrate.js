@@ -4,8 +4,12 @@ import PropTypes from 'prop-types'
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
 
-const registries = []
+let registries = []
 const generateClassName = createGenerateClassName()
+
+export function clearLazyHydrateRegistries() {
+  registries = []
+}
 
 /*
   This component renders the server side rendered stylesheets for the
@@ -68,7 +72,8 @@ function LazyHydrateInstance({ hydrated, ssrOnly, children, on, index, ...rest }
     if (ssrOnly || hydrated) return
 
     if (on === undefined && hydrated === undefined) {
-      throw new Error('"on" must be defined in LazyHydrate if not controlled')
+      console.warn('"on" must be defined in LazyHydrate if not controlled')
+      return
     }
 
     function hydrate() {
@@ -122,8 +127,6 @@ function LazyHydrateInstance({ hydrated, ssrOnly, children, on, index, ...rest }
 
 /**
  * LazyHydrate
- *
- * @param {*} param0
  *
  * Example:
  *

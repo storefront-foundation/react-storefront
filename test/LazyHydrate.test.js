@@ -1,12 +1,40 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import LazyHydrate from 'react-storefront/LazyHydrate'
+import LazyHydrate, {
+  clearLazyHydrateRegistries,
+  LazyStyleElements,
+} from 'react-storefront/LazyHydrate'
 
 describe.only('LazyHydrate', () => {
   let wrapper
 
   afterEach(() => {
     wrapper.unmount()
+  })
+
+  it('should clear registries', () => {
+    const hydrate = mount(
+      <LazyHydrate>
+        <button>click</button>
+      </LazyHydrate>,
+    )
+    wrapper = mount(
+      <div>
+        <LazyStyleElements />
+      </div>,
+    )
+    // Should render registered lazy styles
+    expect(wrapper.find('style').length).toBe(1)
+    clearLazyHydrateRegistries()
+    // Simulating next page render
+    wrapper = mount(
+      <div>
+        <LazyStyleElements />
+      </div>,
+    )
+    // Should not hold on to old registered styles
+    expect(wrapper.find('style').length).toBe(0)
+    hydrate.unmount()
   })
 
   it('should pass event through when hydrated', () => {
