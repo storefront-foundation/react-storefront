@@ -5,7 +5,7 @@ import LazyHydrate, {
   LazyStyleElements,
 } from 'react-storefront/LazyHydrate'
 
-describe.only('LazyHydrate', () => {
+describe('LazyHydrate', () => {
   let wrapper
 
   afterEach(() => {
