@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "7.7.0",
+  "version": "7.11.1",
   "description": "Build and deploy e-commerce progressive web apps (PWAs) in record time.",
   "module": "./index.js",
   "license": "Apache-2.0",
@@ -98,64 +98,5 @@
     "@material-ui/lab": "^4.0.0-alpha.35",
     "@material-ui/styles": "4.5.2",
     "next": "^9.1.8"
-  },
-  "babel": {
-    "presets": [
-      "@babel/env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      [
-        "@babel/plugin-transform-runtime",
-        {
-          "regenerator": true
-        }
-      ],
-      [
-        "babel-plugin-transform-imports",
-        {
-          "@material-ui/core": {
-            "transform": "@material-ui/core/${member}",
-            "preventFullImport": true
-          },
-          "@material-ui/styles": {
-            "transform": "@material-ui/styles/${member}",
-            "preventFullImport": true
-          },
-          "@material-ui/icons": {
-            "transform": "@material-ui/icons/${member}",
-            "preventFullImport": true
-          },
-          "@material-ui/lab": {
-            "transform": "@material-ui/lab/${member}",
-            "preventFullImport": true
-          }
-        }
-      ],
-      "@babel/plugin-proposal-class-properties"
-    ]
-  },
-  "jest": {
-    "clearMocks": true,
-    "testEnvironment": "./test/config/jsdom",
-    "setupFiles": [
-      "./test/config/setup.js"
-    ],
-    "setupFilesAfterEnv": [
-      "./test/config/mocks.js",
-      "./node_modules/jest-enzyme/lib/index.js"
-    ],
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "./src/**/*.{js,jsx}",
-      "./service-worker/*.{js,jsx}",
-      "!**/index.js"
-    ],
-    "moduleNameMapper": {
-      "react-storefront/(.*)": "<rootDir>/src/$1"
-    },
-    "transform": {
-      ".*": "./test/config/babelTransformer.js"
-    }
   }
 }

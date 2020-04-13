@@ -17,6 +17,11 @@ describe('MediaCarousel', () => {
 
   const mockMediaQuery = jest.spyOn(useMediaQuery, 'default')
 
+  beforeEach(() => {
+    window.innerWidth = 1024
+    window.dispatchEvent(new Event('resize'))
+  })
+
   afterEach(() => {
     wrapper.unmount()
   })
@@ -56,6 +61,20 @@ describe('MediaCarousel', () => {
     wrapper = mount(<MediaCarousel media={media} thumbnails={false} />)
 
     expect(wrapper.find(CarouselThumbnails)).not.toExist()
+  })
+
+  it('should show thumbnails in the right position', () => {
+    wrapper = mount(<MediaCarousel media={media} thumbnailPosition="left" />)
+    expect(wrapper.find(CarouselThumbnails).prop('thumbnailPosition')).toBe('left')
+
+    wrapper = mount(<MediaCarousel media={media} thumbnailPosition="right" />)
+    expect(wrapper.find(CarouselThumbnails).prop('thumbnailPosition')).toBe('right')
+
+    wrapper = mount(<MediaCarousel media={media} thumbnailPosition="top" />)
+    expect(wrapper.find(CarouselThumbnails).prop('thumbnailPosition')).toBe('top')
+
+    wrapper = mount(<MediaCarousel media={media} thumbnailPosition="bottom" />)
+    expect(wrapper.find(CarouselThumbnails).prop('thumbnailPosition')).toBe('bottom')
   })
 
   it('should open lightbox on MediaCarousel click', () => {
@@ -114,6 +133,13 @@ describe('MediaCarousel', () => {
       contain: true,
       src: media.full[0].magnify.src,
     })
+
+    expect(
+      wrapper
+        .find(Media)
+        .first()
+        .prop('src'),
+    ).toEqual(media.full[0].magnify.src)
   })
 
   it('should pass height 100% to Carousel if window size is small and lightbox is opened', () => {
@@ -130,13 +156,26 @@ describe('MediaCarousel', () => {
     ).toBe('100%')
   })
 
-  it('should pass thumbnail to render below the Carousel if image is not loaded and thumbnail is passed as prop ', () => {
+  it('should hide the magnify hint if the lightbox is opened and the window is wider than the image', () => {
+    wrapper = mount(<MediaCarousel media={media} />)
+    wrapper.find(Carousel).simulate('click')
+    expect(wrapper.find(MagnifyHint)).toExist()
+
+    window.innerWidth = 1300
+    window.dispatchEvent(new Event('resize'))
+
+    wrapper = mount(<MediaCarousel media={media} />)
+    wrapper.find(Carousel).simulate('click')
+    expect(wrapper.find(MagnifyHint)).not.toExist()
+  })
+
+  it('should pass thumbnail to render below the Carousel if image is not loaded and thumbnail is passed as prop', () => {
     wrapper = mount(<MediaCarousel media={media} thumbnail={{ test: 'test' }} />)
 
     expect(wrapper.find(Image).filterWhere(el => el.prop('test'))).toExist()
   })
 
-  it('should not pass thumbnail to render below the Carousel if image is loaded  ', async () => {
+  it('should not pass thumbnail to render below the Carousel if image is loaded ', async () => {
     const map = {}
     const loadMock = jest
       .spyOn(HTMLImageElement.prototype, 'addEventListener')

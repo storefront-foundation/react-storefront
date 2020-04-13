@@ -64,6 +64,17 @@ export default function useLazyState(lazyProps, additionalData = {}) {
 
   useEffect(() => {
     isInitialMount.current = false
+
+    if (process.env.NODE_ENV !== 'production') {
+      // expose a global function that makes it easy to toggle skeletons during development via chrome develeoper console
+      window.rsf_toggleLoading = () =>
+        updateState(state => ({
+          ...state,
+          loading: !state.loading,
+        }))
+
+      return () => delete window.rsf_toggleLoading
+    }
   }, [])
 
   // save the page state in history.state before navigation

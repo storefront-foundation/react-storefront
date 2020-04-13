@@ -33,6 +33,16 @@ describe('SearchForm', () => {
     expect(wrapper.find('#test')).toExist()
   })
 
+  it('should have auto complete on when passed as a prop', () => {
+    wrapper = mount(
+      <SearchForm autoComplete>
+        <div id="test">test</div>
+      </SearchForm>,
+    )
+
+    expect(wrapper.find('form').prop('autoComplete')).toBe('on')
+  })
+
   it('should be able to join query params from action prop on fetch call', async () => {
     wrapper = mount(<SearchForm action="/api/test?test=test1" />)
 

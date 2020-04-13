@@ -1,8 +1,6 @@
-import React, { useState, useRef, useContext } from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import React, { useRef, forwardRef } from 'react'
+import { makeStyles, fade } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import withDefaultHandler from '../utils/withDefaultHandler'
-import SearchContext from './SearchContext'
 import { IconButton } from '@material-ui/core'
 import ClearIcon from '@material-ui/icons/Clear'
 import SearchSubmitButton from './SearchSubmitButton'
@@ -36,12 +34,34 @@ export const styles = theme => ({
     border: 'none',
     background: 'none',
     flex: 1,
-    padding: '0 0 0 20px',
+    padding: theme.spacing(0, 2.5, 0, 2.5),
     ...theme.typography.body1,
     '&:focus': {
       outline: 'none',
     },
+    [theme.breakpoints.up('sm')]: {
+      border: '1px solid',
+      borderColor: theme.palette.divider,
+      borderRadius: theme.spacing(1),
+      margin: theme.spacing(0.5, 0, 0.5, 0),
+      zIndex: 9999,
+      transition: 'border-color linear 0.1s',
+      '&:hover': {
+        borderColor: fade(theme.palette.divider, 0.25),
+      },
+      '&:focus': {
+        borderColor: theme.palette.primary.main,
+      },
+    },
   },
+
+  /**
+   * Styles applied to the input if showClearnButton prop is true.
+   */
+  inputClearIcon: {
+    paddingRight: 0,
+  },
+
   /**
    * Styles applied to the submit button element if [submitButtonVariant](#prop-submitButtonVariant)
    * is `'fab'`.
@@ -67,92 +87,93 @@ const useStyles = makeStyles(styles, { name: 'RSFSearchField' })
  * A search text field. Additional props are spread to the underlying
  * [Input](https://material-ui.com/api/input/).
  */
-export default function SearchField({
-  classes,
-  onChange,
-  submitButtonVariant,
-  showClearButton,
-  SubmitButtonComponent,
-  clearButtonProps,
-  inputProps,
-  submitButtonProps,
-  ...others
-}) {
-  classes = useStyles({ classes })
-  const inputRef = useRef(null)
-  const { fetchSuggestions } = useContext(SearchContext)
-  const [text, setText] = useState('')
-  const empty = text.trim().length === 0
+const SearchField = forwardRef(
+  (
+    {
+      classes,
+      onChange,
+      submitButtonVariant,
+      showClearButton,
+      SubmitButtonComponent,
+      clearButtonProps,
+      inputProps,
+      value,
+      onFocus,
+      submitButtonProps,
+      ...others
+    },
+    ref,
+  ) => {
+    classes = useStyles({ classes })
+    const inputRef = ref || useRef(null)
+    const empty = value.trim().length === 0
 
-  const handleInputFocus = () => {
-    inputRef.current.setSelectionRange(0, inputRef.current.value.length)
-  }
+    const handleInputFocus = () => {
+      if (onFocus) {
+        onFocus()
+      }
 
-  const handleChange = withDefaultHandler(onChange, e => {
-    const text = e.target.value
-    setText(text)
-    fetchSuggestions(text)
-  })
+      inputRef.current.setSelectionRange(0, inputRef.current.value.length)
+    }
 
-  const handleClearClick = () => {
-    const text = ''
-    setText(text)
-    fetchSuggestions(text)
-  }
+    const handleClearClick = () => {
+      onChange('')
+    }
 
-  return (
-    <div className={classes.root} data-empty={text.trim().length === 0 ? 'on' : 'off'}>
-      <div className={classes.inputWrap}>
-        <input
-          {...others}
-          type="text"
-          value={text}
-          onChange={handleChange}
-          onFocus={handleInputFocus}
-          ref={inputRef}
-          className={classes.input}
-          {...inputProps}
-        />
-        {showClearButton ? (
-          <IconButton
-            {...clearButtonProps}
-            onClick={handleClearClick}
-            rel="clear"
-            className={clsx({
-              [classes.searchReset]: true,
-              [classes.hidden]: empty,
-            })}
-          >
-            <ClearIcon rel="clear" />
-          </IconButton>
-        ) : (
-          submitButtonVariant === 'icon' && (
-            <SubmitButtonComponent
-              Component={Button}
+    return (
+      <div className={classes.root} data-empty={value.trim().length === 0 ? 'on' : 'off'}>
+        <div className={classes.inputWrap}>
+          <input
+            {...others}
+            type="text"
+            value={value}
+            onChange={e => onChange(e.target.value)}
+            onFocus={handleInputFocus}
+            ref={inputRef}
+            className={clsx(classes.input, showClearButton && classes.inputClearIcon)}
+            {...inputProps}
+          />
+          {showClearButton ? (
+            <IconButton
+              {...clearButtonProps}
+              onClick={handleClearClick}
+              rel="clear"
               className={clsx({
-                [classes.searchButton]: true,
+                [classes.searchReset]: true,
                 [classes.hidden]: empty,
               })}
-              text={text}
-              {...submitButtonProps}
-            />
-          )
+            >
+              <ClearIcon rel="clear" />
+            </IconButton>
+          ) : (
+            submitButtonVariant === 'icon' && (
+              <SubmitButtonComponent
+                Component={Button}
+                className={clsx({
+                  [classes.searchButton]: true,
+                  [classes.hidden]: empty,
+                })}
+                text={value}
+                {...submitButtonProps}
+              />
+            )
+          )}
+        </div>
+        {submitButtonVariant === 'fab' && (
+          <SubmitButtonComponent
+            Component={Fab}
+            className={clsx({
+              [classes.searchFab]: true,
+              [classes.hidden]: empty,
+            })}
+            text={value}
+            {...submitButtonProps}
+          />
         )}
       </div>
-      {submitButtonVariant === 'fab' && (
-        <SubmitButtonComponent
-          Component={Fab}
-          className={clsx({
-            [classes.searchFab]: true,
-            [classes.hidden]: empty,
-          })}
-          text={text}
-          {...submitButtonProps}
-        />
-      )}
-    </div>
-  )
-}
+    )
+  },
+)
 
 SearchField.propTypes = {
   /**
@@ -166,7 +187,7 @@ SearchField.propTypes = {
   /**
    * The type of submit button to display.
    */
-  submitButtonVariant: PropTypes.oneOf(['icon', 'fab']),
+  submitButtonVariant: PropTypes.oneOf(['icon', 'fab', 'none']),
   /**
    * If `true`, show the clear button when text is entered.
    */
@@ -187,6 +208,14 @@ SearchField.propTypes = {
    * A function to call when the search query value is changed.
    */
   onChange: PropTypes.func,
+  /**
+   * Input value.
+   */
+  value: PropTypes.string,
+  /**
+   * A function to call when input is focused.
+   */
+  onFocus: PropTypes.func,
 }
 
 SearchField.defaultProps = {
@@ -195,4 +224,7 @@ SearchField.defaultProps = {
   showClearButton: true,
   placeholder: 'Search...',
   name: 'q',
+  value: '',
 }
+
+export default SearchField

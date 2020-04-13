@@ -127,11 +127,17 @@ export const styles = theme => ({
   /**
    * Styles applied to the expand icon element.
    */
-  expandIcon: {},
+  expandIcon: {
+    height: 24,
+    width: 24,
+  },
   /**
    * Styles applied to the collapse icon element.
    */
-  collapseIcon: {},
+  collapseIcon: {
+    height: 24,
+    width: 24,
+  },
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFExpandableSection' })
@@ -250,12 +256,12 @@ ExpandableSection.propTypes = {
   /**
    * The icon to use for collapsed groups.
    */
-  ExpandIcon: PropTypes.object,
+  ExpandIcon: PropTypes.elementType,
 
   /**
    * The icon to use for expanded groups.
    */
-  CollapseIcon: PropTypes.object,
+  CollapseIcon: PropTypes.elementType,
 
   /**
    * If `false`, the default left and right margins are removed.

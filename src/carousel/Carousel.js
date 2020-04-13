@@ -17,6 +17,7 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'stretch',
     position: 'relative',
+    flexBasis: '100%',
     '& img': {
       display: 'block',
     },
@@ -104,6 +105,7 @@ const Carousel = React.forwardRef((props, ref) => {
             slideStyle={slideStyle}
             autoplay={autoplay}
             interval={interval}
+            containerStyle={{ alignItems: 'center' }}
           >
             {children}
           </AutoPlaySwipeableViews>
