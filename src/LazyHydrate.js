@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
@@ -64,17 +64,25 @@ const io =
       })
     : null
 
-function LazyHydrateInstance({ hydrated, ssrOnly, children, on, index, ...rest }) {
-  const childRef = React.useRef(null)
-  const [_hydrated, setHydrated] = React.useState(!isBrowser())
-
-  React.useEffect(() => {
-    if (ssrOnly || hydrated) return
-
-    if (on === undefined && hydrated === undefined) {
-      console.warn('"on" must be defined in LazyHydrate if not controlled')
-      return
+function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props }) {
+  function isHydrated() {
+    if (isBrowser()) {
+      if (ssrOnly) return false
+      return props.hydrated
+    } else {
+      return true
     }
+  }
+
+  const childRef = useRef(null)
+  const [hydrated, setHydrated] = useState(isHydrated())
+
+  useEffect(() => {
+    setHydrated(isHydrated())
+  }, [props.hydrated, ssrOnly])
+
+  useEffect(() => {
+    if (hydrated) return
 
     function hydrate() {
       setHydrated(true)
@@ -104,11 +112,11 @@ function LazyHydrateInstance({ hydrated, ssrOnly, children, on, index, ...rest }
       if (el) io.unobserve(el)
       childRef.current.removeEventListener(on, hydrate)
     }
-  }, [ssrOnly, hydrated, on])
+  }, [hydrated, on])
 
-  if (hydrated || _hydrated) {
+  if (hydrated) {
     return (
-      <div ref={childRef} style={{ display: 'contents' }} {...rest}>
+      <div ref={childRef} style={{ display: 'contents' }} className={className}>
         {children}
       </div>
     )
@@ -116,9 +124,9 @@ function LazyHydrateInstance({ hydrated, ssrOnly, children, on, index, ...rest }
     return (
       <div
         ref={childRef}
+        className={className}
         style={{ display: 'contents' }}
         suppressHydrationWarning
-        {...rest}
         dangerouslySetInnerHTML={{ __html: '' }}
       />
     )

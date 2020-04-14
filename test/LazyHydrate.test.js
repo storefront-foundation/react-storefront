@@ -50,6 +50,7 @@ describe('LazyHydrate', () => {
 
   it('should render children during SSR only mode', () => {
     const click = jest.fn()
+    process.env.IS_BROWSER = 'false'
     wrapper = mount(
       <LazyHydrate ssrOnly>
         <button onClick={click}>click</button>
