@@ -26,7 +26,7 @@ module.exports = (nextConfig = {}) => {
 
       config.plugins.push(
         new webpack.DefinePlugin({
-          'process.env.RSF_API_VERSION': JSON.stringify(API_VERSION),
+          'process.env.WORKBOX_PREFETCH_VERSION': JSON.stringify(API_VERSION),
         }),
       )
 

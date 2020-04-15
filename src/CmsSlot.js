@@ -92,7 +92,7 @@ CmsSlot.proptypes = {
   lazyLoadImages: PropTypes.boolean,
 
   /**
-   * If `true`, prefetch links that have a `data-rsf-prefetch` attribute.
+   * If `true`, prefetch links that have a `data-rsf-prefetch` attribute with a value of `always`.
    */
   prefetchLinks: false,
 }

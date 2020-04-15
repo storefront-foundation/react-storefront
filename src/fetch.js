@@ -1,7 +1,7 @@
 import unfetch from 'isomorphic-unfetch'
 
-const RSF_VERSION_HEADER = 'x-rsf-api-version'
-const apiVersion = process.env.RSF_API_VERSION || '1'
+export const RSF_VERSION_HEADER = 'x-sw-version'
+export const RSF_API_VERSION = process.env.WORKBOX_PREFETCH_VERSION || '1'
 
 /**
  * An isomorphic implementation of the fetch API that always sends the x-rsf-api-version header.  You should
@@ -14,7 +14,7 @@ const apiVersion = process.env.RSF_API_VERSION || '1'
  */
 export default function fetch(url, opts = {}) {
   const headers = opts.headers || {}
-  headers[RSF_VERSION_HEADER] = apiVersion
+  headers[RSF_VERSION_HEADER] = RSF_API_VERSION
   return unfetch(url, { ...opts, headers })
 }
 
@@ -27,7 +27,7 @@ function monkeyPatchXHR() {
 
   XMLHttpRequest.prototype.open = function() {
     const res = open.apply(this, arguments)
-    this.setRequestHeader(RSF_VERSION_HEADER, apiVersion)
+    this.setRequestHeader(RSF_VERSION_HEADER, RSF_API_VERSION)
     return res
   }
 }

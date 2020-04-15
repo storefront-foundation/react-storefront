@@ -54,7 +54,9 @@
     "react-swipeable-views": "0.13.3",
     "react-swipeable-views-utils": "0.13.3",
     "react-visibility-sensor": "^5.1.1",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "workbox-prefetch": "file:.yalc/workbox-prefetch",
+    "workbox-preload": "file:.yalc/workbox-preload"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
