@@ -87,4 +87,70 @@ describe('ProductOption', () => {
 
     expect(onClickSpy).toHaveBeenCalledWith(option)
   })
+
+  it('should not call onSelectedOptionChange function if option is disabled', () => {
+    const option = { id: 'test', text: 'test', disabled: true }
+    let setter = undefined
+    const onClickSpy = jest.fn().mockImplementation(value => setter(value))
+
+    const Test = () => {
+      const [selected, setSelected] = useState(option)
+      setter = setSelected
+
+      return (
+        <ProductOption
+          value={option}
+          selectedOption={selected}
+          onSelectedOptionChange={value => onClickSpy(value)}
+          variant="swatch"
+        />
+      )
+    }
+
+    wrapper = mount(<Test />)
+    wrapper.find('button').simulate('click')
+    expect(onClickSpy).not.toHaveBeenCalled()
+  })
+
+  it('should have a strike-through element if strikeThroughDisabled is true', () => {
+    const option = { id: 'test', text: 'test', disabled: true }
+
+    wrapper = mount(
+      <ProductOption
+        value={option}
+        selectedOption={option}
+        showLabel={false}
+        variant="swatch"
+        strikeThroughDisabled
+      />,
+    )
+
+    expect(
+      wrapper
+        .find('button')
+        .children()
+        .someWhere(child => child.hasClass(/strikeThrough/)),
+    ).toEqual(true)
+
+    // also try for TextOption:
+    wrapper = mount(
+      <ProductOption
+        value={option}
+        selectedOption={option}
+        showLabel
+        variant="text"
+        strikeThroughDisabled
+      />,
+    )
+
+    expect(
+      wrapper
+        .find('div')
+        .children()
+        .first()
+        .find('div')
+        .first()
+        .hasClass(/strikeThrough/),
+    ).toEqual(true)
+  })
 })

@@ -45,6 +45,7 @@ export default function ProductOption(props) {
         label={showLabel ? value && value.text : undefined}
         selected={selected}
         onClick={handleClick}
+        disabled={get(value, 'disabled')}
       />
     </div>
   )

@@ -22,6 +22,22 @@ export const styles = theme => ({
       },
     },
   },
+  /**
+   * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
+   * [`strikeThroughDisabled`](#prop-disabled) are both `true`.
+   */
+  strikeThrough: {
+    height: '7px',
+    borderWidth: '2px 0',
+    borderStyle: 'solid',
+    borderColor: '#f2f2f2',
+    backgroundColor: '#666',
+    position: 'relative',
+    width: '100%',
+    top: 'calc(-50% - 2px)',
+    left: -2,
+    borderRadius: 10,
+  },
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFTextProductOption' })
@@ -44,6 +60,9 @@ export default function TextProductOption({
   skeleton,
   buttonProps,
   onClick,
+  disabled,
+  strikeThroughDisabled,
+  strikeThroughAngle,
 }) {
   classes = useStyles({ classes })
 
@@ -52,15 +71,24 @@ export default function TextProductOption({
   }
 
   return (
-    <Button
-      {...buttonProps}
-      className={clsx(className, classes.root)}
-      variant={selected ? 'contained' : 'outlined'}
-      color={selected ? 'primary' : 'default'}
-      onClick={onClick}
-    >
-      {label}
-    </Button>
+    <>
+      <Button
+        {...buttonProps}
+        disabled={disabled}
+        className={clsx(className, classes.root)}
+        variant={selected ? 'contained' : 'outlined'}
+        color={selected ? 'primary' : 'default'}
+        onClick={onClick}
+      >
+        {label}
+      </Button>
+      {disabled && strikeThroughDisabled && (
+        <div
+          className={classes.strikeThrough}
+          style={{ transform: `rotate(${strikeThroughAngle}deg)` }}
+        />
+      )}
+    </>
   )
 }
 
@@ -86,6 +114,18 @@ TextProductOption.propTypes = {
    */
   selected: PropTypes.bool,
   /**
+   * Set to `true` to make the option disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Set to `true` to show a slash through the item when disabled.
+   */
+  strikeThroughDisabled: PropTypes.bool,
+  /**
+   * The angle in degrees for the disabled indicator.
+   */
+  strikeThroughAngle: PropTypes.number,
+  /**
    * This prop is intentionally ignored so that `TextProductOption` can be used interchangeably with
    * `SwatchProductOption without` displaying a warning.
    */
@@ -102,4 +142,6 @@ TextProductOption.propTypes = {
 
 TextProductOption.defaultProps = {
   selected: false,
+  strikeThroughDisabled: false,
+  strikeThroughAngle: 30,
 }
