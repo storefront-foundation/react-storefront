@@ -5,7 +5,7 @@ import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { ChevronLeft } from '@material-ui/icons'
 
 export default function MenuBack({ goBack, item, backButtonProps }) {
-  const { classes } = useContext(MenuContext)
+  const { classes, renderBack } = useContext(MenuContext)
 
   return (
     <ListItem divider button onClick={goBack} {...backButtonProps}>
@@ -14,7 +14,11 @@ export default function MenuBack({ goBack, item, backButtonProps }) {
       </ListItemIcon>
       <ListItemText
         classes={{ root: classes.headerText }}
-        primary={<div className={classes.headerText}>{item.text} </div>}
+        primary={
+          <div className={classes.headerText}>
+            {typeof renderBack === 'function' ? renderBack(item) : item.text}
+          </div>
+        }
       />
     </ListItem>
   )

@@ -24,6 +24,7 @@ const Menu = React.memo(props => {
     onClose,
     renderFooter,
     renderHeader,
+    renderBack,
     renderItem,
     renderItemContent,
     renderDrawer,
@@ -84,6 +85,7 @@ const Menu = React.memo(props => {
       goBack,
       renderFooter,
       renderHeader,
+      renderBack,
       renderItem,
       renderItemContent,
       close: onClose,
@@ -169,6 +171,16 @@ Menu.propTypes = {
    * The function should return a React element or fragment.
    */
   renderFooter: PropTypes.func,
+
+  /**
+   * A function to render a custom back navigation for menu cards.  It is passed
+   * an object with:
+   *
+   * - item: The menu item record being rendered
+   *
+   * The function should return a React element or fragment.
+   */
+  renderBack: PropTypes.func,
 
   /**
    * Set to true to display the menu
