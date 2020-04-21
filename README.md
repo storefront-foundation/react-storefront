@@ -6,12 +6,9 @@ Free and open-source. Built with Next.js
 ![version](https://img.shields.io/badge/node-v8.x-blue.svg)
 ![Branch stable](https://img.shields.io/badge/stable%20branch-master-blue.svg)
 ![Branch Develop](https://img.shields.io/badge/dev%20branch-develop-blue.svg)
-<a href="https://slack.reactstorefront.io">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
+<a href="https://react-storefront-comm.slack.com">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
 React Storefront (RSF) utilizes headless architecture allowing you to easily replace your legacy frontned and connect via APIs to any eCommerce platform or backend system. React Storefront extends Next.js to include everything you need for an eCommerce storefront. Try <a href="https://www.thetiebar.com/">The Tie Bar</a>, <a href="https://www.shopakira.com/">Akira</a>, and <a href="https://pwa.www.1800flowers.com/">1-800-FLOWERS.COM</a> on your phone to see how fast sites on RSF can be!
-
-<img src="https://raw.githubusercontent.com/react-storefront-community/react-storefront/master/RSF%20power.png" alt="RSF- easy to use, powerful in action"/></a>
-
 
 ## Ludicrous Speed
 
@@ -56,7 +53,7 @@ React Storefront scales from $10M to $1B+ revenue sites and is already powering 
 
 React Storefront can be easily integrated with any [any eCommerce platform via APIs](https://docs.react-storefront.io/guides/api). 
 
-<a href="https://github.com/moovweb/BigCommerce"><img src="https://divante.com/github/react-storefront/rsf-github-bc-supported.png" alt="BigCommerce is officialy supported"/></a>
+<img src="https://raw.githubusercontent.com/react-storefront-community/react-storefront/master/RSF%20power.png" alt="RSF- easy to use, powerful in action"/></a>
 
 ## Getting Started
 
@@ -71,8 +68,7 @@ Once your app has been created, you can start it in development mode by running:
 cd (my-app-name)
 npm run dev
 ```
-
-<a href="https://docs.react-storefront.io>Developer Docs</a>
+[Developer Docs](https://docs.react-storefront.io)
 
 ## Development
 
