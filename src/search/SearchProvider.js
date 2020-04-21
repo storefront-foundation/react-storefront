@@ -4,6 +4,7 @@ import SearchContext from './SearchContext'
 import _fetch from '../fetch'
 import debounce from 'lodash/debounce'
 import { fetchLatest, StaleResponseError } from '../utils/fetchLatest'
+import getAPIURL from '../api/getAPIURL'
 
 const fetch = fetchLatest(_fetch)
 
@@ -26,7 +27,7 @@ export default function SearchProvider({ children, query, initialGroups, active 
         loading: true,
       }))
 
-      const url = `/api/suggestions?q=${encodeURIComponent(text.trim())}`
+      const url = getAPIURL(`/suggestions?q=${encodeURIComponent(text.trim())}`)
       const { groups } = await fetch(url, { credentials: 'include' }).then(res => res.json())
 
       setState(state => ({

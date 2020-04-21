@@ -73,7 +73,7 @@ const useStyles = makeStyles(styles, { name: 'RSFNavTab' })
  *
  * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the `NavTab` is focused.
  */
-function NavTab({ classes, href, as, prefetch, children, ...props }) {
+function NavTab({ classes, href, as, renderLink, children, ...props }) {
   classes = useStyles({ classes })
 
   const [overTab, setOverTab] = useState(false)
@@ -146,20 +146,21 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
         onClick={hideMenu} // Does not work in dev, because next consumes focus in production everything is good
         onMouseEnter={showMenu}
         onMouseLeave={hideMenu}
-        prefetch={prefetch}
       >
-        <Tab
-          onKeyDown={handleEnterKeyDown}
-          classes={{ root: classes.tab }}
-          aria-haspopup={children != null}
-          aria-expanded={open}
-          {...props}
-          TouchRippleProps={{
-            classes: {
-              root: classes.ripple,
-            },
-          }}
-        />
+        {renderLink(
+          <Tab
+            onKeyDown={handleEnterKeyDown}
+            classes={{ root: classes.tab }}
+            aria-haspopup={children != null}
+            aria-expanded={open}
+            {...props}
+            TouchRippleProps={{
+              classes: {
+                root: classes.ripple,
+              },
+            }}
+          />,
+        )}
       </Link>
       {!children ? null : (
         <Hidden xsDown>
@@ -212,6 +213,14 @@ NavTab.propTypes = {
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+  /**
+   * A function to control the rendering of the link element. The default link element is passed as the only argument.
+   */
+  renderLink: PropTypes.func,
+}
+
+NavTab.defaultProps = {
+  renderLink: link => link,
 }
 
 export default React.memo(NavTab)

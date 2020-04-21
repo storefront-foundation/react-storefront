@@ -5,8 +5,8 @@
       "signature": "682e2a4a1a0a549c1164a00e2448adc0",
       "file": true
     },
-    "workbox-prefetch": {
-      "signature": "7d5afe4fe8ace2160f5f1aa5abb052bd",
+    "@xdn/prefetch": {
+      "signature": "d53dedaf1bae4f3f240727153f9102f3",
       "file": true
     }
   }

@@ -1,10 +1,8 @@
-import React, { useContext, useRef, useEffect } from 'react'
+import React, { useContext, useRef, forwardRef } from 'react'
 import NextLink from 'next/link'
 import LinkContext from './LinkContext'
 import PropTypes from 'prop-types'
 import { RootRef } from '@material-ui/core'
-import useIntersectionObserver from '../hooks/useIntersectionObserver'
-import { prefetch as doPrefetch } from '../serviceWorker'
 import withDefaultHandler from '../utils/withDefaultHandler'
 
 /**
@@ -24,8 +22,7 @@ import withDefaultHandler from '../utils/withDefaultHandler'
  * </Link>
  * ```
  */
-const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ...other }) => {
-  const ref = useRef(null)
+const Link = forwardRef(({ as, href, pageData, onClick, children, ...other }, ref) => {
   const linkPageData = useContext(LinkContext)
 
   const handleClick = withDefaultHandler(onClick, () => {
@@ -34,45 +31,27 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
     }
   })
 
-  useIntersectionObserver(
-    () => (as && prefetch === 'visible' ? ref : null),
-    (visible, disconnect) => {
-      if (visible) {
-        disconnect()
-        doPrefetch(prefetchURL || `/api${as}`)
-      }
-    },
-    [as, prefetch],
+  const child =
+    !children || typeof children === 'string' ? (
+      <a {...other} onClick={handleClick}>
+        {children}
+      </a>
+    ) : (
+      React.cloneElement(children, { onClick: handleClick, ...other })
+    )
+
+  const nextLink = (
+    <NextLink href={href} prefetch={false} as={as} passHref>
+      {child}
+    </NextLink>
   )
 
-  useEffect(() => {
-    if (prefetch === 'always') {
-      doPrefetch(`/api${as}`)
-    }
-  }, [as])
-
-  if (!children || typeof children === 'string') {
-    return (
-      <NextLink href={href} prefetch={false} as={as} passHref>
-        <a ref={ref} {...other} onClick={handleClick}>
-          {children}
-        </a>
-      </NextLink>
-    )
+  if (ref) {
+    return <RootRef rootRef={ref}>{nextLink}</RootRef>
   } else {
-    return (
-      // This way we can get a ref of Material-ui components
-      <RootRef rootRef={ref}>
-        <NextLink href={href} prefetch={false} as={as} passHref>
-          {React.cloneElement(children, {
-            onClick: handleClick,
-            ...other,
-          })}
-        </NextLink>
-      </RootRef>
-    )
+    return nextLink
   }
-}
+})
 
 Link.propTypes = {
   /**
@@ -84,18 +63,6 @@ Link.propTypes = {
    * The next.js route pattern
    */
   href: PropTypes.string.isRequired,
-
-  /**
-   * Set to `visible` to prefetch the JSON data for the destination page component when the link
-   * is scrolled into the viewport.  Set to `always` to prefetch the data immediately. Set to
-   * `false` to never prefetch.
-   */
-  prefetch: PropTypes.oneOf(['always', 'visible', false]),
-
-  /**
-   * The URL to prefetch.  If omitted, `/api/{href}` will be prefetched.
-   */
-  prefetchURL: PropTypes.string,
 
   /**
    * Data to be added to the `pageData` key returned by [`/hooks/useLazyState`](/apiReference/hooks/useLazyState)

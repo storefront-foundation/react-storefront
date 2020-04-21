@@ -3,6 +3,7 @@ import fetch from '../fetch'
 import { useEffect, useRef, useCallback } from 'react'
 import Router from 'next/router'
 import qs from 'qs'
+import getAPIURL from '../api/getAPIURL'
 
 /**
  * @private
@@ -53,7 +54,7 @@ function toNextURL(href) {
 }
 
 function fetchRouteManifest() {
-  return fetch('/api/routes').then(res => res.json())
+  return fetch(getAPIURL('/routes')).then(res => res.json())
 }
 
 function getRoute(href, routes) {

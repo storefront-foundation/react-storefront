@@ -3,6 +3,7 @@ import SearchResultsContext from './SearchResultsContext'
 import PropTypes from 'prop-types'
 import qs from 'qs'
 import replaceState from '../router/replaceState'
+import getAPIURL from '../api/getAPIURL'
 
 /**
  * Provides context to filter, sorting, and pagination components.
@@ -28,7 +29,7 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
     if (store.reloading) {
       async function refresh() {
         const query = getQueryForState()
-        const apiUrl = getURLForState(query)
+        const url = getURLForState(query)
 
         // Don't show page for user
         delete query.page
@@ -36,7 +37,8 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
 
         const {
           pageData: { products, total },
-        } = await fetch(`/api${apiUrl}`).then(res => res.json())
+        } = await fetch(getAPIURL(url)).then(res => res.json())
+
         updateStore(store => ({
           reloading: false,
           pageData: {

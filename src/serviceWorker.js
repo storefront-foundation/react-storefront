@@ -1,4 +1,5 @@
-import { prefetch } from 'workbox-prefetch/window'
+import { prefetch } from '@xdn/prefetch/window'
+import getAPIURL from './api/getAPIURL'
 
 /**
  * Prefetch a URL using the service worker.
@@ -11,6 +12,5 @@ export { prefetch }
  * @param {String} url The page URL.
  */
 export function prefetchJsonFor(url) {
-  const parsed = new URL(url)
-  return prefetch(`/api${parsed.pathname}${parsed.search}`)
+  return prefetch(getAPIURL(url))
 }
