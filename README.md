@@ -72,7 +72,7 @@ npm run dev
 
 ## Development
 
-If you like to contribute please feel free to **Raise an issue** with a bug or feature request report, or just open a **Pull Request** with the proposed changes. In any case [read the CONTRIBUTING.md first](./CONTRIBUTING.md)
+If you like to contribute please feel free to **Raise an issue** with a bug or feature request report, or just open a **Pull Request** with the proposed changes. 
 
 ## Local development
 
@@ -117,17 +117,6 @@ If you have any questions or ideas feel free to join our slack: [invitation link
 
 The documentation is always THE HARDEST PART of each open-source project! But we're trying hard :-)
 [Full Guides, API Documentation, and Examples](https://docs.react-storefront.io/)
-
-## The business challenges
-
-React Storefront was created to solve a set of key business challenges from the world of the shopping experience. Our goal is to provide the following solutions:
-
-- An ultrafast front-end for the store- with the PWA approach we can now render the catalog of products within milliseconds;
-- Endurance for traffic overloads on the store;
-- Off-line shopping capabilities;
-- A smooth shopping experience, similar to that of a native mobile application;
-- An all-in-one front-end for desktop and mobile devices with no necessity for maintaining 3 or more applications for different touchpoints (web browser, Android, iOS etc.).
-- Rapid development without architecture limitations.
 
 **React Storefront is and always will be open-source, released under Apache2 Licence.**
 
