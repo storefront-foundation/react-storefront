@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import PropTypes from 'prop-types'
 import CmsSlot from '../CmsSlot'
+import MenuContext from './MenuContext'
 
 export const styles = theme => ({
   root: {
@@ -12,6 +13,11 @@ const useStyles = makeStyles(styles, { name: 'RSFMenuFooter' })
 
 export default function MenuFooter({ classes, item }) {
   classes = useStyles({ classes })
+  const { renderFooter } = useContext(MenuContext)
+
+  if (typeof renderFooter === 'function') {
+    return <div className={classes.root}>{renderFooter(item)}</div>
+  }
 
   if (item.footer) {
     return (
@@ -19,9 +25,9 @@ export default function MenuFooter({ classes, item }) {
         <CmsSlot>{item.footer}</CmsSlot>
       </div>
     )
-  } else {
-    return null
   }
+
+  return null
 }
 
 MenuFooter.propTypes = {

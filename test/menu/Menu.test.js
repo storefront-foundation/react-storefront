@@ -34,6 +34,19 @@ describe('Menu', () => {
     expect(wrapper.find(MenuFooter).length).toBe(1)
   })
 
+  it('should render custom footer', () => {
+    wrapper = mount(
+      <Menu
+        root={{
+          text: 'root',
+          items: [{ text: 'item1', href: '/item1', as: '/item1', items: [] }],
+        }}
+        renderFooter={item => `${item.text} footer`}
+      />,
+    )
+    expect(wrapper.find(MenuFooter).text()).toBe('root footer')
+  })
+
   it('should render header', () => {
     wrapper = mount(
       <Menu
@@ -45,6 +58,19 @@ describe('Menu', () => {
       />,
     )
     expect(wrapper.find(MenuHeader).length).toBe(1)
+  })
+
+  it('should render custom header', () => {
+    wrapper = mount(
+      <Menu
+        root={{
+          text: 'root',
+          items: [{ text: 'item1', href: '/item1', as: '/item1', items: [] }],
+        }}
+        renderHeader={item => `${item.text} header`}
+      />,
+    )
+    expect(wrapper.find(MenuHeader).text()).toBe('root header')
   })
 
   it('should navigate to submenu', () => {
@@ -197,5 +223,43 @@ describe('Menu', () => {
       .at(0)
       .simulate('click')
     expect(wrapper.find(ChevronLeft).length).toBe(1)
+  })
+
+  it('should render custom text for back button in secondary menu', () => {
+    wrapper = mount(
+      <Menu
+        open
+        renderBack={() => 'Back'}
+        root={{
+          text: 'foo',
+          items: [
+            {
+              text: 'foo',
+              href: '/foo',
+              as: '/foo',
+              items: [
+                {
+                  text: 'bar',
+                  href: '/bar',
+                  as: '/bar',
+                  items: [
+                    {
+                      text: 'foo3',
+                      href: '/foo3',
+                      as: '/foo3',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        }}
+      />,
+    )
+    wrapper
+      .find(ListItem)
+      .at(0)
+      .simulate('click')
+    expect(wrapper.find(MenuBack).text()).toBe('Back')
   })
 })
