@@ -130,6 +130,7 @@ RSF was created by a group of eCommerce site, eCommerce agency, and eCommerce pl
 
 Partners are encouraged to support the project in various ways - mostly by contributing to the source code, marketing activities, evangelizing and of course - implementing the production projects. We do support our partners by dedicated contact channels, workshops and by sharing the leads from merchants interested in implementations.
 
+[React Storefront logo and usage guidelines](https://github.com/react-storefront-community/react-storefront/blob/master/RSF%20BRANDGUIDE%20JPG.pdf)
 ## The license
 
 React Storefront source code is completely free and released under the Apache2 License
