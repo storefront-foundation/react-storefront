@@ -6,6 +6,7 @@ import { RootRef } from '@material-ui/core'
 import useIntersectionObserver from '../hooks/useIntersectionObserver'
 import { prefetch as doPrefetch } from '../prefetch'
 import withDefaultHandler from '../utils/withDefaultHandler'
+import getAPIURL from '../api/getAPIURL'
 
 /**
  * Use this component for all Links in your React Storefront app.  You can
@@ -39,7 +40,7 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
     (visible, disconnect) => {
       if (visible) {
         disconnect()
-        doPrefetch(prefetchURL || `/api${as}`)
+        doPrefetch(prefetchURL || getAPIURL(as))
       }
     },
     [as, prefetch],
@@ -47,7 +48,7 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
 
   useEffect(() => {
     if (prefetch === 'always') {
-      doPrefetch(`/api${as}`)
+      doPrefetch(getAPIURL(as))
     }
   }, [as])
 

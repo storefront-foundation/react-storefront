@@ -1,17 +1,22 @@
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const API_VERSION = new Date().getTime()
-const withServiceWorker = require('./withServiceWorker')
 const ClearRequireCachePlugin = require('webpack-clear-require-cache-plugin')
+const { join } = require('path')
 
 module.exports = (nextConfig = {}) => {
   const usePreact = process.env.preact === 'true'
 
-  return withServiceWorker({
+  return {
     ...nextConfig,
     target: 'serverless',
     webpack(config, options) {
       config.resolve.symlinks = false
+
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        $mocks: join(config.context, 'mocks'),
+      }
 
       if (usePreact) {
         config.resolve.alias = {
@@ -65,5 +70,5 @@ module.exports = (nextConfig = {}) => {
       }
       return config
     },
-  })
+  }
 }

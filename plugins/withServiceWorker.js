@@ -1,5 +1,4 @@
 const withOffline = require('next-offline')
-const path = require('path')
 
 module.exports = function withServiceWorker(config) {
   const generateInDevMode = process.env.serviceWorker === 'true'
@@ -9,9 +8,8 @@ module.exports = function withServiceWorker(config) {
   return withOffline({
     ...config,
     generateInDevMode,
-    generateSw: false,
+    generateSw: true,
     workboxOpts: {
-      swSrc: path.join(__dirname, '..', 'service-worker', 'service-worker.js'),
       swDest: 'static/service-worker.js',
       // The asset names for page chunks contain square brackets, eg [productId].js
       // Next internally injects these chunks encoded, eg %5BproductId%5D.js

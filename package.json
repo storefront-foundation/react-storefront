@@ -16,8 +16,7 @@
     "push-build": {
       "patterns": [
         "src",
-        "plugins",
-        "service-worker"
+        "plugins"
       ],
       "ignore": "*/index.js",
       "extensions": "js",
@@ -33,7 +32,7 @@
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
     "build": "npm run build:prep && npm run build:assets && NODE_ENV=production npm run build:sources",
     "build:prep": "npm run clean && npm run create-indexes && cp package.json dist",
-    "build:assets": "sync-folders --type copy plugins service-worker dist",
+    "build:assets": "sync-folders --type copy plugins dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
     "docs": "mkdir -p docs/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node docs/buildDocs d.js",
     "storybook": "start-storybook -c ./.storybook",

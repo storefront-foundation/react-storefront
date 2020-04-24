@@ -4,5 +4,5 @@
  * @return {String}
  */
 export default function getAPIURL(pageURI) {
-  return `/api/${process.env.RSF_APP_VERSION}${pageURI.replace(/\/$/, '')}`
+  return `/api/${process.env.RSF_API_VERSION}${pageURI.replace(/\/$/, '')}`
 }
