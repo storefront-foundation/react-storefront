@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import doLazyLoadImages from './utils/lazyLoadImages'
-import { prefetchJsonFor } from './serviceWorker'
 
 export const styles = theme => ({
   inline: {
@@ -37,14 +36,7 @@ const useStyles = makeStyles(styles, { name: 'RSFCmsSlot' })
  * Pass the html as a string as the child of this component. Additional props are spread to the
  * rendered span element.
  */
-export default function CmsSlot({
-  children,
-  className,
-  inline,
-  lazyLoadImages,
-  prefetchLinks,
-  ...others
-}) {
+export default function CmsSlot({ children, className, inline, lazyLoadImages, ...others }) {
   const classes = useStyles(others)
   const el = useRef()
 
@@ -54,14 +46,6 @@ export default function CmsSlot({
 
       if (lazyLoadImages) {
         doLazyLoadImages(el.current)
-      }
-
-      if (prefetchLinks) {
-        const links = Array.from(el.current.querySelectorAll('a[data-rsf-prefetch="always"]'))
-
-        for (let link of links) {
-          prefetchJsonFor(link.getAttribute('href'))
-        }
       }
     } catch (e) {
       console.warn('error running side effects on CmsSlot', e)
@@ -90,11 +74,6 @@ CmsSlot.proptypes = {
    * If `true` to lazy load images that have been preprocessed with `$.lazyLoadImages()`.
    */
   lazyLoadImages: PropTypes.boolean,
-
-  /**
-   * If `true`, prefetch links that have a `data-rsf-prefetch` attribute with a value of `always`.
-   */
-  prefetchLinks: false,
 }
 
 CmsSlot.defaultProps = {

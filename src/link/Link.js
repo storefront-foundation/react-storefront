@@ -41,7 +41,7 @@ const Link = forwardRef(({ as, href, pageData, onClick, children, ...other }, re
     )
 
   const nextLink = (
-    <NextLink href={href} prefetch={false} as={as} passHref>
+    <NextLink href={href} as={as} passHref>
       {child}
     </NextLink>
   )

@@ -12,3 +12,5 @@ global.jsdom.reconfigure({
 })
 
 global.sleep = sleep
+
+process.env.RSF_APP_VERSION = 'v1'

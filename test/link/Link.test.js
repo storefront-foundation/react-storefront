@@ -3,11 +3,9 @@ import { mount } from 'enzyme'
 import LinkContext from 'react-storefront/link/LinkContext'
 
 describe('Link', () => {
-  let wrapper, prefetch, Link
+  let wrapper, Link
 
   beforeEach(() => {
-    prefetch = jest.fn()
-
     jest.isolateModules(() => {
       jest.doMock('react-storefront/serviceWorker', () => ({ prefetch }))
       Link = require('react-storefront/link/Link').default
@@ -56,65 +54,5 @@ describe('Link', () => {
     wrapper = mount(<Test />)
     wrapper.find(Link).simulate('click')
     expect(onClick).toHaveBeenCalled()
-  })
-
-  describe('prefetch', () => {
-    it('should support prefetch=visible', () => {
-      const Test = () => {
-        return (
-          <Link as="/p/1" href="/p/[productId]" prefetch="visible">
-            Product 1
-          </Link>
-        )
-      }
-
-      wrapper = mount(<Test />)
-      const { instance } = IntersectionObserver
-      instance.simulateChange(0.5)
-      expect(prefetch).toHaveBeenCalledWith('/api/p/1')
-      expect(IntersectionObserver.instance.disconnected).toBe(true)
-    })
-
-    it('should not prefetch prefetch=visible and the Link is off screen', () => {
-      const Test = () => {
-        return (
-          <Link as="/p/1" href="/p/[productId]" prefetch="visible">
-            Product 1
-          </Link>
-        )
-      }
-
-      wrapper = mount(<Test />)
-      const { instance } = IntersectionObserver
-      instance.simulateChange(0)
-      expect(prefetch).not.toHaveBeenCalled()
-      expect(IntersectionObserver.instance.disconnected).toBe(false)
-    })
-
-    it('should support prefetch=always', () => {
-      const Test = () => {
-        return (
-          <Link as="/p/1" href="/p/[productId]" prefetch="always">
-            Product 1
-          </Link>
-        )
-      }
-
-      wrapper = mount(<Test />)
-      expect(prefetch).toHaveBeenCalledWith('/api/p/1')
-    })
-
-    it('should prefetch=false', () => {
-      const Test = () => {
-        return (
-          <Link as="/p/1" href="/p/[productId]">
-            Product 1
-          </Link>
-        )
-      }
-
-      wrapper = mount(<Test />)
-      expect(prefetch).not.toHaveBeenCalled()
-    })
   })
 })
