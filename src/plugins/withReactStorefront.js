@@ -3,9 +3,14 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const API_VERSION = new Date().getTime()
 const ClearRequireCachePlugin = require('webpack-clear-require-cache-plugin')
 const { join } = require('path')
+const withServiceWorker = require('./withServiceWorker')
 
-module.exports = (nextConfig = {}) => {
+module.exports = ({ serviceWorker = true, ...nextConfig } = {}) => {
   const usePreact = process.env.preact === 'true'
+
+  if (serviceWorker) {
+    nextConfig = withServiceWorker(nextConfig)
+  }
 
   return {
     ...nextConfig,

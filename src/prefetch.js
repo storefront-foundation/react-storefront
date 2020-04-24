@@ -1,7 +1,7 @@
 import getAPIURL from './api/getAPIURL'
 import { waitForServiceWorker } from './serviceWorker'
 
-const PREFETCH_QUERY_PARAM = '__prefetch__'
+const PREFETCH_QUERY_PARAM = process.env.PREFETCH_QUERY_PARAM
 const prefetched = new Set()
 
 /**
@@ -37,13 +37,17 @@ export function prefetchJsonFor(url) {
 }
 
 /**
- * Adds __prefetch__=1 to the URL so that back ends can identify prefetch requests and
+ * Adds process.env.PREFETCH_QUERY_PARAM to the URL so that back ends can identify prefetch requests and
  * potentially ignore them during periods of high traffic.
  * @param {String} url
  * @return {String} A new URL
  */
 function addPrefetchParam(url) {
-  const parsed = new URL(url, location.href)
-  parsed.searchParams.append(PREFETCH_QUERY_PARAM, '1')
-  return parsed.toString()
+  if (PREFETCH_QUERY_PARAM) {
+    const parsed = new URL(url, location.href)
+    parsed.searchParams.append(PREFETCH_QUERY_PARAM, '1')
+    return parsed.toString()
+  } else {
+    return url
+  }
 }
