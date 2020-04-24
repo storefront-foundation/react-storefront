@@ -24,7 +24,7 @@ import getAPIURL from '../api/getAPIURL'
  * @param {Object} opts The options object provided to `getInitialProps`
  * @return {Promise} A promise that resolves to the data that the page should display
  */
-export default function fetchFromAPI({ req, asPath }) {
+export default function fetchFromAPI({ req, asPath, pathname, ...others }) {
   const host = req ? process.env.API_HOST || req.headers['host'] : ''
   const [path, search] = asPath.split('?')
 
@@ -56,7 +56,7 @@ export default function fetchFromAPI({ req, asPath }) {
 
     headers = {
       host: req.headers['host'],
-      'x-next-page': uri,
+      'x-next-page': `/api/[version]${pathname.replace(/\/$/, '')}`,
     }
   }
 
