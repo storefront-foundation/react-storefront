@@ -9,7 +9,7 @@ describe('Link', () => {
     prefetch = jest.fn()
 
     jest.isolateModules(() => {
-      jest.doMock('react-storefront/serviceWorker', () => ({ prefetch }))
+      jest.doMock('react-storefront/prefetch', () => ({ prefetch }))
       Link = require('react-storefront/link/Link').default
     })
   })
