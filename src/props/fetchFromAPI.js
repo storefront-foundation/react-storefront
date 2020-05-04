@@ -26,7 +26,6 @@ import getAPIURL from '../api/getAPIURL'
  */
 export default function fetchFromAPI({ req, asPath, pathname }) {
   const host = req ? process.env.API_HOST || req.headers['host'] : ''
-  const [path, search] = asPath.split('?')
 
   let protocol = ''
 
@@ -38,12 +37,7 @@ export default function fetchFromAPI({ req, asPath, pathname }) {
     }
   }
 
-  let uri = getAPIURL(path)
-
-  if (search) {
-    uri += `?${search}`
-  }
-
+  let uri = getAPIURL(asPath)
   let headers = {}
 
   if (req) {

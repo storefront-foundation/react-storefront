@@ -1,7 +1,9 @@
 import getAPIURL from './api/getAPIURL'
 import { waitForServiceWorker } from './serviceWorker'
 
-const PREFETCH_QUERY_PARAM = process.env.PREFETCH_QUERY_PARAM
+const prefetchQueryParam =
+  typeof RSF_PREFETCH_QUERY_PARAM !== 'undefined' ? RSF_PREFETCH_QUERY_PARAM : undefined
+
 const prefetched = new Set()
 
 /**
@@ -18,7 +20,13 @@ export async function prefetch(url) {
   await waitForServiceWorker()
   const link = document.createElement('link')
   const { relList } = link
-  link.setAttribute('href', addPrefetchParam(url))
+  const parsed = new URL(url, location.href)
+
+  if (parsed.hostname === location.hostname) {
+    // only add __prefetch__ for requests going back to the XDN.
+    link.setAttribute('href', addPrefetchParam(url))
+  }
+
   link.setAttribute(
     'rel',
     relList.supports('preload') && /* istanbul ignore next */ !relList.supports('prefetch')
@@ -43,9 +51,9 @@ export function prefetchJsonFor(url) {
  * @return {String} A new URL
  */
 function addPrefetchParam(url) {
-  if (PREFETCH_QUERY_PARAM) {
+  if (prefetchQueryParam) {
     const parsed = new URL(url, location.href)
-    parsed.searchParams.append(PREFETCH_QUERY_PARAM, '1')
+    parsed.searchParams.append(prefetchQueryParam, '1')
     return parsed.toString()
   } else {
     return url

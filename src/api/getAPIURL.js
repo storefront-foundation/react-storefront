@@ -4,5 +4,11 @@
  * @return {String}
  */
 export default function getAPIURL(pageURI) {
-  return `/api/${process.env.RSF_API_VERSION}${pageURI.replace(/\/$/, '')}`
+  pageURI = `/api${pageURI.replace(/\/$/, '')}`
+
+  if (typeof __NEXT_DATA__ !== 'undefined') {
+    pageURI += (pageURI.indexOf('?') === -1 ? '?' : '&') + `__v__=${__NEXT_DATA__.buildId}`
+  }
+
+  return pageURI
 }

@@ -2,10 +2,12 @@ const withOffline = require('next-offline')
 const { join } = require('path')
 
 module.exports = function withServiceWorker(config) {
-  const generateInDevMode = process.env.serviceWorker === 'true'
+  const generateInDevMode = process.env.SERVICE_WORKER === 'true'
+
   if (generateInDevMode) {
     console.log('> Using service worker in development mode')
   }
+
   return withOffline({
     ...config,
     generateInDevMode,
