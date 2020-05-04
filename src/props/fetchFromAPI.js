@@ -4,7 +4,7 @@ import getAPIURL from '../api/getAPIURL'
 /**
  * A convenience function to be used in `getInitialProps` to fetch data for the page from an
  * API endpoint at the same path as the page being requested.  So for example, when rendering
- * `/p/1`, this function will fetch data from `/api/{env.RSF_APP_VERSION}/p/1`.
+ * `/p/1`, this function will fetch data from `/api/p/1?__v__={__NEXT_DATA__.buildId}`.
  *
  * ```js
  * import fetchFromAPI from 'react-storefront/props/fetchFromAPI'
@@ -50,7 +50,7 @@ export default function fetchFromAPI({ req, asPath, pathname }) {
 
     headers = {
       host: req.headers['host'],
-      'x-next-page': `/api/[version]${pathname.replace(/\/$/, '')}`,
+      'x-next-page': `/api${pathname.replace(/\/$/, '')}`,
     }
   }
 

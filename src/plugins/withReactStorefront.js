@@ -18,11 +18,6 @@ module.exports = ({ serviceWorker = true, ...nextConfig } = {}) => {
     webpack(config, options) {
       config.resolve.symlinks = false
 
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        $mocks: join(config.context, 'mocks'),
-      }
-
       if (usePreact) {
         config.resolve.alias = {
           ...config.resolve.alias,
