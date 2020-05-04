@@ -4,11 +4,11 @@
  * @return {String}
  */
 export default function getAPIURL(pageURI) {
-  pageURI = `/api${pageURI.replace(/\/$/, '')}`
+  const parsed = new URL(pageURI, 'http://throwaway.com')
 
   if (typeof __NEXT_DATA__ !== 'undefined') {
-    pageURI += (pageURI.indexOf('?') === -1 ? '?' : '&') + `__v__=${__NEXT_DATA__.buildId}`
+    parsed.searchParams.append('__v__', __NEXT_DATA__.buildId)
   }
 
-  return pageURI
+  return '/api' + parsed.pathname.replace(/\/$/, '') + parsed.search
 }

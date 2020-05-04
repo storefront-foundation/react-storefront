@@ -14,21 +14,21 @@ describe('fetchFromAPI', () => {
       fetchFromAPI({
         asPath: '/p/1',
       })
-      expect(fetchMock).toHaveBeenCalledWith('/api/v1/p/1', { headers })
+      expect(fetchMock).toHaveBeenCalledWith('/api/p/1', { headers })
     })
 
     it('should call /api when the path is /', () => {
       fetchFromAPI({
         asPath: '/',
       })
-      expect(fetchMock).toHaveBeenCalledWith('/api/v1', { headers })
+      expect(fetchMock).toHaveBeenCalledWith('/api', { headers })
     })
 
     it('should append query params directly to api if the root with query params is called', () => {
       fetchFromAPI({
         asPath: '/?test=1',
       })
-      expect(fetchMock).toHaveBeenCalledWith('/api/v1?test=1', { headers })
+      expect(fetchMock).toHaveBeenCalledWith('/api?test=1', { headers })
     })
   })
 
@@ -49,15 +49,12 @@ describe('fetchFromAPI', () => {
           },
         },
       })
-      expect(fetchMock).toHaveBeenCalledWith(
-        'https://www.domain.com/api/v1/p/1?_includeAppData=1',
-        {
-          headers: {
-            ...headers,
-            'x-next-page': '/api/[version]/p/[productId]',
-          },
+      expect(fetchMock).toHaveBeenCalledWith('https://www.domain.com/api/p/1?_includeAppData=1', {
+        headers: {
+          ...headers,
+          'x-next-page': '/api/p/[productId]',
         },
-      )
+      })
     })
 
     it('should use API_HOST when provided', () => {
@@ -73,10 +70,10 @@ describe('fetchFromAPI', () => {
         },
       })
 
-      expect(fetchMock).toHaveBeenCalledWith('http://localhost:3001/api/v1/p/1?_includeAppData=1', {
+      expect(fetchMock).toHaveBeenCalledWith('http://localhost:3001/api/p/1?_includeAppData=1', {
         headers: {
           ...headers,
-          'x-next-page': '/api/[version]/p/[productId]',
+          'x-next-page': '/api/p/[productId]',
         },
       })
 
@@ -94,11 +91,11 @@ describe('fetchFromAPI', () => {
           },
         },
       })
-      expect(fetchMock).toHaveBeenCalledWith('http://localhost/api/v1/p/1?_includeAppData=1', {
+      expect(fetchMock).toHaveBeenCalledWith('http://localhost/api/p/1?_includeAppData=1', {
         headers: {
           ...headers,
           host: 'localhost',
-          'x-next-page': '/api/[version]/p/[productId]',
+          'x-next-page': '/api/p/[productId]',
         },
       })
     })
@@ -112,11 +109,11 @@ describe('fetchFromAPI', () => {
         },
       })
       expect(fetchMock).toHaveBeenCalledWith(
-        'https://www.domain.com/api/v1/foo?x=1&_includeAppData=1',
+        'https://www.domain.com/api/foo?x=1&_includeAppData=1',
         {
           headers: {
             ...headers,
-            'x-next-page': '/api/[version]/foo',
+            'x-next-page': '/api/foo',
           },
         },
       )

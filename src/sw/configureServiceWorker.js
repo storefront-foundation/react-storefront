@@ -45,7 +45,7 @@ export default function configureServiceWorker(config) {
  * Creates worbox routes for api routes
  * @param {Object[]} api
  */
-function cacheAPIRequests(api = []) {
+function cacheAPIRequests(api) {
   for (let { path, maxAgeSeconds, statuses = [200] } of api) {
     const url = new RegExp(`${self.origin}${nextRouteToRegex(path)}`, 'i')
 
@@ -78,6 +78,7 @@ function nextRouteToRegex(route) {
  * @param  {...any} message
  */
 function log(...message) {
+  // istanbul ignore else
   if (process.env.NODE_ENV !== 'production') {
     console.log(
       '%creact-storefront service-worker',
