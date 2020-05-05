@@ -2,7 +2,7 @@ import { prefetch, prefetchJsonFor, resetPrefetches } from '../src/prefetch'
 
 describe('prefetch', () => {
   beforeEach(() => {
-    window.RSF_PREFETCH_QUERY_PARAM = '__prefetch__'
+    process.env.RSF_PREFETCH_QUERY_PARAM = '__prefetch__'
     document.head.innerHTML = ''
     resetPrefetches()
   })
@@ -21,7 +21,7 @@ describe('prefetch', () => {
     })
 
     it('should not not require window.RSF_PREFETCH_QUERY_PARAM to be defined', async () => {
-      delete window.RSF_PREFETCH_QUERY_PARAM
+      delete process.env.RSF_PREFETCH_QUERY_PARAM
       await prefetch('/foo')
       expect(document.head.querySelectorAll('link[href="/foo"]')).toHaveLength(1)
     })

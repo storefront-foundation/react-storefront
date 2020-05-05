@@ -44,7 +44,7 @@ export function prefetchJsonFor(url) {
  * @return {String} A new URL
  */
 function addPrefetchParam(url) {
-  const prefetchQueryParam = window.RSF_PREFETCH_QUERY_PARAM
+  const prefetchQueryParam = process.env.RSF_PREFETCH_QUERY_PARAM
 
   if (prefetchQueryParam) {
     const parsed = new URL(url, location.href)

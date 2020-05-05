@@ -29,7 +29,7 @@ module.exports = ({ prefetchQueryParam, ...nextConfig } = {}) => {
 
       config.plugins.push(
         new webpack.DefinePlugin({
-          'process.env.PREFETCH_QUERY_PARAM'
+          'process.env.RSF_PREFETCH_QUERY_PARAM': JSON.stringify(prefetchQueryParam),
         }),
       )
 
