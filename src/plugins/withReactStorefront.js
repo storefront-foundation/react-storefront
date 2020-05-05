@@ -1,18 +1,16 @@
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const API_VERSION = new Date().getTime()
 const ClearRequireCachePlugin = require('webpack-clear-require-cache-plugin')
-const { join } = require('path')
 const withServiceWorker = require('./withServiceWorker')
 
-module.exports = ({ serviceWorker = true, ...nextConfig } = {}) => {
+/**
+ * @param options
+ * @param options.prefetchQueryParam If specified, this parameter will be added to the query string of all prefetch requests.
+ */
+module.exports = ({ prefetchQueryParam, ...nextConfig } = {}) => {
   const usePreact = process.env.preact === 'true'
 
-  if (serviceWorker) {
-    nextConfig = withServiceWorker(nextConfig)
-  }
-
-  return {
+  return withServiceWorker({
     ...nextConfig,
     target: 'serverless',
     webpack(config, options) {
@@ -31,7 +29,7 @@ module.exports = ({ serviceWorker = true, ...nextConfig } = {}) => {
 
       config.plugins.push(
         new webpack.DefinePlugin({
-          'process.env.RSF_API_VERSION': JSON.stringify(API_VERSION),
+          'process.env.PREFETCH_QUERY_PARAM'
         }),
       )
 
@@ -70,5 +68,5 @@ module.exports = ({ serviceWorker = true, ...nextConfig } = {}) => {
       }
       return config
     },
-  }
+  })
 }
