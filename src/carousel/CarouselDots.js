@@ -43,7 +43,7 @@ const styles = theme => ({
 const useStyles = makeStyles(styles, { name: 'RSFCarouselDots' })
 
 /**
- * An overlay shown at the bottom of a [`Carousel`](/apiReference/carousel%f2Carousel) that shows a
+ * An overlay shown at the bottom of a [`Carousel`](/apiReference/carousel/Carousel) that shows a
  * sequence of dots representing the slides in the Carousel.
  */
 function CarouselDots({ selected, count, classes }) {

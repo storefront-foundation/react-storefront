@@ -58,8 +58,8 @@ function useSelected(props) {
 /**
  * A grouped display of elements that shows one element at a time, and changes to peer elements by
  * swiping to the left or right, or by clicking arrows on the sides of the component. Generally used
- * as a non-Amp option for the [`CarouselComponent`](/apiReference/carousel%f2MediaCarousel#prop-CarouselComponent)
- * prop within a [`MediaCarousel`](/apiReference/carousel%f2MediaCarousel).
+ * as a non-Amp option for the [`CarouselComponent`](/apiReference/carousel/MediaCarousel#prop-CarouselComponent)
+ * prop within a [`MediaCarousel`](/apiReference/carousel/MediaCarousel).
  */
 const Carousel = React.forwardRef((props, ref) => {
   let {
