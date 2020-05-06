@@ -25,6 +25,12 @@ describe('Media', () => {
     expect(wrapper.find('video')).toExist()
   })
 
+  it('should render sources inside video if defined', () => {
+    wrapper = mount(<Media type="video" sources={[{ src: 'test1' }]} />)
+
+    expect(wrapper.find('source')).toExist()
+  })
+
   it('should render ReactImageMagnify if magnify prop is passed', () => {
     wrapper = mount(
       <Media magnify={{ src: 'test', width: 1000, height: 1000 }} src="test" alt="test" />,
