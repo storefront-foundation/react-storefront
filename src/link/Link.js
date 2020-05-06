@@ -4,7 +4,7 @@ import LinkContext from './LinkContext'
 import PropTypes from 'prop-types'
 import { RootRef } from '@material-ui/core'
 import useIntersectionObserver from '../hooks/useIntersectionObserver'
-import { prefetch as doPrefetch } from '../prefetch'
+import { prefetch as doPrefetch } from '../serviceWorker'
 import withDefaultHandler from '../utils/withDefaultHandler'
 import getAPIURL from '../api/getAPIURL'
 
