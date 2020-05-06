@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 export default function Media({
   magnifyProps,
   imageProps,
+  videoProps,
   src,
   alt,
   magnify,
@@ -55,7 +56,7 @@ export default function Media({
   }
 
   if (type === 'video') {
-    return <video src={src} alt={alt} poster={poster} />
+    return <video src={src} alt={alt} poster={poster} {...videoProps} />
   } else if (magnify) {
     return (
       <ReactImageMagnify
@@ -85,6 +86,11 @@ Media.propTypes = {
    * element for an `'image'` type when [`magnify`](#prop-magnify) is defined.
    */
   magnifyProps: PropTypes.object,
+
+  /**
+   * Other props to pass to the video component.
+   */
+  videoProps: PropTypes.object,
 
   /**
    * Other props to pass to the [`Image`](/apiReference/Image) for an `'image'` type.

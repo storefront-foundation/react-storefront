@@ -131,6 +131,7 @@ function MediaCarousel(props) {
     thumbsClassName,
     thumbnailPosition,
     magnifyHintClassName,
+    videoProps,
     imageProps,
     lightboxProps,
     lightboxClassName,
@@ -149,6 +150,7 @@ function MediaCarousel(props) {
   const ref = useRef(null)
   const [over, setOver] = useState(false)
   const [selected, setSelected] = useState(0)
+  const [video, setVideo] = useState(false)
   const [lightboxActive, setLightboxActive] = useState()
   const theme = useTheme()
   const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
@@ -159,6 +161,14 @@ function MediaCarousel(props) {
     // Reset selection index when media changes
     setSelected(0)
   }, [media])
+
+  useEffect(() => {
+    if (media && media.full && media.full[selected].type === 'video') {
+      setVideo(true)
+    } else {
+      setVideo(false)
+    }
+  }, [selected])
 
   const timeout = useRef(null)
 
@@ -182,7 +192,7 @@ function MediaCarousel(props) {
   }, [])
 
   const onClickCarousel = useCallback(evt => {
-    if (!evt.defaultPrevented) {
+    if (!evt.defaultPrevented && !video) {
       setLightboxActive(true)
     }
   })
@@ -215,7 +225,7 @@ function MediaCarousel(props) {
         showHint = false
       }
     }
-    if (showHint) {
+    if (showHint && !video) {
       belowAdornments.push(
         <MagnifyHint
           key="magnify-hint"
@@ -280,8 +290,9 @@ function MediaCarousel(props) {
                         contain: true,
                         src: get(item, 'magnify.src', item.src),
                       }
-                    : item.imageProps
+                    : imageProps
                 }
+                videoProps={videoProps}
               />
             </Fill>
           ))}
@@ -357,6 +368,10 @@ MediaCarousel.propTypes = {
    */
   magnifyHintClassName: PropTypes.string,
   /**
+   * Props passed through to each [`Media`](/apiReference/carousel/Media)'s video component.
+   */
+  videoProps: PropTypes.object,
+  /**
    * Props passed through to each [`Media`](/apiReference/carousel/Media)'s
    * [`imageProps`](/apiReference/carousel/Media#prop-imageProps).
    */
@@ -402,6 +417,10 @@ MediaCarousel.defaultProps = {
   MediaComponent: Media,
   CarouselComponent: Carousel,
   CarouselThumbnailsComponent: CarouselThumbnails,
+  videoProps: {
+    controls: true,
+    autoPlay: false,
+  },
 }
 
 export default React.memo(MediaCarousel)
