@@ -59,14 +59,14 @@ export default function Media({
   if (type === 'video') {
     if (sources && sources.length) {
       return (
-        <video alt={alt} poster={poster} {...videoProps}>
+        <video alt={alt} {...videoProps}>
           {sources.map(source => (
             <source key={source.src} src={source.src} type={source.type} />
           ))}
         </video>
       )
     } else {
-      return <video src={src} alt={alt} poster={poster} {...videoProps} />
+      return <video src={src} alt={alt} {...videoProps} />
     }
   } else if (magnify) {
     return (
@@ -122,11 +122,6 @@ Media.propTypes = {
    * Used as the source inside the video `<video>`.
    */
   sources: PropTypes.array,
-
-  /**
-   * Used as the `poster` attribute for a `<video>`.
-   */
-  poster: PropTypes.string,
 
   /**
    * An object to pass to pass to `ReactImageMagnify` containing the data for the magnified image.
