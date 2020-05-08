@@ -23,9 +23,11 @@ const useStyles = makeStyles(theme => ({
 export default function Media({
   magnifyProps,
   imageProps,
+  videoProps,
   src,
   alt,
   magnify,
+  sources,
   poster,
   type = 'image',
 }) {
@@ -55,7 +57,17 @@ export default function Media({
   }
 
   if (type === 'video') {
-    return <video src={src} alt={alt} poster={poster} />
+    if (sources && sources.length) {
+      return (
+        <video alt={alt} {...videoProps}>
+          {sources.map(source => (
+            <source key={source.src} src={source.src} type={source.type} />
+          ))}
+        </video>
+      )
+    } else {
+      return <video src={src} alt={alt} {...videoProps} />
+    }
   } else if (magnify) {
     return (
       <ReactImageMagnify
@@ -87,6 +99,11 @@ Media.propTypes = {
   magnifyProps: PropTypes.object,
 
   /**
+   * Other props to pass to the video component.
+   */
+  videoProps: PropTypes.object,
+
+  /**
    * Other props to pass to the [`Image`](/apiReference/Image) for an `'image'` type.
    */
   imageProps: PropTypes.object,
@@ -102,9 +119,9 @@ Media.propTypes = {
   src: PropTypes.string,
 
   /**
-   * Used as the `poster` attribute for a `<video>`.
+   * Used as the source inside the video `<video>`.
    */
-  poster: PropTypes.string,
+  sources: PropTypes.array,
 
   /**
    * An object to pass to pass to `ReactImageMagnify` containing the data for the magnified image.

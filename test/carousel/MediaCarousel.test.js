@@ -14,12 +14,29 @@ jest.useFakeTimers()
 
 describe('MediaCarousel', () => {
   let wrapper
+  let media
 
   const mockMediaQuery = jest.spyOn(useMediaQuery, 'default')
 
   beforeEach(() => {
     window.innerWidth = 1024
     window.dispatchEvent(new Event('resize'))
+
+    media = {
+      full: [1, 2, 3].map(key => ({
+        src: `test${key}`,
+        alt: `test${key}`,
+        magnify: {
+          height: 1200,
+          width: 1200,
+          src: `test${key}`,
+        },
+      })),
+      thumbnails: [1, 2, 3].map(key => ({
+        src: `testThumb${key}`,
+        alt: `testThumb${key}`,
+      })),
+    }
   })
 
   afterEach(() => {
@@ -33,22 +50,6 @@ describe('MediaCarousel', () => {
   afterAll(() => {
     jest.restoreAllMocks()
   })
-
-  const media = {
-    full: [1, 2, 3].map(key => ({
-      src: `test${key}`,
-      alt: `test${key}`,
-      magnify: {
-        height: 1200,
-        width: 1200,
-        src: `test${key}`,
-      },
-    })),
-    thumbnails: [1, 2, 3].map(key => ({
-      src: `testThumb${key}`,
-      alt: `testThumb${key}`,
-    })),
-  }
 
   it('should have MagnifyHint and thumbnails when media has those', () => {
     wrapper = mount(<MediaCarousel media={media} />)
@@ -83,6 +84,24 @@ describe('MediaCarousel', () => {
     expect(wrapper.find(Lightbox).prop('open')).toBe(false)
     wrapper.find(Carousel).simulate('click')
     expect(wrapper.find(Lightbox).prop('open')).toBe(true)
+  })
+
+  it('should not open lightbox on MediaCarousel click if active media is video', () => {
+    media.full[0].type = 'video'
+
+    wrapper = mount(<MediaCarousel media={media} />)
+
+    expect(wrapper.find(Lightbox).prop('open')).toBe(false)
+    wrapper.find(Carousel).simulate('click')
+    expect(wrapper.find(Lightbox).prop('open')).toBe(false)
+  })
+
+  it('should not show MagnifyHint if active media is video', () => {
+    media.full[0].type = 'video'
+
+    wrapper = mount(<MediaCarousel media={media} />)
+
+    expect(wrapper.find(MagnifyHint)).not.toExist()
   })
 
   it('should not open lightbox on MediaCarousel click if event is default prevented', () => {
