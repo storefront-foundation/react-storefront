@@ -43,7 +43,7 @@ export const styles = theme => ({
 const useStyles = makeStyles(styles, { name: 'RSFCarouselArrows' })
 
 /**
- * Arrows that are overlaid onto a [`Carousel`](/apiReference/carousel%f2Carousel) that will change
+ * Arrows that are overlaid onto a [`Carousel`](/apiReference/carousel/Carousel) that will change
  * the slide shown when clicked.
  */
 export default function CarouselArrows({ className, classes, selected, count, setSelected }) {

@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 
 /**
  * An element that determines the proper tag to use for a media node within a
- * [`Carousel`](/apiReference/carousel%f2Carousel).
+ * [`Carousel`](/apiReference/carousel/Carousel).
  */
 export default function Media({
   magnifyProps,

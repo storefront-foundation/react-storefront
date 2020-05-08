@@ -116,7 +116,7 @@ export const styles = theme => ({
 const useStyles = makeStyles(styles, { name: 'RSFCarouselThumbnails' })
 
 /**
- * A set of thumbnails to show below a [`Carousel`](/apiReference/carousel%f2Carousel). Thumbnails can
+ * A set of thumbnails to show below a [`Carousel`](/apiReference/carousel/Carousel). Thumbnails can
  * be clicked to switch to the given slide. Internally, `CarouselThumbnails` uses MaterialUI's
  * [`Tabs`](https://material-ui.com/api/tabs) component to indicate which slide is selected
  */
