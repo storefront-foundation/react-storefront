@@ -1,11 +1,15 @@
-import { prefetch, prefetchJsonFor, waitForServiceWorker } from '../src/serviceWorker'
+import {
+  prefetch,
+  prefetchJsonFor,
+  waitForServiceWorker,
+  resetPrefetches,
+} from '../src/serviceWorker'
 
 describe('serviceWorker', () => {
   let postMessage, addEventListener
 
   beforeEach(() => {
     postMessage = jest.fn()
-    process.env.RSF_API_VERSION = '10'
     addEventListener = jest.fn((event, cb) => {
       setImmediate(cb)
     })
@@ -18,51 +22,14 @@ describe('serviceWorker', () => {
     }
   })
 
-  describe('prefetch', () => {
-    it('should post a message with action: cache-path', async () => {
-      await prefetch('/api/p/1')
-
-      expect(postMessage).toHaveBeenCalledWith({
-        action: 'cache-path',
-        path: '/api/p/1',
-        apiVersion: '10',
-      })
-    })
-    it('should send apiVersion = 1 when RSF_API_VERSION is undefined', async () => {
-      delete process.env.RSF_API_VERSION
-      await prefetch('/api/p/1')
-
-      expect(postMessage).toHaveBeenCalledWith({
-        action: 'cache-path',
-        path: '/api/p/1',
-        apiVersion: '1',
-      })
-    })
-    it('should not send a message if navigator.serviceWorker is not defined', async () => {
-      delete navigator.serviceWorker
-      await prefetch('/api/p/1')
-      expect(postMessage).not.toHaveBeenCalled()
-    })
-  })
-
-  describe('prefetchJsonFor', () => {
-    it('should derive the api URL from the page URL', async () => {
-      await prefetchJsonFor('http://localhost/p/1')
-
-      expect(postMessage).toHaveBeenCalledWith({
-        action: 'cache-path',
-        path: '/api/p/1',
-        apiVersion: '10',
-      })
-    })
-  })
-
   describe('waitForServiceWorker', () => {
+    it('should return true if navigator.serviceWorker.controller is defined', async () => {
+      expect(await waitForServiceWorker()).toBe(true)
+    })
+
     it('should wait for controllerchange if controller is not defined', async () => {
       delete navigator.serviceWorker.controller
-
       await waitForServiceWorker()
-
       expect(addEventListener).toHaveBeenCalledWith('controllerchange', expect.any(Function))
     })
 
@@ -74,6 +41,52 @@ describe('serviceWorker', () => {
     it('should return false if navigator.serviceWorker.ready is undefined', async () => {
       delete navigator.serviceWorker.ready
       expect(await waitForServiceWorker()).toBe(false)
+    })
+  })
+})
+
+describe('prefetch', () => {
+  beforeEach(() => {
+    process.env.RSF_PREFETCH_QUERY_PARAM = '__prefetch__'
+    document.head.innerHTML = ''
+    resetPrefetches()
+  })
+
+  afterEach(() => {
+    delete window.RSF_PREFETCH_QUERY_PARAM
+  })
+
+  describe('prefetch', () => {
+    it('should append a single link tag per url', async () => {
+      await prefetch('/foo')
+      await prefetch('/foo')
+      expect(
+        document.head.querySelectorAll('link[href="http://localhost/foo?__prefetch__=1"]'),
+      ).toHaveLength(1)
+    })
+
+    it('should not require window.RSF_PREFETCH_QUERY_PARAM to be defined', async () => {
+      delete process.env.RSF_PREFETCH_QUERY_PARAM
+      await prefetch('/foo')
+      expect(document.head.querySelectorAll('link[href="/foo"]')).toHaveLength(1)
+    })
+
+    it('should not add RSF_PREFETCH_QUERY_PARAM when fetching from a 3rd party', async () => {
+      await prefetch('https://www.thirdparty.com/foo')
+
+      expect(
+        document.head.querySelectorAll('link[href="https://www.thirdparty.com/foo"]'),
+      ).toHaveLength(1)
+    })
+  })
+
+  describe('prefetchJsonFor', () => {
+    it('should append the api prefix', async () => {
+      await prefetchJsonFor('/foo')
+
+      expect(
+        document.head.querySelectorAll('link[href="http://localhost/api/foo?__prefetch__=1"]'),
+      ).toHaveLength(1)
     })
   })
 })

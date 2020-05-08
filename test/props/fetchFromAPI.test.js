@@ -7,9 +7,7 @@ describe('fetchFromAPI', () => {
 
   describe('in the browser', () => {
     beforeEach(() => {
-      headers = {
-        'x-rsf-api-version': '1',
-      }
+      headers = {}
     })
 
     it('should prepend api to the path', () => {
@@ -37,7 +35,6 @@ describe('fetchFromAPI', () => {
   describe('on the server', () => {
     beforeEach(() => {
       headers = {
-        'x-rsf-api-version': '1',
         host: 'www.domain.com',
       }
     })

@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "7.12.1",
+  "version": "8.0.0",
   "description": "Build and deploy e-commerce progressive web apps (PWAs) in record time.",
   "module": "./index.js",
   "license": "Apache-2.0",
@@ -15,9 +15,7 @@
   "watch": {
     "push-build": {
       "patterns": [
-        "src",
-        "plugins",
-        "service-worker"
+        "src"
       ],
       "ignore": "*/index.js",
       "extensions": "js",
@@ -31,9 +29,8 @@
     "push-build": "yarn build && cd dist && yalc push && cd ..",
     "create-indexes": "create-index -ri src",
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
-    "build": "npm run build:prep && npm run build:assets && NODE_ENV=production npm run build:sources",
+    "build": "npm run build:prep && NODE_ENV=production npm run build:sources",
     "build:prep": "npm run clean && npm run create-indexes && cp package.json dist",
-    "build:assets": "sync-folders --type copy plugins service-worker dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
     "docs": "mkdir -p docs/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node docs/buildDocs d.js",
     "storybook": "start-storybook -c ./.storybook",
@@ -41,7 +38,6 @@
     "build-storybook": "build-storybook -c .storybook -o .storybook/build && npm run storybook-docs"
   },
   "dependencies": {
-    "@storybook/addon-knobs": "^5.3.13",
     "chalk": "^3.0.0",
     "clsx": "^1.0.4",
     "delegate": "^3.2.0",
@@ -54,7 +50,9 @@
     "react-swipeable-views": "0.13.3",
     "react-swipeable-views-utils": "0.13.3",
     "react-visibility-sensor": "^5.1.1",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "webpack-bundle-analyzer": "^3.7.0",
+    "webpack-clear-require-cache-plugin": "0.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
@@ -68,6 +66,7 @@
     "@material-ui/icons": "4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.35",
     "@material-ui/styles": "4.5.2",
+    "@storybook/addon-knobs": "^5.3.13",
     "@storybook/react": "^5.2.6",
     "@svgr/webpack": "^4.3.3",
     "babel-loader": "^8.0.6",
@@ -77,10 +76,10 @@
     "documentation": "moovweb/documentation#feature/preserve-markdown",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
-    "jest": "^24.9.0",
+    "jest": "^25.4.0",
     "jest-enzyme": "^7.1.2",
     "jest-fetch-mock": "^2.1.2",
-    "jsdom": "^15.2.1",
+    "jsdom": "^16.2.2",
     "next": "^9.1.8",
     "npm-watch": "^0.6.0",
     "prettier": "^1.19.1",

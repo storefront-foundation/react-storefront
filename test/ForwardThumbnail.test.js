@@ -57,4 +57,26 @@ describe('ForwardThumbnail', () => {
 
     expect(thumbnail).toStrictEqual({ current: { src: 'test2' } })
   })
+
+  it('should handle late rendered images', async () => {
+    const Test = ({ renderImage = false }) => {
+      thumbnail = useRef(null)
+
+      return (
+        <PWAContext.Provider value={{ thumbnail }}>
+          <ForwardThumbnail>
+            <div id="test1">{renderImage && <img id="test2" src="test2" />}</div>
+          </ForwardThumbnail>
+        </PWAContext.Provider>
+      )
+    }
+
+    wrapper = mount(<Test />)
+    expect(thumbnail).toStrictEqual({ current: null })
+    wrapper.find(ForwardThumbnail).simulate('click')
+    wrapper.setProps({ renderImage: true })
+    wrapper.update()
+    wrapper.find(ForwardThumbnail).simulate('click')
+    expect(thumbnail).toStrictEqual({ current: { src: 'test2' } })
+  })
 })

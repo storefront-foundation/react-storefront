@@ -38,8 +38,8 @@ describe('SearchSuggestions', () => {
         value={{
           state: {
             groups: [
-              { links: [], caption: '' },
-              { links: [], caption: '' },
+              { links: [], caption: 'c1' },
+              { links: [], caption: 'c2' },
             ],
             loading: false,
           },

@@ -1,9 +1,10 @@
 import fetch from '../fetch'
+import getAPIURL from '../api/getAPIURL'
 
 /**
  * A convenience function to be used in `getInitialProps` to fetch data for the page from an
  * API endpoint at the same path as the page being requested.  So for example, when rendering
- * `/p/1`, this function will fetch data from `/api/p/1`.
+ * `/p/1`, this function will fetch data from `/api/p/1?__v__={__NEXT_DATA__.buildId}`.
  *
  * ```js
  * import fetchFromAPI from 'react-storefront/props/fetchFromAPI'
@@ -25,7 +26,6 @@ import fetch from '../fetch'
  */
 export default function fetchFromAPI({ req, asPath, pathname }) {
   const host = req ? process.env.API_HOST || req.headers['host'] : ''
-  const [path, search] = asPath.split('?')
 
   let protocol = ''
 
@@ -37,12 +37,7 @@ export default function fetchFromAPI({ req, asPath, pathname }) {
     }
   }
 
-  let uri = `/api${path.replace(/\/$/, '')}`
-
-  if (search) {
-    uri += `?${search}`
-  }
-
+  let uri = getAPIURL(asPath)
   let headers = {}
 
   if (req) {
