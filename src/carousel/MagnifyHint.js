@@ -112,7 +112,7 @@ const styles = theme => ({
 const useStyles = makeStyles(styles, { name: 'RSFMagnifyHint' })
 
 /**
- * An element overlaid on a [`Carousel`](/apiReference/carousel%f2Carousel) that displays a tip for a
+ * An element overlaid on a [`Carousel`](/apiReference/carousel/Carousel) that displays a tip for a
  * user to hover/click the Carousel in order to zoom in.
  */
 export default function MagnifyHint({

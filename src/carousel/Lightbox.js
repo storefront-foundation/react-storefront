@@ -38,7 +38,7 @@ const useStyles = makeStyles(styles, { name: 'RSFLightbox' })
 
 /**
  * A modal that opens to give a full-screen view of the elements within a
- * [`Carousel`](/apiReference/carousel%f2Carousel).
+ * [`Carousel`](/apiReference/carousel/Carousel).
  */
 function Lightbox({ classes, children, onClose, open, TransitionComponent }) {
   classes = useStyles({ classes })
