@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { mount } from 'enzyme'
 import SearchField from 'react-storefront/search/SearchField'
-import SearchContext from 'react-storefront/search/SearchContext'
 import SearchSubmitButton from 'react-storefront/search/SearchSubmitButton'
 import { Fab, Button } from '@material-ui/core'
 import { IconButton } from '@material-ui/core'
