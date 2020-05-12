@@ -48,6 +48,13 @@ const Menu = React.memo(props => {
     stateRef.current = state
   }, [state])
 
+  useEffect(() => {
+    setState({
+      card: 0,
+      cards: [{ ...root, root: true }],
+    })
+  }, [root])
+
   // this ensures that the expanded state is reset when showing a new card
   const nextKey = useRef(0)
 
