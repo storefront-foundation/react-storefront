@@ -28,6 +28,10 @@ export function waitForServiceWorker() {
  * @param {String} url The URL to prefetch
  */
 export async function prefetch(url) {
+  if (process.env.NODE_ENV !== 'production' && process.env.SERVICE_WORKER !== 'true') {
+    return
+  }
+
   if (prefetched.has(url)) {
     return
   }
