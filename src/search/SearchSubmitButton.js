@@ -1,7 +1,7 @@
+import SearchIcon from '@material-ui/icons/Search'
 import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import PropTypes from 'prop-types'
-import SearchIcon from '@material-ui/icons/Search'
 
 export const styles = theme => ({
   /**
@@ -20,7 +20,7 @@ const useStyles = makeStyles(styles, { name: 'RSFSearchSubmitButton' })
 /**
  * A button to submit the search.  All other props are spread to the provided `Component`.
  */
-export default function SearchSubmitButton({ Component, classes, text, ...others }) {
+export default function SearchSubmitButton({ Component, ButtonIcon, classes, text, ...others }) {
   classes = useStyles({ classes })
 
   return (
@@ -32,7 +32,7 @@ export default function SearchSubmitButton({ Component, classes, text, ...others
       disabled={text.trim().length === 0}
       {...others}
     >
-      <SearchIcon />
+      <ButtonIcon />
     </Component>
   )
 }
@@ -47,9 +47,15 @@ SearchSubmitButton.propTypes = {
    */
   Component: PropTypes.elementType.isRequired,
   /**
+   * A Material UI button component to display.
+   */
+  ButtonIcon: PropTypes.elementType,
+  /**
    * The current search text.
    */
   text: PropTypes.string.isRequired,
 }
 
-SearchSubmitButton.defaultProps = {}
+SearchSubmitButton.defaultProps = {
+  ButtonIcon: SearchIcon,
+}
