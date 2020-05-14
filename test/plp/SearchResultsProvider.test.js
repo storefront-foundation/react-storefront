@@ -16,10 +16,17 @@ describe('SearchResultsProvider', () => {
   }
   let wrapper, context, getStore
 
+  beforeEach(() => {
+    window.__NEXT_DATA__ = {
+      buildId: 'development',
+    }
+  })
+
   afterEach(() => {
     wrapper.unmount()
     context = undefined
     getStore = undefined
+    delete window.__NEXT_DATA__
   })
 
   const Test = () => {
@@ -147,9 +154,12 @@ describe('SearchResultsProvider', () => {
     })
 
     it('refresh - should always remove "more" query param if sees it', async () => {
-      const windowSpy = jest
-        .spyOn(global.window, 'location', 'get')
-        .mockReturnValue({ search: '?more=1', hash: '', pathname: '/test' })
+      const windowSpy = jest.spyOn(global.window, 'location', 'get').mockReturnValue({
+        search: '?more=1',
+        hash: '',
+        pathname: '/test',
+        href: 'http://localhost',
+      })
       fetchMock.mockResponseOnce(
         JSON.stringify({
           pageData: {
@@ -164,7 +174,7 @@ describe('SearchResultsProvider', () => {
         await wrapper.update()
       })
 
-      expect(fetch).toHaveBeenCalledWith('/api/test')
+      expect(fetch).toHaveBeenCalledWith('/api/test?__v__=development')
 
       windowSpy.mockRestore()
     })

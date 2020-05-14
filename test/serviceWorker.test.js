@@ -58,10 +58,14 @@ describe('all', () => {
     beforeEach(() => {
       process.env.RSF_PREFETCH_QUERY_PARAM = '__prefetch__'
       document.head.innerHTML = ''
+      window.__NEXT_DATA__ = {
+        buildId: 'development',
+      }
       resetPrefetches()
     })
 
     afterEach(() => {
+      delete window.__NEXT_DATA__
       delete window.RSF_PREFETCH_QUERY_PARAM
     })
 
@@ -70,21 +74,27 @@ describe('all', () => {
         await prefetch('/foo')
         await prefetch('/foo')
         expect(
-          document.head.querySelectorAll('link[href="http://localhost/foo?__prefetch__=1"]'),
+          document.head.querySelectorAll(
+            'link[href="http://localhost/foo?__v__=development&__prefetch__=1"]',
+          ),
         ).toHaveLength(1)
       })
 
       it('should not require window.RSF_PREFETCH_QUERY_PARAM to be defined', async () => {
         delete process.env.RSF_PREFETCH_QUERY_PARAM
         await prefetch('/foo')
-        expect(document.head.querySelectorAll('link[href="/foo"]')).toHaveLength(1)
+        expect(
+          document.head.querySelectorAll('link[href="http://localhost/foo?__v__=development"]'),
+        ).toHaveLength(1)
       })
 
       it('should not add RSF_PREFETCH_QUERY_PARAM when fetching from a 3rd party', async () => {
         await prefetch('https://www.thirdparty.com/foo')
 
         expect(
-          document.head.querySelectorAll('link[href="https://www.thirdparty.com/foo"]'),
+          document.head.querySelectorAll(
+            'link[href="https://www.thirdparty.com/foo?__v__=development"]',
+          ),
         ).toHaveLength(1)
       })
     })
@@ -94,16 +104,16 @@ describe('all', () => {
         await prefetchJsonFor('/foo')
 
         expect(
-          document.head.querySelectorAll('link[href="http://localhost/api/foo?__prefetch__=1"]'),
+          document.head.querySelectorAll(
+            'link[href="http://localhost/api/foo?__v__=development&__prefetch__=1"]',
+          ),
         ).toHaveLength(1)
       })
       it('should not prefetch if process.env.SERVICE_WORKER is not defined', async () => {
         delete process.env.SERVICE_WORKER
         await prefetchJsonFor('/foo')
 
-        expect(
-          document.head.querySelectorAll('link[href="http://localhost/api/foo?__prefetch__=1"]'),
-        ).toHaveLength(0)
+        expect(document.head.querySelectorAll('link')).toHaveLength(0)
       })
     })
   })
