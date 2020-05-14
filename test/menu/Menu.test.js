@@ -121,6 +121,32 @@ describe('Menu', () => {
     expect(wrapper.find(ListItem).length).toBe(3)
   })
 
+  it('should update contents when root property is updated', () => {
+    wrapper = mount(
+      <Menu
+        root={{
+          items: [
+            { text: 'item1', href: '/item1', as: '/item1', items: [] },
+            { text: 'item2', href: '/item2', as: '/item2' },
+            { text: 'item3', href: '/item3', as: '/item3' },
+          ],
+        }}
+      />,
+    )
+    wrapper.setProps({
+      root: {
+        items: [
+          { text: 'item1', href: '/item1', as: '/item1' },
+          { text: 'item2', href: '/item2', as: '/item2' },
+          { text: 'item3', href: '/item3', as: '/item3' },
+          { text: 'item4', href: '/item4', as: '/item4' },
+        ],
+      },
+    })
+    wrapper.update()
+    expect(wrapper.find(ListItem).length).toBe(4)
+  })
+
   it('should use menu back to come back from submenu', () => {
     wrapper = mount(
       <Menu
