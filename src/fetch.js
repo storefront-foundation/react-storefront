@@ -7,7 +7,14 @@ if (typeof window !== 'undefined') {
   const originalFetch = window.fetch
 
   window.fetch = function rsfVersionedFetch(url, init) {
-    return originalFetch(addVersion(url).toString(), init)
+    if (url.url) {
+      // the first param can be a request object
+      url = new Request(addVersion(url.url).toString(), url)
+    } else {
+      url = addVersion(url).toString()
+    }
+
+    return originalFetch(url, init)
   }
 }
 

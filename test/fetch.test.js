@@ -28,6 +28,11 @@ describe('fetch', () => {
     expect(originalFetch).toHaveBeenCalledWith('http://localhost/foo?__v__=development', undefined)
   })
 
+  it('should accept a request object as the first parameter', () => {
+    window.fetch(new Request('/foo'))
+    expect(originalFetch.mock.calls[0][0].url).toBe('http://localhost/foo?__v__=development')
+  })
+
   it('should add the version to XMLHttpRequest.open', () => {
     const req = new XMLHttpRequest()
     req.open('GET', '/foo')
