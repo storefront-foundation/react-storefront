@@ -281,7 +281,6 @@ function MediaCarousel(props) {
                 onLoad={i === 0 ? onFullSizeImagesLoaded : null}
                 magnifyProps={magnifyProps}
                 {...item}
-                magnify={isTouchScreen ? undefined : item.magnify}
                 src={get(item, 'magnify.src', item.src)}
                 imageProps={
                   lightboxActive && !isTouchScreen

@@ -28,7 +28,6 @@ export default function Media({
   alt,
   magnify,
   sources,
-  poster,
   type = 'image',
 }) {
   const classes = useStyles()
