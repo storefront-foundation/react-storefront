@@ -95,6 +95,7 @@ const SearchField = forwardRef(
       submitButtonVariant,
       showClearButton,
       SubmitButtonComponent,
+      SubmitButtonIcon,
       clearButtonProps,
       inputProps,
       value,
@@ -167,6 +168,7 @@ const SearchField = forwardRef(
               [classes.hidden]: empty,
             })}
             text={value}
+            ButtonIcon={SubmitButtonIcon}
             {...submitButtonProps}
           />
         )}
@@ -184,6 +186,10 @@ SearchField.propTypes = {
    * The component to use for the submit button.
    */
   SubmitButtonComponent: PropTypes.elementType,
+  /**
+   * An icon to use for the submit button.
+   */
+  SubmitButtonIcon: PropTypes.elementType,
   /**
    * The type of submit button to display.
    */
