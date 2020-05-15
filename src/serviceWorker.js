@@ -1,4 +1,6 @@
 import getAPIURL from './api/getAPIURL'
+import addVersion from './api/addVersion'
+
 const prefetched = new Set()
 
 /**
@@ -28,6 +30,16 @@ export function waitForServiceWorker() {
  * @param {String} url The URL to prefetch
  */
 export async function prefetch(url) {
+  if (process.env.NODE_ENV !== 'production' && process.env.SERVICE_WORKER !== 'true') {
+    // note that even though we wait for the service worker to be available, during local
+    // development it is still possible for a service worker to be around from a previous
+    // build of the app, so we disable prefetching in development unless process.env.SERVICE_WORKER = true
+    // so that prefetching does not slow bog down the local node server and slow down development
+    return
+  }
+
+  url = addVersion(url).toString()
+
   if (prefetched.has(url)) {
     return
   }
