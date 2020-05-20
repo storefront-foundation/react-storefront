@@ -13,6 +13,8 @@ import MagnifyHint from './MagnifyHint'
 import CarouselThumbnails from './CarouselThumbnails'
 import get from 'lodash/get'
 
+const THUMBNAIL_IMAGE_ID = '__rsf-placeholder-thumbnail'
+
 export const styles = theme => ({
   /**
    * Styles applied to the root component.
@@ -198,18 +200,26 @@ function MediaCarousel(props) {
   })
 
   useEffect(() => {
+    if (!ref.current || imagesLoaded || !thumbnail) return
     const firstImage = ref.current.querySelector('img')
-
-    if (firstImage) {
+    if (firstImage && firstImage.id !== THUMBNAIL_IMAGE_ID) {
       firstImage.addEventListener('load', onFullSizeImagesLoaded)
       return () => firstImage.removeEventListener('load', onFullSizeImagesLoaded)
     }
-  }, [])
+  }, [media, imagesLoaded, thumbnail])
 
   const belowAdornments = []
 
   if (thumbnail && !imagesLoaded) {
-    belowAdornments.push(<Image key="thumbnail" className={styles.thumbnail} fill {...thumbnail} />)
+    belowAdornments.push(
+      <Image
+        id={THUMBNAIL_IMAGE_ID}
+        key="thumbnail"
+        className={styles.thumbnail}
+        fill
+        {...thumbnail}
+      />,
+    )
   }
 
   if (media && media.full && media.full.some(item => item.magnify)) {
