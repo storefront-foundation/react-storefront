@@ -228,6 +228,15 @@ describe('MediaCarousel', () => {
     loadMock.mockClear()
   })
 
+  it('should not add img listener if the only image is the preview thumbnail', async () => {
+    const loadMock = jest.spyOn(HTMLImageElement.prototype, 'addEventListener')
+
+    wrapper = mount(<MediaCarousel thumbnails={false} thumbnail={{ test: 'test' }} />)
+
+    expect(loadMock).not.toBeCalled()
+    loadMock.mockClear()
+  })
+
   it('should have timeout on magnifying carousel', async () => {
     wrapper = mount(<MediaCarousel media={media} />)
 
