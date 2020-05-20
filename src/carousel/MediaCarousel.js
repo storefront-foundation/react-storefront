@@ -288,7 +288,6 @@ function MediaCarousel(props) {
           media.full.map((item, i) => (
             <Fill height="100%" key={i}>
               <MediaComponent
-                onLoad={i === 0 ? onFullSizeImagesLoaded : null}
                 magnifyProps={magnifyProps}
                 {...item}
                 src={get(item, 'magnify.src', item.src)}
