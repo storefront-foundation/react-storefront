@@ -18,6 +18,10 @@ export default function useSimpleNavigation() {
     nextNavigation.current = true
   }, [])
 
+  const onNextNavigationEnd = useCallback(() => {
+    nextNavigation.current = false
+  }, [])
+
   useEffect(() => {
     async function doEffect() {
       delegate('a', 'click', e => {
@@ -28,10 +32,9 @@ export default function useSimpleNavigation() {
         // catch if not next link
         if (href && !nextNavigation.current) {
           e.preventDefault()
-          const url = toNextURL(href)
+          const url = toNextURL(href, as)
           Router.push(url, as)
         }
-        nextNavigation.current = false
       })
 
       routes.current = await fetchRouteManifest()
@@ -39,17 +42,18 @@ export default function useSimpleNavigation() {
 
     doEffect()
     Router.events.on('routeChangeStart', onNextNavigation)
+    Router.events.on('routeChangeComplete', onNextNavigationEnd)
 
     return () => Router.events.off('routeChangeStart', onNextNavigation)
   }, [])
 }
 
-function toNextURL(href) {
-  const url = new URL(href, window.location.protocol + window.location.hostname)
+function toNextURL(href, as) {
+  const url = new URL(as, window.location.protocol + '//' + window.location.hostname)
 
   return {
-    pathname: url.pathname,
-    query: qs.parse(url.search),
+    pathname: href,
+    query: qs.parse(url.search, { ignoreQueryPrefix: true }),
   }
 }
 
