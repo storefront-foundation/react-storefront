@@ -44,7 +44,6 @@
     "formidable": "^1.2.1",
     "isomorphic-unfetch": "^3.0.0",
     "next-offline": "^5.0.0",
-    "path-to-regexp": "^3.1.0",
     "qs": "^6.9.0",
     "react-image-magnify": "^2.7.4",
     "react-swipeable-views": "0.13.3",

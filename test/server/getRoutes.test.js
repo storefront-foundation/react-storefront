@@ -11,7 +11,7 @@ describe('getRoutes', () => {
 
     expect(routes).toStrictEqual({
       '^\\/_app(?:\\/)?$': { component: 'static/development/pages/_app.js', as: '/_app' },
-      '^\\/p\\/([^\\/]+?)(?:\\/)?$': {
+      '^\\/p\\/([^/]+?)(?:\\/)?$': {
         component: 'static/development/pages/p/[productId].js',
         as: '/p/[productId]',
       },

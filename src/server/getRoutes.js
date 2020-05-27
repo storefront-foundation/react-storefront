@@ -1,11 +1,12 @@
-const pathToRegexp = require('path-to-regexp')
+import { getRouteRegex } from 'next/dist/next-server/lib/router/utils/route-regex'
 
 export default function routes(pagesManifest) {
   const routes = {}
 
   for (let as in pagesManifest) {
     const component = pagesManifest[as]
-    const route = pathToRegexp(as.replace(/\[([^\]]+)\]/g, ':$1')).source
+    const route = getRouteRegex(as).re.source
+
     routes[route] = {
       component,
       as,
