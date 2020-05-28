@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
+import createIntersectionObserver from './utils/createIntersectionObserver'
 
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
@@ -52,18 +53,6 @@ const isBrowser = () => {
   )
 }
 
-// Used for detecting when the wrapped component becomes visible
-const io =
-  isBrowser() && IntersectionObserver
-    ? new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting || entry.intersectionRatio > 0) {
-            entry.target.dispatchEvent(new CustomEvent('visible'))
-          }
-        })
-      })
-    : null
-
 function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props }) {
   function isHydrated() {
     if (isBrowser()) {
@@ -77,6 +66,15 @@ function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props
   const childRef = useRef(null)
   const [hydrated, setHydrated] = useState(isHydrated())
 
+  function hydrate() {
+    setHydrated(true)
+    // Remove the server side generated stylesheet
+    const stylesheet = window.document.getElementById(`jss-lazy-${index}`)
+    if (stylesheet) {
+      stylesheet.remove()
+    }
+  }
+
   useEffect(() => {
     setHydrated(isHydrated())
   }, [props.hydrated, ssrOnly])
@@ -84,33 +82,38 @@ function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props
   useEffect(() => {
     if (hydrated) return
 
-    function hydrate() {
-      setHydrated(true)
-      // Remove the server side generated stylesheet
-      const stylesheet = window.document.getElementById(`jss-lazy-${index}`)
-      if (stylesheet) {
-        stylesheet.remove()
-      }
+    if (on === 'click') {
+      childRef.current.addEventListener('click', hydrate, {
+        once: true,
+        capture: true,
+        passive: true,
+      })
     }
 
-    let el
+    let ob
+
     if (on === 'visible') {
-      if (io && childRef.current.childElementCount) {
-        // As root node does not have any box model, it cannot intersect.
-        el = childRef.current.children[0]
-        io.observe(el)
+      try {
+        if (childRef.current.childElementCount) {
+          ob = createIntersectionObserver(childRef.current.children[0], (visible, disconnect) => {
+            if (visible) {
+              hydrate()
+              disconnect()
+            }
+          })
+        }
+      } catch {
+        hydrate()
       }
     }
-
-    childRef.current.addEventListener(on, hydrate, {
-      once: true,
-      capture: true,
-      passive: true,
-    })
 
     return () => {
-      if (el) io.unobserve(el)
-      childRef.current.removeEventListener(on, hydrate)
+      if (on === 'click') {
+        childRef.current.removeEventListener('click', hydrate)
+      }
+      if (on === 'visible' && ob) {
+        ob.disconnect()
+      }
     }
   }, [hydrated, on])
 

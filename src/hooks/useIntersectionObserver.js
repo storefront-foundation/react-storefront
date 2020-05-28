@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
+import createIntersectionObserver from '../utils/createIntersectionObserver'
 
 /**
  * Calls a provided callback when the provided element moves into or out of the viewport.
@@ -30,16 +31,11 @@ import React, { useEffect } from 'react'
  * @param {Object[]} deps The IntersectionObserver will be updated to observe a new ref whenever any of these change
  */
 export default function useIntersectionObserver(getRef, cb, deps) {
+  if (!window.IntersectionObserver) throw new Error('IntersectionObserver is not available')
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      // if intersectionRatio is 0, the element is out of view and we do not need to do anything.
-      cb(entries[0].intersectionRatio > 0, () => observer.disconnect())
-    })
-
     const ref = getRef()
-
     if (ref && ref.current) {
-      observer.observe(ref.current)
+      const observer = createIntersectionObserver(ref.current, cb)
       return () => observer.disconnect()
     }
   }, deps)
