@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "8.3.2",
+  "version": "8.3.3",
   "description": "Build and deploy e-commerce progressive web apps (PWAs) in record time.",
   "module": "./index.js",
   "license": "Apache-2.0",
@@ -44,7 +44,6 @@
     "formidable": "^1.2.1",
     "isomorphic-unfetch": "^3.0.0",
     "next-offline": "^5.0.0",
-    "path-to-regexp": "^3.1.0",
     "qs": "^6.9.0",
     "react-image-magnify": "^2.7.4",
     "react-swipeable-views": "0.13.3",

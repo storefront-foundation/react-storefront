@@ -63,7 +63,7 @@ function fetchRouteManifest() {
 
 function getRoute(href, routes) {
   for (let pattern in routes) {
-    if (new RegExp(pattern).test(href)) {
+    if (new RegExp(pattern, 'i').test(href)) {
       return routes[pattern].as
     }
   }
