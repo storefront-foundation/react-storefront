@@ -42,6 +42,7 @@ export default function SearchPopover({ classes, children, open, onClose, anchor
       disableEnforceFocus
       disableRestoreFocus
       disablePortal
+      disableScrollLock
       keepMounted
       onClose={onClose}
       anchorEl={anchor.current}
