@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
-import createIntersectionObserver from './utils/createIntersectionObserver'
+import useIntersectionObserver from './hooks/useIntersectionObserver'
 
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
@@ -79,6 +79,19 @@ function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props
     setHydrated(isHydrated())
   }, [props.hydrated, ssrOnly])
 
+  if (on === 'visible') {
+    useIntersectionObserver(
+      // As root node does not have any box model, it cannot intersect.
+      () => childRef.current.children[0],
+      (visible, disconnect) => {
+        if (visible) {
+          hydrate()
+          disconnect()
+        }
+      },
+    )
+  }
+
   useEffect(() => {
     if (hydrated) return
 
@@ -90,29 +103,9 @@ function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props
       })
     }
 
-    let ob
-
-    if (on === 'visible') {
-      try {
-        if (childRef.current.childElementCount) {
-          ob = createIntersectionObserver(childRef.current.children[0], (visible, disconnect) => {
-            if (visible) {
-              hydrate()
-              disconnect()
-            }
-          })
-        }
-      } catch {
-        hydrate()
-      }
-    }
-
     return () => {
       if (on === 'click') {
         childRef.current.removeEventListener('click', hydrate)
-      }
-      if (on === 'visible' && ob) {
-        ob.disconnect()
       }
     }
   }, [hydrated, on])

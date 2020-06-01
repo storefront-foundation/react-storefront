@@ -1,5 +1,11 @@
 import { useEffect } from 'react'
-import createIntersectionObserver from '../utils/createIntersectionObserver'
+
+function getElement(ref) {
+  if (ref && ref.current) {
+    return ref.current
+  }
+  return ref
+}
 
 /**
  * Calls a provided callback when the provided element moves into or out of the viewport.
@@ -26,16 +32,19 @@ import createIntersectionObserver from '../utils/createIntersectionObserver'
  *
  * ```
  *
- * @param {Function} getRef A function that returns a ref pointing to the element to observe
+ * @param {Function} getRef A function that returns a ref pointing to the element to observe OR the element itself
  * @param {Function} cb A callback to call when visibility changes
  * @param {Object[]} deps The IntersectionObserver will be updated to observe a new ref whenever any of these change
  */
 export default function useIntersectionObserver(getRef, cb, deps) {
-  if (!window.IntersectionObserver) throw new Error('IntersectionObserver is not available')
   useEffect(() => {
-    const ref = getRef()
-    if (ref && ref.current) {
-      const observer = createIntersectionObserver(ref.current, cb)
+    const observer = new IntersectionObserver(entries => {
+      // if intersectionRatio is 0, the element is out of view and we do not need to do anything.
+      cb(entries[0].intersectionRatio > 0, () => observer.disconnect())
+    })
+    const el = getElement(getRef())
+    if (el) {
+      observer.observe(el)
       return () => observer.disconnect()
     }
   }, deps)
