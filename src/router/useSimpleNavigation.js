@@ -9,9 +9,9 @@ import getAPIURL from '../api/getAPIURL'
  * @private
  * Watches for clicks on HTML anchor tags and performs client side navigation if
  * the URL matches a next route.
+ * @param {Object} routes The result of react-storefront/router/getRoutesManifest`
  */
-export default function useSimpleNavigation() {
-  const routes = useRef({})
+export default function useSimpleNavigation(routes) {
   const nextNavigation = useRef(false)
 
   const onNextNavigation = useCallback(() => {
@@ -23,11 +23,17 @@ export default function useSimpleNavigation() {
   }, [])
 
   useEffect(() => {
+    if (routes == null) {
+      throw new Error(
+        "The result of react-storefront/router/getRoutesManifest must be provided to useSimpleNavigation. App.getInitialProps should pass the result of getRoutesManifest as the routes prop, then forward that along to the PWA component's routes prop.",
+      )
+    }
+
     async function doEffect() {
       delegate('a', 'click', e => {
         const { delegateTarget } = e
         const as = delegateTarget.getAttribute('href')
-        const href = getRoute(as, routes.current)
+        const href = getRoute(as, routes)
 
         // catch if not next link
         if (href && !nextNavigation.current) {
@@ -36,8 +42,6 @@ export default function useSimpleNavigation() {
           Router.push(url, as)
         }
       })
-
-      routes.current = await fetchRouteManifest()
     }
 
     doEffect()

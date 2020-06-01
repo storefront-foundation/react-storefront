@@ -22,7 +22,7 @@ export const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFPWA' })
 
-export default function PWA({ children, errorReporter }) {
+export default function PWA({ children, errorReporter, routes }) {
   useStyles()
   const thumbnail = useRef(null)
   const [offline, setOffline] = useState(typeof navigator !== 'undefined' && !navigator.onLine)
@@ -36,7 +36,7 @@ export default function PWA({ children, errorReporter }) {
   )
 
   // enable client-side navigation when the user clicks a simple HTML anchor element
-  useSimpleNavigation()
+  useSimpleNavigation(routes)
 
   useEffect(() => {
     context.hydrating = false
@@ -68,4 +68,10 @@ PWA.propTypes = {
    * to a service like Airbrake or Rollbar.
    */
   errorReporter: PropTypes.func,
+
+  /**
+   * The result of `react-storefront/router/getRoutesManifest`, which should be called in App.getInitialProps and passed
+   * to the App component as the `routes` prop.
+   */
+  routes: PropTypes.any,
 }
