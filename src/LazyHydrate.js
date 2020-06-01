@@ -89,6 +89,11 @@ function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props
           disconnect()
         }
       },
+      [],
+      // Fallback to eager hydration
+      () => {
+        hydrate()
+      },
     )
   }
 

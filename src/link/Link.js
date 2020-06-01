@@ -35,20 +35,16 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
     }
   })
 
-  try {
-    useIntersectionObserver(
-      () => (as && prefetch === 'visible' ? ref : null),
-      (visible, disconnect) => {
-        if (visible) {
-          disconnect()
-          doPrefetch(prefetchURL || getAPIURL(as))
-        }
-      },
-      [as, prefetch],
-    )
-  } catch {
-    // Link cannot prefetch because Intersection Observer is not available
-  }
+  useIntersectionObserver(
+    () => (as && prefetch === 'visible' ? ref : null),
+    (visible, disconnect) => {
+      if (visible) {
+        disconnect()
+        doPrefetch(prefetchURL || getAPIURL(as))
+      }
+    },
+    [as, prefetch],
+  )
 
   useEffect(() => {
     if (prefetch === 'always') {

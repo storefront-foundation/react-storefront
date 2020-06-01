@@ -35,9 +35,15 @@ function getElement(ref) {
  * @param {Function} getRef A function that returns a ref pointing to the element to observe OR the element itself
  * @param {Function} cb A callback to call when visibility changes
  * @param {Object[]} deps The IntersectionObserver will be updated to observe a new ref whenever any of these change
+ * @param {Function} notSupportedCallback Callback fired when IntersectionObserver is not supported
  */
-export default function useIntersectionObserver(getRef, cb, deps) {
+export default function useIntersectionObserver(getRef, cb, deps, notSupportedCallback) {
   useEffect(() => {
+    if (!window.IntersectionObserver) {
+      notSupportedCallback &&
+        notSupportedCallback(new Error('IntersectionObserver is not available'))
+      return
+    }
     const observer = new IntersectionObserver(entries => {
       // if intersectionRatio is 0, the element is out of view and we do not need to do anything.
       cb(entries[0].intersectionRatio > 0, () => observer.disconnect())
