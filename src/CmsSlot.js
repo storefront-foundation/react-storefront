@@ -24,7 +24,7 @@ export const styles = theme => ({
         left: 0,
       },
     },
-    '& img[data-rsf-lazy]': {
+    '& img[data-src]': {
       visibility: 'hidden',
     },
   },
