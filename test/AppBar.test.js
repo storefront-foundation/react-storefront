@@ -14,11 +14,11 @@ jest.useFakeTimers()
 describe('AppBar', () => {
   let wrapper
 
-  const Test = ({ offline = false, offlineMessage, fixed = false }) => {
+  const Test = ({ offline = false, offlineMessage, ...others }) => {
     return (
       <PWAContext.Provider value={{ offline }}>
         <MuiThemeProvider theme={theme}>
-          <AppBar offlineWarning={offlineMessage} fixed={fixed} />
+          <AppBar offlineWarning={offlineMessage} {...others} />
         </MuiThemeProvider>
       </PWAContext.Provider>
     )
@@ -43,6 +43,11 @@ describe('AppBar', () => {
 
   it('should not slide in when fixed is true', () => {
     wrapper = mount(<Test fixed />)
+    expect(wrapper.find(Slide)).toHaveLength(0)
+  })
+
+  it('should accept variant="relative"', () => {
+    wrapper = mount(<Test variant="relative" />)
     expect(wrapper.find(Slide)).toHaveLength(0)
   })
 
