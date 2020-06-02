@@ -66,7 +66,6 @@ export default function AppBar({ children, style, variant, fixed, offlineWarning
         [classes.root]: true,
         [classes.relative]: variant === 'relative',
       })}
-      postion={variant === 'relative' ? 'relative' : undefined}
       style={{
         ...style,
       }}
