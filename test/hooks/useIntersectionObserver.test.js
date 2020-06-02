@@ -45,4 +45,32 @@ describe('useIntersectionObserver', () => {
       mount(<Test />)
     }).not.toThrowError()
   })
+
+  describe('when IntersectionObserver is not supported', () => {
+    let IntersectionObserver
+
+    beforeEach(() => {
+      IntersectionObserver = window.IntersectionObserver
+      delete window.IntersectionObserver
+    })
+
+    afterEach(() => {
+      window.IntersectionObserver = IntersectionObserver
+    })
+
+    it('should call the not supported callback', () => {
+      const notSupported = jest.fn()
+
+      const Test = () => {
+        useIntersectionObserver(() => null, jest.fn(), [], notSupported)
+        return <div />
+      }
+
+      expect(() => {
+        mount(<Test />)
+      }).not.toThrowError()
+
+      expect(notSupported).toHaveBeenCalled()
+    })
+  })
 })
