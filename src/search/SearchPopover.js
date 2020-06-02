@@ -18,7 +18,18 @@ export const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFSearchPopover' })
 
-export default function SearchPopover({ classes, children, open, onClose, anchor, setQuery }) {
+/**
+ * Displays search results in a popover. Additional props are spread to the underlying Material UI Popover element.
+ */
+export default function SearchPopover({
+  classes,
+  children,
+  open,
+  onClose,
+  anchor,
+  setQuery,
+  ...others
+}) {
   classes = useStyles({ classes })
 
   const handleNavigation = () => {
@@ -42,6 +53,7 @@ export default function SearchPopover({ classes, children, open, onClose, anchor
       disableEnforceFocus
       disableRestoreFocus
       disablePortal
+      disableScrollLock
       keepMounted
       onClose={onClose}
       anchorEl={anchor.current}
@@ -57,6 +69,7 @@ export default function SearchPopover({ classes, children, open, onClose, anchor
         square: true,
         className: classes.popoverPaper,
       }}
+      {...others}
     >
       {children}
     </Popover>

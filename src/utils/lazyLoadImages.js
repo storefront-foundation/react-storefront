@@ -4,16 +4,25 @@
  * attribute is copied to `src`.
  *
  * See https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
+ * @param {DOMElement} element The img element to lazy load
+ * @param {Object} options
+ * @param {Object} options.lazySrcAttribute The attribute containing the image URL. Defaults to `data-src`.
  */
-export default function lazyLoadImages(element, { selector = 'img[data-rsf-lazy]' } = {}) {
+export default function lazyLoadImages(element, { lazySrcAttribute = 'data-src' } = {}) {
   if (!element) return
-  const lazyImages = [...element.querySelectorAll(selector)]
+  const lazyImages = [...element.querySelectorAll(`img[${lazySrcAttribute}]`)]
   if (!lazyImages.length) return
 
   let lazyImageObserver
 
   const load = img => {
-    img.src = img.dataset.src
+    const src = img.getAttribute(lazySrcAttribute)
+    const onload = () => {
+      img.removeAttribute(lazySrcAttribute)
+      img.removeEventListener('load', onload)
+    }
+    img.addEventListener('load', onload)
+    img.setAttribute('src', src)
 
     if (lazyImageObserver) {
       lazyImageObserver.disconnect(img)

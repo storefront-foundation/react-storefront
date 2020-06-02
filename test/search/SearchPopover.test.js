@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { mount } from 'enzyme'
 import SearchPopover from 'react-storefront/search/SearchPopover'
+import { Popover } from '@material-ui/core'
 import { navigate } from '../mocks/mockRouter'
 
 describe('SearchPopover', () => {
@@ -38,7 +39,7 @@ describe('SearchPopover', () => {
   })
 
   it('should work when useQuery and onClose not provided', () => {
-    wrapper = mount(<TestComponent onClose={null} useQuery={null} />)
+    wrapper = mount(<TestComponent onClose={null} />)
 
     navigate('/foo')
     expect(wrapper.find('#test')).toExist()
@@ -58,5 +59,21 @@ describe('SearchPopover', () => {
     expect(onCloseMock).toHaveBeenCalled()
     expect(setQueryMock).toHaveBeenCalledWith('')
     expect(blurMock).toHaveBeenCalled()
+  })
+
+  it('should spread additional props to the underlying Popover element', () => {
+    wrapper = mount(
+      <TestComponent
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+      />,
+    )
+
+    expect(wrapper.find(Popover).props().anchorOrigin).toEqual({
+      vertical: 'bottom',
+      horizontal: 'right',
+    })
   })
 })

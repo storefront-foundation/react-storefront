@@ -12,7 +12,7 @@ describe('lazyLoadImages', () => {
 
     return (
       <div ref={ref}>
-        <img ref={imageRef} data-src="https://via.placeholder.com/600x600" data-rsf-lazy="1" />
+        <img ref={imageRef} data-src="https://via.placeholder.com/600x600" />
       </div>
     )
   }
@@ -38,7 +38,7 @@ describe('lazyLoadImages', () => {
   })
 
   it('should do nothing if selector can not find anything', () => {
-    selector = { selector: 'test' }
+    selector = { lazySrcAttribute: 'data-lazy-src' }
 
     wrapper = mount(<Test />)
 
@@ -53,10 +53,10 @@ describe('lazyLoadImages', () => {
     // Not intersected
     observer.simulateChange(0, imageRef.current)
     expect(ref.current.src).toBeUndefined()
-
     observer.simulateChange(1, imageRef.current)
-
-    expect(imageRef.current.src).toBe('https://via.placeholder.com/600x600')
+    expect(imageRef.current.getAttribute('src')).toBe('https://via.placeholder.com/600x600')
+    imageRef.current.dispatchEvent(new Event('load'))
+    expect(imageRef.current.getAttribute('data-src')).toBe(null)
   })
 
   describe('if intersection observer is not available', () => {
