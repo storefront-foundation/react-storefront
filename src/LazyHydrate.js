@@ -6,7 +6,6 @@ import { StylesProvider, createGenerateClassName } from '@material-ui/core/style
 import { SheetsRegistry } from 'jss'
 
 let registries = []
-const generateClassName = createGenerateClassName()
 
 export function clearLazyHydrateRegistries() {
   registries = []
@@ -20,16 +19,23 @@ export function clearLazyHydrateRegistries() {
 export function LazyStyleElements() {
   return (
     <>
-      {registries.map((registry, index) => {
-        const id = `jss-lazy-${index}`
-        return <style key={id} id={id} dangerouslySetInnerHTML={{ __html: registry.toString() }} />
+      {registries.map(registry => {
+        return (
+          <style
+            key={registry.id}
+            id={registry.id}
+            dangerouslySetInnerHTML={{ __html: registry.toString() }}
+          />
+        )
       })}
     </>
   )
 }
 
-function LazyStylesProvider({ children }) {
+function LazyStylesProvider({ id, children }) {
+  const generateClassName = createGenerateClassName()
   const registry = new SheetsRegistry()
+  registry.id = id
   registries.push(registry)
   return (
     <StylesProvider
@@ -53,7 +59,7 @@ const isBrowser = () => {
   )
 }
 
-function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props }) {
+function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props }) {
   function isHydrated() {
     if (isBrowser()) {
       if (ssrOnly) return false
@@ -69,7 +75,7 @@ function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props
   function hydrate() {
     setHydrated(true)
     // Remove the server side generated stylesheet
-    const stylesheet = window.document.getElementById(`jss-lazy-${index}`)
+    const stylesheet = window.document.getElementById(id)
     if (stylesheet) {
       stylesheet.remove()
     }
@@ -146,14 +152,17 @@ function LazyHydrateInstance({ className, ssrOnly, children, on, index, ...props
  */
 
 function LazyHydrate({ children, ...props }) {
+  const id = props.id || `jss-lazy-${registries.length}`
   return (
-    <LazyHydrateInstance {...props} index={registries.length}>
-      <LazyStylesProvider>{children}</LazyStylesProvider>
+    <LazyHydrateInstance {...props} id={id}>
+      <LazyStylesProvider id={id}>{children}</LazyStylesProvider>
     </LazyHydrateInstance>
   )
 }
 
 LazyHydrate.propTypes = {
+  // Identification of component
+  id: PropTypes.string,
   // Control the hydration of the component externally with this prop
   hydrated: PropTypes.bool,
   // Force component to never hydrate
