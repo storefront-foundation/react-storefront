@@ -21,17 +21,23 @@ import formidable from 'formidable'
  */
 export default function withAmpFormParser(handler) {
   return (req, res) => {
-    const form = new formidable.IncomingForm()
+    const form = formidable()
 
-    if (req.method === 'POST') {
-      return form.parse(req, (err, fields, files) => {
-        if (err) {
-          res.status(500).end(err.message)
-        } else {
-          req.body = fields
-          return handler(req, res)
-        }
-      })
+    if (req.method.toLowerCase() === 'post') {
+      console.log('method', req.method, 'body', req.body)
+      try {
+        form.parse(req, (err, fields, files) => {
+          console.log('err', err)
+          if (err) {
+            res.status(500).end(err.message)
+          } else {
+            req.body = fields
+            return handler(req, res)
+          }
+        })
+      } catch (err) {
+        res.status(500).end(err.message)
+      }
     } else {
       return handler(req, res)
     }

@@ -6,8 +6,13 @@ const withServiceWorker = require('./withServiceWorker')
 /**
  * @param options
  * @param options.prefetchQueryParam If specified, this parameter will be added to the query string of all prefetch requests.
+ * @param options.connector The connector package to use.  By default React Storefront's mock connector will be used.
  */
-module.exports = ({ prefetchQueryParam, ...nextConfig } = {}) => {
+module.exports = ({
+  prefetchQueryParam,
+  connector = 'react-storefront/mock-connector',
+  ...nextConfig
+} = {}) => {
   const usePreact = process.env.preact === 'true'
 
   return withServiceWorker({
@@ -24,6 +29,15 @@ module.exports = ({ prefetchQueryParam, ...nextConfig } = {}) => {
           'react-dom/test-utils': 'preact/test-utils',
           'react-dom': 'preact/compat',
           'react-dom$': 'preact/compat',
+        }
+      }
+
+      if (options.isServer) {
+        console.log(`> Using connector ${connector}`)
+
+        config.resolve.alias = {
+          ...config.resolve.alias,
+          'react-storefront-connector': connector,
         }
       }
 
