@@ -20,7 +20,6 @@ export function LazyStyleElements() {
   return (
     <>
       {registries.map(registry => {
-
         // Apply these styles only to the wrapped component
         for (let sheet of registry.registry) {
           for (let rule of sheet.rules.index) {
@@ -154,24 +153,27 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
  *
  * Example:
  *
- *  <LazyHydrate on="visible">
+ *  <LazyHydrate id="foo">
  *    <div>some expensive component</div>
  *  </LazyHydrate>
  *
  */
 
 function LazyHydrate({ children, ...props }) {
-  const id = props.id || `jss-lazy-${registries.length}`
   return (
-    <LazyHydrateInstance {...props} id={id}>
-      <LazyStylesProvider id={id}>{children}</LazyStylesProvider>
+    <LazyHydrateInstance {...props}>
+      <LazyStylesProvider {...props}>{children}</LazyStylesProvider>
     </LazyHydrateInstance>
   )
 }
 
+LazyHydrate.defaultProps = {
+  on: 'visible',
+}
+
 LazyHydrate.propTypes = {
   // Identification of component
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   // Control the hydration of the component externally with this prop
   hydrated: PropTypes.bool,
   // Force component to never hydrate
