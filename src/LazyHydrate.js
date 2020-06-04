@@ -5,6 +5,8 @@ import useIntersectionObserver from './hooks/useIntersectionObserver'
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
 
+const fuiEvents = ['mouseover', 'touchstart']
+
 let registries = []
 
 /*
@@ -73,7 +75,7 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
   function isHydrated() {
     if (isBrowser()) {
       if (ssrOnly) return false
-      return props.hydrated
+      return !!props.hydrated
     } else {
       return true
     }
@@ -88,6 +90,18 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
     const stylesheet = window.document.getElementById(id)
     if (stylesheet) {
       stylesheet.remove()
+    }
+    clearEventListeners()
+  }
+
+  function clearEventListeners() {
+    if (on === 'click') {
+      childRef.current.removeEventListener('click', hydrate)
+    }
+    if (on === 'fui') {
+      fuiEvents.forEach(type => {
+        window.removeEventListener(type, hydrate)
+      })
     }
   }
 
@@ -124,11 +138,13 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
       })
     }
 
-    return () => {
-      if (on === 'click') {
-        childRef.current.removeEventListener('click', hydrate)
-      }
+    if (on === 'fui') {
+      fuiEvents.forEach(type => {
+        window.addEventListener(type, hydrate)
+      })
     }
+
+    return () => clearEventListeners()
   }, [hydrated, on])
 
   if (hydrated) {
@@ -171,7 +187,7 @@ function LazyHydrate({ children, ...props }) {
 }
 
 LazyHydrate.defaultProps = {
-  on: 'visible',
+  on: 'fui',
 }
 
 LazyHydrate.propTypes = {
@@ -182,7 +198,7 @@ LazyHydrate.propTypes = {
   // Force component to never hydrate
   ssrOnly: PropTypes.bool,
   // Event to trigger hydration
-  on: PropTypes.oneOf(['visible', 'click']),
+  on: PropTypes.oneOf(['visible', 'click', 'fui']),
 }
 
 export default LazyHydrate
