@@ -7,36 +7,39 @@ import { SheetsRegistry } from 'jss'
 
 let registries = []
 
-export function clearLazyHydrateRegistries() {
-  registries = []
-}
-
 /*
   This component renders the server side rendered stylesheets for the
   lazy hydrated components. Once they become hydrated, these stylesheets
   will be removed.
 */
 export function LazyStyleElements() {
-  return (
-    <>
-      {registries.map(registry => {
-        // Apply these styles only to the wrapped component
-        for (let sheet of registry.registry) {
-          for (let rule of sheet.rules.index) {
-            rule.selectorText = `#${registry.id} ${rule.selectorText}`
+  let styles = null
+  try {
+    styles = (
+      <>
+        {registries.map(registry => {
+          // Apply these styles only to the wrapped component
+          for (let sheet of registry.registry) {
+            for (let rule of sheet.rules.index) {
+              rule.selectorText = `#${registry.id} ${rule.selectorText}`
+            }
           }
-        }
 
-        return (
-          <style
-            key={registry.id}
-            id={registry.id}
-            dangerouslySetInnerHTML={{ __html: registry.toString() }}
-          />
-        )
-      })}
-    </>
-  )
+          return (
+            <style
+              key={registry.id}
+              id={registry.id}
+              dangerouslySetInnerHTML={{ __html: registry.toString() }}
+            />
+          )
+        })}
+      </>
+    )
+  } finally {
+    // Clear registeries so we do not leak memory
+    registries = []
+  }
+  return styles
 }
 
 function LazyStylesProvider({ id, children }) {
