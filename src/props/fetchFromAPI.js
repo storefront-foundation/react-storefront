@@ -51,7 +51,7 @@ export default function fetchFromAPI({ req, asPath, pathname }) {
     headers = {
       host: req.headers['host'],
       'x-next-page': `/api${pathname.replace(/\/$/, '')}`,
-      Cookie: req.headers.cookie,
+      cookie: req.headers.cookie,
     }
   }
 
