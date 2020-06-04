@@ -20,11 +20,19 @@ export function LazyStyleElements() {
     styles = (
       <>
         {registries.map(registry => {
+          function applyScope(sheet) {
+            for (let rule of sheet.rules.index) {
+              if (rule.type === 'conditional') {
+                applyScope(rule)
+              } else {
+                rule.selectorText = `#${registry.id} ${rule.selectorText}`
+              }
+            }
+          }
+
           // Apply these styles only to the wrapped component
           for (let sheet of registry.registry) {
-            for (let rule of sheet.rules.index) {
-              rule.selectorText = `#${registry.id} ${rule.selectorText}`
-            }
+            applyScope(sheet)
           }
 
           return (
