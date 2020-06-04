@@ -20,6 +20,12 @@ export function LazyStyleElements() {
   return (
     <>
       {registries.map(registry => {
+        for (let sheet of registry.registry) {
+          for (let rule of sheet.rules.index) {
+            rule.selectorText = `#${registry.id} ${rule.selectorText}`
+          }
+        }
+
         return (
           <style
             key={registry.id}
@@ -123,7 +129,7 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
 
   if (hydrated) {
     return (
-      <div ref={childRef} style={{ display: 'contents' }} className={className}>
+      <div ref={childRef} style={{ display: 'contents' }} id={id} className={className}>
         {children}
       </div>
     )
