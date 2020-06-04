@@ -2,11 +2,9 @@ import createProduct from './utils/createProduct'
 import withAmpFormParser from '../middlewares/withAmpFormParser'
 
 const cart = (req, res) => {
-  console.log('method', req.method)
-  console.log('body', req.body)
-
   if (req.method === 'POST') {
     const { id, color, size, quantity } = req.body
+
     console.log('product id: ', id)
     console.log('color id: ', color || 'Not provided')
     console.log('size id: ', size || 'Not provided')
