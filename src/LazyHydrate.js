@@ -20,6 +20,8 @@ export function LazyStyleElements() {
   return (
     <>
       {registries.map(registry => {
+
+        // Apply these styles only to the wrapped component
         for (let sheet of registry.registry) {
           for (let rule of sheet.rules.index) {
             rule.selectorText = `#${registry.id} ${rule.selectorText}`
@@ -129,7 +131,7 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
 
   if (hydrated) {
     return (
-      <div ref={childRef} style={{ display: 'contents' }} id={id} className={className}>
+      <div ref={childRef} id={id} className={className} style={{ display: 'contents' }}>
         {children}
       </div>
     )
@@ -137,6 +139,7 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
     return (
       <div
         ref={childRef}
+        id={id}
         className={className}
         style={{ display: 'contents' }}
         suppressHydrationWarning
