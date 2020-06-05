@@ -192,6 +192,7 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
           clearFilters,
           applyFilters,
           setSort,
+          setFilters,
         },
       }}
     >
