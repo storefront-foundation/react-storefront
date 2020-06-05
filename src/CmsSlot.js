@@ -84,12 +84,12 @@ CmsSlot.proptypes = {
   /**
    * If `true`, will use `display: inline` style.
    */
-  inline: PropTypes.boolean,
+  inline: PropTypes.bool,
 
   /**
    * If `true` to lazy load images that have been preprocessed with `$.lazyLoadImages()`.
    */
-  lazyLoadImages: PropTypes.boolean,
+  lazyLoadImages: PropTypes.bool,
 
   /**
    * If `true`, prefetch links that have a `data-rsf-prefetch` attribute.

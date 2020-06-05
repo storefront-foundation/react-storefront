@@ -36,7 +36,7 @@ const styles = theme => ({
     },
   },
 
-  '@media (hover:none)': {
+  '@media not all and (hover:none)': {
     hideTouchArrows: {
       display: 'none',
     },
