@@ -53,7 +53,9 @@ export function LazyStyleElements() {
 }
 
 function LazyStylesProvider({ id, children }) {
-  const generateClassName = createGenerateClassName()
+  const generateClassName = createGenerateClassName({
+    productionPrefix: `lazy-${id}`,
+  })
   const registry = new SheetsRegistry()
   registry.id = id
   registries.push(registry)
