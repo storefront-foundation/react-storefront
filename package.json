@@ -30,7 +30,7 @@
     "create-indexes": "create-index -ri src",
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
     "build": "npm run build:prep && NODE_ENV=production npm run build:sources",
-    "build:prep": "npm run clean && npm run create-indexes && cp package.json dist",
+    "build:prep": "npm run clean && npm run create-indexes && cp README.md package.json dist",
     "build:sources": "babel ./src --source-maps --out-dir dist",
     "docs": "mkdir -p docs/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node docs/buildDocs d.js",
     "storybook": "start-storybook -c ./.storybook",
