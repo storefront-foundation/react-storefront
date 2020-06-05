@@ -9,6 +9,11 @@ const fuiEvents = ['mouseover', 'touchstart']
 
 let registries = []
 
+// Only used for testing
+export function getRegistryCount() {
+  return registries.length
+}
+
 /*
   This component renders the server side rendered stylesheets for the
   lazy hydrated components. Once they become hydrated, these stylesheets
@@ -181,9 +186,9 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
 }
 
 /**
- * LazyHydrate
+ * LazyHydrate a component based on a specified trigger
  *
- * Example:
+ * Example usage:
  *
  *  <LazyHydrate id="foo">
  *    <div>some expensive component</div>
@@ -210,7 +215,13 @@ LazyHydrate.propTypes = {
   hydrated: PropTypes.bool,
   // Force component to never hydrate
   ssrOnly: PropTypes.bool,
-  // Event to trigger hydration
+  /* 
+    Event to trigger hydration
+    Options
+      - `visible` triggers hydration when component comes into the viewport
+      - `click` triggers hydration when component is clicked
+      - `fui` (default) triggers hydration when user first interacts with page
+  */
   on: PropTypes.oneOf(['visible', 'click', 'fui']),
 }
 

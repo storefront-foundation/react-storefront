@@ -1,9 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import LazyHydrate, {
-  clearLazyHydrateRegistries,
-  LazyStyleElements,
-} from 'react-storefront/LazyHydrate'
+import LazyHydrate, { LazyStyleElements, getRegistryCount } from 'react-storefront/LazyHydrate'
 
 describe('LazyHydrate', () => {
   let wrapper
@@ -14,33 +11,24 @@ describe('LazyHydrate', () => {
 
   it('should clear registries', () => {
     const hydrate = mount(
-      <LazyHydrate>
+      <LazyHydrate id="test">
         <button>click</button>
       </LazyHydrate>,
     )
+    expect(getRegistryCount()).toBe(1)
     wrapper = mount(
       <div>
         <LazyStyleElements />
       </div>,
     )
-    // Should render registered lazy styles
-    expect(wrapper.find('style').length).toBe(1)
-    clearLazyHydrateRegistries()
-    // Simulating next page render
-    wrapper = mount(
-      <div>
-        <LazyStyleElements />
-      </div>,
-    )
-    // Should not hold on to old registered styles
-    expect(wrapper.find('style').length).toBe(0)
+    expect(getRegistryCount()).toBe(0)
     hydrate.unmount()
   })
 
   it('should pass event through when hydrated', () => {
     const click = jest.fn()
     wrapper = mount(
-      <LazyHydrate hydrated>
+      <LazyHydrate id="test" hydrated>
         <button onClick={click}>click</button>
       </LazyHydrate>,
     )
@@ -52,7 +40,7 @@ describe('LazyHydrate', () => {
     const click = jest.fn()
     process.env.IS_BROWSER = 'false'
     wrapper = mount(
-      <LazyHydrate ssrOnly>
+      <LazyHydrate id="test" ssrOnly>
         <button onClick={click}>click</button>
       </LazyHydrate>,
     )
@@ -63,7 +51,7 @@ describe('LazyHydrate', () => {
     const click = jest.fn()
     process.env.IS_BROWSER = 'true'
     wrapper = mount(
-      <LazyHydrate ssrOnly>
+      <LazyHydrate id="test" ssrOnly>
         <button onClick={click}>click</button>
       </LazyHydrate>,
     )
@@ -73,7 +61,7 @@ describe('LazyHydrate', () => {
   it('should hydrate in browser once triggered', () => {
     process.env.IS_BROWSER = 'true'
     wrapper = mount(
-      <LazyHydrate hydrated={false}>
+      <LazyHydrate id="test" hydrated={false}>
         <button>click</button>
       </LazyHydrate>,
     )
