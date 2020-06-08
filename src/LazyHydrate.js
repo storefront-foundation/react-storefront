@@ -5,7 +5,7 @@ import useIntersectionObserver from './hooks/useIntersectionObserver'
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
 
-const fuiEvents = ['mouseover', 'touchstart']
+const fuiEvents = ['mouseover', 'touchstart', 'scroll']
 
 let registries = []
 
