@@ -19,7 +19,7 @@ export function getRegistryCount() {
   lazy hydrated components. Once they become hydrated, these stylesheets
   will be removed.
 */
-export function LazyStyleElements() {
+export function LazyStyles() {
   let styles = null
   try {
     styles = (

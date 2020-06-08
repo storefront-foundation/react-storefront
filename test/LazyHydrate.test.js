@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import LazyHydrate, { LazyStyleElements, getRegistryCount } from 'react-storefront/LazyHydrate'
+import LazyHydrate, { LazyStyles, getRegistryCount } from 'react-storefront/LazyHydrate'
 
 describe('LazyHydrate', () => {
   let wrapper
@@ -18,7 +18,7 @@ describe('LazyHydrate', () => {
     expect(getRegistryCount()).toBe(1)
     wrapper = mount(
       <div>
-        <LazyStyleElements />
+        <LazyStyles />
       </div>,
     )
     expect(getRegistryCount()).toBe(0)
