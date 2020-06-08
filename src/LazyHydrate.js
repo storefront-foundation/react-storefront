@@ -90,7 +90,7 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
   function isHydrated() {
     if (isBrowser()) {
       // If rendering after client side navigation
-      if (window.clientDidNavigate) return true
+      if (window.__clientDidNavigate) return true
       // return true
       if (ssrOnly) return false
       return !!props.hydrated

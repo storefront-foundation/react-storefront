@@ -3,6 +3,7 @@ import PWAContext from './PWAContext'
 import PropTypes from 'prop-types'
 import ErrorBoundary from './ErrorBoundary'
 import { makeStyles } from '@material-ui/core/styles'
+import Router from 'next/router'
 import LinkContextProvider from './link/LinkContextProvider'
 import useSimpleNavigation from './router/useSimpleNavigation'
 import './hooks/useTraceUpdate'
@@ -46,6 +47,10 @@ export default function PWA({ children, errorReporter }) {
 
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
+
+    Router.events.on('routeChangeStart', () => {
+      window.__clientDidNavigate = true
+    })
 
     return () => {
       window.removeEventListener('online', handleOnline)
