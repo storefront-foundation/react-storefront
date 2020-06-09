@@ -283,27 +283,28 @@ function MediaCarousel(props) {
         height={'100%'}
         {...others}
       >
-        {media &&
-          media.full &&
-          media.full.map((item, i) => (
-            <Fill height="100%" key={i}>
-              <MediaComponent
-                magnifyProps={magnifyProps}
-                {...item}
-                src={get(item, 'magnify.src', item.src)}
-                imageProps={
-                  lightboxActive && !isTouchScreen
-                    ? {
-                        fill: false,
-                        contain: true,
-                        src: get(item, 'magnify.src', item.src),
-                      }
-                    : imageProps
-                }
-                videoProps={videoProps}
-              />
-            </Fill>
-          ))}
+        {get(media, 'full', []).map((item, i) => {
+          const magnifySrc = get(item, 'magnify.src', item.src)
+
+          return (
+            <MediaComponent
+              key={i}
+              magnifyProps={magnifyProps}
+              {...item}
+              src={lightboxActive ? magnifySrc : item.src}
+              imageProps={
+                lightboxActive
+                  ? {
+                      fill: false,
+                      contain: true,
+                      src: magnifySrc,
+                    }
+                  : imageProps
+              }
+              videoProps={videoProps}
+            />
+          )
+        })}
       </CarouselComponent>
       {thumbnails && media && (
         <CarouselThumbnailsComponent
