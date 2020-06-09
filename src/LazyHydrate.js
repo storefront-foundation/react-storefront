@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import useIntersectionObserver from './hooks/useIntersectionObserver'
-
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
 
 const fuiEvents = ['mouseover', 'touchstart', 'scroll']
+const touchEvents = ['touchstart', 'mouseover']
+const eventOptions = { once: true, capture: true, passive: true }
 
 let registries = []
 
@@ -103,23 +104,14 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
   const [hydrated, setHydrated] = useState(isHydrated())
 
   function hydrate() {
-    setHydrated(true)
-    // Remove the server side generated stylesheet
-    const stylesheet = window.document.getElementById(id)
-    if (stylesheet) {
-      stylesheet.remove()
-    }
-    clearEventListeners()
-  }
+    if (!hydrated) {
+      setHydrated(true)
+      // Remove the server side generated stylesheet
+      const stylesheet = window.document.getElementById(id)
 
-  function clearEventListeners() {
-    if (on === 'click') {
-      childRef.current.removeEventListener('click', hydrate)
-    }
-    if (on === 'fui') {
-      fuiEvents.forEach(type => {
-        window.removeEventListener(type, hydrate)
-      })
+      if (stylesheet) {
+        stylesheet.remove()
+      }
     }
   }
 
@@ -148,22 +140,31 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
   useEffect(() => {
     if (hydrated) return
 
-    if (on === 'click') {
-      childRef.current.addEventListener('click', hydrate, {
-        once: true,
-        capture: true,
-        passive: true,
-      })
+    const handler = () => {
+      hydrate()
+      clearEventListeners()
+    }
+
+    const clearEventListeners = () => {
+      if (on === 'touch') {
+        touchEvents.forEach(type => {
+          childRef.current.removeEventListener(type, handler, eventOptions)
+        })
+      } else if (on === 'fui') {
+        fuiEvents.forEach(type => {
+          window.removeEventListener(type, handler, eventOptions)
+        })
+      }
     }
 
     if (on === 'fui') {
-      fuiEvents.forEach(type => {
-        window.addEventListener(type, hydrate)
-      })
+      fuiEvents.forEach(type => window.addEventListener(type, handler, eventOptions))
+    } else if (on === 'touch') {
+      touchEvents.forEach(type => childRef.current.addEventListener(type, handler, eventOptions))
     }
 
-    return () => clearEventListeners()
-  }, [hydrated, on])
+    return clearEventListeners
+  }, [on])
 
   if (hydrated) {
     return (
@@ -205,7 +206,7 @@ function LazyHydrate({ children, ...props }) {
 }
 
 LazyHydrate.defaultProps = {
-  on: 'fui',
+  on: 'visible',
 }
 
 LazyHydrate.propTypes = {
@@ -217,12 +218,12 @@ LazyHydrate.propTypes = {
   ssrOnly: PropTypes.bool,
   /* 
     Event to trigger hydration
-    Options
+    eventOptions
       - `visible` triggers hydration when component comes into the viewport
-      - `click` triggers hydration when component is clicked
+      - `touch` triggers hydration on touchstart or mouseover
       - `fui` (default) triggers hydration when user first interacts with page
   */
-  on: PropTypes.oneOf(['visible', 'click', 'fui']),
+  on: PropTypes.oneOf(['visible', 'touch', 'fui']),
 }
 
 export default LazyHydrate

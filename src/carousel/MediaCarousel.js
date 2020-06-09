@@ -290,7 +290,7 @@ function MediaCarousel(props) {
               <MediaComponent
                 magnifyProps={magnifyProps}
                 {...item}
-                src={get(item, 'magnify.src', item.src)}
+                src={item.src}
                 imageProps={
                   lightboxActive && !isTouchScreen
                     ? {
