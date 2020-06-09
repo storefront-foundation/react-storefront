@@ -41,7 +41,7 @@ const styles = theme => ({
     height: '100%',
   },
 
-  '@media (hover:none)': {
+  '@media not all and (hover:none)': {
     hideTouchArrows: {
       display: 'none',
     },
