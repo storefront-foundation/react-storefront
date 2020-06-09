@@ -30,13 +30,18 @@ const styles = theme => ({
     position: 'relative',
     overflow: 'hidden',
     flex: 1,
-
-    '& .react-swipeable-view-container, & > div:first-child': {
+    height: '100%',
+    '& .react-swipeable-view-container, & .react-swipeable-view-container > div': {
       height: '100%',
     },
   },
 
-  '@media not all and (hover:none)': {
+  autoPlaySwipeableViews: {
+    overflowY: 'hidden',
+    height: '100%',
+  },
+
+  '@media (hover:none)': {
     hideTouchArrows: {
       display: 'none',
     },
@@ -101,6 +106,7 @@ const Carousel = React.forwardRef((props, ref) => {
           <AutoPlaySwipeableViews
             index={selected}
             onChangeIndex={i => setSelected(i)}
+            className={classes.autoPlaySwipeableViews}
             style={swipeStyle}
             slideStyle={slideStyle}
             autoplay={autoplay}
