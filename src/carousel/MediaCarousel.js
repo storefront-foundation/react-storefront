@@ -288,6 +288,7 @@ function MediaCarousel(props) {
 
           return (
             <MediaComponent
+              key={i}
               magnifyProps={magnifyProps}
               {...item}
               src={lightboxActive ? magnifySrc : item.src}
