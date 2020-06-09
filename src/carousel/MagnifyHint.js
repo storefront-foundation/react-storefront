@@ -65,7 +65,7 @@ const styles = theme => ({
     '$zoomDisabled&': {
       display: 'none',
     },
-    '@media (hover:none)': {
+    '@media not all and (hover: none)': {
       display: 'none',
     },
   },
@@ -81,7 +81,7 @@ const styles = theme => ({
     '$over:not($expandDisabled) &, $zoomDisabled &': {
       display: 'none',
     },
-    '@media (hover:none)': {
+    '@media not all and (hover: none)': {
       display: 'none',
     },
   },
@@ -90,7 +90,7 @@ const styles = theme => ({
    */
   expandTextMobile: {
     display: 'none',
-    '@media (hover:none)': {
+    '@media not all and (hover: none)': {
       display: 'block',
     },
   },
@@ -102,7 +102,7 @@ const styles = theme => ({
 
     '$over:not($expandDisabled) &, $zoomDisabled &': {
       display: 'block',
-      '@media (hover:none)': {
+      '@media not all and (hover: none)': {
         display: 'none',
       },
     },
