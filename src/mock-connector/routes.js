@@ -1,5 +1,5 @@
 export default [
-  { source: '/', page: '/' },
+  { source: '/', destination: '/' },
   { source: '/s/:subcategoryId', destination: '/s/[subcategoryId]' },
   { source: '/p/:productId', destination: '/p/[productId]' },
   { source: '/products/:productId', destination: '/p/[productId]' },
