@@ -49,7 +49,7 @@ export const styles = theme => ({
   /**
    * Styles applied for mobile devices.
    */
-  '@media (hover: none)': {
+  '@media not all and (hover: none)': {
     SwatchButton: {
       '&:hover': {
         backgroundColor: 'transparent',
