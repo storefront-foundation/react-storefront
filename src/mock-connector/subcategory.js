@@ -5,10 +5,8 @@ import colors, { indexForColor } from './utils/colors'
 import fulfillAPIRequest from 'react-storefront/props/fulfillAPIRequest'
 import createAppData from './utils/createAppData'
 
-export default async function subcategory(req, res) {
-  let {
-    query: { q, subcategoryId = '1', page = 0, filters, sort, more = false },
-  } = req
+export default async function subcategory(params, req, res) {
+  let { q, id = '1', page = 0, filters, sort, more = false } = params
 
   if (filters) {
     filters = JSON.parse(filters)
@@ -16,31 +14,29 @@ export default async function subcategory(req, res) {
     filters = []
   }
 
-  res.json(
-    await fulfillAPIRequest(req, {
-      appData: createAppData,
-      pageData: () =>
-        Promise.resolve({
-          id: subcategoryId,
-          name: q != null ? `Results for "${q}"` : `Subcategory ${subcategoryId}`,
-          title: q != null ? `Results for "${q}"` : `Subcategory ${subcategoryId}`,
-          total: 100,
-          page: parseInt(page),
-          totalPages: 5,
-          filters,
-          sort,
-          sortOptions: createSortOptions(),
-          facets: createFacets(),
-          products: filterProducts(page, filters, more),
-          breadcrumbs: [
-            {
-              text: `Home`,
-              href: '/',
-            },
-          ],
-        }),
-    }),
-  )
+  return await fulfillAPIRequest(req, {
+    appData: createAppData,
+    pageData: () =>
+      Promise.resolve({
+        id: id,
+        name: q != null ? `Results for "${q}"` : `Subcategory ${id}`,
+        title: q != null ? `Results for "${q}"` : `Subcategory ${id}`,
+        total: 100,
+        page: parseInt(page),
+        totalPages: 5,
+        filters,
+        sort,
+        sortOptions: createSortOptions(),
+        facets: createFacets(),
+        products: filterProducts(page, filters, more),
+        breadcrumbs: [
+          {
+            text: `Home`,
+            href: '/',
+          },
+        ],
+      }),
+  })
 }
 
 function filterProducts(page, filters, more) {

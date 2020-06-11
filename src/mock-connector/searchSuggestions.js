@@ -4,12 +4,8 @@
  * @param {String} params.q The search text
  * @return {Object} An object whose shape matches AppModelBase
  */
-export default function searchSuggestions(req, res) {
-  let {
-    query: { q },
-  } = req
-
-  const results = JSON.stringify({
+export default async function searchSuggestions(q, req, res) {
+  return {
     text: q,
     groups: [
       {
@@ -67,9 +63,5 @@ export default function searchSuggestions(req, res) {
         ],
       },
     ],
-  })
-
-  setTimeout(() => {
-    res.end(results)
-  }, 500)
+  }
 }

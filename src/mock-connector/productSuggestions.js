@@ -5,12 +5,12 @@ import createProduct from './utils/createProduct'
  * @param {*} req
  * @param {*} res
  */
-export default function productSuggestions(req, res) {
+export default async function productSuggestions(req, res) {
   const products = []
 
   for (let i = 1; i <= 10; i++) {
     products.push(createProduct(i))
   }
 
-  return res.json(products)
+  return products
 }

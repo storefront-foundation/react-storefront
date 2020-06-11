@@ -15,6 +15,11 @@ module.exports = ({
 } = {}) => {
   const usePreact = process.env.preact === 'true'
 
+  nextConfig.serverRuntimeConfig = {
+    ...nextConfig.serverRuntimeConfig,
+    reactStorefront: { connector },
+  }
+
   return withServiceWorker({
     ...nextConfig,
     target: 'serverless',

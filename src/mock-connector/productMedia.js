@@ -1,19 +1,5 @@
 import createMedia from './utils/createMedia'
 
-export default function productMedia(req, res) {
-  const {
-    query: { productId, color },
-  } = req
-
-  setTimeout(() => {
-    res.setHeader('cache-control', 'no-cache, no-store')
-
-    const media = createMedia(productId, color)
-
-    res.end(
-      JSON.stringify({
-        media,
-      }),
-    )
-  }, 1000)
+export default async function productMedia({ id, color }, req, res) {
+  return { media: createMedia(id, color) }
 }
