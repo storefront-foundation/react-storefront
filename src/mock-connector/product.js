@@ -1,7 +1,6 @@
 import fulfillAPIRequest from '..//props/fulfillAPIRequest'
 import createProduct from './utils/createProduct'
 import createAppData from './utils/createAppData'
-import getBase64ForImage from '../utils/getBase64ForImage'
 
 function asciiSum(string = '') {
   return string.split('').reduce((s, e) => s + e.charCodeAt(), 0)
@@ -50,8 +49,6 @@ async function getPageData(id) {
       },
     ],
   }
-
-  result.media.full.src = await getBase64ForImage(result.media.full.src)
 
   return result
 }
