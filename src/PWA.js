@@ -48,10 +48,6 @@ export default function PWA({ children, errorReporter }) {
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
 
-    Router.events.on('routeChangeStart', () => {
-      window.__clientDidNavigate = true
-    })
-
     return () => {
       window.removeEventListener('online', handleOnline)
       window.removeEventListener('offline', handleOffline)

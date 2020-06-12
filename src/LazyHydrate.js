@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import useIntersectionObserver from './hooks/useIntersectionObserver'
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
+import Router from 'next/router'
+import isBrowser from './utils/isBrowser'
 
 const fuiEvents = ['mouseover', 'touchstart', 'scroll']
 const touchEvents = ['touchstart', 'mouseover']
@@ -13,6 +15,10 @@ let registries = []
 // Only used for testing
 export function getRegistryCount() {
   return registries.length
+}
+
+if (isBrowser()) {
+  window.__lazyHydrateNavigated = false
 }
 
 /*
@@ -76,22 +82,15 @@ function LazyStylesProvider({ id, children }) {
   )
 }
 
-const isBrowser = () => {
-  if (process.env.NODE_ENV === 'test') {
-    return process.env.IS_BROWSER === 'true'
-  }
-  return (
-    typeof window !== 'undefined' &&
-    typeof window.document !== 'undefined' &&
-    typeof window.document.createElement !== 'undefined'
-  )
-}
+Router.events.on('routeChangeStart', () => {
+  window.__lazyHydrateNavigated = true
+})
 
 function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props }) {
   function isHydrated() {
     if (isBrowser()) {
       // If rendering after client side navigation
-      if (window.__clientDidNavigate) return true
+      if (window.__lazyHydrateNavigated) return true
       // return true
       if (ssrOnly) return false
       return !!props.hydrated
@@ -106,17 +105,24 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
   function hydrate() {
     if (!hydrated) {
       setHydrated(true)
-      // Remove the server side generated stylesheet
-      const stylesheet = window.document.getElementById(id)
-
-      if (stylesheet) {
-        stylesheet.remove()
-      }
+      removeSSRStyles()
     }
   }
 
+  function removeSSRStyles() {
+    // Remove the server side generated stylesheet
+    const stylesheet = window.document.getElementById(id)
+
+    if (stylesheet) {
+      stylesheet.remove()
+    }
+  }
+
+  // hydrate if the hydrated prop is changed to true
   useEffect(() => {
-    setHydrated(isHydrated())
+    if (props.hydrated) {
+      hydrate()
+    }
   }, [props.hydrated, ssrOnly])
 
   if (on === 'visible') {
@@ -157,13 +163,19 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
       }
     }
 
+    const onUnmount = () => {
+      // remove the SSR styles since the next time this component renders it will already be hydrated
+      removeSSRStyles()
+      clearEventListeners()
+    }
+
     if (on === 'fui') {
       fuiEvents.forEach(type => window.addEventListener(type, handler, eventOptions))
     } else if (on === 'touch') {
       touchEvents.forEach(type => childRef.current.addEventListener(type, handler, eventOptions))
     }
 
-    return clearEventListeners
+    return onUnmount
   }, [on])
 
   if (hydrated) {
