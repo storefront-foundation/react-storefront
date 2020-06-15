@@ -24,10 +24,8 @@ export default function withAmpFormParser(handler) {
     const form = formidable()
 
     if (req.method.toLowerCase() === 'post') {
-      console.log('method', req.method, 'body', req.body)
       try {
         form.parse(req, (err, fields, files) => {
-          console.log('err', err)
           if (err) {
             res.status(500).end(err.message)
           } else {
@@ -36,6 +34,7 @@ export default function withAmpFormParser(handler) {
           }
         })
       } catch (err) {
+        /* istanbul ignore next */
         res.status(500).end(err.message)
       }
     } else {

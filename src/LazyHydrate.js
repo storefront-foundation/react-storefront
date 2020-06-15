@@ -137,9 +137,8 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
       },
       [],
       // Fallback to eager hydration
-      () => {
-        hydrate()
-      },
+      /* istanbul ignore next */
+      () => hydrate(),
     )
   }
 

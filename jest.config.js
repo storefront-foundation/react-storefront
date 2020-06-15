@@ -8,6 +8,7 @@ module.exports = {
     './src/**/*.{js,jsx}',
     './service-worker/*.{js,jsx}',
     '!./src/plugins/*',
+    '!./src/mock-connector/**/*',
     '!**/index.js',
   ],
   moduleNameMapper: {
