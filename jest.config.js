@@ -8,13 +8,11 @@ module.exports = {
     './src/**/*.{js,jsx}',
     './service-worker/*.{js,jsx}',
     '!./src/plugins/*',
+    '!./src/mock-connector/**/*',
     '!**/index.js',
   ],
   moduleNameMapper: {
     'react-storefront/(.*)': '<rootDir>/src/$1',
-  },
-  transform: {
-    '.*': './test/config/babelTransformer.js',
   },
   transformIgnorePatterns: [
     'node_modules/(?!(workbox-expiration|workbox-core|workbox-routing|workbox-strategies|workbox-precaching)/)',
