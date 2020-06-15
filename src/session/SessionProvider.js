@@ -10,18 +10,78 @@ import fetch from '../fetch'
  * fetched when the app mounts, not in `getInitialProps`, otherwise the SSR result would not be cacheable
  * since it would contain user-specific data.
  */
-export default function SessionProvider({ url, children }) {
+export default function SessionProvider({ url = '/api/session', children }) {
   const [session, setSession] = useState(null)
 
   const context = useMemo(() => {
     return {
       session,
       actions: {
-        updateCartCount(quantity) {
-          setSession({
-            ...session,
-            itemsInCart: quantity,
+        /**
+         * Signs an existing user in
+         * @param {Object} options
+         * @param {String} options.email The user's email
+         * @param {String} options.password The user's password
+         */
+        async signIn({ email, password }) {
+          const response = await fetch('/api/signIn')
+          const { token, cart } = await response.json()
+          setSession(session => ({ ...session, token, cart }))
+          return { token, cart }
+        },
+
+        /**
+         * Signs the user out
+         */
+        async signOut() {
+          const response = await fetch('/api/signOut')
+          setSession({ ...session, token: undefined, cart: undefined })
+        },
+
+        /**
+         * Signs the user up for a new account
+         * @param {Object} options
+         * @param {String} firstName The user's first name
+         * @param {String} lastName The user's last name
+         * @param {String} fullName The user's full name - use either fullName or firstName and lastName depending on what the underlying platform requires
+         * @param {String} email The user's email address
+         * @param {String} password The user's password
+         * @param {Object} ...others Additional data to submit to api/signUp
+         */
+        async signUp({ firstName, lastName, email, password, ...others }) {
+          const response = await fetch('/api/signUp', {
+            method: 'post',
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              password,
+              ...others,
+            }),
           })
+        },
+
+        /**
+         * Adds items to the cart
+         * @param {Object} options
+         * @param {String} sku The product sku
+         * @param {String} quantity The quantity to add to the cart
+         * @param {Object} ...others Additional data to submit to api/addToCart
+         */
+        async addToCart({ sku, quantity, ...others }) {
+          const response = await fetch('/api/addToCart', {
+            method: 'post',
+            body: JSON.stringify({
+              sku,
+              quantity,
+              cartId: cart.id,
+              token,
+              ...others,
+            }),
+          })
+
+          const { cart } = await response.json()
+          setSession({ ...session, cart })
         },
       },
     }
