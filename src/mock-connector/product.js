@@ -1,6 +1,7 @@
 import fulfillAPIRequest from '..//props/fulfillAPIRequest'
 import createProduct from './utils/createProduct'
 import createAppData from './utils/createAppData'
+import getBase64ForImage from 'react-storefront/utils/getBase64ForImage'
 
 function asciiSum(string = '') {
   return string.split('').reduce((s, e) => s + e.charCodeAt(), 0)
@@ -32,8 +33,6 @@ export default async function product(params, req, res) {
 }
 
 async function getPageData(id) {
-  console.log('getPageData')
-
   const result = {
     title: `Product ${id}`,
     product: createProduct(id),
@@ -49,6 +48,9 @@ async function getPageData(id) {
       },
     ],
   }
+
+  const mainProductImage = result.product.media.full[0]
+  mainProductImage.src = await getBase64ForImage(mainProductImage.src)
 
   return result
 }
