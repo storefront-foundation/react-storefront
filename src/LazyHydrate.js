@@ -66,7 +66,7 @@ export function LazyStyles() {
 
 function LazyStylesProvider({ id, children }) {
   const generateClassName = createGenerateClassName({
-    productionPrefix: `lazy-${id}`,
+    seed: id,
   })
   const registry = new SheetsRegistry()
   registry.id = id
@@ -211,7 +211,11 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
 function LazyHydrate({ children, ...props }) {
   return (
     <LazyHydrateInstance {...props}>
-      <LazyStylesProvider {...props}>{children}</LazyStylesProvider>
+      {/* LazyStylesProvider should not be used in the browser. Once components 
+      are hydrated, their styles will automatically be managed by the app's main 
+      StyleProvider. Using LazyStylesProvider in the browser will result in duplicated
+      and conflicting styles in lazy components once they are hydrated. */}
+      {isBrowser() ? children : <LazyStylesProvider {...props}>{children}</LazyStylesProvider>}
     </LazyHydrateInstance>
   )
 }
