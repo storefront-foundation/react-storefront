@@ -53,6 +53,15 @@ module.exports = ({
         }),
       )
 
+      if (config.externals) {
+        // Making sure the AMP optimizer is bundled
+        config.externals = config.externals.filter(name => name !== '@ampproject/toolbox-optimizer')
+        // These are optional dependencies for the optimizer
+        // which are not used by default
+        config.externals.push('jimp')
+        config.externals.push('probe-image-size')
+      }
+
       if (process.env.NODE_ENV === 'development') {
         // This makes it easier to develop apps against a local clone of react-storefront linked with yalc. Here
         // we ensure that the server build recompiles when any linked dependency changes.
