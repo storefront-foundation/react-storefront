@@ -14,9 +14,6 @@ module.exports = {
   moduleNameMapper: {
     'react-storefront/(.*)': '<rootDir>/src/$1',
   },
-  transform: {
-    '.*': './test/config/babelTransformer.js',
-  },
   transformIgnorePatterns: [
     'node_modules/(?!(workbox-expiration|workbox-core|workbox-routing|workbox-strategies|workbox-precaching)/)',
   ],
