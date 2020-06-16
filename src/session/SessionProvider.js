@@ -3,6 +3,13 @@ import SessionContext from './SessionContext'
 import PropTypes from 'prop-types'
 import fetch from '../fetch'
 
+const initialState = {
+  signedIn: false,
+  cart: {
+    items: [],
+  },
+};
+
 /**
  * Fetches user session data from a specific URL and provides it to descendant components via `SessionContext`.
  *
@@ -11,7 +18,7 @@ import fetch from '../fetch'
  * since it would contain user-specific data.
  */
 export default function SessionProvider({ url, children }) {
-  const [session, setSession] = useState({ signedIn: false })
+  const [session, setSession] = useState(initialState)
 
   const context = useMemo(() => {
     return {
