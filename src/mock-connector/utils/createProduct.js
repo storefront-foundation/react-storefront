@@ -56,13 +56,12 @@ export default function createProduct(id, numColors = 4) {
         text: capitalize(name),
         id: name,
         disabled: idx === 2,
-        color: `#${colors[name].background}`,
-        // image: {
-        //   src: `https://via.placeholder.com/48x48/${
-        //     colors[name].background
-        //   }?text=${encodeURIComponent(' ')}`,
-        //   alt: name,
-        // },
+        image: {
+          src: `https://via.placeholder.com/48x48/${
+            colors[name].background
+          }?text=${encodeURIComponent(' ')}`,
+          alt: name,
+        },
         media: {
           full: [name, name, name].map((key, i) => ({
             src: `https://via.placeholder.com/${i === 2 ? 400 : 600}x${i === 1 ? 400 : 600}/${
