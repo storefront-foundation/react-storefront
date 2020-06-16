@@ -56,6 +56,7 @@ export default function ProductOptionSelector({
             key={option.id}
             className={clsx(classes.button, optionProps.className)}
             index={i}
+            color={option.color}
             imageProps={option.image}
             value={option}
             skeleton={skeleton != null}

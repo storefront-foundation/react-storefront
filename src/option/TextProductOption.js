@@ -143,5 +143,5 @@ TextProductOption.propTypes = {
 TextProductOption.defaultProps = {
   selected: false,
   strikeThroughDisabled: false,
-  strikeThroughAngle: 30,
+  strikeThroughAngle: 27,
 }

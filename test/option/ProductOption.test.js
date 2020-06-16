@@ -153,4 +153,20 @@ describe('ProductOption', () => {
         .hasClass(/strikeThrough/),
     ).toEqual(true)
   })
+
+  it('should set the background color based on the color prop', () => {
+    const option = { id: 'test', color: '#ffffff' }
+
+    wrapper = mount(
+      <ProductOption
+        value={option}
+        selectedOption={option}
+        showLabel
+        variant="swatch"
+        color="#ffffff"
+      />,
+    )
+
+    expect(wrapper.find('button > div + div').props().style.backgroundColor).toEqual(option.color)
+  })
 })
