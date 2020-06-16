@@ -84,8 +84,8 @@ export default function SessionProvider({ url, children }) {
             }),
           })
 
-          const { cart, ...others } = await response.json()
-          setSession({ ...session, cart, ...others })
+          const { cart, ...rest } = await response.json()
+          setSession({ ...session, cart, ...rest })
         },
       },
     }
