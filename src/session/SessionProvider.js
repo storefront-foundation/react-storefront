@@ -11,7 +11,7 @@ import fetch from '../fetch'
  * since it would contain user-specific data.
  */
 export default function SessionProvider({ url, children }) {
-  const [session, setSession] = useState(null)
+  const [session, setSession] = useState({ signedIn: false })
 
   const context = useMemo(() => {
     return {
@@ -26,7 +26,7 @@ export default function SessionProvider({ url, children }) {
         async signIn({ email, password }) {
           const response = await fetch('/api/signIn')
           const { cart, ...others } = await response.json()
-          setSession(session => ({ ...session, cart, ...others }))
+          setSession(session => ({ ...session, signedIn: true, cart, ...others }))
           return { cart }
         },
 
@@ -35,7 +35,8 @@ export default function SessionProvider({ url, children }) {
          */
         async signOut() {
           const response = await fetch('/api/signOut')
-          setSession({ ...session, cart: undefined, ...(await res.json()) })
+          const result = await response.json()
+          setSession({ ...session, ...result })
         },
 
         /**
@@ -59,6 +60,10 @@ export default function SessionProvider({ url, children }) {
               ...others,
             }),
           })
+
+          const result = await response.json()
+
+          setSession({ ...session, ...result })
         },
 
         /**
@@ -88,7 +93,9 @@ export default function SessionProvider({ url, children }) {
 
   useEffect(() => {
     async function fetchSession() {
-      setSession(await fetch(url).then(res => res.json()))
+      const response = await fetch(url)
+      const result = await res.json()
+      setSession(result)
     }
 
     if (url) fetchSession()
