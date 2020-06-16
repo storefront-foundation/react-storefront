@@ -80,14 +80,14 @@ export default function SessionProvider({ url, children }) {
          * @param {String} quantity The quantity to add to the cart
          * @param {Object} ...others Additional data to submit to api/addToCart
          */
-        async addToCart({ sku, quantity, ...others }) {
+        async addToCart({ sku, quantity, ...otherParams }) {
           const response = await fetch('/api/addToCart', {
             method: 'post',
             body: JSON.stringify({
               sku,
               quantity,
               cartId: cart.id,
-              ...others,
+              ...otherParams,
             }),
           })
 
