@@ -10,7 +10,7 @@ import fetch from '../fetch'
  * fetched when the app mounts, not in `getInitialProps`, otherwise the SSR result would not be cacheable
  * since it would contain user-specific data.
  */
-export default function SessionProvider({ url = '/api/session', children }) {
+export default function SessionProvider({ url, children }) {
   const [session, setSession] = useState(null)
 
   const context = useMemo(() => {
@@ -25,9 +25,9 @@ export default function SessionProvider({ url = '/api/session', children }) {
          */
         async signIn({ email, password }) {
           const response = await fetch('/api/signIn')
-          const { token, cart } = await response.json()
-          setSession(session => ({ ...session, token, cart }))
-          return { token, cart }
+          const { cart, ...others } = await response.json()
+          setSession(session => ({ ...session, cart, ...others }))
+          return { cart }
         },
 
         /**
@@ -35,7 +35,7 @@ export default function SessionProvider({ url = '/api/session', children }) {
          */
         async signOut() {
           const response = await fetch('/api/signOut')
-          setSession({ ...session, token: undefined, cart: undefined })
+          setSession({ ...session, cart: undefined, ...(await res.json()) })
         },
 
         /**
@@ -75,13 +75,12 @@ export default function SessionProvider({ url = '/api/session', children }) {
               sku,
               quantity,
               cartId: cart.id,
-              token,
               ...others,
             }),
           })
 
-          const { cart } = await response.json()
-          setSession({ ...session, cart })
+          const { cart, ...others } = await response.json()
+          setSession({ ...session, cart, ...others })
         },
       },
     }
@@ -106,4 +105,6 @@ SessionProvider.propTypes = {
   url: PropTypes.string,
 }
 
-SessionProvider.defaultProps = {}
+SessionProvider.defaultProps = {
+  url: '/api/session',
+}
