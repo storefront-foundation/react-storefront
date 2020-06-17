@@ -75,24 +75,37 @@ export default function SessionProvider({ url, children }) {
 
         /**
          * Adds items to the cart
-         * @param {Object} options
-         * @param {String} sku The product sku
-         * @param {String} quantity The quantity to add to the cart
-         * @param {Object} ...others Additional data to submit to api/addToCart
+         * @param {Object} product Product data object
+         * @param {Number} quantity The quantity to add to the cart
+         * @param {Object} otherParams Additional data to submit to api/addToCart
          */
-        async addToCart({ sku, quantity, ...otherParams }) {
-          const response = await fetch('/api/addToCart', {
-            method: 'post',
-            body: JSON.stringify({
-              sku,
-              quantity,
-              cartId: cart.id,
-              ...otherParams,
-            }),
-          })
-
-          const { cart, ...rest } = await response.json()
-          setSession({ ...session, cart, ...rest })
+        async addToCart({ product, quantity, ...otherParams }) {
+          try {
+            const response = await fetch('/api/addToCart', {
+              method: 'post',
+              body: JSON.stringify({
+                product,
+                quantity,
+                ...otherParams,
+              }),
+            })
+            const responseData = await response.json()
+            if (responseData.error) {
+              throw new Error(responseData.error)
+            }
+            const { cart, ...rest } = responseData
+            setSession({ ...session, cart, ...rest })
+            return {
+              success: true,
+            }
+          } catch (error) {
+            console.error('An error occurred in SessionProvider -> addToCart:')
+            console.error(error)
+            return {
+              success: false,
+              error,
+            }
+          }
         },
       },
     }
@@ -101,7 +114,7 @@ export default function SessionProvider({ url, children }) {
   useEffect(() => {
     async function fetchSession() {
       const response = await fetch(url)
-      const result = await res.json()
+      const result = await response.json()
       setSession(result)
     }
 
