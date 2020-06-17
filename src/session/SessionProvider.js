@@ -60,15 +60,24 @@ export default function SessionProvider({ url, children }) {
         },
 
         /**
-         * ~~~~~~~~~~~~~~ TODO ~~~~~~~~~~~~~~ 
-         */
-        /**
          * Signs the user out
          */
         async signOut() {
-          const response = await fetch('/api/signOut')
-          const result = await response.json()
-          setSession({ ...session, ...result })
+          try {
+            const response = await fetch('/api/signOut')
+            const result = await response.json()
+            setSession({ ...session, ...result })
+            return {
+              success: true,
+            }
+          } catch (error) {
+            console.error('An error occurred in SessionProvider -> signOut:')
+            console.error(error)
+            return {
+              success: false,
+              error,
+            }
+          }
         },
 
         /**
