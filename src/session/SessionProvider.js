@@ -26,17 +26,42 @@ export default function SessionProvider({ url, children }) {
       actions: {
         /**
          * Signs an existing user in
-         * @param {Object} options
-         * @param {String} options.email The user's email
-         * @param {String} options.password The user's password
+         * @param {String} email The user's email
+         * @param {String} password The user's password
          */
         async signIn({ email, password }) {
-          const response = await fetch('/api/signIn')
-          const { cart, ...others } = await response.json()
-          setSession(session => ({ ...session, signedIn: true, cart, ...others }))
-          return { cart }
+          try {
+            if (!email || !password) {
+              throw new Error('Please provide email & password')
+            }
+            const response = await fetch('/api/signIn', {
+              method: 'post',
+              body: JSON.stringify({
+                email,
+                password,
+              }),
+            })
+            const responseData = await response.json()
+            if (responseData.error) {
+              throw new Error(responseData.error)
+            }
+            setSession({ ...session, ...responseData })
+            return {
+              success: true,
+            }
+          } catch (error) {
+            console.error('An error occurred in SessionProvider -> signIn:')
+            console.error(error)
+            return {
+              success: false,
+              error,
+            }
+          }
         },
 
+        /**
+         * ~~~~~~~~~~~~~~ TODO ~~~~~~~~~~~~~~ 
+         */
         /**
          * Signs the user out
          */
@@ -46,6 +71,9 @@ export default function SessionProvider({ url, children }) {
           setSession({ ...session, ...result })
         },
 
+        /**
+         * ~~~~~~~~~~~~~~ TODO ~~~~~~~~~~~~~~ 
+         */
         /**
          * Signs the user up for a new account
          * @param {Object} options
