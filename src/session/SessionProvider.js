@@ -81,33 +81,39 @@ export default function SessionProvider({ url, children }) {
         },
 
         /**
-         * ~~~~~~~~~~~~~~ TODO ~~~~~~~~~~~~~~ 
-         */
-        /**
          * Signs the user up for a new account
          * @param {Object} options
          * @param {String} firstName The user's first name
          * @param {String} lastName The user's last name
-         * @param {String} fullName The user's full name - use either fullName or firstName and lastName depending on what the underlying platform requires
          * @param {String} email The user's email address
          * @param {String} password The user's password
          * @param {Object} ...others Additional data to submit to api/signUp
          */
         async signUp({ firstName, lastName, email, password, ...others }) {
-          const response = await fetch('/api/signUp', {
-            method: 'post',
-            body: JSON.stringify({
-              firstName,
-              lastName,
-              email,
-              password,
-              ...others,
-            }),
-          })
-
-          const result = await response.json()
-
-          setSession({ ...session, ...result })
+          try {
+            if (!email || !password) {
+              throw new Error('Please provide sign up data')
+            }
+            const response = await fetch('/api/signUp', {
+              method: 'post',
+              body: JSON.stringify({
+                firstName,
+                lastName,
+                email,
+                password,
+                ...others,
+              }),
+            })
+            const result = await response.json()
+            return result
+          } catch (error) {
+            console.error('An error occurred in SessionProvider -> signUp:')
+            console.error(error)
+            return {
+              success: false,
+              error,
+            }
+          }
         },
 
         /**
