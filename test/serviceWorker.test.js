@@ -92,9 +92,7 @@ describe('all', () => {
         await prefetch('https://www.thirdparty.com/foo')
 
         expect(
-          document.head.querySelectorAll(
-            'link[href="https://www.thirdparty.com/foo?__v__=development"]',
-          ),
+          document.head.querySelectorAll('link[href="https://www.thirdparty.com/foo"]'),
         ).toHaveLength(1)
       })
     })

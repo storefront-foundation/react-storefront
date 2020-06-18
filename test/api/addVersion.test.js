@@ -15,6 +15,12 @@ describe('addVersion', () => {
     expect(addVersion('/foo').toString()).toBe('http://localhost/foo?__v__=development')
   })
 
+  it('should accept a URL', () => {
+    expect(addVersion(new URL('/foo', window.location.href)).toString()).toBe(
+      'http://localhost/foo?__v__=development',
+    )
+  })
+
   it('should not add the version query param unless the request is same-origin', () => {
     expect(addVersion('https://some-domain.com/foo').toString()).toBe('https://some-domain.com/foo')
   })

@@ -12,7 +12,12 @@ export const VERSION_PARAM = '__v__'
  * @return {URL}
  */
 export default function addVersion(url) {
-  const appOrigin = typeof window !== 'undefined' ? window.location.href : 'http://throwaway.api'
+  let appOrigin = 'http://throwaway.api'
+
+  /* istanbul ignore else */
+  if (typeof window !== 'undefined') {
+    appOrigin = window.location.href
+  }
 
   if (typeof url === 'string') {
     url = new URL(url, appOrigin)
