@@ -50,6 +50,7 @@ module.exports = ({
         new webpack.DefinePlugin({
           'process.env.RSF_PREFETCH_QUERY_PARAM': JSON.stringify(prefetchQueryParam),
           'process.env.SERVICE_WORKER': JSON.stringify(process.env.SERVICE_WORKER),
+          'process.env.FIREBASE_CONFIG': JSON.stringify(process.env.FIREBASE_CONFIG),
         }),
       )
 
