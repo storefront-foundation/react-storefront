@@ -177,6 +177,7 @@ export default function SwatchProductOption({
   selected,
   label,
   classes,
+  color,
   imageProps,
   onClick,
   SelectedIcon,
@@ -225,15 +226,25 @@ export default function SwatchProductOption({
         >
           <SelectedIcon className={classes.icon} />
         </div>
-        <ImageComponent
-          className={clsx({
-            [classes.disabled]: disabled,
-          })}
-          classes={{ image: classes.image }}
-          fill
-          aspectRatio={1}
-          {...imageProps}
-        />
+        {color ? (
+          <div
+            className={clsx({
+              [classes.image]: true,
+              [classes.disabled]: disabled,
+            })}
+            style={{ backgroundColor: color }}
+          />
+        ) : (
+          <ImageComponent
+            className={clsx({
+              [classes.disabled]: disabled,
+            })}
+            classes={{ image: classes.image }}
+            fill
+            aspectRatio={1}
+            {...imageProps}
+          />
+        )}
         {disabled && strikeThroughDisabled && (
           <div
             className={clsx({
@@ -267,7 +278,11 @@ SwatchProductOption.propTypes = {
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   /**
-   * Props for the `Image` element.
+   * A CSS color value to set the color of the swatch. Use either `color` or `imageProps`.
+   */
+  color: PropTypes.string,
+  /**
+   * Props for the `Image` element. Use either `color` or `imageProps`.
    */
   imageProps: PropTypes.shape(Image.propTypes),
   /**
