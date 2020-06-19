@@ -26,13 +26,7 @@ export default function addVersion(url) {
   /* istanbul ignore next */
   if (typeof window === 'undefined') return url
 
-  // we should only add ?__v__ for same-origin requests as this may break
-  // requests to 3rd parties that have strict parameter validation such as firebase
-  if (
-    url.hostname === location.hostname &&
-    !url.searchParams.has(VERSION_PARAM) &&
-    typeof __NEXT_DATA__ !== 'undefined'
-  ) {
+  if (!url.searchParams.has(VERSION_PARAM) && typeof __NEXT_DATA__ !== 'undefined') {
     url.searchParams.append(VERSION_PARAM, __NEXT_DATA__.buildId)
   }
 

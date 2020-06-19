@@ -22,7 +22,7 @@ function getURL(request) {
 if (typeof window !== 'undefined') {
   const originalFetch = window.fetch
 
-  window.fetch = function rsfVersionedFetch(url, init, ...others) {
+  window.fetch = function rsfVersionedFetch(url, init) {
     const parsed = getURL(url)
 
     if (!isSameOrigin(parsed)) {
