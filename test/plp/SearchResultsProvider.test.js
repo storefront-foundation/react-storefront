@@ -174,7 +174,7 @@ describe('SearchResultsProvider', () => {
         await wrapper.update()
       })
 
-      expect(fetch).toHaveBeenCalledWith('/api/test')
+      expect(fetch).toHaveBeenCalledWith('/api/test?__v__=development')
 
       windowSpy.mockRestore()
     })
