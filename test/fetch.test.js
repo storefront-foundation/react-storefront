@@ -38,4 +38,14 @@ describe('fetch', () => {
     req.open('GET', '/foo')
     expect(originalOpen).toHaveBeenCalledWith('GET', 'http://localhost/foo?__v__=development')
   })
+
+  it('should not add version to fetches to 3rd party domains', () => {
+    window.fetch('http://some-domain.com')
+    expect(originalFetch.mock.calls[0][0]).toBe('http://some-domain.com')
+  })
+  it('should not add version to XHR requests to 3rd party domains', () => {
+    const req = new XMLHttpRequest()
+    req.open('GET', 'http://some-domain.com')
+    expect(originalOpen).toHaveBeenCalledWith('GET', 'http://some-domain.com')
+  })
 })

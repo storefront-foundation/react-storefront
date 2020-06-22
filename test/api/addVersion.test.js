@@ -15,11 +15,19 @@ describe('addVersion', () => {
     expect(addVersion('/foo').toString()).toBe('http://localhost/foo?__v__=development')
   })
 
+  it('should accept a URL', () => {
+    expect(addVersion(new URL('/foo', window.location.href)).toString()).toBe(
+      'http://localhost/foo?__v__=development',
+    )
+  })
+
   it('should not duplicate the version query param', () => {
     expect(addVersion('/foo?__v__=1').toString()).toBe('http://localhost/foo?__v__=1')
   })
 
   it('should leave the original hostname intact', () => {
-    expect(addVersion('http://foo.com/foo').toString()).toBe('http://foo.com/foo?__v__=development')
+    expect(addVersion('http://localhost/foo').toString()).toBe(
+      'http://localhost/foo?__v__=development',
+    )
   })
 })
