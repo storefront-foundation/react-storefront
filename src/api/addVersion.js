@@ -6,19 +6,29 @@
 export const VERSION_PARAM = '__v__'
 
 /**
- * Adds the next build id as the __v__ query parameter to the given url
- * @param {String} url Any URL
+ * Adds the next build id as the __v__ query parameter to the given url if
+ * the hostname is the same as the URL from which the app was served.
+ * @param {URL|string} url Any URL
  * @return {URL}
  */
 export default function addVersion(url) {
-  /* istanbul ignore next */
-  if (typeof window === 'undefined') return new URL(url, 'http://throwaway.api')
+  let appOrigin = 'http://throwaway.api'
 
-  const parsed = new URL(url, window.location.href)
-
-  if (!parsed.searchParams.has(VERSION_PARAM) && typeof __NEXT_DATA__ !== 'undefined') {
-    parsed.searchParams.append(VERSION_PARAM, __NEXT_DATA__.buildId)
+  /* istanbul ignore else */
+  if (typeof window !== 'undefined') {
+    appOrigin = window.location.href
   }
 
-  return parsed
+  if (typeof url === 'string') {
+    url = new URL(url, appOrigin)
+  }
+
+  /* istanbul ignore next */
+  if (typeof window === 'undefined') return url
+
+  if (!url.searchParams.has(VERSION_PARAM) && typeof __NEXT_DATA__ !== 'undefined') {
+    url.searchParams.append(VERSION_PARAM, __NEXT_DATA__.buildId)
+  }
+
+  return url
 }
