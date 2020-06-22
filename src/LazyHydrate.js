@@ -5,6 +5,7 @@ import { StylesProvider, createGenerateClassName } from '@material-ui/core/style
 import { SheetsRegistry } from 'jss'
 import Router from 'next/router'
 import isBrowser from './utils/isBrowser'
+import { useAmp } from 'next/amp'
 
 const fuiEvents = ['mouseover', 'touchstart', 'scroll']
 const touchEvents = ['touchstart', 'mouseover']
@@ -27,6 +28,8 @@ if (isBrowser()) {
   will be removed.
 */
 export function LazyStyles() {
+  if (useAmp()) return null
+
   let styles = null
   try {
     styles = (
@@ -209,6 +212,7 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
  */
 
 function LazyHydrate({ children, ...props }) {
+  if (useAmp()) return children
   return (
     <LazyHydrateInstance {...props}>
       {/* LazyStylesProvider should not be used in the browser. Once components 
