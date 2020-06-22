@@ -28,8 +28,7 @@ if (isBrowser()) {
   will be removed.
 */
 export function LazyStyles() {
-  const amp = useAmp()
-  if (amp) return null
+  if (useAmp()) return null
 
   let styles = null
   try {
@@ -91,11 +90,8 @@ Router.events.on('routeChangeStart', () => {
 })
 
 function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props }) {
-  const amp = useAmp()
-
   function isHydrated() {
     if (isBrowser()) {
-      if (amp) return true
       // If rendering after client side navigation
       if (window.__lazyHydrateNavigated) return true
       // return true
@@ -216,6 +212,7 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
  */
 
 function LazyHydrate({ children, ...props }) {
+  if (useAmp()) return children
   return (
     <LazyHydrateInstance {...props}>
       {/* LazyStylesProvider should not be used in the browser. Once components 
