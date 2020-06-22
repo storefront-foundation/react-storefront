@@ -30,6 +30,8 @@ export function waitForServiceWorker() {
  * @param {String} url The URL to prefetch
  */
 export async function prefetch(url) {
+  if (url == null) return
+
   if (process.env.NODE_ENV !== 'production' && process.env.SERVICE_WORKER !== 'true') {
     // note that even though we wait for the service worker to be available, during local
     // development it is still possible for a service worker to be around from a previous
