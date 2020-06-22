@@ -127,6 +127,7 @@ function CarouselThumbnails({
   classes,
   className,
   thumbnailPosition,
+  ImageComponent,
 }) {
   const styles = useStyles({ classes })
   const theme = useTheme()
@@ -152,7 +153,7 @@ function CarouselThumbnails({
         }}
       >
         {thumbnails.map(({ src, alt }, i) => {
-          const icon = <Image contain className={styles.thumb} src={src} alt={alt} />
+          const icon = <ImageComponent contain className={styles.thumb} src={src} alt={alt} />
           return (
             <Tab
               classes={{
@@ -205,6 +206,15 @@ CarouselThumbnails.propTypes = {
    * Position of the thumbnails, relative to the main carousel image.
    */
   thumbnailPosition: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
+
+  /**
+   * The component type to use to display images.
+   */
+  ImageComponent: PropTypes.elementType,
 }
 
-export default React.memo(CarouselThumbnails)
+CarouselThumbnails.defaultProps = {
+  ImageComponent: Image,
+}
+
+export default CarouselThumbnails
