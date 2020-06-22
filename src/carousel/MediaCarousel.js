@@ -165,7 +165,7 @@ function MediaCarousel(props) {
   }, [media])
 
   useEffect(() => {
-    if (media && media.full && media.full[selected].type === 'video') {
+    if (media && media.full && media.full[selected] && media.full[selected].type === 'video') {
       setVideo(true)
     } else {
       setVideo(false)

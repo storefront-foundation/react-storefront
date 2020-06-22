@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import SwipeableViews from 'react-swipeable-views'
-import { autoPlay } from 'react-swipeable-views-utils'
+import { autoPlay, virtualize } from 'react-swipeable-views-utils'
 import PropTypes from 'prop-types'
 import CarouselDots from './CarouselDots'
 import CarouselArrows from './CarouselArrows'
 import Fill from '../Fill'
+import { Slide } from '@material-ui/core'
 
 const styles = theme => ({
   /**
@@ -50,6 +51,8 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFCarousel' })
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
+const VirtualizeSwipeableViews = virtualize(SwipeableViews)
+const AutoPlayVirtualizeSwipeableViews = autoPlay(VirtualizeSwipeableViews)
 
 function useSelected(props) {
   if (props.setSelected) {
@@ -58,6 +61,40 @@ function useSelected(props) {
     const [selected, setSelected] = useState(0)
     return { selected, setSelected }
   }
+}
+
+function mod(n, m) {
+  const q = n % m
+  return q < 0 ? q + m : q
+}
+
+function SlideRenderer({ key = 'slide-renderer', index = 0, children, slidesToShow = 1 }) {
+  const slideCount = React.Children.count(children)
+
+  const maxIndex = Math.ceil(React.Children.count(children) / slidesToShow)
+
+  let baseindex = mod(index, maxIndex) * slidesToShow
+
+  console.log(`\nslideCount:`, slideCount)
+  console.log(`maxIndex:`, maxIndex)
+  console.log(`baseindex1:`, baseindex)
+
+  baseindex = baseindex + slidesToShow >= slideCount ? slideCount - slidesToShow : baseindex
+
+  console.log(`baseindex2:`, baseindex)
+
+  let slide = []
+
+  for (let i = 0; i < slidesToShow; i++) {
+    slide.push(
+      React.cloneElement(children[baseindex + i], {
+        style: { width: 100 / slidesToShow + '%', display: 'inline-block' },
+        key: key + '_' + i,
+      }),
+    )
+  }
+
+  return <div key={key}>{slide}</div>
 }
 
 /**
@@ -84,12 +121,22 @@ const Carousel = React.forwardRef((props, ref) => {
     indicators,
     autoplay,
     interval,
+    infinite,
+    // slideRenderer,
   } = props
 
   classes = useStyles({ classes })
 
   const { selected, setSelected } = useSelected(props)
   const count = children && children.length
+
+  let Tag = infinite ? VirtualizeSwipeableViews : SwipeableViews
+  Tag = autoplay ? AutoPlaySwipeableViews : Tag
+  Tag = infinite && autoplay ? AutoPlayVirtualizeSwipeableViews : Tag
+
+  const slideRenderer = props => {
+    return <SlideRenderer {...props} children={children} />
+  }
 
   return (
     <div
@@ -103,24 +150,25 @@ const Carousel = React.forwardRef((props, ref) => {
       {aboveAdornments}
       <Fill height={height}>
         <div className={classes.swipeWrap}>
-          <AutoPlaySwipeableViews
+          <Tag
             index={selected}
             onChangeIndex={i => setSelected(i)}
             className={classes.autoPlaySwipeableViews}
             style={swipeStyle}
             slideStyle={slideStyle}
-            autoplay={autoplay}
+            slideRenderer={infinite && slideRenderer}
             interval={interval}
             containerStyle={{ alignItems: 'center' }}
           >
             {children}
-          </AutoPlaySwipeableViews>
+          </Tag>
           {arrows !== false && (
             <CarouselArrows
               className={arrows === 'desktop' ? classes.hideTouchArrows : null}
               selected={selected}
               setSelected={setSelected}
               count={count}
+              infinite={infinite}
             />
           )}
           {indicators && <CarouselDots count={count} selected={selected} />}
@@ -159,6 +207,11 @@ Carousel.propTypes = {
   autoplay: PropTypes.bool,
 
   /**
+   * If true, scrolling past the last slide will cycle back to the first
+   */
+  infinite: PropTypes.bool,
+
+  /**
    * The interval time (in milliseconds) for [`autoplay`](#prop-autoplay).
    */
   interval: PropTypes.number,
@@ -169,6 +222,7 @@ Carousel.defaultProps = {
   arrows: 'desktop',
   autoplay: false,
   interval: 3000,
+  infinite: true,
 }
 
 export default Carousel
