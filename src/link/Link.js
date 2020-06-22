@@ -38,7 +38,7 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
   prefetchURL = prefetchURL || (as && getAPIURL(as))
 
   useIntersectionObserver(
-    () => (as && prefetch === 'visible' ? ref : null),
+    () => (prefetchURL && prefetch === 'visible' ? ref : null),
     (visible, disconnect) => {
       if (visible && prefetchURL) {
         disconnect()
