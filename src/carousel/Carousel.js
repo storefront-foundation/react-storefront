@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 import CarouselDots from './CarouselDots'
 import CarouselArrows from './CarouselArrows'
 import Fill from '../Fill'
-import { Slide } from '@material-ui/core'
 
 const styles = theme => ({
   /**
@@ -68,35 +67,6 @@ function mod(n, m) {
   return q < 0 ? q + m : q
 }
 
-function SlideRenderer({ key = 'slide-renderer', index = 0, children, slidesToShow = 1 }) {
-  const slideCount = React.Children.count(children)
-
-  const maxIndex = Math.ceil(React.Children.count(children) / slidesToShow)
-
-  let baseindex = mod(index, maxIndex) * slidesToShow
-
-  console.log(`\nslideCount:`, slideCount)
-  console.log(`maxIndex:`, maxIndex)
-  console.log(`baseindex1:`, baseindex)
-
-  baseindex = baseindex + slidesToShow >= slideCount ? slideCount - slidesToShow : baseindex
-
-  console.log(`baseindex2:`, baseindex)
-
-  let slide = []
-
-  for (let i = 0; i < slidesToShow; i++) {
-    slide.push(
-      React.cloneElement(children[baseindex + i], {
-        style: { width: 100 / slidesToShow + '%', display: 'inline-block' },
-        key: key + '_' + i,
-      }),
-    )
-  }
-
-  return <div key={key}>{slide}</div>
-}
-
 /**
  * A grouped display of elements that shows one element at a time, and changes to peer elements by
  * swiping to the left or right, or by clicking arrows on the sides of the component. Generally used
@@ -122,7 +92,6 @@ const Carousel = React.forwardRef((props, ref) => {
     autoplay,
     interval,
     infinite,
-    // slideRenderer,
   } = props
 
   classes = useStyles({ classes })
@@ -134,8 +103,10 @@ const Carousel = React.forwardRef((props, ref) => {
   Tag = autoplay ? AutoPlaySwipeableViews : Tag
   Tag = infinite && autoplay ? AutoPlayVirtualizeSwipeableViews : Tag
 
-  const slideRenderer = props => {
-    return <SlideRenderer {...props} children={children} />
+  const slideRenderer = ({ index }) => {
+    const key = `slide-renderer-${index}`
+    const slide = React.cloneElement(children[mod(index, count)])
+    return <div key={key}>{slide}</div>
   }
 
   return (
@@ -152,16 +123,14 @@ const Carousel = React.forwardRef((props, ref) => {
         <div className={classes.swipeWrap}>
           <Tag
             index={selected}
-            onChangeIndex={i => setSelected(i)}
+            onChangeIndex={setSelected}
             className={classes.autoPlaySwipeableViews}
             style={swipeStyle}
             slideStyle={slideStyle}
-            slideRenderer={infinite && slideRenderer}
+            slideRenderer={infinite && (props.slideRenderer || slideRenderer)}
             interval={interval}
             containerStyle={{ alignItems: 'center' }}
-          >
-            {children}
-          </Tag>
+          />
           {arrows !== false && (
             <CarouselArrows
               className={arrows === 'desktop' ? classes.hideTouchArrows : null}

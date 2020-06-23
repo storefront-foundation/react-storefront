@@ -133,11 +133,12 @@ function CarouselThumbnails({
   const theme = useTheme()
   const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
   const isVertical = !isSmall && ['left', 'right'].includes(thumbnailPosition)
+  const count = thumbnails.length
 
   return (
     <div className={clsx(className, styles.thumbs)}>
       <Tabs
-        value={selected}
+        value={selected % count}
         variant="scrollable"
         onChange={(_, index) => setSelected(index)}
         orientation={isVertical ? 'vertical' : 'horizontal'}
