@@ -21,6 +21,10 @@ describe('addVersion', () => {
     )
   })
 
+  it('should return the original url if it is falsy', () => {
+    expect(addVersion()).toBeUndefined()
+  })
+
   it('should not duplicate the version query param', () => {
     expect(addVersion('/foo?__v__=1').toString()).toBe('http://localhost/foo?__v__=1')
   })

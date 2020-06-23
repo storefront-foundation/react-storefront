@@ -58,6 +58,22 @@ describe('Link', () => {
     expect(onClick).toHaveBeenCalled()
   })
 
+  it('should support children', () => {
+    const onClick = jest.fn()
+
+    const Test = () => {
+      return (
+        <Link as="/p/1" href="/p/[productId]" onClick={onClick}>
+          <a>Product 1</a>
+        </Link>
+      )
+    }
+
+    wrapper = mount(<Test />)
+    wrapper.find(Link).simulate('click')
+    expect(onClick).toHaveBeenCalled()
+  })
+
   describe('prefetch', () => {
     it('should support prefetch=visible', () => {
       const Test = () => {
@@ -104,10 +120,23 @@ describe('Link', () => {
       expect(prefetch).toHaveBeenCalledWith('/api/p/1')
     })
 
-    it('should prefetch=false', () => {
+    it('should support prefetch=false', () => {
       const Test = () => {
         return (
           <Link as="/p/1" href="/p/[productId]">
+            Product 1
+          </Link>
+        )
+      }
+
+      wrapper = mount(<Test />)
+      expect(prefetch).not.toHaveBeenCalled()
+    })
+
+    it('should not prefetch if the as prop is not provided', () => {
+      const Test = () => {
+        return (
+          <Link as={undefined} href="/p/[productId]" prefetch="always">
             Product 1
           </Link>
         )
