@@ -1,15 +1,18 @@
 import React, { useContext } from 'react'
 import { mount } from 'enzyme'
-import { Button } from '@material-ui/core'
-import SessionProvider from 'react-storefront/session/SessionProvider'
 import SessionContext from 'react-storefront/session/SessionContext'
 import { act } from 'react-dom/test-utils'
 
 describe('SessionProvider', () => {
-  let wrapper
+  let wrapper,
+    SessionProvider,
+    actions,
+    session,
+    sessionResponse = { signedIn: true, cart: { items: [{ id: '1', name: 'Red Shoe' }] } }
 
   beforeEach(() => {
-    fetchMock.mockResponseOnce(JSON.stringify({ itemsInCart: 5 }))
+    fetchMock.mockOnce(JSON.stringify(sessionResponse))
+    SessionProvider = require('react-storefront/session/SessionProvider').default
   })
 
   afterEach(() => {
@@ -18,51 +21,47 @@ describe('SessionProvider', () => {
   })
 
   const Test = () => {
-    const { actions, session } = useContext(SessionContext)
-
-    const updateCart = () => {
-      actions.updateCartCount(session.itemsInCart + 1)
-    }
-
-    return <Button onClick={updateCart}>{`Total:${session ? session.itemsInCart : 0}`}</Button>
+    const context = useContext(SessionContext)
+    actions = context.actions
+    session = context.session
+    return null
   }
 
-  it('should fetch session data', async () => {
-    wrapper = mount(
-      <SessionProvider url="/api/session">
-        <Test />
-      </SessionProvider>,
-    )
-
-    expect(wrapper.find(Button).text()).toBe('Total:0')
-
-    await act(async () => {
-      await wrapper.update()
+  describe('mount', () => {
+    it('should fetch session data', async () => {
+      wrapper = mount(
+        <SessionProvider url="/api/session">
+          <Test />
+        </SessionProvider>,
+      )
+      expect(session).toEqual({
+        signedIn: false,
+        cart: {
+          items: [],
+        },
+      })
+      await act(async () => await wrapper.update())
+      expect(session).toEqual(sessionResponse)
     })
 
-    expect(wrapper.find(Button).text()).toBe('Total:5')
-  })
-
-  it('should not fetch session data if url is not provided', async () => {
-    wrapper = mount(
-      <SessionProvider>
-        <Test />
-      </SessionProvider>,
-    )
-
-    expect(wrapper.find(Button).text()).toBe('Total:0')
-
-    await act(async () => {
-      await wrapper.update()
+    it('should not fetch session data if url is not provided', async () => {
+      wrapper = mount(
+        <SessionProvider>
+          <Test />
+        </SessionProvider>,
+      )
+      await act(async () => await wrapper.update())
+      expect(session).toEqual({
+        signedIn: false,
+        cart: {
+          items: [],
+        },
+      })
     })
-
-    expect(wrapper.find(Button).text()).toBe('Total:0')
-
-    expect(fetchMock).not.toBeCalled()
   })
 
-  describe('actions - updateCartCount', () => {
-    it('should update cartCount', async () => {
+  describe('signIn', () => {
+    it('should call the signIn api and update the session', async () => {
       wrapper = mount(
         <SessionProvider url="/api/session">
           <Test />
@@ -70,17 +69,117 @@ describe('SessionProvider', () => {
       )
 
       await act(async () => {
-        await wrapper.update()
+        let request
+        fetchMock.mockOnce(async req => {
+          request = req
+          return JSON.stringify({ signedIn: true })
+        })
+        await actions.signIn({ email: 'user@domain.com', password: 'password' })
+        expect(request.url).toBe('/api/signIn')
+        expect(request.method).toBe('POST')
+        expect(request.body.toString('utf8')).toEqual(
+          JSON.stringify({ email: 'user@domain.com', password: 'password' }),
+        )
+        expect(session.signedIn).toBe(true)
       })
+    })
+  })
 
-      expect(wrapper.find(Button).text()).toBe('Total:5')
-      wrapper.find(Button).simulate('click')
+  describe('signOut', () => {
+    it('should call the signOut api and update the session', async () => {
+      wrapper = mount(
+        <SessionProvider url="/api/session">
+          <Test />
+        </SessionProvider>,
+      )
 
       await act(async () => {
-        await wrapper.update()
+        let request
+        fetchMock.mockOnce(async req => {
+          request = req
+          return JSON.stringify({ signedIn: false })
+        })
+        await actions.signOut()
+        expect(request.url).toBe('/api/signOut')
+        expect(request.method).toBe('POST')
+        expect(session.signedIn).toBe(false)
       })
+    })
+  })
 
-      expect(wrapper.find(Button).text()).toBe('Total:6')
+  describe('signUp', () => {
+    it('should call the signUp api and update the session', async () => {
+      wrapper = mount(
+        <SessionProvider url="/api/session">
+          <Test />
+        </SessionProvider>,
+      )
+
+      await act(async () => {
+        let request
+
+        fetchMock.mockOnce(async req => {
+          request = req
+          return JSON.stringify({ signedIn: true })
+        })
+
+        await actions.signUp({
+          firstName: 'Joe',
+          lastName: 'Smith',
+          email: 'user@domain.com',
+          password: 'password',
+          someOtherField: 'foo',
+        })
+
+        expect(request.url).toBe('/api/signUp')
+        expect(request.method).toBe('POST')
+        expect(request.body.toString('utf8')).toEqual(
+          JSON.stringify({
+            firstName: 'Joe',
+            lastName: 'Smith',
+            email: 'user@domain.com',
+            password: 'password',
+            someOtherField: 'foo',
+          }),
+        )
+        expect(session.signedIn).toBe(true)
+      })
+    })
+  })
+
+  describe('addToCart', () => {
+    it('should call api/addToCart and apply the result to the session', async () => {
+      wrapper = mount(
+        <SessionProvider url="/api/session">
+          <Test />
+        </SessionProvider>,
+      )
+
+      await act(async () => {
+        let request
+
+        fetchMock.mockOnce(async req => {
+          request = req
+          return JSON.stringify({ signedIn: true })
+        })
+
+        await actions.addToCart({
+          product: { id: '1', name: 'Red Dress' },
+          quantity: 1,
+          someOtherParam: 'foo',
+        })
+
+        expect(request.url).toBe('/api/addToCart')
+        expect(request.method).toBe('POST')
+        expect(request.body.toString('utf8')).toEqual(
+          JSON.stringify({
+            product: { id: '1', name: 'Red Dress' },
+            quantity: 1,
+            someOtherParam: 'foo',
+          }),
+        )
+        expect(session.signedIn).toBe(true)
+      })
     })
   })
 })

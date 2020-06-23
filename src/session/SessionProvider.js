@@ -8,7 +8,7 @@ const initialState = {
   cart: {
     items: [],
   },
-};
+}
 
 /**
  * Fetches user session data from a specific URL and provides it to descendant components via `SessionContext`.
@@ -30,54 +30,24 @@ export default function SessionProvider({ url, children }) {
          * @param {String} password The user's password
          */
         async signIn({ email, password }) {
-          try {
-            if (!email || !password) {
-              throw new Error('Please provide email & password')
-            }
-            const response = await fetch('/api/signIn', {
-              method: 'post',
-              body: JSON.stringify({
-                email,
-                password,
-              }),
-            })
-            const responseData = await response.json()
-            if (responseData.error) {
-              throw new Error(responseData.error)
-            }
-            setSession({ ...session, ...responseData })
-            return {
-              success: true,
-            }
-          } catch (error) {
-            console.error('An error occurred in SessionProvider -> signIn:')
-            console.error(error)
-            return {
-              success: false,
-              error,
-            }
-          }
+          const response = await fetch('/api/signIn', {
+            method: 'post',
+            body: JSON.stringify({
+              email,
+              password,
+            }),
+          })
+          const responseData = await response.json()
+          setSession({ ...session, ...responseData })
         },
 
         /**
          * Signs the user out
          */
         async signOut() {
-          try {
-            const response = await fetch('/api/signOut')
-            const result = await response.json()
-            setSession({ ...session, ...result })
-            return {
-              success: true,
-            }
-          } catch (error) {
-            console.error('An error occurred in SessionProvider -> signOut:')
-            console.error(error)
-            return {
-              success: false,
-              error,
-            }
-          }
+          const response = await fetch('/api/signOut', { method: 'post' })
+          const result = await response.json()
+          setSession({ ...session, ...result })
         },
 
         /**
@@ -90,30 +60,18 @@ export default function SessionProvider({ url, children }) {
          * @param {Object} ...others Additional data to submit to api/signUp
          */
         async signUp({ firstName, lastName, email, password, ...others }) {
-          try {
-            if (!email || !password) {
-              throw new Error('Please provide sign up data')
-            }
-            const response = await fetch('/api/signUp', {
-              method: 'post',
-              body: JSON.stringify({
-                firstName,
-                lastName,
-                email,
-                password,
-                ...others,
-              }),
-            })
-            const result = await response.json()
-            return result
-          } catch (error) {
-            console.error('An error occurred in SessionProvider -> signUp:')
-            console.error(error)
-            return {
-              success: false,
-              error,
-            }
-          }
+          const response = await fetch('/api/signUp', {
+            method: 'post',
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              password,
+              ...others,
+            }),
+          })
+          const result = await response.json()
+          setSession({ ...session, ...result })
         },
 
         /**
@@ -123,32 +81,17 @@ export default function SessionProvider({ url, children }) {
          * @param {Object} otherParams Additional data to submit to api/addToCart
          */
         async addToCart({ product, quantity, ...otherParams }) {
-          try {
-            const response = await fetch('/api/addToCart', {
-              method: 'post',
-              body: JSON.stringify({
-                product,
-                quantity,
-                ...otherParams,
-              }),
-            })
-            const responseData = await response.json()
-            if (responseData.error) {
-              throw new Error(responseData.error)
-            }
-            const { cart, ...rest } = responseData
-            setSession({ ...session, cart, ...rest })
-            return {
-              success: true,
-            }
-          } catch (error) {
-            console.error('An error occurred in SessionProvider -> addToCart:')
-            console.error(error)
-            return {
-              success: false,
-              error,
-            }
-          }
+          const response = await fetch('/api/addToCart', {
+            method: 'post',
+            body: JSON.stringify({
+              product,
+              quantity,
+              ...otherParams,
+            }),
+          })
+          const responseData = await response.json()
+          const { cart, ...rest } = responseData
+          setSession({ ...session, cart, ...rest })
         },
       },
     }
@@ -173,8 +116,4 @@ SessionProvider.propTypes = {
    * to be made available via `react-storefront/session/SessionContext`.
    */
   url: PropTypes.string,
-}
-
-SessionProvider.defaultProps = {
-  url: '/api/session',
 }
