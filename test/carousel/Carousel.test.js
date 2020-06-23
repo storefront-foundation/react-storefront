@@ -1,9 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Carousel from 'react-storefront/carousel/Carousel'
+import Carousel, { VirtualizeSwipeableViews } from 'react-storefront/carousel/Carousel'
 import CarouselDots from 'react-storefront/carousel/CarouselDots'
 import CarouselArrows from 'react-storefront/carousel/CarouselArrows'
-import SwipeableViews from 'react-swipeable-views'
 
 describe('Carousel', () => {
   let wrapper
@@ -79,7 +78,7 @@ describe('Carousel', () => {
     expect(wrapper.find('#first')).toExist()
     expect(wrapper.find('#second')).not.toExist()
 
-    wrapper.find(SwipeableViews).invoke('onChangeIndex')(1)
+    wrapper.find(VirtualizeSwipeableViews).invoke('onChangeIndex')(1)
 
     expect(wrapper.find(CarouselArrows).prop('selected')).toBe(1)
     expect(wrapper.find('#first')).not.toExist()

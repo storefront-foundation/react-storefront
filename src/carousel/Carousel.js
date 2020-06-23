@@ -50,7 +50,7 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles, { name: 'RSFCarousel' })
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
-const VirtualizeSwipeableViews = virtualize(SwipeableViews)
+export const VirtualizeSwipeableViews = virtualize(SwipeableViews)
 const AutoPlayVirtualizeSwipeableViews = autoPlay(VirtualizeSwipeableViews)
 
 function useSelected(props) {
@@ -105,7 +105,9 @@ const Carousel = React.forwardRef((props, ref) => {
 
   const slideRenderer = ({ index }) => {
     const key = `slide-renderer-${index}`
-    const slide = React.cloneElement(children[mod(index, count)])
+    const child = children[mod(index, count)]
+    if (!child) return null
+    const slide = React.cloneElement(child)
     return <div key={key}>{slide}</div>
   }
 
