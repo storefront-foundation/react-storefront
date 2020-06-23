@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import SwipeableViews from 'react-swipeable-views'
@@ -108,7 +108,7 @@ const Carousel = React.forwardRef((props, ref) => {
     const child = children[mod(index, count)]
     if (!child) return null
     const slide = React.cloneElement(child)
-    return <div key={key}>{slide}</div>
+    return <Fragment key={key}>{slide}</Fragment>
   }
 
   return (
