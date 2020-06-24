@@ -6,6 +6,7 @@ import { autoPlay, virtualize } from 'react-swipeable-views-utils'
 import PropTypes from 'prop-types'
 import CarouselDots from './CarouselDots'
 import CarouselArrows from './CarouselArrows'
+import mod from '../utils/mod'
 import Fill from '../Fill'
 
 const styles = theme => ({
@@ -60,11 +61,6 @@ function useSelected(props) {
     const [selected, setSelected] = useState(0)
     return { selected, setSelected }
   }
-}
-
-function mod(n, m) {
-  const q = n % m
-  return q < 0 ? q + m : q
 }
 
 /**
