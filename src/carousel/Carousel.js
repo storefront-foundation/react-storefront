@@ -50,9 +50,10 @@ const styles = theme => ({
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFCarousel' })
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
+
+export const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 export const VirtualizeSwipeableViews = virtualize(SwipeableViews)
-const AutoPlayVirtualizeSwipeableViews = autoPlay(VirtualizeSwipeableViews)
+export const AutoPlayVirtualizeSwipeableViews = autoPlay(VirtualizeSwipeableViews)
 
 function useSelected(props) {
   if (props.setSelected) {
@@ -125,7 +126,7 @@ const Carousel = React.forwardRef((props, ref) => {
             className={classes.autoPlaySwipeableViews}
             style={swipeStyle}
             slideStyle={slideStyle}
-            slideRenderer={infinite && (props.slideRenderer || slideRenderer)}
+            slideRenderer={props.slideRenderer || slideRenderer}
             interval={interval}
             containerStyle={{ alignItems: 'center' }}
           />
