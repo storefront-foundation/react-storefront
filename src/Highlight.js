@@ -15,17 +15,11 @@ const addHighlight = (query, text, className) =>
     match => `<span class="${className}">${match}</span>`,
   )
 
-function Highlight({ query, text, highlightClassName, ...props }) {
+export default function Highlight({ query, text, classes, ...props }) {
   return (
     <Typography
       {...props}
-      dangerouslySetInnerHTML={{ __html: addHighlight(query, text, highlightClassName) }}
+      dangerouslySetInnerHTML={{ __html: addHighlight(query, text, classes.highlight) }}
     />
   )
 }
-
-Highlight.defaultProps = {
-  highlightClassName: 'highlight',
-}
-
-export default Highlight

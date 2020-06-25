@@ -29,12 +29,11 @@ export const styles = theme => ({
       },
     },
   },
-  text: {
-    '& .highlight': {
-      backgroundColor: 'rgba(0,0,0,0.05)',
-      borderRadius: '2px',
-      color: theme.palette.secondary.main,
-    },
+  text: {},
+  highlight: {
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: '2px',
+    color: theme.palette.secondary.main,
   },
 })
 
@@ -65,7 +64,12 @@ export default function SearchSuggestionItem({
                 {...thumbnailProps}
                 {...item.thumbnail}
               />
-              <Highlight query={query} text={item.text} className={classes.text} />
+              <Highlight
+                className={classes.text}
+                query={query}
+                text={item.text}
+                classes={classes}
+              />
             </div>
           </a>
         )}
