@@ -12,6 +12,8 @@ export const VERSION_PARAM = '__v__'
  * @return {URL}
  */
 export default function addVersion(url) {
+  if (!url) return url
+
   let appOrigin = 'http://throwaway.api'
 
   /* istanbul ignore else */

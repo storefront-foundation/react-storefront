@@ -35,22 +35,24 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
     }
   })
 
+  prefetchURL = prefetchURL || (as && getAPIURL(as))
+
   useIntersectionObserver(
-    () => (as && prefetch === 'visible' ? ref : null),
+    () => (prefetchURL && prefetch === 'visible' ? ref : null),
     (visible, disconnect) => {
-      if (visible) {
+      if (visible && prefetchURL) {
         disconnect()
-        doPrefetch(prefetchURL || getAPIURL(as))
+        doPrefetch(prefetchURL)
       }
     },
-    [as, prefetch],
+    [prefetchURL, prefetch],
   )
 
   useEffect(() => {
-    if (prefetch === 'always') {
-      doPrefetch(getAPIURL(as))
+    if (prefetch === 'always' && prefetchURL) {
+      doPrefetch(prefetchURL)
     }
-  }, [as])
+  }, [prefetchURL])
 
   if (!children || typeof children === 'string') {
     return (
