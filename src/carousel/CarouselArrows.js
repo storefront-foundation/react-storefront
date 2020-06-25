@@ -46,7 +46,14 @@ const useStyles = makeStyles(styles, { name: 'RSFCarouselArrows' })
  * Arrows that are overlaid onto a [`Carousel`](/apiReference/carousel/Carousel) that will change
  * the slide shown when clicked.
  */
-export default function CarouselArrows({ className, classes, selected, count, setSelected }) {
+export default function CarouselArrows({
+  className,
+  classes,
+  selected,
+  count,
+  setSelected,
+  infinite,
+}) {
   classes = useStyles({ classes })
 
   const createOnClickArrow = useCallback(
@@ -59,7 +66,7 @@ export default function CarouselArrows({ className, classes, selected, count, se
 
   return (
     <div className={clsx(classes.arrows, className)}>
-      {selected !== 0 && (
+      {(selected !== 0 || infinite) && (
         <IconButton
           className={clsx(classes.arrow, classes.leftArrow)}
           onClick={createOnClickArrow(-1)}
@@ -67,7 +74,7 @@ export default function CarouselArrows({ className, classes, selected, count, se
           <ChevronLeft classes={{ root: classes.icon }} />
         </IconButton>
       )}
-      {selected !== count - 1 && (
+      {(selected !== count - 1 || infinite) && (
         <IconButton
           className={clsx(classes.arrow, classes.rightArrow)}
           onClick={createOnClickArrow(1)}

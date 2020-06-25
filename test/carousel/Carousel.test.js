@@ -1,9 +1,13 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Carousel from 'react-storefront/carousel/Carousel'
+import SwipeableViews from 'react-swipeable-views'
+import Carousel, {
+  AutoPlaySwipeableViews,
+  VirtualizeSwipeableViews,
+  AutoPlayVirtualizeSwipeableViews,
+} from 'react-storefront/carousel/Carousel'
 import CarouselDots from 'react-storefront/carousel/CarouselDots'
 import CarouselArrows from 'react-storefront/carousel/CarouselArrows'
-import SwipeableViews from 'react-swipeable-views'
 
 describe('Carousel', () => {
   let wrapper
@@ -79,10 +83,46 @@ describe('Carousel', () => {
     expect(wrapper.find('#first')).toExist()
     expect(wrapper.find('#second')).not.toExist()
 
-    wrapper.find(SwipeableViews).invoke('onChangeIndex')(1)
+    wrapper.find(VirtualizeSwipeableViews).invoke('onChangeIndex')(1)
 
     expect(wrapper.find(CarouselArrows).prop('selected')).toBe(1)
     expect(wrapper.find('#first')).not.toExist()
     expect(wrapper.find('#second')).toExist()
+  })
+
+  it('should use SwipeableViews when not infinite nor autoplay', () => {
+    wrapper = mount(
+      <Carousel infinite={false}>
+        <div id="foo">bar</div>
+      </Carousel>,
+    )
+    expect(wrapper.find(SwipeableViews)).toExist()
+  })
+
+  it('should use VirtualizeSwipeableViews when infinite and not autoplay', () => {
+    wrapper = mount(
+      <Carousel>
+        <div id="foo">bar</div>
+      </Carousel>,
+    )
+    expect(wrapper.find(VirtualizeSwipeableViews)).toExist()
+  })
+
+  it('should use AutoPlaySwipeableViews when not infinite and autoplay', () => {
+    wrapper = mount(
+      <Carousel infinite={false} autoplay>
+        <div id="foo">bar</div>
+      </Carousel>,
+    )
+    expect(wrapper.find(AutoPlaySwipeableViews)).toExist()
+  })
+
+  it('should use AutoPlayVirtualizeSwipeableViews when infinite and autoplay', () => {
+    wrapper = mount(
+      <Carousel autoplay>
+        <div id="foo">bar</div>
+      </Carousel>,
+    )
+    expect(wrapper.find(AutoPlayVirtualizeSwipeableViews)).toExist()
   })
 })

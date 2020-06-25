@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import SwipeableViews from 'react-swipeable-views'
-import { autoPlay } from 'react-swipeable-views-utils'
+import { autoPlay, virtualize } from 'react-swipeable-views-utils'
 import PropTypes from 'prop-types'
 import CarouselDots from './CarouselDots'
 import CarouselArrows from './CarouselArrows'
+import mod from '../utils/mod'
 import Fill from '../Fill'
 
 const styles = theme => ({
@@ -49,7 +50,10 @@ const styles = theme => ({
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFCarousel' })
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
+
+export const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
+export const VirtualizeSwipeableViews = virtualize(SwipeableViews)
+export const AutoPlayVirtualizeSwipeableViews = autoPlay(VirtualizeSwipeableViews)
 
 function useSelected(props) {
   if (props.setSelected) {
@@ -84,12 +88,25 @@ const Carousel = React.forwardRef((props, ref) => {
     indicators,
     autoplay,
     interval,
+    infinite,
   } = props
 
   classes = useStyles({ classes })
 
   const { selected, setSelected } = useSelected(props)
   const count = children && children.length
+
+  let Tag = infinite ? VirtualizeSwipeableViews : SwipeableViews
+  Tag = autoplay ? AutoPlaySwipeableViews : Tag
+  Tag = infinite && autoplay ? AutoPlayVirtualizeSwipeableViews : Tag
+
+  const slideRenderer = ({ index }) => {
+    const key = `slide-renderer-${index}`
+    const child = children[mod(index, count)]
+    if (!child) return null
+    const slide = React.cloneElement(child)
+    return <Fragment key={key}>{slide}</Fragment>
+  }
 
   return (
     <div
@@ -103,24 +120,23 @@ const Carousel = React.forwardRef((props, ref) => {
       {aboveAdornments}
       <Fill height={height}>
         <div className={classes.swipeWrap}>
-          <AutoPlaySwipeableViews
+          <Tag
             index={selected}
-            onChangeIndex={i => setSelected(i)}
+            onChangeIndex={setSelected}
             className={classes.autoPlaySwipeableViews}
             style={swipeStyle}
             slideStyle={slideStyle}
-            autoplay={autoplay}
+            slideRenderer={props.slideRenderer || slideRenderer}
             interval={interval}
             containerStyle={{ alignItems: 'center' }}
-          >
-            {children}
-          </AutoPlaySwipeableViews>
+          />
           {arrows !== false && (
             <CarouselArrows
               className={arrows === 'desktop' ? classes.hideTouchArrows : null}
               selected={selected}
               setSelected={setSelected}
               count={count}
+              infinite={infinite}
             />
           )}
           {indicators && <CarouselDots count={count} selected={selected} />}
@@ -159,6 +175,11 @@ Carousel.propTypes = {
   autoplay: PropTypes.bool,
 
   /**
+   * If true, scrolling past the last slide will cycle back to the first
+   */
+  infinite: PropTypes.bool,
+
+  /**
    * The interval time (in milliseconds) for [`autoplay`](#prop-autoplay).
    */
   interval: PropTypes.number,
@@ -169,6 +190,7 @@ Carousel.defaultProps = {
   arrows: 'desktop',
   autoplay: false,
   interval: 3000,
+  infinite: true,
 }
 
 export default Carousel
