@@ -36,9 +36,10 @@ function Media({
 
   const adjustMagnifyProps = () => {
     const appliedMagnifyProps = { ...(magnifyProps || {}) }
+    const beside = magnifyProps && magnifyProps.enlargedImagePosition === 'beside'
     appliedMagnifyProps.style = {
       ...((magnifyProps && magnifyProps.style) || {}),
-      display: 'flex',
+      display: beside ? 'block' : 'flex',
       objectFit: 'contain',
     }
     appliedMagnifyProps.imageStyle = {
