@@ -9,13 +9,15 @@ const escapeHtml = unsafe =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;')
 
-const addHighlight = (query, text, className) =>
-  escapeHtml(text).replace(
+const addHighlight = (query, text, className = '') => {
+  if (!text) return ''
+  return escapeHtml(text).replace(
     new RegExp(query, 'gi'),
     match => `<span class="${className}">${match}</span>`,
   )
+}
 
-export default function Highlight({ query, text, classes, ...props }) {
+export default function Highlight({ query, text, classes = {}, ...props }) {
   return (
     <Typography
       {...props}
