@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Link from '../link/Link'
-import { Typography } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import Image from '../Image'
+import SearchContext from './SearchContext'
+import Highlight from '../Highlight'
 
 export const styles = theme => ({
   root: {
@@ -28,6 +29,12 @@ export const styles = theme => ({
       },
     },
   },
+  text: {},
+  highlight: {
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: '2px',
+    color: theme.palette.secondary.main,
+  },
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFSearchSuggestionItem' })
@@ -42,6 +49,8 @@ export default function SearchSuggestionItem({
 }) {
   classes = useStyles({ classes })
 
+  const { query } = useContext(SearchContext)
+
   return (
     <li className={classes.root}>
       <Link as={item.as} href={item.href} pageData={item.pageData}>
@@ -55,7 +64,12 @@ export default function SearchSuggestionItem({
                 {...thumbnailProps}
                 {...item.thumbnail}
               />
-              <Typography>{item.text}</Typography>
+              <Highlight
+                className={classes.text}
+                query={query}
+                text={item.text}
+                classes={classes}
+              />
             </div>
           </a>
         )}
