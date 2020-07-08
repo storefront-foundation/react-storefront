@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import SessionContext from './SessionContext'
 import PropTypes from 'prop-types'
 import fetch from '../fetch'
+import get from 'lodash/get'
 
 const initialState = {
   signedIn: false,
@@ -38,7 +39,11 @@ export default function SessionProvider({ url, children }) {
             }),
           })
           const responseData = await response.json()
-          setSession({ ...session, ...responseData })
+          if (response.ok) {
+            setSession({ ...session, ...responseData })
+          } else {
+            throw new Error(get(responseData, 'error', 'An error occurred during sign in'))
+          }
         },
 
         /**
@@ -47,7 +52,11 @@ export default function SessionProvider({ url, children }) {
         async signOut() {
           const response = await fetch('/api/signOut', { method: 'post' })
           const result = await response.json()
-          setSession({ ...session, ...result })
+          if (response.ok) {
+            setSession({ ...session, ...result })
+          } else {
+            throw new Error(get(responseData, 'error', 'An error occurred during sign out'))
+          }
         },
 
         /**
@@ -71,7 +80,11 @@ export default function SessionProvider({ url, children }) {
             }),
           })
           const result = await response.json()
-          setSession({ ...session, ...result })
+          if (response.ok) {
+            setSession({ ...session, ...result })
+          } else {
+            throw new Error(get(responseData, 'error', 'An error occurred during sign up'))
+          }
         },
 
         /**
@@ -91,7 +104,11 @@ export default function SessionProvider({ url, children }) {
           })
           const responseData = await response.json()
           const { cart, ...rest } = responseData
-          setSession({ ...session, cart, ...rest })
+          if (response.ok) {
+            setSession({ ...session, cart, ...rest })
+          } else {
+            throw new Error(get(responseData, 'error', 'An error occurred during add to cart'))
+          }
         },
       },
     }
