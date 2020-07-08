@@ -11,6 +11,7 @@ const styles = theme => ({
    */
   popover: {
     pointerEvents: 'none',
+    maxHeight: '80%',
   },
   /**
    * Styles applied to the `Tab` element.
