@@ -38,7 +38,7 @@ function Media({
     const appliedMagnifyProps = { ...(magnifyProps || {}) }
     appliedMagnifyProps.style = {
       ...((magnifyProps && magnifyProps.style) || {}),
-      display: 'flex',
+      display: 'block',
       objectFit: 'contain',
     }
     appliedMagnifyProps.imageStyle = {
