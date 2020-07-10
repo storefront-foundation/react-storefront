@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
  * An element that determines the proper tag to use for a media node within a
  * [`Carousel`](/apiReference/carousel/Carousel).
  */
-export default function Media({
+function Media({
   magnifyProps,
   imageProps,
   videoProps,
@@ -29,6 +29,8 @@ export default function Media({
   magnify,
   sources,
   type = 'image',
+  ImageComponent,
+  ImageMagnifyComponent,
 }) {
   const classes = useStyles()
 
@@ -36,7 +38,7 @@ export default function Media({
     const appliedMagnifyProps = { ...(magnifyProps || {}) }
     appliedMagnifyProps.style = {
       ...((magnifyProps && magnifyProps.style) || {}),
-      display: 'flex',
+      display: 'block',
       objectFit: 'contain',
     }
     appliedMagnifyProps.imageStyle = {
@@ -69,7 +71,7 @@ export default function Media({
     }
   } else if (magnify) {
     return (
-      <ReactImageMagnify
+      <ImageMagnifyComponent
         enlargedImagePosition="over"
         {...adjustMagnifyProps()}
         smallImage={{
@@ -81,7 +83,7 @@ export default function Media({
       />
     )
   } else {
-    return <Image key={src} src={src} alt={alt} fill {...imageProps} />
+    return <ImageComponent key={src} src={src} alt={alt} fill {...imageProps} />
   }
 }
 
@@ -127,4 +129,21 @@ Media.propTypes = {
    * If `false`, the media is not able to be magnified.
    */
   magnify: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+
+  /**
+   * The component type to use to display images.
+   */
+  ImageComponent: PropTypes.elementType,
+
+  /**
+   * The component type to use to display magnified images.
+   */
+  ImageMagnifyComponent: PropTypes.elementType,
 }
+
+Media.defaultProps = {
+  ImageComponent: Image,
+  ImageMagnifyComponent: ReactImageMagnify,
+}
+
+export default Media

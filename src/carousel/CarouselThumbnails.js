@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Image from '../Image'
+import mod from '../utils/mod'
 
 export const styles = theme => ({
   /**
@@ -127,16 +128,18 @@ function CarouselThumbnails({
   classes,
   className,
   thumbnailPosition,
+  ImageComponent,
 }) {
   const styles = useStyles({ classes })
   const theme = useTheme()
   const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
   const isVertical = !isSmall && ['left', 'right'].includes(thumbnailPosition)
+  const count = thumbnails.length
 
   return (
     <div className={clsx(className, styles.thumbs)}>
       <Tabs
-        value={selected}
+        value={mod(selected, count)}
         variant="scrollable"
         onChange={(_, index) => setSelected(index)}
         orientation={isVertical ? 'vertical' : 'horizontal'}
@@ -152,7 +155,7 @@ function CarouselThumbnails({
         }}
       >
         {thumbnails.map(({ src, alt }, i) => {
-          const icon = <Image contain className={styles.thumb} src={src} alt={alt} />
+          const icon = <ImageComponent contain className={styles.thumb} src={src} alt={alt} />
           return (
             <Tab
               classes={{
@@ -205,6 +208,15 @@ CarouselThumbnails.propTypes = {
    * Position of the thumbnails, relative to the main carousel image.
    */
   thumbnailPosition: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
+
+  /**
+   * The component type to use to display images.
+   */
+  ImageComponent: PropTypes.elementType,
 }
 
-export default React.memo(CarouselThumbnails)
+CarouselThumbnails.defaultProps = {
+  ImageComponent: Image,
+}
+
+export default CarouselThumbnails

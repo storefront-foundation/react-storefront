@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import SearchProvider from 'react-storefront/search/SearchProvider'
 import SearchSuggestionItem from 'react-storefront/search/SearchSuggestionItem'
 import Image from 'react-storefront/Image'
 import PWAContext from 'react-storefront/PWAContext'
@@ -14,9 +15,11 @@ describe('SearchSuggestionItem', () => {
   it('should render children when provided', () => {
     wrapper = mount(
       <PWAContext.Provider value={{ hydrating: false }}>
-        <SearchSuggestionItem item={{ href: '/test' }}>
-          <div id="child">child</div>
-        </SearchSuggestionItem>
+        <SearchProvider>
+          <SearchSuggestionItem item={{ href: '/test' }}>
+            <div id="child">child</div>
+          </SearchSuggestionItem>
+        </SearchProvider>
       </PWAContext.Provider>,
     )
 
@@ -26,7 +29,9 @@ describe('SearchSuggestionItem', () => {
   it('should render image with a text when no children provided', () => {
     wrapper = mount(
       <PWAContext.Provider value={{ hydrating: false }}>
-        <SearchSuggestionItem item={{ href: '/test', text: 'test' }} />
+        <SearchProvider>
+          <SearchSuggestionItem item={{ href: '/test', text: 'test' }} />
+        </SearchProvider>
       </PWAContext.Provider>,
     )
 
@@ -42,10 +47,12 @@ describe('SearchSuggestionItem', () => {
   it('should spread thumbnail props on image', () => {
     wrapper = mount(
       <PWAContext.Provider value={{ hydrating: false }}>
-        <SearchSuggestionItem
-          item={{ href: '/test', thumbnail: { testprop2: 'test2' } }}
-          thumbnailProps={{ testprop1: 'test1' }}
-        />
+        <SearchProvider>
+          <SearchSuggestionItem
+            item={{ href: '/test', thumbnail: { testprop2: 'test2' } }}
+            thumbnailProps={{ testprop1: 'test1' }}
+          />
+        </SearchProvider>
       </PWAContext.Provider>,
     )
 

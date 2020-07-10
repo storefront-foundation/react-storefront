@@ -1,10 +1,8 @@
-import { light } from '@material-ui/core/styles/createPalette'
 import PropTypes from 'prop-types'
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import Fill from '../Fill'
 import Carousel from './Carousel'
 import Image from '../Image'
 import Lightbox from './Lightbox'
@@ -142,6 +140,7 @@ function MediaCarousel(props) {
     magnifyProps,
     id,
     CarouselComponent,
+    ImageComponent,
     MediaComponent,
     CarouselThumbnailsComponent,
     ...others
@@ -165,7 +164,7 @@ function MediaCarousel(props) {
   }, [media])
 
   useEffect(() => {
-    if (media && media.full && media.full[selected].type === 'video') {
+    if (media && media.full && media.full[selected] && media.full[selected].type === 'video') {
       setVideo(true)
     } else {
       setVideo(false)
@@ -212,7 +211,7 @@ function MediaCarousel(props) {
 
   if (thumbnail && !imagesLoaded) {
     belowAdornments.push(
-      <Image
+      <ImageComponent
         id={THUMBNAIL_IMAGE_ID}
         key="thumbnail"
         className={styles.thumbnail}
@@ -416,6 +415,11 @@ MediaCarousel.propTypes = {
    * A component type to use for the main carousel component.
    */
   CarouselComponent: PropTypes.elementType,
+
+  /**
+   * The component type to use to display images.
+   */
+  ImageComponent: PropTypes.elementType,
 }
 
 MediaCarousel.defaultProps = {
@@ -424,6 +428,7 @@ MediaCarousel.defaultProps = {
   thumbnails: true,
   thumbnailPosition: 'bottom',
   MediaComponent: Media,
+  ImageComponent: Image,
   CarouselComponent: Carousel,
   CarouselThumbnailsComponent: CarouselThumbnails,
   videoProps: {
@@ -432,4 +437,4 @@ MediaCarousel.defaultProps = {
   },
 }
 
-export default React.memo(MediaCarousel)
+export default MediaCarousel

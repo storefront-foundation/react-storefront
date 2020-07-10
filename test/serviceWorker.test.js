@@ -70,6 +70,18 @@ describe('all', () => {
     })
 
     describe('prefetch', () => {
+      it('should do nothing if the url is null', async () => {
+        let error
+
+        try {
+          await prefetch()
+        } catch (e) {
+          error = e
+        }
+
+        expect(error).toBeUndefined()
+      })
+
       it('should append a single link tag per url', async () => {
         await prefetch('/foo')
         await prefetch('/foo')

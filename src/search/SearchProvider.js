@@ -46,6 +46,7 @@ export default function SearchProvider({ children, query, initialGroups, active 
   }, 250)
 
   const context = {
+    query,
     state,
     setState,
     fetchSuggestions,
