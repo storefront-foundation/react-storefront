@@ -38,11 +38,12 @@ export default function SessionProvider({ url, children }) {
               password,
             }),
           })
-          const responseData = await response.json()
+          const result = await response.json()
+
           if (response.ok) {
-            setSession({ ...session, ...responseData })
+            setSession({ ...session, ...result })
           } else {
-            throw new Error(get(responseData, 'error', 'An error occurred during sign in'))
+            throw new Error(get(result, 'error', 'An error occurred during sign in'))
           }
         },
 
@@ -52,10 +53,11 @@ export default function SessionProvider({ url, children }) {
         async signOut() {
           const response = await fetch('/api/signOut', { method: 'post' })
           const result = await response.json()
+
           if (response.ok) {
             setSession({ ...session, ...result })
           } else {
-            throw new Error(get(responseData, 'error', 'An error occurred during sign out'))
+            throw new Error(get(result, 'error', 'An error occurred during sign out'))
           }
         },
 
@@ -79,11 +81,13 @@ export default function SessionProvider({ url, children }) {
               ...others,
             }),
           })
+
           const result = await response.json()
+
           if (response.ok) {
             setSession({ ...session, ...result })
           } else {
-            throw new Error(get(responseData, 'error', 'An error occurred during sign up'))
+            throw new Error(get(result, 'error', 'An error occurred during sign up'))
           }
         },
 
@@ -94,20 +98,55 @@ export default function SessionProvider({ url, children }) {
          * @param {Object} otherParams Additional data to submit to api/addToCart
          */
         async addToCart({ product, quantity, ...otherParams }) {
-          const response = await fetch('/api/addToCart', {
+          const response = await fetch('/api/cart/add', {
             method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
               product,
               quantity,
               ...otherParams,
             }),
           })
-          const responseData = await response.json()
-          const { cart, ...rest } = responseData
+
+          const result = await response.json()
+
           if (response.ok) {
-            setSession({ ...session, cart, ...rest })
+            setSession({ ...session, ...result })
           } else {
-            throw new Error(get(responseData, 'error', 'An error occurred during add to cart'))
+            throw new Error(
+              get(
+                result,
+                'error',
+                'An unknown error occurred while attempting to add the item to your cart.',
+              ),
+            )
+          }
+        },
+
+        /**
+         * Updates the items in the cart. Use this function to update the quantity of a product
+         * in the cart or remove a product from the cart.
+         * @param newCart The new cart contents
+         */
+        async updateCart(newCart) {
+          setSession({ ...session, cart: newCart })
+
+          const response = await fetch('/api/cart/update', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ cart: newCart }),
+          })
+
+          if (!response.ok) {
+            const result = await response.json()
+
+            throw new Error(
+              get(result, 'error', 'An unknown error occurred while making changes to your cart.'),
+            )
           }
         },
       },
