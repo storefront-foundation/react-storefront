@@ -144,7 +144,11 @@ export default function Image({
           })}
           {...imgAttributes}
           // prevent render "onerror" as a DOM prop in case of amp-img tag
-          onError={ImgElement !== 'amp-img' ? () => setPrimaryNotFound(true) : undefined}
+          onError={
+            ImgElement !== 'amp-img'
+              ? () => setPrimaryNotFound(true)
+              : /* istanbul ignore next */ undefined
+          }
         />
       )}
     </div>

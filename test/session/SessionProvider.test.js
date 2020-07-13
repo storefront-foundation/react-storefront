@@ -299,22 +299,29 @@ describe('SessionProvider', () => {
           return JSON.stringify({ signedIn: true })
         })
 
-        await actions.addToCart({
-          product: { id: '1', name: 'Red Dress' },
-          quantity: 1,
-          someOtherParam: 'foo',
+        await actions.updateCart({
+          items: [
+            {
+              id: '1',
+              quantity: 2,
+            },
+          ],
         })
 
-        expect(request.url).toBe('/api/cart/add')
+        expect(request.url).toBe('/api/cart/update')
         expect(request.method).toBe('POST')
         expect(request.body.toString('utf8')).toEqual(
           JSON.stringify({
-            product: { id: '1', name: 'Red Dress' },
-            quantity: 1,
-            someOtherParam: 'foo',
+            cart: {
+              items: [
+                {
+                  id: '1',
+                  quantity: 2,
+                },
+              ],
+            },
           }),
         )
-        expect(session.signedIn).toBe(true)
       })
     })
 
@@ -330,10 +337,13 @@ describe('SessionProvider', () => {
         fetchMock.mockOnce(async () => JSON.stringify({ error: 'test' }), { status: 500 })
 
         try {
-          await actions.addToCart({
-            product: { id: '1', name: 'Red Dress' },
-            quantity: 1,
-            someOtherParam: 'foo',
+          await actions.updateCart({
+            items: [
+              {
+                id: '1',
+                quantity: 2,
+              },
+            ],
           })
         } catch (e) {
           error = e

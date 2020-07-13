@@ -28,6 +28,7 @@ if (isBrowser()) {
   will be removed.
 */
 export function LazyStyles() {
+  /* istanbul ignore next */
   if (useAmp()) return null
 
   let styles = null
@@ -212,7 +213,9 @@ function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props })
  */
 
 function LazyHydrate({ children, ...props }) {
+  /* istanbul ignore next */
   if (useAmp()) return children
+
   return (
     <LazyHydrateInstance {...props}>
       {/* LazyStylesProvider should not be used in the browser. Once components 
