@@ -1,3 +1,3 @@
-export default function updateCart(cart, req, res) {
-  return cart
+export default function updateCart(item, quantity, req, res) {
+  return {}
 }

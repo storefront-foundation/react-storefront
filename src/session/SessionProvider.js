@@ -128,24 +128,59 @@ export default function SessionProvider({ url, children }) {
         /**
          * Updates the items in the cart. Use this function to update the quantity of a product
          * in the cart or remove a product from the cart.
-         * @param newCart The new cart contents
+         * @param {Object} item Cart item to be updated
+         * @param {number} quantity Expected quantity value
+         * @param {Object} otherParams Additional data to submit to api/updateCart
          */
-        async updateCart(newCart) {
-          setSession({ ...session, cart: newCart })
-
+        async updateCart({ item, quantity, ...otherParams }) {
           const response = await fetch('/api/cart/update', {
             method: 'post',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ cart: newCart }),
+            body: JSON.stringify({ item, quantity, ...otherParams }),
           })
 
-          if (!response.ok) {
-            const result = await response.json()
+          const result = await response.json()
 
+          if (response.ok) {
+            setSession({ ...session, ...result })
+          } else {
             throw new Error(
-              get(result, 'error', 'An unknown error occurred while making changes to your cart.'),
+              get(
+                result,
+                'error',
+                'An unknown error occurred while making changes to your cart.',
+              ),
+            )
+          }
+        },
+
+        /**
+         * Removes item in the cart.
+         * @param {Object} item Cart item to be updated
+         * @param {Object} otherParams Additional data to submit to /api/cart/remove
+         */
+        async removeCartItem({ item, ...otherParams }) {
+          const response = await fetch('/api/cart/remove', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ item, ...otherParams }),
+          })
+
+          const result = await response.json()
+
+          if (response.ok) {
+            setSession({ ...session, ...result })
+          } else {
+            throw new Error(
+              get(
+                result,
+                'error',
+                'An unknown error occurred while removing item from your cart.',
+              ),
             )
           }
         },
