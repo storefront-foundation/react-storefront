@@ -14,21 +14,21 @@ describe('fetchFromAPI', () => {
       fetchFromAPI({
         asPath: '/p/1',
       })
-      expect(fetchMock).toHaveBeenCalledWith('/api/p/1', { headers })
+      expect(fetchMock).toHaveBeenCalledWith('/api/p/1', { credentials: 'include', headers })
     })
 
     it('should call /api when the path is /', () => {
       fetchFromAPI({
         asPath: '/',
       })
-      expect(fetchMock).toHaveBeenCalledWith('/api', { headers })
+      expect(fetchMock).toHaveBeenCalledWith('/api', { credentials: 'include', headers })
     })
 
     it('should append query params directly to api if the root with query params is called', () => {
       fetchFromAPI({
         asPath: '/?test=1',
       })
-      expect(fetchMock).toHaveBeenCalledWith('/api?test=1', { headers })
+      expect(fetchMock).toHaveBeenCalledWith('/api?test=1', { credentials: 'include', headers })
     })
   })
 
@@ -50,6 +50,7 @@ describe('fetchFromAPI', () => {
         },
       })
       expect(fetchMock).toHaveBeenCalledWith('https://www.domain.com/api/p/1?_includeAppData=1', {
+        credentials: 'include',
         headers: {
           ...headers,
           'x-next-page': '/api/p/[productId]',
@@ -71,6 +72,7 @@ describe('fetchFromAPI', () => {
       })
 
       expect(fetchMock).toHaveBeenCalledWith('http://localhost:3001/api/p/1?_includeAppData=1', {
+        credentials: 'include',
         headers: {
           ...headers,
           'x-next-page': '/api/p/[productId]',
@@ -92,6 +94,7 @@ describe('fetchFromAPI', () => {
         },
       })
       expect(fetchMock).toHaveBeenCalledWith('http://localhost/api/p/1?_includeAppData=1', {
+        credentials: 'include',
         headers: {
           ...headers,
           host: 'localhost',
@@ -111,6 +114,7 @@ describe('fetchFromAPI', () => {
       expect(fetchMock).toHaveBeenCalledWith(
         'https://www.domain.com/api/foo?x=1&_includeAppData=1',
         {
+          credentials: 'include',
           headers: {
             ...headers,
             'x-next-page': '/api/foo',
