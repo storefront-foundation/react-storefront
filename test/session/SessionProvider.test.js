@@ -312,14 +312,12 @@ describe('SessionProvider', () => {
         expect(request.method).toBe('POST')
         expect(request.body.toString('utf8')).toEqual(
           JSON.stringify({
-            cart: {
-              items: [
-                {
-                  id: '1',
-                  quantity: 2,
-                },
-              ],
-            },
+            items: [
+              {
+                id: '1',
+                quantity: 2,
+              },
+            ],
           }),
         )
       })
@@ -344,6 +342,69 @@ describe('SessionProvider', () => {
                 quantity: 2,
               },
             ],
+          })
+        } catch (e) {
+          error = e
+        }
+
+        expect(error.message).toBe('test')
+      })
+    })
+  })
+
+  describe('removeCartItem', () => {
+    it('should call api/cart/remove and apply the result to the session', async () => {
+      wrapper = mount(
+        <SessionProvider url="/api/session">
+          <Test />
+        </SessionProvider>,
+      )
+
+      await act(async () => {
+        let request
+
+        fetchMock.mockOnce(async req => {
+          request = req
+          return JSON.stringify({ signedIn: true })
+        })
+
+        await actions.removeCartItem({
+          item: {
+            id: '1',
+            quantity: 2,
+          },
+        })
+
+        expect(request.url).toBe('/api/cart/remove')
+        expect(request.method).toBe('POST')
+        expect(request.body.toString('utf8')).toEqual(
+          JSON.stringify({
+            item: {
+              id: '1',
+              quantity: 2,
+            },
+          }),
+        )
+      })
+    })
+
+    it('throw an error if the response is not ok', async () => {
+      wrapper = mount(
+        <SessionProvider url="/api/session">
+          <Test />
+        </SessionProvider>,
+      )
+
+      await act(async () => {
+        let error
+        fetchMock.mockOnce(async () => JSON.stringify({ error: 'test' }), { status: 500 })
+
+        try {
+          await actions.removeCartItem({
+            item: {
+              id: '1',
+              quantity: 2,
+            },
           })
         } catch (e) {
           error = e
