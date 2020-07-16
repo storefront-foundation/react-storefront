@@ -147,11 +147,7 @@ export default function SessionProvider({ url, children }) {
             setSession({ ...session, ...result })
           } else {
             throw new Error(
-              get(
-                result,
-                'error',
-                'An unknown error occurred while making changes to your cart.',
-              ),
+              get(result, 'error', 'An unknown error occurred while making changes to your cart.'),
             )
           }
         },
@@ -176,11 +172,7 @@ export default function SessionProvider({ url, children }) {
             setSession({ ...session, ...result })
           } else {
             throw new Error(
-              get(
-                result,
-                'error',
-                'An unknown error occurred while removing item from your cart.',
-              ),
+              get(result, 'error', 'An unknown error occurred while removing item from your cart.'),
             )
           }
         },
