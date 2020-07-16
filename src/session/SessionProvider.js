@@ -130,7 +130,7 @@ export default function SessionProvider({ url, children }) {
          * in the cart or remove a product from the cart.
          * @param {Object} item Cart item to be updated
          * @param {number} quantity Expected quantity value
-         * @param {Object} otherParams Additional data to submit to api/updateCart
+         * @param {Object} otherParams Additional data to submit to api/cart/update
          */
         async updateCart({ item, quantity, ...otherParams }) {
           const response = await fetch('/api/cart/update', {
