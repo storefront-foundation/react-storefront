@@ -2,7 +2,7 @@
 
 Free and open-source. Built with Next.js
 
-<img src="https://raw.githubusercontent.com/react-storefront-foundation/react-storefront/55aa994e3e5d40a2ebaa7b3ecd4c3423c703e72d/RSF%20Logo%20trans.png" width="430px" ></img>
+<img src="https://raw.githubusercontent.com/storefront-foundation/react-storefront/55aa994e3e5d40a2ebaa7b3ecd4c3423c703e72d/RSF%20Logo%20trans.png" width="430px" ></img>
 
 ![version](https://img.shields.io/badge/node-v8.x-blue.svg)
 ![Branch stable](https://img.shields.io/badge/stable%20branch-master-blue.svg)
@@ -54,7 +54,7 @@ React Storefront scales from $10M to $1B+ revenue sites and is already powering 
 
 React Storefront can be easily integrated with any [any eCommerce platform via APIs](https://docs.react-storefront.io/guides/api).
 
-<img src="https://raw.githubusercontent.com/react-storefront-foundation/react-storefront/master/RSF%20power.png" alt="RSF- easy to use, powerful in action"/></a>
+<img src="https://raw.githubusercontent.com/storefront-foundation/react-storefront/master/RSF%20power.png" alt="RSF- easy to use, powerful in action"/></a>
 
 ## Getting Started
 
@@ -133,7 +133,7 @@ RSF was created by a group of eCommerce site, eCommerce agency, and eCommerce pl
 
 Partners are encouraged to support the project in various ways - mostly by contributing to the source code, marketing activities, evangelizing and of course - implementing the production projects. We do support our partners by dedicated contact channels, workshops and by sharing the leads from merchants interested in implementations.
 
-[React Storefront logo and guidelines](https://github.com/react-storefront-foundation/react-storefront/blob/master/RSF%20BRANDGUIDE%20JPG.pdf)
+[React Storefront logo and guidelines](https://github.com/storefront-foundation/react-storefront/blob/master/RSF%20BRANDGUIDE%20JPG.pdf)
 
 ## The license
 
