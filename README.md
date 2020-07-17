@@ -1,7 +1,8 @@
-# React Storefront the framework to build and deploy lightning-fast eCommerce PWAs. 
+# React Storefront the framework to build and deploy lightning-fast eCommerce PWAs.
+
 Free and open-source. Built with Next.js
 
-<img src="https://raw.githubusercontent.com/react-storefront-community/react-storefront/55aa994e3e5d40a2ebaa7b3ecd4c3423c703e72d/RSF%20Logo%20trans.png" width="430px" ></img>
+<img src="https://raw.githubusercontent.com/react-storefront-foundation/react-storefront/55aa994e3e5d40a2ebaa7b3ecd4c3423c703e72d/RSF%20Logo%20trans.png" width="430px" ></img>
 
 ![version](https://img.shields.io/badge/node-v8.x-blue.svg)
 ![Branch stable](https://img.shields.io/badge/stable%20branch-master-blue.svg)
@@ -51,9 +52,9 @@ React Storefront scales from $10M to $1B+ revenue sites and is already powering 
 
 ## Integrations
 
-React Storefront can be easily integrated with any [any eCommerce platform via APIs](https://docs.react-storefront.io/guides/api). 
+React Storefront can be easily integrated with any [any eCommerce platform via APIs](https://docs.react-storefront.io/guides/api).
 
-<img src="https://raw.githubusercontent.com/react-storefront-community/react-storefront/master/RSF%20power.png" alt="RSF- easy to use, powerful in action"/></a>
+<img src="https://raw.githubusercontent.com/react-storefront-foundation/react-storefront/master/RSF%20power.png" alt="RSF- easy to use, powerful in action"/></a>
 
 ## Getting Started
 
@@ -64,15 +65,17 @@ npm create react-storefront --yes (my-app-name)
 ```
 
 Once your app has been created, you can start it in development mode by running:
+
 ```
 cd (my-app-name)
 npm run dev
 ```
+
 [Developer Docs](https://docs.react-storefront.io)
 
 ## Development
 
-If you like to contribute please feel free to **Raise an issue** with a bug or feature request report, or just open a **Pull Request** with the proposed changes. 
+If you like to contribute please feel free to **Raise an issue** with a bug or feature request report, or just open a **Pull Request** with the proposed changes.
 
 ## Local development
 
@@ -130,7 +133,8 @@ RSF was created by a group of eCommerce site, eCommerce agency, and eCommerce pl
 
 Partners are encouraged to support the project in various ways - mostly by contributing to the source code, marketing activities, evangelizing and of course - implementing the production projects. We do support our partners by dedicated contact channels, workshops and by sharing the leads from merchants interested in implementations.
 
-[React Storefront logo and guidelines](https://github.com/react-storefront-community/react-storefront/blob/master/RSF%20BRANDGUIDE%20JPG.pdf)
+[React Storefront logo and guidelines](https://github.com/react-storefront-foundation/react-storefront/blob/master/RSF%20BRANDGUIDE%20JPG.pdf)
+
 ## The license
 
 React Storefront source code is completely free and released under the Apache2 License
