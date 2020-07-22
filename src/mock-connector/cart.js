@@ -1,37 +1,27 @@
 import createProduct from './utils/createProduct'
-import withAmpFormParser from '../middlewares/withAmpFormParser'
+import fulfillAPIRequest from '../props/fulfillAPIRequest'
+import createAppData from './utils/createAppData'
 
-const cart = (req, res) => {
-  if (req.method === 'POST') {
-    const { id, color, size, quantity } = req.body
+export default async function cart(req, res) {
+  const products = [createProduct(1), createProduct(2), createProduct(3)]
 
-    console.log('product id: ', id)
-    console.log('color id: ', color || 'Not provided')
-    console.log('size id: ', size || 'Not provided')
-    console.log('quantity ', quantity)
-
-    if (req.query['__amp_source_origin']) {
-      res.setHeader('AMP-Redirect-To', `${req.query['__amp_source_origin']}/cart`)
-    }
-
-    setTimeout(() => {
-      res.end(JSON.stringify({ response: 'success', cartCount: 4 }))
-    }, 1)
-  } else {
-    const products = [createProduct(1), createProduct(2), createProduct(3)]
-
-    res.end(
-      JSON.stringify({
-        pageData: { items: products.map((item, i) => ({ ...item, quantity: i + 1 })) },
+  return fulfillAPIRequest(req, {
+    appData: createAppData,
+    pageData: () =>
+      Promise.resolve({
+        title: 'My Cart',
+        breadcrumbs: [
+          {
+            text: 'Home',
+            href: '/',
+          },
+        ],
+        cart: {
+          items: products.map((item, i) => ({
+            ...item,
+            quantity: 1,
+          })),
+        },
       }),
-    )
-  }
+  })
 }
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
-
-export default withAmpFormParser(cart)

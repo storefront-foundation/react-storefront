@@ -6,7 +6,7 @@ import fulfillAPIRequest from 'react-storefront/props/fulfillAPIRequest'
 import createAppData from './utils/createAppData'
 
 export default async function subcategory(params, req, res) {
-  let { q, id = '1', page = 0, filters, sort, more = false } = params
+  let { q, slug = '1', page = 0, filters, sort, more = false } = params
 
   if (filters) {
     filters = JSON.parse(filters)
@@ -18,9 +18,9 @@ export default async function subcategory(params, req, res) {
     appData: createAppData,
     pageData: () =>
       Promise.resolve({
-        id: id,
-        name: q != null ? `Results for "${q}"` : `Subcategory ${id}`,
-        title: q != null ? `Results for "${q}"` : `Subcategory ${id}`,
+        id: slug,
+        name: q != null ? `Results for "${q}"` : `Subcategory ${slug}`,
+        title: q != null ? `Results for "${q}"` : `Subcategory ${slug}`,
         total: 100,
         page: parseInt(page),
         totalPages: 5,

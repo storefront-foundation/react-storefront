@@ -143,7 +143,12 @@ export default function Image({
             [classes.fit]: aspectRatio != null,
           })}
           {...imgAttributes}
-          onError={() => setPrimaryNotFound(true)}
+          // prevent render "onerror" as a DOM prop in case of amp-img tag
+          onError={
+            ImgElement !== 'amp-img'
+              ? () => setPrimaryNotFound(true)
+              : /* istanbul ignore next */ undefined
+          }
         />
       )}
     </div>

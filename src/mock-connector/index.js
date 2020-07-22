@@ -1,4 +1,7 @@
 export { default as cart } from './cart.js'
+export { default as account } from './account.js'
+export { default as addToCart } from './addToCart.js'
+export { default as updateCartItem } from './updateCartItem.js'
 export { default as home } from './home.js'
 export { default as product } from './product.js'
 export { default as productMedia } from './productMedia.js'
