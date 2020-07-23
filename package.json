@@ -1,14 +1,14 @@
 {
   "name": "react-storefront",
-  "version": "8.13.0-alpha.0",
+  "version": "8.14.0",
   "description": "Build and deploy e-commerce progressive web apps (PWAs) in record time.",
   "module": "./index.js",
   "license": "Apache-2.0",
   "engines": {
     "node": ">=8.10.0"
   },
-  "repository": "https://github.com/react-storefront-community/react-storefront",
-  "bugs": "https://github.com/react-storefront-community/react-storefront/issues",
+  "repository": "https://github.com/storefront-foundation/react-storefront",
+  "bugs": "https://github.com/storefront-foundation/react-storefront/issues",
   "directories": {
     "test": "test"
   },
@@ -78,7 +78,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^25.4.0",
     "jest-enzyme": "^7.1.2",
-    "jest-fetch-mock": "^2.1.2",
+    "jest-fetch-mock": "^3.0.3",
     "jsdom": "^16.2.2",
     "next": "^9.4.4",
     "npm-watch": "^0.6.0",
