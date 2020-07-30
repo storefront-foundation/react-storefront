@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
+import { useAmp } from 'next/amp'
 import doLazyLoadImages from './utils/lazyLoadImages'
 import { prefetchJsonFor } from './serviceWorker'
 
@@ -68,6 +69,9 @@ export default function CmsSlot({
     }
   }, [children])
 
+  const __html =
+    typeof children === 'string' && useAmp() ? children.replace(/<img/g, '<amp-img') : children
+
   return children ? (
     <span
       {...others}
@@ -76,7 +80,7 @@ export default function CmsSlot({
         [classes.inline]: inline,
         [classes.block]: !inline,
       })}
-      dangerouslySetInnerHTML={{ __html: children }}
+      dangerouslySetInnerHTML={{ __html }}
     />
   ) : null
 }
