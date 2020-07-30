@@ -1,4 +1,5 @@
 import React from 'react'
+import { useAmp } from 'next/amp'
 import { Typography } from '@material-ui/core'
 
 const escapeHtml = unsafe =>
@@ -18,6 +19,9 @@ const addHighlight = (query, text, className = '') => {
 }
 
 export default function Highlight({ query, text, classes = {}, ...props }) {
+  if (useAmp()) {
+    return <Typography {...props}>{text}</Typography>
+  }
   return (
     <Typography
       {...props}
