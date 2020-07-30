@@ -1,22 +1,51 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Highlight from 'react-storefront/Highlight'
 
 describe('Highlight', () => {
+  let wrapper, Highlight, mockAmp
+
+  beforeEach(() => {
+    jest.isolateModules(() => {
+      jest.mock('next/amp', () => ({
+        useAmp: () => mockAmp,
+      }))
+      Highlight = require('react-storefront/Highlight').default
+    })
+  })
+
+  afterEach(() => {
+    wrapper.unmount()
+  })
+
+  afterAll(() => {
+    jest.resetModules()
+  })
+
+  it('should not highlight in AMP mode', () => {
+    mockAmp = true
+    wrapper = mount(
+      <Highlight text="the fox jumps over the ox" query="ox" classes={{ highlight: 'foo' }} />,
+    )
+    expect(wrapper.text()).toBe('the fox jumps over the ox')
+  })
   it('should not blow up if empty props', () => {
-    const wrapper = mount(<Highlight />)
+    mockAmp = false
+    wrapper = mount(<Highlight />)
     expect(wrapper.text()).toBe('')
   })
   it('should not add highlights if no matches', () => {
-    const wrapper = mount(<Highlight text="the fox jumps over" query="dog" />)
+    mockAmp = false
+    wrapper = mount(<Highlight text="the fox jumps over" query="dog" />)
     expect(wrapper.text()).toBe('the fox jumps over')
   })
   it('should escape text', () => {
-    const wrapper = mount(<Highlight text={`"foo" > 'bar' < zat`} />)
+    mockAmp = false
+    wrapper = mount(<Highlight text={`"foo" > 'bar' < zat`} />)
     expect(wrapper.text()).toBe('&quot;foo&quot; &gt; &#039;bar&#039; &lt; zat')
   })
   it('should add highlights to matches', () => {
-    const wrapper = mount(
+    mockAmp = false
+    wrapper = mount(
       <Highlight text="the fox jumps over the ox" query="ox" classes={{ highlight: 'foo' }} />,
     )
     const matches = wrapper.html().match(/<span class="foo">ox<\/span>/g)
