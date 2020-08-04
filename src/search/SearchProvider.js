@@ -2,25 +2,28 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import SearchContext from './SearchContext'
 import _fetch from '../fetch'
-import debounce from 'lodash/debounce'
+import useDebounce from '../utils/useDebounce'
 import { fetchLatest, StaleResponseError } from '../utils/fetchLatest'
 import getAPIURL from '../api/getAPIURL'
 
 const fetch = fetchLatest(_fetch)
 
-export default function SearchProvider({ children, query, initialGroups, active }) {
+export default function SearchProvider({
+  children,
+  query,
+  initialGroups,
+  active,
+  minQueryLength,
+  debounceTime,
+}) {
   const [state, setState] = useState({
     groups: initialGroups,
     loading: true,
   })
 
-  useEffect(() => {
-    if (active) {
-      fetchSuggestions(query)
-    }
-  }, [active, query])
+  const debouncedQuery = useDebounce(query, debounceTime)
 
-  const fetchSuggestions = debounce(async text => {
+  const fetchSuggestions = async text => {
     try {
       setState(state => ({
         ...state,
@@ -43,10 +46,16 @@ export default function SearchProvider({ children, query, initialGroups, active 
         }))
       }
     }
-  }, 250)
+  }
+
+  useEffect(() => {
+    if (active && (debouncedQuery.length >= minQueryLength || !debouncedQuery)) {
+      fetchSuggestions(debouncedQuery)
+    }
+  }, [active, debouncedQuery])
 
   const context = {
-    query,
+    query: debouncedQuery,
     state,
     setState,
     fetchSuggestions,
@@ -58,4 +67,17 @@ export default function SearchProvider({ children, query, initialGroups, active 
 SearchProvider.propTypes = {
   open: PropTypes.bool,
   initialGroups: PropTypes.array,
+  /**
+   * Minimum length of search query to fetch. Default is 3
+   */
+  minQueryLength: PropTypes.number,
+  /**
+   * Default is 250
+   */
+  debounceTime: PropTypes.number,
+}
+
+SearchProvider.defaultProps = {
+  minQueryLength: 3,
+  debounceTime: 250,
 }
