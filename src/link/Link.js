@@ -63,10 +63,13 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
       </NextLink>
     )
   } else {
+    const child = React.Children.only(children)
+    const passHref = !child.props.href // we only passHref if the child does not have an href prop already.  This fixes a bug with AMP where NextLink overrides and escapes amp-bind syntax in hrefs.
+
+    // This way we can get a ref of Material-ui components
     return (
-      // This way we can get a ref of Material-ui components
       <RootRef rootRef={ref}>
-        <NextLink href={href} prefetch={false} as={as} passHref>
+        <NextLink href={href} prefetch={false} as={as} passHref={passHref}>
           {React.cloneElement(children, {
             onClick: handleClick,
             ...other,
