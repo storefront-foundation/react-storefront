@@ -57,7 +57,7 @@ export default function SearchSuggestionItem({
         {children ? (
           children
         ) : (
-          <a>
+          <a href={item.as}>
             <div data-ui={ui}>
               <ImageComponent
                 className={classes.thumbnail}
