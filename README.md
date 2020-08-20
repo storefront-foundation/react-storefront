@@ -114,7 +114,7 @@ npm i
 
 ## Join the community on Slack
 
-If you have any questions or ideas feel free to join our slack: [invitation link](https://join.slack.com/t/react-storefront-comm/shared_invite/zt-aen1b4sz-Yr4GOPAliuCJ7gNXCiPyrg)
+If you have any questions or ideas feel free to join our slack: [invitation link](https://react-storefront-comm.slack.com/)
 
 ## Documentation
 
