@@ -126,6 +126,7 @@ const SearchField = forwardRef(
         <div className={classes.inputWrap}>
           <input
             {...others}
+            aria-label="search-text"
             type="text"
             value={value}
             onChange={e => onChange(e.target.value)}
