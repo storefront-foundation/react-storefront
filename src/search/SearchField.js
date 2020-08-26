@@ -90,6 +90,7 @@ const useStyles = makeStyles(styles, { name: 'RSFSearchField' })
 const SearchField = forwardRef(
   (
     {
+      ariaLabel,
       classes,
       onChange,
       submitButtonVariant,
@@ -126,6 +127,7 @@ const SearchField = forwardRef(
         <div className={classes.inputWrap}>
           <input
             {...others}
+            aria-label={ariaLabel}
             type="text"
             value={value}
             onChange={e => onChange(e.target.value)}
@@ -179,6 +181,10 @@ const SearchField = forwardRef(
 
 SearchField.propTypes = {
   /**
+   * Label for accessibility, defaults to search-text
+   */
+  ariaLabel: PropTypes.string,
+  /**
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
@@ -229,6 +235,7 @@ SearchField.defaultProps = {
   submitButtonVariant: 'fab',
   showClearButton: true,
   placeholder: 'Search...',
+  ariaLabel: 'search-text',
   name: 'q',
   value: '',
 }
