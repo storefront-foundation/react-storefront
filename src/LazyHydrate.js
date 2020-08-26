@@ -5,6 +5,7 @@ import { StylesProvider, createGenerateClassName } from '@material-ui/core/style
 import { SheetsRegistry } from 'jss'
 import Router from 'next/router'
 import isBrowser from './utils/isBrowser'
+import minifyStyles from './utils/minifyStyles'
 import { useAmp } from 'next/amp'
 
 const fuiEvents = ['mouseover', 'touchstart', 'scroll']
@@ -55,7 +56,7 @@ export function LazyStyles() {
             <style
               key={registry.id}
               id={registry.id}
-              dangerouslySetInnerHTML={{ __html: registry.toString() }}
+              dangerouslySetInnerHTML={{ __html: minifyStyles(registry.toString()) }}
             />
           )
         })}

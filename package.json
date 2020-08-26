@@ -1,6 +1,6 @@
 {
   "name": "react-storefront",
-  "version": "8.15.2",
+  "version": "8.16.1",
   "description": "Build and deploy e-commerce progressive web apps (PWAs) in record time.",
   "module": "./index.js",
   "license": "Apache-2.0",
@@ -40,6 +40,7 @@
   "dependencies": {
     "chalk": "^3.0.0",
     "clsx": "^1.0.4",
+    "csso": "^4.0.3",
     "delegate": "^3.2.0",
     "formidable": "^1.2.1",
     "glob": "^7.1.6",
