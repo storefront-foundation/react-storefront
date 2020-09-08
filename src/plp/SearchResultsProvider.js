@@ -24,7 +24,7 @@ import getAPIURL from '../api/getAPIURL'
  *  }
  * ```
  */
-export default function SearchResultsProvider({ store, updateStore, children }) {
+export default function SearchResultsProvider({ store, updateStore, queryForState, children }) {
   useEffect(() => {
     if (store.reloading) {
       async function refresh() {
@@ -104,6 +104,7 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
       JSON.stringify(filters.map(v => v.toLowerCase()).sort()) !==
       JSON.stringify(store.pageData.filters.map(v => v.toLowerCase()).sort())
 
+    console.log('filters', filters)
     updateStore(store => ({
       reloading: Boolean(submit),
       pageData: {
@@ -133,33 +134,37 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
    * Computes the query for the current state of the search controls
    */
   const getQueryForState = () => {
-    const { filters, page, sort } = store.pageData
-    const { search } = window.location
-    const query = qs.parse(search, { ignoreQueryPrefix: true })
-
-    if (filters.length) {
-      query.filters = JSON.stringify(filters)
+    if (queryForState) {
+      return queryForState(store.pageData)
     } else {
-      delete query.filters
-    }
+      const { filters, page, sort } = store.pageData
+      const { search } = window.location
+      const query = qs.parse(search, { ignoreQueryPrefix: true })
 
-    if (query.more) {
-      delete query.more
-    }
+      if (filters.length) {
+        query.filters = JSON.stringify(filters)
+      } else {
+        delete query.filters
+      }
 
-    if (page > 0) {
-      query.page = page
-    } else {
-      delete query.page
-    }
+      if (query.more) {
+        delete query.more
+      }
 
-    if (sort) {
-      query.sort = sort
-    } else {
-      delete query.sort
-    }
+      if (page > 0) {
+        query.page = page
+      } else {
+        delete query.page
+      }
 
-    return query
+      if (sort) {
+        query.sort = sort
+      } else {
+        delete query.sort
+      }
+
+      return query
+    }
   }
 
   /**
@@ -167,7 +172,6 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
    */
   const getURLForState = query => {
     const { pathname, hash } = window.location
-
     return pathname + qs.stringify(query, { addQueryPrefix: true }) + hash
   }
 
@@ -211,4 +215,10 @@ SearchResultsProvider.propTypes = {
    * The update function returned from [`useSearchResultsStore`](/apiReference/plp/useSearchResultsStore).
    */
   updateStore: PropTypes.func.isRequired,
+
+  /**
+   * An optional function to customize the URL format for search pages when the user
+   * changes filters and sort.
+   */
+  queryForState: PropTypes.func,
 }

@@ -29,7 +29,7 @@ describe('SearchResultsProvider', () => {
     delete window.__NEXT_DATA__
   })
 
-  const Test = () => {
+  const Test = props => {
     const [store, updateStore] = useState(initialStore)
 
     const ContextGetter = () => {
@@ -40,7 +40,7 @@ describe('SearchResultsProvider', () => {
     }
 
     return (
-      <SearchResultsProvider store={store} updateStore={updateStore}>
+      <SearchResultsProvider store={store} updateStore={updateStore} {...props}>
         <ContextGetter />
       </SearchResultsProvider>
     )
@@ -219,5 +219,32 @@ describe('SearchResultsProvider', () => {
       expect(getStore.pageData.sort).toBe('asc')
       expect(fetch).toHaveBeenCalled()
     })
+  })
+
+  it('should use the query string returned by queryForState', async () => {
+    fetchMock.mockResponseOnce(
+      JSON.stringify({
+        pageData: {
+          products: [],
+        },
+      }),
+    )
+
+    let providedState
+
+    const queryForState = state => {
+      providedState = state
+      return { foo: 'bar' }
+    }
+
+    wrapper = mount(<Test queryForState={queryForState} />)
+
+    await act(async () => {
+      await context.actions.toggleFilter({ code: 'red' }, true)
+      await wrapper.update()
+    })
+
+    expect(providedState.filters).toEqual(['blue', 'red'])
+    expect(fetch).toHaveBeenCalledWith('/api/test?foo=bar&__v__=development')
   })
 })
