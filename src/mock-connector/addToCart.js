@@ -1,10 +1,5 @@
-export default async function addToCart({ color, size, product }, req, res) {
-  const { id, quantity } = product
+import { addItem } from './utils/cartStore'
 
-  console.log('product id: ', id)
-  console.log('color id: ', color || 'Not provided')
-  console.log('size id: ', size || 'Not provided')
-  console.log('quantity ', quantity || 1)
-
-  return { added: true, id }
+export default async function addToCart({ color, size, product, quantity }, req, res) {
+  return { cart: { items: addItem(product.id, quantity, req, res) } }
 }
