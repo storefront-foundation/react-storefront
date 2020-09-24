@@ -18,8 +18,8 @@ export default class NextScript extends OriginalNextScript {
     mode: 'async',
   }
 
-  getScripts() {
-    return super.getScripts().map(script => {
+  getScripts(files) {
+    return super.getScripts(files).map(script => {
       return React.cloneElement(script, {
         key: script.props.src,
         defer: this.props.mode === 'defer' ? true : undefined,
