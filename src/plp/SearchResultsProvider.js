@@ -24,7 +24,7 @@ import getAPIURL from '../api/getAPIURL'
  *  }
  * ```
  */
-export default function SearchResultsProvider({ store, updateStore, children }) {
+export default function SearchResultsProvider({ store, updateStore, queryForState, children }) {
   useEffect(() => {
     if (store.reloading) {
       async function refresh() {
@@ -133,6 +133,8 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
    * Computes the query for the current state of the search controls
    */
   const getQueryForState = () => {
+    if (queryForState) return queryForState(store.pageData)
+
     const { filters, page, sort } = store.pageData
     const { search } = window.location
     const query = qs.parse(search, { ignoreQueryPrefix: true })
@@ -167,7 +169,6 @@ export default function SearchResultsProvider({ store, updateStore, children }) 
    */
   const getURLForState = query => {
     const { pathname, hash } = window.location
-
     return pathname + qs.stringify(query, { addQueryPrefix: true }) + hash
   }
 
@@ -211,4 +212,10 @@ SearchResultsProvider.propTypes = {
    * The update function returned from [`useSearchResultsStore`](/apiReference/plp/useSearchResultsStore).
    */
   updateStore: PropTypes.func.isRequired,
+
+  /**
+   * An optional function to customize the URL format for search pages when the user
+   * changes filters and sort.
+   */
+  queryForState: PropTypes.func,
 }
