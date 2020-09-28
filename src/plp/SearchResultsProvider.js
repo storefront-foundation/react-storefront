@@ -104,7 +104,6 @@ export default function SearchResultsProvider({ store, updateStore, queryForStat
       JSON.stringify(filters.map(v => v.toLowerCase()).sort()) !==
       JSON.stringify(store.pageData.filters.map(v => v.toLowerCase()).sort())
 
-    console.log('filters', filters)
     updateStore(store => ({
       reloading: Boolean(submit),
       pageData: {
@@ -134,37 +133,35 @@ export default function SearchResultsProvider({ store, updateStore, queryForStat
    * Computes the query for the current state of the search controls
    */
   const getQueryForState = () => {
-    if (queryForState) {
-      return queryForState(store.pageData)
+    if (queryForState) return queryForState(store.pageData)
+
+    const { filters, page, sort } = store.pageData
+    const { search } = window.location
+    const query = qs.parse(search, { ignoreQueryPrefix: true })
+
+    if (filters.length) {
+      query.filters = JSON.stringify(filters)
     } else {
-      const { filters, page, sort } = store.pageData
-      const { search } = window.location
-      const query = qs.parse(search, { ignoreQueryPrefix: true })
-
-      if (filters.length) {
-        query.filters = JSON.stringify(filters)
-      } else {
-        delete query.filters
-      }
-
-      if (query.more) {
-        delete query.more
-      }
-
-      if (page > 0) {
-        query.page = page
-      } else {
-        delete query.page
-      }
-
-      if (sort) {
-        query.sort = sort
-      } else {
-        delete query.sort
-      }
-
-      return query
+      delete query.filters
     }
+
+    if (query.more) {
+      delete query.more
+    }
+
+    if (page > 0) {
+      query.page = page
+    } else {
+      delete query.page
+    }
+
+    if (sort) {
+      query.sort = sort
+    } else {
+      delete query.sort
+    }
+
+    return query
   }
 
   /**
