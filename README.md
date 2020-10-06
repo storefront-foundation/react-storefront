@@ -7,7 +7,7 @@ Free and open-source. Built with Next.js
 ![version](https://img.shields.io/badge/node-v8.x-blue.svg)
 ![Branch stable](https://img.shields.io/badge/stable%20branch-master-blue.svg)
 ![Branch Develop](https://img.shields.io/badge/dev%20branch-develop-blue.svg)
-<a href="https://react-storefront-comm.slack.com">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
+<a href="https://join.slack.com/t/react-storefront-comm/shared_invite/zt-hyq2dzxf-zUjcsxReDkJ6r1FR1xCnWw">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
 React Storefront (RSF) utilizes headless architecture allowing you to easily replace your legacy frontned and connect via APIs to any eCommerce platform or backend system. React Storefront extends Next.js to include everything you need for an eCommerce storefront. Try <a href="https://www.thetiebar.com/">The Tie Bar</a>, <a href="https://www.shopakira.com/">Akira</a>, and <a href="https://pwa.www.1800flowers.com/">1-800-FLOWERS.COM</a> on your phone to see how fast sites on RSF can be!
 
@@ -114,7 +114,7 @@ npm i
 
 ## Join the community on Slack
 
-If you have any questions or ideas feel free to join our slack: [invitation link](https://react-storefront-comm.slack.com/)
+If you have any questions or ideas feel free to join our slack: [invitation link](https://join.slack.com/t/react-storefront-comm/shared_invite/zt-hyq2dzxf-zUjcsxReDkJ6r1FR1xCnWw)
 
 ## Documentation
 
