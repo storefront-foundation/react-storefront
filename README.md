@@ -61,7 +61,7 @@ React Storefront can be easily integrated with any [any eCommerce platform via A
 To create a new React Storefront app, ensure node 10 or newer is installed and run:
 
 ```
-npm create react-storefront --yes (my-app-name)
+npm create react-storefront@latest --yes (my-app-name)
 ```
 
 Once your app has been created, you can start it in development mode by running:
