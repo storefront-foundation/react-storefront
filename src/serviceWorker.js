@@ -50,15 +50,15 @@ export async function prefetch(url) {
   await waitForServiceWorker()
   const link = document.createElement('link')
   const { relList } = link
-  link.setAttribute('href', addPrefetchParam(url))
 
-  link.setAttribute(
-    'rel',
+  const rel =
     relList.supports('preload') && /* istanbul ignore next */ !relList.supports('prefetch')
       ? /* istanbul ignore next */ 'preload'
-      : 'prefetch', // Safari does not support prefetch so we use preload instead
-  )
+      : 'prefetch' // Safari does not support prefetch so we use preload instead
 
+  link.setAttribute('href', addPrefetchParam(url))
+  link.setAttribute('as', 'fetch')
+  link.setAttribute('rel', rel)
   document.head.append(link)
 }
 
