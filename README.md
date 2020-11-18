@@ -137,4 +137,4 @@ Partners are encouraged to support the project in various ways - mostly by contr
 
 ## The license
 
-React Storefront source code is completely free and released under the Apache2 License. For more details, check [license.md](LICENSE.md)
+React Storefront source code is completely free and released under the Apache2 License. For more details, check [LICENSE.md](LICENSE.md)
