@@ -8,6 +8,8 @@ export default function SEOLinks({ root }) {
     key = 0
 
   const findLinks = ({ items }) => {
+    if (!items) return
+
     for (let i = 0; i < items.length; i++) {
       const item = items[i]
 
