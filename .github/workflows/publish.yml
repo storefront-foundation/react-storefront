@@ -18,6 +18,7 @@ jobs:
           npm ci
           OUTPUT=$(npm run release)
           VERSION=v$(echo $OUTPUT | rev | cut -d'@' -f 1 | rev)
+          ACTIONS_ALLOW_UNSECURE_COMMANDS=true
           echo "::set-env name=VERSION::${VERSION}"
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
