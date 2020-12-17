@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import { Tabs } from '@material-ui/core'
-import MuiTabScrollButton from '@material-ui/core/Tabs/TabScrollButton'
+import MuiTabScrollButton from '@material-ui/core/TabScrollButton'
 import { useRouter } from 'next/router'
 
 export const styles = theme => ({
