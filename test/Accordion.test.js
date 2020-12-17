@@ -50,7 +50,7 @@ describe('Accordion', () => {
 
       expect(
         wrapper
-          .find(ExpansionPanelSummary)
+          .find(ExpansionPanel)
           .last()
           .prop('expanded'),
       ).toBe(true)
@@ -64,7 +64,7 @@ describe('Accordion', () => {
 
       expect(
         wrapper
-          .find(ExpansionPanelSummary)
+          .find(ExpansionPanel)
           .first()
           .prop('expanded'),
       ).toBe(true)
@@ -76,21 +76,20 @@ describe('Accordion', () => {
 
       expect(
         wrapper
-          .find(ExpansionPanelSummary)
+          .find(ExpansionPanel)
           .first()
-          .prop('expanded')
+          .prop('expanded'),
       ).toBe(false)
 
       expect(
         wrapper
-          .find(ExpansionPanelSummary)
+          .find(ExpansionPanel)
           .last()
-          .prop('expanded')
+          .prop('expanded'),
       ).toBe(true)
 
       expect(
-        wrapper.find(ExpansionPanelSummary).filterWhere(panel => panel.prop('expanded') === true)
-          .length,
+        wrapper.find(ExpansionPanel).filterWhere(panel => panel.prop('expanded') === true).length,
       ).toBe(1)
     })
 
@@ -101,7 +100,7 @@ describe('Accordion', () => {
         .simulate('click')
       expect(
         wrapper
-          .find(ExpansionPanelSummary)
+          .find(ExpansionPanel)
           .first()
           .prop('expanded'),
       ).toBe(true)
@@ -112,14 +111,13 @@ describe('Accordion', () => {
         .simulate('click')
       expect(
         wrapper
-          .find(ExpansionPanelSummary)
+          .find(ExpansionPanel)
           .first()
-          .prop('expanded')
+          .prop('expanded'),
       ).toBe(false)
 
       expect(
-        wrapper.find(ExpansionPanelSummary).filterWhere(panel => panel.prop('expanded') === true)
-          .length
+        wrapper.find(ExpansionPanel).filterWhere(panel => panel.prop('expanded') === true).length,
       ).toBe(0)
     })
   })
