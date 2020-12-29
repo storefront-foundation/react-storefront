@@ -10,9 +10,9 @@ export default function createFacets() {
         name: capitalize(name),
         code: `color:${name}`,
         image: {
-          src: `https://via.placeholder.com/48x48/${
-            colors[name].background
-          }?text=${encodeURIComponent(' ')}`,
+          src: `https://dummyimage.com/48x48/${colors[name].background}?text=${encodeURIComponent(
+            ' ',
+          )}`,
           alt: name,
         },
       })),

@@ -1,4 +1,4 @@
-import fulfillAPIRequest from '..//props/fulfillAPIRequest'
+import fulfillAPIRequest from '../props/fulfillAPIRequest'
 import createProduct from './utils/createProduct'
 import createAppData from './utils/createAppData'
 import getBase64ForImage from 'react-storefront/utils/getBase64ForImage'
