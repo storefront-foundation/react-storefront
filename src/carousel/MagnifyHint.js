@@ -90,7 +90,7 @@ const styles = theme => ({
    */
   expandTextMobile: {
     display: 'none',
-    '@media not all and (hover: none)': {
+    '@media (hover: none) and (pointer: coarse)': {
       display: 'block',
     },
   },
@@ -102,7 +102,7 @@ const styles = theme => ({
 
     '$over:not($expandDisabled) &, $zoomDisabled &': {
       display: 'block',
-      '@media not all and (hover: none)': {
+      '@media (hover: none) and (pointer: coarse)': {
         display: 'none',
       },
     },
