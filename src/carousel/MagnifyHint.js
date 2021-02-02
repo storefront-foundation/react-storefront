@@ -65,7 +65,7 @@ const styles = theme => ({
     '$zoomDisabled&': {
       display: 'none',
     },
-    '@media not all and (hover: none)': {
+    '@media (hover: none) and (pointer: coarse)': {
       display: 'none',
     },
   },
@@ -81,7 +81,7 @@ const styles = theme => ({
     '$over:not($expandDisabled) &, $zoomDisabled &': {
       display: 'none',
     },
-    '@media not all and (hover: none)': {
+    '@media (hover: none) and (pointer: coarse)': {
       display: 'none',
     },
   },
