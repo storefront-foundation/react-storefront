@@ -23,16 +23,14 @@ export default function lazyLoadImages(element, { lazySrcAttribute = 'data-src' 
     }
     img.addEventListener('load', onload)
     img.setAttribute('src', src)
-
-    if (lazyImageObserver) {
-      lazyImageObserver.disconnect(img)
-    }
   }
 
-  const observerHandler = function(entries) {
+  const observerHandler = function(entries, self) {
     for (let entry of entries) {
       if (entry.isIntersecting) {
         load(entry.target)
+        // the image is now in place, stop watching
+        self.unobserve(entry.target)
       }
     }
   }
