@@ -30,7 +30,9 @@ export default function lazyLoadImages(element, { lazySrcAttribute = 'data-src' 
       if (entry.isIntersecting) {
         load(entry.target)
         // the image is now in place, stop watching
-        self.unobserve(entry.target)
+        if (self) {
+          self.unobserve(entry.target)
+        }
       }
     }
   }
