@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import ExpandableSection from '../ExpandableSection'
 import CheckboxFilterGroup from './CheckboxFilterGroup'
 import ButtonFilterGroup from './ButtonFilterGroup'
+import ListItem from '@material-ui/core/ListItem'
 
 const styles = theme => ({
   /**
@@ -23,7 +24,16 @@ const useStyles = makeStyles(styles, { name: 'RSFFacetGroup' })
  * A grouping of facets used for filtering products.
  */
 export default function FacetGroup(props) {
-  const { group, submitOnChange, defaultExpanded } = props
+  const {
+    group,
+    submitOnChange,
+    defaultExpanded,
+    ControlsComponent,
+    controlsProps,
+    listItemProps,
+    onClose,
+    isSimpleList
+  } = props
   const classes = useStyles(props.classes)
   const {
     pageData: { filters },
@@ -40,11 +50,11 @@ export default function FacetGroup(props) {
       }
     }
 
-    let Controls
+    let Controls = ControlsComponent
 
-    if (group.ui === 'buttons') {
+    if (!Controls && group.ui === 'buttons') {
       Controls = ButtonFilterGroup
-    } else {
+    } else if (!Controls) {
       Controls = CheckboxFilterGroup
     }
 
@@ -56,6 +66,20 @@ export default function FacetGroup(props) {
       caption = `${selection.length} selected`
     }
 
+    if (isSimpleList) {
+      return (
+        <ListItem {...listItemProps}>
+          <span className={classes.groupTitle}>{group.name}</span>
+          <Controls
+            onClose={onClose}
+            group={group}
+            submitOnChange={submitOnChange}
+            {...controlsProps}
+          />
+        </ListItem>
+      )
+    }
+
     return (
       <ExpandableSection
         title={group.name}
@@ -63,7 +87,11 @@ export default function FacetGroup(props) {
         defaultExpanded={defaultExpanded}
         classes={{ title: classes.groupTitle }}
       >
-        <Controls group={group} submitOnChange={submitOnChange} />
+        <Controls
+          group={group}
+          submitOnChange={submitOnChange}
+          {...controlsProps}
+        />
       </ExpandableSection>
     )
   }, [...Object.values(props), filters])
@@ -87,4 +115,15 @@ FacetGroup.propTypes = {
    * If `true`, the group is expanded by default.
    */
   defaultExpanded: PropTypes.bool,
+  /**
+   * Custom component to use own component.
+   */
+  ControlsComponent: PropTypes.func,
+  controlsProps: PropTypes.object,
+  onClose: PropTypes.func,
+  listItemProps: PropTypes.object,
+  /**
+   * If `true` list will be displayed instead of expandable items.
+   */
+  isSimpleList: PropTypes.bool,
 }
