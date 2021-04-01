@@ -53,6 +53,8 @@ export default function CarouselArrows({
   count,
   setSelected,
   infinite,
+  leftArrowLabel,
+  rightArrowLabel,
 }) {
   classes = useStyles({ classes })
 
@@ -70,6 +72,7 @@ export default function CarouselArrows({
         <IconButton
           className={clsx(classes.arrow, classes.leftArrow)}
           onClick={createOnClickArrow(-1)}
+          aria-label={leftArrowLabel}
         >
           <ChevronLeft classes={{ root: classes.icon }} />
         </IconButton>
@@ -78,6 +81,7 @@ export default function CarouselArrows({
         <IconButton
           className={clsx(classes.arrow, classes.rightArrow)}
           onClick={createOnClickArrow(1)}
+          aria-label={rightArrowLabel}
         >
           <ChevronRight classes={{ root: classes.icon }} />
         </IconButton>
@@ -111,6 +115,19 @@ CarouselArrows.propTypes = {
    * Total number of slides in the [`Carousel`](/apiReference/carousel/Carousel).
    */
   count: PropTypes.number,
+
+  /**
+   * Label given to the left arrow for accessbility purposes.
+   */
+  leftArrowLabel: PropTypes.string,
+
+  /**
+   * Label given to the right arrow for accessbility purposes.
+   */
+  rightArrowLabel: PropTypes.string,
 }
 
-CarouselArrows.defaultProps = {}
+CarouselArrows.defaultProps = {
+  leftArrowLabel: 'Previous',
+  rightArrowLabel: 'Next',
+}
