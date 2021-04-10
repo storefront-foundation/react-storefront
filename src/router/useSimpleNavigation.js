@@ -1,4 +1,4 @@
-import delegate from 'delegate'
+import delegate from 'delegate-it'
 import fetch from '../fetch'
 import { useEffect, useRef, useCallback } from 'react'
 import Router from 'next/router'
@@ -24,7 +24,7 @@ export default function useSimpleNavigation() {
 
   useEffect(() => {
     async function doEffect() {
-      delegate('a', 'click', e => {
+      delegate(document, 'a', 'click', e => {
         const { delegateTarget } = e
         const as = delegateTarget.getAttribute('href')
         const href = getRoute(as, routes.current)
