@@ -123,9 +123,9 @@ The documentation is always THE HARDEST PART of each open-source project! But we
 
 **React Storefront is and always will be open-source, released under Apache2 Licence.**
 
-## Try it on the XDN. Deploy it anywhere.
+## Try it on the Layer0. Deploy it anywhere.
 
-Like any Next.js project, React Storefront is deployable to any environment that runs Node.js. The easiest way to test drive and deploy React Storefront is on the <a href="https://www.moovweb.com/products/">Moovweb Experience Delivery Network (XDN)</a>, a serverless PaaS that helps developers optimize speed across the entire stack to deliver sub-second dynamic websites. A free tier is available. Inquire through Moovweb's website.
+Like any Next.js project, React Storefront is deployable to any environment that runs Node.js. The easiest way to test drive and deploy React Storefront is on <a href="https://layer0.co">Layer0</a>, a serverless PaaS that helps developers optimize speed across the entire stack to deliver sub-second dynamic websites. A free tier is available.
 
 ## Partners
 

@@ -83,7 +83,7 @@ function addPrefetchParam(url) {
     const parsed = new URL(url, location.href)
 
     if (parsed.hostname === location.hostname) {
-      // only add __prefetch__ for requests going back to the XDN.
+      // only add __prefetch__ for requests going back to Layer0.
       parsed.searchParams.append(prefetchQueryParam, '1')
     }
 
