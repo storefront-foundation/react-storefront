@@ -61,9 +61,16 @@ export default function CarouselArrows({
   const createOnClickArrow = useCallback(
     idxChange => evt => {
       evt.preventDefault()
-      setSelected(selected + idxChange)
+
+      let nextSelected = selected + idxChange
+
+      if (infinite) {
+        nextSelected = Math.abs(nextSelected - count * Math.floor(nextSelected / count))
+      }
+
+      setSelected(nextSelected)
     },
-    [selected, setSelected],
+    [selected, setSelected, count, infinite],
   )
 
   return (
