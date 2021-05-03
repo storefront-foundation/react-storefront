@@ -9,7 +9,7 @@ Free and open-source. Built with Next.js
 ![Branch Develop](https://img.shields.io/badge/dev%20branch-develop-blue.svg)
 <a href="https://join.slack.com/t/react-storefront-comm/shared_invite/zt-hyq2dzxf-zUjcsxReDkJ6r1FR1xCnWw">![Branch Develop](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
-React Storefront (RSF) utilizes headless architecture allowing you to easily replace your legacy frontned and connect via APIs to any eCommerce platform or backend system. React Storefront extends Next.js to include everything you need for an eCommerce storefront. Try <a href="https://www.thetiebar.com/">The Tie Bar</a>, <a href="https://www.shopakira.com/">Akira</a>, and <a href="https://pwa.www.1800flowers.com/">1-800-FLOWERS.COM</a> on your phone to see how fast sites on RSF can be!
+React Storefront (RSF) utilizes headless architecture allowing you to easily replace your legacy frontend and connect via APIs to any eCommerce platform or backend system. React Storefront extends Next.js to include everything you need for an eCommerce storefront. Try <a href="https://www.thetiebar.com/">The Tie Bar</a>, <a href="https://www.shopakira.com/">Akira</a>, and <a href="https://pwa.www.1800flowers.com/">1-800-FLOWERS.COM</a> on your phone to see how fast sites on RSF can be!
 
 ## Ludicrous Speed
 
@@ -42,7 +42,7 @@ React Storefront is and always will be open-source. Anyone can use and support t
 
 ## Made to Sell
 
-React Storefront is custom-built for eCommerce:. It contains UI components and templates designed for eCommerce. It’s SEO and search engine friendly. In addition, React Storefront allows you to preserve your existing URL Scheme.
+React Storefront is custom-built for eCommerce: It contains UI components and templates designed for eCommerce. It’s SEO and search engine friendly. In addition, React Storefront allows you to preserve your existing URL Scheme.
 
 ## Built for Complex Sites
 
@@ -52,7 +52,7 @@ React Storefront scales from $10M to $1B+ revenue sites and is already powering 
 
 ## Integrations
 
-React Storefront can be easily integrated with any [any eCommerce platform via APIs](https://docs.react-storefront.io/guides/api).
+React Storefront can be easily integrated with [any eCommerce platform via APIs](https://docs.react-storefront.io/guides/api).
 
 <img src="https://raw.githubusercontent.com/storefront-foundation/react-storefront/master/RSF%20power.png" alt="RSF- easy to use, powerful in action"/></a>
 
@@ -114,7 +114,7 @@ npm i
 
 ## Join the community on Slack
 
-If you have any questions or ideas feel free to join our slack: [invitation link](https://join.slack.com/t/react-storefront-comm/shared_invite/zt-hyq2dzxf-zUjcsxReDkJ6r1FR1xCnWw)
+If you have any questions or ideas feel free to join our Slack: [invitation link](https://join.slack.com/t/react-storefront-comm/shared_invite/zt-hyq2dzxf-zUjcsxReDkJ6r1FR1xCnWw)
 
 ## Documentation
 
