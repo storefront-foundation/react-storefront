@@ -62,13 +62,20 @@ export default function CarouselArrows({
     idxChange => evt => {
       evt.preventDefault()
 
-      let nextSelected = selected + idxChange
-
-      if (infinite) {
-        nextSelected = Math.abs(nextSelected - count * Math.floor(nextSelected / count))
+      if (!infinite) {
+        setSelected(selected + idxChange);
+        return;
       }
 
-      setSelected(nextSelected)
+      // carousel loop-around calculations
+      let nextSelectedIndex = selected + idxChange;
+      if (nextSelectedIndex + 1 > count) {
+        nextSelectedIndex = 0;
+      } else if (nextSelectedIndex < 0) {
+        nextSelectedIndex = count - 1;
+      }
+
+      setSelected(nextSelectedIndex);
     },
     [selected, setSelected, count, infinite],
   )

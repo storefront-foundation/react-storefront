@@ -114,8 +114,15 @@ const Carousel = React.forwardRef((props, ref) => {
       return
     }
 
-    const nextSelected = Math.abs(index - count * Math.floor(index / count))
-    setSelected(nextSelected)
+    // carousel loop-around calculations
+    let nextSelectedIndex = index;
+    if (nextSelectedIndex + 1 > count) {
+      nextSelectedIndex = 0;
+    } else if (nextSelectedIndex < 0) {
+      nextSelectedIndex = count - 1;
+    }
+
+    setSelected(nextSelectedIndex)
   }, [infinite, count, selected, setSelected])
 
   return (
