@@ -16,13 +16,6 @@ const styles = theme => ({
   },
 
   /**
-   * Styles applied to the dot representing the selected slide.
-   */
-  dotSelected: {
-    backgroundColor: theme.palette.text.primary,
-  },
-
-  /**
    * Styles applied to each dot element.
    */
   dot: {
@@ -38,6 +31,13 @@ const styles = theme => ({
     // Same duration as SwipeableViews animation
     transitionDuration: '0.35s',
   },
+
+  /**
+   * Styles applied to the dot representing the selected slide.
+   */
+  dotSelected: {
+    backgroundColor: theme.palette.text.primary,
+  }
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFCarouselDots' })

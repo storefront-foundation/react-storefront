@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useCallback, useState } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import SwipeableViews from 'react-swipeable-views'
@@ -108,6 +108,23 @@ const Carousel = React.forwardRef((props, ref) => {
     return <Fragment key={key}>{slide}</Fragment>
   }
 
+  const onChangeIndex = useCallback((index) => {
+    if (!infinite) {
+      setSelected(index)
+      return
+    }
+
+    // carousel loop-around calculations
+    let nextSelectedIndex = index;
+    if (nextSelectedIndex + 1 > count) {
+      nextSelectedIndex = 0;
+    } else if (nextSelectedIndex < 0) {
+      nextSelectedIndex = count - 1;
+    }
+
+    setSelected(nextSelectedIndex)
+  }, [infinite, count, selected, setSelected])
+
   return (
     <div
       ref={ref}
@@ -122,7 +139,7 @@ const Carousel = React.forwardRef((props, ref) => {
         <div className={classes.swipeWrap}>
           <Tag
             index={selected}
-            onChangeIndex={setSelected}
+            onChangeIndex={onChangeIndex}
             className={classes.autoPlaySwipeableViews}
             style={swipeStyle}
             slideStyle={slideStyle}

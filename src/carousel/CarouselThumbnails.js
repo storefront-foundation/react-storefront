@@ -6,7 +6,6 @@ import Tab from '@material-ui/core/Tab'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Image from '../Image'
-import mod from '../utils/mod'
 
 export const styles = theme => ({
   /**
@@ -139,7 +138,7 @@ function CarouselThumbnails({
   return (
     <div className={clsx(className, styles.thumbs)}>
       <Tabs
-        value={selected ? mod(selected, count) : false}
+        value={selected}
         variant="scrollable"
         onChange={(_, index) => setSelected(index)}
         orientation={isVertical ? 'vertical' : 'horizontal'}
