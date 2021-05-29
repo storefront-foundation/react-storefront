@@ -78,7 +78,6 @@ function getRoute(href, routes) {
   const prioritizedMatches = matches.sort((a, b) => {
     const aWeight = (a.match(specificityWeightPattern) || []).length;
     const bWeight = (b.match(specificityWeightPattern) || []).length;
-    console.log({aWeight, bWeight, a, b});
     return aWeight > bWeight ? 1 : -1
   });
 
