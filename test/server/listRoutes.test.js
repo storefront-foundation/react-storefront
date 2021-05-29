@@ -18,6 +18,26 @@ describe('listRoutes', () => {
   describe('development', () => {
     it('should return routes in development', () => {
       expect(listRoutes()).toEqual({
+        '^\\/(.+?)(?:\\/)?$': {
+          as: '/[...catchAll]',
+          component: 'pages/[...catchAll].js',
+        },
+        '^\\/blog(?:\\/(.+?))?(?:\\/)?$': {
+          component: 'pages/blog/[[...catchAll]].js',
+          as: '/blog/[[...catchAll]]'
+        },
+        '^\\/file\\-extension\\-test\\-1(?:\\/)?$': {
+          component: 'pages/file-extension-test-1.jsx',
+          as: '/file-extension-test-1'
+        },
+        '^\\/file\\-extension\\-test\\-2(?:\\/)?$': {
+          component: 'pages/file-extension-test-2.ts',
+          as: '/file-extension-test-2'
+        },
+        '^\\/file\\-extension\\-test\\-3(?:\\/)?$': {
+          component: 'pages/file-extension-test-3.tsx',
+          as: '/file-extension-test-3'
+        },
         '^\\/p\\/([^/]+?)(?:\\/)?$': {
           as: '/p/[productId]',
           component: 'pages/p/[productId].js',
