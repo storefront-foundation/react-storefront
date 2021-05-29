@@ -27,10 +27,11 @@ export default function useSimpleNavigation() {
       delegate('a', 'click', e => {
         const { delegateTarget } = e
         const as = delegateTarget.getAttribute('href')
+        const isNativeOverride = delegateTarget.hasAttribute('data-native')
         const href = getRoute(as, routes.current)
 
-        // catch if not next link
-        if (href && !nextNavigation.current) {
+        // catch if not native override or next link
+        if (!isNativeOverride && href && !nextNavigation.current) {
           e.preventDefault()
           const url = toNextURL(href, as)
           Router.push(url, as)
@@ -62,11 +63,25 @@ function fetchRouteManifest() {
 }
 
 function getRoute(href, routes) {
+  const matches = [];
+
   for (let pattern in routes) {
     if (new RegExp(pattern, 'i').test(href)) {
-      return routes[pattern].as
+      matches.push(routes[pattern].as)
     }
   }
 
-  return null
+  // matches all occurrences of `...`, `[`, `]`, and `/` 
+  const specificityWeightPattern = new RegExp(/\.{3}|\[|\/|\]/g);
+
+  // sorts the matches by specificity weight descending
+  const prioritizedMatches = matches.sort((a, b) => {
+    const aWeight = (a.match(specificityWeightPattern) || []).length;
+    const bWeight = (b.match(specificityWeightPattern) || []).length;
+    console.log({aWeight, bWeight, a, b});
+    return aWeight > bWeight ? 1 : -1
+  });
+
+  // return the route with the most specificity, similar to Next.js route matching
+  return prioritizedMatches[0] || null;
 }
