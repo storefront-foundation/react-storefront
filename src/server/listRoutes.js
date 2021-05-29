@@ -37,11 +37,13 @@ export default function listRoutes() {
  * reliably in development.
  */
 function createDevelopmentPagesManifest() {
-  const pages = glob.sync('pages/**/*.js', { cwd: process.cwd() })
+  // matches all page files with the extension `.js`, `.jsx`, `.ts`, or `.tsx`
+  const pages = glob.sync('pages/**/*.@(js|jsx|ts|tsx)', { cwd: process.cwd() })
   const manifest = {}
 
   for (let page of pages) {
-    const route = page.replace(/^pages/, '').replace(/\.[^/]+$/, '')
+    // strip out the `pages` prefix and the file extension from the page path
+    const route = page.replace(/^pages/, '').replace(/.(js|jsx|ts|tsx)$/, '')
     manifest[route] = page
   }
 
