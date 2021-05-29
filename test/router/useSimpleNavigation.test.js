@@ -43,6 +43,26 @@ describe('useSimpleNavigation', () => {
     expect(Router.push).toHaveBeenCalledWith({ pathname: '/p/[productId]', query: {} }, '/p/1')
   })
 
+  it('should do nothing if the URL matches a known route and the anchor element has the data-native attribute', async () => {
+    const Test = () => {
+      useSimpleNavigation()
+      return (
+        <a id="link" href="/p/1" data-native>
+          Product 1
+        </a>
+      )
+    }
+
+    const root = document.createElement('div')
+    document.body.appendChild(root)
+    wrapper = mount(<Test />, { attachTo: root })
+
+    await sleep()
+    document.querySelector('#link').click()
+
+    expect(Router.push).not.toHaveBeenCalled()
+  })
+
   it("should do nothing if the href doesn't match a route", async () => {
     const Test = () => {
       useSimpleNavigation()
