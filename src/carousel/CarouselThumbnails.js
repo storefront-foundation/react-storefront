@@ -5,6 +5,7 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import mod from '../utils/mod'
 import Image from '../Image'
 
 export const styles = theme => ({
