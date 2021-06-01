@@ -138,7 +138,7 @@ function CarouselThumbnails({
   return (
     <div className={clsx(className, styles.thumbs)}>
       <Tabs
-        value={selected}
+        value={selected !== false ? mod(selected, count) : false}
         variant="scrollable"
         onChange={(_, index) => setSelected(index)}
         orientation={isVertical ? 'vertical' : 'horizontal'}
