@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Accordion from 'react-storefront/Accordion'
 import ExpandableSection from 'react-storefront/ExpandableSection'
-import { ExpansionPanelSummary, ExpansionPanel } from '@material-ui/core'
+import { AccordionSummary, Accordion as MUIAccordion } from '@material-ui/core'
 
 describe('Accordion', () => {
   it('should be empty render without children', () => {
@@ -32,25 +32,24 @@ describe('Accordion', () => {
     )
 
     it('should have 3 sections', () => {
-      expect(wrapper.find(ExpansionPanelSummary).length).toBe(3)
+      expect(wrapper.find(AccordionSummary).length).toBe(3)
     })
 
     it('should have 0 expanded sections', () => {
       expect(
-        wrapper.find(ExpansionPanelSummary).filterWhere(panel => panel.prop('expanded') === true)
-          .length,
+        wrapper.find(AccordionSummary).filterWhere(panel => panel.prop('expanded') === true).length,
       ).toBe(0)
     })
 
     it('should expand section on section click ', () => {
       wrapper
-        .find(ExpansionPanelSummary)
+        .find(AccordionSummary)
         .last()
         .simulate('click')
 
       expect(
         wrapper
-          .find(ExpansionPanel)
+          .find(MUIAccordion)
           .last()
           .prop('expanded'),
       ).toBe(true)
@@ -58,66 +57,66 @@ describe('Accordion', () => {
 
     it('should verify that previous opened section is closed on new section click', () => {
       wrapper
-        .find(ExpansionPanelSummary)
+        .find(AccordionSummary)
         .first()
         .simulate('click')
 
       expect(
         wrapper
-          .find(ExpansionPanel)
+          .find(MUIAccordion)
           .first()
           .prop('expanded'),
       ).toBe(true)
 
       wrapper
-        .find(ExpansionPanelSummary)
+        .find(AccordionSummary)
         .last()
         .simulate('click')
 
       expect(
         wrapper
-          .find(ExpansionPanel)
+          .find(MUIAccordion)
           .first()
           .prop('expanded'),
       ).toBe(false)
 
       expect(
         wrapper
-          .find(ExpansionPanel)
+          .find(MUIAccordion)
           .last()
           .prop('expanded'),
       ).toBe(true)
 
       expect(
-        wrapper.find(ExpansionPanel).filterWhere(panel => panel.prop('expanded') === true).length,
+        wrapper.find(MUIAccordion).filterWhere(panel => panel.prop('expanded') === true).length,
       ).toBe(1)
     })
 
     it('should close the section if clicked again on the same section', () => {
       wrapper
-        .find(ExpansionPanelSummary)
+        .find(AccordionSummary)
         .first()
         .simulate('click')
       expect(
         wrapper
-          .find(ExpansionPanel)
+          .find(MUIAccordion)
           .first()
           .prop('expanded'),
       ).toBe(true)
 
       wrapper
-        .find(ExpansionPanelSummary)
+        .find(AccordionSummary)
         .first()
         .simulate('click')
       expect(
         wrapper
-          .find(ExpansionPanel)
+          .find(MUIAccordion)
           .first()
           .prop('expanded'),
       ).toBe(false)
 
       expect(
-        wrapper.find(ExpansionPanel).filterWhere(panel => panel.prop('expanded') === true).length,
+        wrapper.find(MUIAccordion).filterWhere(panel => panel.prop('expanded') === true).length,
       ).toBe(0)
     })
   })

@@ -1,12 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import {
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-  Typography,
-} from '@material-ui/core'
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core'
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 import useStateFromProp from './hooks/useStateFromProp'
@@ -171,7 +166,7 @@ export default function ExpandableSection(props) {
   const [expandedState, setExpandedState] = useStateFromProp(expanded || defaultExpanded || false)
 
   /**
-   * Gets the classes for the ExpansionPanelSummary
+   * Gets the classes for the AccordionSummary
    * Here we add a class to remove the rotate transform if we're using a
    * separate icon for the collapse state.
    */
@@ -199,7 +194,7 @@ export default function ExpandableSection(props) {
   })
 
   return (
-    <ExpansionPanel
+    <Accordion
       classes={{
         root: clsx({
           [classes.root]: true,
@@ -212,7 +207,7 @@ export default function ExpandableSection(props) {
       {...others}
       onChange={handleChange}
     >
-      <ExpansionPanelSummary
+      <AccordionSummary
         expandIcon={
           expandedState ? (
             <CollapseIcon className={classes.collapseIcon} />
@@ -236,9 +231,9 @@ export default function ExpandableSection(props) {
             {caption}
           </Typography>
         )}
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails classes={{ root: classes.details }}>{children}</ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionSummary>
+      <AccordionDetails classes={{ root: classes.details }}>{children}</AccordionDetails>
+    </Accordion>
   )
 }
 
