@@ -1,4 +1,4 @@
-import { getRouteRegex } from 'next/dist/next-server/lib/router/utils/route-regex'
+import { getRouteRegex } from 'next/dist/shared/lib/router/utils/route-regex'
 
 export default function routes(pagesManifest) {
   const routes = {}
