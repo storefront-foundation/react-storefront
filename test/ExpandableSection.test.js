@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { mount } from 'enzyme'
 import ExpandableSection from 'react-storefront/ExpandableSection'
-import { ExpansionPanel, ExpansionPanelSummary, Typography } from '@mui/material'
+import { Accordion, AccordionSummary, Typography } from '@mui/material'
 import { ArrowBack as TestIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 
 describe('ExpandableSection', () => {
@@ -73,10 +73,10 @@ describe('ExpandableSection', () => {
 
   it('should set specific styles on margin prop', () => {
     wrapper = mount(<ExpandableSection margins={false} />)
-    expect(wrapper.find(ExpansionPanel).prop('classes').root).not.toContain('margins')
+    expect(wrapper.find(Accordion).prop('classes').root).not.toContain('margins')
 
     wrapper = mount(<ExpandableSection margins={true} />)
-    expect(wrapper.find(ExpansionPanel).prop('classes').root).toContain('margins')
+    expect(wrapper.find(Accordion).prop('classes').root).toContain('margins')
   })
 
   it('should set fixed expanded state when expanded prop provided', () => {
@@ -85,14 +85,14 @@ describe('ExpandableSection', () => {
     expect(wrapper.find(TestIcon).exists()).toBe(true)
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(true)
-    wrapper.find(ExpansionPanelSummary).simulate('click')
+    wrapper.find(AccordionSummary).simulate('click')
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(true)
@@ -103,14 +103,14 @@ describe('ExpandableSection', () => {
 
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(false)
-    wrapper.find(ExpansionPanelSummary).simulate('click')
+    wrapper.find(AccordionSummary).simulate('click')
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(true)
@@ -136,18 +136,18 @@ describe('ExpandableSection', () => {
     expect(wrapper.find(TestIcon).exists()).toBe(true)
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(true)
 
-    wrapper.find(ExpansionPanelSummary).simulate('click')
+    wrapper.find(AccordionSummary).simulate('click')
 
     expect(wrapper.find(ExpandMoreIcon).exists()).toBe(true)
     expect(wrapper.find(TestIcon).exists()).toBe(false)
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(false)
@@ -166,19 +166,19 @@ describe('ExpandableSection', () => {
 
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(false)
 
     wrapper
-      .find(ExpansionPanel)
+      .find(Accordion)
       .childAt(0)
       .simulate('click')
 
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(false)
@@ -195,16 +195,16 @@ describe('ExpandableSection', () => {
 
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(false)
 
-    wrapper.find(ExpansionPanelSummary).simulate('click')
+    wrapper.find(AccordionSummary).simulate('click')
 
     expect(
       wrapper
-        .find(ExpansionPanel)
+        .find(Accordion)
         .childAt(0)
         .prop('expanded'),
     ).toBe(true)

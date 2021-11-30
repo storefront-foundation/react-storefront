@@ -5,7 +5,7 @@ import NavTab from 'react-storefront/nav/NavTab'
 import Row from 'react-storefront/Row'
 import Link from 'react-storefront/link/Link'
 import { Paper, Popover } from '@mui/material'
-import { createMuiTheme, MuiThemeProvider } from '@mui/material/styles'
+import { createMuiTheme, MuiThemeProvider, StyledEngineProvider, adaptV4Theme } from '@mui/material/styles';
 import { navigate } from '../mocks/mockRouter'
 
 describe('NavTab', () => {
@@ -41,16 +41,18 @@ describe('NavTab', () => {
   })
 
   it('should hide and show Popover on mouseenter and mouseleave from Tab', async () => {
-    const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'md' } } })
+    const theme = createMuiTheme(adaptV4Theme({ props: { MuiWithWidth: { initialWidth: 'md' } } }))
 
     wrapper = mount(
-      <MuiThemeProvider theme={theme}>
-        <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
-          <Row id="first">Subcategory 1</Row>
-          <Row id="first">Subcategory 2</Row>
-          <Row id="first">Subcategory 3</Row>
-        </NavTab>
-      </MuiThemeProvider>,
+      <StyledEngineProvider injectFirst>
+        <MuiThemeProvider theme={theme}>
+          <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
+            <Row id="first">Subcategory 1</Row>
+            <Row id="first">Subcategory 2</Row>
+            <Row id="first">Subcategory 3</Row>
+          </NavTab>
+        </MuiThemeProvider>
+      </StyledEngineProvider>,
       { attachTo: root },
     )
 
@@ -78,16 +80,18 @@ describe('NavTab', () => {
   })
 
   it('should hide and show Menu when leaving and entering from Menu', async () => {
-    const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'md' } } })
+    const theme = createMuiTheme(adaptV4Theme({ props: { MuiWithWidth: { initialWidth: 'md' } } }))
 
     wrapper = mount(
-      <MuiThemeProvider theme={theme}>
-        <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
-          <Row id="first">Subcategory 1</Row>
-          <Row id="first">Subcategory 2</Row>
-          <Row id="first">Subcategory 3</Row>
-        </NavTab>
-      </MuiThemeProvider>,
+      <StyledEngineProvider injectFirst>
+        <MuiThemeProvider theme={theme}>
+          <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
+            <Row id="first">Subcategory 1</Row>
+            <Row id="first">Subcategory 2</Row>
+            <Row id="first">Subcategory 3</Row>
+          </NavTab>
+        </MuiThemeProvider>
+      </StyledEngineProvider>,
       { attachTo: root },
     )
 
@@ -128,16 +132,18 @@ describe('NavTab', () => {
   })
 
   it('should never show Popover when width is sm', async () => {
-    const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'xs' } } })
+    const theme = createMuiTheme(adaptV4Theme({ props: { MuiWithWidth: { initialWidth: 'xs' } } }))
 
     wrapper = mount(
-      <MuiThemeProvider theme={theme}>
-        <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
-          <Row id="first">Subcategory 1</Row>
-          <Row id="first">Subcategory 2</Row>
-          <Row id="first">Subcategory 3</Row>
-        </NavTab>
-      </MuiThemeProvider>,
+      <StyledEngineProvider injectFirst>
+        <MuiThemeProvider theme={theme}>
+          <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
+            <Row id="first">Subcategory 1</Row>
+            <Row id="first">Subcategory 2</Row>
+            <Row id="first">Subcategory 3</Row>
+          </NavTab>
+        </MuiThemeProvider>
+      </StyledEngineProvider>,
       { attachTo: root },
     )
 
@@ -154,16 +160,18 @@ describe('NavTab', () => {
   })
 
   it('should close menu on page change', async () => {
-    const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } })
+    const theme = createMuiTheme(adaptV4Theme({ props: { MuiWithWidth: { initialWidth: 'lg' } } }))
 
     wrapper = mount(
-      <MuiThemeProvider theme={theme}>
-        <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
-          <Row id="first">Subcategory 1</Row>
-          <Row id="first">Subcategory 2</Row>
-          <Row id="first">Subcategory 3</Row>
-        </NavTab>
-      </MuiThemeProvider>,
+      <StyledEngineProvider injectFirst>
+        <MuiThemeProvider theme={theme}>
+          <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
+            <Row id="first">Subcategory 1</Row>
+            <Row id="first">Subcategory 2</Row>
+            <Row id="first">Subcategory 3</Row>
+          </NavTab>
+        </MuiThemeProvider>
+      </StyledEngineProvider>,
       { attachTo: root },
     )
 
@@ -198,27 +206,29 @@ describe('NavTab', () => {
 
   describe('accessibility', () => {
     beforeEach(() => {
-      const theme = createMuiTheme({
+      const theme = createMuiTheme(adaptV4Theme({
         props: {
           MuiWithWidth: {
             initialWidth: 'lg',
           },
         },
-      })
+      }))
 
       wrapper = mount(
-        <MuiThemeProvider theme={theme}>
-          <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
-            <div>
-              <a href="/" id="sub1">
-                test1
-              </a>
-              <a href="/" id="sub2">
-                test2>
-              </a>
-            </div>
-          </NavTab>
-        </MuiThemeProvider>,
+        <StyledEngineProvider injectFirst>
+          <MuiThemeProvider theme={theme}>
+            <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
+              <div>
+                <a href="/" id="sub1">
+                  test1
+                </a>
+                <a href="/" id="sub2">
+                  test2>
+                </a>
+              </div>
+            </NavTab>
+          </MuiThemeProvider>
+        </StyledEngineProvider>,
         { attachTo: root },
       )
     })

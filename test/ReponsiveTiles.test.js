@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { createMuiTheme } from '@mui/material/styles'
-import { GridListTile } from '@mui/material'
+import { ImageListItem } from '@mui/material'
 import ResponsiveTiles from 'react-storefront/ResponsiveTiles'
 import AutoScrollToNewChildren from 'react-storefront/AutoScrollToNewChildren'
 import * as makeStyles from '@mui/material/styles/makeStyles'
@@ -45,7 +45,7 @@ describe('ResponsiveTiles', () => {
       </ResponsiveTiles>,
     )
 
-    expect(wrapper.find(GridListTile).length).toBe(2)
+    expect(wrapper.find(ImageListItem).length).toBe(2)
   })
 
   it('should be able to pass custom spacing', () => {
@@ -63,10 +63,10 @@ describe('ResponsiveTiles', () => {
     )
 
     expect(window.getComputedStyle(document.querySelector('ul')).margin).toBe(
-      `-${theme.spacing(spacing)}px`,
+      theme.spacing(-spacing),
     )
     expect(window.getComputedStyle(document.querySelector('li')).padding).toBe(
-      `${theme.spacing(spacing)}px`,
+      theme.spacing(spacing),
     )
   })
 
