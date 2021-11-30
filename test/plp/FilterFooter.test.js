@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import FilterFooter from 'react-storefront/plp/FilterFooter'
 import SearchResultsContext from 'react-storefront/plp/SearchResultsContext'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 
 describe('FilterFooter', () => {
   let wrapper

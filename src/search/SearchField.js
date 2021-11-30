@@ -1,10 +1,10 @@
 import React, { useRef, forwardRef } from 'react'
-import { makeStyles, fade } from '@material-ui/core/styles'
+import { makeStyles, fade } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-import { IconButton } from '@material-ui/core'
-import ClearIcon from '@material-ui/icons/Clear'
+import { IconButton } from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear'
 import SearchSubmitButton from './SearchSubmitButton'
-import { Fab, Button } from '@material-ui/core'
+import { Fab, Button } from '@mui/material'
 import clsx from 'clsx'
 
 export const styles = theme => ({
@@ -85,7 +85,7 @@ const useStyles = makeStyles(styles, { name: 'RSFSearchField' })
 
 /**
  * A search text field. Additional props are spread to the underlying
- * [Input](https://material-ui.com/api/input/).
+ * [Input](https://mui.com/api/input/).
  */
 const SearchField = forwardRef(
   (
@@ -209,7 +209,7 @@ SearchField.propTypes = {
    */
   clearButtonProps: PropTypes.object,
   /**
-   * Additional props for the Material UI [Input](https://material-ui.com/api/input/).
+   * Additional props for the Material UI [Input](https://mui.com/api/input/).
    */
   inputProps: PropTypes.object,
   /**

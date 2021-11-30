@@ -1,5 +1,5 @@
 import React, { Children } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 

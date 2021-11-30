@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import React, { useCallback } from 'react'
 import clsx from 'clsx'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import { IconButton } from '@material-ui/core'
-import { ChevronLeft, ChevronRight } from '@material-ui/icons'
+import makeStyles from '@mui/material/styles/makeStyles'
+import { IconButton } from '@mui/material'
+import { ChevronLeft, ChevronRight } from '@mui/icons-material'
 
 export const styles = theme => ({
   /**

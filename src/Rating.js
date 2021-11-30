@@ -1,6 +1,6 @@
 import React from 'react'
-import { Star, StarBorder, StarHalf } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
+import { Star, StarBorder, StarHalf } from '@mui/icons-material'
+import { makeStyles } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Hbox } from './Box'

@@ -1,6 +1,6 @@
 import React, { useMemo, useContext } from 'react'
 import { Hbox } from '../Box'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import SearchResultsContext from './SearchResultsContext'
 

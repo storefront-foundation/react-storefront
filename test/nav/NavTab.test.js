@@ -4,8 +4,8 @@ import { act } from 'react-dom/test-utils'
 import NavTab from 'react-storefront/nav/NavTab'
 import Row from 'react-storefront/Row'
 import Link from 'react-storefront/link/Link'
-import { Paper, Popover } from '@material-ui/core'
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
+import { Paper, Popover } from '@mui/material'
+import { createMuiTheme, MuiThemeProvider } from '@mui/material/styles'
 import { navigate } from '../mocks/mockRouter'
 
 describe('NavTab', () => {

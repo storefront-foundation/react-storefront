@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button, Typography } from '@material-ui/core'
+import { makeStyles } from '@mui/material/styles'
+import { Button, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({
   /**
-   * Styles passed through to the [`Button`](https://material-ui.com/api/button/#css) element's
+   * Styles passed through to the [`Button`](https://mui.com/api/button/#css) element's
    * `label` CSS rule.
    */
   label: {
@@ -21,7 +21,7 @@ export const styles = theme => ({
     fontWeight: 'bold',
   },
   /**
-   * Styles passed through to the [`Button`](https://material-ui.com/api/button/#css) element's
+   * Styles passed through to the [`Button`](https://mui.com/api/button/#css) element's
    * `contained` CSS rule.
    */
   button: {

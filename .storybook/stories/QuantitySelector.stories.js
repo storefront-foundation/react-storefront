@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ArrowDownward, ArrowUpward } from '@material-ui/icons'
+import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
 import QuantitySelector from '../../src/QuantitySelector'
 
 export default { title: 'QuantitySelector' }

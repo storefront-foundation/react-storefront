@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@mui/material/styles/makeStyles'
 import Link from '../link/Link'
 import PropTypes from 'prop-types'
 import Image from '../Image'

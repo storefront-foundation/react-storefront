@@ -5,8 +5,8 @@ import MenuBack from 'react-storefront/menu/MenuBack'
 import MenuCard from 'react-storefront/menu/MenuCard'
 import MenuFooter from 'react-storefront/menu/MenuFooter'
 import MenuHeader from 'react-storefront/menu/MenuHeader'
-import { ListItem } from '@material-ui/core'
-import { ChevronLeft } from '@material-ui/icons'
+import { ListItem } from '@mui/material'
+import { ChevronLeft } from '@mui/icons-material'
 
 describe('Menu', () => {
   let wrapper

@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import NavTab from 'react-storefront/nav/NavTab'
 import NavTabs from 'react-storefront/nav/NavTabs'
-import { Tabs } from '@material-ui/core'
+import { Tabs } from '@mui/material'
 import { useRouter } from '../mocks/mockRouter'
 
 describe('NavTabs', () => {

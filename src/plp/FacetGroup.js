@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useContext } from 'react'
 import SearchResultsContext from './SearchResultsContext'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/material/styles'
 import ExpandableSection from '../ExpandableSection'
 import CheckboxFilterGroup from './CheckboxFilterGroup'
 import ButtonFilterGroup from './ButtonFilterGroup'
-import ListItem from '@material-ui/core/ListItem'
+import ListItem from '@mui/material/ListItem'
 
 const styles = theme => ({
   /**

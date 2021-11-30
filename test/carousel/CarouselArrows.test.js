@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { ChevronLeft, ChevronRight } from '@material-ui/icons'
+import { ChevronLeft, ChevronRight } from '@mui/icons-material'
 import CarouselArrows from 'react-storefront/carousel/CarouselArrows'
 
 describe('CarouselArrows', () => {

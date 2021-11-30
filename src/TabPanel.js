@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Tabs, Tab } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Tabs, Tab } from '@mui/material'
+import { makeStyles } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 

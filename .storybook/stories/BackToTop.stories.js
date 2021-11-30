@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pets } from '@material-ui/icons'
+import { Pets } from '@mui/icons-material'
 import { withKnobs, select } from '@storybook/addon-knobs'
 import BackToTop from '../../src/BackToTop'
 

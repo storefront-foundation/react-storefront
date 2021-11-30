@@ -2,7 +2,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import TabPanel from 'react-storefront/TabPanel'
-import { Tab } from '@material-ui/core'
+import { Tab } from '@mui/material'
 
 describe('TabPanel', () => {
   let wrapper

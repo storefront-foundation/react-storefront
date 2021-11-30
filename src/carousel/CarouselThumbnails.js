@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import clsx from 'clsx'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import { makeStyles, useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import mod from '../utils/mod'
 import Image from '../Image'
 
@@ -25,7 +25,7 @@ export const styles = theme => ({
     boxSizing: 'content-box',
   },
   /**
-   * Styles passed through to the [`Tabs`](https://material-ui.com/api/tabs/#css) element's
+   * Styles passed through to the [`Tabs`](https://mui.com/api/tabs/#css) element's
    * `indicator` CSS rule.
    */
   tabsIndicator: {
@@ -81,7 +81,7 @@ export const styles = theme => ({
     marginTop: theme.spacing(2),
   },
   /**
-   * Styles passed through to each [`Tab`](https://material-ui.com/api/tabs/#css) element's
+   * Styles passed through to each [`Tab`](https://mui.com/api/tabs/#css) element's
    * `root` CSS rule.
    */
   tabRoot: {
@@ -95,14 +95,14 @@ export const styles = theme => ({
     },
   },
   /**
-   * Styles passed through to each [`Tab`](https://material-ui.com/api/tabs/#css) element's
+   * Styles passed through to each [`Tab`](https://mui.com/api/tabs/#css) element's
    * `selected` CSS rule.
    */
   selectedTab: {
     opacity: 1,
   },
   /**
-   * Styles passed through to each [`Tab`](https://material-ui.com/api/tabs/#css) element's
+   * Styles passed through to each [`Tab`](https://mui.com/api/tabs/#css) element's
    * `wrapper` CSS rule.
    */
   tabWrapper: {
@@ -119,7 +119,7 @@ const useStyles = makeStyles(styles, { name: 'RSFCarouselThumbnails' })
 /**
  * A set of thumbnails to show below a [`Carousel`](/apiReference/carousel/Carousel). Thumbnails can
  * be clicked to switch to the given slide. Internally, `CarouselThumbnails` uses MaterialUI's
- * [`Tabs`](https://material-ui.com/api/tabs) component to indicate which slide is selected
+ * [`Tabs`](https://mui.com/api/tabs) component to indicate which slide is selected
  */
 function CarouselThumbnails({
   thumbnails,

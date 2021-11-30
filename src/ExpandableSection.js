@@ -6,9 +6,9 @@ import {
   ExpansionPanelDetails,
   ExpansionPanelSummary,
   Typography,
-} from '@material-ui/core'
-import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
+} from '@mui/material'
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
+import { makeStyles } from '@mui/material/styles'
 import useStateFromProp from './hooks/useStateFromProp'
 import withDefaultHandler from './utils/withDefaultHandler'
 

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { ListItem, ListItemText, ListItemIcon, CircularProgress } from '@material-ui/core'
+import { ListItem, ListItemText, ListItemIcon, CircularProgress } from '@mui/material'
 import MenuContext from './MenuContext'
 import MenuExpanderIcon from './MenuExpanderIcon'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@mui/material/styles/makeStyles'
 
 export const styles = theme => ({
   listItem: {

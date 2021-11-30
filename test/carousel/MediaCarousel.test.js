@@ -8,7 +8,7 @@ import Media from 'react-storefront/carousel/Media'
 import Image from 'react-storefront/Image'
 import { act } from 'react-dom/test-utils'
 import CarouselThumbnails from 'react-storefront/carousel/CarouselThumbnails'
-import * as useMediaQuery from '@material-ui/core/useMediaQuery/useMediaQuery'
+import * as useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
 
 jest.useFakeTimers()
 

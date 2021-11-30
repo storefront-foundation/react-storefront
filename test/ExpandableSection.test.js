@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { mount } from 'enzyme'
 import ExpandableSection from 'react-storefront/ExpandableSection'
-import { ExpansionPanel, ExpansionPanelSummary, Typography } from '@material-ui/core'
-import { ArrowBack as TestIcon, ExpandMore as ExpandMoreIcon } from '@material-ui/icons'
+import { ExpansionPanel, ExpansionPanelSummary, Typography } from '@mui/material'
+import { ArrowBack as TestIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 
 describe('ExpandableSection', () => {
   let wrapper

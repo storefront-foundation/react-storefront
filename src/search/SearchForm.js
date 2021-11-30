@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useRef } from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@mui/material/styles/makeStyles'
 import { useRouter } from 'next/router'
 import qs from 'qs'
 

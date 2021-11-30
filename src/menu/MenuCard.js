@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { List } from '@material-ui/core'
+import { List } from '@mui/material'
 import MenuItem from './MenuItem'
 import MenuBack from './MenuBack'
 import MenuHeader from './MenuHeader'

@@ -1,7 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
-import { CloudOff as CloseOffIcon } from '@material-ui/icons'
+import { makeStyles } from '@mui/material/styles'
+import { Typography } from '@mui/material'
+import { CloudOff as CloseOffIcon } from '@mui/icons-material'
 import PropTypes from 'prop-types'
 
 const styles = theme => ({

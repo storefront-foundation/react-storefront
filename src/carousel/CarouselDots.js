@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-import { fade } from '@material-ui/core/styles/colorManipulator'
+import { fade } from '@mui/material/styles/colorManipulator'
 
 const styles = theme => ({
   /**

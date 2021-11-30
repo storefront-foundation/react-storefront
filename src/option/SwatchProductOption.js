@@ -1,12 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
 import { Vbox } from '../Box'
-import { Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import { Check as CheckedIcon } from '@material-ui/icons'
+import { Typography } from '@mui/material'
+import { makeStyles } from '@mui/material/styles'
+import { Check as CheckedIcon } from '@mui/icons-material'
 import Image from '../Image'
 import PropTypes from 'prop-types'
-import { Skeleton } from '@material-ui/lab'
+import { Skeleton } from '@mui/lab'
 
 export const styles = theme => ({
   /**

@@ -1,9 +1,9 @@
 import { useAmp } from 'next/amp'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
-import { AddCircleOutline as Icon } from '@material-ui/icons'
+import { makeStyles } from '@mui/material/styles'
+import { Typography } from '@mui/material'
+import { AddCircleOutline as Icon } from '@mui/icons-material'
 import clsx from 'clsx'
 
 const styles = theme => ({

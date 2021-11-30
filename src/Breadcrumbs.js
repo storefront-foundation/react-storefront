@@ -1,9 +1,9 @@
 import React from 'react'
-import { KeyboardArrowRight as ArrowRight } from '@material-ui/icons'
+import { KeyboardArrowRight as ArrowRight } from '@mui/icons-material'
 import Link from './link/Link'
 import clsx from 'clsx'
-import { Typography, Container } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Typography, Container } from '@mui/material'
+import { makeStyles } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({

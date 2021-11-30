@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ChevronRight, ExpandLess, ExpandMore } from '@material-ui/icons'
+import { ChevronRight, ExpandLess, ExpandMore } from '@mui/icons-material'
 import MenuContext from './MenuContext'
 import { useAmp } from 'next/amp'
 import clsx from 'clsx'

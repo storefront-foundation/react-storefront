@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
-import { CircularProgress } from '@material-ui/core'
+import { makeStyles } from '@mui/material/styles'
+import { CircularProgress } from '@mui/material'
 
 export const styles = theme => ({
   /**

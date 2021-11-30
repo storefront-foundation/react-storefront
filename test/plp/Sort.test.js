@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Sort from 'react-storefront/plp/Sort'
-import { Button, MenuItem } from '@material-ui/core'
+import { Button, MenuItem } from '@mui/material'
 import SearchResultsContext from 'react-storefront/plp/SearchResultsContext'
 
 describe('Sort', () => {

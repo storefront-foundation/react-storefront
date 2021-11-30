@@ -1,9 +1,9 @@
 import React from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@mui/material/styles/makeStyles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import { Button } from '@material-ui/core'
-import { Skeleton } from '@material-ui/lab'
+import { Button } from '@mui/material'
+import { Skeleton } from '@mui/lab'
 
 export const styles = theme => ({
   /**

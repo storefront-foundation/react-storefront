@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pets } from '@material-ui/icons'
+import { Pets } from '@mui/icons-material'
 import { withKnobs, text } from '@storybook/addon-knobs'
 import Offline from '../../src/Offline'
 

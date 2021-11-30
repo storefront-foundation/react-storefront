@@ -1,9 +1,9 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import BackToTop from 'react-storefront/BackToTop'
-import { ArrowBack as CustomIcon } from '@material-ui/icons'
+import { ArrowBack as CustomIcon } from '@mui/icons-material'
 import { eventListenersMock } from './mocks/mockHelper'
-import { Fab } from '@material-ui/core'
+import { Fab } from '@mui/material'
 import { act } from 'react-dom/test-utils'
 
 describe('BackToTop', () => {

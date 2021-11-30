@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
-import { Drawer as MUIDrawer, Typography } from '@material-ui/core'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { Drawer as MUIDrawer, Typography } from '@mui/material'
+import { makeStyles, useTheme } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import DrawerCloseButton from './DrawerCloseButton'
@@ -224,7 +224,7 @@ Drawer.propTypes = {
   anchor: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
 
   /**
-   * The variant to use for the MaterialUI [`Drawer`)(https://material-ui.com/api/drawer/#props).
+   * The variant to use for the MaterialUI [`Drawer`)(https://mui.com/api/drawer/#props).
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 }

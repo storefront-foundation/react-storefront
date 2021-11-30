@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { IconButton } from '@material-ui/core'
+import { makeStyles } from '@mui/material/styles'
+import { IconButton } from '@mui/material'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({
@@ -20,7 +20,7 @@ const useStyles = makeStyles(styles, { name: 'RSFToolbarButton' })
 
 /**
  * A toolbar button with optional label.  Use these in your AppBar. All additional
- * props are spread to the underlying material-ui IconButton.
+ * props are spread to the underlying mui IconButton.
  */
 const ToolbarButton = forwardRef(({ icon, label, classes = {}, children, ...others }, ref) => {
   let { wrap, ...buttonClasses } = classes

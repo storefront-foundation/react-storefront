@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import MenuItemContent from 'react-storefront/menu/MenuItemContent'
 import MenuContext from 'react-storefront/menu/MenuContext'
-import { CircularProgress } from '@material-ui/core'
+import { CircularProgress } from '@mui/material'
 
 describe('MenuItemContent', () => {
   let wrapper

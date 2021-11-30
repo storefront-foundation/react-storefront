@@ -1,4 +1,4 @@
-import { red, green, blue, grey, teal, orange, purple } from '@material-ui/core/colors'
+import { red, green, blue, grey, teal, orange, purple } from '@mui/material/colors'
 const color = c => c.toString().replace(/\#/, '')
 
 const colors = {

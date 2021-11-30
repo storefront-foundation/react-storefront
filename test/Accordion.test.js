@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Accordion from 'react-storefront/Accordion'
 import ExpandableSection from 'react-storefront/ExpandableSection'
-import { ExpansionPanelSummary, ExpansionPanel } from '@material-ui/core'
+import { ExpansionPanelSummary, ExpansionPanel } from '@mui/material'
 
 describe('Accordion', () => {
   it('should be empty render without children', () => {

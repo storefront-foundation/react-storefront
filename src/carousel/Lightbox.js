@@ -1,9 +1,9 @@
-import useTheme from '@material-ui/core/styles/useTheme'
+import useTheme from '@mui/material/styles/useTheme'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Close from '@material-ui/icons/Close'
-import { Dialog, DialogActions, DialogContent, IconButton, Zoom } from '@material-ui/core'
+import { makeStyles } from '@mui/material/styles'
+import Close from '@mui/icons-material/Close'
+import { Dialog, DialogActions, DialogContent, IconButton, Zoom } from '@mui/material'
 
 const Transition = React.forwardRef((props, ref) => {
   return <Zoom duration={500} ref={ref} {...props} />
@@ -25,7 +25,7 @@ const styles = theme => ({
   },
 
   /**
-   * Styles passed through to the `paper` CSS rule of the [`Dialog`](https://material-ui.com/api/dialog/#css)
+   * Styles passed through to the `paper` CSS rule of the [`Dialog`](https://mui.com/api/dialog/#css)
    * root element.
    */
   paper: {
@@ -87,7 +87,7 @@ Lightbox.propTypes = {
   open: PropTypes.bool.isRequired,
 
   /**
-   * The component used for the [transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
+   * The component used for the [transition](https://mui.com/components/transitions/#transitioncomponent-prop).
    */
   TransitionComponent: PropTypes.elementType,
 }

@@ -3,8 +3,8 @@ import ActionButton from '../ActionButton'
 import Sort from './Sort'
 import PropTypes from 'prop-types'
 import Drawer from '../drawer/Drawer'
-import { Menu, useMediaQuery } from '@material-ui/core'
-import { useTheme } from '@material-ui/core/styles'
+import { Menu, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import SearchResultsContext from './SearchResultsContext'
 
 /**

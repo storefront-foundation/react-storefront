@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useContext } from 'react'
-import { Checkbox, FormGroup, Typography, FormControlLabel } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Checkbox, FormGroup, Typography, FormControlLabel } from '@mui/material'
+import { makeStyles } from '@mui/material/styles'
 import SearchResultsContext from './SearchResultsContext'
 
 const styles = theme => ({

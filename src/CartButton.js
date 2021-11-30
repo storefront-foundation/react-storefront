@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from './link/Link'
 import ToolbarButton from './ToolbarButton'
-import { ShoppingCart as Cart } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
-import { Badge } from '@material-ui/core'
+import { ShoppingCart as Cart } from '@mui/icons-material'
+import { makeStyles } from '@mui/material/styles'
+import { Badge } from '@mui/material'
 import clsx from 'clsx'
 
 export const styles = theme => ({
@@ -13,7 +13,7 @@ export const styles = theme => ({
    */
   link: {},
   /**
-   * Styles passed through to the [`Badge`](https://material-ui.com/api/badge/#css) element's
+   * Styles passed through to the [`Badge`](https://mui.com/api/badge/#css) element's
    * `badge` CSS rule.
    */
   badge: {
@@ -96,7 +96,7 @@ CartButton.propTypes = {
   buttonProps: PropTypes.object,
 
   /**
-   * Props passed through to the [`Badge`](https://material-ui.com/api/badge/#props) element.
+   * Props passed through to the [`Badge`](https://mui.com/api/badge/#props) element.
    */
   badgeProps: PropTypes.object,
 

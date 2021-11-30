@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAmp } from 'next/amp'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 
 const escapeHtml = unsafe =>
   unsafe

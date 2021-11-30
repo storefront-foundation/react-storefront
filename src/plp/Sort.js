@@ -1,6 +1,6 @@
 import React, { memo, forwardRef, useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button, MenuItem } from '@material-ui/core'
+import { makeStyles } from '@mui/material/styles'
+import { Button, MenuItem } from '@mui/material'
 import PropTypes from 'prop-types'
 import SearchResultsContext from './SearchResultsContext'
 

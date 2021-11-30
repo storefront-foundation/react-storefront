@@ -1,6 +1,6 @@
 import React from 'react'
-import { Hidden } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Hidden } from '@mui/material'
+import { makeStyles } from '@mui/material/styles'
 import ToolbarButton from '../ToolbarButton'
 import MenuIcon from './MenuIcon'
 import PropTypes from 'prop-types'

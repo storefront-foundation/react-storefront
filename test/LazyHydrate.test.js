@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/material/styles'
 import { act } from 'react-dom/test-utils'
 
 describe('LazyHydrate', () => {

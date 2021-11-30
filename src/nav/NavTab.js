@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react'
 import Link from '../link/Link'
-import { makeStyles } from '@material-ui/core/styles'
-import { Hidden, Fade, Tab, Popover, Paper } from '@material-ui/core'
+import { makeStyles } from '@mui/material/styles'
+import { Hidden, Fade, Tab, Popover, Paper } from '@mui/material'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 

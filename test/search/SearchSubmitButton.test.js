@@ -1,8 +1,8 @@
-import { Apps } from '@material-ui/icons'
+import { Apps } from '@mui/icons-material'
 import React from 'react'
 import { mount } from 'enzyme'
 import SearchSubmitButton from 'react-storefront/search/SearchSubmitButton'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 
 describe('SearchSubmitButton', () => {
   let wrapper

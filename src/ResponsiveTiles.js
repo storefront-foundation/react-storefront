@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import { GridListTile } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { GridListTile } from '@mui/material'
+import { makeStyles } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import AutoScrollToNewChildren from './AutoScrollToNewChildren'

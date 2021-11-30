@@ -1,6 +1,6 @@
 import React from 'react'
 import Drawer from '../drawer/Drawer'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
 

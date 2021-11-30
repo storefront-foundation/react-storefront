@@ -1,8 +1,8 @@
-import * as useMediaQuery from '@material-ui/core/useMediaQuery/useMediaQuery'
+import * as useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
 import React from 'react'
 import { mount } from 'enzyme'
 import CarouselThumbnails from 'react-storefront/carousel/CarouselThumbnails'
-import { Tab, Tabs } from '@material-ui/core'
+import { Tab, Tabs } from '@mui/material'
 
 describe('CarouselThumbnails', () => {
   let wrapper

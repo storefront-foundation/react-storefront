@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import { Tabs } from '@material-ui/core'
-import MuiTabScrollButton from '@material-ui/core/TabScrollButton'
+import { makeStyles } from '@mui/material/styles'
+import { Tabs } from '@mui/material'
+import MuiTabScrollButton from '@mui/material/TabScrollButton'
 import { useRouter } from 'next/router'
 
 export const styles = theme => ({
@@ -14,7 +14,7 @@ export const styles = theme => ({
     display: 'none',
   },
   /**
-   * Styles passed through to the `scrollButtons` rule in [`Tabs`](https://material-ui.com/api/tabs/#css)'.
+   * Styles passed through to the `scrollButtons` rule in [`Tabs`](https://mui.com/api/tabs/#css)'.
    */
   scrollButtons: {
     position: 'absolute',
@@ -30,7 +30,7 @@ export const styles = theme => ({
     },
   },
   /**
-   * Styles applied to the root [`Tabs`](https://material-ui.com/api/tabs/) component.
+   * Styles applied to the root [`Tabs`](https://mui.com/api/tabs/) component.
    */
   root: {
     maxWidth: theme.breakpoints.values.lg,
@@ -56,7 +56,7 @@ export const styles = theme => ({
     },
   },
   /**
-   * Styles applied to the root element of the[`Tabs`](https://material-ui.com/api/tabs/)'
+   * Styles applied to the root element of the[`Tabs`](https://mui.com/api/tabs/)'
    * `ScrollButtonComponent` component.
    */
   ripple: {

@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useState } from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/material/styles'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay, virtualize } from 'react-swipeable-views-utils'
 import PropTypes from 'prop-types'

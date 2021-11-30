@@ -1,7 +1,7 @@
 import React from 'react'
-import { Add, Remove } from '@material-ui/icons'
-import { IconButton } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Add, Remove } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
+import { makeStyles } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 

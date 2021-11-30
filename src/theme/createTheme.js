@@ -1,9 +1,9 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme } from '@mui/material/styles'
 import merge from 'lodash/merge'
 
 /**
  * Creates the default theme for your React Storefront app.  See Material UI's theme documentation
- * for more info: https://material-ui.com/customization/default-theme/
+ * for more info: https://mui.com/customization/default-theme/
  * @param {Object} values
  * @return {Object} A material UI theme
  */

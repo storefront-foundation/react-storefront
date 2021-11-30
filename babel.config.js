@@ -10,20 +10,20 @@ module.exports = {
     [
       'babel-plugin-transform-imports',
       {
-        '@material-ui/core': {
-          transform: '@material-ui/core/${member}',
+        '@mui/material': {
+          transform: '@mui/material/${member}',
           preventFullImport: true,
         },
-        '@material-ui/styles': {
-          transform: '@material-ui/styles/${member}',
+        '@mui/styles': {
+          transform: '@mui/styles/${member}',
           preventFullImport: true,
         },
-        '@material-ui/icons': {
-          transform: '@material-ui/icons/${member}',
+        '@mui/icons-material': {
+          transform: '@mui/icons-material/${member}',
           preventFullImport: true,
         },
-        '@material-ui/lab': {
-          transform: '@material-ui/lab/${member}',
+        '@mui/lab': {
+          transform: '@mui/lab/${member}',
           preventFullImport: true,
         },
       },
