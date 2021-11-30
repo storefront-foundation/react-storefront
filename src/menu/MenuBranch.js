@@ -17,7 +17,7 @@ export const styles = theme => ({
   expanderSummary: {
     textTransform: 'uppercase',
     '&:first-child': {
-      padding: `10px ${theme.spacing(2)}px`,
+      padding: `10px ${theme.spacing(2)}`,
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
   },

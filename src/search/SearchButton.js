@@ -28,10 +28,15 @@ export default function SearchButton({ children, classes, ...other }) {
   classes = useStyles({ classes })
 
   return (
-    <IconButton aria-label="Search" color="inherit" classes={{ label: classes.large }} {...other}>
+    <IconButton
+      aria-label="Search"
+      color="inherit"
+      classes={{ label: classes.large }}
+      {...other}
+      size="large">
       {children || <Search className={classes.icon} />}
     </IconButton>
-  )
+  );
 }
 
 SearchButton.propTypes = {

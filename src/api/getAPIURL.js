@@ -7,5 +7,5 @@ import addVersion from './addVersion'
  */
 export default function getAPIURL(pageURI) {
   const parsed = addVersion(pageURI)
-  return '/api' + parsed.pathname.replace(/\/$/, '') + parsed.search
+  return '/api' + parsed.pathname.replace(/\/$/, '') + parsed.search;
 }

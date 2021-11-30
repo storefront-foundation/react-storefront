@@ -13,7 +13,7 @@ const styles = theme => ({
    * Styles applied to the wrapper around each panel element.
    */
   panel: {
-    margin: `${theme.spacing(2)}px 0`,
+    margin: `${theme.spacing(2)} 0`,
   },
   /**
    * Styles applied to the wrapper around each panel element when that panel is hidden.

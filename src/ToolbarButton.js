@@ -27,14 +27,14 @@ const ToolbarButton = forwardRef(({ icon, label, classes = {}, children, ...othe
   classes = useStyles({ classes: { wrap } })
 
   return (
-    <IconButton ref={ref} classes={buttonClasses} {...others}>
+    <IconButton ref={ref} classes={buttonClasses} {...others} size="large">
       <div className={classes.wrap}>
         {icon}
         <div>{label}</div>
       </div>
       {children}
     </IconButton>
-  )
+  );
 })
 
 ToolbarButton.propTypes = {

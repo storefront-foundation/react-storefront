@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect } from 'react'
 import NextLink from 'next/link'
 import LinkContext from './LinkContext'
 import PropTypes from 'prop-types'
-import { RootRef } from '@mui/material'
+import {  } from '@mui/material'
 import useIntersectionObserver from '../hooks/useIntersectionObserver'
 import { prefetch as doPrefetch } from '../serviceWorker'
 import withDefaultHandler from '../utils/withDefaultHandler'
@@ -68,14 +68,14 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
 
     // This way we can get a ref of Material-ui components
     return (
-      <RootRef rootRef={ref}>
+      <>
         <NextLink href={href} prefetch={false} as={as} passHref={passHref}>
           {React.cloneElement(children, {
             onClick: handleClick,
             ...other,
           })}
         </NextLink>
-      </RootRef>
+      </>
     )
   }
 }

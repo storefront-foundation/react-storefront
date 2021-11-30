@@ -195,14 +195,14 @@ export default function SwatchProductOption({
   if (skeleton) {
     return (
       <Skeleton
-        variant="circle"
+        variant="circular"
         style={{ marginTop: 0, marginBottom: 4, margintLeft: 4, marginRight: 4 }}
         className={clsx({
           [buttonProps.className]: true,
           [classes[size]]: true,
         })}
       />
-    )
+    );
   }
 
   return (

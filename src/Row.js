@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
    * Styles applied to the root element.
    */
   root: {
-    margin: `0 0 ${theme.spacing(2)}px 0`,
+    margin: `0 0 ${theme.spacing(2)} 0`,
   },
 }))
 

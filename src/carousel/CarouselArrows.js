@@ -87,7 +87,7 @@ export default function CarouselArrows({
           className={clsx(classes.arrow, classes.leftArrow)}
           onClick={createOnClickArrow(-1)}
           aria-label={leftArrowLabel}
-        >
+          size="large">
           <ChevronLeft classes={{ root: classes.icon }} />
         </IconButton>
       )}
@@ -96,12 +96,12 @@ export default function CarouselArrows({
           className={clsx(classes.arrow, classes.rightArrow)}
           onClick={createOnClickArrow(1)}
           aria-label={rightArrowLabel}
-        >
+          size="large">
           <ChevronRight classes={{ root: classes.icon }} />
         </IconButton>
       )}
     </div>
-  )
+  );
 }
 
 CarouselArrows.propTypes = {

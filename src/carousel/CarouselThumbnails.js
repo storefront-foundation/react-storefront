@@ -50,7 +50,7 @@ export const styles = theme => ({
    * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `left`.
    */
   tabsRootLeft: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(2),
     },
     [theme.breakpoints.up('sm')]: {
@@ -61,7 +61,7 @@ export const styles = theme => ({
    * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `right`.
    */
   tabsRootRight: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(2),
     },
     [theme.breakpoints.up('sm')]: {
@@ -132,7 +132,7 @@ function CarouselThumbnails({
 }) {
   const styles = useStyles({ classes })
   const theme = useTheme()
-  const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'))
   const isVertical = !isSmall && ['left', 'right'].includes(thumbnailPosition)
   const count = thumbnails.length
 

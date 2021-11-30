@@ -145,7 +145,7 @@ const SearchField = forwardRef(
                 [classes.searchReset]: true,
                 [classes.hidden]: empty,
               })}
-            >
+              size="large">
               <ClearIcon rel="clear" />
             </IconButton>
           ) : (
@@ -175,7 +175,7 @@ const SearchField = forwardRef(
           />
         )}
       </div>
-    )
+    );
   },
 )
 

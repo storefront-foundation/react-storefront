@@ -70,7 +70,7 @@ function cacheAPIRequests(api) {
  * @return {String}
  */
 function nextRouteToRegex(route) {
-  return route.replace(/\[[^\]]+\]/gi, '[^/]+') + '($|\\?.*$)'
+  return route.replace(/\[[^\]]+\]/gi, '[^/]+') + '($|\\?.*$)';
 }
 
 /**

@@ -45,11 +45,11 @@ export default function FilterFooter(props) {
         {filters.length || 'No'} filter
         {filters.length === 1 ? '' : 's'} selected
       </Typography>
-      <Button variant="contained" size="large" color="default" onClick={onViewResultsClick}>
+      <Button variant="contained" size="large" onClick={onViewResultsClick}>
         View Results
       </Button>
     </Hbox>
-  )
+  );
 }
 
 FilterFooter.propTypes = {

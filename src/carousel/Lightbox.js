@@ -56,13 +56,13 @@ function Lightbox({ classes, children, onClose, open, TransitionComponent }) {
       style={{ zIndex: theme.zIndex.modal + 10 }}
     >
       <DialogActions>
-        <IconButton onClick={onClose}>
+        <IconButton onClick={onClose} size="large">
           <Close />
         </IconButton>
       </DialogActions>
       <DialogContent className={classes.content}>{children}</DialogContent>
     </Dialog>
-  )
+  );
 }
 
 Lightbox.propTypes = {

@@ -154,7 +154,7 @@ function MediaCarousel(props) {
   const [video, setVideo] = useState(false)
   const [lightboxActive, setLightboxActive] = useState()
   const theme = useTheme()
-  const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'))
   const isTouchScreen = useMediaQuery('(hover:none)')
   const isThumbsSide = ['right', 'left'].includes(thumbnailPosition)
 

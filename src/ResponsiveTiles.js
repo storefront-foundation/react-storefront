@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { GridListTile } from '@mui/material'
+import { ImageListItem } from '@mui/material'
 import { makeStyles } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
@@ -85,12 +85,12 @@ function createTiles({ cols, spacing }) {
         overflowY: 'auto',
         listStyle: 'none',
         padding: 0,
-        margin: `-${theme.spacing(spacing)}px`,
+        margin: theme.spacing(-spacing),
         WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
       },
       tile: {
         ...breakpoints,
-        padding: `${theme.spacing(spacing)}px`,
+        padding: theme.spacing(spacing),
         height: 'auto',
       },
     }
@@ -117,9 +117,9 @@ function createTiles({ cols, spacing }) {
               return null
             }
             return (
-              <GridListTile key={i} classes={{ root: classes.tile }}>
+              <ImageListItem key={i} classes={{ root: classes.tile }}>
                 {child}
-              </GridListTile>
+              </ImageListItem>
             )
           }),
         )}

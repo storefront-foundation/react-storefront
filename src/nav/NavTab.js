@@ -138,66 +138,64 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
     return unsubscribe
   }, [open])
 
-  return (
-    <>
-      <Link
-        className={classes.link}
-        href={href}
-        as={as}
-        onClick={hideMenu} // Does not work in dev, because next consumes focus in production everything is good
-        onMouseEnter={showMenu}
-        onMouseLeave={hideMenu}
-        prefetch={prefetch}
-      >
-        <Tab
-          onKeyDown={handleEnterKeyDown}
-          classes={{ root: classes.tab }}
-          aria-haspopup={children != null}
-          aria-expanded={open}
-          {...props}
-          TouchRippleProps={{
-            classes: {
-              root: classes.ripple,
-            },
+  return <>
+    <Link
+      className={classes.link}
+      href={href}
+      as={as}
+      onClick={hideMenu} // Does not work in dev, because next consumes focus in production everything is good
+      onMouseEnter={showMenu}
+      onMouseLeave={hideMenu}
+      prefetch={prefetch}
+    >
+      <Tab
+        onKeyDown={handleEnterKeyDown}
+        classes={{ root: classes.tab }}
+        aria-haspopup={children != null}
+        aria-expanded={open}
+        {...props}
+        TouchRippleProps={{
+          classes: {
+            root: classes.ripple,
+          },
+        }}
+      />
+    </Link>
+    {!children ? null : (
+      <Hidden smDown>
+        <Popover
+          open={open}
+          className={classes.popover}
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
           }}
-        />
-      </Link>
-      {!children ? null : (
-        <Hidden xsDown>
-          <Popover
-            open={open}
-            className={classes.popover}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            TransitionComponent={Fade}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-            PaperProps={{
-              onMouseEnter: enterMenu,
-              onMouseLeave: leaveMenu,
-              onClick: leaveMenu,
-              square: true,
-              className: classes.paper,
-            }}
+          TransitionComponent={Fade}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          PaperProps={{
+            onMouseEnter: enterMenu,
+            onMouseLeave: leaveMenu,
+            onClick: leaveMenu,
+            square: true,
+            className: classes.paper,
+          }}
+        >
+          <Paper
+            className={classes.innerPaper}
+            onBlurCapture={handleMenuItemBlur}
+            onFocusCapture={handleMenuItemFocus}
+            square
           >
-            <Paper
-              className={classes.innerPaper}
-              onBlurCapture={handleMenuItemBlur}
-              onFocusCapture={handleMenuItemFocus}
-              square
-            >
-              {children}
-            </Paper>
-          </Popover>
-        </Hidden>
-      )}
-    </>
-  )
+            {children}
+          </Paper>
+        </Popover>
+      </Hidden>
+    )}
+  </>;
 }
 
 NavTab.propTypes = {

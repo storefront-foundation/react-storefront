@@ -20,7 +20,7 @@ export const styles = theme => ({
    * Styles applied to the button element.
    */
   button: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       flex: 1,
     },
   },

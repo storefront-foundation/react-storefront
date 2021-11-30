@@ -10,8 +10,8 @@ const styles = theme => ({
    */
   header: {
     borderBottom: `1px solid ${theme.palette.divider}`,
-    [theme.breakpoints.down('xs')]: {
-      padding: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
+    [theme.breakpoints.down('sm')]: {
+      padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
     },
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(1, 2, 2, 2),
@@ -21,7 +21,7 @@ const styles = theme => ({
    * Styles applied to the title element.
    */
   title: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       ...theme.typography.h6,
     },
     [theme.breakpoints.up('sm')]: {
