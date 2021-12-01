@@ -38,8 +38,6 @@
     "build-storybook": "build-storybook -c .storybook -o .storybook/build && npm run storybook-docs"
   },
   "dependencies": {
-    "@emotion/react": "^11.7.0",
-    "@emotion/styled": "^11.6.0",
     "chalk": "^3.0.0",
     "clsx": "^1.0.4",
     "csso": "^4.0.3",
@@ -65,6 +63,8 @@
     "@babel/plugin-transform-runtime": "^7.10.0",
     "@babel/preset-env": "^7.10.0",
     "@babel/preset-react": "^7.10.0",
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.2.2",
