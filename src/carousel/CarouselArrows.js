@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useCallback } from 'react'
 import clsx from 'clsx'
-import makeStyles from '@mui/material/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 import { IconButton } from '@mui/material'
 import { ChevronLeft, ChevronRight } from '@mui/icons-material'
 
@@ -63,19 +63,19 @@ export default function CarouselArrows({
       evt.preventDefault()
 
       if (!infinite) {
-        setSelected(selected + idxChange);
-        return;
+        setSelected(selected + idxChange)
+        return
       }
 
       // carousel loop-around calculations
-      let nextSelectedIndex = selected + idxChange;
+      let nextSelectedIndex = selected + idxChange
       if (nextSelectedIndex + 1 > count) {
-        nextSelectedIndex = 0;
+        nextSelectedIndex = 0
       } else if (nextSelectedIndex < 0) {
-        nextSelectedIndex = count - 1;
+        nextSelectedIndex = count - 1
       }
 
-      setSelected(nextSelectedIndex);
+      setSelected(nextSelectedIndex)
     },
     [selected, setSelected, count, infinite],
   )
@@ -87,7 +87,8 @@ export default function CarouselArrows({
           className={clsx(classes.arrow, classes.leftArrow)}
           onClick={createOnClickArrow(-1)}
           aria-label={leftArrowLabel}
-          size="large">
+          size="large"
+        >
           <ChevronLeft classes={{ root: classes.icon }} />
         </IconButton>
       )}
@@ -96,12 +97,13 @@ export default function CarouselArrows({
           className={clsx(classes.arrow, classes.rightArrow)}
           onClick={createOnClickArrow(1)}
           aria-label={rightArrowLabel}
-          size="large">
+          size="large"
+        >
           <ChevronRight classes={{ root: classes.icon }} />
         </IconButton>
       )}
     </div>
-  );
+  )
 }
 
 CarouselArrows.propTypes = {

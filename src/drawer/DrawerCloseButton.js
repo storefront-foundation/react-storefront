@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Clear as ClearIcon } from '@mui/icons-material'

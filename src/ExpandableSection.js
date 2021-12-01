@@ -1,14 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import useStateFromProp from './hooks/useStateFromProp'
 import withDefaultHandler from './utils/withDefaultHandler'
 

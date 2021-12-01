@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { AppBar as MUIAppBar, Toolbar, useScrollTrigger, Slide } from '@mui/material'
 import PropTypes from 'prop-types'
 import PWAContext from './PWAContext'

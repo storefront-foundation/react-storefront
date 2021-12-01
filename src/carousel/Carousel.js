@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useState } from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay, virtualize } from 'react-swipeable-views-utils'
 import PropTypes from 'prop-types'
@@ -108,22 +108,25 @@ const Carousel = React.forwardRef((props, ref) => {
     return <Fragment key={key}>{slide}</Fragment>
   }
 
-  const onChangeIndex = useCallback((index) => {
-    if (!infinite) {
-      setSelected(index)
-      return
-    }
+  const onChangeIndex = useCallback(
+    index => {
+      if (!infinite) {
+        setSelected(index)
+        return
+      }
 
-    // carousel loop-around calculations
-    let nextSelectedIndex = index;
-    if (nextSelectedIndex + 1 > count) {
-      nextSelectedIndex = 0;
-    } else if (nextSelectedIndex < 0) {
-      nextSelectedIndex = count - 1;
-    }
+      // carousel loop-around calculations
+      let nextSelectedIndex = index
+      if (nextSelectedIndex + 1 > count) {
+        nextSelectedIndex = 0
+      } else if (nextSelectedIndex < 0) {
+        nextSelectedIndex = count - 1
+      }
 
-    setSelected(nextSelectedIndex)
-  }, [infinite, count, selected, setSelected])
+      setSelected(nextSelectedIndex)
+    },
+    [infinite, count, selected, setSelected],
+  )
 
   return (
     <div

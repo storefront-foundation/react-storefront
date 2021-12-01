@@ -4,7 +4,7 @@ import { createMuiTheme } from '@mui/material/styles'
 import { ImageListItem } from '@mui/material'
 import ResponsiveTiles from 'react-storefront/ResponsiveTiles'
 import AutoScrollToNewChildren from 'react-storefront/AutoScrollToNewChildren'
-import * as makeStyles from '@mui/material/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 
 describe('ResponsiveTiles', () => {
   let wrapper

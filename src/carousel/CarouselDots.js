@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
-import { fade } from '@mui/material/styles/colorManipulator'
+import { alpha } from '@mui/material/styles'
 
 const styles = theme => ({
   /**
@@ -19,7 +19,7 @@ const styles = theme => ({
    * Styles applied to each dot element.
    */
   dot: {
-    backgroundColor: fade(theme.palette.text.primary, 0.25),
+    backgroundColor: alpha(theme.palette.text.primary, 0.25),
     width: 8,
     height: 8,
     borderWidth: '1px',
@@ -37,7 +37,7 @@ const styles = theme => ({
    */
   dotSelected: {
     backgroundColor: theme.palette.text.primary,
-  }
+  },
 })
 
 const useStyles = makeStyles(styles, { name: 'RSFCarouselDots' })

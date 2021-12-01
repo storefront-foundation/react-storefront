@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { Button, Typography } from '@mui/material'
 import { Hbox } from '../Box'
 import SearchResultsContext from './SearchResultsContext'
@@ -49,7 +49,7 @@ export default function FilterFooter(props) {
         View Results
       </Button>
     </Hbox>
-  );
+  )
 }
 
 FilterFooter.propTypes = {

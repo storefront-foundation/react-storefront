@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import makeStyles from '@mui/material/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import CmsSlot from '../CmsSlot'
 import MenuContext from './MenuContext'

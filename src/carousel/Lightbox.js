@@ -1,7 +1,7 @@
 import useTheme from '@mui/material/styles/useTheme'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import Close from '@mui/icons-material/Close'
 import { Dialog, DialogActions, DialogContent, IconButton, Zoom } from '@mui/material'
 
@@ -62,7 +62,7 @@ function Lightbox({ classes, children, onClose, open, TransitionComponent }) {
       </DialogActions>
       <DialogContent className={classes.content}>{children}</DialogContent>
     </Dialog>
-  );
+  )
 }
 
 Lightbox.propTypes = {

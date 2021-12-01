@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { IconButton } from '@mui/material'
 import PropTypes from 'prop-types'
 
@@ -34,7 +34,7 @@ const ToolbarButton = forwardRef(({ icon, label, classes = {}, children, ...othe
       </div>
       {children}
     </IconButton>
-  );
+  )
 })
 
 ToolbarButton.propTypes = {

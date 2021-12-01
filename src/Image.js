@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import VisibilitySensor from 'react-visibility-sensor'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import PWAContext from './PWAContext'
 
 export const styles = theme => ({

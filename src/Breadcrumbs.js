@@ -3,7 +3,7 @@ import { KeyboardArrowRight as ArrowRight } from '@mui/icons-material'
 import Link from './link/Link'
 import clsx from 'clsx'
 import { Typography, Container } from '@mui/material'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import SearchSuggestionGroup from './SearchSuggestionGroup'
 import SearchContext from './SearchContext'
 import LoadMask from '../LoadMask'

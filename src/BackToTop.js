@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import throttle from 'lodash/throttle'
 import { ArrowUpward } from '@mui/icons-material'
 import { Fab, Fade } from '@mui/material'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 
 const styles = () => ({
   /**

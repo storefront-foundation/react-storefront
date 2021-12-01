@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { IconButton } from '@mui/material'
 import { Search } from '@mui/icons-material'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 
 export const styles = theme => ({
   /**
@@ -33,10 +33,11 @@ export default function SearchButton({ children, classes, ...other }) {
       color="inherit"
       classes={{ label: classes.large }}
       {...other}
-      size="large">
+      size="large"
+    >
       {children || <Search className={classes.icon} />}
     </IconButton>
-  );
+  )
 }
 
 SearchButton.propTypes = {

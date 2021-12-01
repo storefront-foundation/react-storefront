@@ -1,6 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search'
 import React from 'react'
-import makeStyles from '@mui/material/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 
 export const styles = theme => ({

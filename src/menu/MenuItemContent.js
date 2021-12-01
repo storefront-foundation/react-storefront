@@ -4,7 +4,7 @@ import MenuContext from './MenuContext'
 import MenuExpanderIcon from './MenuExpanderIcon'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import makeStyles from '@mui/material/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 
 export const styles = theme => ({
   listItem: {

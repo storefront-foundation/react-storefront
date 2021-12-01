@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import menuStyles from './menuStyles'
 import MenuContext from './MenuContext'
 import { Drawer } from '@mui/material'

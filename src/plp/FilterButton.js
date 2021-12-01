@@ -4,7 +4,7 @@ import SearchResultsContext from './SearchResultsContext'
 import Filter from './Filter'
 import PropTypes from 'prop-types'
 import Drawer from '../drawer/Drawer'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { useRouter } from 'next/router'
 
 export const styles = theme => ({

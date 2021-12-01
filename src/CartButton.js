@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Link from './link/Link'
 import ToolbarButton from './ToolbarButton'
 import { ShoppingCart as Cart } from '@mui/icons-material'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { Badge } from '@mui/material'
 import clsx from 'clsx'
 

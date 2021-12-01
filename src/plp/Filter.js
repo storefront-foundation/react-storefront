@@ -1,6 +1,6 @@
 import React, { useContext, memo } from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import FacetGroup from './FacetGroup'
 import FilterHeader from './FilterHeader'
 import FilterFooter from './FilterFooter'

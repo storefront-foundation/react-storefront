@@ -1,5 +1,5 @@
 import React from 'react'
-import makeStyles from '@mui/material/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Button } from '@mui/material'

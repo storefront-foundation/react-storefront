@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { CircularProgress, Button } from '@mui/material'
 import clsx from 'clsx'
 import SearchResultsContext from './SearchResultsContext'

@@ -2,7 +2,7 @@ import React from 'react'
 import MenuItemContent from './MenuItemContent'
 import ExpandableSection from '../ExpandableSection'
 import PropTypes from 'prop-types'
-import makeStyles from '@mui/material/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 import MenuLeaf from './MenuLeaf'
 
 export const styles = theme => ({

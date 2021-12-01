@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import clsx from 'clsx'
 import { Typography } from '@mui/material'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 
 const styles = theme => ({
   /**

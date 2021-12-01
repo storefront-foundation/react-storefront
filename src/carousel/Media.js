@@ -3,7 +3,7 @@ import React from 'react'
 import Image from '../Image'
 import ReactImageMagnify from 'react-image-magnify'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles(theme => ({
   rimRoot: {

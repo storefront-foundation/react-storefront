@@ -1,5 +1,6 @@
 import React, { useRef, forwardRef } from 'react'
-import { makeStyles, fade } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
+import { alpha } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import { IconButton } from '@mui/material'
 import ClearIcon from '@mui/icons-material/Clear'
@@ -47,7 +48,7 @@ export const styles = theme => ({
       zIndex: 9999,
       transition: 'border-color linear 0.1s',
       '&:hover': {
-        borderColor: fade(theme.palette.divider, 0.25),
+        borderColor: alpha(theme.palette.divider, 0.25),
       },
       '&:focus': {
         borderColor: theme.palette.primary.main,
@@ -145,7 +146,8 @@ const SearchField = forwardRef(
                 [classes.searchReset]: true,
                 [classes.hidden]: empty,
               })}
-              size="large">
+              size="large"
+            >
               <ClearIcon rel="clear" />
             </IconButton>
           ) : (
@@ -175,7 +177,7 @@ const SearchField = forwardRef(
           />
         )}
       </div>
-    );
+    )
   },
 )
 

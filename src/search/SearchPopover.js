@@ -1,6 +1,6 @@
 import React, { ElementType } from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { Popover } from '@mui/material'
 import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
 

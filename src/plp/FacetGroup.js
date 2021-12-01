@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useContext } from 'react'
 import SearchResultsContext from './SearchResultsContext'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import ExpandableSection from '../ExpandableSection'
 import CheckboxFilterGroup from './CheckboxFilterGroup'
 import ButtonFilterGroup from './ButtonFilterGroup'
@@ -32,7 +32,7 @@ export default function FacetGroup(props) {
     controlsProps,
     listItemProps,
     onClose,
-    isSimpleList
+    isSimpleList,
   } = props
   const classes = useStyles(props.classes)
   const {
@@ -87,11 +87,7 @@ export default function FacetGroup(props) {
         defaultExpanded={defaultExpanded}
         classes={{ title: classes.groupTitle }}
       >
-        <Controls
-          group={group}
-          submitOnChange={submitOnChange}
-          {...controlsProps}
-        />
+        <Controls group={group} submitOnChange={submitOnChange} {...controlsProps} />
       </ExpandableSection>
     )
   }, [...Object.values(props), filters])

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useContext } from 'react'
 import SearchResultsContext from './SearchResultsContext'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import SwatchProductOption from '../option/SwatchProductOption'
 import TextProductOption from '../option/TextProductOption'
 import { Hbox } from '../Box'

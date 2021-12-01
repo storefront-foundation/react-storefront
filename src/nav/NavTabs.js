@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { Tabs } from '@mui/material'
 import MuiTabScrollButton from '@mui/material/TabScrollButton'
 import { useRouter } from 'next/router'

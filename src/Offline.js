@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import { Typography } from '@mui/material'
 import { CloudOff as CloseOffIcon } from '@mui/icons-material'
 import PropTypes from 'prop-types'

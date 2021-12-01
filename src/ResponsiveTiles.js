@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { ImageListItem } from '@mui/material'
-import { makeStyles } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import AutoScrollToNewChildren from './AutoScrollToNewChildren'
