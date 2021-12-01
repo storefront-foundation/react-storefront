@@ -10,14 +10,12 @@ import './hooks/useTraceUpdate'
 import './profile'
 
 export const styles = theme => ({
-  '@global': {
-    body: {
-      '-webkit-tap-highlight-color': 'transparent',
-    },
-    a: {
-      color: theme.palette.primary.main,
-      textDecoration: 'underline',
-    },
+  body: {
+    '-webkit-tap-highlight-color': 'transparent',
+  },
+  a: {
+    color: theme.palette.primary.main,
+    textDecoration: 'underline',
   },
 })
 
