@@ -2,8 +2,7 @@ import React from 'react'
 import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import { Button } from '@mui/material'
-import { Skeleton } from '@mui/lab'
+import { Button, Skeleton } from '@mui/material'
 
 export const styles = theme => ({
   /**

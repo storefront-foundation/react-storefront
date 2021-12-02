@@ -1,4 +1,4 @@
-import useTheme from '@mui/material/styles/useTheme'
+import { useTheme } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { makeStyles } from '@mui/styles'

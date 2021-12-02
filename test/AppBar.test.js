@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import AppBar from 'react-storefront/AppBar'
 import PWAContext from 'react-storefront/PWAContext'
-import { MuiThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 import createTheme from 'react-storefront/theme/createTheme'
 import { Slide } from '@mui/material'
 
@@ -23,7 +23,7 @@ describe('AppBar', () => {
           </MuiThemeProvider>
         </StyledEngineProvider>
       </PWAContext.Provider>
-    );
+    )
   }
 
   it('should render offline message when offline', () => {

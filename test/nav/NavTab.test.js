@@ -5,7 +5,12 @@ import NavTab from 'react-storefront/nav/NavTab'
 import Row from 'react-storefront/Row'
 import Link from 'react-storefront/link/Link'
 import { Paper, Popover } from '@mui/material'
-import { createMuiTheme, MuiThemeProvider, StyledEngineProvider, adaptV4Theme } from '@mui/material/styles';
+import {
+  createTheme as createMuiTheme,
+  themeProvider as MuiThemeProvider,
+  StyledEngineProvider,
+  adaptV4Theme,
+} from '@mui/material/styles'
 import { navigate } from '../mocks/mockRouter'
 
 describe('NavTab', () => {
@@ -206,13 +211,15 @@ describe('NavTab', () => {
 
   describe('accessibility', () => {
     beforeEach(() => {
-      const theme = createMuiTheme(adaptV4Theme({
-        props: {
-          MuiWithWidth: {
-            initialWidth: 'lg',
+      const theme = createMuiTheme(
+        adaptV4Theme({
+          props: {
+            MuiWithWidth: {
+              initialWidth: 'lg',
+            },
           },
-        },
-      }))
+        }),
+      )
 
       wrapper = mount(
         <StyledEngineProvider injectFirst>

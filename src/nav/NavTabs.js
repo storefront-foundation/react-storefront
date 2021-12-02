@@ -86,6 +86,8 @@ export default function NavTabs({ classes = {}, children, ...others }) {
 
   return (
     <Tabs
+      indicatorColor="primary"
+      textColor="inherit"
       ScrollButtonComponent={TabScrollButton}
       variant="scrollable"
       classes={{

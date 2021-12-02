@@ -140,6 +140,8 @@ function CarouselThumbnails({
   return (
     <div className={clsx(className, styles.thumbs)}>
       <Tabs
+        indicatorColor="primary"
+        textColor="inherit"
         value={selected !== false ? mod(selected, count) : false}
         variant="scrollable"
         onChange={(_, index) => setSelected(index)}

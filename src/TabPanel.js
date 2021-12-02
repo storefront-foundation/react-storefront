@@ -93,6 +93,8 @@ export default function TabPanel({
   return (
     <div className={classes.root}>
       <Tabs
+        indicatorColor="primary"
+        textColor="inherit"
         variant={scrollable ? 'scrollable' : null}
         value={selected}
         onChange={onChangeHandler}

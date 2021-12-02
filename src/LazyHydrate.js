@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import useIntersectionObserver from './hooks/useIntersectionObserver'
-import { StylesProvider, createGenerateClassName } from '@mui/material/styles'
+import { createGenerateClassName, StylesProvider } from '@mui/styles'
 import { SheetsRegistry } from 'jss'
 import Router from 'next/router'
 import isBrowser from './utils/isBrowser'
