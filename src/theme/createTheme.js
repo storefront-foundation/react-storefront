@@ -1,4 +1,4 @@
-import { createMuiTheme, adaptV4Theme } from '@mui/material/styles';
+import { createTheme as createMuiTheme, adaptV4Theme } from '@mui/material/styles'
 import merge from 'lodash/merge'
 
 /**
@@ -9,22 +9,24 @@ import merge from 'lodash/merge'
  */
 export default function createTheme(values = {}) {
   const theme = createMuiTheme(
-    adaptV4Theme(merge(
-      {},
-      {
-        zIndex: {
-          modal: 999,
-          amp: {
-            modal: 2147483646,
+    adaptV4Theme(
+      merge(
+        {},
+        {
+          zIndex: {
+            modal: 999,
+            amp: {
+              modal: 2147483646,
+            },
           },
+          headerHeight: 64,
+          loadMaskOffsetTop: 64 + 56 + 4,
+          drawerWidth: 330,
+          overrides: {},
         },
-        headerHeight: 64,
-        loadMaskOffsetTop: 64 + 56 + 4,
-        drawerWidth: 330,
-        overrides: {},
-      },
-      values,
-    )),
+        values,
+      ),
+    ),
   )
 
   if (!theme.maxWidth) {

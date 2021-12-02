@@ -1,5 +1,5 @@
 import React from 'react'
-import { createMuiTheme, MuiThemeProvider } from '@mui/material/styles'
+import { createTheme as createMuiTheme, MuiThemeProvider } from '@mui/material/styles'
 import MediaCarousel from '../../src/carousel/MediaCarousel'
 
 export default { title: 'MediaCarousel' }

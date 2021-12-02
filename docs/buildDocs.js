@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const reactDocGen = require('react-docgen')
 const documentation = require('documentation')
-import { createMuiTheme } from '@mui/material/styles'
+import { createTheme as createMuiTheme } from '@mui/material/styles'
 import getStylesCreator from '@mui/styles/getStylesCreator'
 import moduleParser from './moduleParser'
 import globby from 'globby'
