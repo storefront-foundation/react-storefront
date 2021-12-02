@@ -9,23 +9,21 @@ import merge from 'lodash/merge'
  */
 export default function createTheme(values = {}) {
   const theme = createMuiTheme(
-    adaptV4Theme(
-      merge(
-        {},
-        {
-          zIndex: {
-            modal: 999,
-            amp: {
-              modal: 2147483646,
-            },
+    merge(
+      {},
+      adaptV4Theme({
+        zIndex: {
+          modal: 999,
+          amp: {
+            modal: 2147483646,
           },
-          headerHeight: 64,
-          loadMaskOffsetTop: 64 + 56 + 4,
-          drawerWidth: 330,
-          overrides: {},
         },
-        values,
-      ),
+        headerHeight: 64,
+        loadMaskOffsetTop: 64 + 56 + 4,
+        drawerWidth: 330,
+        overrides: {},
+      }),
+      values,
     ),
   )
 
