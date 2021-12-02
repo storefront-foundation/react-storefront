@@ -66,7 +66,7 @@ export {};
  *  <ActionButton label="Sort" value="Lowest Price" onClick={openSortMenu} />
  * ```
  */
-const ActionButton = forwardRef(({ label, value, children, = {}, ...props }, ref) => {
+const ActionButton = forwardRef(({ label, value, children, classes = {}, ...props }, ref) => {
 
 
   return (

@@ -117,7 +117,7 @@ export default function QuantitySelector({
         aria-label={`add one ${ariaLabel}`}
         {...subtractButtonProps}
       >
-        {subtractIcon || <Remove {{ root: icon }} />}
+        {subtractIcon || <Remove classes={{ root: icon }} />}
       </IconButton>
       <input
         onChange={handleChange}
@@ -136,7 +136,7 @@ export default function QuantitySelector({
         aria-label={`subtract one ${ariaLabel}`}
         {...addButtonProps}
       >
-        {addIcon || <Add {{ root: icon }} />}
+        {addIcon || <Add classes={{ root: icon }} />}
       </IconButton>
     </Root>)
   );

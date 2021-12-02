@@ -32,7 +32,7 @@ export {};
  * A toolbar button with optional label.  Use these in your AppBar. All additional
  * props are spread to the underlying mui IconButton.
  */
-const ToolbarButton = forwardRef(({ icon, label, = {}, children, ...others }, ref) => {
+const ToolbarButton = forwardRef(({ icon, label, classes = {}, children, ...others }, ref) => {
 
 
   return (

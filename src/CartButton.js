@@ -79,7 +79,7 @@ export default function CartButton({
         <Badge
           badgeContent={quantity}
           {...badgeProps}
-          classes={{ ...badgeProps. badge: classes.badge }}
+          classes={{ ...badgeProps.classes, badge: classes.badge }}
         >
           {cartIcon}
         </Badge>

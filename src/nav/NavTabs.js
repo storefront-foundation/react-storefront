@@ -87,7 +87,7 @@ export {};
  * underlying Material UI Tabs element.  When a tab is clicked, the "top_nav_clicked" analytics
  * event is fired.
  */
-export default function NavTabs({ = {}, children, ...others }) {
+export default function NavTabs({ classes = {}, children, ...others }) {
 
 
   const { asPath } = useRouter()
@@ -95,7 +95,7 @@ export default function NavTabs({ = {}, children, ...others }) {
 
   const TabScrollButton = useMemo(() => {
     return props => (
-      <MuiTabScrollButton {...props} TouchRippleProps={{  { root: classes.ripple } }} />
+      <MuiTabScrollButton {...props} TouchRippleProps={{ classes: { root: classes.ripple } }} />
     )
   }, [classes])
 
