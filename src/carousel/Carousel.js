@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useState } from 'react'
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/styles'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay, virtualize } from 'react-swipeable-views-utils'
 import PropTypes from 'prop-types'
@@ -9,11 +9,20 @@ import CarouselArrows from './CarouselArrows'
 import mod from '../utils/mod'
 import Fill from '../Fill'
 
-const styles = theme => ({
+const PREFIX = 'RSFCarousel'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  swipeWrap: `${PREFIX}-swipeWrap`,
+  autoPlaySwipeableViews: `${PREFIX}-autoPlaySwipeableViews`,
+  hideTouchArrows: `${PREFIX}-hideTouchArrows`,
+}
+
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
@@ -27,7 +36,7 @@ const styles = theme => ({
   /**
    * Styles applied to wrapper element of the swipe container.
    */
-  swipeWrap: {
+  [`& .${classes.swipeWrap}`]: {
     position: 'relative',
     overflow: 'hidden',
     flex: 1,
@@ -37,19 +46,16 @@ const styles = theme => ({
     },
   },
 
-  autoPlaySwipeableViews: {
+  [`& .${classes.autoPlaySwipeableViews}`]: {
     overflowY: 'hidden',
     height: '100%',
   },
-
-  '@media not all and (hover:none)': {
-    hideTouchArrows: {
+  [`& .${classes.hideTouchArrows}`]: {
+    '@media not all and (hover:none)': {
       display: 'none',
     },
   },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFCarousel' })
+}))
 
 export const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 export const VirtualizeSwipeableViews = virtualize(SwipeableViews)
@@ -91,8 +97,6 @@ const Carousel = React.forwardRef((props, ref) => {
     infinite,
   } = props
 
-  classes = useStyles({ classes })
-
   const { selected, setSelected } = useSelected(props)
   const count = children && children.length
 
@@ -129,7 +133,7 @@ const Carousel = React.forwardRef((props, ref) => {
   )
 
   return (
-    <div
+    <Root
       ref={ref}
       className={clsx(className, classes.root)}
       style={style}
@@ -163,7 +167,7 @@ const Carousel = React.forwardRef((props, ref) => {
         </div>
       </Fill>
       {belowAdornments}
-    </div>
+    </Root>
   )
 })
 

@@ -1,21 +1,42 @@
 import React from 'react'
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import { Vbox } from '../Box'
 import { Typography, Skeleton } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import { Check as CheckedIcon } from '@mui/icons-material'
 import Image from '../Image'
 import PropTypes from 'prop-types'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSwatchProductOption'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  button: `${PREFIX}-button`,
+  buttonDisabled: `${PREFIX}-buttonDisabled`,
+  image: `${PREFIX}-image`,
+  checkMark: `${PREFIX}-checkMark`,
+  selected: `${PREFIX}-selected`,
+  selectedLabel: `${PREFIX}-selectedLabel`,
+  default: `${PREFIX}-default`,
+  small: `${PREFIX}-small`,
+  tiny: `${PREFIX}-tiny`,
+  disabled: `${PREFIX}-disabled`,
+  strikeThrough: `${PREFIX}-strikeThrough`,
+  defaultStrikeThrough: `${PREFIX}-defaultStrikeThrough`,
+  smallStrikeThrough: `${PREFIX}-smallStrikeThrough`,
+  tinyStrikeThrough: `${PREFIX}-tinyStrikeThrough`,
+}
+
+const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {},
+  [`&.${classes.root}`]: {},
+
   /**
    * Styles applied to the button element.
    */
-  button: {
+  [`& .${classes.button}`]: {
     position: 'relative',
     marginBottom: theme.spacing(0.5),
     padding: 2,
@@ -29,36 +50,35 @@ export const styles = theme => ({
     '&:focus': {
       outline: 0,
     },
-  },
-  /**
-   * Styles applied to the button element when [`disabled`](#prop-disabled) is `true`.
-   */
-  buttonDisabled: {
-    cursor: 'default',
-    borderColor: theme.palette.grey['A100'],
-  },
-  /**
-   * Styles applied to the image element.
-   */
-  image: {
-    height: '100%',
-    width: '100%',
-    borderRadius: '50%',
-  },
-  /**
-   * Styles applied for mobile devices.
-   */
-  '@media not all and (hover: none)': {
-    SwatchButton: {
+
+    '@media not all and (hover: none)': {
       '&:hover': {
         backgroundColor: 'transparent',
       },
     },
   },
+
+  /**
+   * Styles applied to the button element when [`disabled`](#prop-disabled) is `true`.
+   */
+  [`& .${classes.buttonDisabled}`]: {
+    cursor: 'default',
+    borderColor: theme.palette.grey['A100'],
+  },
+
+  /**
+   * Styles applied to the image element.
+   */
+  [`& .${classes.image}`]: {
+    height: '100%',
+    width: '100%',
+    borderRadius: '50%',
+  },
+
   /**
    * Styles applied to the wrapper element of the selected icon.
    */
-  checkMark: {
+  [`& .${classes.checkMark}`]: {
     transition: 'opacity 0.1s linear',
     opacity: 0,
     position: 'absolute',
@@ -79,22 +99,25 @@ export const styles = theme => ({
       opacity: 1,
     },
   },
+
   /**
    * Styles applied to the wrapper element of the selected icon when this option is selected.
    */
-  selected: {
+  [`& .${classes.selected}`]: {
     opacity: 1,
   },
+
   /**
    * Styles applied to the label element when this option is selected.
    */
-  selectedLabel: {
+  [`& .${classes.selectedLabel}`]: {
     fontWeight: 'bold',
   },
+
   /**
    * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'default'`.
    */
-  default: {
+  [`& .${classes.default}`]: {
     height: 48,
     width: 48,
     '& svg': {
@@ -102,10 +125,11 @@ export const styles = theme => ({
       width: 24,
     },
   },
+
   /**
    * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'small'`.
    */
-  small: {
+  [`& .${classes.small}`]: {
     height: 32,
     width: 32,
     '& svg': {
@@ -113,10 +137,11 @@ export const styles = theme => ({
       width: 16,
     },
   },
+
   /**
    * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'tiny'`.
    */
-  tiny: {
+  [`& .${classes.tiny}`]: {
     height: 24,
     width: 24,
     '& svg': {
@@ -124,17 +149,19 @@ export const styles = theme => ({
       width: 12,
     },
   },
+
   /**
    * Styles applied to the image element when [`disabled`](#prop-disabled) is `true`.
    */
-  disabled: {
+  [`& .${classes.disabled}`]: {
     opacity: 0.3,
   },
+
   /**
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`.
    */
-  strikeThrough: {
+  [`& .${classes.strikeThrough}`]: {
     height: '7px',
     borderWidth: '2px 0',
     borderStyle: 'solid',
@@ -144,29 +171,33 @@ export const styles = theme => ({
     width: '100%',
     borderRadius: 10,
   },
+
   /**
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'default'`.
    */
-  defaultStrikeThrough: {
+  [`& .${classes.defaultStrikeThrough}`]: {
     top: -24,
   },
+
   /**
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'small'`.
    */
-  smallStrikeThrough: {
+  [`& .${classes.smallStrikeThrough}`]: {
     top: -16,
   },
+
   /**
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'tiny'`.
    */
-  tinyStrikeThrough: {
+  [`& .${classes.tinyStrikeThrough}`]: {
     top: -12,
   },
-})
-const useStyles = makeStyles(styles, { name: 'RSFSwatchProductOption' })
+}))
+
+export {}
 
 /**
  * A variant of [`ProductOption`](/apiReference/option/ProductOption] that shows an image swatch to
@@ -189,8 +220,6 @@ export default function SwatchProductOption({
   strikeThroughDisabled,
   strikeThroughAngle,
 }) {
-  classes = useStyles({ classes })
-
   if (skeleton) {
     return (
       <Skeleton
@@ -205,7 +234,7 @@ export default function SwatchProductOption({
   }
 
   return (
-    <Vbox className={classes.root}>
+    <StyledVbox className={classes.root}>
       <button
         {...buttonProps}
         type="button"
@@ -259,7 +288,7 @@ export default function SwatchProductOption({
           {label}
         </Typography>
       )}
-    </Vbox>
+    </StyledVbox>
   )
 }
 
