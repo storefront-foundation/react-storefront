@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles';
 import menuStyles from './menuStyles'
 import MenuContext from './MenuContext'
 import { Drawer } from '@mui/material'
@@ -8,9 +8,103 @@ import SEOLinks from './SEOLinks'
 import MenuBody from './MenuBody'
 import PropTypes from 'prop-types'
 
-export const styles = menuStyles
+const PREFIX = 'RSFMenu';
 
-const useStyles = makeStyles(styles, { name: 'RSFMenu' })
+const classes = {
+  drawer: `${PREFIX}-drawer`,
+  list: `${PREFIX}-list`,
+  listPadding: `${PREFIX}-listPadding`,
+  header: `${PREFIX}-header`,
+  icon: `${PREFIX}-icon`,
+  headerText: `${PREFIX}-headerText`,
+  bodyWrap: `${PREFIX}-bodyWrap`,
+  hidden: `${PREFIX}-hidden`,
+  visible: `${PREFIX}-visible`,
+  link: `${PREFIX}-link`,
+  leaf: `${PREFIX}-leaf`,
+  drawerFixed: `${PREFIX}-drawerFixed`
+};
+
+const StyledListItemText = styled(ListItemText)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.drawer}`]: {
+    zIndex: theme.zIndex.modal + 20,
+    display: 'flex',
+    flexDirection: 'column',
+    borderTop: `${theme.headerHeight}px solid transparent`,
+    'body.moov-safari &': {
+      // Turning off momentum scrolling on iOS here to fix frozen body issue
+      // Source: https://moovweb.atlassian.net/browse/PRPL-342
+      '-webkit-overflow-scrolling': 'auto',
+    },
+  },
+
+  [`& .${classes.list}`]: {
+    flex: 'none',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    maxHeight: '100%',
+    padding: 0,
+  },
+
+  [`& .${classes.listPadding}`]: {
+    padding: 0,
+  },
+
+  [`& .${classes.header}`]: {
+    position: 'absolute',
+    left: '10px',
+    top: '12px',
+  },
+
+  [`& .${classes.icon}`]: {
+    marginRight: '0',
+    width: 24,
+  },
+
+  [`& .${classes.headerText}`]: {
+    textAlign: 'center',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    fontSize: theme.typography.body1.fontSize,
+  },
+
+  [`& .${classes.bodyWrap}`]: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    transition: 'all ease-out .2s',
+    maxHeight: '100%',
+  },
+
+  [`& .${classes.hidden}`]: {
+    display: 'none',
+  },
+
+  [`& .${classes.visible}`]: {
+    display: 'block',
+  },
+
+  [`& .${classes.link}`]: {
+    display: 'block',
+    textDecoration: 'none',
+    color: 'inherit',
+  },
+
+  [`& .${classes.leaf}`]: {
+    textTransform: 'none',
+    ...theme.typography.body1,
+  },
+
+  [`& .${classes.drawerFixed}`]: {
+    top: 0,
+    height: '100vh',
+    borderTop: 'none',
+  }
+}));
 
 const Menu = React.memo(props => {
   let {
@@ -31,7 +125,7 @@ const Menu = React.memo(props => {
     ...others
   } = props
 
-  classes = useStyles({ classes })
+
 
   const [state, setState] = useState(() => {
     return {

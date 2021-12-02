@@ -1,27 +1,38 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React, { useRef } from 'react'
-import { makeStyles } from '@mui/styles'
 import { useRouter } from 'next/router'
 import qs from 'qs'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchForm';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('orm')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`& .${classes.root}`]: {
     position: 'relative',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-  },
-})
-const useStyles = makeStyles(styles, { name: 'RSFSearchForm' })
+  }
+}));
+
+export {};
 
 /**
  * A form used to submit a search query.
  */
-export default function SearchForm({ classes, children, action, autoComplete }) {
-  classes = useStyles({ classes })
+export default function SearchForm({  children, action, autoComplete }) {
+
 
   const ref = useRef()
   const router = useRouter()

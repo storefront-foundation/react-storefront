@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/styles'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Carousel from './Carousel'
@@ -12,13 +12,29 @@ import MagnifyHint from './MagnifyHint'
 import CarouselThumbnails from './CarouselThumbnails'
 import get from 'lodash/get'
 
-const THUMBNAIL_IMAGE_ID = '__rsf-placeholder-thumbnail'
+const PREFIX = 'RSFMediaCarousel';
 
-export const styles = theme => ({
+const classes = {
+  root: `${PREFIX}-root`,
+  rootSideThumbs: `${PREFIX}-rootSideThumbs`,
+  mediaWrap: `${PREFIX}-mediaWrap`,
+  thumbnail: `${PREFIX}-thumbnail`,
+  thumbnailsLeft: `${PREFIX}-thumbnailsLeft`,
+  thumbnailsTop: `${PREFIX}-thumbnailsTop`,
+  lightboxCarousel: `${PREFIX}-lightboxCarousel`,
+  lightboxThumbs: `${PREFIX}-lightboxThumbs`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root component.
    */
-  root: {
+  [`& .${classes.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
@@ -26,18 +42,20 @@ export const styles = theme => ({
       overflow: 'hidden',
     },
   },
+
   /**
    * Styles applied to the root component when `thumbnailPosition` is `left` or `right`.
    */
-  rootSideThumbs: {
+  [`& .${classes.rootSideThumbs}`]: {
     [theme.breakpoints.up('sm')]: {
       flexDirection: 'row',
     },
   },
+
   /**
    * Styles applied to the wrapper element of each media component.
    */
-  mediaWrap: {
+  [`& .${classes.mediaWrap}`]: {
     height: '100%',
     width: '100%',
     display: 'flex',
@@ -49,47 +67,54 @@ export const styles = theme => ({
       objectFit: 'contain',
     },
   },
+
   /**
    * Styles applied to each of the thumbnail elements.
    */
-  thumbnail: {
+  [`& .${classes.thumbnail}`]: {
     position: 'absolute',
     top: 0,
     left: 0,
     height: '100%',
     width: '100%',
   },
+
   /**
    * Styles applied to the thumbnail component when thumbnailPosition is `left`.
    */
-  thumbnailsLeft: {
+  [`& .${classes.thumbnailsLeft}`]: {
     [theme.breakpoints.up('sm')]: {
       order: -1,
     },
   },
+
   /**
    * Styles applied to the thumbnail component when thumbnailPosition is `top`.
    */
-  thumbnailsTop: {
+  [`& .${classes.thumbnailsTop}`]: {
     order: -1,
   },
+
   /**
    * Styles applied to the carousel component when the lightbox is shown.
    */
-  lightboxCarousel: {
+  [`& .${classes.lightboxCarousel}`]: {
     flex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
   },
+
   /**
    * Styles applied to the thumbnails in the lightbox.
    */
-  lightboxThumbs: {
+  [`& .${classes.lightboxThumbs}`]: {
     paddingBottom: theme.spacing(2),
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFMediaCarousel' })
+const THUMBNAIL_IMAGE_ID = '__rsf-placeholder-thumbnail'
+
+export {};
 
 /**
  * A carousel that displays images and videos for a product.  Specify
@@ -148,7 +173,7 @@ function MediaCarousel(props) {
   } = props
 
   const [imagesLoaded, setImagesLoaded] = useState(false)
-  const styles = useStyles({ classes })
+
   const ref = useRef(null)
   const [over, setOver] = useState(false)
   const [selected, setSelected] = useState(0)
@@ -326,13 +351,13 @@ function MediaCarousel(props) {
   )
 
   return (
-    <>
+    (<Root>
       {body}
       <Lightbox {...lightboxProps} open={!!lightboxActive} onClose={handleLightboxClose}>
         {body}
       </Lightbox>
-    </>
-  )
+    </Root>)
+  );
 }
 
 MediaCarousel.propTypes = {

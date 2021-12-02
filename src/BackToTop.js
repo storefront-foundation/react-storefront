@@ -1,38 +1,45 @@
 import React, { useRef, useEffect, useState } from 'react'
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types'
 import throttle from 'lodash/throttle'
 import { ArrowUpward } from '@mui/icons-material'
 import { Fab, Fade } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+const PREFIX = 'RSFBackToTop';
 
-const styles = () => ({
+const classes = {
+  root: `${PREFIX}-root`,
+  fab: `${PREFIX}-fab`,
+  icon: `${PREFIX}-icon`
+};
+
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     zIndex: 1,
     position: 'fixed',
     bottom: 24,
     right: 16,
   },
+
   /**
    * Styles applied to the floating action button element.
    */
-  fab: {
+  [`& .${classes.fab}`]: {
     background: 'rgba(0,0,0,.85)',
     '&:hover': {
       background: 'rgb(0,0,0)',
     },
   },
+
   /**
    * Styles applied to the icon element.
    */
-  icon: {
+  [`& .${classes.icon}`]: {
     color: 'white',
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFBackToTop' })
+  }
+}));
 
 /**
  * A floating action button that appears when the user scrolls down,
@@ -48,7 +55,7 @@ export default function BackToTop({
 }) {
   const [visible, setVisible] = useState(false)
   const el = useRef()
-  classes = useStyles({ classes })
+
 
   useEffect(() => {
     const onScroll = throttle(() => {
@@ -71,14 +78,14 @@ export default function BackToTop({
   Icon = Icon || ArrowUpward
 
   return (
-    <div className={classes.root} ref={el}>
+    <Root className={classes.root} ref={el}>
       <Fade in={visible} timeout={fadeTime}>
         <Fab className={classes.fab} size={size} onClick={scrollToTop} title="back to top">
           <Icon className={classes.icon} />
         </Fab>
       </Fade>
-    </div>
-  )
+    </Root>
+  );
 }
 
 BackToTop.propTypes = {

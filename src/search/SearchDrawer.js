@@ -1,28 +1,40 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import Drawer from '../drawer/Drawer'
-import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearch';
+
+const classes = {
+  paper: `${PREFIX}-paper`,
+  closeButton: `${PREFIX}-closeButton`
+};
+
+const StyledDrawerComponent = styled(DrawerComponent)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the paper component in the [Drawer](/apiReference/drawer/Drawer).
    */
-  paper: {
+  [`& .${classes.paper}`]: {
     display: 'flex',
   },
+
   /**
    * Styles applied to the root element in the [DrawerCloseButton](/apiReference/drawer/DrawerCloseButton).
    */
-  closeButton: {
+  [`& .${classes.closeButton}`]: {
     color: theme.palette.primary.contrastText,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFSearch' })
+export {};
 
-export default function SearchDrawer({ DrawerComponent, classes, open, onClose, children }) {
-  classes = useStyles({ classes })
+export default function SearchDrawer({ DrawerComponent,  open, onClose, children }) {
+
 
   const handleNavigation = () => {
     if (onClose) {
@@ -33,10 +45,10 @@ export default function SearchDrawer({ DrawerComponent, classes, open, onClose, 
   useNavigationEvent(handleNavigation)
 
   return (
-    <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
+    <StyledDrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
       {children}
-    </DrawerComponent>
-  )
+    </StyledDrawerComponent>
+  );
 }
 
 SearchDrawer.propTypes = {

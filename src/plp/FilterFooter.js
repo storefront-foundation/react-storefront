@@ -1,37 +1,49 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React, { useContext } from 'react'
-import { makeStyles } from '@mui/styles'
 import { Button, Typography } from '@mui/material'
 import { Hbox } from '../Box'
 import SearchResultsContext from './SearchResultsContext'
 
-export const styles = theme => ({
+const PREFIX = 'RSFFilterFooter';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  itemsFound: `${PREFIX}-itemsFound`
+};
+
+const StyledHbox = styled(Hbox)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     backgroundColor: theme.palette.secondary.main,
     padding: '12px 20px',
     color: 'white',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+
   /**
    * Styles applied to the "# items found" label.
    */
-  itemsFound: {
+  [`& .${classes.itemsFound}`]: {
     color: theme.palette.secondary.contrastText,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFFilterFooter' })
+export {};
 
 /**
  * A footer to be placed at the bottom of the [`Filter`](/apiReference/plp/Filter).
  */
 export default function FilterFooter(props) {
-  let { classes, submitOnChange, onViewResultsClick } = props
-  classes = useStyles({ classes })
+  let {  submitOnChange, onViewResultsClick } = props
+
 
   const {
     pageData: { filters, filtersChanged },
@@ -40,7 +52,7 @@ export default function FilterFooter(props) {
   if (!filters || !filtersChanged || submitOnChange) return null
 
   return (
-    <Hbox className={classes.root} justify="space-between">
+    <StyledHbox className={classes.root} justify="space-between">
       <Typography variant="subtitle1" className={classes.itemsFound}>
         {filters.length || 'No'} filter
         {filters.length === 1 ? '' : 's'} selected
@@ -48,8 +60,8 @@ export default function FilterFooter(props) {
       <Button variant="contained" size="large" onClick={onViewResultsClick}>
         View Results
       </Button>
-    </Hbox>
-  )
+    </StyledHbox>
+  );
 }
 
 FilterFooter.propTypes = {

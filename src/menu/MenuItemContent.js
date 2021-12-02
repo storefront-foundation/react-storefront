@@ -1,39 +1,51 @@
 import React, { useContext } from 'react'
+import { styled } from '@mui/material/styles';
 import { ListItem, ListItemText, ListItemIcon, CircularProgress } from '@mui/material'
 import MenuContext from './MenuContext'
 import MenuExpanderIcon from './MenuExpanderIcon'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/styles'
+const PREFIX = 'RSFMenuItemContent';
 
-export const styles = theme => ({
-  listItem: {
+const classes = {
+  listItem: `${PREFIX}-listItem`,
+  listItemImage: `${PREFIX}-listItemImage`,
+  listItemIcon: `${PREFIX}-listItemIcon`,
+  loadingIcon: `${PREFIX}-loadingIcon`
+};
+
+const StyledListItem = styled(ListItem)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.listItem}`]: {
     textTransform: 'uppercase',
     lineHeight: '1.5',
     fontSize: theme.typography.body1.fontSize,
   },
 
-  listItemImage: {
+  [`& .${classes.listItemImage}`]: {
     width: '40px',
     height: '40px',
     marginRight: 0,
   },
 
-  listItemIcon: {
+  [`& .${classes.listItemIcon}`]: {
     marginRight: 0,
     minWidth: 0,
   },
 
-  loadingIcon: {
+  [`& .${classes.loadingIcon}`]: {
     display: 'block',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFMenuItemContent' })
+export {};
 
 export default function MenuItemContent(props) {
   const { renderItemContent, onItemClick } = useContext(MenuContext)
-  const classes = useStyles(props)
+
 
   let { item, depth, leaf, listItemProps } = props
   let contents
@@ -80,7 +92,7 @@ export default function MenuItemContent(props) {
   }
 
   return (
-    <ListItem
+    <StyledListItem
       onClick={leaf ? null : onItemClick.bind(null, item, depth)}
       button
       divider
@@ -90,8 +102,8 @@ export default function MenuItemContent(props) {
       {...listItemProps}
     >
       {contents}
-    </ListItem>
-  )
+    </StyledListItem>
+  );
 }
 
 MenuItemContent.propTypes = {

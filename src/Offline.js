@@ -1,14 +1,27 @@
 import React from 'react'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material'
 import { CloudOff as CloseOffIcon } from '@mui/icons-material'
 import PropTypes from 'prop-types'
 
-const styles = theme => ({
+const PREFIX = 'RSFOffline';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  icon: `${PREFIX}-icon`,
+  heading: `${PREFIX}-heading`,
+  message: `${PREFIX}-message`
+};
+
+const StyledCloseOffIcon = styled(CloseOffIcon)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`& .${classes.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -16,30 +29,31 @@ const styles = theme => ({
     marginTop: '40px',
     color: '#999',
   },
+
   /**
    * Styles applied to the icon element.
    */
-  icon: {
+  [`& .${classes.icon}`]: {
     fontSize: 60,
     color: '#999',
   },
+
   /**
    * Styles applied to the heading element.
    */
-  heading: {},
+  [`& .${classes.heading}`]: {},
+
   /**
    * Styles applied to the message element.
    */
-  message: {},
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFOffline' })
+  [`& .${classes.message}`]: {}
+}));
 
 /**
  * A page to display when in Offline mode
  */
-export default function Offline({ classes, heading, message, Icon }) {
-  classes = useStyles({ classes })
+export default function Offline({  heading, message, Icon }) {
+
 
   return (
     <div className={classes.root}>
@@ -79,5 +93,5 @@ Offline.propTypes = {
 Offline.defaultProps = {
   heading: "You're offline",
   message: 'Please check your internet connection',
-  Icon: () => <CloseOffIcon />,
+  Icon: () => <StyledCloseOffIcon />,
 }

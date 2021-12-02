@@ -1,29 +1,43 @@
 import React, { useState } from 'react'
+import { styled } from '@mui/material/styles';
 import { Tabs, Tab } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-const styles = theme => ({
+const PREFIX = 'RSFTabPanel';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  panel: `${PREFIX}-panel`,
+  hidden: `${PREFIX}-hidden`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {},
+  [`& .${classes.root}`]: {},
+
   /**
    * Styles applied to the wrapper around each panel element.
    */
-  panel: {
+  [`&.${classes.panel}`]: {
     margin: `${theme.spacing(2)} 0`,
   },
+
   /**
    * Styles applied to the wrapper around each panel element when that panel is hidden.
    */
-  hidden: {
+  [`&.${classes.hidden}`]: {
     display: 'none',
-  },
-})
+  }
+}));
 
-export const useStyles = makeStyles(styles, { name: 'RSFTabPanel' })
+export {};
 
 /**
  * A simple tab panel that is AMP-compatible.  Tab names are pulled from the label prop of the child elements.
@@ -53,7 +67,7 @@ export default function TabPanel({
   panelProps,
   renderPanels,
 }) {
-  classes = useStyles({ classes })
+
 
   const [selected, setSelected] = useState(selectedProp)
   const tabs = []
@@ -76,7 +90,7 @@ export default function TabPanel({
     const { className, ...others } = panelProps({ child, index, selected }) || {}
 
     panels.push(
-      <div
+      <Root
         key={index}
         role="tabpanel"
         className={clsx(classes.panel, {
@@ -86,7 +100,7 @@ export default function TabPanel({
         {...others}
       >
         {React.cloneElement(child, { label: null })}
-      </div>,
+      </Root>,
     )
   })
 

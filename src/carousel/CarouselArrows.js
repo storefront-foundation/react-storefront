@@ -1,20 +1,34 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React, { useCallback } from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/styles'
 import { IconButton } from '@mui/material'
 import { ChevronLeft, ChevronRight } from '@mui/icons-material'
 
-export const styles = theme => ({
+const PREFIX = 'RSFCarouselArrows';
+
+const classes = {
+  arrows: `${PREFIX}-arrows`,
+  arrow: `${PREFIX}-arrow`,
+  leftArrow: `${PREFIX}-leftArrow`,
+  rightArrow: `${PREFIX}-rightArrow`,
+  icon: `${PREFIX}-icon`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  arrows: {},
+  [`&.${classes.arrows}`]: {},
 
   /**
    * Styles applied to each of the arrow icon buttons.
    */
-  arrow: {
+  [`& .${classes.arrow}`]: {
     position: 'absolute',
     top: '50%',
     marginTop: '-24px',
@@ -23,24 +37,24 @@ export const styles = theme => ({
   /**
    * Styles applied to the left arrow icon buttons.
    */
-  leftArrow: {
+  [`& .${classes.leftArrow}`]: {
     left: 0,
   },
 
   /**
    * Styles applied to the right arrow icon buttons.
    */
-  rightArrow: {
+  [`& .${classes.rightArrow}`]: {
     right: 0,
   },
 
   /**
    * Styles applied to each of the icon elements.
    */
-  icon: {},
-})
+  [`& .${classes.icon}`]: {}
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFCarouselArrows' })
+export {};
 
 /**
  * Arrows that are overlaid onto a [`Carousel`](/apiReference/carousel/Carousel) that will change
@@ -56,7 +70,7 @@ export default function CarouselArrows({
   leftArrowLabel,
   rightArrowLabel,
 }) {
-  classes = useStyles({ classes })
+
 
   const createOnClickArrow = useCallback(
     idxChange => evt => {
@@ -81,7 +95,7 @@ export default function CarouselArrows({
   )
 
   return (
-    <div className={clsx(classes.arrows, className)}>
+    <Root className={clsx(classes.arrows, className)}>
       {(selected !== 0 || infinite) && (
         <IconButton
           className={clsx(classes.arrow, classes.leftArrow)}
@@ -102,8 +116,8 @@ export default function CarouselArrows({
           <ChevronRight classes={{ root: classes.icon }} />
         </IconButton>
       )}
-    </div>
-  )
+    </Root>
+  );
 }
 
 CarouselArrows.propTypes = {

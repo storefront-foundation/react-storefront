@@ -1,24 +1,32 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React, { useMemo, useContext } from 'react'
 import SearchResultsContext from './SearchResultsContext'
-import { makeStyles } from '@mui/styles'
 import ExpandableSection from '../ExpandableSection'
 import CheckboxFilterGroup from './CheckboxFilterGroup'
 import ButtonFilterGroup from './ButtonFilterGroup'
 import ListItem from '@mui/material/ListItem'
 
-const styles = theme => ({
+const PREFIX = 'RSFFacetGroup';
+
+const classes = {
+  groupTitle: `${PREFIX}-groupTitle`
+};
+
+const StyledExpandableSection = styled(ExpandableSection)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the group's title element.
    */
-  groupTitle: {
+  [`& .${classes.groupTitle}`]: {
     [theme.breakpoints.up('sm')]: {
       fontWeight: 'bold',
     },
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFFacetGroup' })
+  }
+}));
 
 /**
  * A grouping of facets used for filtering products.
@@ -34,7 +42,7 @@ export default function FacetGroup(props) {
     onClose,
     isSimpleList,
   } = props
-  const classes = useStyles(props.classes)
+
   const {
     pageData: { filters },
   } = useContext(SearchResultsContext)
@@ -81,16 +89,16 @@ export default function FacetGroup(props) {
     }
 
     return (
-      <ExpandableSection
+      <StyledExpandableSection
         title={group.name}
         caption={caption}
         defaultExpanded={defaultExpanded}
         classes={{ title: classes.groupTitle }}
       >
         <Controls group={group} submitOnChange={submitOnChange} {...controlsProps} />
-      </ExpandableSection>
-    )
-  }, [...Object.values(props), filters])
+      </StyledExpandableSection>
+    );
+  }, [...Object.values(props), filters]);
 }
 
 FacetGroup.propTypes = {

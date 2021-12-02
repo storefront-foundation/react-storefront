@@ -1,28 +1,37 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React from 'react'
-import { makeStyles } from '@mui/styles'
+const PREFIX = 'Row';
 
-const useStyles = makeStyles(theme => ({
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     margin: `0 0 ${theme.spacing(2)} 0`,
-  },
-}))
+  }
+}));
 
 /**
  * A grid item that takes up the full viewport.  Provided for backwards compatibility with
  * React Storefront 6.
  */
-export default function Row({ children, classes, ...others }) {
-  classes = useStyles({ classes })
+export default function Row({ children,  ...others }) {
+
 
   return (
-    <div className={classes.root} {...others}>
+    <Root className={classes.root} {...others}>
       {children}
-    </div>
-  )
+    </Root>
+  );
 }
 
 Row.propTypes = {

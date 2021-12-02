@@ -1,14 +1,26 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import clsx from 'clsx'
-import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import { alpha } from '@mui/material/styles'
 
-const styles = theme => ({
+const PREFIX = 'RSFCarouselDots';
+
+const classes = {
+  dots: `${PREFIX}-dots`,
+  dot: `${PREFIX}-dot`,
+  dotSelected: `${PREFIX}-dotSelected`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  dots: {
+  [`& .${classes.dots}`]: {
     position: 'absolute',
     bottom: '5px',
     textAlign: 'center',
@@ -18,7 +30,7 @@ const styles = theme => ({
   /**
    * Styles applied to each dot element.
    */
-  dot: {
+  [`&.${classes.dot}`]: {
     backgroundColor: alpha(theme.palette.text.primary, 0.25),
     width: 8,
     height: 8,
@@ -35,24 +47,22 @@ const styles = theme => ({
   /**
    * Styles applied to the dot representing the selected slide.
    */
-  dotSelected: {
+  [`&.${classes.dotSelected}`]: {
     backgroundColor: theme.palette.text.primary,
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFCarouselDots' })
+  }
+}));
 
 /**
  * An overlay shown at the bottom of a [`Carousel`](/apiReference/carousel/Carousel) that shows a
  * sequence of dots representing the slides in the Carousel.
  */
-function CarouselDots({ selected, count, classes }) {
+function CarouselDots({ selected, count, }) {
   const dots = []
-  classes = useStyles({ classes })
+
 
   for (let i = 0; i < count; i++) {
     dots.push(
-      <div
+      <Root
         key={i}
         className={clsx({
           [classes.dot]: true,

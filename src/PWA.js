@@ -1,28 +1,40 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { styled } from '@mui/material/styles';
 import PWAContext from './PWAContext'
 import PropTypes from 'prop-types'
 import ErrorBoundary from './ErrorBoundary'
-import { makeStyles } from '@mui/styles'
 import Router from 'next/router'
 import LinkContextProvider from './link/LinkContextProvider'
 import useSimpleNavigation from './router/useSimpleNavigation'
 import './hooks/useTraceUpdate'
 import './profile'
 
-export const styles = theme => ({
-  body: {
+const PREFIX = 'RSFPWA';
+
+const classes = {
+  body: `${PREFIX}-body`,
+  a: `${PREFIX}-a`
+};
+
+const StyledPWAContextProvider = styled(PWAContext.Provider)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.body}`]: {
     '-webkit-tap-highlight-color': 'transparent',
   },
-  a: {
+
+  [`& .${classes.a}`]: {
     color: theme.palette.primary.main,
     textDecoration: 'underline',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFPWA' })
+export {};
 
 export default function PWA({ children, errorReporter }) {
-  useStyles()
+
   const thumbnail = useRef(null)
   const [offline, setOffline] = useState(typeof navigator !== 'undefined' && !navigator.onLine)
 
@@ -53,12 +65,12 @@ export default function PWA({ children, errorReporter }) {
   }, [])
 
   return (
-    <PWAContext.Provider value={context}>
+    <StyledPWAContextProvider value={context}>
       <LinkContextProvider>
         <ErrorBoundary onError={errorReporter}>{children}</ErrorBoundary>
       </LinkContextProvider>
-    </PWAContext.Provider>
-  )
+    </StyledPWAContextProvider>
+  );
 }
 
 PWA.propTypes = {

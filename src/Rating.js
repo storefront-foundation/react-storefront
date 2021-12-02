@@ -1,18 +1,28 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import { Star, StarBorder, StarHalf } from '@mui/icons-material'
-import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Hbox } from './Box'
 
-/**
- * Displays a star rating corresponding to the provided value
- */
-export const styles = theme => ({
+const PREFIX = 'RSFRating';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  filledEmpty: `${PREFIX}-filledEmpty`,
+  blank: `${PREFIX}-blank`,
+  reviewsLabel: `${PREFIX}-reviewsLabel`
+};
+
+const Root = styled('span')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`& .${classes.root}`]: {
     display: 'flex',
     '& svg': {
       color: theme.palette.rating,
@@ -21,29 +31,35 @@ export const styles = theme => ({
       display: 'block',
     },
   },
+
   /**
    * Styles applied to an empty rating icon.
    */
-  filledEmpty: {
+  [`& .${classes.filledEmpty}`]: {
     fill: theme.palette.divider,
   },
+
   /**
    * Styles applied to the root element when [`value`](#prop-value) is `0`.
    */
-  blank: {
+  [`& .${classes.blank}`]: {
     '& svg': {
       color: theme.palette.divider,
     },
   },
+
   /**
    * Styles applied to the label element.
    */
-  reviewsLabel: {
+  [`& .${classes.reviewsLabel}`]: {
     marginLeft: '3px',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFRating' })
+/**
+ * Displays a star rating corresponding to the provided value
+ */
+export {};
 
 export default function Rating({
   iconFull,
@@ -64,7 +80,7 @@ export default function Rating({
     value = product.rating
   }
 
-  classes = useStyles({ classes })
+
 
   const IconFull = iconFull || Star
   const IconHalf = iconHalf || StarHalf
@@ -147,6 +163,6 @@ Rating.propTypes = {
 }
 
 Rating.defaultProps = {
-  label: reviewCount => <span> {reviewCount == 1 ? 'review' : 'reviews'}</span>,
+  label: reviewCount => <Root> {reviewCount == 1 ? 'review' : 'reviews'}</Root>,
   fillEmpty: false,
 }

@@ -1,14 +1,26 @@
 import React from 'react'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Button, Skeleton } from '@mui/material'
 
-export const styles = theme => ({
+const PREFIX = 'RSFTextProductOption';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  strikeThrough: `${PREFIX}-strikeThrough`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`& .${classes.root}`]: {
     '.rsf-po-selected &': {
       borderColor: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.main,
@@ -21,11 +33,12 @@ export const styles = theme => ({
       },
     },
   },
+
   /**
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`.
    */
-  strikeThrough: {
+  [`& .${classes.strikeThrough}`]: {
     height: '7px',
     borderWidth: '2px 0',
     borderStyle: 'solid',
@@ -36,10 +49,10 @@ export const styles = theme => ({
     top: 'calc(-50% - 2px)',
     left: -2,
     borderRadius: 10,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFTextProductOption' })
+export {};
 
 /**
  * Represents a single product option value as a button with text. All additional
@@ -63,14 +76,14 @@ export default function TextProductOption({
   strikeThroughDisabled,
   strikeThroughAngle,
 }) {
-  classes = useStyles({ classes })
+
 
   if (skeleton) {
     return <Skeleton className={className} width={64} height={36} />
   }
 
   return (
-    <>
+    (<Root>
       <Button
         {...buttonProps}
         disabled={disabled}
@@ -87,8 +100,8 @@ export default function TextProductOption({
           style={{ transform: `rotate(${strikeThroughAngle}deg)` }}
         />
       )}
-    </>
-  )
+    </Root>)
+  );
 }
 
 TextProductOption.propTypes = {

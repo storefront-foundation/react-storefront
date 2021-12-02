@@ -1,30 +1,43 @@
 import SearchIcon from '@mui/icons-material/Search'
+import { styled } from '@mui/material/styles';
 import React from 'react'
-import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchSubmitButton';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  label: `${PREFIX}-label`
+};
+
+const StyledComponent = styled(Component)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {},
+  [`&.${classes.root}`]: {},
+
   /**
    * Styles applied to the label element.
    */
-  label: {
+  [`& .${classes.label}`]: {
     display: 'flex',
-  },
-})
-const useStyles = makeStyles(styles, { name: 'RSFSearchSubmitButton' })
+  }
+}));
+
+export {};
 
 /**
  * A button to submit the search.  All other props are spread to the provided `Component`.
  */
-export default function SearchSubmitButton({ Component, ButtonIcon, classes, text, ...others }) {
-  classes = useStyles({ classes })
+export default function SearchSubmitButton({ Component, ButtonIcon,  text, ...others }) {
+
 
   return (
-    <Component
+    <StyledComponent
       rel="search"
       type="submit"
       className={classes.root}
@@ -33,8 +46,8 @@ export default function SearchSubmitButton({ Component, ButtonIcon, classes, tex
       {...others}
     >
       <ButtonIcon />
-    </Component>
-  )
+    </StyledComponent>
+  );
 }
 
 SearchSubmitButton.propTypes = {

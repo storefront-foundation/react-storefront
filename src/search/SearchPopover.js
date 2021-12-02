@@ -1,22 +1,32 @@
 import React, { ElementType } from 'react'
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/styles'
 import { Popover } from '@mui/material'
 import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchPopover';
+
+const classes = {
+  popoverPaper: `${PREFIX}-popoverPaper`
+};
+
+const StyledPopover = styled(Popover)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the popover paper
    */
-  popoverPaper: {
+  [`& .${classes.popoverPaper}`]: {
     boxShadow: '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14)',
     minWidth: theme.spacing(84),
     minHeight: theme.spacing(75),
     border: `1px solid ${theme.palette.divider}`,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFSearchPopover' })
+export {};
 
 /**
  * Displays search results in a popover. Additional props are spread to the underlying Material UI Popover element.
@@ -30,7 +40,7 @@ export default function SearchPopover({
   setQuery,
   ...others
 }) {
-  classes = useStyles({ classes })
+
 
   const handleNavigation = () => {
     if (onClose) {
@@ -47,7 +57,7 @@ export default function SearchPopover({
   useNavigationEvent(handleNavigation)
 
   return (
-    <Popover
+    <StyledPopover
       open={open}
       disableAutoFocus
       disableEnforceFocus
@@ -72,8 +82,8 @@ export default function SearchPopover({
       {...others}
     >
       {children}
-    </Popover>
-  )
+    </StyledPopover>
+  );
 }
 
 SearchPopover.propTypes = {

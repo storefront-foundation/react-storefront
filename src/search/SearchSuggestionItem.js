@@ -1,13 +1,26 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles';
 import Link from '../link/Link'
 import PropTypes from 'prop-types'
 import Image from '../Image'
 import SearchContext from './SearchContext'
 import Highlight from '../Highlight'
 
-export const styles = theme => ({
-  root: {
+const PREFIX = 'RSFSearchSuggestionItem';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  thumbnail: `${PREFIX}-thumbnail`,
+  text: `${PREFIX}-text`,
+  highlight: `${PREFIX}-highlight`
+};
+
+const Root = styled('li')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     margin: theme.spacing(2, 0),
     listStyle: 'none',
     padding: 0,
@@ -17,7 +30,8 @@ export const styles = theme => ({
       alignItems: 'flex-start',
     },
   },
-  thumbnail: {
+
+  [`& .${classes.thumbnail}`]: {
     marginBottom: '10px',
     display: 'none',
     '[data-ui=thumbnails] &': {
@@ -29,15 +43,17 @@ export const styles = theme => ({
       },
     },
   },
-  text: {},
-  highlight: {
+
+  [`& .${classes.text}`]: {},
+
+  [`& .${classes.highlight}`]: {
     backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: '2px',
     color: theme.palette.secondary.main,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFSearchSuggestionItem' })
+export {};
 
 export default function SearchSuggestionItem({
   ImageComponent,
@@ -47,12 +63,12 @@ export default function SearchSuggestionItem({
   thumbnailProps,
   children,
 }) {
-  classes = useStyles({ classes })
+
 
   const { query } = useContext(SearchContext)
 
   return (
-    <li className={classes.root}>
+    <Root className={classes.root}>
       <Link as={item.as} href={item.href} pageData={item.pageData}>
         {children ? (
           children
@@ -74,8 +90,8 @@ export default function SearchSuggestionItem({
           </a>
         )}
       </Link>
-    </li>
-  )
+    </Root>
+  );
 }
 
 SearchSuggestionItem.propTypes = {

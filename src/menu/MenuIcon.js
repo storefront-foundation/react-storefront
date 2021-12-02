@@ -1,11 +1,27 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/styles'
 import { useAmp } from 'next/amp'
 
-export const styles = theme => ({
-  root: {
+const PREFIX = 'RSFMenuIcon';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  active: `${PREFIX}-active`,
+  withLabel: `${PREFIX}-withLabel`,
+  hidden: `${PREFIX}-hidden`,
+  visible: `${PREFIX}-visible`,
+  label: `${PREFIX}-label`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     position: 'relative',
     height: '24px',
     width: '24px',
@@ -72,7 +88,7 @@ export const styles = theme => ({
     },
   },
 
-  active: {
+  [`& .${classes.active}`]: {
     '& .rsf-hamburger .rsf-hamburger-inner': {
       transform: 'translate3d(0, 5px, 0) rotate(45deg)',
     },
@@ -87,38 +103,38 @@ export const styles = theme => ({
     },
   },
 
-  withLabel: {
+  [`& .${classes.withLabel}`]: {
     '& .rsf-hamburger': {
       marginTop: '0',
     },
   },
 
-  hidden: {
+  [`& .${classes.hidden}`]: {
     display: 'none',
   },
 
-  visible: {
+  [`& .${classes.visible}`]: {
     display: 'block',
   },
 
-  label: {
+  [`& .${classes.label}`]: {
     fontSize: '9px',
     lineHeight: '9px',
     fontWeight: 'bold',
     letterSpacing: '0px',
     marginTop: '-3px',
     color: theme.palette.text.secondary,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFMenuIcon' })
+export {};
 
 /**
  * A menu icon that animates transitions between open and closed states.
  */
-export default function MenuIcon({ classes, label, open }) {
+export default function MenuIcon({  label, open }) {
   const amp = useAmp()
-  classes = useStyles({ classes })
+
 
   const renderIcon = open => {
     return (
@@ -141,7 +157,7 @@ export default function MenuIcon({ classes, label, open }) {
 
   if (amp) {
     return (
-      <>
+      (<Root>
         <div
           className={classes.visible}
           amp-bind={`class=>!rsfMenuState.open ? '${classes.visible}' : '${classes.hidden}'`}
@@ -154,8 +170,8 @@ export default function MenuIcon({ classes, label, open }) {
         >
           {renderIcon(true)}
         </div>
-      </>
-    )
+      </Root>)
+    );
   } else {
     return renderIcon(open)
   }

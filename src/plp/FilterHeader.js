@@ -1,14 +1,26 @@
 import React, { useMemo, useContext } from 'react'
+import { styled } from '@mui/material/styles';
 import { Hbox } from '../Box'
-import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import SearchResultsContext from './SearchResultsContext'
 
-const styles = theme => ({
+const PREFIX = 'RSFFilterHeader';
+
+const classes = {
+  header: `${PREFIX}-header`,
+  title: `${PREFIX}-title`,
+  clear: `${PREFIX}-clear`
+};
+
+const StyledHbox = styled(Hbox)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  header: {
+  [`&.${classes.header}`]: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     [theme.breakpoints.down('sm')]: {
       padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
@@ -17,10 +29,11 @@ const styles = theme => ({
       padding: theme.spacing(1, 2, 2, 2),
     },
   },
+
   /**
    * Styles applied to the title element.
    */
-  title: {
+  [`& .${classes.title}`]: {
     [theme.breakpoints.down('sm')]: {
       ...theme.typography.h6,
     },
@@ -30,10 +43,11 @@ const styles = theme => ({
       fontWeight: 'bold',
     },
   },
+
   /**
    * Styles applied to the clear link.
    */
-  clear: {
+  [`& .${classes.clear}`]: {
     ...theme.typography.caption,
     display: 'block',
     border: 'none',
@@ -41,17 +55,15 @@ const styles = theme => ({
     marginLeft: '10px',
     textDecoration: 'underline',
     backgroundColor: 'transparent',
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFFilterHeader' })
+  }
+}));
 
 /**
  * A header to be placed at the top of the [`Filter`](/apiReference/plp/Filter).
  */
 export default function FilterHeader(props) {
   const { title, clearLinkText, hideClearLink, submitOnChange } = props
-  const classes = useStyles(props.classes)
+
   const {
     actions,
     pageData: { filters },
@@ -59,17 +71,17 @@ export default function FilterHeader(props) {
 
   return useMemo(
     () => (
-      <Hbox justify="center" className={classes.header}>
+      <StyledHbox justify="center" className={classes.header}>
         <div className={classes.title}>{title}</div>
         {hideClearLink || !filters || filters.length === 0 ? null : (
           <button onClick={() => actions.clearFilters(submitOnChange)} className={classes.clear}>
             {clearLinkText}
           </button>
         )}
-      </Hbox>
+      </StyledHbox>
     ),
     [filters, ...Object.values(props)],
-  )
+  );
 }
 
 FilterHeader.propTypes = {

@@ -1,41 +1,58 @@
 import React, { useRef, useEffect, useCallback } from 'react'
+import { styled } from '@mui/material/styles';
 import ResizeObserver from 'resize-observer-polyfill'
 import { Drawer as MUIDrawer, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import { useTheme } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import DrawerCloseButton from './DrawerCloseButton'
 
-export const styles = theme => ({
+const PREFIX = 'RSFDrawer';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  closeButton: `${PREFIX}-closeButton`,
+  paper: `${PREFIX}-paper`,
+  fullscreen: `${PREFIX}-fullscreen`,
+  container: `${PREFIX}-container`,
+  header: `${PREFIX}-header`,
+  content: `${PREFIX}-content`,
+  title: `${PREFIX}-title`
+};
+
+const StyledMUIDrawer = styled(MUIDrawer)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {},
+  [`& .${classes.root}`]: {},
 
   /**
    * Styles applied to the close button element.
    */
-  closeButton: {},
+  [`& .${classes.closeButton}`]: {},
 
   /**
    * Styles applied to the drawer's `Paper` component.
    */
-  paper: {
+  [`& .${classes.paper}`]: {
     overflowY: 'visible',
   },
 
   /**
    * Styles applied to the drawer's `Paper` component if [`fullscreen`](#prop-fullscreen) is `true`.
    */
-  fullscreen: {
+  [`& .${classes.fullscreen}`]: {
     height: '100vh',
   },
 
   /**
    * Styles applied to the drawer's wrapper element.
    */
-  container: {
+  [`& .${classes.container}`]: {
     height: '100%',
     boxSizing: 'border-box',
     flexWrap: 'nowrap',
@@ -46,14 +63,14 @@ export const styles = theme => ({
   /**
    * Styles applied to the drawer's header element.
    */
-  header: {
+  [`& .${classes.header}`]: {
     position: 'relative',
   },
 
   /**
    * Styles applied to the wrapper around the drawer's children.
    */
-  content: {
+  [`& .${classes.content}`]: {
     flexBasis: '100%',
     overflow: 'auto',
   },
@@ -61,7 +78,7 @@ export const styles = theme => ({
   /**
    * Styles applied to the drawer's title element.
    */
-  title: {
+  [`& .${classes.title}`]: {
     flexBasis: 'auto',
     flexGrow: 0,
     flexShrink: 1,
@@ -70,10 +87,10 @@ export const styles = theme => ({
     lineHeight: '72px',
     textAlign: 'center',
     borderBottom: `1px solid ${theme.palette.divider}`,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFDrawer' })
+export {};
 
 /**
  * A slide-in drawer with fab close button.
@@ -92,7 +109,7 @@ export default function Drawer({
   fullscreen,
   ...rest
 }) {
-  classes = useStyles({ classes })
+
 
   const theme = useTheme()
   const drawer = useRef(null)
@@ -135,7 +152,7 @@ export default function Drawer({
   }, [])
 
   return (
-    <MUIDrawer
+    <StyledMUIDrawer
       elevation={2}
       anchor={anchor}
       style={{
@@ -174,8 +191,8 @@ export default function Drawer({
         </div>
         <div className={classes.content}>{children}</div>
       </div>
-    </MUIDrawer>
-  )
+    </StyledMUIDrawer>
+  );
 }
 Drawer.propTypes = {
   /**

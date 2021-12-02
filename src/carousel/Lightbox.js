@@ -1,24 +1,32 @@
 import { useTheme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types'
 import React from 'react'
-import { makeStyles } from '@mui/styles'
 import Close from '@mui/icons-material/Close'
 import { Dialog, DialogActions, DialogContent, IconButton, Zoom } from '@mui/material'
 
-const Transition = React.forwardRef((props, ref) => {
-  return <Zoom duration={500} ref={ref} {...props} />
-})
+const PREFIX = 'RSFLightbox';
 
-const styles = theme => ({
+const classes = {
+  root: `${PREFIX}-root`,
+  content: `${PREFIX}-content`,
+  paper: `${PREFIX}-paper`
+};
+
+const StyledDialog = styled(Dialog)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {},
+  [`&.${classes.root}`]: {},
 
   /**
    * Styles applied to the content element of the modal.
    */
-  content: {
+  [`& .${classes.content}`]: {
     padding: 0,
     display: 'flex',
     flexDirection: 'column',
@@ -28,24 +36,26 @@ const styles = theme => ({
    * Styles passed through to the `paper` CSS rule of the [`Dialog`](https://mui.com/api/dialog/#css)
    * root element.
    */
-  paper: {
+  [`& .${classes.paper}`]: {
     flex: 1,
     background: 'rgba(255,255,255,0.9)',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFLightbox' })
+const Transition = React.forwardRef((props, ref) => {
+  return <Zoom duration={500} ref={ref} {...props} />
+})
 
 /**
  * A modal that opens to give a full-screen view of the elements within a
  * [`Carousel`](/apiReference/carousel/Carousel).
  */
-function Lightbox({ classes, children, onClose, open, TransitionComponent }) {
-  classes = useStyles({ classes })
+function Lightbox({  children, onClose, open, TransitionComponent }) {
+
   const theme = useTheme()
 
   return (
-    <Dialog
+    <StyledDialog
       open={open}
       fullScreen
       classes={{
@@ -61,8 +71,8 @@ function Lightbox({ classes, children, onClose, open, TransitionComponent }) {
         </IconButton>
       </DialogActions>
       <DialogContent className={classes.content}>{children}</DialogContent>
-    </Dialog>
-  )
+    </StyledDialog>
+  );
 }
 
 Lightbox.propTypes = {

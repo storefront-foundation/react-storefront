@@ -1,14 +1,26 @@
 import React from 'react'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 import SearchSuggestionItem from './SearchSuggestionItem'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchSuggestionGroup';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  caption: `${PREFIX}-caption`,
+  list: `${PREFIX}-list`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     listStyle: 'none',
     margin: theme.spacing(2),
     '& a strong': {
@@ -16,20 +28,22 @@ export const styles = theme => ({
       color: 'inherit',
     },
   },
+
   /**
    * Styles applied to the group's caption element.
    */
-  caption: {
+  [`& .${classes.caption}`]: {
     textTransform: 'uppercase',
     fontWeight: 'bold',
     paddingBottom: 5,
     borderBottom: `1px solid ${theme.palette.divider}`,
     margin: theme.spacing(0, 0, 1, 0),
   },
+
   /**
    * Styles applied to the group's list element.
    */
-  list: {
+  [`& .${classes.list}`]: {
     '&[data-ui=list]': {
       padding: 0,
       margin: theme.spacing(0, 0, 4, 0),
@@ -44,24 +58,24 @@ export const styles = theme => ({
         margin: '5px',
       },
     },
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFSearchSuggestionGroup' })
+export {};
 
-export default function SearchSuggestionGroup({ classes, ui, caption, links, children }) {
-  classes = useStyles({ classes })
+export default function SearchSuggestionGroup({  ui, caption, links, children }) {
+
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <Typography className={classes.caption}>{caption}</Typography>
       <ul className={classes.list} data-ui={ui}>
         {children
           ? children
           : links.map((item, i) => <SearchSuggestionItem item={item} ui={ui} key={i} />)}
       </ul>
-    </div>
-  )
+    </Root>
+  );
 }
 
 SearchSuggestionGroup.propTypes = {

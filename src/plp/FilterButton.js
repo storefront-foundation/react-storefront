@@ -1,29 +1,40 @@
 import React, { useState, useCallback, memo, useContext } from 'react'
+import { styled } from '@mui/material/styles';
 import ActionButton from '../ActionButton'
 import SearchResultsContext from './SearchResultsContext'
 import Filter from './Filter'
 import PropTypes from 'prop-types'
 import Drawer from '../drawer/Drawer'
-import { makeStyles } from '@mui/styles'
 import { useRouter } from 'next/router'
 
-export const styles = theme => ({
+const PREFIX = 'RSFFilterButton';
+
+const classes = {
+  drawer: `${PREFIX}-drawer`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the drawer element.
    */
-  drawer: {
+  [`& .${classes.drawer}`]: {
     height: '75vh',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFFilterButton' })
+export {};
 
 /**
  * A button that when clicked, opens a drawer containing the `Filter` view. Current filters
  * are displayed in the button text.
  */
-function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) {
-  classes = useStyles({ classes })
+function FilterButton({  title, drawerProps, onClick, href, ...props }) {
+
 
   const {
     pageData: { filters, facets },
@@ -33,7 +44,7 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
   const openFilter = useRouter().query.openFilter === '1'
   const [state, setState] = useState({ open: openFilter, mountDrawer: openFilter })
   const { open, mountDrawer } = state
-  const { clear, clearDisabled, drawer, ...buttonClasses } = useStyles(classes)
+
 
   const toggleOpen = open => {
     setState({ ...state, open, mountDrawer: mountDrawer || true })
@@ -72,7 +83,7 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
   }
 
   return (
-    <>
+    (<Root>
       <ActionButton
         label={title}
         href={href}
@@ -94,8 +105,8 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
           {mountDrawer && <Filter onViewResultsClick={handleViewResultsClick} {...drawerProps} />}
         </Drawer>
       )}
-    </>
-  )
+    </Root>)
+  );
 }
 
 FilterButton.propTypes = {

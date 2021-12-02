@@ -1,47 +1,68 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import { Add, Remove } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-export const styles = theme => ({
+const PREFIX = 'RSFQuantitySelector';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  icon: `${PREFIX}-icon`,
+  button: `${PREFIX}-button`,
+  subtract: `${PREFIX}-subtract`,
+  add: `${PREFIX}-add`,
+  input: `${PREFIX}-input`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`& .${classes.root}`]: {
     backgroundColor: theme.palette.divider,
     border: 'none',
     width: '110px',
     padding: 0,
   },
+
   /**
    * Styles applied to the icon elements.
    */
-  icon: {
+  [`& .${classes.icon}`]: {
     fontSize: '1.3125rem',
     position: 'relative',
   },
+
   /**
    * Styles applied to the icon button elements.
    */
-  button: {
+  [`& .${classes.button}`]: {
     height: '36px',
     width: '36px',
     padding: 0,
   },
+
   /**
    * Styles applied to the subtract icon button element.
    */
-  subtract: { marginRight: theme.spacing(-4.5) },
+  [`& .${classes.subtract}`]: { marginRight: theme.spacing(-4.5) },
+
   /**
    * Styles applied to the add icon button element.
    */
-  add: { marginLeft: theme.spacing(-4.5) },
+  [`& .${classes.add}`]: { marginLeft: theme.spacing(-4.5) },
+
   /**
    * Styles applied to the text input element.
    */
-  input: {
+  [`& .${classes.input}`]: {
     width: 100,
     color: theme.palette.text.primary,
     backgroundColor: theme.palette.grey[200],
@@ -53,10 +74,10 @@ export const styles = theme => ({
     '&::before': {
       display: 'none',
     },
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFQuantitySelector' })
+export {};
 
 /**
  * A quantity selector with plus and minus buttons.
@@ -75,7 +96,7 @@ export default function QuantitySelector({
   inputProps,
   ariaLabel,
 }) {
-  classes = useStyles({ classes })
+
   const { quantitySelector, icon, button, ...inputClasses } = classes
 
   if (!value) value = 1
@@ -87,7 +108,7 @@ export default function QuantitySelector({
   }
 
   return (
-    <>
+    (<Root>
       <IconButton
         size="small"
         classes={{ root: button }}
@@ -96,7 +117,7 @@ export default function QuantitySelector({
         aria-label={`add one ${ariaLabel}`}
         {...subtractButtonProps}
       >
-        {subtractIcon || <Remove classes={{ root: icon }} />}
+        {subtractIcon || <Remove {{ root: icon }} />}
       </IconButton>
       <input
         onChange={handleChange}
@@ -115,10 +136,10 @@ export default function QuantitySelector({
         aria-label={`subtract one ${ariaLabel}`}
         {...addButtonProps}
       >
-        {addIcon || <Add classes={{ root: icon }} />}
+        {addIcon || <Add {{ root: icon }} />}
       </IconButton>
-    </>
-  )
+    </Root>)
+  );
 }
 
 QuantitySelector.propTypes = {

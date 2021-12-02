@@ -1,22 +1,28 @@
 import React, { useContext, useState } from 'react'
+import { styled } from '@mui/material/styles';
 import ReactVisibilitySensor from 'react-visibility-sensor'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/styles'
 import PWAContext from './PWAContext'
 import PropTypes from 'prop-types'
 import { useAmp } from 'next/amp'
 
-export const styles = () => ({
+const PREFIX = 'RSFLazy';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const StyledReactVisibilitySensor = styled(ReactVisibilitySensor)(() => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`& .${classes.root}`]: {
     minHeight: 1,
     minWidth: 1,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFLazy' })
+export {};
 
 /**
  * Defers the rendering of children until the component is visible in the viewport. When
@@ -33,11 +39,11 @@ const useStyles = makeStyles(styles, { name: 'RSFLazy' })
  * </Lazy>
  * ```
  */
-export default function Lazy({ ssrOnly, className, classes, children, ...otherProps }) {
+export default function Lazy({ ssrOnly, className,  children, ...otherProps }) {
   const amp = useAmp()
   const { hydrating } = useContext(PWAContext)
   const [visible, setVisible] = useState(amp || (ssrOnly && !hydrating))
-  classes = useStyles({ classes })
+
 
   function onChange(v) {
     if (!visible && v) {
@@ -46,12 +52,12 @@ export default function Lazy({ ssrOnly, className, classes, children, ...otherPr
   }
 
   return (
-    <ReactVisibilitySensor onChange={onChange} active={!visible} partialVisibility>
+    <StyledReactVisibilitySensor onChange={onChange} active={!visible} partialVisibility>
       <div className={clsx(classes.root, className)} {...otherProps}>
         {visible && children}
       </div>
-    </ReactVisibilitySensor>
-  )
+    </StyledReactVisibilitySensor>
+  );
 }
 
 Lazy.propTypes = {

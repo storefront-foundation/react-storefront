@@ -1,35 +1,47 @@
 import React, { memo, forwardRef, useContext } from 'react'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles';
 import { Button, MenuItem } from '@mui/material'
 import PropTypes from 'prop-types'
 import SearchResultsContext from './SearchResultsContext'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSort';
+
+const classes = {
+  container: `${PREFIX}-container`,
+  option: `${PREFIX}-option`
+};
+
+const StyledSort = styled(Sort)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root container if [`variant`](#prop-variant) is `'buttons'`.
    */
-  container: {
+  [`& .${classes.container}`]: {
     padding: '15px 0 0 15px',
   },
+
   /**
    * Styles applied to each option if [`variant`](#prop-variant) is `'buttons'`.
    */
-  option: {
+  [`& .${classes.option}`]: {
     boxShadow: 'none',
     width: 'calc(50% - 15px)',
     margin: '0 15px 15px 0',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFSort' })
+export {};
 
 /**
  * UI for sorting a list of products.  This component can be used on its own, or you can use
  * [`SortButton`](/apiReference/plp/SortButton) to automatically display this component in a drawer
  * that slides up from the bottom of the viewport.
  */
-function Sort({ variant, classes, onSelect }) {
-  classes = useStyles({ classes })
+function Sort({ variant,  onSelect }) {
+
 
   const {
     pageData: { sort, sortOptions },
@@ -104,4 +116,4 @@ Sort.defaultProps = {
   variant: 'buttons',
 }
 
-export default memo(forwardRef((props, ref) => <Sort {...props} />))
+export default memo(forwardRef((props, ref) => <StyledSort {...props} />))

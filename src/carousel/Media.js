@@ -1,20 +1,31 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React from 'react'
 import Image from '../Image'
 import ReactImageMagnify from 'react-image-magnify'
 import clsx from 'clsx'
-import { makeStyles } from '@mui/styles'
+const PREFIX = 'Media';
 
-const useStyles = makeStyles(theme => ({
-  rimRoot: {
+const classes = {
+  rimRoot: `${PREFIX}-rimRoot`,
+  rimSmallImage: `${PREFIX}-rimSmallImage`
+};
+
+const Root = styled('ideo')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.rimRoot}`]: {
     height: '100% !important',
     width: '100% !important',
   },
-  rimSmallImage: {
+
+  [`& .${classes.rimSmallImage}`]: {
     height: '100% !important',
     width: '100% !important',
-  },
-}))
+  }
+}));
 
 /**
  * An element that determines the proper tag to use for a media node within a
@@ -32,7 +43,7 @@ function Media({
   ImageComponent,
   ImageMagnifyComponent,
 }) {
-  const classes = useStyles()
+
 
   const adjustMagnifyProps = () => {
     const appliedMagnifyProps = { ...(magnifyProps || {}) }

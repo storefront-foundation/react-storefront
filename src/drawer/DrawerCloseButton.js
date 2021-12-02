@@ -1,15 +1,28 @@
 import React from 'react'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Clear as ClearIcon } from '@mui/icons-material'
 import { Fab, IconButton, Button } from '@mui/material'
 
-export const styles = theme => ({
+const PREFIX = 'RSFDrawerCloseButton';
+
+const classes = {
+  button: `${PREFIX}-button`,
+  buttonText: `${PREFIX}-buttonText`,
+  buttonFab: `${PREFIX}-buttonFab`,
+  hidden: `${PREFIX}-hidden`
+};
+
+const StyledButtonElement = styled(ButtonElement)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  button: {
+  [`&.${classes.button}`]: {
     color: '#999',
     alignSelf: 'flex-end',
     position: 'absolute',
@@ -21,33 +34,36 @@ export const styles = theme => ({
       fontWeight: 'bold',
     },
   },
+
   /**
    * Styles applied to the root element, if [`text`](#prop-text) is defined.
    */
-  buttonText: {
+  [`&.${classes.buttonText}`]: {
     border: `1px solid #999`,
     margin: '0 0 10px 0',
   },
+
   /**
    * Styles applied to the root element, if [`text`](#prop-text) is not defined and
    * [`fullscreen`](#prop-fullscreen) is `false`.
    */
-  buttonFab: {
+  [`&.${classes.buttonFab}`]: {
     position: 'absolute',
     right: '10px',
     top: '-28px',
     zIndex: 1,
     color: 'white',
   },
+
   /**
    * Styles applied to hide the `Fab` button when [`open`](#prop-open) is `false`.
    */
-  hidden: {
+  [`& .${classes.hidden}`]: {
     display: 'none',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFDrawerCloseButton' })
+export {};
 
 /**
  * A close button for drawers that can display text or an icon.
@@ -63,7 +79,7 @@ export default function DrawerCloseButton({
   open,
   ...others
 }) {
-  classes = useStyles({ classes })
+
 
   let ButtonElement
 
@@ -80,7 +96,7 @@ export default function DrawerCloseButton({
   }
 
   return (
-    <ButtonElement
+    <StyledButtonElement
       color="primary"
       on={`tap:AMP.setState({ ${ampState}: { open: false } })`}
       className={clsx(className, {
@@ -92,8 +108,8 @@ export default function DrawerCloseButton({
       {...others}
     >
       {text || <Icon />}
-    </ButtonElement>
-  )
+    </StyledButtonElement>
+  );
 }
 
 DrawerCloseButton.propTypes = {

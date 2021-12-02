@@ -1,33 +1,45 @@
 import React, { useContext, memo } from 'react'
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/styles'
 import FacetGroup from './FacetGroup'
 import FilterHeader from './FilterHeader'
 import FilterFooter from './FilterFooter'
 import SearchResultsContext from './SearchResultsContext'
 
-export const styles = theme => ({
+const PREFIX = 'RSFFilter';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  facetGroups: `${PREFIX}-facetGroups`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
   },
+
   /**
    * Styles applied to the wrapper element around the facet groups.
    */
-  facetGroups: {
+  [`& .${classes.facetGroups}`]: {
     overflow: 'auto',
     overflowX: 'hidden',
     flex: '1',
     position: 'relative',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFFilter' })
+export {};
 
 /**
  * UI for filtering a list of products.  This component can be used on its own, or you can use
@@ -44,14 +56,14 @@ function Filter({
   title,
   onViewResultsClick,
 }) {
-  classes = useStyles({ classes })
+
 
   const {
     pageData: { facets },
   } = useContext(SearchResultsContext)
 
   return (
-    <div style={style} className={classes.root}>
+    <Root style={style} className={classes.root}>
       <FilterHeader
         hideClearLink={hideClearLink}
         clearLinkText={clearLinkText}
@@ -70,8 +82,8 @@ function Filter({
           ))}
       </div>
       <FilterFooter onViewResultsClick={onViewResultsClick} submitOnChange={submitOnChange} />
-    </div>
-  )
+    </Root>
+  );
 }
 
 Filter.propTypes = {

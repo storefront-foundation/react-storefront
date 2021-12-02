@@ -1,16 +1,28 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import { KeyboardArrowRight as ArrowRight } from '@mui/icons-material'
 import Link from './link/Link'
 import clsx from 'clsx'
 import { Typography, Container } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 
-export const styles = theme => ({
+const PREFIX = 'Breadcrumbs';
+
+const classes = {
+  breadcrumbs: `${PREFIX}-breadcrumbs`,
+  separator: `${PREFIX}-separator`,
+  current: `${PREFIX}-current`
+};
+
+const StyledTypography = styled(Typography)((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  breadcrumbs: {
+  [`&.${classes.breadcrumbs}`]: {
     backgroundColor: '#F4F2F1',
     padding: '12px 0',
 
@@ -23,7 +35,7 @@ export const styles = theme => ({
   /**
    * Styles applied to the separators.
    */
-  separator: {
+  [`& .${classes.separator}`]: {
     height: '12px',
     position: 'relative',
     top: '2px',
@@ -33,19 +45,19 @@ export const styles = theme => ({
   /**
    * Styles applied to the currently active breadcrumb's element.
    */
-  current: {
+  [`& .${classes.current}`]: {
     fontWeight: 'bold',
     color: theme.palette.text.primary,
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, 'RSFBreadcrumbs')
+export {};
 
-export default function Breadcrumbs({ items, classes }) {
-  classes = useStyles({ classes })
+export default function Breadcrumbs({ items, }) {
+
 
   return (
-    <Typography display="block" className={classes.breadcrumbs} variant="caption">
+    <StyledTypography display="block" className={classes.breadcrumbs} variant="caption">
       <Container>
         {items &&
           items.map((item, i) => {
@@ -72,8 +84,8 @@ export default function Breadcrumbs({ items, classes }) {
           })}
         <span>&nbsp;</span>
       </Container>
-    </Typography>
-  )
+    </StyledTypography>
+  );
 }
 
 Breadcrumbs.propTypes = {

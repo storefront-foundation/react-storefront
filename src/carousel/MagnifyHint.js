@@ -1,16 +1,35 @@
 import { useAmp } from 'next/amp'
+import { styled } from '@mui/material/styles';
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/styles'
 import { Typography } from '@mui/material'
 import { AddCircleOutline as Icon } from '@mui/icons-material'
 import clsx from 'clsx'
 
-const styles = theme => ({
+const PREFIX = 'RSFMagnifyHint';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  wrap: `${PREFIX}-wrap`,
+  icon: `${PREFIX}-icon`,
+  text: `${PREFIX}-text`,
+  over: `${PREFIX}-over`,
+  zoomDisabled: `${PREFIX}-zoomDisabled`,
+  expandDisabled: `${PREFIX}-expandDisabled`,
+  zoomTextDesktop: `${PREFIX}-zoomTextDesktop`,
+  expandTextMobile: `${PREFIX}-expandTextMobile`,
+  expandTextDesktop: `${PREFIX}-expandTextDesktop`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     position: 'absolute',
     bottom: 30,
     display: 'flex',
@@ -18,10 +37,11 @@ const styles = theme => ({
     justifyContent: 'center',
     width: '100%',
   },
+
   /**
    * Styles applied to the content wrapper element.
    */
-  wrap: {
+  [`& .${classes.wrap}`]: {
     borderRadius: 25,
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
     lineHeight: 14,
@@ -30,35 +50,40 @@ const styles = theme => ({
     flexDirection: 'row',
     alignItems: 'center',
   },
+
   /**
    * Styles applied to the magnification icon element.
    */
-  icon: {
+  [`& .${classes.icon}`]: {
     height: 16,
     width: 16,
     color: theme.palette.grey[300],
   },
+
   /**
    * Styles applied to the elements containing each of the text captions.
    */
-  text: {
+  [`& .${classes.text}`]: {
     marginLeft: 5,
     color: theme.palette.grey[300],
     position: 'relative',
     top: 1,
   },
+
   /**
    * Styles applied to the root element when [`over`](#prop-over) is `true`.
    */
-  over: {},
+  [`&.${classes.over}`]: {},
+
   /**
    * Styles applied to the root element when [`zoomDisabled`](#prop-zoomDisabled) is `true`.
    */
-  zoomDisabled: {},
+  [`&.${classes.zoomDisabled}`]: {},
+
   /**
    * Styles applied to the root element when [`expandDisabled`](#prop-expandDisabled) is `true`.
    */
-  expandDisabled: {
+  [`&.${classes.expandDisabled}`]: {
     // hide the whole component when:
     // - both zoom and expand are disabled
     // - expand is disabled and user is mobile
@@ -69,10 +94,11 @@ const styles = theme => ({
       display: 'none',
     },
   },
+
   /**
    * Styles applied to the element containing the [zoomTextDesktop](#prop-zoomTextDesktop) caption.
    */
-  zoomTextDesktop: {
+  [`& .${classes.zoomTextDesktop}`]: {
     display: 'block',
     // hide zoom text when:
     // - hovering + expand is enabled
@@ -85,19 +111,21 @@ const styles = theme => ({
       display: 'none',
     },
   },
+
   /**
    * Styles applied to the element containing the [expandTextMobile](#prop-expandTextMobile) caption.
    */
-  expandTextMobile: {
+  [`& .${classes.expandTextMobile}`]: {
     display: 'none',
     '@media (hover: none) and (pointer: coarse)': {
       display: 'block',
     },
   },
+
   /**
    * Styles applied to the element containing the [expandTextDesktop](#prop-expandTextDesktop) caption.
    */
-  expandTextDesktop: {
+  [`& .${classes.expandTextDesktop}`]: {
     display: 'none',
 
     '$over:not($expandDisabled) &, $zoomDisabled &': {
@@ -106,10 +134,8 @@ const styles = theme => ({
         display: 'none',
       },
     },
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFMagnifyHint' })
+  }
+}));
 
 /**
  * An element overlaid on a [`Carousel`](/apiReference/carousel/Carousel) that displays a tip for a
@@ -124,11 +150,11 @@ export default function MagnifyHint({
   disableZoom,
   disableExpand,
 }) {
-  const classes = useStyles()
+
   disableZoom = disableZoom || useAmp()
 
   return (
-    <div
+    <Root
       className={clsx(className, {
         [classes.root]: true,
         [classes.over]: over,
@@ -148,8 +174,8 @@ export default function MagnifyHint({
           {expandTextDesktop}
         </Typography>
       </div>
-    </div>
-  )
+    </Root>
+  );
 }
 
 MagnifyHint.propTypes = {

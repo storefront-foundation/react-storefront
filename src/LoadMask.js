@@ -1,14 +1,28 @@
 import React, { useEffect } from 'react'
+import { styled } from '@mui/material/styles';
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/styles'
 import { CircularProgress } from '@mui/material'
 
-export const styles = theme => ({
+const PREFIX = 'RSFLoadMask';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  fullscreen: `${PREFIX}-fullscreen`,
+  transparent: `${PREFIX}-transparent`,
+  alignTop: `${PREFIX}-alignTop`,
+  show: `${PREFIX}-show`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -20,10 +34,11 @@ export const styles = theme => ({
     background: theme.palette.background.default,
     zIndex: 1,
   },
+
   /**
    * Styles applied to the root element when [`fullscreen`](#prop-fullscreen) is `true`.
    */
-  fullscreen: {
+  [`&.${classes.fullscreen}`]: {
     height: `calc(100vh - ${theme.loadMaskOffsetTop}px)`,
     bottom: 'initial',
     zIndex: theme.zIndex.modal - 20,
@@ -33,28 +48,31 @@ export const styles = theme => ({
       opacity: 0.8,
     },
   },
+
   /**
    * Styles applied to the root element when [`transparent`](#prop-transparent) is `true`.
    */
-  transparent: {
+  [`&.${classes.transparent}`]: {
     backgroundColor: 'rgba(255,255,255,0.5)',
   },
+
   /**
    * Styles applied to the root element when [`align`](#prop-align) is `'top'`.
    */
-  alignTop: {
+  [`&.${classes.alignTop}`]: {
     alignItems: 'flex-start',
     paddingTop: '200px',
   },
+
   /**
    * Styles applied to the root element when [`show`](#prop-show) is `true`.
    */
-  show: {
+  [`&.${classes.show}`]: {
     display: 'flex',
-  },
-})
+  }
+}));
 
-const useStyles = makeStyles(styles, { name: 'RSFLoadMask' })
+export {};
 
 /**
  * A load mask to display when fetching data from the server.
@@ -69,7 +87,7 @@ export default function LoadMask({
   transparent,
   align,
 }) {
-  classes = useStyles({ classes })
+
 
   useEffect(() => {
     if (fullscreen) {
@@ -84,7 +102,7 @@ export default function LoadMask({
   })
 
   return (
-    <div
+    <Root
       style={style}
       className={clsx(className, classes.root, {
         [classes.show]: show !== false,
@@ -94,8 +112,8 @@ export default function LoadMask({
       })}
     >
       {children || <CircularProgress className={classes.progress} color="secondary" />}
-    </div>
-  )
+    </Root>
+  );
 }
 
 LoadMask.propTypes = {

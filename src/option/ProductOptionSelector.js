@@ -1,20 +1,32 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/styles'
 import clsx from 'clsx'
 import ProductOption from './ProductOption'
 
-export const styles = theme => ({
-  root: {
+const PREFIX = 'RSFProductOptionSelector';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  button: `${PREFIX}-button`
+};
+
+const StyledImage = styled(Image)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  button: {
-    margin: theme.spacing(0, 0.5, 0.5, 0),
-  },
-})
 
-const useStyles = makeStyles(styles, { name: 'RSFProductOptionSelector' })
+  [`& .${classes.button}`]: {
+    margin: theme.spacing(0, 0.5, 0.5, 0),
+  }
+}));
+
+export {};
 
 /**
  * A selector for product options rendered as a set of buttons. Buttons can either have
@@ -35,7 +47,7 @@ export default function ProductOptionSelector({
   strikeThroughDisabled,
   OptionComponent,
 }) {
-  classes = useStyles({ classes })
+
 
   if (skeleton) {
     options = new Array(skeleton).fill(0).map((_item, i) => ({ id: i, text: '' }))

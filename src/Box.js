@@ -1,28 +1,39 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@mui/styles'
+const PREFIX = 'Box';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  split: `${PREFIX}-split`
+};
+
+const StyledBox = styled(Box)((
+  {
+    theme
+  }
+) => ({
+  /**
+   * Styles applied to the root element.
+   */
+  [`& .${classes.root}`]: {
+    display: 'flex',
+  },
+
+  /**
+   * Styles applied to the root element if [`split`](#prop-split) is `true`.
+   */
+  [`& .${classes.split}`]: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }
+}));
 
 /**
  * A flex container.  All additional props are spread to the style of the underlying div.
  */
-export const styles = theme => ({
-  /**
-   * Styles applied to the root element.
-   */
-  root: {
-    display: 'flex',
-  },
-  /**
-   * Styles applied to the root element if [`split`](#prop-split) is `true`.
-   */
-  split: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-})
-
-const useStyles = makeStyles(styles, 'RSFBox')
+export {};
 
 export default function Box({
   className,
@@ -34,7 +45,7 @@ export default function Box({
   justify,
   ...other
 }) {
-  classes = useStyles({ classes })
+
 
   return (
     <div
@@ -89,7 +100,7 @@ Box.defaultProps = {
  */
 export function Hbox(props) {
   props = { ...props, flexDirection: 'row' }
-  return <Box {...props} />
+  return <StyledBox {...props} />;
 }
 
 Hbox.propTypes = {

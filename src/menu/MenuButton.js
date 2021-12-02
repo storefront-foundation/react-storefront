@@ -1,18 +1,28 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import { Hidden } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import ToolbarButton from '../ToolbarButton'
 import MenuIcon from './MenuIcon'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-export const styles = theme => ({
-  link: {
-    textDecoration: 'none',
-  },
-})
+const PREFIX = 'RSFMenuButton';
 
-const useStyles = makeStyles(styles, { name: 'RSFMenuButton' })
+const classes = {
+  link: `${PREFIX}-link`
+};
+
+const StyledHidden = styled(Hidden)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.link}`]: {
+    textDecoration: 'none',
+  }
+}));
+
+export {};
 
 /**
  * The button that controls that opens and closes the main app menu.
@@ -26,10 +36,10 @@ export default function MenuButton({
   className,
   style,
 }) {
-  classes = useStyles({ classes })
+
 
   return (
-    <Hidden mdUp implementation="css" key="menuButton">
+    <StyledHidden mdUp implementation="css" key="menuButton">
       <a
         on="tap:AMP.setState({ rsfMenuState: { open: !rsfMenuState.open, list: '@' } }), rsfMenu.toggle"
         className={clsx(classes.link, className)}
@@ -42,8 +52,8 @@ export default function MenuButton({
           icon={<MenuIcon open={open} {...menuIconProps} />}
         />
       </a>
-    </Hidden>
-  )
+    </StyledHidden>
+  );
 }
 
 MenuButton.propTypes = {

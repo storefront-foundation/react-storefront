@@ -1,38 +1,50 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React, { useMemo, useContext } from 'react'
 import SearchResultsContext from './SearchResultsContext'
-import { makeStyles } from '@mui/styles'
 import SwatchProductOption from '../option/SwatchProductOption'
 import TextProductOption from '../option/TextProductOption'
 import { Hbox } from '../Box'
 
-const styles = theme => ({
+const PREFIX = 'RSFButtonFilterGroup';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  matches: `${PREFIX}-matches`,
+  button: `${PREFIX}-button`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     display: 'flex',
     flexWrap: 'wrap',
   },
+
   /**
    * Styles applied to the matching text.
    */
-  matches: {
+  [`& .${classes.matches}`]: {
     display: 'inline',
     ...theme.typography.caption,
     marginLeft: 2,
     color: theme.palette.grey[700],
   },
+
   /**
    * Styles applied to each button element.
    */
-  button: {
+  [`& .${classes.button}`]: {
     fontWeight: 'normal',
     margin: theme.spacing(0, 0.5, 0.5, 0),
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFButtonFilterGroup' })
+  }
+}));
 
 /**
  * A UI for grouping filters using buttons.
@@ -44,11 +56,11 @@ export default function ButtonFilterGroup(props) {
     actions: { toggleFilter },
   } = useContext(SearchResultsContext)
 
-  const classes = useStyles(props.classes)
+
 
   return useMemo(
     () => (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         {group.options.map((facet, i) => {
           const selected = filters.indexOf(facet.code) !== -1
           const { image, matches, name } = facet
@@ -71,10 +83,10 @@ export default function ButtonFilterGroup(props) {
             />
           )
         })}
-      </div>
+      </Root>
     ),
     [filters, ...Object.values(props)],
-  )
+  );
 }
 
 ButtonFilterGroup.propTypes = {

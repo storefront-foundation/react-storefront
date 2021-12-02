@@ -1,9 +1,55 @@
 import React, { useRef } from 'react'
+import { styled } from '@mui/material/styles';
 import { ImageListItem } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import AutoScrollToNewChildren from './AutoScrollToNewChildren'
+
+const PREFIX = 'ResponsiveTiles';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  tile: `${PREFIX}-tile`
+};
+
+const Root = styled('ul')((
+  {
+    theme
+  }
+) => {
+  let breakpoints = {}
+
+  // Breakpoints MUST be set in order from smallest to largest
+  Object.keys(cols)
+    .map(width => {
+      return {
+        key: width,
+        value: cols[width],
+        width: `${100 / cols[width]}%`,
+      }
+    })
+    .sort((a, b) => a.value - b.value)
+    .forEach(({ key, width }) => {
+      breakpoints[theme.breakpoints.up(key)] = { width }
+    })
+
+  return {
+    [`&.${classes.root}`]: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      overflowY: 'auto',
+      listStyle: 'none',
+      padding: 0,
+      margin: theme.spacing(-spacing),
+      WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    },
+    [`& .${classes.tile}`]: {
+      ...breakpoints,
+      padding: theme.spacing(spacing),
+      height: 'auto',
+    },
+  };
+});
 
 /**
  * A responsive grid of tiles that changes the number of columns based on the viewport size.
@@ -61,41 +107,6 @@ ResponsiveTiles.defaultProps = {
 }
 
 function createTiles({ cols, spacing }) {
-  const useStyles = makeStyles(theme => {
-    let breakpoints = {}
-
-    // Breakpoints MUST be set in order from smallest to largest
-    Object.keys(cols)
-      .map(width => {
-        return {
-          key: width,
-          value: cols[width],
-          width: `${100 / cols[width]}%`,
-        }
-      })
-      .sort((a, b) => a.value - b.value)
-      .forEach(({ key, width }) => {
-        breakpoints[theme.breakpoints.up(key)] = { width }
-      })
-
-    return {
-      root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        overflowY: 'auto',
-        listStyle: 'none',
-        padding: 0,
-        margin: theme.spacing(-spacing),
-        WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-      },
-      tile: {
-        ...breakpoints,
-        padding: theme.spacing(spacing),
-        height: 'auto',
-      },
-    }
-  }, 'RSFResponsiveTiles')
-
   function maybeWrapInAutoScroll(doWrap) {
     return function(elements) {
       if (doWrap) {
@@ -106,11 +117,11 @@ function createTiles({ cols, spacing }) {
     }
   }
 
-  return function Tiles({ className, classes, autoScrollToNewTiles, children, ...other }) {
-    classes = useStyles({ classes })
+  return function Tiles({ className,  autoScrollToNewTiles, children, ...other }) {
+
 
     return (
-      <ul className={clsx(className, classes.root)} {...other}>
+      <Root className={clsx(className, classes.root)} {...other}>
         {maybeWrapInAutoScroll(autoScrollToNewTiles)(
           React.Children.map(children, (child, i) => {
             if (!React.isValidElement(child)) {
@@ -123,7 +134,7 @@ function createTiles({ cols, spacing }) {
             )
           }),
         )}
-      </ul>
-    )
-  }
+      </Root>
+    );
+  };
 }

@@ -1,22 +1,31 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles';
 import React from 'react'
-import { makeStyles } from '@mui/styles'
+const PREFIX = 'RSFSpacer';
+
+const classes = {
+ root: `${PREFIX}-root`
+};
+
+const Root = styled('div')((
+ {
+  theme
+ }
+) => ({
+ /**
+  * Styles applied to the root element.
+  */
+ [`&.${classes.root}`]: {
+   flex: 1,
+ }
+}));
 
 /**
  * Renders a simple div with flex: 1 to be used as a spacer.  Since this is a
  * common case, the main purposed of this class is to minimize the amount of
  * css generated for an app.
  */
-export const styles = theme => ({
-  /**
-   * Styles applied to the root element.
-   */
-  root: {
-    flex: 1,
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFSpacer' })
+export {};
 
 /**
  * Renders a simple div with flex: 1 to be used as a spacer.  Since this is a
@@ -24,8 +33,8 @@ const useStyles = makeStyles(styles, { name: 'RSFSpacer' })
  * css generated for an app.
  */
 export default function Spacer(props) {
-  const classes = useStyles(props)
-  return <div className={classes.root} />
+
+  return <Root className={classes.root} />;
 }
 
 Spacer.propTypes = {
