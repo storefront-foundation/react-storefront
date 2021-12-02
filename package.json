@@ -68,7 +68,6 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.2.2",
-    "@mui/styles": "^5.2.2",
     "@storybook/addon-knobs": "^5.3.13",
     "@storybook/react": "^5.2.6",
     "@svgr/webpack": "^4.3.3",
