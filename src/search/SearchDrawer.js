@@ -11,30 +11,27 @@ const classes = {
   closeButton: `${PREFIX}-closeButton`
 };
 
-const StyledDrawerComponent = styled(DrawerComponent)((
-  {
-    theme
-  }
-) => ({
-  /**
-   * Styles applied to the paper component in the [Drawer](/apiReference/drawer/Drawer).
-   */
-  [`& .${classes.paper}`]: {
-    display: 'flex',
-  },
-
-  /**
-   * Styles applied to the root element in the [DrawerCloseButton](/apiReference/drawer/DrawerCloseButton).
-   */
-  [`& .${classes.closeButton}`]: {
-    color: theme.palette.primary.contrastText,
-  }
-}));
-
-export {};
-
 export default function SearchDrawer({ DrawerComponent,  open, onClose, children }) {
 
+  const StyledDrawerComponent = styled(DrawerComponent)((
+    {
+      theme
+    }
+  ) => ({
+    /**
+     * Styles applied to the paper component in the [Drawer](/apiReference/drawer/Drawer).
+     */
+    [`& .${classes.paper}`]: {
+      display: 'flex',
+    },
+
+    /**
+     * Styles applied to the root element in the [DrawerCloseButton](/apiReference/drawer/DrawerCloseButton).
+     */
+    [`& .${classes.closeButton}`]: {
+      color: theme.palette.primary.contrastText,
+    }
+  }));
 
   const handleNavigation = () => {
     if (onClose) {

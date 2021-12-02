@@ -14,56 +14,6 @@ const classes = {
   hidden: `${PREFIX}-hidden`
 };
 
-const StyledButtonElement = styled(ButtonElement)((
-  {
-    theme
-  }
-) => ({
-  /**
-   * Styles applied to the root element.
-   */
-  [`&.${classes.button}`]: {
-    color: '#999',
-    alignSelf: 'flex-end',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    zIndex: 1,
-    '& span': {
-      textTransform: 'uppercase',
-      fontWeight: 'bold',
-    },
-  },
-
-  /**
-   * Styles applied to the root element, if [`text`](#prop-text) is defined.
-   */
-  [`&.${classes.buttonText}`]: {
-    border: `1px solid #999`,
-    margin: '0 0 10px 0',
-  },
-
-  /**
-   * Styles applied to the root element, if [`text`](#prop-text) is not defined and
-   * [`fullscreen`](#prop-fullscreen) is `false`.
-   */
-  [`&.${classes.buttonFab}`]: {
-    position: 'absolute',
-    right: '10px',
-    top: '-28px',
-    zIndex: 1,
-    color: 'white',
-  },
-
-  /**
-   * Styles applied to hide the `Fab` button when [`open`](#prop-open) is `false`.
-   */
-  [`& .${classes.hidden}`]: {
-    display: 'none',
-  }
-}));
-
-export {};
 
 /**
  * A close button for drawers that can display text or an icon.
@@ -82,6 +32,55 @@ export default function DrawerCloseButton({
 
 
   let ButtonElement
+
+  const StyledButtonElement = styled(ButtonElement)((
+    {
+      theme
+    }
+  ) => ({
+    /**
+     * Styles applied to the root element.
+     */
+    [`&.${classes.button}`]: {
+      color: '#999',
+      alignSelf: 'flex-end',
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      zIndex: 1,
+      '& span': {
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+      },
+    },
+
+    /**
+     * Styles applied to the root element, if [`text`](#prop-text) is defined.
+     */
+    [`&.${classes.buttonText}`]: {
+      border: `1px solid #999`,
+      margin: '0 0 10px 0',
+    },
+
+    /**
+     * Styles applied to the root element, if [`text`](#prop-text) is not defined and
+     * [`fullscreen`](#prop-fullscreen) is `false`.
+     */
+    [`&.${classes.buttonFab}`]: {
+      position: 'absolute',
+      right: '10px',
+      top: '-28px',
+      zIndex: 1,
+      color: 'white',
+    },
+
+    /**
+     * Styles applied to hide the `Fab` button when [`open`](#prop-open) is `false`.
+     */
+    [`& .${classes.hidden}`]: {
+      display: 'none',
+    }
+  }));
 
   if (text) {
     ButtonElement = Button

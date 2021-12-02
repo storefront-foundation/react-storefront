@@ -10,31 +10,28 @@ const classes = {
   label: `${PREFIX}-label`
 };
 
-const StyledComponent = styled(Component)((
-  {
-    theme
-  }
-) => ({
-  /**
-   * Styles applied to the root element.
-   */
-  [`&.${classes.root}`]: {},
-
-  /**
-   * Styles applied to the label element.
-   */
-  [`& .${classes.label}`]: {
-    display: 'flex',
-  }
-}));
-
-export {};
-
 /**
  * A button to submit the search.  All other props are spread to the provided `Component`.
  */
 export default function SearchSubmitButton({ Component, ButtonIcon,  text, ...others }) {
 
+  const StyledComponent = styled(Component)((
+    {
+      theme
+    }
+  ) => ({
+    /**
+     * Styles applied to the root element.
+     */
+    [`&.${classes.root}`]: {},
+
+    /**
+     * Styles applied to the label element.
+     */
+    [`& .${classes.label}`]: {
+      display: 'flex',
+    }
+  }));
 
   return (
     <StyledComponent

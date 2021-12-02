@@ -11,7 +11,7 @@ export default function createTheme(values = {}) {
   const theme = createMuiTheme(
     merge(
       {},
-      adaptV4Theme({
+      {
         zIndex: {
           modal: 999,
           amp: {
@@ -21,8 +21,8 @@ export default function createTheme(values = {}) {
         headerHeight: 64,
         loadMaskOffsetTop: 64 + 56 + 4,
         drawerWidth: 330,
-        overrides: {},
-      }),
+        components: {},
+      },
       values,
     ),
   )
