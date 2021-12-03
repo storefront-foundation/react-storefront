@@ -1,29 +1,25 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import VisibilitySensor from 'react-visibility-sensor'
 import PWAContext from './PWAContext'
 
-const PREFIX = 'RSFImage';
+const PREFIX = 'RSFImage'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   image: `${PREFIX}-image`,
   fit: `${PREFIX}-fit`,
   contain: `${PREFIX}-contain`,
-  fill: `${PREFIX}-fill`
-};
+  fill: `${PREFIX}-fill`,
+}
 
-const StyledVisibilitySensor = styled(VisibilitySensor)((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
@@ -37,12 +33,12 @@ const StyledVisibilitySensor = styled(VisibilitySensor)((
   /**
    * Styles applied to the image element.
    */
-  [`& .${classes.image}`]: {},
+  [`& .${defaultClasses.image}`]: {},
 
   /**
    * Styles applied to the image element when [`aspectRatio`](#prop-aspectRatio) is defined.
    */
-  [`& .${classes.fit}`]: {
+  [`& .${defaultClasses.fit}`]: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -56,7 +52,7 @@ const StyledVisibilitySensor = styled(VisibilitySensor)((
   /**
    * Styles applied to the root element when [`contain`](#prop-contain) is `true`.
    */
-  [`& .${classes.contain}`]: {
+  [`&.${defaultClasses.contain}`]: {
     '& img': {
       objectFit: 'contain',
       maxHeight: '100%',
@@ -67,7 +63,7 @@ const StyledVisibilitySensor = styled(VisibilitySensor)((
   /**
    * Styles applied to the root element when [`fill`](#prop-fill) is `true`.
    */
-  [`& .${classes.fill}`]: {
+  [`&.${defaultClasses.fill}`]: {
     width: '100%',
     height: '100%',
     '& img': {
@@ -78,10 +74,10 @@ const StyledVisibilitySensor = styled(VisibilitySensor)((
       width: '100%',
       height: '100%',
     },
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * Displays an image that can be lazy loaded and made to auto-scale to fit the parent element
@@ -97,7 +93,7 @@ export default function Image({
   fill,
   bind,
   contain,
-  classes,
+  classes: c = {},
   className,
   aspectRatio,
   alt,
@@ -111,13 +107,12 @@ export default function Image({
   ImgElement,
   ...imgAttributes
 }) {
+  const classes = { ...defaultClasses, ...c }
   function lazyLoad(visible) {
     if (!loaded && visible) {
       setLoaded(true)
     }
   }
-
-
 
   const { hydrating } = useContext(PWAContext) || {}
   const [loaded, setLoaded] = useState(lazy === false || (lazy === 'ssr' && !hydrating))
@@ -140,7 +135,7 @@ export default function Image({
   }
 
   let result = (
-    <div
+    <Root
       className={clsx(className, {
         [classes.root]: true,
         [classes.contain]: contain,
@@ -169,18 +164,18 @@ export default function Image({
           }
         />
       )}
-    </div>
+    </Root>
   )
 
   result = (
-    <StyledVisibilitySensor
+    <VisibilitySensor
       active={!loaded}
       onChange={lazyLoad}
       partialVisibility
       offset={{ top: -lazyOffset, bottom: -lazyOffset }}
     >
       {result}
-    </StyledVisibilitySensor>
+    </VisibilitySensor>
   )
 
   return result

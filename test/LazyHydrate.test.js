@@ -37,7 +37,6 @@ describe('LazyHydrate', () => {
       }))
 
       const TestComponent = () => {
-        const classes = useStyles()
         return <Root className={classes.root}>click</Root>
       }
 

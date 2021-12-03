@@ -1,43 +1,39 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-const PREFIX = 'Box';
+const PREFIX = 'Box'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
-  split: `${PREFIX}-split`
-};
+  split: `${PREFIX}-split`,
+}
 
-const StyledBox = styled(Box)((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
   },
 
   /**
    * Styles applied to the root element if [`split`](#prop-split) is `true`.
    */
-  [`& .${classes.split}`]: {
+  [`&.${defaultClasses.split}`]: {
     justifyContent: 'space-between',
     alignItems: 'center',
-  }
-}));
+  },
+}))
 
 /**
  * A flex container.  All additional props are spread to the style of the underlying div.
  */
-export {};
+export {}
 
 export default function Box({
   className,
-  classes,
+  classes: c = {},
   split = false,
   children,
   style,
@@ -45,15 +41,14 @@ export default function Box({
   justify,
   ...other
 }) {
-
-
+  const classes = { ...defaultClasses, ...c }
   return (
-    <div
+    <Root
       className={clsx(classes.root, className, { [classes.split]: split })}
       style={{ alignItems: align, justifyContent: justify, ...other, ...style }}
     >
       {children}
-    </div>
+    </Root>
   )
 }
 
@@ -99,8 +94,7 @@ Box.defaultProps = {
  * of the underlying div.
  */
 export function Hbox(props) {
-  props = { ...props, flexDirection: 'row' }
-  return <StyledBox {...props} />;
+  return <Box {...props} flexDirection="row" />
 }
 
 Hbox.propTypes = {

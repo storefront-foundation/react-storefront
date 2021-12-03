@@ -7,11 +7,12 @@ import merge from 'lodash/merge'
  * @param {Object} values
  * @return {Object} A material UI theme
  */
+
 export default function createTheme(values = {}) {
   const theme = createMuiTheme(
     merge(
       {},
-      {
+      adaptV4Theme({
         zIndex: {
           modal: 999,
           amp: {
@@ -22,7 +23,7 @@ export default function createTheme(values = {}) {
         loadMaskOffsetTop: 64 + 56 + 4,
         drawerWidth: 330,
         components: {},
-      },
+      }),
       values,
     ),
   )

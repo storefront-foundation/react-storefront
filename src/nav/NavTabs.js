@@ -1,36 +1,32 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React, { useMemo } from 'react'
 import clsx from 'clsx'
 import { Tabs } from '@mui/material'
 import MuiTabScrollButton from '@mui/material/TabScrollButton'
 import { useRouter } from 'next/router'
 
-const PREFIX = 'RSFNavTabs';
+const PREFIX = 'RSFNavTabs'
 
-const classes = {
+const defaultClasses = {
   indicatorNoSelection: `${PREFIX}-indicatorNoSelection`,
   scrollButtons: `${PREFIX}-scrollButtons`,
   root: `${PREFIX}-root`,
-  ripple: `${PREFIX}-ripple`
-};
+  ripple: `${PREFIX}-ripple`,
+}
 
-const StyledTabs = styled(Tabs)((
-  {
-    theme
-  }
-) => ({
+const StyledTabs = styled(Tabs)(({ theme }) => ({
   /**
    * Styles applied to the root element when no tab is selected.
    */
-  [`& .${classes.indicatorNoSelection}`]: {
+  [`& .${defaultClasses.indicatorNoSelection}`]: {
     display: 'none',
   },
 
   /**
    * Styles passed through to the `scrollButtons` rule in [`Tabs`](https://mui.com/api/tabs/#css)'.
    */
-  [`& .${classes.scrollButtons}`]: {
+  [`& .${defaultClasses.scrollButtons}`]: {
     position: 'absolute',
     height: '100%',
     right: 0,
@@ -47,7 +43,7 @@ const StyledTabs = styled(Tabs)((
   /**
    * Styles applied to the root [`Tabs`](https://mui.com/api/tabs/) component.
    */
-  [`& .${classes.root}`]: {
+  [`& .${defaultClasses.root}`]: {
     maxWidth: theme.breakpoints.values.lg,
     flex: 1,
     position: 'relative',
@@ -75,20 +71,21 @@ const StyledTabs = styled(Tabs)((
    * Styles applied to the root element of the[`Tabs`](https://mui.com/api/tabs/)'
    * `ScrollButtonComponent` component.
    */
-  [`& .${classes.ripple}`]: {
+  [`& .${defaultClasses.ripple}`]: {
     zIndex: 2,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * Scrollable navigation tabs for the top of the app. All extra props are spread to the
  * underlying Material UI Tabs element.  When a tab is clicked, the "top_nav_clicked" analytics
  * event is fired.
  */
-export default function NavTabs({ classes = {}, children, ...others }) {
-
+export default function NavTabs({ classes: c = {}, children, ...others }) {
+  const classes = { ...defaultClasses, ...c }
+  const { paper, indicator, indicatorNoSelection, ripple, ...classNames } = classes
 
   const { asPath } = useRouter()
   const value = children && children.findIndex(tab => tab.props.as === asPath.split('?')[0])
@@ -116,7 +113,7 @@ export default function NavTabs({ classes = {}, children, ...others }) {
     >
       {children}
     </StyledTabs>
-  );
+  )
 }
 
 NavTabs.propTypes = {

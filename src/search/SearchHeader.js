@@ -1,38 +1,34 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 
-const PREFIX = 'RSFSearchHeader';
+const PREFIX = 'RSFSearchHeader'
 
-const classes = {
- root: `${PREFIX}-root`
-};
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+}
 
-const Root = styled('div')((
- {
-  theme
- }
-) => ({
- /**
-  * Styles applied to the root element.
-  */
- [`&.${classes.root}`]: {
-   backgroundColor: theme.palette.primary.main,
-   padding: theme.spacing(6, 2, 2, 2),
-   display: 'flex',
-   flexDirection: 'column',
-   alignItems: 'stretch',
- }
-}));
+const Root = styled('div')(({ theme }) => ({
+  /**
+   * Styles applied to the root element.
+   */
+  [`&.${defaultClasses.root}`]: {
+    backgroundColor: theme.palette.primary.main,
+    padding: theme.spacing(6, 2, 2, 2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A element to be placed at the top of a [SearchDrawer](/apiReference/search/SearchDrawer).
  */
-export default function SearchHeader({  children }) {
-
-  return <Root className={classes.root}>{children}</Root>;
+export default function SearchHeader({ classes: c = {}, children }) {
+  const classes = { ...defaultClasses, ...c }
+  return <Root className={classes.root}>{children}</Root>
 }
 
 SearchHeader.propTypes = {

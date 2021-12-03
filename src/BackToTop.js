@@ -1,22 +1,22 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import throttle from 'lodash/throttle'
 import { ArrowUpward } from '@mui/icons-material'
 import { Fab, Fade } from '@mui/material'
-const PREFIX = 'RSFBackToTop';
+const PREFIX = 'RSFBackToTop'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   fab: `${PREFIX}-fab`,
-  icon: `${PREFIX}-icon`
-};
+  icon: `${PREFIX}-icon`,
+}
 
 const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     zIndex: 1,
     position: 'fixed',
     bottom: 24,
@@ -26,7 +26,7 @@ const Root = styled('div')(() => ({
   /**
    * Styles applied to the floating action button element.
    */
-  [`& .${classes.fab}`]: {
+  [`& .${defaultClasses.fab}`]: {
     background: 'rgba(0,0,0,.85)',
     '&:hover': {
       background: 'rgb(0,0,0)',
@@ -36,10 +36,10 @@ const Root = styled('div')(() => ({
   /**
    * Styles applied to the icon element.
    */
-  [`& .${classes.icon}`]: {
+  [`& .${defaultClasses.icon}`]: {
     color: 'white',
-  }
-}));
+  },
+}))
 
 /**
  * A floating action button that appears when the user scrolls down,
@@ -49,13 +49,13 @@ export default function BackToTop({
   Icon,
   showUnderY,
   instantBehaviorUnderY,
-  classes,
+  classes: c = {},
   fadeTime,
   size,
 }) {
   const [visible, setVisible] = useState(false)
   const el = useRef()
-
+  const classes = { ...defaultClasses, ...c }
 
   useEffect(() => {
     const onScroll = throttle(() => {
@@ -85,7 +85,7 @@ export default function BackToTop({
         </Fab>
       </Fade>
     </Root>
-  );
+  )
 }
 
 BackToTop.propTypes = {

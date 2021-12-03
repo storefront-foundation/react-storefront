@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import ResizeObserver from 'resize-observer-polyfill'
 import { Drawer as MUIDrawer, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
@@ -7,9 +7,9 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import DrawerCloseButton from './DrawerCloseButton'
 
-const PREFIX = 'RSFDrawer';
+const PREFIX = 'RSFDrawer'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   closeButton: `${PREFIX}-closeButton`,
   paper: `${PREFIX}-paper`,
@@ -17,42 +17,38 @@ const classes = {
   container: `${PREFIX}-container`,
   header: `${PREFIX}-header`,
   content: `${PREFIX}-content`,
-  title: `${PREFIX}-title`
-};
+  title: `${PREFIX}-title`,
+}
 
-const StyledMUIDrawer = styled(MUIDrawer)((
-  {
-    theme
-  }
-) => ({
+const StyledMUIDrawer = styled(MUIDrawer)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${classes.root}`]: {},
+  [`& .${defaultClasses.root}`]: {},
 
   /**
    * Styles applied to the close button element.
    */
-  [`& .${classes.closeButton}`]: {},
+  [`& .${defaultClasses.closeButton}`]: {},
 
   /**
    * Styles applied to the drawer's `Paper` component.
    */
-  [`& .${classes.paper}`]: {
+  [`& .${defaultClasses.paper}`]: {
     overflowY: 'visible',
   },
 
   /**
    * Styles applied to the drawer's `Paper` component if [`fullscreen`](#prop-fullscreen) is `true`.
    */
-  [`& .${classes.fullscreen}`]: {
+  [`& .${defaultClasses.fullscreen}`]: {
     height: '100vh',
   },
 
   /**
    * Styles applied to the drawer's wrapper element.
    */
-  [`& .${classes.container}`]: {
+  [`& .${defaultClasses.container}`]: {
     height: '100%',
     boxSizing: 'border-box',
     flexWrap: 'nowrap',
@@ -63,14 +59,14 @@ const StyledMUIDrawer = styled(MUIDrawer)((
   /**
    * Styles applied to the drawer's header element.
    */
-  [`& .${classes.header}`]: {
+  [`& .${defaultClasses.header}`]: {
     position: 'relative',
   },
 
   /**
    * Styles applied to the wrapper around the drawer's children.
    */
-  [`& .${classes.content}`]: {
+  [`& .${defaultClasses.content}`]: {
     flexBasis: '100%',
     overflow: 'auto',
   },
@@ -78,7 +74,7 @@ const StyledMUIDrawer = styled(MUIDrawer)((
   /**
    * Styles applied to the drawer's title element.
    */
-  [`& .${classes.title}`]: {
+  [`& .${defaultClasses.title}`]: {
     flexBasis: 'auto',
     flexGrow: 0,
     flexShrink: 1,
@@ -87,10 +83,10 @@ const StyledMUIDrawer = styled(MUIDrawer)((
     lineHeight: '72px',
     textAlign: 'center',
     borderBottom: `1px solid ${theme.palette.divider}`,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A slide-in drawer with fab close button.
@@ -103,14 +99,13 @@ export default function Drawer({
   title,
   children,
   className,
-  classes,
+  classes: c = {},
   autoAdjustBodyPadding,
   anchor,
   fullscreen,
   ...rest
 }) {
-
-
+  const classes = { ...defaultClasses, ...c }
   const theme = useTheme()
   const drawer = useRef(null)
   const drawerResize = useRef(null)
@@ -192,7 +187,7 @@ export default function Drawer({
         <div className={classes.content}>{children}</div>
       </div>
     </StyledMUIDrawer>
-  );
+  )
 }
 Drawer.propTypes = {
   /**

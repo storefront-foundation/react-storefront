@@ -1,32 +1,24 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import ProductOption from './ProductOption'
 
-const PREFIX = 'RSFProductOptionSelector';
+const PREFIX = 'RSFProductOptionSelector'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
-  button: `${PREFIX}-button`
-};
+  button: `${PREFIX}-button`,
+}
 
-const StyledImage = styled(Image)((
-  {
-    theme
-  }
-) => ({
-  [`& .${classes.root}`]: {
+const Root = styled('div')(() => ({
+  [`& .${defaultClasses.root}`]: {
     display: 'flex',
     flexWrap: 'wrap',
   },
+}))
 
-  [`& .${classes.button}`]: {
-    margin: theme.spacing(0, 0.5, 0.5, 0),
-  }
-}));
-
-export {};
+export {}
 
 /**
  * A selector for product options rendered as a set of buttons. Buttons can either have
@@ -38,7 +30,7 @@ export {};
 export default function ProductOptionSelector({
   options,
   name,
-  classes,
+  classes: c = {},
   optionProps,
   skeleton,
   value,
@@ -47,8 +39,12 @@ export default function ProductOptionSelector({
   strikeThroughDisabled,
   OptionComponent,
 }) {
-
-
+  const classes = { ...defaultClasses, ...c }
+  const StyledOptionComponent = styled(OptionComponent)(({ theme }) => ({
+    [`& .${classes.button}`]: {
+      margin: theme.spacing(0, 0.5, 0.5, 0),
+    },
+  }))
   if (skeleton) {
     options = new Array(skeleton).fill(0).map((_item, i) => ({ id: i, text: '' }))
   }
@@ -56,10 +52,10 @@ export default function ProductOptionSelector({
   if (!options) return null
 
   return (
-    <div data-id="ProductOptionSelector" className={classes.root}>
+    <Root data-id="ProductOptionSelector" className={classes.root}>
       {options.map((option, i) => {
         return (
-          <OptionComponent
+          <StyledOptionComponent
             selectedOption={value}
             onSelectedOptionChange={onChange}
             {...optionProps}
@@ -76,7 +72,7 @@ export default function ProductOptionSelector({
           />
         )
       })}
-    </div>
+    </Root>
   )
 }
 

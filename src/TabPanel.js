@@ -1,43 +1,39 @@
 import React, { useState } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import { Tabs, Tab } from '@mui/material'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-const PREFIX = 'RSFTabPanel';
+const PREFIX = 'RSFTabPanel'
 
 const classes = {
   root: `${PREFIX}-root`,
   panel: `${PREFIX}-panel`,
-  hidden: `${PREFIX}-hidden`
-};
+  hidden: `${PREFIX}-hidden`,
+}
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${classes.root}`]: {},
+  [`&.${classes.root}`]: {},
 
   /**
    * Styles applied to the wrapper around each panel element.
    */
-  [`&.${classes.panel}`]: {
+  [`& .${classes.panel}`]: {
     margin: `${theme.spacing(2)} 0`,
   },
 
   /**
    * Styles applied to the wrapper around each panel element when that panel is hidden.
    */
-  [`&.${classes.hidden}`]: {
+  [`& .${classes.hidden}`]: {
     display: 'none',
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A simple tab panel that is AMP-compatible.  Tab names are pulled from the label prop of the child elements.
@@ -58,7 +54,7 @@ export {};
  */
 export default function TabPanel({
   children,
-  classes,
+  classes: c = {},
   scrollable,
   selected: selectedProp,
   onChange,
@@ -67,8 +63,7 @@ export default function TabPanel({
   panelProps,
   renderPanels,
 }) {
-
-
+  const classes = { ...defaultClasses, ...c }
   const [selected, setSelected] = useState(selectedProp)
   const tabs = []
 
@@ -90,7 +85,7 @@ export default function TabPanel({
     const { className, ...others } = panelProps({ child, index, selected }) || {}
 
     panels.push(
-      <Root
+      <div
         key={index}
         role="tabpanel"
         className={clsx(classes.panel, {
@@ -100,12 +95,12 @@ export default function TabPanel({
         {...others}
       >
         {React.cloneElement(child, { label: null })}
-      </Root>,
+      </div>,
     )
   })
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <Tabs
         indicatorColor="primary"
         textColor="inherit"
@@ -117,7 +112,7 @@ export default function TabPanel({
         {tabs}
       </Tabs>
       {renderPanels(panels)}
-    </div>
+    </Root>
   )
 }
 

@@ -1,39 +1,34 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React, { useRef } from 'react'
 import { useRouter } from 'next/router'
 import qs from 'qs'
 
-const PREFIX = 'RSFSearchForm';
+const PREFIX = 'RSFSearchForm'
 
-const classes = {
-  root: `${PREFIX}-root`
-};
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+}
 
-const Root = styled('orm')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('form')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${classes.root}`]: {
+  [`& .${defaultClasses.root}`]: {
     position: 'relative',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A form used to submit a search query.
  */
-export default function SearchForm({  children, action, autoComplete }) {
-
-
+export default function SearchForm({ classes: c = {}, children, action, autoComplete }) {
+  const classes = { ...defaultClasses, ...c }
   const ref = useRef()
   const router = useRouter()
 
@@ -53,7 +48,7 @@ export default function SearchForm({  children, action, autoComplete }) {
   }
 
   return (
-    <form
+    <Root
       ref={ref}
       action={action}
       onSubmit={handleSubmit}
@@ -62,7 +57,7 @@ export default function SearchForm({  children, action, autoComplete }) {
       autoComplete={autoComplete ? 'on' : 'off'}
     >
       {children}
-    </form>
+    </Root>
   )
 }
 

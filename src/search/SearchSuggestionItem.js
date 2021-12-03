@@ -1,26 +1,22 @@
 import React, { useContext } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import Link from '../link/Link'
 import PropTypes from 'prop-types'
 import Image from '../Image'
 import SearchContext from './SearchContext'
 import Highlight from '../Highlight'
 
-const PREFIX = 'RSFSearchSuggestionItem';
+const PREFIX = 'RSFSearchSuggestionItem'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   thumbnail: `${PREFIX}-thumbnail`,
   text: `${PREFIX}-text`,
-  highlight: `${PREFIX}-highlight`
-};
+  highlight: `${PREFIX}-highlight`,
+}
 
-const Root = styled('li')((
-  {
-    theme
-  }
-) => ({
-  [`&.${classes.root}`]: {
+const Root = styled('li')(({ theme }) => ({
+  [`&.${defaultClasses.root}`]: {
     margin: theme.spacing(2, 0),
     listStyle: 'none',
     padding: 0,
@@ -31,7 +27,7 @@ const Root = styled('li')((
     },
   },
 
-  [`& .${classes.thumbnail}`]: {
+  [`& .${defaultClasses.thumbnail}`]: {
     marginBottom: '10px',
     display: 'none',
     '[data-ui=thumbnails] &': {
@@ -44,27 +40,26 @@ const Root = styled('li')((
     },
   },
 
-  [`& .${classes.text}`]: {},
+  [`& .${defaultClasses.text}`]: {},
 
-  [`& .${classes.highlight}`]: {
+  [`& .${defaultClasses.highlight}`]: {
     backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: '2px',
     color: theme.palette.secondary.main,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 export default function SearchSuggestionItem({
   ImageComponent,
-  classes,
+  classes: c = {},
   item,
   ui,
   thumbnailProps,
   children,
 }) {
-
-
+  const classes = { ...defaultClasses, ...c }
   const { query } = useContext(SearchContext)
 
   return (
@@ -91,7 +86,7 @@ export default function SearchSuggestionItem({
         )}
       </Link>
     </Root>
-  );
+  )
 }
 
 SearchSuggestionItem.propTypes = {

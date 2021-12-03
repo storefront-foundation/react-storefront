@@ -1,39 +1,36 @@
 import React, { forwardRef } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import { IconButton } from '@mui/material'
 import PropTypes from 'prop-types'
 
-const PREFIX = 'RSFToolbarButton';
+const PREFIX = 'RSFToolbarButton'
 
-const classes = {
-  wrap: `${PREFIX}-wrap`
-};
+const defaultClasses = {
+  wrap: `${PREFIX}-wrap`,
+}
 
-const StyledIconButton = styled(IconButton)((
-  {
-    theme
-  }
-) => ({
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
   /**
    * Styles applied to the content wrapper element inside the button
    */
-  [`& .${classes.wrap}`]: {
+  [`& .${defaultClasses.wrap}`]: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     ...theme.typography.caption,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A toolbar button with optional label.  Use these in your AppBar. All additional
  * props are spread to the underlying mui IconButton.
  */
-const ToolbarButton = forwardRef(({ icon, label, classes = {}, children, ...others }, ref) => {
-
+const ToolbarButton = forwardRef(({ icon, label, children, classes: c = {}, ...others }, ref) => {
+  const classes = { ...defaultClasses, ...c }
+  let { wrap, ...buttonClasses } = classes
 
   return (
     <StyledIconButton ref={ref} classes={buttonClasses} {...others} size="large">
@@ -43,7 +40,7 @@ const ToolbarButton = forwardRef(({ icon, label, classes = {}, children, ...othe
       </div>
       {children}
     </StyledIconButton>
-  );
+  )
 })
 
 ToolbarButton.propTypes = {

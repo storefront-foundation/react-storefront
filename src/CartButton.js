@@ -1,5 +1,5 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import Link from './link/Link'
 import ToolbarButton from './ToolbarButton'
@@ -7,29 +7,25 @@ import { ShoppingCart as Cart } from '@mui/icons-material'
 import { Badge } from '@mui/material'
 import clsx from 'clsx'
 
-const PREFIX = 'RSFCartButton';
+const PREFIX = 'RSFCartButton'
 
-const classes = {
+const defaultClasses = {
   link: `${PREFIX}-link`,
   badge: `${PREFIX}-badge`,
-  icon: `${PREFIX}-icon`
-};
+  icon: `${PREFIX}-icon`,
+}
 
-const StyledLink = styled(Link)((
-  {
-    theme
-  }
-) => ({
+const StyledLink = styled(Link)(({ theme }) => ({
   /**
    * Styles applied to the [`Link`](/apiReference/link/Link) element used as the root.
    */
-  [`&.${classes.link}`]: {},
+  [`&.${defaultClasses.link}`]: {},
 
   /**
    * Styles passed through to the [`Badge`](https://mui.com/api/badge/#css) element's
    * `badge` CSS rule.
    */
-  [`& .${classes.badge}`]: {
+  [`& .${defaultClasses.badge}`]: {
     border: '2px solid white',
     padding: '0 4px',
   },
@@ -37,12 +33,12 @@ const StyledLink = styled(Link)((
   /**
    * Styles applied to the button icon.
    */
-  [`& .${classes.icon}`]: {
+  [`& .${defaultClasses.icon}`]: {
     color: theme.palette.action.active,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A cart header button that display the number of items in the cart using a badge.
@@ -54,17 +50,17 @@ export {};
  * ```
  */
 export default function CartButton({
-  classes,
   href,
   as,
   onClick,
   icon,
   quantity,
+  classes: c = {},
   linkProps,
   badgeProps,
   buttonProps,
 }) {
-
+  const classes = { ...defaultClasses, ...c }
   const cartIcon = icon || <Cart className={classes.icon} />
 
   return (
@@ -85,7 +81,7 @@ export default function CartButton({
         </Badge>
       </ToolbarButton>
     </StyledLink>
-  );
+  )
 }
 
 CartButton.propTypes = {

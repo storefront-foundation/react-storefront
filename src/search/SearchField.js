@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import { alpha } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import { IconButton } from '@mui/material'
@@ -8,26 +8,22 @@ import SearchSubmitButton from './SearchSubmitButton'
 import { Fab, Button } from '@mui/material'
 import clsx from 'clsx'
 
-const PREFIX = 'RSFSearchField';
+const PREFIX = 'RSFSearchField'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   inputWrap: `${PREFIX}-inputWrap`,
   input: `${PREFIX}-input`,
   inputClearIcon: `${PREFIX}-inputClearIcon`,
   searchFab: `${PREFIX}-searchFab`,
-  hidden: `${PREFIX}-hidden`
-};
+  hidden: `${PREFIX}-hidden`,
+}
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     alignItems: 'center',
   },
@@ -35,7 +31,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the wrapper element.
    */
-  [`& .${classes.inputWrap}`]: {
+  [`& .${defaultClasses.inputWrap}`]: {
     display: 'flex',
     flexGrow: 1,
     border: 0,
@@ -48,7 +44,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the input element.
    */
-  [`& .${classes.input}`]: {
+  [`& .${defaultClasses.input}`]: {
     border: 'none',
     background: 'none',
     flex: 1,
@@ -76,7 +72,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the input if showClearnButton prop is true.
    */
-  [`& .${classes.inputClearIcon}`]: {
+  [`& .${defaultClasses.inputClearIcon}`]: {
     paddingRight: 0,
   },
 
@@ -84,7 +80,7 @@ const Root = styled('div')((
    * Styles applied to the submit button element if [submitButtonVariant](#prop-submitButtonVariant)
    * is `'fab'`.
    */
-  [`& .${classes.searchFab}`]: {
+  [`& .${defaultClasses.searchFab}`]: {
     height: '48px',
     width: '48px',
     marginLeft: '10px',
@@ -95,12 +91,12 @@ const Root = styled('div')((
   /**
    * Styles applied to the clear and submit buttons if the search field is empty.
    */
-  [`& .${classes.hidden}`]: {
+  [`& .${defaultClasses.hidden}`]: {
     display: 'none',
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A search text field. Additional props are spread to the underlying
@@ -109,8 +105,8 @@ export {};
 const SearchField = forwardRef(
   (
     {
+      classes: c = {},
       ariaLabel,
-      classes,
       onChange,
       submitButtonVariant,
       showClearButton,
@@ -125,7 +121,7 @@ const SearchField = forwardRef(
     },
     ref,
   ) => {
-
+    const classes = { ...defaultClasses, ...c }
     const inputRef = ref || useRef(null)
     const empty = value.trim().length === 0
 
@@ -177,6 +173,7 @@ const SearchField = forwardRef(
                   [classes.hidden]: empty,
                 })}
                 text={value}
+                color="primary"
                 {...submitButtonProps}
               />
             )
@@ -195,7 +192,7 @@ const SearchField = forwardRef(
           />
         )}
       </Root>
-    );
+    )
   },
 )
 

@@ -1,27 +1,23 @@
 import React, { useContext } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import SearchSuggestionGroup from './SearchSuggestionGroup'
 import SearchContext from './SearchContext'
 import LoadMask from '../LoadMask'
 import PropTypes from 'prop-types'
 
-const PREFIX = 'RSFSearchSuggestions';
+const PREFIX = 'RSFSearchSuggestions'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
-  group: `${PREFIX}-group`
-};
+  group: `${PREFIX}-group`,
+}
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${classes.root}`]: {
+  [`& .${defaultClasses.root}`]: {
     flex: 1,
     position: 'relative',
     overflowY: 'auto',
@@ -30,19 +26,19 @@ const Root = styled('div')((
   /**
    * Styles applied to each of the group wrapper elements.
    */
-  [`& .${classes.group}`]: {
+  [`& .${defaultClasses.group}`]: {
     margin: theme.spacing(0, 0, 2, 0),
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
-export default function SearchSuggestions({  render }) {
-
+export default function SearchSuggestions({ render, classes: c = {} }) {
+  const classes = { ...defaultClasses, ...c }
   const { state } = useContext(SearchContext)
 
   return (
-    (<Root>
+    <Root>
       <LoadMask show={state.loading} transparent />
       <div className={classes.root}>
         {render
@@ -54,8 +50,8 @@ export default function SearchSuggestions({  render }) {
               </div>
             ))}
       </div>
-    </Root>)
-  );
+    </Root>
+  )
 }
 
 SearchSuggestions.propTypes = {

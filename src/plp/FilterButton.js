@@ -1,5 +1,5 @@
 import React, { useState, useCallback, memo, useContext } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import ActionButton from '../ActionButton'
 import SearchResultsContext from './SearchResultsContext'
 import Filter from './Filter'
@@ -7,35 +7,31 @@ import PropTypes from 'prop-types'
 import Drawer from '../drawer/Drawer'
 import { useRouter } from 'next/router'
 
-const PREFIX = 'RSFFilterButton';
+const PREFIX = 'RSFFilterButton'
 
-const classes = {
-  drawer: `${PREFIX}-drawer`
-};
+const defaultClasses = {
+  drawer: `${PREFIX}-drawer`,
+}
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the drawer element.
    */
-  [`& .${classes.drawer}`]: {
+  [`& .${defaultClasses.drawer}`]: {
     height: '75vh',
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A button that when clicked, opens a drawer containing the `Filter` view. Current filters
  * are displayed in the button text.
  */
-function FilterButton({  title, drawerProps, onClick, href, ...props }) {
-
-
+function FilterButton({ classes: c = {}, title, drawerProps, onClick, href, ...props }) {
+  const classes = { ...defaultClasses, ...c }
+  const { clear, clearDisabled, drawer, ...buttonClasses } = classes
   const {
     pageData: { filters, facets },
     actions,
@@ -44,7 +40,6 @@ function FilterButton({  title, drawerProps, onClick, href, ...props }) {
   const openFilter = useRouter().query.openFilter === '1'
   const [state, setState] = useState({ open: openFilter, mountDrawer: openFilter })
   const { open, mountDrawer } = state
-
 
   const toggleOpen = open => {
     setState({ ...state, open, mountDrawer: mountDrawer || true })
@@ -83,7 +78,7 @@ function FilterButton({  title, drawerProps, onClick, href, ...props }) {
   }
 
   return (
-    (<Root>
+    <Root>
       <ActionButton
         label={title}
         href={href}
@@ -105,8 +100,8 @@ function FilterButton({  title, drawerProps, onClick, href, ...props }) {
           {mountDrawer && <Filter onViewResultsClick={handleViewResultsClick} {...drawerProps} />}
         </Drawer>
       )}
-    </Root>)
-  );
+    </Root>
+  )
 }
 
 FilterButton.propTypes = {

@@ -1,26 +1,22 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 import SearchSuggestionItem from './SearchSuggestionItem'
 
-const PREFIX = 'RSFSearchSuggestionGroup';
+const PREFIX = 'RSFSearchSuggestionGroup'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   caption: `${PREFIX}-caption`,
-  list: `${PREFIX}-list`
-};
+  list: `${PREFIX}-list`,
+}
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     listStyle: 'none',
     margin: theme.spacing(2),
     '& a strong': {
@@ -32,7 +28,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the group's caption element.
    */
-  [`& .${classes.caption}`]: {
+  [`& .${defaultClasses.caption}`]: {
     textTransform: 'uppercase',
     fontWeight: 'bold',
     paddingBottom: 5,
@@ -43,7 +39,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the group's list element.
    */
-  [`& .${classes.list}`]: {
+  [`& .${defaultClasses.list}`]: {
     '&[data-ui=list]': {
       padding: 0,
       margin: theme.spacing(0, 0, 4, 0),
@@ -58,13 +54,13 @@ const Root = styled('div')((
         margin: '5px',
       },
     },
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
-export default function SearchSuggestionGroup({  ui, caption, links, children }) {
-
+export default function SearchSuggestionGroup({ classes: c = {}, ui, caption, links, children }) {
+  const classes = { ...defaultClasses, ...c }
 
   return (
     <Root className={classes.root}>
@@ -75,7 +71,7 @@ export default function SearchSuggestionGroup({  ui, caption, links, children })
           : links.map((item, i) => <SearchSuggestionItem item={item} ui={ui} key={i} />)}
       </ul>
     </Root>
-  );
+  )
 }
 
 SearchSuggestionGroup.propTypes = {

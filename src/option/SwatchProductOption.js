@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 
 const PREFIX = 'RSFSwatchProductOption'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   button: `${PREFIX}-button`,
   buttonDisabled: `${PREFIX}-buttonDisabled`,
@@ -31,12 +31,12 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {},
+  [`&.${defaultClasses.root}`]: {},
 
   /**
    * Styles applied to the button element.
    */
-  [`& .${classes.button}`]: {
+  [`& .${defaultClasses.button}`]: {
     position: 'relative',
     marginBottom: theme.spacing(0.5),
     padding: 2,
@@ -61,7 +61,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the button element when [`disabled`](#prop-disabled) is `true`.
    */
-  [`& .${classes.buttonDisabled}`]: {
+  [`& .${defaultClasses.buttonDisabled}`]: {
     cursor: 'default',
     borderColor: theme.palette.grey['A100'],
   },
@@ -69,7 +69,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the image element.
    */
-  [`& .${classes.image}`]: {
+  [`& .${defaultClasses.image}`]: {
     height: '100%',
     width: '100%',
     borderRadius: '50%',
@@ -78,7 +78,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the wrapper element of the selected icon.
    */
-  [`& .${classes.checkMark}`]: {
+  [`& .${defaultClasses.checkMark}`]: {
     transition: 'opacity 0.1s linear',
     opacity: 0,
     position: 'absolute',
@@ -103,21 +103,21 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the wrapper element of the selected icon when this option is selected.
    */
-  [`& .${classes.selected}`]: {
+  [`& .${defaultClasses.selected}`]: {
     opacity: 1,
   },
 
   /**
    * Styles applied to the label element when this option is selected.
    */
-  [`& .${classes.selectedLabel}`]: {
+  [`& .${defaultClasses.selectedLabel}`]: {
     fontWeight: 'bold',
   },
 
   /**
    * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'default'`.
    */
-  [`& .${classes.default}`]: {
+  [`& .${defaultClasses.default}`]: {
     height: 48,
     width: 48,
     '& svg': {
@@ -129,7 +129,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'small'`.
    */
-  [`& .${classes.small}`]: {
+  [`& .${defaultClasses.small}`]: {
     height: 32,
     width: 32,
     '& svg': {
@@ -141,7 +141,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the skeleton and button elements when [`size`](#prop-size) is `'tiny'`.
    */
-  [`& .${classes.tiny}`]: {
+  [`& .${defaultClasses.tiny}`]: {
     height: 24,
     width: 24,
     '& svg': {
@@ -153,7 +153,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
   /**
    * Styles applied to the image element when [`disabled`](#prop-disabled) is `true`.
    */
-  [`& .${classes.disabled}`]: {
+  [`& .${defaultClasses.disabled}`]: {
     opacity: 0.3,
   },
 
@@ -161,7 +161,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`.
    */
-  [`& .${classes.strikeThrough}`]: {
+  [`& .${defaultClasses.strikeThrough}`]: {
     height: '7px',
     borderWidth: '2px 0',
     borderStyle: 'solid',
@@ -176,7 +176,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'default'`.
    */
-  [`& .${classes.defaultStrikeThrough}`]: {
+  [`& .${defaultClasses.defaultStrikeThrough}`]: {
     top: -24,
   },
 
@@ -184,7 +184,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'small'`.
    */
-  [`& .${classes.smallStrikeThrough}`]: {
+  [`& .${defaultClasses.smallStrikeThrough}`]: {
     top: -16,
   },
 
@@ -192,7 +192,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`, and [`size`](#prop-size) is `'tiny'`.
    */
-  [`& .${classes.tinyStrikeThrough}`]: {
+  [`& .${defaultClasses.tinyStrikeThrough}`]: {
     top: -12,
   },
 }))
@@ -206,8 +206,8 @@ export {}
 export default function SwatchProductOption({
   selected,
   label,
-  classes,
   color,
+  classes: c = {},
   imageProps,
   onClick,
   SelectedIcon,
@@ -220,6 +220,7 @@ export default function SwatchProductOption({
   strikeThroughDisabled,
   strikeThroughAngle,
 }) {
+  const classes = { ...defaultClasses, ...c }
   if (skeleton) {
     return (
       <Skeleton

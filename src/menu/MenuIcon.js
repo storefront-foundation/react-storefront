@@ -1,10 +1,10 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { useAmp } from 'next/amp'
 
-const PREFIX = 'RSFMenuIcon';
+const PREFIX = 'RSFMenuIcon'
 
 const classes = {
   root: `${PREFIX}-root`,
@@ -12,15 +12,11 @@ const classes = {
   withLabel: `${PREFIX}-withLabel`,
   hidden: `${PREFIX}-hidden`,
   visible: `${PREFIX}-visible`,
-  label: `${PREFIX}-label`
-};
+  label: `${PREFIX}-label`,
+}
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   [`& .${classes.root}`]: {
     position: 'relative',
     height: '24px',
@@ -124,17 +120,16 @@ const Root = styled('div')((
     letterSpacing: '0px',
     marginTop: '-3px',
     color: theme.palette.text.secondary,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A menu icon that animates transitions between open and closed states.
  */
-export default function MenuIcon({  label, open }) {
+export default function MenuIcon({ label, open }) {
   const amp = useAmp()
-
 
   const renderIcon = open => {
     return (
@@ -157,7 +152,7 @@ export default function MenuIcon({  label, open }) {
 
   if (amp) {
     return (
-      (<Root>
+      <Root>
         <div
           className={classes.visible}
           amp-bind={`class=>!rsfMenuState.open ? '${classes.visible}' : '${classes.hidden}'`}
@@ -170,8 +165,8 @@ export default function MenuIcon({  label, open }) {
         >
           {renderIcon(true)}
         </div>
-      </Root>)
-    );
+      </Root>
+    )
   } else {
     return renderIcon(open)
   }

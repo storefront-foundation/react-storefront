@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
 import { useTheme } from '@mui/material/styles'
@@ -12,9 +12,9 @@ import MagnifyHint from './MagnifyHint'
 import CarouselThumbnails from './CarouselThumbnails'
 import get from 'lodash/get'
 
-const PREFIX = 'RSFMediaCarousel';
+const PREFIX = 'RSFMediaCarousel'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   rootSideThumbs: `${PREFIX}-rootSideThumbs`,
   mediaWrap: `${PREFIX}-mediaWrap`,
@@ -22,19 +22,15 @@ const classes = {
   thumbnailsLeft: `${PREFIX}-thumbnailsLeft`,
   thumbnailsTop: `${PREFIX}-thumbnailsTop`,
   lightboxCarousel: `${PREFIX}-lightboxCarousel`,
-  lightboxThumbs: `${PREFIX}-lightboxThumbs`
-};
+  lightboxThumbs: `${PREFIX}-lightboxThumbs`,
+}
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root component.
    */
-  [`& .${classes.root}`]: {
+  [`& .${defaultClasses.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
@@ -46,7 +42,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the root component when `thumbnailPosition` is `left` or `right`.
    */
-  [`& .${classes.rootSideThumbs}`]: {
+  [`& .${defaultClasses.rootSideThumbs}`]: {
     [theme.breakpoints.up('sm')]: {
       flexDirection: 'row',
     },
@@ -55,7 +51,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the wrapper element of each media component.
    */
-  [`& .${classes.mediaWrap}`]: {
+  [`& .${defaultClasses.mediaWrap}`]: {
     height: '100%',
     width: '100%',
     display: 'flex',
@@ -71,7 +67,7 @@ const Root = styled('div')((
   /**
    * Styles applied to each of the thumbnail elements.
    */
-  [`& .${classes.thumbnail}`]: {
+  [`& .${defaultClasses.thumbnail}`]: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -82,7 +78,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the thumbnail component when thumbnailPosition is `left`.
    */
-  [`& .${classes.thumbnailsLeft}`]: {
+  [`& .${defaultClasses.thumbnailsLeft}`]: {
     [theme.breakpoints.up('sm')]: {
       order: -1,
     },
@@ -91,14 +87,14 @@ const Root = styled('div')((
   /**
    * Styles applied to the thumbnail component when thumbnailPosition is `top`.
    */
-  [`& .${classes.thumbnailsTop}`]: {
+  [`& .${defaultClasses.thumbnailsTop}`]: {
     order: -1,
   },
 
   /**
    * Styles applied to the carousel component when the lightbox is shown.
    */
-  [`& .${classes.lightboxCarousel}`]: {
+  [`& .${defaultClasses.lightboxCarousel}`]: {
     flex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
@@ -107,14 +103,14 @@ const Root = styled('div')((
   /**
    * Styles applied to the thumbnails in the lightbox.
    */
-  [`& .${classes.lightboxThumbs}`]: {
+  [`& .${defaultClasses.lightboxThumbs}`]: {
     paddingBottom: theme.spacing(2),
-  }
-}));
+  },
+}))
 
 const THUMBNAIL_IMAGE_ID = '__rsf-placeholder-thumbnail'
 
-export {};
+export {}
 
 /**
  * A carousel that displays images and videos for a product.  Specify
@@ -161,7 +157,7 @@ function MediaCarousel(props) {
     imageProps,
     lightboxProps,
     lightboxClassName,
-    classes,
+    classes: c = {},
     media,
     magnifyProps,
     id,
@@ -171,6 +167,8 @@ function MediaCarousel(props) {
     CarouselThumbnailsComponent,
     ...others
   } = props
+
+  const classes = { ...defaultClasses, ...c }
 
   const [imagesLoaded, setImagesLoaded] = useState(false)
 
@@ -240,7 +238,7 @@ function MediaCarousel(props) {
       <ImageComponent
         id={THUMBNAIL_IMAGE_ID}
         key="thumbnail"
-        className={styles.thumbnail}
+        className={classes.thumbnail}
         fill
         {...thumbnail}
       />,
@@ -277,7 +275,7 @@ function MediaCarousel(props) {
       autoplay: false,
       className: clsx(
         others.className,
-        styles.lightboxCarousel,
+        classess.lightboxCarousel,
         lightboxActive && lightboxClassName,
       ),
       height: isSmall ? '100%' : null,
@@ -290,7 +288,7 @@ function MediaCarousel(props) {
   }, [])
 
   const body = (
-    <div
+    <Root
       className={clsx(styles.root, {
         [styles.rootSideThumbs]: !lightboxActive && isThumbsSide,
       })}
@@ -347,17 +345,17 @@ function MediaCarousel(props) {
           thumbnailPosition={lightboxActive ? 'bottom' : thumbnailPosition}
         />
       )}
-    </div>
+    </Root>
   )
 
   return (
-    (<Root>
+    <Root>
       {body}
       <Lightbox {...lightboxProps} open={!!lightboxActive} onClose={handleLightboxClose}>
         {body}
       </Lightbox>
-    </Root>)
-  );
+    </Root>
+  )
 }
 
 MediaCarousel.propTypes = {

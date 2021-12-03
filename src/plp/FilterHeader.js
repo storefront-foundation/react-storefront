@@ -1,26 +1,22 @@
 import React, { useMemo, useContext } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import { Hbox } from '../Box'
 import PropTypes from 'prop-types'
 import SearchResultsContext from './SearchResultsContext'
 
-const PREFIX = 'RSFFilterHeader';
+const PREFIX = 'RSFFilterHeader'
 
-const classes = {
+const defaultClasses = {
   header: `${PREFIX}-header`,
   title: `${PREFIX}-title`,
-  clear: `${PREFIX}-clear`
-};
+  clear: `${PREFIX}-clear`,
+}
 
-const StyledHbox = styled(Hbox)((
-  {
-    theme
-  }
-) => ({
+const StyledHbox = styled(Hbox)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.header}`]: {
+  [`&.${defaultClasses.header}`]: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     [theme.breakpoints.down('sm')]: {
       padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
@@ -33,7 +29,7 @@ const StyledHbox = styled(Hbox)((
   /**
    * Styles applied to the title element.
    */
-  [`& .${classes.title}`]: {
+  [`& .${defaultClasses.title}`]: {
     [theme.breakpoints.down('sm')]: {
       ...theme.typography.h6,
     },
@@ -47,7 +43,7 @@ const StyledHbox = styled(Hbox)((
   /**
    * Styles applied to the clear link.
    */
-  [`& .${classes.clear}`]: {
+  [`& .${defaultClasses.clear}`]: {
     ...theme.typography.caption,
     display: 'block',
     border: 'none',
@@ -55,15 +51,15 @@ const StyledHbox = styled(Hbox)((
     marginLeft: '10px',
     textDecoration: 'underline',
     backgroundColor: 'transparent',
-  }
-}));
+  },
+}))
 
 /**
  * A header to be placed at the top of the [`Filter`](/apiReference/plp/Filter).
  */
 export default function FilterHeader(props) {
-  const { title, clearLinkText, hideClearLink, submitOnChange } = props
-
+  const { title, clearLinkText, hideClearLink, submitOnChange, classes: c = {} } = props
+  const classes = { ...defaultClasses, ...c }
   const {
     actions,
     pageData: { filters },
@@ -81,7 +77,7 @@ export default function FilterHeader(props) {
       </StyledHbox>
     ),
     [filters, ...Object.values(props)],
-  );
+  )
 }
 
 FilterHeader.propTypes = {

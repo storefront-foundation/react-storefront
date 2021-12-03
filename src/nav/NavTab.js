@@ -1,31 +1,27 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import Link from '../link/Link'
 import { Hidden, Fade, Tab, Popover, Paper } from '@mui/material'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 
-const PREFIX = 'RSFNavTab';
+const PREFIX = 'RSFNavTab'
 
-const classes = {
+const defaultClasses = {
   popover: `${PREFIX}-popover`,
   tab: `${PREFIX}-tab`,
   link: `${PREFIX}-link`,
   ripple: `${PREFIX}-ripple`,
   paper: `${PREFIX}-paper`,
-  innerPaper: `${PREFIX}-innerPaper`
-};
+  innerPaper: `${PREFIX}-innerPaper`,
+}
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the Popover element for desktop users.
    */
-  [`& .${classes.popover}`]: {
+  [`& .${defaultClasses.popover}`]: {
     pointerEvents: 'none',
     maxHeight: '80%',
   },
@@ -33,7 +29,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the `Tab` element.
    */
-  [`& .${classes.tab}`]: {
+  [`& .${defaultClasses.tab}`]: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },
@@ -41,7 +37,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the root [`Link`](/apiReference/link/Link) element.
    */
-  [`& .${classes.link}`]: {
+  [`& .${defaultClasses.link}`]: {
     textDecoration: 'none',
     color: 'inherit',
     fontWeight: 300,
@@ -50,14 +46,14 @@ const Root = styled('div')((
   /**
    * Styles applied to the root element of the `Tab`'s `TouchRippleProps` classes.
    */
-  [`& .${classes.ripple}`]: {
+  [`& .${defaultClasses.ripple}`]: {
     zIndex: 2,
   },
 
   /**
    * Styles applied to the Popover element's `Paper` element for desktop users.
    */
-  [`& .${classes.paper}`]: {
+  [`& .${defaultClasses.paper}`]: {
     pointerEvents: 'all',
     paddingTop: 2, // we add 2 pixels of transparent padding and move the menu up two pixels to cover the tab indicator
     marginTop: -2, // so that the user doesn't temporarily mouse over the indicator when moving between the tab and the menu, causing the menu to flicker.
@@ -68,10 +64,10 @@ const Root = styled('div')((
   /**
    * Styles applied to the Popover element's `Paper` element for desktop users.
    */
-  [`& .${classes.innerPaper}`]: {
+  [`& .${defaultClasses.innerPaper}`]: {
     borderTop: `1px solid ${theme.palette.divider}`,
-  }
-}));
+  },
+}))
 
 /**
  * A single navigational tab, which links to another page in the app based on the `as` and `href` props.
@@ -93,9 +89,8 @@ const Root = styled('div')((
  *
  * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the `NavTab` is focused.
  */
-function NavTab({  href, as, prefetch, children, ...props }) {
-
-
+function NavTab({ href, as, prefetch, children, classes: c = {}, ...props }) {
+  const classes = { ...defaultClasses, ...c }
   const [overTab, setOverTab] = useState(false)
   const [overMenu, setOverMenu] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -158,7 +153,7 @@ function NavTab({  href, as, prefetch, children, ...props }) {
   }, [open])
 
   return (
-    (<Root>
+    <Root>
       <Link
         className={classes.link}
         href={href}
@@ -215,8 +210,8 @@ function NavTab({  href, as, prefetch, children, ...props }) {
           </Popover>
         </Hidden>
       )}
-    </Root>)
-  );
+    </Root>
+  )
 }
 
 NavTab.propTypes = {

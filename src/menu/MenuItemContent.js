@@ -1,24 +1,20 @@
 import React, { useContext } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import { ListItem, ListItemText, ListItemIcon, CircularProgress } from '@mui/material'
 import MenuContext from './MenuContext'
 import MenuExpanderIcon from './MenuExpanderIcon'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-const PREFIX = 'RSFMenuItemContent';
+const PREFIX = 'RSFMenuItemContent'
 
 const classes = {
   listItem: `${PREFIX}-listItem`,
   listItemImage: `${PREFIX}-listItemImage`,
   listItemIcon: `${PREFIX}-listItemIcon`,
-  loadingIcon: `${PREFIX}-loadingIcon`
-};
+  loadingIcon: `${PREFIX}-loadingIcon`,
+}
 
-const StyledListItem = styled(ListItem)((
-  {
-    theme
-  }
-) => ({
+const StyledListItem = styled(ListItem)(({ theme }) => ({
   [`& .${classes.listItem}`]: {
     textTransform: 'uppercase',
     lineHeight: '1.5',
@@ -38,14 +34,10 @@ const StyledListItem = styled(ListItem)((
 
   [`& .${classes.loadingIcon}`]: {
     display: 'block',
-  }
-}));
+  },
+}))
 
-const StyledListItemText = styled(ListItemText)((
-  {
-    theme
-  }
-) => ({
+const StyledListItemText = styled(ListItemText)(({ theme }) => ({
   [`& .${classes.drawer}`]: {
     zIndex: theme.zIndex.modal + 20,
     display: 'flex',
@@ -119,12 +111,11 @@ const StyledListItemText = styled(ListItemText)((
     top: 0,
     height: '100vh',
     borderTop: 'none',
-  }
-}));
+  },
+}))
 
 export default function MenuItemContent(props) {
   const { renderItemContent, onItemClick } = useContext(MenuContext)
-
 
   let { item, depth, leaf, listItemProps } = props
   let contents
@@ -153,7 +144,7 @@ export default function MenuItemContent(props) {
               <img className={classes.listItemImage} alt={item.text} src={item.image} />
             </ListItemIcon>
           )}
-          <ListItemText className={classes.listItem} primary={item.text} disableTypography />
+          <StyledListItemText className={classes.listItem} primary={item.text} disableTypography />
           <ListItemIcon className={classes.listItemIcon}>
             {item.loading ? (
               <CircularProgress
@@ -182,7 +173,7 @@ export default function MenuItemContent(props) {
     >
       {contents}
     </StyledListItem>
-  );
+  )
 }
 
 MenuItemContent.propTypes = {

@@ -1,26 +1,22 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React, { useContext } from 'react'
 import { Button, Typography } from '@mui/material'
 import { Hbox } from '../Box'
 import SearchResultsContext from './SearchResultsContext'
 
-const PREFIX = 'RSFFilterFooter';
+const PREFIX = 'RSFFilterFooter'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
-  itemsFound: `${PREFIX}-itemsFound`
-};
+  itemsFound: `${PREFIX}-itemsFound`,
+}
 
-const StyledHbox = styled(Hbox)((
-  {
-    theme
-  }
-) => ({
+const StyledHbox = styled(Hbox)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     backgroundColor: theme.palette.secondary.main,
     padding: '12px 20px',
     color: 'white',
@@ -31,19 +27,19 @@ const StyledHbox = styled(Hbox)((
   /**
    * Styles applied to the "# items found" label.
    */
-  [`& .${classes.itemsFound}`]: {
+  [`& .${defaultClasses.itemsFound}`]: {
     color: theme.palette.secondary.contrastText,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A footer to be placed at the bottom of the [`Filter`](/apiReference/plp/Filter).
  */
 export default function FilterFooter(props) {
-  let {  submitOnChange, onViewResultsClick } = props
-
+  let { classes: c = {}, submitOnChange, onViewResultsClick } = props
+  const classes = { ...defaultClasses, ...c }
 
   const {
     pageData: { filters, filtersChanged },
@@ -57,11 +53,11 @@ export default function FilterFooter(props) {
         {filters.length || 'No'} filter
         {filters.length === 1 ? '' : 's'} selected
       </Typography>
-      <Button variant="contained" size="large" onClick={onViewResultsClick}>
+      <Button variant="contained" size="large" onClick={onViewResultsClick} color="primary">
         View Results
       </Button>
     </StyledHbox>
-  );
+  )
 }
 
 FilterFooter.propTypes = {

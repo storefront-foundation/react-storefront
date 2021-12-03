@@ -1,25 +1,21 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React, { useMemo, useContext } from 'react'
 import { Checkbox, FormGroup, Typography, FormControlLabel } from '@mui/material'
 import SearchResultsContext from './SearchResultsContext'
 
-const PREFIX = 'RSFCheckboxFilterGroup';
+const PREFIX = 'RSFCheckboxFilterGroup'
 
-const classes = {
+const defaultClasses = {
   matches: `${PREFIX}-matches`,
-  groupLabel: `${PREFIX}-groupLabel`
-};
+  groupLabel: `${PREFIX}-groupLabel`,
+}
 
-const StyledFormGroup = styled(FormGroup)((
-  {
-    theme
-  }
-) => ({
+const StyledFormGroup = styled(FormGroup)(({ theme }) => ({
   /**
    * Styles applied to the matching text.
    */
-  [`& .${classes.matches}`]: {
+  [`& .${defaultClasses.matches}`]: {
     marginLeft: '5px',
     display: 'inline',
   },
@@ -27,23 +23,23 @@ const StyledFormGroup = styled(FormGroup)((
   /**
    * Styles applied to the group label element.
    */
-  [`& .${classes.groupLabel}`]: {
+  [`& .${defaultClasses.groupLabel}`]: {
     display: 'flex',
     alignItems: 'center',
-  }
-}));
+  },
+}))
 
 /**
  * A UI for grouping filters using checkboxes.
  */
 export default function CheckboxFilterGroup(props) {
-  const { group, submitOnChange } = props
+  const { group, submitOnChange, classes: c = {} } = props
   const {
     pageData: { filters },
     actions: { toggleFilter },
   } = useContext(SearchResultsContext)
 
-
+  const classes = { ...defaultClasses, ...c }
 
   return useMemo(
     () => (
@@ -71,7 +67,7 @@ export default function CheckboxFilterGroup(props) {
       </StyledFormGroup>
     ),
     [...Object.values(props), filters],
-  );
+  )
 }
 
 CheckboxFilterGroup.propTypes = {

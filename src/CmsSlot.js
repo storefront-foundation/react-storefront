@@ -1,23 +1,19 @@
 import React, { useEffect, useRef } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import doLazyLoadImages from './utils/lazyLoadImages'
 import { prefetchJsonFor } from './serviceWorker'
 
-const PREFIX = 'RSFCmsSlot';
+const PREFIX = 'RSFCmsSlot'
 
 const classes = {
   inline: `${PREFIX}-inline`,
   block: `${PREFIX}-block`,
-  root: `${PREFIX}-root`
-};
+  root: `${PREFIX}-root`,
+}
 
-const Root = styled('span\n')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('span')(({ theme }) => ({
   [`& .${classes.inline}`]: {
     display: 'inline',
   },
@@ -41,10 +37,10 @@ const Root = styled('span\n')((
     '& img[data-src]': {
       visibility: 'hidden',
     },
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A container for HTML blob content from a CMS.  Content is dangerously inserted into the DOM.
@@ -59,7 +55,6 @@ export default function CmsSlot({
   prefetchLinks,
   ...others
 }) {
-
   const el = useRef()
 
   useEffect(() => {
@@ -83,7 +78,7 @@ export default function CmsSlot({
   }, [children])
 
   return children ? (
-    <span
+    <Root
       {...others}
       ref={el}
       className={clsx(className, classes.root, {

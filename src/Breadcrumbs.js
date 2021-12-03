@@ -1,28 +1,24 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import { KeyboardArrowRight as ArrowRight } from '@mui/icons-material'
 import Link from './link/Link'
 import clsx from 'clsx'
 import { Typography, Container } from '@mui/material'
 import PropTypes from 'prop-types'
 
-const PREFIX = 'Breadcrumbs';
+const PREFIX = 'Breadcrumbs'
 
-const classes = {
+const defaultClasses = {
   breadcrumbs: `${PREFIX}-breadcrumbs`,
   separator: `${PREFIX}-separator`,
-  current: `${PREFIX}-current`
-};
+  current: `${PREFIX}-current`,
+}
 
-const StyledTypography = styled(Typography)((
-  {
-    theme
-  }
-) => ({
+const StyledTypography = styled(Typography)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.breadcrumbs}`]: {
+  [`&.${defaultClasses.breadcrumbs}`]: {
     backgroundColor: '#F4F2F1',
     padding: '12px 0',
 
@@ -35,7 +31,7 @@ const StyledTypography = styled(Typography)((
   /**
    * Styles applied to the separators.
    */
-  [`& .${classes.separator}`]: {
+  [`& .${defaultClasses.separator}`]: {
     height: '12px',
     position: 'relative',
     top: '2px',
@@ -45,16 +41,16 @@ const StyledTypography = styled(Typography)((
   /**
    * Styles applied to the currently active breadcrumb's element.
    */
-  [`& .${classes.current}`]: {
+  [`& .${defaultClasses.current}`]: {
     fontWeight: 'bold',
     color: theme.palette.text.primary,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
-export default function Breadcrumbs({ items, }) {
-
+export default function Breadcrumbs({ items, classes: c = {} }) {
+  const classes = { ...defaultClasses, ...c }
 
   return (
     <StyledTypography display="block" className={classes.breadcrumbs} variant="caption">
@@ -85,7 +81,7 @@ export default function Breadcrumbs({ items, }) {
         <span>&nbsp;</span>
       </Container>
     </StyledTypography>
-  );
+  )
 }
 
 Breadcrumbs.propTypes = {

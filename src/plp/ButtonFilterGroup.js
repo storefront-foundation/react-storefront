@@ -1,28 +1,24 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React, { useMemo, useContext } from 'react'
 import SearchResultsContext from './SearchResultsContext'
 import SwatchProductOption from '../option/SwatchProductOption'
 import TextProductOption from '../option/TextProductOption'
 import { Hbox } from '../Box'
 
-const PREFIX = 'RSFButtonFilterGroup';
+const PREFIX = 'RSFButtonFilterGroup'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   matches: `${PREFIX}-matches`,
-  button: `${PREFIX}-button`
-};
+  button: `${PREFIX}-button`,
+}
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -30,7 +26,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the matching text.
    */
-  [`& .${classes.matches}`]: {
+  [`& .${defaultClasses.matches}`]: {
     display: 'inline',
     ...theme.typography.caption,
     marginLeft: 2,
@@ -40,23 +36,22 @@ const Root = styled('div')((
   /**
    * Styles applied to each button element.
    */
-  [`& .${classes.button}`]: {
+  [`& .${defaultClasses.button}`]: {
     fontWeight: 'normal',
     margin: theme.spacing(0, 0.5, 0.5, 0),
-  }
-}));
+  },
+}))
 
 /**
  * A UI for grouping filters using buttons.
  */
 export default function ButtonFilterGroup(props) {
-  const { group, submitOnChange } = props
+  const { group, submitOnChange, classes: c = {} } = props
   const {
     pageData: { filters },
     actions: { toggleFilter },
   } = useContext(SearchResultsContext)
-
-
+  const classes = { ...defaultClasses, ...c }
 
   return useMemo(
     () => (
@@ -86,7 +81,7 @@ export default function ButtonFilterGroup(props) {
       </Root>
     ),
     [filters, ...Object.values(props)],
-  );
+  )
 }
 
 ButtonFilterGroup.propTypes = {

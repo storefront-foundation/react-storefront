@@ -1,5 +1,4 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react'
-import { styled } from '@mui/material/styles';
 import MenuContext from './MenuContext'
 import { Drawer } from '@mui/material'
 import clsx from 'clsx'
@@ -7,9 +6,9 @@ import SEOLinks from './SEOLinks'
 import MenuBody from './MenuBody'
 import PropTypes from 'prop-types'
 
-const PREFIX = 'RSFMenu';
+const PREFIX = 'RSFMenu'
 
-const classes = {
+const defaultClasses = {
   drawer: `${PREFIX}-drawer`,
   list: `${PREFIX}-list`,
   listPadding: `${PREFIX}-listPadding`,
@@ -21,12 +20,12 @@ const classes = {
   visible: `${PREFIX}-visible`,
   link: `${PREFIX}-link`,
   leaf: `${PREFIX}-leaf`,
-  drawerFixed: `${PREFIX}-drawerFixed`
-};
+  drawerFixed: `${PREFIX}-drawerFixed`,
+}
 
 const Menu = React.memo(props => {
   let {
-    classes,
+    classes: c = {},
     className,
     anchor,
     drawerWidth,
@@ -43,7 +42,7 @@ const Menu = React.memo(props => {
     ...others
   } = props
 
-
+  const classes = { ...defaultClasses, ...c }
 
   const [state, setState] = useState(() => {
     return {

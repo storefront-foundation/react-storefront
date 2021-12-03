@@ -1,27 +1,23 @@
 import React, { useContext, memo } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import FacetGroup from './FacetGroup'
 import FilterHeader from './FilterHeader'
 import FilterFooter from './FilterFooter'
 import SearchResultsContext from './SearchResultsContext'
 
-const PREFIX = 'RSFFilter';
+const PREFIX = 'RSFFilter'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
-  facetGroups: `${PREFIX}-facetGroups`
-};
+  facetGroups: `${PREFIX}-facetGroups`,
+}
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -31,15 +27,15 @@ const Root = styled('div')((
   /**
    * Styles applied to the wrapper element around the facet groups.
    */
-  [`& .${classes.facetGroups}`]: {
+  [`& .${defaultClasses.facetGroups}`]: {
     overflow: 'auto',
     overflowX: 'hidden',
     flex: '1',
     position: 'relative',
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * UI for filtering a list of products.  This component can be used on its own, or you can use
@@ -52,12 +48,11 @@ function Filter({
   clearLinkText,
   submitOnChange,
   style,
-  classes,
+  classes: c = {},
   title,
   onViewResultsClick,
 }) {
-
-
+  const classes = { ...defaultClasses, ...c }
   const {
     pageData: { facets },
   } = useContext(SearchResultsContext)
@@ -83,7 +78,7 @@ function Filter({
       </div>
       <FilterFooter onViewResultsClick={onViewResultsClick} submitOnChange={submitOnChange} />
     </Root>
-  );
+  )
 }
 
 Filter.propTypes = {

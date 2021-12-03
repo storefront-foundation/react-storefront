@@ -1,34 +1,30 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React, { useCallback } from 'react'
 import clsx from 'clsx'
 import { IconButton } from '@mui/material'
 import { ChevronLeft, ChevronRight } from '@mui/icons-material'
 
-const PREFIX = 'RSFCarouselArrows';
+const PREFIX = 'RSFCarouselArrows'
 
-const classes = {
+const defaultClasses = {
   arrows: `${PREFIX}-arrows`,
   arrow: `${PREFIX}-arrow`,
   leftArrow: `${PREFIX}-leftArrow`,
   rightArrow: `${PREFIX}-rightArrow`,
-  icon: `${PREFIX}-icon`
-};
+  icon: `${PREFIX}-icon`,
+}
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.arrows}`]: {},
+  [`&.${defaultClasses.arrows}`]: {},
 
   /**
    * Styles applied to each of the arrow icon buttons.
    */
-  [`& .${classes.arrow}`]: {
+  [`& .${defaultClasses.arrow}`]: {
     position: 'absolute',
     top: '50%',
     marginTop: '-24px',
@@ -37,24 +33,24 @@ const Root = styled('div')((
   /**
    * Styles applied to the left arrow icon buttons.
    */
-  [`& .${classes.leftArrow}`]: {
+  [`& .${defaultClasses.leftArrow}`]: {
     left: 0,
   },
 
   /**
    * Styles applied to the right arrow icon buttons.
    */
-  [`& .${classes.rightArrow}`]: {
+  [`& .${defaultClasses.rightArrow}`]: {
     right: 0,
   },
 
   /**
    * Styles applied to each of the icon elements.
    */
-  [`& .${classes.icon}`]: {}
-}));
+  [`& .${defaultClasses.icon}`]: {},
+}))
 
-export {};
+export {}
 
 /**
  * Arrows that are overlaid onto a [`Carousel`](/apiReference/carousel/Carousel) that will change
@@ -62,7 +58,7 @@ export {};
  */
 export default function CarouselArrows({
   className,
-  classes,
+  classes: c = {},
   selected,
   count,
   setSelected,
@@ -70,7 +66,7 @@ export default function CarouselArrows({
   leftArrowLabel,
   rightArrowLabel,
 }) {
-
+  const classes = { ...defaultClasses, ...c }
 
   const createOnClickArrow = useCallback(
     idxChange => evt => {
@@ -117,7 +113,7 @@ export default function CarouselArrows({
         </IconButton>
       )}
     </Root>
-  );
+  )
 }
 
 CarouselArrows.propTypes = {

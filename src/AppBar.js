@@ -1,30 +1,26 @@
 import React, { useContext } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import { AppBar as MUIAppBar, Toolbar, useScrollTrigger, Slide } from '@mui/material'
 import PropTypes from 'prop-types'
 import PWAContext from './PWAContext'
 import clsx from 'clsx'
 
-const PREFIX = 'AppBar';
+const PREFIX = 'AppBar'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   relative: `${PREFIX}-relative`,
   spacer: `${PREFIX}-spacer`,
   toolbar: `${PREFIX}-toolbar`,
-  offline: `${PREFIX}-offline`
-};
+  offline: `${PREFIX}-offline`,
+}
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${classes.root}`]: {
+  [`& .${defaultClasses.root}`]: {
     boxSizing: 'border-box',
     backgroundColor: theme.palette.background.default,
     boxShadow: 'none',
@@ -36,14 +32,14 @@ const Root = styled('div')((
     alignItems: 'stretch',
   },
 
-  [`& .${classes.relative}`]: {
+  [`& .${defaultClasses.relative}`]: {
     position: 'relative',
   },
 
   /**
    * Styles applied to the spacer that fills the height behind the floating toolbar.
    */
-  [`& .${classes.spacer}`]: {
+  [`& .${defaultClasses.spacer}`]: {
     boxSizing: 'border-box',
     height: theme.headerHeight,
   },
@@ -51,7 +47,7 @@ const Root = styled('div')((
   /**
    * Styles applied to the `Toolbar` element.
    */
-  [`& .${classes.toolbar}`]: {
+  [`& .${defaultClasses.toolbar}`]: {
     justifyContent: 'space-between',
     alignItems: 'center',
     flex: 1,
@@ -60,22 +56,30 @@ const Root = styled('div')((
   /**
    * Styles applied to the offline warning element.
    */
-  [`& .${classes.offline}`]: {
+  [`& .${defaultClasses.offline}`]: {
     textAlign: 'center',
     backgroundColor: '#f34c4c',
     zIndex: 999999,
     width: '100vw',
     color: 'white',
-  }
-}));
+  },
+}))
 
-export default function AppBar({ children, style, variant, fixed, offlineWarning, }) {
+export default function AppBar({
+  children,
+  classes: c = {},
+  style,
+  variant,
+  fixed,
+  offlineWarning,
+}) {
   if (fixed) {
     variant = 'fixed'
   }
 
-  const trigger = useScrollTrigger()
+  const classes = { ...defaultClasses, ...c }
 
+  const trigger = useScrollTrigger()
 
   const { offline } = useContext(PWAContext)
 
@@ -104,12 +108,12 @@ export default function AppBar({ children, style, variant, fixed, offlineWarning
   }
 
   return (
-    (<Root>
+    <Root>
       {(variant === 'hide' || variant === 'fixed') && <div className={classes.spacer} />}
       {offline && <div className={classes.offline}>{offlineWarning}</div>}
       {appBar}
-    </Root>)
-  );
+    </Root>
+  )
 }
 
 AppBar.propTypes = {

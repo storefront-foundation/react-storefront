@@ -1,43 +1,38 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React from 'react'
 import { IconButton } from '@mui/material'
 import { Search } from '@mui/icons-material'
-const PREFIX = 'RSFSearchButton';
+const PREFIX = 'RSFSearchButton'
 
-const classes = {
+const defaultClasses = {
   icon: `${PREFIX}-icon`,
-  large: `${PREFIX}-large`
-};
+  large: `${PREFIX}-large`,
+}
 
-const StyledIconButton = styled(IconButton)((
-  {
-    theme
-  }
-) => ({
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
   /**
    * Styles applied to the icon, if [children](#prop-children) is empty.
    */
-  [`& .${classes.icon}`]: {
+  [`& .${defaultClasses.icon}`]: {
     color: theme.palette.action.active,
   },
 
   /**
    * Styles applied to the element containing the button's label.
    */
-  [`& .${classes.large}`]: {
+  [`& .${defaultClasses.large}`]: {
     fontSize: '28px',
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * A button that can be used to open a search drawer.
  */
-export default function SearchButton({ children,  ...other }) {
-
-
+export default function SearchButton({ children, classes: c = {}, ...other }) {
+  const classes = { ...defaultClasses, ...c }
   return (
     <StyledIconButton
       aria-label="Search"
@@ -48,7 +43,7 @@ export default function SearchButton({ children,  ...other }) {
     >
       {children || <Search className={classes.icon} />}
     </StyledIconButton>
-  );
+  )
 }
 
 SearchButton.propTypes = {

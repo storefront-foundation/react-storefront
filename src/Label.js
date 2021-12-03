@@ -1,31 +1,27 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React from 'react'
 import clsx from 'clsx'
 import { Typography } from '@mui/material'
-const PREFIX = 'RSFLabel';
+const PREFIX = 'RSFLabel'
 
-const classes = {
-  root: `${PREFIX}-root`
-};
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+}
 
-const StyledTypography = styled(Typography)((
-  {
-    theme
-  }
-) => ({
+const StyledTypography = styled(Typography)(({ theme }) => ({
   /**
    * Styles applied to the root element\.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     fontWeight: 500,
     marginRight: 10,
-  }
-}));
+  },
+}))
 
-export default function Label({  className, ...props }) {
-
-  return <StyledTypography {...props} className={clsx(className, classes.root)} />;
+export default function Label({ className, classes: c = {}, ...props }) {
+  const classes = { ...defaultClasses, ...c }
+  return <StyledTypography {...props} className={clsx(className, classes.root)} />
 }
 
 Label.propTypes = {

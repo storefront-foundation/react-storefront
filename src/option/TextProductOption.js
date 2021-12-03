@@ -1,26 +1,22 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Button, Skeleton } from '@mui/material'
 
-const PREFIX = 'RSFTextProductOption';
+const PREFIX = 'RSFTextProductOption'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
-  strikeThrough: `${PREFIX}-strikeThrough`
-};
+  strikeThrough: `${PREFIX}-strikeThrough`,
+}
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${classes.root}`]: {
+  [`& .${defaultClasses.root}`]: {
     '.rsf-po-selected &': {
       borderColor: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.main,
@@ -38,7 +34,7 @@ const Root = styled('div')((
    * Styles applied to the element used as a strikethrough when [`disabled`](#prop-disabled) and
    * [`strikeThroughDisabled`](#prop-disabled) are both `true`.
    */
-  [`& .${classes.strikeThrough}`]: {
+  [`& .${defaultClasses.strikeThrough}`]: {
     height: '7px',
     borderWidth: '2px 0',
     borderStyle: 'solid',
@@ -49,10 +45,10 @@ const Root = styled('div')((
     top: 'calc(-50% - 2px)',
     left: -2,
     borderRadius: 10,
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 /**
  * Represents a single product option value as a button with text. All additional
@@ -65,7 +61,7 @@ export {};
  * ```
  */
 export default function TextProductOption({
-  classes,
+  classes: c = {},
   className,
   selected,
   label,
@@ -76,20 +72,19 @@ export default function TextProductOption({
   strikeThroughDisabled,
   strikeThroughAngle,
 }) {
-
-
+  const classes = { ...defaultClasses, ...c }
   if (skeleton) {
     return <Skeleton className={className} width={64} height={36} />
   }
 
   return (
-    (<Root>
+    <Root>
       <Button
         {...buttonProps}
         disabled={disabled}
         className={clsx(className, classes.root)}
         variant={selected ? 'contained' : 'outlined'}
-        color={selected ? 'primary' : 'default'}
+        color={selected ? 'primary' : 'secondary'}
         onClick={onClick}
       >
         {label}
@@ -100,8 +95,8 @@ export default function TextProductOption({
           style={{ transform: `rotate(${strikeThroughAngle}deg)` }}
         />
       )}
-    </Root>)
-  );
+    </Root>
+  )
 }
 
 TextProductOption.propTypes = {

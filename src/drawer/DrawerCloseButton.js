@@ -1,25 +1,24 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Clear as ClearIcon } from '@mui/icons-material'
 import { Fab, IconButton, Button } from '@mui/material'
 
-const PREFIX = 'RSFDrawerCloseButton';
+const PREFIX = 'RSFDrawerCloseButton'
 
-const classes = {
+const defaultClasses = {
   button: `${PREFIX}-button`,
   buttonText: `${PREFIX}-buttonText`,
   buttonFab: `${PREFIX}-buttonFab`,
-  hidden: `${PREFIX}-hidden`
-};
-
+  hidden: `${PREFIX}-hidden`,
+}
 
 /**
  * A close button for drawers that can display text or an icon.
  */
 export default function DrawerCloseButton({
-  classes,
+  classes: c = {},
   className,
   ampState,
   onClick,
@@ -29,15 +28,23 @@ export default function DrawerCloseButton({
   open,
   ...others
 }) {
-
+  const classes = { ...defaultClasses, ...c }
 
   let ButtonElement
 
-  const StyledButtonElement = styled(ButtonElement)((
-    {
-      theme
-    }
-  ) => ({
+  if (text) {
+    ButtonElement = Button
+  } else if (fullscreen) {
+    ButtonElement = IconButton
+  } else {
+    ButtonElement = props => (
+      <Fab color="primary" {...props} className={clsx(props.className, !open && classes.hidden)}>
+        <Icon />
+      </Fab>
+    )
+  }
+
+  const StyledButtonElement = styled(ButtonElement)(({ theme }) => ({
     /**
      * Styles applied to the root element.
      */
@@ -79,20 +86,8 @@ export default function DrawerCloseButton({
      */
     [`& .${classes.hidden}`]: {
       display: 'none',
-    }
-  }));
-
-  if (text) {
-    ButtonElement = Button
-  } else if (fullscreen) {
-    ButtonElement = IconButton
-  } else {
-    ButtonElement = props => (
-      <Fab color="primary" {...props} className={clsx(props.className, !open && classes.hidden)}>
-        <Icon />
-      </Fab>
-    )
-  }
+    },
+  }))
 
   return (
     <StyledButtonElement
@@ -108,7 +103,7 @@ export default function DrawerCloseButton({
     >
       {text || <Icon />}
     </StyledButtonElement>
-  );
+  )
 }
 
 DrawerCloseButton.propTypes = {

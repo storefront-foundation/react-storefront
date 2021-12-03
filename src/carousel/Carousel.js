@@ -11,7 +11,7 @@ import Fill from '../Fill'
 
 const PREFIX = 'RSFCarousel'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   swipeWrap: `${PREFIX}-swipeWrap`,
   autoPlaySwipeableViews: `${PREFIX}-autoPlaySwipeableViews`,
@@ -22,7 +22,7 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
@@ -36,7 +36,7 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to wrapper element of the swipe container.
    */
-  [`& .${classes.swipeWrap}`]: {
+  [`& .${defaultClasses.swipeWrap}`]: {
     position: 'relative',
     overflow: 'hidden',
     flex: 1,
@@ -46,11 +46,11 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
 
-  [`& .${classes.autoPlaySwipeableViews}`]: {
+  [`& .${defaultClasses.autoPlaySwipeableViews}`]: {
     overflowY: 'hidden',
     height: '100%',
   },
-  [`& .${classes.hideTouchArrows}`]: {
+  [`& .${defaultClasses.hideTouchArrows}`]: {
     '@media not all and (hover:none)': {
       display: 'none',
     },
@@ -80,7 +80,7 @@ const Carousel = React.forwardRef((props, ref) => {
   let {
     height,
     children,
-    classes,
+    classes: c = {},
     className,
     style,
     swipeStyle,
@@ -96,6 +96,7 @@ const Carousel = React.forwardRef((props, ref) => {
     interval,
     infinite,
   } = props
+  const classes = { ...defaultClasses, ...c }
 
   const { selected, setSelected } = useSelected(props)
   const count = children && children.length

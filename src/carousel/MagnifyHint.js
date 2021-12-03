@@ -1,12 +1,12 @@
 import { useAmp } from 'next/amp'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Typography } from '@mui/material'
 import { AddCircleOutline as Icon } from '@mui/icons-material'
 import clsx from 'clsx'
 
-const PREFIX = 'RSFMagnifyHint';
+const PREFIX = 'RSFMagnifyHint'
 
 const classes = {
   root: `${PREFIX}-root`,
@@ -18,14 +18,10 @@ const classes = {
   expandDisabled: `${PREFIX}-expandDisabled`,
   zoomTextDesktop: `${PREFIX}-zoomTextDesktop`,
   expandTextMobile: `${PREFIX}-expandTextMobile`,
-  expandTextDesktop: `${PREFIX}-expandTextDesktop`
-};
+  expandTextDesktop: `${PREFIX}-expandTextDesktop`,
+}
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
@@ -36,38 +32,6 @@ const Root = styled('div')((
     flexDirection: 'row',
     justifyContent: 'center',
     width: '100%',
-  },
-
-  /**
-   * Styles applied to the content wrapper element.
-   */
-  [`& .${classes.wrap}`]: {
-    borderRadius: 25,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    lineHeight: 14,
-    padding: '5px 10px',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  /**
-   * Styles applied to the magnification icon element.
-   */
-  [`& .${classes.icon}`]: {
-    height: 16,
-    width: 16,
-    color: theme.palette.grey[300],
-  },
-
-  /**
-   * Styles applied to the elements containing each of the text captions.
-   */
-  [`& .${classes.text}`]: {
-    marginLeft: 5,
-    color: theme.palette.grey[300],
-    position: 'relative',
-    top: 1,
   },
 
   /**
@@ -94,7 +58,41 @@ const Root = styled('div')((
       display: 'none',
     },
   },
+}))
 
+const Wrap = styled('div')(() => ({
+  [`& .${classes.wrap}`]: {
+    borderRadius: 25,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    lineHeight: 14,
+    padding: '5px 10px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+}))
+
+const StyledIcon = styled(Icon)(() => ({
+  /**
+   * Styles applied to the magnification icon element.
+   */
+  [`& .${classes.icon}`]: {
+    height: 16,
+    width: 16,
+    color: theme.palette.grey[300],
+  },
+}))
+
+const StyledTypography = styled(Typography)(() => ({
+  /**
+   * Styles applied to the elements containing each of the text captions.
+   */
+  [`& .${classes.text}`]: {
+    marginLeft: 5,
+    color: theme.palette.grey[300],
+    position: 'relative',
+    top: 1,
+  },
   /**
    * Styles applied to the element containing the [zoomTextDesktop](#prop-zoomTextDesktop) caption.
    */
@@ -134,9 +132,8 @@ const Root = styled('div')((
         display: 'none',
       },
     },
-  }
-}));
-
+  },
+}))
 /**
  * An element overlaid on a [`Carousel`](/apiReference/carousel/Carousel) that displays a tip for a
  * user to hover/click the Carousel in order to zoom in.
@@ -150,7 +147,6 @@ export default function MagnifyHint({
   disableZoom,
   disableExpand,
 }) {
-
   disableZoom = disableZoom || useAmp()
 
   return (
@@ -162,20 +158,26 @@ export default function MagnifyHint({
         [classes.expandDisabled]: disableExpand,
       })}
     >
-      <div className={classes.wrap}>
-        <Icon className={classes.icon} alt="magnify-icon" />
-        <Typography variant="caption" className={clsx(classes.text, classes.zoomTextDesktop)}>
+      <Wrap className={classes.wrap}>
+        <StyledIcon className={classes.icon} alt="magnify-icon" />
+        <StyledTypography variant="caption" className={clsx(classes.text, classes.zoomTextDesktop)}>
           {zoomTextDesktop}
-        </Typography>
-        <Typography variant="caption" className={clsx(classes.text, classes.expandTextMobile)}>
+        </StyledTypography>
+        <StyledTypography
+          variant="caption"
+          className={clsx(classes.text, classes.expandTextMobile)}
+        >
           {expandTextMobile}
-        </Typography>
-        <Typography variant="caption" className={clsx(classes.text, classes.expandTextDesktop)}>
+        </StyledTypography>
+        <StyledTypography
+          variant="caption"
+          className={clsx(classes.text, classes.expandTextDesktop)}
+        >
           {expandTextDesktop}
-        </Typography>
-      </div>
+        </StyledTypography>
+      </Wrap>
     </Root>
-  );
+  )
 }
 
 MagnifyHint.propTypes = {

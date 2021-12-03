@@ -1,31 +1,15 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import React from 'react'
 import Image from '../Image'
 import ReactImageMagnify from 'react-image-magnify'
 import clsx from 'clsx'
-const PREFIX = 'Media';
+const PREFIX = 'Media'
 
 const classes = {
   rimRoot: `${PREFIX}-rimRoot`,
-  rimSmallImage: `${PREFIX}-rimSmallImage`
-};
-
-const Root = styled('ideo')((
-  {
-    theme
-  }
-) => ({
-  [`& .${classes.rimRoot}`]: {
-    height: '100% !important',
-    width: '100% !important',
-  },
-
-  [`& .${classes.rimSmallImage}`]: {
-    height: '100% !important',
-    width: '100% !important',
-  }
-}));
+  rimSmallImage: `${PREFIX}-rimSmallImage`,
+}
 
 /**
  * An element that determines the proper tag to use for a media node within a
@@ -43,8 +27,6 @@ function Media({
   ImageComponent,
   ImageMagnifyComponent,
 }) {
-
-
   const adjustMagnifyProps = () => {
     const appliedMagnifyProps = { ...(magnifyProps || {}) }
     appliedMagnifyProps.style = {
@@ -81,8 +63,19 @@ function Media({
       return <video src={src} alt={alt} {...videoProps} />
     }
   } else if (magnify) {
+    const StyledImageMagnifyComponent = styled(ImageMagnifyComponent)(({ theme }) => ({
+      [`& .${classes.rimRoot}`]: {
+        height: '100% !important',
+        width: '100% !important',
+      },
+
+      [`& .${classes.rimSmallImage}`]: {
+        height: '100% !important',
+        width: '100% !important',
+      },
+    }))
     return (
-      <ImageMagnifyComponent
+      <StyledImageMagnifyComponent
         enlargedImagePosition="over"
         {...adjustMagnifyProps()}
         smallImage={{
