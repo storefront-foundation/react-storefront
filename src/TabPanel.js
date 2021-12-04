@@ -6,7 +6,7 @@ import clsx from 'clsx'
 
 const PREFIX = 'RSFTabPanel'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   panel: `${PREFIX}-panel`,
   hidden: `${PREFIX}-hidden`,
@@ -16,19 +16,19 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {},
+  [`&.${defaultClasses.root}`]: {},
 
   /**
    * Styles applied to the wrapper around each panel element.
    */
-  [`& .${classes.panel}`]: {
+  [`& .${defaultClasses.panel}`]: {
     margin: `${theme.spacing(2)} 0`,
   },
 
   /**
    * Styles applied to the wrapper around each panel element when that panel is hidden.
    */
-  [`& .${classes.hidden}`]: {
+  [`& .${defaultClasses.hidden}`]: {
     display: 'none',
   },
 }))

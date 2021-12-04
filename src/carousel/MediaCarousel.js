@@ -275,7 +275,7 @@ function MediaCarousel(props) {
       autoplay: false,
       className: clsx(
         others.className,
-        classess.lightboxCarousel,
+        classes.lightboxCarousel,
         lightboxActive && lightboxClassName,
       ),
       height: isSmall ? '100%' : null,
@@ -289,8 +289,8 @@ function MediaCarousel(props) {
 
   const body = (
     <Root
-      className={clsx(styles.root, {
-        [styles.rootSideThumbs]: !lightboxActive && isThumbsSide,
+      className={clsx(classes.root, {
+        [classes.rootSideThumbs]: !lightboxActive && isThumbsSide,
       })}
     >
       <CarouselComponent
@@ -333,9 +333,9 @@ function MediaCarousel(props) {
         <CarouselThumbnailsComponent
           className={clsx(
             thumbsClassName,
-            lightboxActive && styles.lightboxThumbs,
-            !lightboxActive && thumbnailPosition === 'left' && styles.thumbnailsLeft,
-            !lightboxActive && thumbnailPosition === 'top' && styles.thumbnailsTop,
+            lightboxActive && classes.lightboxThumbs,
+            !lightboxActive && thumbnailPosition === 'left' && classes.thumbnailsLeft,
+            !lightboxActive && thumbnailPosition === 'top' && classes.thumbnailsTop,
           )}
           bind={`${id}.index`}
           carouselId={id}

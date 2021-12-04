@@ -72,7 +72,7 @@ const Wrap = styled('div')(() => ({
   },
 }))
 
-const StyledIcon = styled(Icon)(() => ({
+const StyledIcon = styled(Icon)(({ theme }) => ({
   /**
    * Styles applied to the magnification icon element.
    */
@@ -83,7 +83,7 @@ const StyledIcon = styled(Icon)(() => ({
   },
 }))
 
-const StyledTypography = styled(Typography)(() => ({
+const StyledTypography = styled(Typography)(({ theme }) => ({
   /**
    * Styles applied to the elements containing each of the text captions.
    */
