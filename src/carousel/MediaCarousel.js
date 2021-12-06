@@ -30,7 +30,7 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root component.
    */
-  [`& .${defaultClasses.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
@@ -42,7 +42,7 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root component when `thumbnailPosition` is `left` or `right`.
    */
-  [`& .${defaultClasses.rootSideThumbs}`]: {
+  [`&.${defaultClasses.rootSideThumbs}`]: {
     [theme.breakpoints.up('sm')]: {
       flexDirection: 'row',
     },

@@ -12,7 +12,7 @@ const defaultClasses = {
 }
 
 const Root = styled('div')(() => ({
-  [`& .${defaultClasses.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexWrap: 'wrap',
   },

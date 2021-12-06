@@ -31,7 +31,7 @@ const StyledAccordion = styled(Accordion)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${defaultClasses.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
     background: 'transparent',

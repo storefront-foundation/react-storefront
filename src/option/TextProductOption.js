@@ -16,7 +16,7 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${defaultClasses.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     '.rsf-po-selected &': {
       borderColor: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.main,
@@ -42,7 +42,7 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor: '#666',
     position: 'relative',
     width: '100%',
-    top: 'calc(-50% - 2px)',
+    top: 'calc(-(-50% - 2px))',
     left: -2,
     borderRadius: 10,
   },
@@ -78,7 +78,7 @@ export default function TextProductOption({
   }
 
   return (
-    <Root>
+    <Root className={classes.root}>
       <Button
         {...buttonProps}
         disabled={disabled}

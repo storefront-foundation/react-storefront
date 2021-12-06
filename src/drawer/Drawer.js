@@ -24,7 +24,7 @@ const StyledMUIDrawer = styled(MUIDrawer)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${defaultClasses.root}`]: {},
+  [`&.${defaultClasses.root}`]: {},
 
   /**
    * Styles applied to the close button element.

@@ -14,7 +14,7 @@ const Root = styled('form')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${defaultClasses.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     position: 'relative',
     height: '100%',
     display: 'flex',

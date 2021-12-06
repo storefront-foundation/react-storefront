@@ -43,7 +43,7 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   /**
    * Styles applied to the root [`Tabs`](https://mui.com/api/tabs/) component.
    */
-  [`& .${defaultClasses.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     maxWidth: theme.breakpoints.values.lg,
     flex: 1,
     position: 'relative',
@@ -66,14 +66,6 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
         'linear-gradient(to left, rgba(255, 255, 255, 1.0) 0%, rgba(255, 255, 255, 0.0) 100%)',
     },
   },
-
-  /**
-   * Styles applied to the root element of the[`Tabs`](https://mui.com/api/tabs/)'
-   * `ScrollButtonComponent` component.
-   */
-  [`& .${defaultClasses.ripple}`]: {
-    zIndex: 2,
-  },
 }))
 
 export {}
@@ -91,10 +83,15 @@ export default function NavTabs({ classes: c = {}, children, ...others }) {
   const value = children && children.findIndex(tab => tab.props.as === asPath.split('?')[0])
 
   const TabScrollButton = useMemo(() => {
-    return props => (
-      <MuiTabScrollButton {...props} TouchRippleProps={{ classes: { root: classes.ripple } }} />
+    const Comp = props => (
+      <MuiTabScrollButton {...props} TouchRippleProps={{ classes: { root: ripple } }} />
     )
-  }, [classes])
+    return styled(Comp)(() => ({
+      [`&.${ripple}`]: {
+        zIndex: 2,
+      },
+    }))
+  }, [ripple])
 
   return (
     <StyledTabs
@@ -104,9 +101,13 @@ export default function NavTabs({ classes: c = {}, children, ...others }) {
       variant="scrollable"
       classes={{
         ...classNames,
-        indicator: clsx(classes.indicator, {
-          [classes.indicatorNoSelection]: value === -1, // To cancel weird animation when going from plp to pdp
-        }),
+        indicator: clsx(
+          classes.indicator,
+          {
+            [classes.indicatorNoSelection]: value === -1, // To cancel weird animation when going from plp to pdp
+          },
+          classes.root,
+        ),
       }}
       value={value === -1 ? false : value}
       {...others}

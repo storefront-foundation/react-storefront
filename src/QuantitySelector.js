@@ -21,7 +21,7 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${defaultClasses.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     backgroundColor: theme.palette.divider,
     border: 'none',
     width: '110px',
@@ -104,7 +104,7 @@ export default function QuantitySelector({
   }
 
   return (
-    <Root>
+    <Root className={classes.root}>
       <IconButton
         size="small"
         color="primary"
