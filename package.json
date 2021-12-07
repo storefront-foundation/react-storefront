@@ -31,7 +31,7 @@
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
     "build": "npm run build:prep && NODE_ENV=production npm run build:sources",
     "build:prep": "npm run clean && npm run create-indexes && cp README.md package.json dist",
-    "build:sources": "babel ./src --source-maps --out-dir dist",
+    "build:sources": "swc ./src --source-maps --out-dir dist",
     "docs": "mkdir -p docs/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node docs/buildDocs d.js",
     "storybook": "start-storybook -c ./.storybook",
     "storybook-docs": "mkdir -p .storybook/build && PRESERVE_MARKDOWN=true NODE_ENV=docs babel-node .storybook/createMetadata d.js",
@@ -71,6 +71,8 @@
     "@storybook/addon-knobs": "^5.3.13",
     "@storybook/react": "^5.2.6",
     "@svgr/webpack": "^4.3.3",
+    "@swc/cli": "^0.1.52",
+    "@swc/core": "^1.2.118",
     "babel-loader": "^8.0.6",
     "babel-plugin-rewire": "^1.2.0",
     "babel-plugin-transform-imports": "^2.0.0",
@@ -82,7 +84,6 @@
     "jest-enzyme": "^7.1.2",
     "jest-fetch-mock": "^3.0.3",
     "jsdom": "^16.2.2",
-    "next": "^12.0.4",
     "npm-watch": "^0.6.0",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
@@ -98,6 +99,6 @@
     "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.2.2",
     "@mui/styles": "^5.2.2",
-    "next": "^10.0.3"
+    "next": "^12.0.7"
   }
 }
