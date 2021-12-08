@@ -19,7 +19,7 @@ export default async function fulfillAPIRequest(req, { appData, pageData }) {
   const results = await Promise.all(promises)
   const data = {}
 
-  for (let result of results) {
+  for (const result of results) {
     Object.assign(data, result)
   }
 

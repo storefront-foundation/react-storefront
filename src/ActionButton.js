@@ -62,25 +62,25 @@ export {}
  *  <ActionButton label="Sort" value="Lowest Price" onClick={openSortMenu} />
  * ```
  */
-const ActionButton = forwardRef(({ label, value, children, classes: c = {}, ...props }, ref) => {
+const ActionButton = forwardRef(({ label, value, classes: c = {}, ...props }, ref) => {
   const classes = { ...defaultClasses, ...c }
-  let { caption, value: valueClasses, button, label: labelClasses, ...otherClasses } = classes
+  const { caption, value: valueClasses, button, label: labelClasses, ...otherClasses } = classes
   return (
     <StyledButton
       ref={ref}
       variant="contained"
       color="primary"
       classes={{
-        contained: classes.button,
-        label: classes.label,
+        contained: button,
+        label: labelClasses,
         ...otherClasses,
       }}
       {...props}
     >
-      <Typography variant="button" className={classes.caption}>
+      <Typography variant="button" className={caption}>
         {label}
       </Typography>
-      <Typography variant="caption" className={classes.value}>
+      <Typography variant="caption" className={valueClasses}>
         {value}
       </Typography>
     </StyledButton>

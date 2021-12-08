@@ -6,18 +6,18 @@ import PropTypes from 'prop-types'
 
 const PREFIX = 'RSFOffline'
 
-const classes = {
+const defaultClasses = {
   root: `${PREFIX}-root`,
   icon: `${PREFIX}-icon`,
   heading: `${PREFIX}-heading`,
   message: `${PREFIX}-message`,
 }
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  [`&.${classes.root}`]: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -29,7 +29,7 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the icon element.
    */
-  [`& .${classes.icon}`]: {
+  [`& .${defaultClasses.icon}`]: {
     fontSize: 60,
     color: '#999',
   },
@@ -37,12 +37,12 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the heading element.
    */
-  [`& .${classes.heading}`]: {},
+  [`& .${defaultClasses.heading}`]: {},
 
   /**
    * Styles applied to the message element.
    */
-  [`& .${classes.message}`]: {},
+  [`& .${defaultClasses.message}`]: {},
 }))
 
 /**

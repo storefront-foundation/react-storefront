@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
+
 const PREFIX = 'Box'
 
 const defaultClasses = {
@@ -9,7 +10,7 @@ const defaultClasses = {
   split: `${PREFIX}-split`,
 }
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
@@ -82,6 +83,8 @@ Box.propTypes = {
     'stretch',
     'baseline',
   ]),
+  className: PropTypes.string,
+  style: PropTypes.object,
 }
 
 Box.defaultProps = {
@@ -93,7 +96,7 @@ Box.defaultProps = {
  * A flex container with horizontal layout. All additional props are spread to the style
  * of the underlying div.
  */
-export function Hbox(props) {
+export var Hbox = function(props) {
   return <Box {...props} flexDirection="row" />
 }
 
@@ -138,7 +141,7 @@ Hbox.defaultProps = {
  * A flex container with vertical layout. All additional props are spread to
  * the style of the underlying div.
  */
-export function Vbox(props) {
+export var Vbox = function(props) {
   props = { ...props, flexDirection: 'column' }
   return <Box {...props} />
 }
@@ -168,6 +171,8 @@ Vbox.propTypes = {
     'stretch',
     'baseline',
   ]),
+  className: PropTypes.string,
+  style: PropTypes.object,
 }
 
 Vbox.defaultProps = {

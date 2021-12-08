@@ -38,7 +38,7 @@ export {}
  * A footer to be placed at the bottom of the [`Filter`](/apiReference/plp/Filter).
  */
 export default function FilterFooter(props) {
-  let { classes: c = {}, submitOnChange, onViewResultsClick } = props
+  const { classes: c = {}, submitOnChange, onViewResultsClick } = props
   const classes = { ...defaultClasses, ...c }
 
   const {

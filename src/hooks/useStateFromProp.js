@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react'
  */
 export default function useStateFromProp(prop) {
   const state = useState(prop)
-  const [_value, setValue] = state
+  const [, setValue] = state
   const mounted = useRef(false)
 
   useEffect(() => {

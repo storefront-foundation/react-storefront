@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react'
 import { styled } from '@mui/material/styles'
-import Link from '../link/Link'
 import { Hidden, Fade, Tab, Popover, Paper } from '@mui/material'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
+import Link from '../link/Link'
 
 const PREFIX = 'RSFNavTab'
 
@@ -89,7 +89,7 @@ const Root = styled('div')(({ theme }) => ({
  *
  * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the `NavTab` is focused.
  */
-function NavTab({ href, as, prefetch, children, classes: c = {}, ...props }) {
+const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...props }) {
   const classes = { ...defaultClasses, ...c }
   const [overTab, setOverTab] = useState(false)
   const [overMenu, setOverMenu] = useState(false)
@@ -227,6 +227,7 @@ NavTab.propTypes = {
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+  prefetch: PropTypes.oneOf(['always', 'visible', false]),
 }
 
 export default React.memo(NavTab)

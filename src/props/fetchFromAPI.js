@@ -25,7 +25,7 @@ import getAPIURL from '../api/getAPIURL'
  * @return {Promise} A promise that resolves to the data that the page should display
  */
 export default function fetchFromAPI({ req, asPath, pathname }) {
-  const host = req ? process.env.API_HOST || req.headers['host'] : ''
+  const host = req ? process.env.API_HOST || req.headers.host : ''
 
   let protocol = ''
 
@@ -43,13 +43,13 @@ export default function fetchFromAPI({ req, asPath, pathname }) {
   if (req) {
     // on the server
     if (uri.indexOf('?') === -1) {
-      uri = uri + '?_includeAppData=1'
+      uri += '?_includeAppData=1'
     } else {
-      uri = uri + '&_includeAppData=1'
+      uri += '&_includeAppData=1'
     }
 
     headers = {
-      host: req.headers['host'],
+      host: req.headers.host,
       'x-next-page': `/api${pathname.replace(/\/$/, '')}`,
       cookie: req.headers.cookie,
     }

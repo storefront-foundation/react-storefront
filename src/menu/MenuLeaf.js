@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
 import MenuItemContent from './MenuItemContent'
 import Link from '../link/Link'
 import MenuContext from './MenuContext'
 
-function MenuLeaf({ item, trackSelected, ...others }) {
+const MenuLeaf = function({ item, ...others }) {
   const { close, classes } = useContext(MenuContext)
 
   return (
@@ -11,7 +12,6 @@ function MenuLeaf({ item, trackSelected, ...others }) {
       href={item.href}
       as={item.as}
       className={classes.link}
-      server={item.server}
       pageData={item.pageData ? item.pageData : null}
       onClick={close}
     >
@@ -20,6 +20,14 @@ function MenuLeaf({ item, trackSelected, ...others }) {
       </a>
     </Link>
   )
+}
+
+MenuLeaf.propTypes = {
+  item: PropTypes.shape({
+    as: PropTypes.string,
+    pageData: PropTypes.object,
+    href: PropTypes.string,
+  }),
 }
 
 export default React.memo(MenuLeaf)

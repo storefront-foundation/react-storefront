@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import SearchResultsContext from './SearchResultsContext'
 import PropTypes from 'prop-types'
 import qs from 'qs'
+import SearchResultsContext from './SearchResultsContext'
 import replaceState from '../router/replaceState'
 import getAPIURL from '../api/getAPIURL'
 
@@ -27,7 +27,7 @@ import getAPIURL from '../api/getAPIURL'
 export default function SearchResultsProvider({ store, updateStore, queryForState, children }) {
   useEffect(() => {
     if (store.reloading) {
-      async function refresh() {
+      const refresh = async function refresh() {
         const query = getQueryForState()
         const url = getURLForState(query)
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * The query param that is added to fetch alls to /api routes to ensure that
  * cached results from previous versions of the app are not served to new versions

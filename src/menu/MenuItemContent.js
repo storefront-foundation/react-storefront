@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { styled } from '@mui/material/styles'
 import { ListItem, ListItemText, ListItemIcon, CircularProgress } from '@mui/material'
-import MenuContext from './MenuContext'
-import MenuExpanderIcon from './MenuExpanderIcon'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
+import MenuContext from './MenuContext'
+import MenuExpanderIcon from './MenuExpanderIcon'
+
 const PREFIX = 'RSFMenuItemContent'
 
 const classes = {
@@ -117,7 +118,7 @@ const StyledListItemText = styled(ListItemText)(({ theme }) => ({
 export default function MenuItemContent(props) {
   const { renderItemContent, onItemClick } = useContext(MenuContext)
 
-  let { item, depth, leaf, listItemProps } = props
+  const { item, depth, leaf, listItemProps } = props
   let contents
 
   if (renderItemContent) {
@@ -181,4 +182,7 @@ MenuItemContent.propTypes = {
    * Additional props for the underlying ListItem
    */
   listItemProps: PropTypes.object,
+  item: PropTypes.object,
+  depth: PropTypes.number,
+  leaf: PropTypes.bool,
 }

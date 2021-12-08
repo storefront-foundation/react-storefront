@@ -1,8 +1,8 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
-import Drawer from '../drawer/Drawer'
 import PropTypes from 'prop-types'
 import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
+import Drawer from '../drawer/Drawer'
 
 const PREFIX = 'RSFSearch'
 

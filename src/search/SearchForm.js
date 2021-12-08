@@ -10,7 +10,7 @@ const defaultClasses = {
   root: `${PREFIX}-root`,
 }
 
-const Root = styled('form')(({ theme }) => ({
+const Root = styled('form')(() => ({
   /**
    * Styles applied to the root element.
    */
@@ -38,7 +38,7 @@ export default function SearchForm({ classes: c = {}, children, action, autoComp
     const data = new FormData(ref.current)
     const query = {}
 
-    for (let [name, value] of data.entries()) {
+    for (const [name, value] of data.entries()) {
       query[name] = value
     }
 

@@ -11,5 +11,6 @@ export default function merge(object, ...sources) {
     if (Array.isArray(srcValue)) {
       return srcValue
     }
+    return undefined
   })
 }

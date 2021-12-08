@@ -77,15 +77,15 @@ export {}
  */
 export default function NavTabs({ classes: c = {}, children, ...others }) {
   const classes = { ...defaultClasses, ...c }
-  const { paper, indicator, indicatorNoSelection, ripple, ...classNames } = classes
+  const { indicator, indicatorNoSelection, ripple, ...classNames } = classes
 
   const { asPath } = useRouter()
   const value = children && children.findIndex(tab => tab.props.as === asPath.split('?')[0])
 
   const TabScrollButton = useMemo(() => {
-    const Comp = props => (
-      <MuiTabScrollButton {...props} TouchRippleProps={{ classes: { root: ripple } }} />
-    )
+    const Comp = function(props) {
+      return <MuiTabScrollButton {...props} TouchRippleProps={{ classes: { root: ripple } }} />
+    }
     return styled(Comp)(() => ({
       [`&.${ripple}`]: {
         zIndex: 2,
@@ -102,9 +102,9 @@ export default function NavTabs({ classes: c = {}, children, ...others }) {
       classes={{
         ...classNames,
         indicator: clsx(
-          classes.indicator,
+          indicator,
           {
-            [classes.indicatorNoSelection]: value === -1, // To cancel weird animation when going from plp to pdp
+            [indicatorNoSelection]: value === -1, // To cancel weird animation when going from plp to pdp
           },
           classes.root,
         ),

@@ -67,7 +67,7 @@ export default function TabPanel({
   const [selected, setSelected] = useState(selectedProp)
   const tabs = []
 
-  let panels = []
+  const panels = []
 
   const onChangeHandler = (event, selected) => {
     setSelected(selected)

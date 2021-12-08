@@ -21,7 +21,7 @@ const classes = {
   expandTextDesktop: `${PREFIX}-expandTextDesktop`,
 }
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
@@ -147,7 +147,8 @@ export default function MagnifyHint({
   disableZoom,
   disableExpand,
 }) {
-  disableZoom = disableZoom || useAmp()
+  const isAmp = useAmp()
+  disableZoom = disableZoom || isAmp
 
   return (
     <Root
@@ -215,6 +216,7 @@ MagnifyHint.propTypes = {
    * If `true`, expanding is disabled and the hint for expanding is not shown.
    */
   disableExpand: PropTypes.bool,
+  over: PropTypes.bool,
 }
 
 MagnifyHint.defaultProps = {

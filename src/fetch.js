@@ -7,7 +7,7 @@ import isSameOrigin from './utils/isSameOrigin'
  * @return {URL}
  */
 function getURL(request) {
-  let url = request.url
+  let { url } = request
 
   if (typeof request === 'string') {
     url = request
@@ -49,9 +49,8 @@ if (typeof XMLHttpRequest !== 'undefined') {
 
     if (isSameOrigin(parsed)) {
       return originalOpen.call(this, method, addVersion(parsed).toString(), ...others)
-    } else {
-      return originalOpen.call(this, method, url, ...others)
     }
+    return originalOpen.call(this, method, url, ...others)
   }
 }
 

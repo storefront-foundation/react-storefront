@@ -1,16 +1,15 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
-import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import get from 'lodash/get'
 import Carousel from './Carousel'
 import Image from '../Image'
 import Lightbox from './Lightbox'
 import Media from './Media'
 import MagnifyHint from './MagnifyHint'
 import CarouselThumbnails from './CarouselThumbnails'
-import get from 'lodash/get'
 
 const PREFIX = 'RSFMediaCarousel'
 
@@ -146,8 +145,8 @@ export {}
  *  />
  * ```
  */
-function MediaCarousel(props) {
-  let {
+const MediaCarousel = function(props) {
+  const {
     thumbnails,
     thumbnail,
     thumbsClassName,
@@ -179,7 +178,6 @@ function MediaCarousel(props) {
   const [lightboxActive, setLightboxActive] = useState()
   const theme = useTheme()
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'))
-  const isTouchScreen = useMediaQuery('(hover:none)')
   const isThumbsSide = ['right', 'left'].includes(thumbnailPosition)
 
   useEffect(() => {
@@ -303,7 +301,7 @@ function MediaCarousel(props) {
         onClick={onClickCarousel}
         selected={selected}
         setSelected={setSelected}
-        height={'100%'}
+        height="100%"
         {...others}
       >
         {get(media, 'full', []).map((item, i) => {

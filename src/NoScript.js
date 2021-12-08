@@ -8,7 +8,6 @@ import React from 'react'
 export default function NoScript(props) {
   if (process.env.NODE_ENV === 'test') {
     return <div {...props} />
-  } else {
-    return <noscript {...props} />
   }
+  return <noscript {...props} />
 }

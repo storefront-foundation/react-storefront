@@ -13,7 +13,7 @@ const classes = {
   root: `${PREFIX}-root`,
 }
 
-const Root = styled('span')(({ theme }) => ({
+const Root = styled('span')(() => ({
   [`& .${classes.inline}`]: {
     display: 'inline',
   },
@@ -47,14 +47,7 @@ export {}
  * Pass the html as a string as the child of this component. Additional props are spread to the
  * rendered span element.
  */
-export default function CmsSlot({
-  children,
-  className,
-  inline,
-  lazyLoadImages,
-  prefetchLinks,
-  ...others
-}) {
+const CmsSlot = ({ children, className, inline, lazyLoadImages, prefetchLinks, ...others }) => {
   const el = useRef()
 
   useEffect(() => {
@@ -68,7 +61,7 @@ export default function CmsSlot({
       if (prefetchLinks) {
         const links = Array.from(el.current.querySelectorAll('a[data-rsf-prefetch="always"]'))
 
-        for (let link of links) {
+        for (const link of links) {
           prefetchJsonFor(link.getAttribute('href'))
         }
       }
@@ -89,7 +82,7 @@ export default function CmsSlot({
     />
   ) : null
 }
-CmsSlot.proptypes = {
+CmsSlot.propTypes = {
   /**
    * If `true`, will use `display: inline` style.
    */
@@ -103,9 +96,12 @@ CmsSlot.proptypes = {
   /**
    * If `true`, prefetch links that have a `data-rsf-prefetch` attribute.
    */
-  prefetchLinks: false,
+  prefetchLinks: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 CmsSlot.defaultProps = {
   lazyLoadImages: false,
 }
+
+export default CmsSlot

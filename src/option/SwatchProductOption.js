@@ -1,11 +1,11 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
-import { Vbox } from '../Box'
 import { Typography, Skeleton } from '@mui/material'
 import { Check as CheckedIcon } from '@mui/icons-material'
-import Image from '../Image'
 import PropTypes from 'prop-types'
+import Image from '../Image'
+import { Vbox } from '../Box'
 
 const PREFIX = 'RSFSwatchProductOption'
 
@@ -63,7 +63,7 @@ const StyledVbox = styled(Vbox)(({ theme }) => ({
    */
   [`& .${defaultClasses.buttonDisabled}`]: {
     cursor: 'default',
-    borderColor: theme.palette.grey['A100'],
+    borderColor: theme.palette.grey.A100,
   },
 
   /**

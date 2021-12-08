@@ -76,8 +76,8 @@ export {}
 export default function LoadMask({
   show,
   style,
-  classes: c = {},
   className,
+  classes: c = {},
   children,
   fullscreen,
   transparent,
@@ -136,6 +136,8 @@ LoadMask.propTypes = {
    * Set to `'top'` to show the spinner near the top.
    */
   align: PropTypes.oneOf(['center', 'top']),
+  style: PropTypes.object,
+  className: PropTypes.string,
 }
 
 LoadMask.defaultProps = {

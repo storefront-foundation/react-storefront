@@ -1,11 +1,11 @@
 import React, { useState, useCallback, memo, useContext } from 'react'
 import { styled } from '@mui/material/styles'
+import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 import ActionButton from '../ActionButton'
 import SearchResultsContext from './SearchResultsContext'
 import Filter from './Filter'
-import PropTypes from 'prop-types'
 import Drawer from '../drawer/Drawer'
-import { useRouter } from 'next/router'
 
 const PREFIX = 'RSFFilterButton'
 
@@ -14,7 +14,7 @@ const defaultClasses = {
 }
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the drawer element.
    */
@@ -29,9 +29,9 @@ export {}
  * A button that when clicked, opens a drawer containing the `Filter` view. Current filters
  * are displayed in the button text.
  */
-function FilterButton({ classes: c = {}, title, drawerProps, onClick, href, ...props }) {
+const FilterButton = function({ classes: c = {}, title, drawerProps, onClick, href, ...props }) {
   const classes = { ...defaultClasses, ...c }
-  const { clear, clearDisabled, drawer, ...buttonClasses } = classes
+  const { drawer, ...buttonClasses } = classes
   const {
     pageData: { filters, facets },
     actions,
@@ -66,8 +66,8 @@ function FilterButton({ classes: c = {}, title, drawerProps, onClick, href, ...p
 
     const selected = filters[0]
 
-    for (let group of facets) {
-      for (let option of group.options) {
+    for (const group of facets) {
+      for (const option of group.options) {
         if (selected === option.code) {
           return option.name
         }
@@ -89,7 +89,7 @@ function FilterButton({ classes: c = {}, title, drawerProps, onClick, href, ...p
       />
       {!href && (
         <Drawer
-          classes={{ paper: classes.drawer }}
+          classes={{ paper: drawer }}
           anchor="bottom"
           open={open}
           onClose={toggleOpen.bind(null, false)}

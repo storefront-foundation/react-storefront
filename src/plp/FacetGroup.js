@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import React, { useMemo, useContext } from 'react'
+import ListItem from '@mui/material/ListItem'
 import SearchResultsContext from './SearchResultsContext'
 import ExpandableSection from '../ExpandableSection'
 import CheckboxFilterGroup from './CheckboxFilterGroup'
 import ButtonFilterGroup from './ButtonFilterGroup'
-import ListItem from '@mui/material/ListItem'
 
 const PREFIX = 'RSFFacetGroup'
 
@@ -50,7 +50,7 @@ export default function FacetGroup(props) {
 
     const selection = []
 
-    for (let option of group.options) {
+    for (const option of group.options) {
       if (filters.indexOf(option.code) !== -1) {
         selection.push(option)
       }

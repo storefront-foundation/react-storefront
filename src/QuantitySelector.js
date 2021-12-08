@@ -186,6 +186,9 @@ QuantitySelector.propTypes = {
    * `"add one {ariaLabel}"` and `"subtract one {ariaLabel}"`.
    */
   ariaLabel: PropTypes.string,
+  addButtonProps: PropTypes.object,
+  inputProps: PropTypes.object,
+  subtractButtonProps: PropTypes.object,
 }
 
 QuantitySelector.defaultProps = {

@@ -15,7 +15,7 @@ const defaultClasses = {
   fill: `${PREFIX}-fill`,
 }
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */

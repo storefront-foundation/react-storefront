@@ -13,7 +13,7 @@ const defaultClasses = {
   facetGroups: `${PREFIX}-facetGroups`,
 }
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
@@ -42,7 +42,7 @@ export {}
  * [`FilterButton`](/apiReference/plp/FilterButton) to automatically display this component in a
  * drawer that slides up from the bottom of the viewport.
  */
-function Filter({
+const Filter = function({
   expandAll,
   hideClearLink,
   clearLinkText,

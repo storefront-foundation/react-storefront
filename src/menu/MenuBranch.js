@@ -1,11 +1,11 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
+import PropTypes from 'prop-types'
 import MenuItemContent from './MenuItemContent'
 import ExpandableSection from '../ExpandableSection'
-import PropTypes from 'prop-types'
 import MenuLeaf from './MenuLeaf'
 
-const PREFIX = 'RSFMenuBranch';
+const PREFIX = 'RSFMenuBranch'
 
 const classes = {
   expander: `${PREFIX}-expander`,
@@ -14,14 +14,10 @@ const classes = {
   expanderSummaryExpanded: `${PREFIX}-expanderSummaryExpanded`,
   expanderIconExpanded: `${PREFIX}-expanderIconExpanded`,
   expanderDetails: `${PREFIX}-expanderDetails`,
-  expanderContent: `${PREFIX}-expanderContent`
-};
+  expanderContent: `${PREFIX}-expanderContent`,
+}
 
-const StyledMenuItemContent = styled(MenuItemContent)((
-  {
-    theme
-  }
-) => ({
+const StyledMenuItemContent = styled(MenuItemContent)(({ theme }) => ({
   [`& .${classes.expander}`]: {
     borderBottom: 'none',
   },
@@ -55,15 +51,14 @@ const StyledMenuItemContent = styled(MenuItemContent)((
 
   [`& .${classes.expanderContent}`]: {
     textTransform: 'none',
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 const MenuBranch = React.memo(props => {
   const { depth, item, ExpanderComponent, itemProps } = props
   const isLeaf = !item.items.some(child => child.items && child.items.length > 0)
-
 
   if (item.expanded != null && item.items && item.items.length && isLeaf) {
     return (
@@ -89,9 +84,8 @@ const MenuBranch = React.memo(props => {
         ))}
       </ExpanderComponent>
     )
-  } else {
-    return <StyledMenuItemContent item={item} depth={depth} leaf={false} listItemProps={itemProps} />;
   }
+  return <StyledMenuItemContent item={item} depth={depth} leaf={false} listItemProps={itemProps} />
 })
 
 export default MenuBranch
@@ -105,6 +99,8 @@ MenuBranch.propTypes = {
    * Additional props for the underlying ListItem
    */
   itemProps: PropTypes.object,
+  depth: PropTypes.number,
+  item: PropTypes.object,
 }
 
 MenuBranch.defaultProps = {

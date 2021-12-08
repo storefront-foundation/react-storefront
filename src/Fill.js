@@ -1,20 +1,16 @@
 import React, { Children } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-const PREFIX = 'Fill';
+const PREFIX = 'Fill'
 
 const classes = {
   root: `${PREFIX}-root`,
-  child: `${PREFIX}-child`
-};
+  child: `${PREFIX}-child`,
+}
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
@@ -36,8 +32,8 @@ const Root = styled('div')((
       width: '100%',
       height: '100%',
     },
-  }
-}));
+  },
+}))
 
 /**
  * This component sizes the height of the child element as a percentage of its width.  It expects
@@ -58,14 +54,12 @@ export default function Fill({ height, children, className, ...props }) {
     return children
   }
 
-
-
   return (
     <Root className={clsx(classes.root, className)} {...props}>
       <div style={{ paddingTop: height }} />
       <div className={classes.child}>{children}</div>
     </Root>
-  );
+  )
 }
 
 Fill.propTypes = {
@@ -75,4 +69,5 @@ Fill.propTypes = {
    * the provided child.
    */
   height: PropTypes.string,
+  className: PropTypes.string,
 }

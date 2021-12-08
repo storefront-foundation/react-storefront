@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { styled } from '@mui/material/styles'
+import PropTypes from 'prop-types'
 import SearchSuggestionGroup from './SearchSuggestionGroup'
 import SearchContext from './SearchContext'
 import LoadMask from '../LoadMask'
-import PropTypes from 'prop-types'
 
 const PREFIX = 'RSFSearchSuggestions'
 
@@ -59,6 +59,7 @@ SearchSuggestions.propTypes = {
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+  render: PropTypes.func,
 }
 
 SearchSuggestions.defaultProps = {}

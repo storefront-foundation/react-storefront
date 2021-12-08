@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import React from 'react'
-import Image from '../Image'
 import ReactImageMagnify from 'react-image-magnify'
 import clsx from 'clsx'
+import Image from '../Image'
+
 const PREFIX = 'Media'
 
 const classes = {
@@ -15,7 +16,7 @@ const classes = {
  * An element that determines the proper tag to use for a media node within a
  * [`Carousel`](/apiReference/carousel/Carousel).
  */
-function Media({
+const Media = function({
   magnifyProps,
   imageProps,
   videoProps,
@@ -59,11 +60,11 @@ function Media({
           ))}
         </video>
       )
-    } else {
-      return <video src={src} alt={alt} {...videoProps} />
     }
-  } else if (magnify) {
-    const StyledImageMagnifyComponent = styled(ImageMagnifyComponent)(({ theme }) => ({
+    return <video src={src} alt={alt} {...videoProps} />
+  }
+  if (magnify) {
+    const StyledImageMagnifyComponent = styled(ImageMagnifyComponent)(() => ({
       [`& .${classes.rimRoot}`]: {
         height: '100% !important',
         width: '100% !important',
@@ -79,16 +80,15 @@ function Media({
         enlargedImagePosition="over"
         {...adjustMagnifyProps()}
         smallImage={{
-          src: src,
-          alt: alt,
+          src,
+          alt,
           isFluidWidth: true,
         }}
         largeImage={magnify}
       />
     )
-  } else {
-    return <ImageComponent key={src} src={src} alt={alt} fill {...imageProps} />
   }
+  return <ImageComponent key={src} src={src} alt={alt} fill {...imageProps} />
 }
 
 Media.propTypes = {

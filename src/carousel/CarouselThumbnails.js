@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 import React from 'react'
 import clsx from 'clsx'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import mod from '../utils/mod'
 import Image from '../Image'
@@ -138,7 +137,7 @@ const Root = styled('div')(({ theme }) => ({
     margin: '0 2px',
     border: '1px solid transparent',
     '$selectedTab &': {
-      border: `1px solid rgba(0,0,0,0.3)`,
+      border: '1px solid rgba(0,0,0,0.3)',
     },
   },
 }))
@@ -150,7 +149,7 @@ export {}
  * be clicked to switch to the given slide. Internally, `CarouselThumbnails` uses MaterialUI's
  * [`Tabs`](https://mui.com/api/tabs) component to indicate which slide is selected
  */
-function CarouselThumbnails({
+const CarouselThumbnails = function({
   thumbnails,
   selected,
   setSelected,

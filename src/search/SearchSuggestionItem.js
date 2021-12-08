@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { styled } from '@mui/material/styles'
-import Link from '../link/Link'
 import PropTypes from 'prop-types'
+import Link from '../link/Link'
 import Image from '../Image'
 import SearchContext from './SearchContext'
 import Highlight from '../Highlight'
@@ -65,9 +65,7 @@ export default function SearchSuggestionItem({
   return (
     <Root className={classes.root}>
       <Link as={item.as} href={item.href} pageData={item.pageData}>
-        {children ? (
-          children
-        ) : (
+        {children || (
           <a href={item.as}>
             <div data-ui={ui}>
               <ImageComponent
@@ -117,6 +115,7 @@ SearchSuggestionItem.propTypes = {
    * The component type to use to display images.
    */
   ImageComponent: PropTypes.elementType,
+  ui: PropTypes.any,
 }
 
 SearchSuggestionItem.defaultProps = {

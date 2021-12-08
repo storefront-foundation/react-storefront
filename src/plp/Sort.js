@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useContext } from 'react'
+import React, { memo, useContext } from 'react'
 import { styled } from '@mui/material/styles'
 import { Button, MenuItem } from '@mui/material'
 import PropTypes from 'prop-types'
@@ -11,7 +11,7 @@ const defaultClasses = {
   option: `${PREFIX}-option`,
 }
 
-const StyledSort = styled(Sort)(({ theme }) => ({
+const StyledSort = styled(Sort)(() => ({
   /**
    * Styles applied to the root container if [`variant`](#prop-variant) is `'buttons'`.
    */
@@ -36,7 +36,7 @@ export {}
  * [`SortButton`](/apiReference/plp/SortButton) to automatically display this component in a drawer
  * that slides up from the bottom of the viewport.
  */
-function Sort({ variant, classes: c = {}, onSelect }) {
+var Sort = function({ variant, classes: c = {}, onSelect }) {
   const classes = { ...defaultClasses, ...c }
 
   const {
@@ -82,11 +82,11 @@ function Sort({ variant, classes: c = {}, onSelect }) {
 
   if (variant === 'buttons') {
     return renderButtons()
-  } else if (variant === 'menu-items') {
-    return renderMenu()
-  } else {
-    return null
   }
+  if (variant === 'menu-items') {
+    return renderMenu()
+  }
+  return null
 }
 
 Sort.propTypes = {
@@ -112,4 +112,4 @@ Sort.defaultProps = {
   variant: 'buttons',
 }
 
-export default memo(forwardRef((props, ref) => <StyledSort {...props} />))
+export default memo(StyledSort)

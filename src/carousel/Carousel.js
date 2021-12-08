@@ -18,7 +18,7 @@ const defaultClasses = {
   hideTouchArrows: `${PREFIX}-hideTouchArrows`,
 }
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
@@ -62,12 +62,11 @@ export const VirtualizeSwipeableViews = virtualize(SwipeableViews)
 export const AutoPlayVirtualizeSwipeableViews = autoPlay(VirtualizeSwipeableViews)
 
 function useSelected(props) {
+  const [selected, setSelected] = useState(0)
   if (props.setSelected) {
     return props
-  } else {
-    const [selected, setSelected] = useState(0)
-    return { selected, setSelected }
   }
+  return { selected, setSelected }
 }
 
 /**
@@ -77,7 +76,7 @@ function useSelected(props) {
  * prop within a [`MediaCarousel`](/apiReference/carousel/MediaCarousel).
  */
 const Carousel = React.forwardRef((props, ref) => {
-  let {
+  const {
     height,
     children,
     classes: c = {},
@@ -208,6 +207,16 @@ Carousel.propTypes = {
    * The interval time (in milliseconds) for [`autoplay`](#prop-autoplay).
    */
   interval: PropTypes.number,
+  height: PropTypes.string,
+  className: PropTypes.string,
+  slideRenderer: PropTypes.func,
+  style: PropTypes.object,
+  swipeStyle: PropTypes.object,
+  slideStyle: PropTypes.object,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  onClick: PropTypes.func,
+  indicators: PropTypes.bool,
 }
 
 Carousel.defaultProps = {

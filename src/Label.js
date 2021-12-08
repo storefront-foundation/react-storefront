@@ -3,13 +3,14 @@ import { styled } from '@mui/material/styles'
 import React from 'react'
 import clsx from 'clsx'
 import { Typography } from '@mui/material'
+
 const PREFIX = 'RSFLabel'
 
 const defaultClasses = {
   root: `${PREFIX}-root`,
 }
 
-const StyledTypography = styled(Typography)(({ theme }) => ({
+const StyledTypography = styled(Typography)(() => ({
   /**
    * Styles applied to the root element\.
    */

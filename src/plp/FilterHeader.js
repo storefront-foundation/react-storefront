@@ -1,7 +1,7 @@
 import React, { useMemo, useContext } from 'react'
 import { styled } from '@mui/material/styles'
-import { Hbox } from '../Box'
 import PropTypes from 'prop-types'
+import { Hbox } from '../Box'
 import SearchResultsContext from './SearchResultsContext'
 
 const PREFIX = 'RSFFilterHeader'

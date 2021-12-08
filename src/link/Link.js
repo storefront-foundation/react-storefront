@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useEffect } from 'react'
 import NextLink from 'next/link'
-import LinkContext from './LinkContext'
 import PropTypes from 'prop-types'
-import {  } from '@mui/material'
+import LinkContext from './LinkContext'
+import {} from '@mui/material'
 import useIntersectionObserver from '../hooks/useIntersectionObserver'
 import { prefetch as doPrefetch } from '../serviceWorker'
 import withDefaultHandler from '../utils/withDefaultHandler'
@@ -25,7 +25,7 @@ import getAPIURL from '../api/getAPIURL'
  * </Link>
  * ```
  */
-const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ...other }) => {
+const Link = function({ as, href, prefetch, prefetchURL, pageData, onClick, children, ...other }) {
   const ref = useRef(null)
   const linkPageData = useContext(LinkContext)
 
@@ -62,22 +62,19 @@ const Link = ({ as, href, prefetch, prefetchURL, pageData, onClick, children, ..
         </a>
       </NextLink>
     )
-  } else {
-    const child = React.Children.only(children)
-    const passHref = !child.props.href // we only passHref if the child does not have an href prop already.  This fixes a bug with AMP where NextLink overrides and escapes amp-bind syntax in hrefs.
-
-    // This way we can get a ref of Material-ui components
-    return (
-      <>
-        <NextLink href={href} prefetch={false} as={as} passHref={passHref}>
-          {React.cloneElement(children, {
-            onClick: handleClick,
-            ...other,
-          })}
-        </NextLink>
-      </>
-    )
   }
+  const child = React.Children.only(children)
+  const passHref = !child.props.href // we only passHref if the child does not have an href prop already.  This fixes a bug with AMP where NextLink overrides and escapes amp-bind syntax in hrefs.
+
+  // This way we can get a ref of Material-ui components
+  return (
+    <NextLink href={href} prefetch={false} as={as} passHref={passHref}>
+      {React.cloneElement(children, {
+        onClick: handleClick,
+        ...other,
+      })}
+    </NextLink>
+  )
 }
 
 Link.propTypes = {

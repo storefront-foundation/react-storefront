@@ -168,7 +168,7 @@ export {}
  * ```
  */
 export default function ExpandableSection(props) {
-  let {
+  const {
     classes: c = {},
     children = [],
     title,
@@ -293,6 +293,8 @@ ExpandableSection.propTypes = {
    * Defaults the panel to being expanded, without controlling the state.
    */
   defaultExpanded: PropTypes.bool,
+  classes: PropTypes.object,
+  onChange: PropTypes.func,
 }
 
 ExpandableSection.defaultProps = {

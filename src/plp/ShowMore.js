@@ -1,24 +1,20 @@
 import React, { useState, useContext } from 'react'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import { CircularProgress, Button } from '@mui/material'
 import clsx from 'clsx'
-import SearchResultsContext from './SearchResultsContext'
 import VisibilitySensor from 'react-visibility-sensor'
+import SearchResultsContext from './SearchResultsContext'
 
-const PREFIX = 'RSFShowMore';
+const PREFIX = 'RSFShowMore'
 
 const classes = {
   root: `${PREFIX}-root`,
   button: `${PREFIX}-button`,
-  loading: `${PREFIX}-loading`
-};
+  loading: `${PREFIX}-loading`,
+}
 
-const StyledCircularProgress = styled(CircularProgress)((
-  {
-    theme
-  }
-) => ({
+const StyledCircularProgress = styled(CircularProgress)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
@@ -45,10 +41,10 @@ const StyledCircularProgress = styled(CircularProgress)((
     display: 'flex',
     height: 45,
     justifyContent: 'center',
-  }
-}));
+  },
+}))
 
-export {};
+export {}
 
 const VARIANTS = {
   BUTTON: 'button',
@@ -86,7 +82,6 @@ export default function ShowMore({
   renderLoadingIcon,
   ...others
 }) {
-
   const [loading, setLoading] = useState(false)
   const { actions, pageData } = useContext(SearchResultsContext)
 
@@ -122,26 +117,25 @@ export default function ShowMore({
         </div>
       </VisibilitySensor>
     )
-  } else {
-    return (
-      <div className={clsx(classes.root, className)} style={style}>
-        {loading ? (
-          <div className={classes.loading}>{renderLoadingIcon()}</div>
-        ) : (
-          <Button
-            variant="contained"
-            color="primary"
-            href={href}
-            className={classes.button}
-            onClick={fetchMore}
-            {...others}
-          >
-            {children || 'Show More'}
-          </Button>
-        )}
-      </div>
-    )
   }
+  return (
+    <div className={clsx(classes.root, className)} style={style}>
+      {loading ? (
+        <div className={classes.loading}>{renderLoadingIcon()}</div>
+      ) : (
+        <Button
+          variant="contained"
+          color="primary"
+          href={href}
+          className={classes.button}
+          onClick={fetchMore}
+          {...others}
+        >
+          {children || 'Show More'}
+        </Button>
+      )}
+    </div>
+  )
 }
 
 ShowMore.propTypes = {

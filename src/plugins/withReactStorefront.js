@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const ClearRequireCachePlugin = require('webpack-clear-require-cache-plugin')
 const withServiceWorker = require('./withServiceWorker')
 
@@ -98,5 +98,5 @@ module.exports = ({
       }
       return config
     },
-  });
+  })
 }

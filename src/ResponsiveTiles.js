@@ -65,9 +65,8 @@ function createTiles({ cols, spacing }) {
     return function(elements) {
       if (doWrap) {
         return <AutoScrollToNewChildren>{elements}</AutoScrollToNewChildren>
-      } else {
-        return elements
       }
+      return elements
     }
   }
   const PREFIX = 'ResponsiveTiles'
@@ -77,7 +76,7 @@ function createTiles({ cols, spacing }) {
   }
 
   const Root = styled('ul')(({ theme }) => {
-    let breakpoints = {}
+    const breakpoints = {}
 
     // Breakpoints MUST be set in order from smallest to largest
     Object.keys(cols)
@@ -111,7 +110,7 @@ function createTiles({ cols, spacing }) {
     }
   })
 
-  return function Tiles({ className, autoScrollToNewTiles, children, ...other }) {
+  const Tiles = function Tiles({ className, autoScrollToNewTiles, children, ...other }) {
     return (
       <Root className={clsx(className, classes.root)} {...other}>
         {maybeWrapInAutoScroll(autoScrollToNewTiles)(
@@ -129,4 +128,11 @@ function createTiles({ cols, spacing }) {
       </Root>
     )
   }
+
+  Tiles.propTypes = {
+    className: PropTypes.string,
+    autoScrollToNewTiles: PropTypes.bool,
+  }
+
+  return Tiles
 }

@@ -66,9 +66,7 @@ export default function SearchSuggestionGroup({ classes: c = {}, ui, caption, li
     <Root className={classes.root}>
       <Typography className={classes.caption}>{caption}</Typography>
       <ul className={classes.list} data-ui={ui}>
-        {children
-          ? children
-          : links.map((item, i) => <SearchSuggestionItem item={item} ui={ui} key={i} />)}
+        {children || links.map((item, i) => <SearchSuggestionItem item={item} ui={ui} key={i} />)}
       </ul>
     </Root>
   )
@@ -100,6 +98,7 @@ SearchSuggestionGroup.propTypes = {
    * A title for the list.
    */
   caption: PropTypes.string.isRequired,
+  ui: PropTypes.any,
 }
 
 SearchSuggestionGroup.defaultProps = {}

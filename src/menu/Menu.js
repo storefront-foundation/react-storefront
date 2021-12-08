@@ -1,10 +1,10 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react'
-import MenuContext from './MenuContext'
 import { Drawer } from '@mui/material'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
+import MenuContext from './MenuContext'
 import SEOLinks from './SEOLinks'
 import MenuBody from './MenuBody'
-import PropTypes from 'prop-types'
 
 const PREFIX = 'RSFMenu'
 
@@ -24,7 +24,7 @@ const defaultClasses = {
 }
 
 const Menu = React.memo(props => {
-  let {
+  const {
     classes: c = {},
     className,
     anchor,
@@ -113,42 +113,40 @@ const Menu = React.memo(props => {
   )
 
   return (
-    <>
-      <MenuContext.Provider value={context}>
-        {renderDrawer ? (
-          renderDrawer()
-        ) : (
-          <Drawer
-            variant={persistent ? 'persistent' : 'temporary'}
-            open={open || persistent}
-            onClose={onClose}
-            anchor={anchor}
-            ModalProps={{
-              keepMounted: true,
-            }}
-            PaperProps={{
-              style: { width: `${drawerWidth}px` },
-            }}
-            classes={{
-              root: className,
-              paper: clsx(classes.drawer, {
-                [classes.drawerFixed]: persistent,
-              }),
-              modal: classes.modal,
-            }}
-          >
-            <MenuBody
-              card={state.card}
-              cards={state.cards}
-              root={root}
-              drawerWidth={drawerWidth}
-              {...others}
-            />
-          </Drawer>
-        )}
-        <SEOLinks root={root} />
-      </MenuContext.Provider>
-    </>
+    <MenuContext.Provider value={context}>
+      {renderDrawer ? (
+        renderDrawer()
+      ) : (
+        <Drawer
+          variant={persistent ? 'persistent' : 'temporary'}
+          open={open || persistent}
+          onClose={onClose}
+          anchor={anchor}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          PaperProps={{
+            style: { width: `${drawerWidth}px` },
+          }}
+          classes={{
+            root: className,
+            paper: clsx(classes.drawer, {
+              [classes.drawerFixed]: persistent,
+            }),
+            modal: classes.modal,
+          }}
+        >
+          <MenuBody
+            card={state.card}
+            cards={state.cards}
+            root={root}
+            drawerWidth={drawerWidth}
+            {...others}
+          />
+        </Drawer>
+      )}
+      <SEOLinks root={root} />
+    </MenuContext.Provider>
   )
 })
 
@@ -278,6 +276,7 @@ Menu.propTypes = {
    * A function to override the rendering the drawer
    */
   renderDrawer: PropTypes.func,
+  className: PropTypes.string,
 }
 
 Menu.defaultProps = {

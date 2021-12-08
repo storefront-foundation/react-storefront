@@ -75,6 +75,8 @@ SearchProvider.propTypes = {
    * Default is 250
    */
   debounceTime: PropTypes.number,
+  query: PropTypes.string,
+  active: PropTypes.bool,
 }
 
 SearchProvider.defaultProps = {

@@ -37,14 +37,16 @@ export default function DrawerCloseButton({
   } else if (fullscreen) {
     ButtonElement = IconButton
   } else {
-    ButtonElement = props => (
-      <Fab color="primary" {...props} className={clsx(props.className, !open && classes.hidden)}>
-        <Icon />
-      </Fab>
-    )
+    ButtonElement = function(props) {
+      return (
+        <Fab color="primary" {...props} className={clsx(props.className, !open && classes.hidden)}>
+          <Icon />
+        </Fab>
+      )
+    }
   }
 
-  const StyledButtonElement = styled(ButtonElement)(({ theme }) => ({
+  const StyledButtonElement = styled(ButtonElement)(() => ({
     /**
      * Styles applied to the root element.
      */
@@ -65,7 +67,7 @@ export default function DrawerCloseButton({
      * Styles applied to the root element, if [`text`](#prop-text) is defined.
      */
     [`&.${classes.buttonText}`]: {
-      border: `1px solid #999`,
+      border: '1px solid #999',
       margin: '0 0 10px 0',
     },
 

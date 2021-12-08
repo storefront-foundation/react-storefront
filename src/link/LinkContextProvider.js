@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import LinkContext from './LinkContext'
 import Router from 'next/router'
+import LinkContext from './LinkContext'
 
 /**
  * Provides a context that allows links to pass data directly to pages via the `pageData` prop.

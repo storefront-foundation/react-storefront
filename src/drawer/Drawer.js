@@ -1,8 +1,7 @@
 import React, { useRef, useEffect, useCallback } from 'react'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 import ResizeObserver from 'resize-observer-polyfill'
 import { Drawer as MUIDrawer, Typography } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import DrawerCloseButton from './DrawerCloseButton'
@@ -114,7 +113,7 @@ export default function Drawer({
     if (autoAdjustBodyPadding) {
       requestAnimationFrame(() => {
         const el = drawer.current
-        document.body.style.paddingBottom = el && el.clientHeight + 'px'
+        document.body.style.paddingBottom = el && `${el.clientHeight}px`
       })
     }
   }, [autoAdjustBodyPadding])
@@ -134,7 +133,7 @@ export default function Drawer({
 
     if (autoAdjustBodyPadding && el) {
       drawerResize.current = new ResizeObserver(() => {
-        document.body.style.paddingBottom = el && el.clientHeight + 'px'
+        document.body.style.paddingBottom = el && `${el.clientHeight}px`
       })
       drawerResize.current.observe(el)
     }
@@ -240,6 +239,7 @@ Drawer.propTypes = {
    * The variant to use for the MaterialUI [`Drawer`)(https://mui.com/api/drawer/#props).
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
+  open: PropTypes.bool,
 }
 
 Drawer.defaultProps = {

@@ -1,13 +1,13 @@
+import getBase64ForImage from 'react-storefront/utils/getBase64ForImage'
 import fulfillAPIRequest from '../props/fulfillAPIRequest'
 import createProduct from './utils/createProduct'
 import createAppData from './utils/createAppData'
-import getBase64ForImage from 'react-storefront/utils/getBase64ForImage'
 
 function asciiSum(string = '') {
   return string.split('').reduce((s, e) => s + e.charCodeAt(), 0)
 }
 
-export default async function product(params, req, res) {
+export default async function product(params, req) {
   const { id, color, size } = params
 
   const result = await fulfillAPIRequest(req, {
@@ -38,7 +38,7 @@ async function getPageData(id) {
     product: createProduct(id),
     breadcrumbs: [
       {
-        text: `Home`,
+        text: 'Home',
         href: '/',
       },
       {

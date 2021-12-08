@@ -1,8 +1,7 @@
 import React from 'react'
-import { styled } from '@mui/material/styles'
+import { styled, alpha } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { alpha } from '@mui/material/styles'
 
 const PREFIX = 'RSFCarouselDots'
 
@@ -54,7 +53,7 @@ const Dot = styled('div')(({ theme }) => ({
  * An overlay shown at the bottom of a [`Carousel`](/apiReference/carousel/Carousel) that shows a
  * sequence of dots representing the slides in the Carousel.
  */
-function CarouselDots({ selected, count, classes: c = {} }) {
+const CarouselDots = function({ selected, count, classes: c = {} }) {
   const classes = { ...defaultClasses, ...c }
   const dots = []
 

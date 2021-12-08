@@ -1,8 +1,8 @@
 import delegate from 'delegate'
-import fetch from '../fetch'
 import { useEffect, useRef, useCallback } from 'react'
 import Router from 'next/router'
 import qs from 'qs'
+import fetch from '../fetch'
 import getAPIURL from '../api/getAPIURL'
 
 /**
@@ -49,7 +49,7 @@ export default function useSimpleNavigation() {
 }
 
 function toNextURL(href, as) {
-  const url = new URL(as, window.location.protocol + '//' + window.location.hostname)
+  const url = new URL(as, `${window.location.protocol}//${window.location.hostname}`)
 
   return {
     pathname: href,
@@ -62,7 +62,7 @@ function fetchRouteManifest() {
 }
 
 function getRoute(href, routes) {
-  for (let pattern in routes) {
+  for (const pattern in routes) {
     if (new RegExp(pattern, 'i').test(href)) {
       return routes[pattern].as
     }

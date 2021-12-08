@@ -1,10 +1,10 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import { Hidden } from '@mui/material'
-import ToolbarButton from '../ToolbarButton'
-import MenuIcon from './MenuIcon'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
+import ToolbarButton from '../ToolbarButton'
+import MenuIcon from './MenuIcon'
 
 const PREFIX = 'RSFMenuButton'
 
@@ -12,7 +12,7 @@ const classes = {
   link: `${PREFIX}-link`,
 }
 
-const StyledHidden = styled(Hidden)(({ theme }) => ({
+const StyledHidden = styled(Hidden)(() => ({
   [`& .${classes.link}`]: {
     textDecoration: 'none',
   },
@@ -23,14 +23,7 @@ export {}
 /**
  * The button that controls that opens and closes the main app menu.
  */
-export default function MenuButton({
-  MenuIcon,
-  menuIconProps,
-  open,
-  onClick,
-  className,
-  style,
-}) {
+export default function MenuButton({ MenuIcon, menuIconProps, open, onClick, className, style }) {
   return (
     <StyledHidden mdUp implementation="css" key="menuButton">
       <a
@@ -59,6 +52,10 @@ MenuButton.propTypes = {
    * Props for the menu icon
    */
   menuIconProps: PropTypes.object,
+  open: PropTypes.bool,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  style: PropTypes.object,
 }
 
 MenuButton.defaultProps = {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import SessionContext from './SessionContext'
 import PropTypes from 'prop-types'
-import fetch from '../fetch'
 import get from 'lodash/get'
+import SessionContext from './SessionContext'
+import fetch from '../fetch'
 
 const initialState = {
   signedIn: false,

@@ -15,7 +15,7 @@ const defaultClasses = {
   icon: `${PREFIX}-icon`,
 }
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
@@ -151,6 +151,7 @@ CarouselArrows.propTypes = {
    * Label given to the right arrow for accessbility purposes.
    */
   rightArrowLabel: PropTypes.string,
+  infinite: PropTypes.bool,
 }
 
 CarouselArrows.defaultProps = {

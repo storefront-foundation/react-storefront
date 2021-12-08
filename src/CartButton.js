@@ -1,11 +1,11 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-import Link from './link/Link'
-import ToolbarButton from './ToolbarButton'
 import { ShoppingCart as Cart } from '@mui/icons-material'
 import { Badge } from '@mui/material'
 import clsx from 'clsx'
+import ToolbarButton from './ToolbarButton'
+import Link from './link/Link'
 
 const PREFIX = 'RSFCartButton'
 
@@ -114,6 +114,9 @@ CartButton.propTypes = {
    * Props passed through to the [`Link`](/apiReference/link/Link#props) element.
    */
   linkProps: PropTypes.object,
+  as: PropTypes.string,
+  onClick: PropTypes.func,
+  quantity: PropTypes.number,
 }
 
 CartButton.defaultProps = {
@@ -122,7 +125,7 @@ CartButton.defaultProps = {
     color: 'primary',
   },
   buttonProps: {
-    ['aria-label']: 'Cart',
+    'aria-label': 'Cart',
     color: 'inherit',
   },
   linkProps: {

@@ -1,11 +1,11 @@
+import fulfillAPIRequest from 'react-storefront/props/fulfillAPIRequest'
 import createFacets from './utils/createFacets'
 import createSortOptions from './utils/createSortOptions'
 import createProduct from './utils/createProduct'
 import colors, { indexForColor } from './utils/colors'
-import fulfillAPIRequest from 'react-storefront/props/fulfillAPIRequest'
 import createAppData from './utils/createAppData'
 
-export default async function subcategory(params, req, res) {
+export default async function subcategory(params, req) {
   let { q, slug = '1', page = 0, filters, sort, more = false } = params
 
   if (filters) {
@@ -31,7 +31,7 @@ export default async function subcategory(params, req, res) {
         products: filterProducts(page, filters, more),
         breadcrumbs: [
           {
-            text: `Home`,
+            text: 'Home',
             href: '/',
           },
         ],
@@ -48,20 +48,20 @@ function filterProducts(page, filters, more) {
 
   while (products.length < count) {
     if (filteredColors && filteredColors.length) {
-      for (let color of filteredColors) {
+      for (const color of filteredColors) {
         const index = indexForColor(color)
 
         const colorGap = i => Math.floor((page * count) / filteredColors.length) + i
 
         products.push(
           ...Array.from({ length: count }, (v, i) => colorGap(i)).map(i =>
-            createProduct('' + (i * Object.keys(colors).length + index)),
+            createProduct(`${i * Object.keys(colors).length + index}`),
           ),
         )
       }
     } else {
       const id = page * 10 + products.length + 1
-      products.push(createProduct(id + ''))
+      products.push(createProduct(`${id}`))
     }
   }
 

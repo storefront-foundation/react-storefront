@@ -11,7 +11,7 @@ const defaultClasses = {
   groupLabel: `${PREFIX}-groupLabel`,
 }
 
-const StyledFormGroup = styled(FormGroup)(({ theme }) => ({
+const StyledFormGroup = styled(FormGroup)(() => ({
   /**
    * Styles applied to the matching text.
    */

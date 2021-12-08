@@ -167,9 +167,8 @@ export default function MenuIcon({ label, open }) {
         </div>
       </Root>
     )
-  } else {
-    return renderIcon(open)
   }
+  return renderIcon(open)
 }
 
 MenuIcon.propTypes = {

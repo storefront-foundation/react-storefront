@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { styled } from '@mui/material/styles'
 import { AppBar as MUIAppBar, Toolbar, useScrollTrigger, Slide } from '@mui/material'
 import PropTypes from 'prop-types'
-import PWAContext from './PWAContext'
 import clsx from 'clsx'
+import PWAContext from './PWAContext'
 
 const PREFIX = 'AppBar'
 
@@ -140,10 +140,14 @@ AppBar.propTypes = {
    * * hide - The same as fixed, but the app bar automatically hides when the user scrolls down.
    */
   variant: PropTypes.oneOf(['relative', 'fixed', 'hide']),
+
+  style: PropTypes.object,
+  children: PropTypes.any,
 }
 
 AppBar.defaultProps = {
   offlineWarning: 'Your device lost its internet connection.',
   variant: 'hide',
   fixed: false,
+  style: {},
 }

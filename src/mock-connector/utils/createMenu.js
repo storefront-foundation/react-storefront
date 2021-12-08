@@ -34,7 +34,7 @@ function createSubcategoryItem(i) {
 
   return {
     text: `Subcategory ${i}`,
-    href: `/s/[...categorySlug]`,
+    href: '/s/[...categorySlug]',
     as: `/s/${i}`,
     expanded: i === 1,
     items,
@@ -44,7 +44,7 @@ function createSubcategoryItem(i) {
 function createProductItem(i) {
   return {
     text: `Product ${i}`,
-    href: `/p/[productId]`,
+    href: '/p/[productId]',
     as: `/p/${i}`,
   }
 }

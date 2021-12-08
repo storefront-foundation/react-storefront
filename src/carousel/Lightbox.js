@@ -1,5 +1,4 @@
-import { useTheme } from '@mui/material/styles'
-import { styled } from '@mui/material/styles'
+import { useTheme, styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Close from '@mui/icons-material/Close'
@@ -13,7 +12,7 @@ const classes = {
   paper: `${PREFIX}-paper`,
 }
 
-const StyledDialog = styled(Dialog)(({ theme }) => ({
+const StyledDialog = styled(Dialog)(() => ({
   /**
    * Styles applied to the root element.
    */
@@ -48,7 +47,7 @@ const Transition = React.forwardRef((props, ref) => {
  * A modal that opens to give a full-screen view of the elements within a
  * [`Carousel`](/apiReference/carousel/Carousel).
  */
-function Lightbox({ children, onClose, open, TransitionComponent }) {
+const Lightbox = function({ children, onClose, open, TransitionComponent }) {
   const theme = useTheme()
 
   return (

@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import ReactVisibilitySensor from 'react-visibility-sensor'
 import clsx from 'clsx'
-import PWAContext from './PWAContext'
 import PropTypes from 'prop-types'
 import { useAmp } from 'next/amp'
+import PWAContext from './PWAContext'
 
 const PREFIX = 'RSFLazy'
 

@@ -30,7 +30,7 @@ export {}
  */
 const ToolbarButton = forwardRef(({ icon, label, children, classes: c = {}, ...others }, ref) => {
   const classes = { ...defaultClasses, ...c }
-  let { wrap, ...buttonClasses } = classes
+  const { wrap, ...buttonClasses } = classes
 
   return (
     <StyledIconButton ref={ref} classes={buttonClasses} {...others} size="large">

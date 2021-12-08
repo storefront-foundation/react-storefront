@@ -88,9 +88,8 @@ function addPrefetchParam(url) {
     }
 
     return parsed.toString()
-  } else {
-    return url
   }
+  return url
 }
 
 /**

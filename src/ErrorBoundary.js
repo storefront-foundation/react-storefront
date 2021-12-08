@@ -49,7 +49,7 @@ export default class ErrorBoundary extends Component {
    * @param {Error} error
    * @param {Object} info
    */
-  componentDidCatch(error, info) {
+  componentDidCatch(error) {
     const { onError } = this.props
 
     // report the error

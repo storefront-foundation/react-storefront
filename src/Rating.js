@@ -70,7 +70,7 @@ export default function Rating({
   fillEmpty,
 }) {
   const classes = { ...defaultClasses, ...c }
-  let stars = []
+  const stars = []
 
   if (product) {
     reviewCount = product.reviewCount
@@ -155,6 +155,7 @@ Rating.propTypes = {
    * If `true`, use a filled icon with light gray background for empty icon
    */
   fillEmpty: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 Rating.defaultProps = {

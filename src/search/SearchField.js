@@ -1,12 +1,10 @@
 import React, { useRef, forwardRef } from 'react'
-import { styled } from '@mui/material/styles'
-import { alpha } from '@mui/material/styles'
+import { styled, alpha } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-import { IconButton } from '@mui/material'
+import { IconButton, Fab, Button } from '@mui/material'
 import ClearIcon from '@mui/icons-material/Clear'
-import SearchSubmitButton from './SearchSubmitButton'
-import { Fab, Button } from '@mui/material'
 import clsx from 'clsx'
+import SearchSubmitButton from './SearchSubmitButton'
 
 const PREFIX = 'RSFSearchField'
 
@@ -122,7 +120,8 @@ const SearchField = forwardRef(
     ref,
   ) => {
     const classes = { ...defaultClasses, ...c }
-    const inputRef = ref || useRef(null)
+    const innerRef = useRef(null)
+    const inputRef = ref || innerRef
     const empty = value.trim().length === 0
 
     const handleInputFocus = () => {

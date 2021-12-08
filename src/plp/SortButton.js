@@ -1,17 +1,25 @@
 import React, { memo, useState, useEffect, useContext, useRef } from 'react'
-import ActionButton from '../ActionButton'
-import Sort from './Sort'
 import PropTypes from 'prop-types'
-import Drawer from '../drawer/Drawer'
 import { Menu, useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
+import ActionButton from '../ActionButton'
+import Sort from './Sort'
+import Drawer from '../drawer/Drawer'
 import SearchResultsContext from './SearchResultsContext'
 
 /**
  * A button that when clicked, opens a drawer containing the `Sort` view. The name of the currently
  * selected sort option is displayed in the button text.
  */
-function SortButton({ title, drawerProps, onClick, sortProps, drawerBreakpoint, href, ...props }) {
+const SortButton = function({
+  title,
+  drawerProps,
+  onClick,
+  sortProps,
+  drawerBreakpoint,
+  href,
+  ...props
+}) {
   const theme = useTheme()
   const [state, setState] = useState({
     open: false,
@@ -47,7 +55,7 @@ function SortButton({ title, drawerProps, onClick, sortProps, drawerBreakpoint, 
 
   const toggleOpen = (open, anchorEl) => {
     if (open) {
-      setState({ mountDrawer: true, open: true, anchorEl: anchorEl })
+      setState({ mountDrawer: true, open: true, anchorEl })
     } else {
       setState({ ...state, open: false, anchorEl: null })
     }
@@ -124,7 +132,7 @@ SortButton.propTypes = {
   /**
    * A function that is called when the button is clicked.
    */
-  onCLick: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 SortButton.defaultProps = {

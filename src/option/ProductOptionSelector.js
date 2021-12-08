@@ -123,6 +123,8 @@ ProductOptionSelector.propTypes = {
    * Allows you to override the default component which is used to render a product option.
    */
   OptionComponent: PropTypes.elementType,
+  options: PropTypes.array,
+  variant: PropTypes.string,
 }
 
 ProductOptionSelector.defaultProps = {

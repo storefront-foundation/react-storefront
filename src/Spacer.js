@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles'
 import React from 'react'
+
 const PREFIX = 'RSFSpacer'
 
 const defaultClasses = {
   root: `${PREFIX}-root`,
 }
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import MenuContext from './MenuContext'
 import PropTypes from 'prop-types'
+import MenuContext from './MenuContext'
 import MenuCard from './MenuCard'
 
 const MenuBody = React.memo(
@@ -42,6 +42,10 @@ MenuBody.propTypes = {
    * Overrides the default component used to display menu cards
    */
   CardComponent: PropTypes.elementType.isRequired,
+  card: PropTypes.number,
+  cards: PropTypes.array,
+  rootHeader: PropTypes.any,
+  rootFooter: PropTypes.any,
 }
 
 MenuBody.defaultProps = {

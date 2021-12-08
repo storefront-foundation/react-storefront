@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import get from 'lodash/get'
 import TextProductOption from './TextProductOption'
 import SwatchProductOption from './SwatchProductOption'
 import withDefaultHandler from '../utils/withDefaultHandler'
-import get from 'lodash/get'
 
 /**
  * A button or swatch that displays a representation of a product option within a
@@ -28,7 +28,7 @@ export default function ProductOption(props) {
     selected = get(value, 'id') == get(selectedOption, 'id')
   }
 
-  const handleClick = withDefaultHandler(onClick, _e => {
+  const handleClick = withDefaultHandler(onClick, () => {
     if (onSelectedOptionChange) {
       onSelectedOptionChange(selected ? null : value)
     }

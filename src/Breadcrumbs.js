@@ -1,10 +1,10 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import { KeyboardArrowRight as ArrowRight } from '@mui/icons-material'
-import Link from './link/Link'
 import clsx from 'clsx'
 import { Typography, Container } from '@mui/material'
 import PropTypes from 'prop-types'
+import Link from './link/Link'
 
 const PREFIX = 'Breadcrumbs'
 
@@ -69,14 +69,13 @@ export default function Breadcrumbs({ items, classes: c = {} }) {
                   </Link>
                 </span>
               )
-            } else {
-              return (
-                <span key={i} className={clsx(isLastItem && classes.current)}>
-                  {arrow}
-                  {item.text}
-                </span>
-              )
             }
+            return (
+              <span key={i} className={clsx(isLastItem && classes.current)}>
+                {arrow}
+                {item.text}
+              </span>
+            )
           })}
         <span>&nbsp;</span>
       </Container>

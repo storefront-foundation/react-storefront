@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import throttle from 'lodash/throttle'
 import { ArrowUpward } from '@mui/icons-material'
 import { Fab, Fade } from '@mui/material'
+
 const PREFIX = 'RSFBackToTop'
 
 const defaultClasses = {
