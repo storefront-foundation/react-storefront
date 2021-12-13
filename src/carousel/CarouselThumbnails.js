@@ -142,7 +142,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }))
 
-export {}
+export { defaultClasses as classes }
 
 /**
  * A set of thumbnails to show below a [`Carousel`](/apiReference/carousel/Carousel). Thumbnails can

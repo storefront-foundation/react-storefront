@@ -40,7 +40,7 @@ const Root = styled('span')(() => ({
   },
 }))
 
-export {}
+export { classes }
 
 /**
  * A container for HTML blob content from a CMS.  Content is dangerously inserted into the DOM.
