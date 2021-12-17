@@ -11,26 +11,6 @@ const defaultClasses = {
   option: `${PREFIX}-option`,
 }
 
-const StyledSort = styled(Sort)(() => ({
-  /**
-   * Styles applied to the root container if [`variant`](#prop-variant) is `'buttons'`.
-   */
-  [`& .${defaultClasses.container}`]: {
-    padding: '15px 0 0 15px',
-  },
-
-  /**
-   * Styles applied to each option if [`variant`](#prop-variant) is `'buttons'`.
-   */
-  [`& .${defaultClasses.option}`]: {
-    boxShadow: 'none',
-    width: 'calc(50% - 15px)',
-    margin: '0 15px 15px 0',
-  },
-}))
-
-export {}
-
 /**
  * UI for sorting a list of products.  This component can be used on its own, or you can use
  * [`SortButton`](/apiReference/plp/SortButton) to automatically display this component in a drawer
@@ -111,5 +91,23 @@ Sort.defaultProps = {
   onSelect: Function.prototype,
   variant: 'buttons',
 }
+
+const StyledSort = styled(Sort)(() => ({
+  /**
+   * Styles applied to the root container if [`variant`](#prop-variant) is `'buttons'`.
+   */
+  [`& .${defaultClasses.container}`]: {
+    padding: '15px 0 0 15px',
+  },
+
+  /**
+   * Styles applied to each option if [`variant`](#prop-variant) is `'buttons'`.
+   */
+  [`& .${defaultClasses.option}`]: {
+    boxShadow: 'none',
+    width: 'calc(50% - 15px)',
+    margin: '0 15px 15px 0',
+  },
+}))
 
 export default memo(StyledSort)
