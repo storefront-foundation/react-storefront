@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
-// import { createGenerateClassName, StylesProvider } from '@mui/styles'
-// import { SheetsRegistry } from 'jss'
-import Router from 'next/router'
-import { useAmp } from 'next/amp'
-import isBrowser from './utils/isBrowser'
-// import minifyStyles from './utils/minifyStyles'
 import useIntersectionObserver from './hooks/useIntersectionObserver'
+import { createGenerateClassName, StylesProvider } from '@mui/styles'
+import { SheetsRegistry } from 'jss'
+import Router from 'next/router'
+import isBrowser from './utils/isBrowser'
+import minifyStyles from './utils/minifyStyles'
+import { useAmp } from 'next/amp'
 
 const fuiEvents = ['mouseover', 'touchstart', 'scroll']
 const touchEvents = ['touchstart', 'mouseover']
@@ -28,71 +28,70 @@ if (isBrowser()) {
   lazy hydrated components. Once they become hydrated, these stylesheets
   will be removed.
 */
-export var LazyStyles = function() {
-  return null
+export function LazyStyles() {
   /* istanbul ignore next */
-  // if (useAmp()) return null
+  if (useAmp()) return null
 
-  // let styles = null
-  // try {
-  //   styles = registries.map(registry => {
-  //     function applyScope(sheet) {
-  //       for (const rule of sheet.rules.index) {
-  //         if (rule.type === 'conditional') {
-  //           applyScope(rule)
-  //         } else {
-  //           rule.selectorText = `#${registry.id} ${rule.selectorText}`
-  //         }
-  //       }
-  //     }
+  let styles = null
+  try {
+    styles = (
+      <>
+        {registries.map(registry => {
+          function applyScope(sheet) {
+            for (let rule of sheet.rules.index) {
+              if (rule.type === 'conditional') {
+                applyScope(rule)
+              } else {
+                rule.selectorText = `#${registry.id} ${rule.selectorText}`
+              }
+            }
+          }
 
-  //     // Apply these styles only to the wrapped component
-  //     for (const sheet of registry.registry) {
-  //       applyScope(sheet)
-  //     }
+          // Apply these styles only to the wrapped component
+          for (let sheet of registry.registry) {
+            applyScope(sheet)
+          }
 
-  //     return (
-  //       <style
-  //         key={registry.id}
-  //         id={registry.id}
-  //         dangerouslySetInnerHTML={{ __html: minifyStyles(registry.toString()) }}
-  //       />
-  //     )
-  //   })
-  // } finally {
-  //   // Clear registeries so we do not leak memory
-  //   registries = []
-  // }
-  // return styles
+          return (
+            <style
+              key={registry.id}
+              id={registry.id}
+              dangerouslySetInnerHTML={{ __html: minifyStyles(registry.toString()) }}
+            />
+          )
+        })}
+      </>
+    )
+  } finally {
+    // Clear registeries so we do not leak memory
+    registries = []
+  }
+  return styles
 }
 
-// const LazyStylesProvider = function({ id, children }) {
-//   const generateClassName = createGenerateClassName({
-//     seed: id,
-//   })
-//   const registry = new SheetsRegistry()
-//   registry.id = id
-//   registries.push(registry)
-//   return (
-//     <StylesProvider
-//       sheetsManager={new Map()}
-//       serverGenerateClassName={generateClassName}
-//       sheetsRegistry={registry}
-//     >
-//       {children}
-//     </StylesProvider>
-//   )
-// }
-
-// LazyStylesProvider.propTypes = {
-//   id: PropTypes.any,
-// }
+function LazyStylesProvider({ id, children }) {
+  const generateClassName = createGenerateClassName({
+    seed: id,
+  })
+  const registry = new SheetsRegistry()
+  registry.id = id
+  registries.push(registry)
+  return (
+    <StylesProvider
+      sheetsManager={new Map()}
+      serverGenerateClassName={generateClassName}
+      sheetsRegistry={registry}
+    >
+      {children}
+    </StylesProvider>
+  )
+}
 
 Router.events.on('routeChangeStart', () => {
   window.__lazyHydrateNavigated = true
 })
 
-const LazyHydrateInstance = function({ id, className, ssrOnly, children, on, ...props }) {
+function LazyHydrateInstance({ id, className, ssrOnly, children, on, ...props }) {
   function isHydrated() {
     if (isBrowser()) {
       // If rendering after client side navigation
@@ -100,8 +99,9 @@ const LazyHydrateInstance = function({ id, className, ssrOnly, children, on, ...
       // return true
       if (ssrOnly) return false
       return !!props.hydrated
+    } else {
+      return true
     }
-    return true
   }
 
   const childRef = useRef(null)
@@ -130,20 +130,22 @@ const LazyHydrateInstance = function({ id, className, ssrOnly, children, on, ...
     }
   }, [props.hydrated, ssrOnly])
 
-  useIntersectionObserver(
-    // As root node does not have any box model, it cannot intersect.
-    () => childRef.current.children[0],
-    (visible, disconnect) => {
-      if (visible && on === 'visible') {
-        hydrate()
-        disconnect()
-      }
-    },
-    [on],
-    // Fallback to eager hydration
-    /* istanbul ignore next */
-    () => hydrate(),
-  )
+  if (on === 'visible') {
+    useIntersectionObserver(
+      // As root node does not have any box model, it cannot intersect.
+      () => childRef.current.children[0],
+      (visible, disconnect) => {
+        if (visible) {
+          hydrate()
+          disconnect()
+        }
+      },
+      [],
+      // Fallback to eager hydration
+      /* istanbul ignore next */
+      () => hydrate(),
+    )
+  }
 
   useEffect(() => {
     if (hydrated) return
@@ -186,24 +188,18 @@ const LazyHydrateInstance = function({ id, className, ssrOnly, children, on, ...
         {children}
       </div>
     )
+  } else {
+    return (
+      <div
+        ref={childRef}
+        id={id}
+        className={className}
+        style={{ display: 'contents' }}
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: '' }}
+      />
+    )
   }
-  return (
-    <div
-      ref={childRef}
-      id={id}
-      className={className}
-      style={{ display: 'contents' }}
-      suppressHydrationWarning
-      dangerouslySetInnerHTML={{ __html: '' }}
-    />
-  )
-}
-LazyHydrateInstance.propTypes = {
-  id: PropTypes.any,
-  className: PropTypes.string,
-  ssrOnly: PropTypes.bool,
-  on: PropTypes.string,
-  hydrated: PropTypes.bool,
 }
 
 /**
@@ -217,7 +213,7 @@ LazyHydrateInstance.propTypes = {
  *
  */
 
-const LazyHydrate = function({ children, ...props }) {
+function LazyHydrate({ children, ...props }) {
   /* istanbul ignore next */
   if (useAmp()) return children
 
@@ -227,8 +223,7 @@ const LazyHydrate = function({ children, ...props }) {
       are hydrated, their styles will automatically be managed by the app's main 
       StyleProvider. Using LazyStylesProvider in the browser will result in duplicated
       and conflicting styles in lazy components once they are hydrated. */}
-      {/* {isBrowser() ? children : <LazyStylesProvider {...props}>{children}</LazyStylesProvider>} */}
-      {children}
+      {isBrowser() ? children : <LazyStylesProvider {...props}>{children}</LazyStylesProvider>}
     </LazyHydrateInstance>
   )
 }
