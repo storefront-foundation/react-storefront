@@ -26,7 +26,7 @@
     "release": "npm run build && cd dist && npm publish && cd ..",
     "test": "jest",
     "watch": "npm-watch",
-    "push-build": "yarn build && cd dist && yalc push && cd ..",
+    "push-build": "npm run build && cd dist && yalc push --sig && cd ..",
     "create-indexes": "create-index -ri --ignoreDirectories src",
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
     "build": "npm run build:prep && NODE_ENV=production npm run build:sources",
@@ -76,6 +76,7 @@
     "@svgr/webpack": "^4.3.3",
     "@swc/cli": "^0.1.52",
     "@swc/core": "^1.2.118",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "babel-loader": "^8.0.6",
     "babel-plugin-rewire": "^1.2.0",
     "babel-plugin-transform-imports": "^2.0.0",
@@ -101,12 +102,12 @@
     "yalc": "^1.0.0-pre.34"
   },
   "peerDependencies": {
-    "react-dom": "^17.0.2",
-    "react": "^17.0.2",
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.2.2",
     "@mui/styles": "^5.2.2",
-    "next": "^12.0.7"
+    "next": "^12.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
