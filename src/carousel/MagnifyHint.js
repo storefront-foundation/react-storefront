@@ -61,7 +61,7 @@ const Root = styled('div')(() => ({
 }))
 
 const Wrap = styled('div')(() => ({
-  [`& .${classes.wrap}`]: {
+  [`&.${classes.wrap}`]: {
     borderRadius: 25,
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
     lineHeight: 14,
@@ -87,7 +87,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   /**
    * Styles applied to the elements containing each of the text captions.
    */
-  [`& .${classes.text}`]: {
+  [`&.${classes.text}`]: {
     marginLeft: 5,
     color: theme.palette.grey[300],
     position: 'relative',
@@ -96,7 +96,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   /**
    * Styles applied to the element containing the [zoomTextDesktop](#prop-zoomTextDesktop) caption.
    */
-  [`& .${classes.zoomTextDesktop}`]: {
+  [`&.${classes.zoomTextDesktop}`]: {
     display: 'block',
     // hide zoom text when:
     // - hovering + expand is enabled
@@ -113,7 +113,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   /**
    * Styles applied to the element containing the [expandTextMobile](#prop-expandTextMobile) caption.
    */
-  [`& .${classes.expandTextMobile}`]: {
+  [`&.${classes.expandTextMobile}`]: {
     display: 'none',
     '@media (hover: none) and (pointer: coarse)': {
       display: 'block',
@@ -123,7 +123,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   /**
    * Styles applied to the element containing the [expandTextDesktop](#prop-expandTextDesktop) caption.
    */
-  [`& .${classes.expandTextDesktop}`]: {
+  [`&.${classes.expandTextDesktop}`]: {
     display: 'none',
 
     '$over:not($expandDisabled) &, $zoomDisabled &': {

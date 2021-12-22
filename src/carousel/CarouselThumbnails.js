@@ -29,7 +29,7 @@ const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  [`& .${defaultClasses.thumbs}`]: {
+  [`&.${defaultClasses.thumbs}`]: {
     display: 'flex',
     justifyContent: 'center',
   },
@@ -185,12 +185,11 @@ const CarouselThumbnails = function({
         }}
       >
         {thumbnails.map(({ src, alt }, i) => {
-          const icon = <ImageComponent contain className={classes.thumb} src={src} alt={alt} />
+          const icon = <div className={classes.tabWrapper}><ImageComponent contain className={classes.thumb} src={src} alt={alt} /></div>
           return (
             <Tab
               classes={{
                 root: classes.tabRoot,
-                wrapper: classes.tabWrapper,
                 selected: classes.selectedTab,
               }}
               key={i}

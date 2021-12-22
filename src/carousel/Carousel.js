@@ -135,7 +135,7 @@ const Carousel = React.forwardRef((props, ref) => {
   return (
     <Root
       ref={ref}
-      className={clsx(className, classes.root)}
+      className={clsx(className, defaultClasses.root)}
       style={style}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
