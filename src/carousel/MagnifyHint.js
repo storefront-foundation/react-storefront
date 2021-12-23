@@ -51,11 +51,11 @@ const Root = styled('div')(() => ({
     // hide the whole component when:
     // - both zoom and expand are disabled
     // - expand is disabled and user is mobile
-    '$zoomDisabled&': {
+    [`&.${classes.zoomDisabled}`]: {
       display: 'none',
-    },
-    '@media (hover: none) and (pointer: coarse)': {
-      display: 'none',
+      '@media (hover: none) and (pointer: coarse)': {
+        display: 'none',
+      },
     },
   },
 }))
@@ -102,7 +102,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
     // - hovering + expand is enabled
     // - zoom is disabled
     // - mobile user
-    '$over:not($expandDisabled) &, $zoomDisabled &': {
+    [`.${classes.over}:not(.${classes.expandDisabled}) &, .${classes.zoomDisabled} &`]: {
       display: 'none',
     },
     '@media (hover: none) and (pointer: coarse)': {
@@ -126,11 +126,11 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   [`&.${classes.expandTextDesktop}`]: {
     display: 'none',
 
-    '$over:not($expandDisabled) &, $zoomDisabled &': {
+    [`.${classes.over}:not(.${classes.expandDisabled}) &, .${classes.zoomDisabled} &`]: {
       display: 'block',
-      '@media (hover: none) and (pointer: coarse)': {
-        display: 'none',
-      },
+    },
+    '@media (hover: none) and (pointer: coarse)': {
+      display: 'none',
     },
   },
 }))
