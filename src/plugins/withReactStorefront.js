@@ -91,12 +91,5 @@ module.exports = ({
 
       return config
     },
-    webpackDevMiddleware(config) {
-      config.watchOptions = {
-        // required to recompile client build when there are changes in node_modules
-        ignored: [],
-      }
-      return config
-    },
   })
 }
