@@ -1,13 +1,10 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { styled } from '@mui/material/styles'
-import { Hidden, Fade, Tab, Popover, Paper, Menu } from '@mui/material'
+import { Hidden, Fade, Tab, Paper } from '@mui/material'
 import PropTypes from 'prop-types'
-import Router from 'next/router'
 import Link from '../link/Link'
 
-import Menu from '@mui/material/Menu'
-
-import PopupState, { bindHover, bindPopover } from 'material-ui-popup-state'
+import { bindHover, bindPopover } from 'material-ui-popup-state'
 import { usePopupState } from 'material-ui-popup-state/hooks'
 
 import HoverPopover from 'material-ui-popup-state/HoverPopover'

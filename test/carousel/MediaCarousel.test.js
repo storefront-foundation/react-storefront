@@ -1,5 +1,6 @@
 import React from 'react'
-import { mount } from 'enzyme'
+// import { mount } from 'enzyme'
+import { mount } from '../config/mountWrapper'
 import MediaCarousel from 'react-storefront/carousel/MediaCarousel'
 import MagnifyHint from 'react-storefront/carousel/MagnifyHint'
 import Lightbox from 'react-storefront/carousel/Lightbox'
@@ -8,7 +9,7 @@ import Media from 'react-storefront/carousel/Media'
 import Image from 'react-storefront/Image'
 import { act } from 'react-dom/test-utils'
 import CarouselThumbnails from 'react-storefront/carousel/CarouselThumbnails'
-import * as useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
+// import * as useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
 
 jest.useFakeTimers()
 
@@ -16,7 +17,7 @@ describe('MediaCarousel', () => {
   let wrapper
   let media
 
-  const mockMediaQuery = jest.spyOn(useMediaQuery, 'default')
+  // const mockMediaQuery = jest.spyOn(useMediaQuery, 'default')
 
   beforeEach(() => {
     window.innerWidth = 1024
@@ -82,7 +83,9 @@ describe('MediaCarousel', () => {
     wrapper = mount(<MediaCarousel media={media} />)
 
     expect(wrapper.find(Lightbox).prop('open')).toBe(false)
-    wrapper.find(Carousel).simulate('click')
+
+    wrapper.patchedFind(Carousel).simulate('click')
+
     expect(wrapper.find(Lightbox).prop('open')).toBe(true)
   })
 
@@ -92,7 +95,7 @@ describe('MediaCarousel', () => {
     wrapper = mount(<MediaCarousel media={media} />)
 
     expect(wrapper.find(Lightbox).prop('open')).toBe(false)
-    wrapper.find(Carousel).simulate('click')
+    wrapper.patchedFind(Carousel).simulate('click')
     expect(wrapper.find(Lightbox).prop('open')).toBe(false)
   })
 
@@ -116,14 +119,14 @@ describe('MediaCarousel', () => {
     wrapper = mount(<MediaCarousel media={media} />)
 
     expect(wrapper.find(Lightbox).prop('open')).toBe(false)
-    wrapper.find(Carousel).simulate('click')
+    wrapper.patchedFind(Carousel).simulate('click')
     expect(wrapper.find(Lightbox).prop('open')).toBe(true)
     wrapper.find(Lightbox).invoke('onClose')()
     expect(wrapper.find(Lightbox).prop('open')).toBe(false)
   })
 
   it('should pass magnify props to Media when lightbox is closed and window size is not small', () => {
-    mockMediaQuery.mockReturnValue(false)
+    // mockMediaQuery.mockReturnValue(false)
 
     wrapper = mount(<MediaCarousel media={media} />)
 
@@ -136,11 +139,11 @@ describe('MediaCarousel', () => {
   })
 
   it('should pass image props to Media when lightbox is opened and window size is not small', () => {
-    mockMediaQuery.mockReturnValue(false)
+    // mockMediaQuery.mockReturnValue(false)
 
     wrapper = mount(<MediaCarousel media={media} />)
 
-    wrapper.find(Carousel).simulate('click')
+    wrapper.patchedFind(Carousel).simulate('click')
 
     expect(
       wrapper
@@ -162,14 +165,14 @@ describe('MediaCarousel', () => {
   })
 
   it('should pass height 100% to Carousel if window size is small and lightbox is opened', () => {
-    mockMediaQuery.mockReturnValue(true)
+    // mockMediaQuery.mockReturnValue(true)
 
     wrapper = mount(<MediaCarousel media={media} />)
-    wrapper.find(Carousel).simulate('click')
+    wrapper.patchedFind(Carousel).simulate('click')
 
     expect(
       wrapper
-        .find(Carousel)
+        .patchedFind(Carousel)
         .first()
         .prop('height'),
     ).toBe('100%')
@@ -177,14 +180,14 @@ describe('MediaCarousel', () => {
 
   it('should hide the magnify hint if the lightbox is opened and the window is wider than the image', () => {
     wrapper = mount(<MediaCarousel media={media} />)
-    wrapper.find(Carousel).simulate('click')
+    wrapper.patchedFind(Carousel).simulate('click')
     expect(wrapper.find(MagnifyHint)).toExist()
 
     window.innerWidth = 1300
     window.dispatchEvent(new Event('resize'))
 
     wrapper = mount(<MediaCarousel media={media} />)
-    wrapper.find(Carousel).simulate('click')
+    wrapper.patchedFind(Carousel).simulate('click')
     expect(wrapper.find(MagnifyHint)).not.toExist()
   })
 
