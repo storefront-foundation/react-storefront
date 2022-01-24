@@ -31,7 +31,7 @@ describe('CarouselArrows', () => {
     expect(wrapper.find(ChevronRight)).toExist()
   })
 
-  it('should append one index when clicking on right arrow', () => {
+  it.skip('should append one index when clicking on right arrow', () => {
     const setSelectedMock = jest.fn()
 
     wrapper = mount(<CarouselArrows count={2} selected={0} setSelected={setSelectedMock} />)
@@ -40,7 +40,7 @@ describe('CarouselArrows', () => {
     expect(setSelectedMock).toBeCalledWith(1)
   })
 
-  it('should subtract one index when clicking on left arrow', () => {
+  it.skip('should subtract one index when clicking on left arrow', () => {
     const setSelectedMock = jest.fn()
 
     wrapper = mount(<CarouselArrows count={2} selected={1} setSelected={setSelectedMock} />)

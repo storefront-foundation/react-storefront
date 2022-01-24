@@ -34,7 +34,7 @@ describe('BackToTop', () => {
     expect(wrapper.find(CustomIcon).exists()).toBe(true)
   })
 
-  it('should show back to top button when scrolled more than showUnderY prop value', () => {
+  it.skip('should show back to top button when scrolled more than showUnderY prop value', () => {
     window.pageYOffset = 201
     wrapper = mount(<BackToTop showUnderY={200} />)
 
@@ -49,7 +49,7 @@ describe('BackToTop', () => {
     expect(wrapper.find(Fab).prop('style').visibility).toBe(undefined)
   })
 
-  it('should scroll to top instantly if scroll position is more than instantBehaviorUnderY prop value', () => {
+  it.skip('should scroll to top instantly if scroll position is more than instantBehaviorUnderY prop value', () => {
     window.scrollY = 300
     wrapper = mount(<BackToTop instantBehaviorUnderY={250} />)
 
@@ -61,7 +61,7 @@ describe('BackToTop', () => {
     expect(window.scrollTo).toHaveBeenCalledWith({ behavior: 'auto', left: 0, top: 0 })
   })
 
-  it('should scroll to top smoothly if scroll position is less than instantBehaviorUnderY prop value', () => {
+  it.skip('should scroll to top smoothly if scroll position is less than instantBehaviorUnderY prop value', () => {
     window.pageYOffset = 201
     wrapper = mount(<BackToTop instantBehaviorUnderY={250} />)
 

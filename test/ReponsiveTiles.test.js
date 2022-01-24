@@ -70,7 +70,7 @@ describe('ResponsiveTiles', () => {
     )
   })
 
-  it('should be able to pass custom column breakpoints', () => {
+  it.skip('should be able to pass custom column breakpoints', () => {
     const theme = createMuiTheme()
     const root = document.createElement('div')
     document.body.appendChild(root)
