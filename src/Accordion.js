@@ -19,11 +19,12 @@ import React, { useState } from 'react'
  * ```
  */
 export default function Accordion({ children }) {
+  const [expanded, setExpanded] = useState(
+    () => children && children.findIndex(child => child.props.expanded),
+  )
   if (!children) {
     return null
   }
-
-  const [expanded, setExpanded] = useState(() => children.findIndex(child => child.props.expanded))
 
   return (
     // wrapped in a Fragment so react-docgen recognizes this as a Component:

@@ -1,15 +1,25 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import VisibilitySensor from 'react-visibility-sensor'
-import { makeStyles } from '@material-ui/core/styles'
 import PWAContext from './PWAContext'
 
-export const styles = theme => ({
+const PREFIX = 'RSFImage'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  image: `${PREFIX}-image`,
+  fit: `${PREFIX}-fit`,
+  contain: `${PREFIX}-contain`,
+  fill: `${PREFIX}-fill`,
+}
+
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
@@ -19,14 +29,16 @@ export const styles = theme => ({
     minHeight: 1,
     minWidth: 1,
   },
+
   /**
    * Styles applied to the image element.
    */
-  image: {},
+  [`& .${defaultClasses.image}`]: {},
+
   /**
    * Styles applied to the image element when [`aspectRatio`](#prop-aspectRatio) is defined.
    */
-  fit: {
+  [`& .${defaultClasses.fit}`]: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -36,20 +48,22 @@ export const styles = theme => ({
     width: '100%',
     height: '100%',
   },
+
   /**
    * Styles applied to the root element when [`contain`](#prop-contain) is `true`.
    */
-  contain: {
+  [`&.${defaultClasses.contain}`]: {
     '& img': {
       objectFit: 'contain',
       maxHeight: '100%',
       maxWidth: '100%',
     },
   },
+
   /**
    * Styles applied to the root element when [`fill`](#prop-fill) is `true`.
    */
-  fill: {
+  [`&.${defaultClasses.fill}`]: {
     width: '100%',
     height: '100%',
     '& img': {
@@ -61,9 +75,9 @@ export const styles = theme => ({
       height: '100%',
     },
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFImage' })
+export {}
 
 /**
  * Displays an image that can be lazy loaded and made to auto-scale to fit the parent element
@@ -79,7 +93,7 @@ export default function Image({
   fill,
   bind,
   contain,
-  classes,
+  classes: c = {},
   className,
   aspectRatio,
   alt,
@@ -93,13 +107,12 @@ export default function Image({
   ImgElement,
   ...imgAttributes
 }) {
+  const classes = { ...defaultClasses, ...c }
   function lazyLoad(visible) {
     if (!loaded && visible) {
       setLoaded(true)
     }
   }
-
-  classes = useStyles({ classes })
 
   const { hydrating } = useContext(PWAContext) || {}
   const [loaded, setLoaded] = useState(lazy === false || (lazy === 'ssr' && !hydrating))
@@ -122,7 +135,7 @@ export default function Image({
   }
 
   let result = (
-    <div
+    <Root
       className={clsx(className, {
         [classes.root]: true,
         [classes.contain]: contain,
@@ -151,7 +164,7 @@ export default function Image({
           }
         />
       )}
-    </div>
+    </Root>
   )
 
   result = (

@@ -1,36 +1,49 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles'
 import React from 'react'
-import { IconButton } from '@material-ui/core'
-import { Search } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
+import { IconButton } from '@mui/material'
+import { Search } from '@mui/icons-material'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchButton'
+
+const defaultClasses = {
+  icon: `${PREFIX}-icon`,
+  large: `${PREFIX}-large`,
+}
+
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
   /**
    * Styles applied to the icon, if [children](#prop-children) is empty.
    */
-  icon: {
+  [`& .${defaultClasses.icon}`]: {
     color: theme.palette.action.active,
   },
+
   /**
    * Styles applied to the element containing the button's label.
    */
-  large: {
+  [`& .${defaultClasses.large}`]: {
     fontSize: '28px',
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFSearchButton' })
+export {}
 
 /**
  * A button that can be used to open a search drawer.
  */
-export default function SearchButton({ children, classes, ...other }) {
-  classes = useStyles({ classes })
-
+export default function SearchButton({ children, classes: c = {}, ...other }) {
+  const classes = { ...defaultClasses, ...c }
   return (
-    <IconButton aria-label="Search" color="inherit" classes={{ label: classes.large }} {...other}>
+    <StyledIconButton
+      aria-label="Search"
+      color="inherit"
+      classes={{ label: classes.large }}
+      {...other}
+      size="large"
+    >
       {children || <Search className={classes.icon} />}
-    </IconButton>
+    </StyledIconButton>
   )
 }
 

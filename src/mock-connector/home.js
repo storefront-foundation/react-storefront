@@ -1,7 +1,7 @@
 import fulfillAPIRequest from '../props/fulfillAPIRequest'
 import createAppData from './utils/createAppData'
 
-export default async function home(req, res) {
+export default async function home(req) {
   return await fulfillAPIRequest(req, {
     appData: createAppData,
     pageData: () =>

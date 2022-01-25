@@ -1,20 +1,31 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import menuStyles from './menuStyles'
-import MenuContext from './MenuContext'
-import { Drawer } from '@material-ui/core'
+import { Drawer } from '@mui/material'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
+import MenuContext from './MenuContext'
 import SEOLinks from './SEOLinks'
 import MenuBody from './MenuBody'
-import PropTypes from 'prop-types'
 
-export const styles = menuStyles
+const PREFIX = 'RSFMenu'
 
-const useStyles = makeStyles(styles, { name: 'RSFMenu' })
+const defaultClasses = {
+  drawer: `${PREFIX}-drawer`,
+  list: `${PREFIX}-list`,
+  listPadding: `${PREFIX}-listPadding`,
+  header: `${PREFIX}-header`,
+  icon: `${PREFIX}-icon`,
+  headerText: `${PREFIX}-headerText`,
+  bodyWrap: `${PREFIX}-bodyWrap`,
+  hidden: `${PREFIX}-hidden`,
+  visible: `${PREFIX}-visible`,
+  link: `${PREFIX}-link`,
+  leaf: `${PREFIX}-leaf`,
+  drawerFixed: `${PREFIX}-drawerFixed`,
+}
 
 const Menu = React.memo(props => {
-  let {
-    classes,
+  const {
+    classes: c = {},
     className,
     anchor,
     drawerWidth,
@@ -31,7 +42,7 @@ const Menu = React.memo(props => {
     ...others
   } = props
 
-  classes = useStyles({ classes })
+  const classes = { ...defaultClasses, ...c }
 
   const [state, setState] = useState(() => {
     return {
@@ -102,42 +113,40 @@ const Menu = React.memo(props => {
   )
 
   return (
-    <>
-      <MenuContext.Provider value={context}>
-        {renderDrawer ? (
-          renderDrawer()
-        ) : (
-          <Drawer
-            variant={persistent ? 'persistent' : 'temporary'}
-            open={open || persistent}
-            onClose={onClose}
-            anchor={anchor}
-            ModalProps={{
-              keepMounted: true,
-            }}
-            PaperProps={{
-              style: { width: `${drawerWidth}px` },
-            }}
-            classes={{
-              root: className,
-              paper: clsx(classes.drawer, {
-                [classes.drawerFixed]: persistent,
-              }),
-              modal: classes.modal,
-            }}
-          >
-            <MenuBody
-              card={state.card}
-              cards={state.cards}
-              root={root}
-              drawerWidth={drawerWidth}
-              {...others}
-            />
-          </Drawer>
-        )}
-        <SEOLinks root={root} />
-      </MenuContext.Provider>
-    </>
+    <MenuContext.Provider value={context}>
+      {renderDrawer ? (
+        renderDrawer()
+      ) : (
+        <Drawer
+          variant={persistent ? 'persistent' : 'temporary'}
+          open={open || persistent}
+          onClose={onClose}
+          anchor={anchor}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          PaperProps={{
+            style: { width: `${drawerWidth}px` },
+          }}
+          classes={{
+            root: className,
+            paper: clsx(classes.drawer, {
+              [classes.drawerFixed]: persistent,
+            }),
+            modal: classes.modal,
+          }}
+        >
+          <MenuBody
+            card={state.card}
+            cards={state.cards}
+            root={root}
+            drawerWidth={drawerWidth}
+            {...others}
+          />
+        </Drawer>
+      )}
+      <SEOLinks root={root} />
+    </MenuContext.Provider>
   )
 })
 
@@ -267,6 +276,7 @@ Menu.propTypes = {
    * A function to override the rendering the drawer
    */
   renderDrawer: PropTypes.func,
+  className: PropTypes.string,
 }
 
 Menu.defaultProps = {

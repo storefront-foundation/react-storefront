@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import { act } from 'react-dom/test-utils'
 
 describe('LazyHydrate', () => {
@@ -22,20 +22,22 @@ describe('LazyHydrate', () => {
     })
 
     it('should clear registries', () => {
-      const useStyles = makeStyles({
-        root: {
+      const PREFIX = 'LazyHydrate.test'
+      const classes = {
+        root: `${PREFIX}-root`,
+        '@media (min-width: 1024px)': `${PREFIX}-@media (min-width: 1024px)`,
+      }
+      const Root = styled('button')(() => ({
+        [`& .${classes.root}`]: {
           fontWeight: 'bold',
-        },
-        '@media (min-width: 1024px)': {
-          root: {
+          'media (min-width: 1024px)': {
             width: 200,
           },
         },
-      })
+      }))
 
       const TestComponent = () => {
-        const classes = useStyles()
-        return <button className={classes.root}>click</button>
+        return <Root className={classes.root}>click</Root>
       }
 
       const hydrate = mount(

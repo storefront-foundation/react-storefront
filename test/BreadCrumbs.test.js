@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Breadcrumbs from 'react-storefront/Breadcrumbs'
-import { Typography, Container } from '@material-ui/core'
+import { Typography, Container } from '@mui/material'
 
 describe('Breadcrumbs', () => {
   let wrapper

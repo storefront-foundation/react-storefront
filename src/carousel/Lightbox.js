@@ -1,51 +1,57 @@
-import useTheme from '@material-ui/core/styles/useTheme'
+import { useTheme, styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Close from '@material-ui/icons/Close'
-import { Dialog, DialogActions, DialogContent, IconButton, Zoom } from '@material-ui/core'
+import Close from '@mui/icons-material/Close'
+import { Dialog, DialogActions, DialogContent, IconButton, Zoom } from '@mui/material'
+
+const PREFIX = 'RSFLightbox'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  content: `${PREFIX}-content`,
+  paper: `${PREFIX}-paper`,
+}
+
+const StyledDialog = styled(Dialog)(() => ({
+  /**
+   * Styles applied to the root element.
+   */
+  [`&.${classes.root}`]: {},
+
+  /**
+   * Styles passed through to the `paper` CSS rule of the [`Dialog`](https://mui.com/api/dialog/#css)
+   * root element.
+   */
+  [`& .${classes.paper}`]: {
+    flex: 1,
+    background: 'rgba(255,255,255,0.9)',
+  },
+}))
+
+const StyledDialogContent = styled(DialogContent)(() => ({
+  /**
+   * Styles applied to the content element of the modal.
+   */
+  [`& .${classes.content}`]: {
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}))
 
 const Transition = React.forwardRef((props, ref) => {
   return <Zoom duration={500} ref={ref} {...props} />
 })
 
-const styles = theme => ({
-  /**
-   * Styles applied to the root element.
-   */
-  root: {},
-
-  /**
-   * Styles applied to the content element of the modal.
-   */
-  content: {
-    padding: 0,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-
-  /**
-   * Styles passed through to the `paper` CSS rule of the [`Dialog`](https://material-ui.com/api/dialog/#css)
-   * root element.
-   */
-  paper: {
-    flex: 1,
-    background: 'rgba(255,255,255,0.9)',
-  },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFLightbox' })
-
 /**
  * A modal that opens to give a full-screen view of the elements within a
  * [`Carousel`](/apiReference/carousel/Carousel).
  */
-function Lightbox({ classes, children, onClose, open, TransitionComponent }) {
-  classes = useStyles({ classes })
+const Lightbox = function({ children, onClose, open, TransitionComponent }) {
   const theme = useTheme()
 
   return (
-    <Dialog
+    <StyledDialog
       open={open}
       fullScreen
       classes={{
@@ -56,12 +62,12 @@ function Lightbox({ classes, children, onClose, open, TransitionComponent }) {
       style={{ zIndex: theme.zIndex.modal + 10 }}
     >
       <DialogActions>
-        <IconButton onClick={onClose}>
+        <IconButton onClick={onClose} size="large">
           <Close />
         </IconButton>
       </DialogActions>
-      <DialogContent className={classes.content}>{children}</DialogContent>
-    </Dialog>
+      <StyledDialogContent className={classes.content}>{children}</StyledDialogContent>
+    </StyledDialog>
   )
 }
 
@@ -87,7 +93,7 @@ Lightbox.propTypes = {
   open: PropTypes.bool.isRequired,
 
   /**
-   * The component used for the [transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
+   * The component used for the [transition](https://mui.com/components/transitions/#transitioncomponent-prop).
    */
   TransitionComponent: PropTypes.elementType,
 }

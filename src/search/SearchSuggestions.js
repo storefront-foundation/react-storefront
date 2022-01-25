@@ -1,34 +1,44 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
+import PropTypes from 'prop-types'
 import SearchSuggestionGroup from './SearchSuggestionGroup'
 import SearchContext from './SearchContext'
 import LoadMask from '../LoadMask'
-import PropTypes from 'prop-types'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchSuggestions'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  group: `${PREFIX}-group`,
+}
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`& .${defaultClasses.root}`]: {
     flex: 1,
     position: 'relative',
     overflowY: 'auto',
   },
+
   /**
    * Styles applied to each of the group wrapper elements.
    */
-  group: {
+  [`& .${defaultClasses.group}`]: {
     margin: theme.spacing(0, 0, 2, 0),
   },
-})
-const useStyles = makeStyles(styles, { name: 'RSFSearchSuggestions' })
+}))
 
-export default function SearchSuggestions({ classes, render }) {
-  classes = useStyles({ classes })
+export {}
+
+export default function SearchSuggestions({ render, classes: c = {} }) {
+  const classes = { ...defaultClasses, ...c }
   const { state } = useContext(SearchContext)
 
   return (
-    <>
+    <Root>
       <LoadMask show={state.loading} transparent />
       <div className={classes.root}>
         {render
@@ -40,7 +50,7 @@ export default function SearchSuggestions({ classes, render }) {
               </div>
             ))}
       </div>
-    </>
+    </Root>
   )
 }
 
@@ -49,6 +59,7 @@ SearchSuggestions.propTypes = {
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+  render: PropTypes.func,
 }
 
 SearchSuggestions.defaultProps = {}

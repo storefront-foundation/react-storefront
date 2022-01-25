@@ -1,28 +1,39 @@
 import React from 'react'
-import Drawer from '../drawer/Drawer'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import useNavigationEvent from 'react-storefront/hooks/useNavigationEvent'
+import Drawer from '../drawer/Drawer'
 
-export const styles = theme => ({
-  /**
-   * Styles applied to the paper component in the [Drawer](/apiReference/drawer/Drawer).
-   */
-  paper: {
-    display: 'flex',
-  },
-  /**
-   * Styles applied to the root element in the [DrawerCloseButton](/apiReference/drawer/DrawerCloseButton).
-   */
-  closeButton: {
-    color: theme.palette.primary.contrastText,
-  },
-})
+const PREFIX = 'RSFSearch'
 
-const useStyles = makeStyles(styles, { name: 'RSFSearch' })
+const defaultClasses = {
+  paper: `${PREFIX}-paper`,
+  closeButton: `${PREFIX}-closeButton`,
+}
 
-export default function SearchDrawer({ DrawerComponent, classes, open, onClose, children }) {
-  classes = useStyles({ classes })
+export default function SearchDrawer({
+  DrawerComponent,
+  classes: c = {},
+  open,
+  onClose,
+  children,
+}) {
+  const classes = { ...defaultClasses, ...c }
+  const StyledDrawerComponent = styled(DrawerComponent)(({ theme }) => ({
+    /**
+     * Styles applied to the paper component in the [Drawer](/apiReference/drawer/Drawer).
+     */
+    [`& .${classes.paper}`]: {
+      display: 'flex',
+    },
+
+    /**
+     * Styles applied to the root element in the [DrawerCloseButton](/apiReference/drawer/DrawerCloseButton).
+     */
+    [`& .${classes.closeButton}`]: {
+      color: theme.palette.primary.contrastText,
+    },
+  }))
 
   const handleNavigation = () => {
     if (onClose) {
@@ -33,9 +44,15 @@ export default function SearchDrawer({ DrawerComponent, classes, open, onClose, 
   useNavigationEvent(handleNavigation)
 
   return (
-    <DrawerComponent classes={classes} open={open} anchor="bottom" onClose={onClose} fullscreen>
+    <StyledDrawerComponent
+      classes={classes}
+      open={open}
+      anchor="bottom"
+      onClose={onClose}
+      fullscreen
+    >
       {children}
-    </DrawerComponent>
+    </StyledDrawerComponent>
   )
 }
 

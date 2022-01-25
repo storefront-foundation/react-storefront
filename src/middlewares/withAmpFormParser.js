@@ -25,7 +25,7 @@ export default function withAmpFormParser(handler) {
 
     if (req.method.toLowerCase() === 'post') {
       try {
-        form.parse(req, (err, fields, files) => {
+        form.parse(req, (err, fields) => {
           if (err) {
             res.status(500).end(err.message)
           } else {

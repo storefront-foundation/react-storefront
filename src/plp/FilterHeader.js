@@ -1,27 +1,36 @@
 import React, { useMemo, useContext } from 'react'
-import { Hbox } from '../Box'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
+import { Hbox } from '../Box'
 import SearchResultsContext from './SearchResultsContext'
 
-const styles = theme => ({
+const PREFIX = 'RSFFilterHeader'
+
+const defaultClasses = {
+  header: `${PREFIX}-header`,
+  title: `${PREFIX}-title`,
+  clear: `${PREFIX}-clear`,
+}
+
+const StyledHbox = styled(Hbox)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  header: {
+  [`&.${defaultClasses.header}`]: {
     borderBottom: `1px solid ${theme.palette.divider}`,
-    [theme.breakpoints.down('xs')]: {
-      padding: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
+    [theme.breakpoints.down('sm')]: {
+      padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
     },
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(1, 2, 2, 2),
     },
   },
+
   /**
    * Styles applied to the title element.
    */
-  title: {
-    [theme.breakpoints.down('xs')]: {
+  [`& .${defaultClasses.title}`]: {
+    [theme.breakpoints.down('sm')]: {
       ...theme.typography.h6,
     },
     [theme.breakpoints.up('sm')]: {
@@ -30,10 +39,11 @@ const styles = theme => ({
       fontWeight: 'bold',
     },
   },
+
   /**
    * Styles applied to the clear link.
    */
-  clear: {
+  [`& .${defaultClasses.clear}`]: {
     ...theme.typography.caption,
     display: 'block',
     border: 'none',
@@ -42,16 +52,14 @@ const styles = theme => ({
     textDecoration: 'underline',
     backgroundColor: 'transparent',
   },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFFilterHeader' })
+}))
 
 /**
  * A header to be placed at the top of the [`Filter`](/apiReference/plp/Filter).
  */
 export default function FilterHeader(props) {
-  const { title, clearLinkText, hideClearLink, submitOnChange } = props
-  const classes = useStyles(props.classes)
+  const { title, clearLinkText, hideClearLink, submitOnChange, classes: c = {} } = props
+  const classes = { ...defaultClasses, ...c }
   const {
     actions,
     pageData: { filters },
@@ -59,14 +67,14 @@ export default function FilterHeader(props) {
 
   return useMemo(
     () => (
-      <Hbox justify="center" className={classes.header}>
+      <StyledHbox justify="center" className={classes.header}>
         <div className={classes.title}>{title}</div>
         {hideClearLink || !filters || filters.length === 0 ? null : (
           <button onClick={() => actions.clearFilters(submitOnChange)} className={classes.clear}>
             {clearLinkText}
           </button>
         )}
-      </Hbox>
+      </StyledHbox>
     ),
     [filters, ...Object.values(props)],
   )

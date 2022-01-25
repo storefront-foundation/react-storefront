@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import MagnifyHint from 'react-storefront/carousel/MagnifyHint'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 
 describe('MagnifyHint', () => {
   let wrapper

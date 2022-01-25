@@ -1,38 +1,46 @@
 import React, { useRef, useEffect, useState } from 'react'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import throttle from 'lodash/throttle'
-import { ArrowUpward } from '@material-ui/icons'
-import { Fab, Fade } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { ArrowUpward } from '@mui/icons-material'
+import { Fab, Fade } from '@mui/material'
 
-const styles = () => ({
+const PREFIX = 'RSFBackToTop'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  fab: `${PREFIX}-fab`,
+  icon: `${PREFIX}-icon`,
+}
+
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     zIndex: 1,
     position: 'fixed',
     bottom: 24,
     right: 16,
   },
+
   /**
    * Styles applied to the floating action button element.
    */
-  fab: {
+  [`& .${defaultClasses.fab}`]: {
     background: 'rgba(0,0,0,.85)',
     '&:hover': {
       background: 'rgb(0,0,0)',
     },
   },
+
   /**
    * Styles applied to the icon element.
    */
-  icon: {
+  [`& .${defaultClasses.icon}`]: {
     color: 'white',
   },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFBackToTop' })
+}))
 
 /**
  * A floating action button that appears when the user scrolls down,
@@ -42,13 +50,13 @@ export default function BackToTop({
   Icon,
   showUnderY,
   instantBehaviorUnderY,
-  classes,
+  classes: c = {},
   fadeTime,
   size,
 }) {
   const [visible, setVisible] = useState(false)
   const el = useRef()
-  classes = useStyles({ classes })
+  const classes = { ...defaultClasses, ...c }
 
   useEffect(() => {
     const onScroll = throttle(() => {
@@ -71,13 +79,13 @@ export default function BackToTop({
   Icon = Icon || ArrowUpward
 
   return (
-    <div className={classes.root} ref={el}>
+    <Root className={classes.root} ref={el}>
       <Fade in={visible} timeout={fadeTime}>
         <Fab className={classes.fab} size={size} onClick={scrollToTop} title="back to top">
           <Icon className={classes.icon} />
         </Fab>
       </Fade>
-    </div>
+    </Root>
   )
 }
 

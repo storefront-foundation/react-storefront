@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import { GridListTile } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
+import { ImageListItem } from '@mui/material'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import AutoScrollToNewChildren from './AutoScrollToNewChildren'
@@ -61,8 +61,22 @@ ResponsiveTiles.defaultProps = {
 }
 
 function createTiles({ cols, spacing }) {
-  const useStyles = makeStyles(theme => {
-    let breakpoints = {}
+  function maybeWrapInAutoScroll(doWrap) {
+    return function(elements) {
+      if (doWrap) {
+        return <AutoScrollToNewChildren>{elements}</AutoScrollToNewChildren>
+      }
+      return elements
+    }
+  }
+  const PREFIX = 'ResponsiveTiles'
+  const classes = {
+    root: `${PREFIX}-root`,
+    tile: `${PREFIX}-tile`,
+  }
+
+  const Root = styled('ul')(({ theme }) => {
+    const breakpoints = {}
 
     // Breakpoints MUST be set in order from smallest to largest
     Object.keys(cols)
@@ -79,51 +93,46 @@ function createTiles({ cols, spacing }) {
       })
 
     return {
-      root: {
+      [`&.${classes.root}`]: {
         display: 'flex',
         flexWrap: 'wrap',
         overflowY: 'auto',
         listStyle: 'none',
         padding: 0,
-        margin: `-${theme.spacing(spacing)}px`,
+        margin: theme.spacing(-spacing),
         WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
       },
-      tile: {
+      [`& .${classes.tile}`]: {
         ...breakpoints,
-        padding: `${theme.spacing(spacing)}px`,
+        padding: theme.spacing(spacing),
         height: 'auto',
       },
     }
-  }, 'RSFResponsiveTiles')
+  })
 
-  function maybeWrapInAutoScroll(doWrap) {
-    return function(elements) {
-      if (doWrap) {
-        return <AutoScrollToNewChildren>{elements}</AutoScrollToNewChildren>
-      } else {
-        return elements
-      }
-    }
-  }
-
-  return function Tiles({ className, classes, autoScrollToNewTiles, children, ...other }) {
-    classes = useStyles({ classes })
-
+  const Tiles = function Tiles({ className, autoScrollToNewTiles, children, ...other }) {
     return (
-      <ul className={clsx(className, classes.root)} {...other}>
+      <Root className={clsx(className, classes.root)} {...other}>
         {maybeWrapInAutoScroll(autoScrollToNewTiles)(
           React.Children.map(children, (child, i) => {
             if (!React.isValidElement(child)) {
               return null
             }
             return (
-              <GridListTile key={i} classes={{ root: classes.tile }}>
+              <ImageListItem key={i} classes={{ root: classes.tile }}>
                 {child}
-              </GridListTile>
+              </ImageListItem>
             )
           }),
         )}
-      </ul>
+      </Root>
     )
   }
+
+  Tiles.propTypes = {
+    className: PropTypes.string,
+    autoScrollToNewTiles: PropTypes.bool,
+  }
+
+  return Tiles
 }

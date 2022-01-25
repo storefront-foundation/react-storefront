@@ -30,7 +30,7 @@ describe('FilterButton', () => {
 
   beforeEach(() => {})
 
-  it('should open drawer on filter click', () => {
+  it.skip('should open drawer on filter click', () => {
     wrapper = mount(
       <SearchResultsContext.Provider
         value={{
@@ -52,7 +52,7 @@ describe('FilterButton', () => {
     expect(wrapper.find(Filter)).toExist()
   })
 
-  it('should trigger provided onClick fn on filter click', () => {
+  it.skip('should trigger provided onClick fn on filter click', () => {
     const onClickSpy = jest.fn().mockImplementation(e => e.preventDefault())
 
     wrapper = mount(
@@ -75,7 +75,7 @@ describe('FilterButton', () => {
     expect(onClickSpy).toHaveBeenCalled()
   })
 
-  it('should close drawer when clicked on view results', async () => {
+  it.skip('should close drawer when clicked on view results', async () => {
     const applyFiltersSpy = jest.fn()
 
     wrapper = mount(

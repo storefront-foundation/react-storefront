@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import MenuContext from './MenuContext'
 import PropTypes from 'prop-types'
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { ChevronLeft } from '@material-ui/icons'
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
+import { ChevronLeft } from '@mui/icons-material'
+import MenuContext from './MenuContext'
 
 export default function MenuBack({ goBack, item, backButtonProps }) {
   const { classes, renderBack } = useContext(MenuContext)
@@ -35,4 +35,5 @@ MenuBack.propTypes = {
   item: PropTypes.shape({
     text: PropTypes.string,
   }).isRequired,
+  backButtonProps: PropTypes.object,
 }

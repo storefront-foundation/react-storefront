@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import SearchResultsContext from 'react-storefront/plp/SearchResultsContext'
 import CheckboxFilterGroup from 'react-storefront/plp/CheckboxFilterGroup'
-import { Checkbox, FormControlLabel } from '@material-ui/core'
+import { Checkbox, FormControlLabel } from '@mui/material'
 
 describe('CheckboxFilterGroup', () => {
   let wrapper

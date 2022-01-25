@@ -30,14 +30,13 @@ export function fetchLatest(fetch) {
 
     if (typeof AbortController !== 'undefined') {
       return (controller = new AbortController())
-    } else {
-      return { signal: null }
     }
+    return { signal: null }
   }
 
   return (url, options) => {
-    let id = ++nextId
-    const signal = abort().signal
+    const id = ++nextId
+    const { signal } = abort()
 
     return fetch(url, { ...options, signal })
       .then(response => {

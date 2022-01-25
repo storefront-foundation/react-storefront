@@ -1,34 +1,44 @@
 import React from 'react'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-import Link from './link/Link'
-import ToolbarButton from './ToolbarButton'
-import { ShoppingCart as Cart } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
-import { Badge } from '@material-ui/core'
+import { ShoppingCart as Cart } from '@mui/icons-material'
+import { Badge } from '@mui/material'
 import clsx from 'clsx'
+import ToolbarButton from './ToolbarButton'
+import Link from './link/Link'
 
-export const styles = theme => ({
+const PREFIX = 'RSFCartButton'
+
+const defaultClasses = {
+  link: `${PREFIX}-link`,
+  badge: `${PREFIX}-badge`,
+  icon: `${PREFIX}-icon`,
+}
+
+const StyledLink = styled(Link)(({ theme }) => ({
   /**
    * Styles applied to the [`Link`](/apiReference/link/Link) element used as the root.
    */
-  link: {},
+  [`&.${defaultClasses.link}`]: {},
+
   /**
-   * Styles passed through to the [`Badge`](https://material-ui.com/api/badge/#css) element's
+   * Styles passed through to the [`Badge`](https://mui.com/api/badge/#css) element's
    * `badge` CSS rule.
    */
-  badge: {
+  [`& .${defaultClasses.badge}`]: {
     border: '2px solid white',
     padding: '0 4px',
   },
+
   /**
    * Styles applied to the button icon.
    */
-  icon: {
+  [`& .${defaultClasses.icon}`]: {
     color: theme.palette.action.active,
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFCartButton' })
+export {}
 
 /**
  * A cart header button that display the number of items in the cart using a badge.
@@ -40,21 +50,21 @@ const useStyles = makeStyles(styles, { name: 'RSFCartButton' })
  * ```
  */
 export default function CartButton({
-  classes,
   href,
   as,
   onClick,
   icon,
   quantity,
+  classes: c = {},
   linkProps,
   badgeProps,
   buttonProps,
 }) {
-  classes = useStyles({ classes })
+  const classes = { ...defaultClasses, ...c }
   const cartIcon = icon || <Cart className={classes.icon} />
 
   return (
-    <Link
+    <StyledLink
       {...linkProps.anchorProps}
       className={clsx(classes.link, linkProps.className)}
       href={href}
@@ -70,7 +80,7 @@ export default function CartButton({
           {cartIcon}
         </Badge>
       </ToolbarButton>
-    </Link>
+    </StyledLink>
   )
 }
 
@@ -96,7 +106,7 @@ CartButton.propTypes = {
   buttonProps: PropTypes.object,
 
   /**
-   * Props passed through to the [`Badge`](https://material-ui.com/api/badge/#props) element.
+   * Props passed through to the [`Badge`](https://mui.com/api/badge/#props) element.
    */
   badgeProps: PropTypes.object,
 
@@ -104,6 +114,9 @@ CartButton.propTypes = {
    * Props passed through to the [`Link`](/apiReference/link/Link#props) element.
    */
   linkProps: PropTypes.object,
+  as: PropTypes.string,
+  onClick: PropTypes.func,
+  quantity: PropTypes.number,
 }
 
 CartButton.defaultProps = {
@@ -112,7 +125,7 @@ CartButton.defaultProps = {
     color: 'primary',
   },
   buttonProps: {
-    ['aria-label']: 'Cart',
+    'aria-label': 'Cart',
     color: 'inherit',
   },
   linkProps: {

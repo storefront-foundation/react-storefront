@@ -2,7 +2,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import ToolbarButton from 'react-storefront/ToolbarButton'
-import { IconButton } from '@material-ui/core'
+import { IconButton } from '@mui/material'
 
 describe('ToolbarButton', () => {
   let wrapper

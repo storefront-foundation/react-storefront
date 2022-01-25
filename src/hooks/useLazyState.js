@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
+import get from 'lodash/get'
 import merge from '../utils/merge'
 import LinkContext from '../link/LinkContext'
-import get from 'lodash/get'
 import storeInitialPropsInHistory from '../router/storeInitialPropsInHistory'
 
 storeInitialPropsInHistory()
@@ -15,6 +15,8 @@ export default function useLazyState(lazyProps, additionalData = {}) {
   // It will properly merge the values if linkPageData is undefined
   const linkPageData = get(useContext(LinkContext), 'current') || undefined
 
+  const { lazy, url, ...props } = lazyProps
+
   const createInitialState = () => {
     return merge({}, additionalData, { pageData: linkPageData }, props, {
       loading: lazyProps.lazy != null,
@@ -22,7 +24,6 @@ export default function useLazyState(lazyProps, additionalData = {}) {
     })
   }
 
-  const { lazy, url, ...props } = lazyProps
   const goingBack = useRef(false)
   const [state, setState] = useState(createInitialState)
   const stateRef = useRef(state)
@@ -32,13 +33,12 @@ export default function useLazyState(lazyProps, additionalData = {}) {
       stateRef.current = finalState
 
       return setState(finalState)
-    } else {
-      return setState(state => {
-        stateRef.current = finalState(state)
-
-        return stateRef.current
-      })
     }
+    return setState(state => {
+      stateRef.current = finalState(state)
+
+      return stateRef.current
+    })
   }
 
   useEffect(() => {
@@ -54,11 +54,9 @@ export default function useLazyState(lazyProps, additionalData = {}) {
           merge({}, additionalData, { pageData: linkPageData }, props, { loading: false }),
         ),
       )
-    } else {
-      if (!isInitialMount.current) {
-        // there is no need to do this if we just mounted since createInitialState will return the same thing as the current state
-        updateState(createInitialState())
-      }
+    } else if (!isInitialMount.current) {
+      // there is no need to do this if we just mounted since createInitialState will return the same thing as the current state
+      updateState(createInitialState())
     }
   }, [lazyProps])
 

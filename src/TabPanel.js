@@ -1,29 +1,39 @@
 import React, { useState } from 'react'
-import { Tabs, Tab } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
+import { Tabs, Tab } from '@mui/material'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-const styles = theme => ({
+const PREFIX = 'RSFTabPanel'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  panel: `${PREFIX}-panel`,
+  hidden: `${PREFIX}-hidden`,
+}
+
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {},
+  [`&.${defaultClasses.root}`]: {},
+
   /**
    * Styles applied to the wrapper around each panel element.
    */
-  panel: {
-    margin: `${theme.spacing(2)}px 0`,
+  [`& .${defaultClasses.panel}`]: {
+    margin: `${theme.spacing(2)} 0`,
   },
+
   /**
    * Styles applied to the wrapper around each panel element when that panel is hidden.
    */
-  hidden: {
+  [`& .${defaultClasses.hidden}`]: {
     display: 'none',
   },
-})
+}))
 
-export const useStyles = makeStyles(styles, { name: 'RSFTabPanel' })
+export {}
 
 /**
  * A simple tab panel that is AMP-compatible.  Tab names are pulled from the label prop of the child elements.
@@ -44,7 +54,7 @@ export const useStyles = makeStyles(styles, { name: 'RSFTabPanel' })
  */
 export default function TabPanel({
   children,
-  classes,
+  classes: c = {},
   scrollable,
   selected: selectedProp,
   onChange,
@@ -53,12 +63,11 @@ export default function TabPanel({
   panelProps,
   renderPanels,
 }) {
-  classes = useStyles({ classes })
-
+  const classes = { ...defaultClasses, ...c }
   const [selected, setSelected] = useState(selectedProp)
   const tabs = []
 
-  let panels = []
+  const panels = []
 
   const onChangeHandler = (event, selected) => {
     setSelected(selected)
@@ -91,8 +100,10 @@ export default function TabPanel({
   })
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <Tabs
+        indicatorColor="primary"
+        textColor="inherit"
         variant={scrollable ? 'scrollable' : null}
         value={selected}
         onChange={onChangeHandler}
@@ -101,7 +112,7 @@ export default function TabPanel({
         {tabs}
       </Tabs>
       {renderPanels(panels)}
-    </div>
+    </Root>
   )
 }
 

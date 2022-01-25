@@ -1,24 +1,35 @@
 import React, { useRef, forwardRef } from 'react'
-import { makeStyles, fade } from '@material-ui/core/styles'
+import { styled, alpha } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-import { IconButton } from '@material-ui/core'
-import ClearIcon from '@material-ui/icons/Clear'
-import SearchSubmitButton from './SearchSubmitButton'
-import { Fab, Button } from '@material-ui/core'
+import { IconButton, Fab, Button } from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear'
 import clsx from 'clsx'
+import SearchSubmitButton from './SearchSubmitButton'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchField'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  inputWrap: `${PREFIX}-inputWrap`,
+  input: `${PREFIX}-input`,
+  inputClearIcon: `${PREFIX}-inputClearIcon`,
+  searchFab: `${PREFIX}-searchFab`,
+  hidden: `${PREFIX}-hidden`,
+}
+
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     alignItems: 'center',
   },
+
   /**
    * Styles applied to the wrapper element.
    */
-  inputWrap: {
+  [`& .${defaultClasses.inputWrap}`]: {
     display: 'flex',
     flexGrow: 1,
     border: 0,
@@ -27,10 +38,11 @@ export const styles = theme => ({
     margin: 0,
     height: '48px',
   },
+
   /**
    * Styles applied to the input element.
    */
-  input: {
+  [`& .${defaultClasses.input}`]: {
     border: 'none',
     background: 'none',
     flex: 1,
@@ -47,7 +59,7 @@ export const styles = theme => ({
       zIndex: 9999,
       transition: 'border-color linear 0.1s',
       '&:hover': {
-        borderColor: fade(theme.palette.divider, 0.25),
+        borderColor: alpha(theme.palette.divider, 0.25),
       },
       '&:focus': {
         borderColor: theme.palette.primary.main,
@@ -58,7 +70,7 @@ export const styles = theme => ({
   /**
    * Styles applied to the input if showClearnButton prop is true.
    */
-  inputClearIcon: {
+  [`& .${defaultClasses.inputClearIcon}`]: {
     paddingRight: 0,
   },
 
@@ -66,32 +78,33 @@ export const styles = theme => ({
    * Styles applied to the submit button element if [submitButtonVariant](#prop-submitButtonVariant)
    * is `'fab'`.
    */
-  searchFab: {
+  [`& .${defaultClasses.searchFab}`]: {
     height: '48px',
     width: '48px',
     marginLeft: '10px',
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.secondary,
   },
+
   /**
    * Styles applied to the clear and submit buttons if the search field is empty.
    */
-  hidden: {
+  [`& .${defaultClasses.hidden}`]: {
     display: 'none',
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFSearchField' })
+export {}
 
 /**
  * A search text field. Additional props are spread to the underlying
- * [Input](https://material-ui.com/api/input/).
+ * [Input](https://mui.com/api/input/).
  */
 const SearchField = forwardRef(
   (
     {
+      classes: c = {},
       ariaLabel,
-      classes,
       onChange,
       submitButtonVariant,
       showClearButton,
@@ -106,8 +119,9 @@ const SearchField = forwardRef(
     },
     ref,
   ) => {
-    classes = useStyles({ classes })
-    const inputRef = ref || useRef(null)
+    const classes = { ...defaultClasses, ...c }
+    const innerRef = useRef(null)
+    const inputRef = ref || innerRef
     const empty = value.trim().length === 0
 
     const handleInputFocus = () => {
@@ -123,7 +137,7 @@ const SearchField = forwardRef(
     }
 
     return (
-      <div className={classes.root} data-empty={value.trim().length === 0 ? 'on' : 'off'}>
+      <Root className={classes.root} data-empty={value.trim().length === 0 ? 'on' : 'off'}>
         <div className={classes.inputWrap}>
           <input
             {...others}
@@ -145,6 +159,7 @@ const SearchField = forwardRef(
                 [classes.searchReset]: true,
                 [classes.hidden]: empty,
               })}
+              size="large"
             >
               <ClearIcon rel="clear" />
             </IconButton>
@@ -157,6 +172,7 @@ const SearchField = forwardRef(
                   [classes.hidden]: empty,
                 })}
                 text={value}
+                color="primary"
                 {...submitButtonProps}
               />
             )
@@ -174,7 +190,7 @@ const SearchField = forwardRef(
             {...submitButtonProps}
           />
         )}
-      </div>
+      </Root>
     )
   },
 )
@@ -209,7 +225,7 @@ SearchField.propTypes = {
    */
   clearButtonProps: PropTypes.object,
   /**
-   * Additional props for the Material UI [Input](https://material-ui.com/api/input/).
+   * Additional props for the Material UI [Input](https://mui.com/api/input/).
    */
   inputProps: PropTypes.object,
   /**

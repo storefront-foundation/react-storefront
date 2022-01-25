@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import NoScript from '../NoScript'
 
-export default function SEOLinks({ root }) {
+function SEOLinks({ root }) {
   if (!root) return null
 
-  let links = [],
-    key = 0
+  const links = []
+  let key = 0
 
   const findLinks = ({ items }) => {
     if (!items) return
@@ -46,3 +47,17 @@ export default function SEOLinks({ root }) {
     </NoScript>
   )
 }
+
+const itemShape = {
+  as: PropTypes.string,
+  href: PropTypes.string,
+}
+
+itemShape.items = PropTypes.arrayOf(PropTypes.shape(itemShape))
+const root = PropTypes.shape(itemShape)
+
+SEOLinks.propTypes = {
+  root,
+}
+
+export default SEOLinks

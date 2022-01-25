@@ -1,41 +1,124 @@
 import React, { useContext } from 'react'
-import { ListItem, ListItemText, ListItemIcon, CircularProgress } from '@material-ui/core'
-import MenuContext from './MenuContext'
-import MenuExpanderIcon from './MenuExpanderIcon'
+import { styled } from '@mui/material/styles'
+import { ListItem, ListItemText, ListItemIcon, CircularProgress } from '@mui/material'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import MenuContext from './MenuContext'
+import MenuExpanderIcon from './MenuExpanderIcon'
 
-export const styles = theme => ({
-  listItem: {
+const PREFIX = 'RSFMenuItemContent'
+
+const classes = {
+  listItem: `${PREFIX}-listItem`,
+  listItemImage: `${PREFIX}-listItemImage`,
+  listItemIcon: `${PREFIX}-listItemIcon`,
+  loadingIcon: `${PREFIX}-loadingIcon`,
+}
+
+const StyledListItem = styled(ListItem)(({ theme }) => ({
+  [`& .${classes.listItem}`]: {
     textTransform: 'uppercase',
     lineHeight: '1.5',
     fontSize: theme.typography.body1.fontSize,
   },
 
-  listItemImage: {
+  [`& .${classes.listItemImage}`]: {
     width: '40px',
     height: '40px',
     marginRight: 0,
   },
 
-  listItemIcon: {
+  [`& .${classes.listItemIcon}`]: {
     marginRight: 0,
     minWidth: 0,
   },
 
-  loadingIcon: {
+  [`& .${classes.loadingIcon}`]: {
     display: 'block',
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFMenuItemContent' })
+const StyledListItemText = styled(ListItemText)(({ theme }) => ({
+  [`& .${classes.drawer}`]: {
+    zIndex: theme.zIndex.modal + 20,
+    display: 'flex',
+    flexDirection: 'column',
+    borderTop: `${theme.headerHeight}px solid transparent`,
+    'body.moov-safari &': {
+      // Turning off momentum scrolling on iOS here to fix frozen body issue
+      // Source: https://moovweb.atlassian.net/browse/PRPL-342
+      '-webkit-overflow-scrolling': 'auto',
+    },
+  },
+
+  [`& .${classes.list}`]: {
+    flex: 'none',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    maxHeight: '100%',
+    padding: 0,
+  },
+
+  [`& .${classes.listPadding}`]: {
+    padding: 0,
+  },
+
+  [`& .${classes.header}`]: {
+    position: 'absolute',
+    left: '10px',
+    top: '12px',
+  },
+
+  [`& .${classes.icon}`]: {
+    marginRight: '0',
+    width: 24,
+  },
+
+  [`& .${classes.headerText}`]: {
+    textAlign: 'center',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    fontSize: theme.typography.body1.fontSize,
+  },
+
+  [`& .${classes.bodyWrap}`]: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    transition: 'all ease-out .2s',
+    maxHeight: '100%',
+  },
+
+  [`& .${classes.hidden}`]: {
+    display: 'none',
+  },
+
+  [`& .${classes.visible}`]: {
+    display: 'block',
+  },
+
+  [`& .${classes.link}`]: {
+    display: 'block',
+    textDecoration: 'none',
+    color: 'inherit',
+  },
+
+  [`& .${classes.leaf}`]: {
+    textTransform: 'none',
+    ...theme.typography.body1,
+  },
+
+  [`& .${classes.drawerFixed}`]: {
+    top: 0,
+    height: '100vh',
+    borderTop: 'none',
+  },
+}))
 
 export default function MenuItemContent(props) {
   const { renderItemContent, onItemClick } = useContext(MenuContext)
-  const classes = useStyles(props)
 
-  let { item, depth, leaf, listItemProps } = props
+  const { item, depth, leaf, listItemProps } = props
   let contents
 
   if (renderItemContent) {
@@ -62,7 +145,7 @@ export default function MenuItemContent(props) {
               <img className={classes.listItemImage} alt={item.text} src={item.image} />
             </ListItemIcon>
           )}
-          <ListItemText className={classes.listItem} primary={item.text} disableTypography />
+          <StyledListItemText className={classes.listItem} primary={item.text} disableTypography />
           <ListItemIcon className={classes.listItemIcon}>
             {item.loading ? (
               <CircularProgress
@@ -80,7 +163,7 @@ export default function MenuItemContent(props) {
   }
 
   return (
-    <ListItem
+    <StyledListItem
       onClick={leaf ? null : onItemClick.bind(null, item, depth)}
       button
       divider
@@ -90,7 +173,7 @@ export default function MenuItemContent(props) {
       {...listItemProps}
     >
       {contents}
-    </ListItem>
+    </StyledListItem>
   )
 }
 
@@ -99,4 +182,7 @@ MenuItemContent.propTypes = {
    * Additional props for the underlying ListItem
    */
   listItemProps: PropTypes.object,
+  item: PropTypes.object,
+  depth: PropTypes.number,
+  leaf: PropTypes.bool,
 }

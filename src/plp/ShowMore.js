@@ -1,45 +1,55 @@
 import React, { useState, useContext } from 'react'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
-import { CircularProgress, Button } from '@material-ui/core'
+import { CircularProgress, Button } from '@mui/material'
 import clsx from 'clsx'
-import SearchResultsContext from './SearchResultsContext'
 import VisibilitySensor from 'react-visibility-sensor'
+import SearchResultsContext from './SearchResultsContext'
 
-export const styles = theme => ({
+const PREFIX = 'RSFShowMore'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  button: `${PREFIX}-button`,
+  loading: `${PREFIX}-loading`,
+}
+
+const StyledCircularProgress = styled(CircularProgress)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`& .${classes.root}`]: {
     margin: '15px 0',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
   },
+
   /**
    * Styles applied to the button element.
    */
-  button: {
-    [theme.breakpoints.down('xs')]: {
+  [`& .${classes.button}`]: {
+    [theme.breakpoints.down('sm')]: {
       flex: 1,
     },
   },
+
   /**
    * Styles applied to the loading icon.
    */
-  loading: {
+  [`& .${classes.loading}`]: {
     display: 'flex',
     height: 45,
     justifyContent: 'center',
   },
-})
+}))
+
+export {}
 
 const VARIANTS = {
   BUTTON: 'button',
   INFINITE: 'infinite',
 }
-
-const useStyles = makeStyles(styles, { name: 'RSFShowMore' })
 
 /**
  * A control that handles loading the next page of results in a search results
@@ -72,7 +82,6 @@ export default function ShowMore({
   renderLoadingIcon,
   ...others
 }) {
-  const classes = useStyles(others)
   const [loading, setLoading] = useState(false)
   const { actions, pageData } = useContext(SearchResultsContext)
 
@@ -108,26 +117,25 @@ export default function ShowMore({
         </div>
       </VisibilitySensor>
     )
-  } else {
-    return (
-      <div className={clsx(classes.root, className)} style={style}>
-        {loading ? (
-          <div className={classes.loading}>{renderLoadingIcon()}</div>
-        ) : (
-          <Button
-            variant="contained"
-            color="primary"
-            href={href}
-            className={classes.button}
-            onClick={fetchMore}
-            {...others}
-          >
-            {children || 'Show More'}
-          </Button>
-        )}
-      </div>
-    )
   }
+  return (
+    <div className={clsx(classes.root, className)} style={style}>
+      {loading ? (
+        <div className={classes.loading}>{renderLoadingIcon()}</div>
+      ) : (
+        <Button
+          variant="contained"
+          color="primary"
+          href={href}
+          className={classes.button}
+          onClick={fetchMore}
+          {...others}
+        >
+          {children || 'Show More'}
+        </Button>
+      )}
+    </div>
+  )
 }
 
 ShowMore.propTypes = {
@@ -169,7 +177,7 @@ ShowMore.propTypes = {
 }
 
 ShowMore.defaultProps = {
-  renderLoadingIcon: () => <CircularProgress />,
+  renderLoadingIcon: () => <StyledCircularProgress />,
   variant: VARIANTS.BUTTON,
   infiniteLoadOffset: 200,
 }

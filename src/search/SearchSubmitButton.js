@@ -1,30 +1,35 @@
-import SearchIcon from '@material-ui/icons/Search'
+import SearchIcon from '@mui/icons-material/Search'
+import { styled } from '@mui/material/styles'
 import React from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
 import PropTypes from 'prop-types'
 
-export const styles = theme => ({
-  /**
-   * Styles applied to the root element.
-   */
-  root: {},
-  /**
-   * Styles applied to the label element.
-   */
-  label: {
-    display: 'flex',
-  },
-})
-const useStyles = makeStyles(styles, { name: 'RSFSearchSubmitButton' })
+const PREFIX = 'RSFSearchSubmitButton'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  label: `${PREFIX}-label`,
+}
 
 /**
  * A button to submit the search.  All other props are spread to the provided `Component`.
  */
-export default function SearchSubmitButton({ Component, ButtonIcon, classes, text, ...others }) {
-  classes = useStyles({ classes })
+export default function SearchSubmitButton({ Component, ButtonIcon, text, ...others }) {
+  const StyledComponent = styled(Component)(() => ({
+    /**
+     * Styles applied to the root element.
+     */
+    [`&.${classes.root}`]: {},
+
+    /**
+     * Styles applied to the label element.
+     */
+    [`& .${classes.label}`]: {
+      display: 'flex',
+    },
+  }))
 
   return (
-    <Component
+    <StyledComponent
       rel="search"
       type="submit"
       className={classes.root}
@@ -33,7 +38,7 @@ export default function SearchSubmitButton({ Component, ButtonIcon, classes, tex
       {...others}
     >
       <ButtonIcon />
-    </Component>
+    </StyledComponent>
   )
 }
 

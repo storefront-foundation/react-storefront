@@ -1,28 +1,34 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles'
 import React, { useRef } from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
 import { useRouter } from 'next/router'
 import qs from 'qs'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchForm'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+}
+
+const Root = styled('form')(() => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     position: 'relative',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
-})
-const useStyles = makeStyles(styles, { name: 'RSFSearchForm' })
+}))
+
+export {}
 
 /**
  * A form used to submit a search query.
  */
-export default function SearchForm({ classes, children, action, autoComplete }) {
-  classes = useStyles({ classes })
-
+export default function SearchForm({ classes: c = {}, children, action, autoComplete }) {
+  const classes = { ...defaultClasses, ...c }
   const ref = useRef()
   const router = useRouter()
 
@@ -32,7 +38,7 @@ export default function SearchForm({ classes, children, action, autoComplete }) 
     const data = new FormData(ref.current)
     const query = {}
 
-    for (let [name, value] of data.entries()) {
+    for (const [name, value] of data.entries()) {
       query[name] = value
     }
 
@@ -42,7 +48,7 @@ export default function SearchForm({ classes, children, action, autoComplete }) 
   }
 
   return (
-    <form
+    <Root
       ref={ref}
       action={action}
       onSubmit={handleSubmit}
@@ -51,7 +57,7 @@ export default function SearchForm({ classes, children, action, autoComplete }) 
       autoComplete={autoComplete ? 'on' : 'off'}
     >
       {children}
-    </form>
+    </Root>
   )
 }
 

@@ -1,16 +1,24 @@
 import React from 'react'
-import { KeyboardArrowRight as ArrowRight } from '@material-ui/icons'
-import Link from './link/Link'
+import { styled } from '@mui/material/styles'
+import { KeyboardArrowRight as ArrowRight } from '@mui/icons-material'
 import clsx from 'clsx'
-import { Typography, Container } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Typography, Container } from '@mui/material'
 import PropTypes from 'prop-types'
+import Link from './link/Link'
 
-export const styles = theme => ({
+const PREFIX = 'Breadcrumbs'
+
+const defaultClasses = {
+  breadcrumbs: `${PREFIX}-breadcrumbs`,
+  separator: `${PREFIX}-separator`,
+  current: `${PREFIX}-current`,
+}
+
+const StyledTypography = styled(Typography)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  breadcrumbs: {
+  [`&.${defaultClasses.breadcrumbs}`]: {
     backgroundColor: '#F4F2F1',
     padding: '12px 0',
 
@@ -23,7 +31,7 @@ export const styles = theme => ({
   /**
    * Styles applied to the separators.
    */
-  separator: {
+  [`& .${defaultClasses.separator}`]: {
     height: '12px',
     position: 'relative',
     top: '2px',
@@ -33,19 +41,19 @@ export const styles = theme => ({
   /**
    * Styles applied to the currently active breadcrumb's element.
    */
-  current: {
+  [`& .${defaultClasses.current}`]: {
     fontWeight: 'bold',
     color: theme.palette.text.primary,
   },
-})
+}))
 
-const useStyles = makeStyles(styles, 'RSFBreadcrumbs')
+export {}
 
-export default function Breadcrumbs({ items, classes }) {
-  classes = useStyles({ classes })
+export default function Breadcrumbs({ items, classes: c = {} }) {
+  const classes = { ...defaultClasses, ...c }
 
   return (
-    <Typography display="block" className={classes.breadcrumbs} variant="caption">
+    <StyledTypography display="block" className={classes.breadcrumbs} variant="caption">
       <Container>
         {items &&
           items.map((item, i) => {
@@ -61,18 +69,17 @@ export default function Breadcrumbs({ items, classes }) {
                   </Link>
                 </span>
               )
-            } else {
-              return (
-                <span key={i} className={clsx(isLastItem && classes.current)}>
-                  {arrow}
-                  {item.text}
-                </span>
-              )
             }
+            return (
+              <span key={i} className={clsx(isLastItem && classes.current)}>
+                {arrow}
+                {item.text}
+              </span>
+            )
           })}
         <span>&nbsp;</span>
       </Container>
-    </Typography>
+    </StyledTypography>
   )
 }
 

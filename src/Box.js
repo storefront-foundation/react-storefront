@@ -1,32 +1,40 @@
 import React from 'react'
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+
+const PREFIX = 'Box'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  split: `${PREFIX}-split`,
+}
+
+const Root = styled('div')(() => ({
+  /**
+   * Styles applied to the root element.
+   */
+  [`&.${defaultClasses.root}`]: {
+    display: 'flex',
+  },
+
+  /**
+   * Styles applied to the root element if [`split`](#prop-split) is `true`.
+   */
+  [`&.${defaultClasses.split}`]: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+}))
 
 /**
  * A flex container.  All additional props are spread to the style of the underlying div.
  */
-export const styles = theme => ({
-  /**
-   * Styles applied to the root element.
-   */
-  root: {
-    display: 'flex',
-  },
-  /**
-   * Styles applied to the root element if [`split`](#prop-split) is `true`.
-   */
-  split: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-})
-
-const useStyles = makeStyles(styles, 'RSFBox')
+export {}
 
 export default function Box({
   className,
-  classes,
+  classes: c = {},
   split = false,
   children,
   style,
@@ -34,15 +42,14 @@ export default function Box({
   justify,
   ...other
 }) {
-  classes = useStyles({ classes })
-
+  const classes = { ...defaultClasses, ...c }
   return (
-    <div
+    <Root
       className={clsx(classes.root, className, { [classes.split]: split })}
       style={{ alignItems: align, justifyContent: justify, ...other, ...style }}
     >
       {children}
-    </div>
+    </Root>
   )
 }
 
@@ -76,6 +83,8 @@ Box.propTypes = {
     'stretch',
     'baseline',
   ]),
+  className: PropTypes.string,
+  style: PropTypes.object,
 }
 
 Box.defaultProps = {
@@ -87,9 +96,8 @@ Box.defaultProps = {
  * A flex container with horizontal layout. All additional props are spread to the style
  * of the underlying div.
  */
-export function Hbox(props) {
-  props = { ...props, flexDirection: 'row' }
-  return <Box {...props} />
+export var Hbox = function(props) {
+  return <Box {...props} flexDirection="row" />
 }
 
 Hbox.propTypes = {
@@ -133,7 +141,7 @@ Hbox.defaultProps = {
  * A flex container with vertical layout. All additional props are spread to
  * the style of the underlying div.
  */
-export function Vbox(props) {
+export var Vbox = function(props) {
   props = { ...props, flexDirection: 'column' }
   return <Box {...props} />
 }
@@ -163,6 +171,8 @@ Vbox.propTypes = {
     'stretch',
     'baseline',
   ]),
+  className: PropTypes.string,
+  style: PropTypes.object,
 }
 
 Vbox.defaultProps = {

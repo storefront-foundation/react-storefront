@@ -1,5 +1,5 @@
-import colors from './colors'
 import capitalize from 'lodash/capitalize'
+import colors from './colors'
 
 export default function createFacets() {
   return [

@@ -4,7 +4,7 @@
  * @param {String} params.q The search text
  * @return {Object} An object whose shape matches AppModelBase
  */
-export default async function searchSuggestions(q, req, res) {
+export default async function searchSuggestions(q) {
   return {
     text: q,
     groups: [

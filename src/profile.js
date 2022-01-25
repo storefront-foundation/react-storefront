@@ -7,13 +7,12 @@
 export default function profile(label, cb) {
   if (process.env.NODE_ENV === 'production') {
     return cb()
-  } else {
-    const start = new Date().getTime()
-    const result = cb()
-    const end = new Date().getTime()
-    console.log(label, `${end - start} ms`)
-    return result
   }
+  const start = new Date().getTime()
+  const result = cb()
+  const end = new Date().getTime()
+  console.log(label, `${end - start} ms`)
+  return result
 }
 
 global.rsf_profile = profile

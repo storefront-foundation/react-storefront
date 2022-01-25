@@ -46,7 +46,7 @@ export default function configureServiceWorker(config) {
  * @param {Object[]} api
  */
 function cacheAPIRequests(api) {
-  for (let { path, maxAgeSeconds, statuses = [200] } of api) {
+  for (const { path, maxAgeSeconds, statuses = [200] } of api) {
     const url = new RegExp(`${self.origin}${nextRouteToRegex(path)}`, 'i')
 
     log('Caching API route', path, url)
@@ -70,7 +70,7 @@ function cacheAPIRequests(api) {
  * @return {String}
  */
 function nextRouteToRegex(route) {
-  return route.replace(/\[[^\]]+\]/gi, '[^/]+') + '($|\\?.*$)'
+  return `${route.replace(/\[[^\]]+\]/gi, '[^/]+')}($|\\?.*$)`
 }
 
 /**

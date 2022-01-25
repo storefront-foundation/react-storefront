@@ -1,9 +1,9 @@
-const Enzyme = require('enzyme')
-const EnzymeAdapter = require('enzyme-adapter-react-16')
-const sleep = require('./sleep').default
+import Enzyme from 'enzyme'
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
+import sleep from './sleep'
 
 // Setup enzyme's react adapter
-Enzyme.configure({ adapter: new EnzymeAdapter() })
+Enzyme.configure({ adapter: new Adapter() })
 
 global.jsdom.reconfigure({
   features: {

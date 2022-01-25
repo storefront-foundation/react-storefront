@@ -1,18 +1,24 @@
 import React from 'react'
-import { Star, StarBorder, StarHalf } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
+import { Star, StarBorder, StarHalf } from '@mui/icons-material'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Hbox } from './Box'
 
-/**
- * Displays a star rating corresponding to the provided value
- */
-export const styles = theme => ({
+const PREFIX = 'RSFRating'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  filledEmpty: `${PREFIX}-filledEmpty`,
+  blank: `${PREFIX}-blank`,
+  reviewsLabel: `${PREFIX}-reviewsLabel`,
+}
+
+const Root = styled('span')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     '& svg': {
       color: theme.palette.rating,
@@ -21,35 +27,41 @@ export const styles = theme => ({
       display: 'block',
     },
   },
+
   /**
    * Styles applied to an empty rating icon.
    */
-  filledEmpty: {
+  [`& .${defaultClasses.filledEmpty}`]: {
     fill: theme.palette.divider,
   },
+
   /**
    * Styles applied to the root element when [`value`](#prop-value) is `0`.
    */
-  blank: {
+  [`& .${defaultClasses.blank}`]: {
     '& svg': {
       color: theme.palette.divider,
     },
   },
+
   /**
    * Styles applied to the label element.
    */
-  reviewsLabel: {
+  [`&.${defaultClasses.reviewsLabel}`]: {
     marginLeft: '3px',
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFRating' })
+/**
+ * Displays a star rating corresponding to the provided value
+ */
+export {}
 
 export default function Rating({
   iconFull,
   iconHalf,
   iconEmpty,
-  classes,
+  classes: c = {},
   value,
   label,
   reviewCount,
@@ -57,14 +69,13 @@ export default function Rating({
   product,
   fillEmpty,
 }) {
-  let stars = []
+  const classes = { ...defaultClasses, ...c }
+  const stars = []
 
   if (product) {
     reviewCount = product.reviewCount
     value = product.rating
   }
-
-  classes = useStyles({ classes })
 
   const IconFull = iconFull || Star
   const IconHalf = iconHalf || StarHalf
@@ -84,14 +95,14 @@ export default function Rating({
 
   return (
     <Hbox>
-      <div className={clsx(classes.root, className, { [classes.blank]: value == null })}>
+      <Root className={clsx(classes.root, className, { [classes.blank]: value == null })}>
         {stars}
-      </div>
+      </Root>
       {reviewCount ? (
-        <div className={classes.reviewsLabel}>
+        <Root className={classes.reviewsLabel}>
           ({reviewCount}
           {label(reviewCount)})
-        </div>
+        </Root>
       ) : null}
     </Hbox>
   )
@@ -144,6 +155,7 @@ Rating.propTypes = {
    * If `true`, use a filled icon with light gray background for empty icon
    */
   fillEmpty: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 Rating.defaultProps = {

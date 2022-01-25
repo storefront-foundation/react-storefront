@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import ActionButton from 'react-storefront/ActionButton'
-import { Button, Typography } from '@material-ui/core'
+import { Button, Typography } from '@mui/material'
 
 describe('ActionButton', () => {
   let wrapper

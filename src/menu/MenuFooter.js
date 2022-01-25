@@ -1,29 +1,35 @@
-import React, { useState, useEffect, useContext } from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import React, { useContext } from 'react'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import CmsSlot from '../CmsSlot'
 import MenuContext from './MenuContext'
 
-export const styles = theme => ({
-  root: {
+const PREFIX = 'RSFMenuFooter'
+
+const classes = {
+  root: `${PREFIX}-root`,
+}
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.root}`]: {
     padding: theme.spacing(2),
   },
-})
-const useStyles = makeStyles(styles, { name: 'RSFMenuFooter' })
+}))
 
-export default function MenuFooter({ classes, item }) {
-  classes = useStyles({ classes })
+export {}
+
+export default function MenuFooter({ item }) {
   const { renderFooter } = useContext(MenuContext)
 
   if (typeof renderFooter === 'function') {
-    return <div className={classes.root}>{renderFooter(item)}</div>
+    return <Root className={classes.root}>{renderFooter(item)}</Root>
   }
 
   if (item.footer) {
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <CmsSlot>{item.footer}</CmsSlot>
-      </div>
+      </Root>
     )
   }
 

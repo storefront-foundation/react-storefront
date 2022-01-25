@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
 import MenuBranch from './MenuBranch'
 import MenuLeaf from './MenuLeaf'
 import MenuContext from './MenuContext'
-import PropTypes from 'prop-types'
 
 export default function MenuItem({ BranchComponent, LeafComponent, item, ...props }) {
   const { renderItem } = useContext(MenuContext)
 
-  let NodeType = LeafComponent,
-    result = null
+  let NodeType = LeafComponent
+  let result = null
 
   if (item.items) {
     NodeType = BranchComponent

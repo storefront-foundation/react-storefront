@@ -1,21 +1,23 @@
 import createTheme from 'react-storefront/theme/createTheme'
 
+import { adaptV4Theme } from '@mui/material/styles';
+
 describe('createTheme', () => {
   it('should return a material UI theme', () => {
-    const theme = createTheme({
+    const theme = createTheme(adaptV4Theme({
       foo: 'bar',
-    })
+    }))
 
     expect(theme.foo).toBe('bar')
   })
 
   it('should provide maxWidth', () => {
-    const theme = createTheme({})
+    const theme = createTheme(adaptV4Theme({}))
     expect(theme.maxWidth).toBeDefined()
   })
 
   it('should should use the provided maxWidth', () => {
-    const theme = createTheme({ maxWidth: 1000 })
+    const theme = createTheme(adaptV4Theme({ maxWidth: 1000 }))
     expect(theme.maxWidth).toBe(1000)
   })
 
@@ -30,7 +32,7 @@ describe('createTheme', () => {
   })
 
   it('should deep merge the provided values', () => {
-    expect(createTheme({ zIndex: { amp: { modal: 10 } } }).zIndex.amp.modal).toBe(10)
+    expect(createTheme(adaptV4Theme({ zIndex: { amp: { modal: 10 } } })).zIndex.amp.modal).toBe(10)
   })
 
   it('should provide loadMaskOffsetTop', () => {

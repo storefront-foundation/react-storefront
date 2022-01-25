@@ -1,22 +1,37 @@
 import React from 'react'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import {
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-  Typography,
-} from '@material-ui/core'
-import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 import useStateFromProp from './hooks/useStateFromProp'
 import withDefaultHandler from './utils/withDefaultHandler'
 
-export const styles = theme => ({
+const PREFIX = 'RSFExpandableSection'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  margins: `${PREFIX}-margins`,
+  caption: `${PREFIX}-caption`,
+  expandedCaption: `${PREFIX}-expandedCaption`,
+  details: `${PREFIX}-details`,
+  summary: `${PREFIX}-summary`,
+  summaryContent: `${PREFIX}-summaryContent`,
+  summaryExpanded: `${PREFIX}-summaryExpanded`,
+  expandIconExpanded: `${PREFIX}-expandIconExpanded`,
+  summaryIconWrap: `${PREFIX}-summaryIconWrap`,
+  withCollapseIcon: `${PREFIX}-withCollapseIcon`,
+  expandedPanel: `${PREFIX}-expandedPanel`,
+  title: `${PREFIX}-title`,
+  expandIcon: `${PREFIX}-expandIcon`,
+  collapseIcon: `${PREFIX}-collapseIcon`,
+}
+
+const StyledAccordion = styled(Accordion)(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
     background: 'transparent',
@@ -34,28 +49,28 @@ export const styles = theme => ({
   /**
    * Styles applied to the root element if [`margins`](#prop-margins) is `true`.
    */
-  margins: {
-    padding: `0 ${theme.spacing(2)}px`,
+  [`& .${defaultClasses.margins}`]: {
+    padding: `0 ${theme.spacing(2)}`,
   },
 
   /**
    * Styles applied to the caption element.
    */
-  caption: {
+  [`& .${defaultClasses.caption}`]: {
     transition: 'opacity .2s linear',
   },
 
   /**
    * Styles applied to the caption element when the section is expanded.
    */
-  expandedCaption: {
+  [`& .${defaultClasses.expandedCaption}`]: {
     opacity: 0,
   },
 
   /**
    * Styles applied to the body element of the expansion panel.
    */
-  details: {
+  [`& .${defaultClasses.details}`]: {
     padding: theme.spacing(0, 0, 2, 0),
     display: 'flex',
     flexDirection: 'column',
@@ -64,7 +79,7 @@ export const styles = theme => ({
   /**
    * Styles applied to the summary element of the expansion panel.
    */
-  summary: {
+  [`& .${defaultClasses.summary}`]: {
     '&:first-child': {
       padding: theme.spacing(1, 0),
     },
@@ -73,7 +88,7 @@ export const styles = theme => ({
   /**
    * Styles applied to the content of the summary element of the expansion panel.
    */
-  summaryContent: {
+  [`& .${defaultClasses.summaryContent}`]: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -86,19 +101,19 @@ export const styles = theme => ({
   /**
    * Styles applied to the summary element of the expansion panel when the section is expanded.
    */
-  summaryExpanded: {},
+  [`& .${defaultClasses.summaryExpanded}`]: {},
 
   /**
    * Styles applied to the expand icon of the expansion panel when the section is expanded if the
    * [`ExpandIcon`](#prop-ExpandIcon) is different than the [`CollapseIcon`](#prop-CollapseIcon).
    */
-  expandIconExpanded: {},
+  [`& .${defaultClasses.expandIconExpanded}`]: {},
 
   /**
    * Styles applied to the expand icon of the expansion panel when the [`ExpandIcon`](#prop-ExpandIcon)
    * is different than the [`CollapseIcon`](#prop-CollapseIcon).
    */
-  summaryIconWrap: {
+  [`& .${defaultClasses.summaryIconWrap}`]: {
     right: 0,
     padding: theme.spacing(0, 1),
   },
@@ -106,14 +121,14 @@ export const styles = theme => ({
   /**
    * Styles applied to the summary element of the expansion panel.
    */
-  withCollapseIcon: {
+  [`& .${defaultClasses.withCollapseIcon}`]: {
     transform: 'rotate(0deg) !important',
   },
 
   /**
    * Styles applied to the root element when the section is expanded.
    */
-  expandedPanel: {
+  [`& .${defaultClasses.expandedPanel}`]: {
     '&$root': {
       margin: 0,
     },
@@ -122,25 +137,26 @@ export const styles = theme => ({
   /**
    * Styles applied to the title element.
    */
-  title: {},
+  [`& .${defaultClasses.title}`]: {},
 
   /**
    * Styles applied to the expand icon element.
    */
-  expandIcon: {
+  [`& .${defaultClasses.expandIcon}`]: {
     height: 24,
     width: 24,
   },
+
   /**
    * Styles applied to the collapse icon element.
    */
-  collapseIcon: {
+  [`& .${defaultClasses.collapseIcon}`]: {
     height: 24,
     width: 24,
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFExpandableSection' })
+export {}
 
 /**
  * An expandable info section.  Example:
@@ -152,8 +168,8 @@ const useStyles = makeStyles(styles, { name: 'RSFExpandableSection' })
  * ```
  */
 export default function ExpandableSection(props) {
-  let {
-    classes,
+  const {
+    classes: c = {},
     children = [],
     title,
     caption,
@@ -165,13 +181,12 @@ export default function ExpandableSection(props) {
     onChange,
     ...others
   } = props
-
-  classes = useStyles({ classes })
+  const classes = { ...defaultClasses, ...c }
 
   const [expandedState, setExpandedState] = useStateFromProp(expanded || defaultExpanded || false)
 
   /**
-   * Gets the classes for the ExpansionPanelSummary
+   * Gets the classes for the AccordionSummary
    * Here we add a class to remove the rotate transform if we're using a
    * separate icon for the collapse state.
    */
@@ -199,7 +214,7 @@ export default function ExpandableSection(props) {
   })
 
   return (
-    <ExpansionPanel
+    <StyledAccordion
       classes={{
         root: clsx({
           [classes.root]: true,
@@ -212,7 +227,7 @@ export default function ExpandableSection(props) {
       {...others}
       onChange={handleChange}
     >
-      <ExpansionPanelSummary
+      <AccordionSummary
         expandIcon={
           expandedState ? (
             <CollapseIcon className={classes.collapseIcon} />
@@ -236,9 +251,9 @@ export default function ExpandableSection(props) {
             {caption}
           </Typography>
         )}
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails classes={{ root: classes.details }}>{children}</ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionSummary>
+      <AccordionDetails classes={{ root: classes.details }}>{children}</AccordionDetails>
+    </StyledAccordion>
   )
 }
 
@@ -278,6 +293,8 @@ ExpandableSection.propTypes = {
    * Defaults the panel to being expanded, without controlling the state.
    */
   defaultExpanded: PropTypes.bool,
+  classes: PropTypes.object,
+  onChange: PropTypes.func,
 }
 
 ExpandableSection.defaultProps = {

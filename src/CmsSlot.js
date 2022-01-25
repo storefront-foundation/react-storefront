@@ -1,18 +1,28 @@
 import React, { useEffect, useRef } from 'react'
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
 import doLazyLoadImages from './utils/lazyLoadImages'
 import { prefetchJsonFor } from './serviceWorker'
 
-export const styles = theme => ({
-  inline: {
+const PREFIX = 'RSFCmsSlot'
+
+const classes = {
+  inline: `${PREFIX}-inline`,
+  block: `${PREFIX}-block`,
+  root: `${PREFIX}-root`,
+}
+
+const Root = styled('span')(() => ({
+  [`& .${classes.inline}`]: {
     display: 'inline',
   },
-  block: {
+
+  [`& .${classes.block}`]: {
     display: 'block',
   },
-  root: {
+
+  [`& .${classes.root}`]: {
     '& .rsf-presized-img': {
       position: 'relative',
 
@@ -28,24 +38,16 @@ export const styles = theme => ({
       visibility: 'hidden',
     },
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFCmsSlot' })
+export { classes }
 
 /**
  * A container for HTML blob content from a CMS.  Content is dangerously inserted into the DOM.
  * Pass the html as a string as the child of this component. Additional props are spread to the
  * rendered span element.
  */
-export default function CmsSlot({
-  children,
-  className,
-  inline,
-  lazyLoadImages,
-  prefetchLinks,
-  ...others
-}) {
-  const classes = useStyles(others)
+const CmsSlot = ({ children, className, inline, lazyLoadImages, prefetchLinks, ...others }) => {
   const el = useRef()
 
   useEffect(() => {
@@ -59,7 +61,7 @@ export default function CmsSlot({
       if (prefetchLinks) {
         const links = Array.from(el.current.querySelectorAll('a[data-rsf-prefetch="always"]'))
 
-        for (let link of links) {
+        for (const link of links) {
           prefetchJsonFor(link.getAttribute('href'))
         }
       }
@@ -69,7 +71,7 @@ export default function CmsSlot({
   }, [children])
 
   return children ? (
-    <span
+    <Root
       {...others}
       ref={el}
       className={clsx(className, classes.root, {
@@ -80,7 +82,7 @@ export default function CmsSlot({
     />
   ) : null
 }
-CmsSlot.proptypes = {
+CmsSlot.propTypes = {
   /**
    * If `true`, will use `display: inline` style.
    */
@@ -94,9 +96,12 @@ CmsSlot.proptypes = {
   /**
    * If `true`, prefetch links that have a `data-rsf-prefetch` attribute.
    */
-  prefetchLinks: false,
+  prefetchLinks: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 CmsSlot.defaultProps = {
   lazyLoadImages: false,
 }
+
+export default CmsSlot

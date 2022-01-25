@@ -1,23 +1,35 @@
 import PropTypes from 'prop-types'
+import { styled, useTheme } from '@mui/material/styles'
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import clsx from 'clsx'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import get from 'lodash/get'
 import Carousel from './Carousel'
 import Image from '../Image'
 import Lightbox from './Lightbox'
 import Media from './Media'
 import MagnifyHint from './MagnifyHint'
 import CarouselThumbnails from './CarouselThumbnails'
-import get from 'lodash/get'
 
-const THUMBNAIL_IMAGE_ID = '__rsf-placeholder-thumbnail'
+const PREFIX = 'RSFMediaCarousel'
 
-export const styles = theme => ({
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  rootSideThumbs: `${PREFIX}-rootSideThumbs`,
+  mediaWrap: `${PREFIX}-mediaWrap`,
+  thumbnail: `${PREFIX}-thumbnail`,
+  thumbnailsLeft: `${PREFIX}-thumbnailsLeft`,
+  thumbnailsTop: `${PREFIX}-thumbnailsTop`,
+  lightboxCarousel: `${PREFIX}-lightboxCarousel`,
+  lightboxThumbs: `${PREFIX}-lightboxThumbs`,
+}
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root component.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
@@ -25,18 +37,20 @@ export const styles = theme => ({
       overflow: 'hidden',
     },
   },
+
   /**
    * Styles applied to the root component when `thumbnailPosition` is `left` or `right`.
    */
-  rootSideThumbs: {
+  [`&.${defaultClasses.rootSideThumbs}`]: {
     [theme.breakpoints.up('sm')]: {
       flexDirection: 'row',
     },
   },
+
   /**
    * Styles applied to the wrapper element of each media component.
    */
-  mediaWrap: {
+  [`& .${defaultClasses.mediaWrap}`]: {
     height: '100%',
     width: '100%',
     display: 'flex',
@@ -48,47 +62,54 @@ export const styles = theme => ({
       objectFit: 'contain',
     },
   },
+
   /**
    * Styles applied to each of the thumbnail elements.
    */
-  thumbnail: {
+  [`& .${defaultClasses.thumbnail}`]: {
     position: 'absolute',
     top: 0,
     left: 0,
     height: '100%',
     width: '100%',
   },
+
   /**
    * Styles applied to the thumbnail component when thumbnailPosition is `left`.
    */
-  thumbnailsLeft: {
+  [`& .${defaultClasses.thumbnailsLeft}`]: {
     [theme.breakpoints.up('sm')]: {
       order: -1,
     },
   },
+
   /**
    * Styles applied to the thumbnail component when thumbnailPosition is `top`.
    */
-  thumbnailsTop: {
+  [`& .${defaultClasses.thumbnailsTop}`]: {
     order: -1,
   },
+
   /**
    * Styles applied to the carousel component when the lightbox is shown.
    */
-  lightboxCarousel: {
+  [`& .${defaultClasses.lightboxCarousel}`]: {
     flex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
   },
+
   /**
    * Styles applied to the thumbnails in the lightbox.
    */
-  lightboxThumbs: {
+  [`& .${defaultClasses.lightboxThumbs}`]: {
     paddingBottom: theme.spacing(2),
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFMediaCarousel' })
+const THUMBNAIL_IMAGE_ID = '__rsf-placeholder-thumbnail'
+
+export {}
 
 /**
  * A carousel that displays images and videos for a product.  Specify
@@ -124,8 +145,8 @@ const useStyles = makeStyles(styles, { name: 'RSFMediaCarousel' })
  *  />
  * ```
  */
-function MediaCarousel(props) {
-  let {
+const MediaCarousel = function(props) {
+  const {
     thumbnails,
     thumbnail,
     thumbsClassName,
@@ -135,7 +156,7 @@ function MediaCarousel(props) {
     imageProps,
     lightboxProps,
     lightboxClassName,
-    classes,
+    classes: c = {},
     media,
     magnifyProps,
     id,
@@ -146,16 +167,17 @@ function MediaCarousel(props) {
     ...others
   } = props
 
+  const classes = { ...defaultClasses, ...c }
+
   const [imagesLoaded, setImagesLoaded] = useState(false)
-  const styles = useStyles({ classes })
+
   const ref = useRef(null)
   const [over, setOver] = useState(false)
   const [selected, setSelected] = useState(0)
   const [video, setVideo] = useState(false)
   const [lightboxActive, setLightboxActive] = useState()
   const theme = useTheme()
-  const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
-  const isTouchScreen = useMediaQuery('(hover:none)')
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'))
   const isThumbsSide = ['right', 'left'].includes(thumbnailPosition)
 
   useEffect(() => {
@@ -214,7 +236,7 @@ function MediaCarousel(props) {
       <ImageComponent
         id={THUMBNAIL_IMAGE_ID}
         key="thumbnail"
-        className={styles.thumbnail}
+        className={classes.thumbnail}
         fill
         {...thumbnail}
       />,
@@ -251,7 +273,7 @@ function MediaCarousel(props) {
       autoplay: false,
       className: clsx(
         others.className,
-        styles.lightboxCarousel,
+        classes.lightboxCarousel,
         lightboxActive && lightboxClassName,
       ),
       height: isSmall ? '100%' : null,
@@ -264,9 +286,9 @@ function MediaCarousel(props) {
   }, [])
 
   const body = (
-    <div
-      className={clsx(styles.root, {
-        [styles.rootSideThumbs]: !lightboxActive && isThumbsSide,
+    <Root
+      className={clsx(classes.root, {
+        [classes.rootSideThumbs]: !lightboxActive && isThumbsSide,
       })}
     >
       <CarouselComponent
@@ -279,7 +301,7 @@ function MediaCarousel(props) {
         onClick={onClickCarousel}
         selected={selected}
         setSelected={setSelected}
-        height={'100%'}
+        height="100%"
         {...others}
       >
         {get(media, 'full', []).map((item, i) => {
@@ -309,9 +331,9 @@ function MediaCarousel(props) {
         <CarouselThumbnailsComponent
           className={clsx(
             thumbsClassName,
-            lightboxActive && styles.lightboxThumbs,
-            !lightboxActive && thumbnailPosition === 'left' && styles.thumbnailsLeft,
-            !lightboxActive && thumbnailPosition === 'top' && styles.thumbnailsTop,
+            lightboxActive && classes.lightboxThumbs,
+            !lightboxActive && thumbnailPosition === 'left' && classes.thumbnailsLeft,
+            !lightboxActive && thumbnailPosition === 'top' && classes.thumbnailsTop,
           )}
           bind={`${id}.index`}
           carouselId={id}
@@ -321,16 +343,16 @@ function MediaCarousel(props) {
           thumbnailPosition={lightboxActive ? 'bottom' : thumbnailPosition}
         />
       )}
-    </div>
+    </Root>
   )
 
   return (
-    <>
+    <Root>
       {body}
       <Lightbox {...lightboxProps} open={!!lightboxActive} onClose={handleLightboxClose}>
         {body}
       </Lightbox>
-    </>
+    </Root>
   )
 }
 

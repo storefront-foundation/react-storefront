@@ -49,7 +49,7 @@ export default function useIntersectionObserver(getRef, cb, deps, notSupportedCa
       cb(entries[0].intersectionRatio > 0, () => observer.disconnect())
     })
     const el = getElement(getRef())
-    if (el) {
+    if (el instanceof Element) {
       observer.observe(el)
       return () => observer.disconnect()
     }

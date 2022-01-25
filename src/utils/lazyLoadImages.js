@@ -26,7 +26,7 @@ export default function lazyLoadImages(element, { lazySrcAttribute = 'data-src' 
   }
 
   const observerHandler = function(entries, self) {
-    for (let entry of entries) {
+    for (const entry of entries) {
       if (entry.isIntersecting) {
         load(entry.target)
         // the image is now in place, stop watching
@@ -40,14 +40,14 @@ export default function lazyLoadImages(element, { lazySrcAttribute = 'data-src' 
   try {
     lazyImageObserver = new window.IntersectionObserver(observerHandler)
 
-    for (let img of lazyImages) {
+    for (const img of lazyImages) {
       lazyImageObserver.observe(img)
     }
 
     return lazyImageObserver
   } catch (e) {
     // eagerly load images when we don't have the observer
-    for (let img of lazyImages) {
+    for (const img of lazyImages) {
       load(img)
     }
   }

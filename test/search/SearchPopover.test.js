@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { mount } from 'enzyme'
 import SearchPopover from 'react-storefront/search/SearchPopover'
-import { Popover } from '@material-ui/core'
+import { Popover } from '@mui/material'
 import { navigate } from '../mocks/mockRouter'
 
 describe('SearchPopover', () => {

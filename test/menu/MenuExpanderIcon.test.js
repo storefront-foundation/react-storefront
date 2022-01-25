@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import MenuContext from 'react-storefront/menu/MenuContext'
-import { ChevronRight, ExpandLess, ExpandMore } from '@material-ui/icons'
+import { ChevronRight, ExpandLess, ExpandMore } from '@mui/icons-material'
 
 describe('MenuExpanderIcon', () => {
   let wrapper, MenuExpanderIcon, mockAmp

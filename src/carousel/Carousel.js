@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useState } from 'react'
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay, virtualize } from 'react-swipeable-views-utils'
 import PropTypes from 'prop-types'
@@ -9,11 +9,20 @@ import CarouselArrows from './CarouselArrows'
 import mod from '../utils/mod'
 import Fill from '../Fill'
 
-const styles = theme => ({
+const PREFIX = 'RSFCarousel'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  swipeWrap: `${PREFIX}-swipeWrap`,
+  autoPlaySwipeableViews: `${PREFIX}-autoPlaySwipeableViews`,
+  hideTouchArrows: `${PREFIX}-hideTouchArrows`,
+}
+
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
@@ -27,7 +36,7 @@ const styles = theme => ({
   /**
    * Styles applied to wrapper element of the swipe container.
    */
-  swipeWrap: {
+  [`& .${defaultClasses.swipeWrap}`]: {
     position: 'relative',
     overflow: 'hidden',
     flex: 1,
@@ -37,31 +46,27 @@ const styles = theme => ({
     },
   },
 
-  autoPlaySwipeableViews: {
+  [`& .${defaultClasses.autoPlaySwipeableViews}`]: {
     overflowY: 'hidden',
     height: '100%',
   },
-
-  '@media not all and (hover:none)': {
-    hideTouchArrows: {
+  [`& .${defaultClasses.hideTouchArrows}`]: {
+    '@media not all and (hover:none)': {
       display: 'none',
     },
   },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFCarousel' })
+}))
 
 export const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 export const VirtualizeSwipeableViews = virtualize(SwipeableViews)
 export const AutoPlayVirtualizeSwipeableViews = autoPlay(VirtualizeSwipeableViews)
 
 function useSelected(props) {
+  const [selected, setSelected] = useState(0)
   if (props.setSelected) {
     return props
-  } else {
-    const [selected, setSelected] = useState(0)
-    return { selected, setSelected }
   }
+  return { selected, setSelected }
 }
 
 /**
@@ -71,10 +76,10 @@ function useSelected(props) {
  * prop within a [`MediaCarousel`](/apiReference/carousel/MediaCarousel).
  */
 const Carousel = React.forwardRef((props, ref) => {
-  let {
+  const {
     height,
     children,
-    classes,
+    classes: c = {},
     className,
     style,
     swipeStyle,
@@ -90,8 +95,7 @@ const Carousel = React.forwardRef((props, ref) => {
     interval,
     infinite,
   } = props
-
-  classes = useStyles({ classes })
+  const classes = { ...defaultClasses, ...c }
 
   const { selected, setSelected } = useSelected(props)
   const count = children && children.length
@@ -108,27 +112,30 @@ const Carousel = React.forwardRef((props, ref) => {
     return <Fragment key={key}>{slide}</Fragment>
   }
 
-  const onChangeIndex = useCallback((index) => {
-    if (!infinite) {
-      setSelected(index)
-      return
-    }
+  const onChangeIndex = useCallback(
+    index => {
+      if (!infinite) {
+        setSelected(index)
+        return
+      }
 
-    // carousel loop-around calculations
-    let nextSelectedIndex = index;
-    if (nextSelectedIndex + 1 > count) {
-      nextSelectedIndex = 0;
-    } else if (nextSelectedIndex < 0) {
-      nextSelectedIndex = count - 1;
-    }
+      // carousel loop-around calculations
+      let nextSelectedIndex = index
+      if (nextSelectedIndex + 1 > count) {
+        nextSelectedIndex = 0
+      } else if (nextSelectedIndex < 0) {
+        nextSelectedIndex = count - 1
+      }
 
-    setSelected(nextSelectedIndex)
-  }, [infinite, count, selected, setSelected])
+      setSelected(nextSelectedIndex)
+    },
+    [infinite, count, selected, setSelected],
+  )
 
   return (
-    <div
+    <Root
       ref={ref}
-      className={clsx(className, classes.root)}
+      className={clsx(className, defaultClasses.root)}
       style={style}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -160,7 +167,7 @@ const Carousel = React.forwardRef((props, ref) => {
         </div>
       </Fill>
       {belowAdornments}
-    </div>
+    </Root>
   )
 })
 
@@ -200,6 +207,16 @@ Carousel.propTypes = {
    * The interval time (in milliseconds) for [`autoplay`](#prop-autoplay).
    */
   interval: PropTypes.number,
+  height: PropTypes.string,
+  className: PropTypes.string,
+  slideRenderer: PropTypes.func,
+  style: PropTypes.object,
+  swipeStyle: PropTypes.object,
+  slideStyle: PropTypes.object,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  onClick: PropTypes.func,
+  indicators: PropTypes.bool,
 }
 
 Carousel.defaultProps = {

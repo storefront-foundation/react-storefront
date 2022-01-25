@@ -1,20 +1,30 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles'
 import React, { useCallback } from 'react'
 import clsx from 'clsx'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import { IconButton } from '@material-ui/core'
-import { ChevronLeft, ChevronRight } from '@material-ui/icons'
+import { IconButton } from '@mui/material'
+import { ChevronLeft, ChevronRight } from '@mui/icons-material'
 
-export const styles = theme => ({
+const PREFIX = 'RSFCarouselArrows'
+
+const defaultClasses = {
+  arrows: `${PREFIX}-arrows`,
+  arrow: `${PREFIX}-arrow`,
+  leftArrow: `${PREFIX}-leftArrow`,
+  rightArrow: `${PREFIX}-rightArrow`,
+  icon: `${PREFIX}-icon`,
+}
+
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  arrows: {},
+  [`&.${defaultClasses.arrows}`]: {},
 
   /**
    * Styles applied to each of the arrow icon buttons.
    */
-  arrow: {
+  [`& .${defaultClasses.arrow}`]: {
     position: 'absolute',
     top: '50%',
     marginTop: '-24px',
@@ -23,24 +33,24 @@ export const styles = theme => ({
   /**
    * Styles applied to the left arrow icon buttons.
    */
-  leftArrow: {
+  [`& .${defaultClasses.leftArrow}`]: {
     left: 0,
   },
 
   /**
    * Styles applied to the right arrow icon buttons.
    */
-  rightArrow: {
+  [`& .${defaultClasses.rightArrow}`]: {
     right: 0,
   },
 
   /**
    * Styles applied to each of the icon elements.
    */
-  icon: {},
-})
+  [`& .${defaultClasses.icon}`]: {},
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFCarouselArrows' })
+export {}
 
 /**
  * Arrows that are overlaid onto a [`Carousel`](/apiReference/carousel/Carousel) that will change
@@ -48,7 +58,7 @@ const useStyles = makeStyles(styles, { name: 'RSFCarouselArrows' })
  */
 export default function CarouselArrows({
   className,
-  classes,
+  classes: c = {},
   selected,
   count,
   setSelected,
@@ -56,37 +66,38 @@ export default function CarouselArrows({
   leftArrowLabel,
   rightArrowLabel,
 }) {
-  classes = useStyles({ classes })
+  const classes = { ...defaultClasses, ...c }
 
   const createOnClickArrow = useCallback(
     idxChange => evt => {
       evt.preventDefault()
 
       if (!infinite) {
-        setSelected(selected + idxChange);
-        return;
+        setSelected(selected + idxChange)
+        return
       }
 
       // carousel loop-around calculations
-      let nextSelectedIndex = selected + idxChange;
+      let nextSelectedIndex = selected + idxChange
       if (nextSelectedIndex + 1 > count) {
-        nextSelectedIndex = 0;
+        nextSelectedIndex = 0
       } else if (nextSelectedIndex < 0) {
-        nextSelectedIndex = count - 1;
+        nextSelectedIndex = count - 1
       }
 
-      setSelected(nextSelectedIndex);
+      setSelected(nextSelectedIndex)
     },
     [selected, setSelected, count, infinite],
   )
 
   return (
-    <div className={clsx(classes.arrows, className)}>
+    <Root className={clsx(classes.arrows, className)}>
       {(selected !== 0 || infinite) && (
         <IconButton
           className={clsx(classes.arrow, classes.leftArrow)}
           onClick={createOnClickArrow(-1)}
           aria-label={leftArrowLabel}
+          size="large"
         >
           <ChevronLeft classes={{ root: classes.icon }} />
         </IconButton>
@@ -96,11 +107,12 @@ export default function CarouselArrows({
           className={clsx(classes.arrow, classes.rightArrow)}
           onClick={createOnClickArrow(1)}
           aria-label={rightArrowLabel}
+          size="large"
         >
           <ChevronRight classes={{ root: classes.icon }} />
         </IconButton>
       )}
-    </div>
+    </Root>
   )
 }
 
@@ -139,6 +151,7 @@ CarouselArrows.propTypes = {
    * Label given to the right arrow for accessbility purposes.
    */
   rightArrowLabel: PropTypes.string,
+  infinite: PropTypes.bool,
 }
 
 CarouselArrows.defaultProps = {

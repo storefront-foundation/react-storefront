@@ -1,25 +1,34 @@
 import React from 'react'
+import { styled, alpha } from '@mui/material/styles'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import { fade } from '@material-ui/core/styles/colorManipulator'
 
-const styles = theme => ({
+const PREFIX = 'RSFCarouselDots'
+
+const defaultClasses = {
+  dots: `${PREFIX}-dots`,
+  dot: `${PREFIX}-dot`,
+  dotSelected: `${PREFIX}-dotSelected`,
+}
+
+const Dots = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  dots: {
+  [`&.${defaultClasses.dots}`]: {
     position: 'absolute',
     bottom: '5px',
     textAlign: 'center',
     width: '100%',
   },
+}))
 
+const Dot = styled('div')(({ theme }) => ({
   /**
    * Styles applied to each dot element.
    */
-  dot: {
-    backgroundColor: fade(theme.palette.text.primary, 0.25),
+  [`&.${defaultClasses.dot}`]: {
+    backgroundColor: alpha(theme.palette.text.primary, 0.25),
     width: 8,
     height: 8,
     borderWidth: '1px',
@@ -35,24 +44,22 @@ const styles = theme => ({
   /**
    * Styles applied to the dot representing the selected slide.
    */
-  dotSelected: {
+  [`&.${defaultClasses.dotSelected}`]: {
     backgroundColor: theme.palette.text.primary,
-  }
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFCarouselDots' })
+  },
+}))
 
 /**
  * An overlay shown at the bottom of a [`Carousel`](/apiReference/carousel/Carousel) that shows a
  * sequence of dots representing the slides in the Carousel.
  */
-function CarouselDots({ selected, count, classes }) {
+const CarouselDots = function({ selected, count, classes: c = {} }) {
+  const classes = { ...defaultClasses, ...c }
   const dots = []
-  classes = useStyles({ classes })
 
   for (let i = 0; i < count; i++) {
     dots.push(
-      <div
+      <Dot
         key={i}
         className={clsx({
           [classes.dot]: true,
@@ -62,7 +69,7 @@ function CarouselDots({ selected, count, classes }) {
     )
   }
 
-  return <div className={classes.dots}>{dots}</div>
+  return <Dots className={classes.dots}>{dots}</Dots>
 }
 
 CarouselDots.propTypes = {

@@ -1,14 +1,23 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
-import { CloudOff as CloseOffIcon } from '@material-ui/icons'
+import { styled } from '@mui/material/styles'
+import { Typography } from '@mui/material'
+import { CloudOff as CloseOffIcon } from '@mui/icons-material'
 import PropTypes from 'prop-types'
 
-const styles = theme => ({
+const PREFIX = 'RSFOffline'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  icon: `${PREFIX}-icon`,
+  heading: `${PREFIX}-heading`,
+  message: `${PREFIX}-message`,
+}
+
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -16,33 +25,33 @@ const styles = theme => ({
     marginTop: '40px',
     color: '#999',
   },
+
   /**
    * Styles applied to the icon element.
    */
-  icon: {
+  [`& .${defaultClasses.icon}`]: {
     fontSize: 60,
     color: '#999',
   },
+
   /**
    * Styles applied to the heading element.
    */
-  heading: {},
+  [`& .${defaultClasses.heading}`]: {},
+
   /**
    * Styles applied to the message element.
    */
-  message: {},
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFOffline' })
+  [`& .${defaultClasses.message}`]: {},
+}))
 
 /**
  * A page to display when in Offline mode
  */
-export default function Offline({ classes, heading, message, Icon }) {
-  classes = useStyles({ classes })
-
+export default function Offline({ classes: c = {}, heading, message, Icon }) {
+  const classes = { ...defaultClasses, ...c }
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <Icon className={classes.icon} />
       <Typography variant="h6" component="h1" className={classes.heading}>
         {heading}
@@ -50,7 +59,7 @@ export default function Offline({ classes, heading, message, Icon }) {
       <Typography variant="caption" className={classes.message}>
         {message}
       </Typography>
-    </div>
+    </Root>
   )
 }
 

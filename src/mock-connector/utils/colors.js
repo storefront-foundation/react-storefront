@@ -1,4 +1,6 @@
-import { red, green, blue, grey, teal, orange, purple } from '@material-ui/core/colors'
+import { red, green, blue, grey, teal, orange, purple } from '@mui/material/colors'
+
+// eslint-disable-next-line no-useless-escape
 const color = c => c.toString().replace(/\#/, '')
 
 const colors = {

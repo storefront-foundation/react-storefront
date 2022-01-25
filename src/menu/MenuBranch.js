@@ -1,53 +1,64 @@
 import React from 'react'
+import { styled } from '@mui/material/styles'
+import PropTypes from 'prop-types'
 import MenuItemContent from './MenuItemContent'
 import ExpandableSection from '../ExpandableSection'
-import PropTypes from 'prop-types'
-import makeStyles from '@material-ui/core/styles/makeStyles'
 import MenuLeaf from './MenuLeaf'
 
-export const styles = theme => ({
-  expander: {
+const PREFIX = 'RSFMenuBranch'
+
+const classes = {
+  expander: `${PREFIX}-expander`,
+  expanderMargins: `${PREFIX}-expanderMargins`,
+  expanderSummary: `${PREFIX}-expanderSummary`,
+  expanderSummaryExpanded: `${PREFIX}-expanderSummaryExpanded`,
+  expanderIconExpanded: `${PREFIX}-expanderIconExpanded`,
+  expanderDetails: `${PREFIX}-expanderDetails`,
+  expanderContent: `${PREFIX}-expanderContent`,
+}
+
+const StyledMenuItemContent = styled(MenuItemContent)(({ theme }) => ({
+  [`& .${classes.expander}`]: {
     borderBottom: 'none',
   },
 
-  expanderMargins: {
+  [`& .${classes.expanderMargins}`]: {
     padding: 0,
   },
 
-  expanderSummary: {
+  [`& .${classes.expanderSummary}`]: {
     textTransform: 'uppercase',
     '&:first-child': {
-      padding: `10px ${theme.spacing(2)}px`,
+      padding: `10px ${theme.spacing(2)}`,
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
   },
 
-  expanderSummaryExpanded: {
+  [`& .${classes.expanderSummaryExpanded}`]: {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
   },
 
-  expanderIconExpanded: {
+  [`& .${classes.expanderIconExpanded}`]: {
     color: theme.palette.secondary.contrastText,
   },
 
-  expanderDetails: {
+  [`& .${classes.expanderDetails}`]: {
     '$expander &': {
       paddingBottom: 0,
     },
   },
 
-  expanderContent: {
+  [`& .${classes.expanderContent}`]: {
     textTransform: 'none',
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFMenuBranch' })
+export {}
 
 const MenuBranch = React.memo(props => {
   const { depth, item, ExpanderComponent, itemProps } = props
   const isLeaf = !item.items.some(child => child.items && child.items.length > 0)
-  const classes = useStyles()
 
   if (item.expanded != null && item.items && item.items.length && isLeaf) {
     return (
@@ -73,9 +84,8 @@ const MenuBranch = React.memo(props => {
         ))}
       </ExpanderComponent>
     )
-  } else {
-    return <MenuItemContent item={item} depth={depth} leaf={false} listItemProps={itemProps} />
   }
+  return <StyledMenuItemContent item={item} depth={depth} leaf={false} listItemProps={itemProps} />
 })
 
 export default MenuBranch
@@ -89,6 +99,8 @@ MenuBranch.propTypes = {
    * Additional props for the underlying ListItem
    */
   itemProps: PropTypes.object,
+  depth: PropTypes.number,
+  item: PropTypes.object,
 }
 
 MenuBranch.defaultProps = {

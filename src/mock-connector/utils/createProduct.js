@@ -1,6 +1,6 @@
-import colors, { colorForId } from './colors'
 import capitalize from 'lodash/capitalize'
 import { loremIpsum } from 'lorem-ipsum'
+import colors, { colorForId } from './colors'
 
 export default function createProduct(id, numColors = 4) {
   const color = colorForId(id)
@@ -17,27 +17,27 @@ export default function createProduct(id, numColors = 4) {
     thumbnail: {
       src: `https://dummyimage.com/400x400/${colors[color].background}/${
         colors[color].foreground
-      }?text=${encodeURIComponent('Product ' + id)}`,
+      }?text=${encodeURIComponent(`Product ${id}`)}`,
       alt: `Product ${id}`,
     },
     media: {
       full: variants.map((key, i) => ({
         src: `https://dummyimage.com/${i === 2 ? 400 : 600}x${i === 1 ? 400 : 600}/${
           colors[key].background
-        }/${colors[key].foreground}?text=${encodeURIComponent('Product ' + id)}`,
+        }/${colors[key].foreground}?text=${encodeURIComponent(`Product ${id}`)}`,
         alt: `Product ${id}`,
         magnify: {
           height: i === 1 ? 800 : 1200,
           width: i === 2 ? 800 : 1200,
           src: `https://dummyimage.com/${i === 2 ? 800 : 1200}x${i === 1 ? 800 : 1200}/${
             colors[key].background
-          }/${colors[key].foreground}?text=${encodeURIComponent('Product ' + id)}`,
+          }/${colors[key].foreground}?text=${encodeURIComponent(`Product ${id}`)}`,
         },
       })),
       thumbnails: variants.map((key, i) => ({
         src: `https://dummyimage.com/${i === 2 ? 233 : 300}x${i === 1 ? 233 : 300}/${
           colors[key].background
-        }/${colors[key].foreground}?text=${encodeURIComponent('Product ' + id)}`,
+        }/${colors[key].foreground}?text=${encodeURIComponent(`Product ${id}`)}`,
         alt: `Product ${id}`,
       })),
     },
@@ -66,14 +66,14 @@ export default function createProduct(id, numColors = 4) {
           full: [name, name, name].map((key, i) => ({
             src: `https://dummyimage.com/${i === 2 ? 400 : 600}x${i === 1 ? 400 : 600}/${
               colors[key].background
-            }/${colors[key].foreground}?text=${encodeURIComponent('Product ' + id)}`,
+            }/${colors[key].foreground}?text=${encodeURIComponent(`Product ${id}`)}`,
             alt: `Product ${id}`,
             magnify: {
               height: i === 1 ? 800 : 1200,
               width: i === 2 ? 800 : 1200,
               src: `https://dummyimage.com/${i === 2 ? 800 : 1200}x${i === 1 ? 800 : 1200}/${
                 colors[key].background
-              }/${colors[key].foreground}?text=${encodeURIComponent('Product ' + id)}`,
+              }/${colors[key].foreground}?text=${encodeURIComponent(`Product ${id}`)}`,
             },
           })),
           thumbnails: [name, name, name].map((key, i) => ({
@@ -85,7 +85,7 @@ export default function createProduct(id, numColors = 4) {
           thumbnail: [name].map(key => ({
             src: `https://dummyimage.com/400x400/${colors[key].background}/${
               colors[key].foreground
-            }?text=${encodeURIComponent('Product ' + id)}`,
+            }?text=${encodeURIComponent(`Product ${id}`)}`,
             alt: `Product ${id}`,
           }))[0],
         },

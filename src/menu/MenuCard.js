@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { List } from '@material-ui/core'
+import { List } from '@mui/material'
+import PropTypes from 'prop-types'
 import MenuItem from './MenuItem'
 import MenuBack from './MenuBack'
 import MenuHeader from './MenuHeader'
 import MenuFooter from './MenuFooter'
 import MenuContext from './MenuContext'
-import PropTypes from 'prop-types'
 
 export default function MenuCard({ item, depth, headerProps }) {
   const { goBack, classes, expandFirstItem, drawerWidth } = useContext(MenuContext)
@@ -35,7 +35,7 @@ export default function MenuCard({ item, depth, headerProps }) {
         item.items.map((child, i) => (
           <MenuItem
             item={child}
-            key={item.key + '-' + i} // this ensures that the expanded state is after showing a new card
+            key={`${item.key}-${i}`} // this ensures that the expanded state is after showing a new card
             depth={depth}
             defaultExpanded={i === 0 && expandFirstItem}
           />
@@ -51,6 +51,8 @@ MenuCard.propTypes = {
    * Addition props for the header element
    */
   headerProps: PropTypes.object,
+  item: PropTypes.object,
+  depth: PropTypes.number,
 }
 
 MenuCard.defaultProps = {}

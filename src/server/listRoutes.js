@@ -1,7 +1,7 @@
-import getRoutes from './getRoutes'
 import fs from 'fs'
 import path from 'path'
 import glob from 'glob'
+import getRoutes from './getRoutes'
 
 // Depending on the context (local dev, serverless lambda), the page manifest
 // file can be at different locations
@@ -40,7 +40,7 @@ function createDevelopmentPagesManifest() {
   const pages = glob.sync('pages/**/*.js', { cwd: process.cwd() })
   const manifest = {}
 
-  for (let page of pages) {
+  for (const page of pages) {
     const route = page.replace(/^pages/, '').replace(/\.[^/]+$/, '')
     manifest[route] = page
   }

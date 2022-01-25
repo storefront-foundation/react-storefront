@@ -1,90 +1,116 @@
 import PropTypes from 'prop-types'
+import { styled, useTheme } from '@mui/material/styles'
 import React from 'react'
 import clsx from 'clsx'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import mod from '../utils/mod'
 import Image from '../Image'
 
-export const styles = theme => ({
+const PREFIX = 'RSFCarouselThumbnails'
+
+const defaultClasses = {
+  thumbs: `${PREFIX}-thumbs`,
+  thumb: `${PREFIX}-thumb`,
+  tabsIndicator: `${PREFIX}-tabsIndicator`,
+  tabsRoot: `${PREFIX}-tabsRoot`,
+  tabsVertical: `${PREFIX}-tabsVertical`,
+  tabsRootLeft: `${PREFIX}-tabsRootLeft`,
+  tabsRootRight: `${PREFIX}-tabsRootRight`,
+  tabsRootTop: `${PREFIX}-tabsRootTop`,
+  tabsRootBottom: `${PREFIX}-tabsRootBottom`,
+  tabRoot: `${PREFIX}-tabRoot`,
+  selectedTab: `${PREFIX}-selectedTab`,
+  tabWrapper: `${PREFIX}-tabWrapper`,
+}
+
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  thumbs: {
+  [`&.${defaultClasses.thumbs}`]: {
     display: 'flex',
     justifyContent: 'center',
   },
+
   /**
    * Styles applied to each thumbnail element.
    */
-  thumb: {
+  [`& .${defaultClasses.thumb}`]: {
     width: 50,
     height: 50,
     boxSizing: 'content-box',
   },
+
   /**
-   * Styles passed through to the [`Tabs`](https://material-ui.com/api/tabs/#css) element's
+   * Styles passed through to the [`Tabs`](https://mui.com/api/tabs/#css) element's
    * `indicator` CSS rule.
    */
-  tabsIndicator: {
+  [`& .${defaultClasses.tabsIndicator}`]: {
     display: 'none',
     backgroundColor: theme.palette.primary.main,
     height: '3px',
     transition: 'left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   },
+
   /**
    * Styles applied to the root element of the Tabs element
    */
-  tabsRoot: {},
+  [`& .${defaultClasses.tabsRoot}`]: {},
+
   /**
    * Styles applied the to the root element of the Tabs element when `thumbnailPosition` is `left` or `right`.
    */
-  tabsVertical: {
+  [`& .${defaultClasses.tabsVertical}`]: {
     [theme.breakpoints.up('sm')]: {
       flexDirection: 'column',
     },
   },
+
   /**
    * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `left`.
    */
-  tabsRootLeft: {
-    [theme.breakpoints.down('xs')]: {
+  [`& .${defaultClasses.tabsRootLeft}`]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(2),
     },
     [theme.breakpoints.up('sm')]: {
       marginRight: theme.spacing(2),
     },
   },
+
   /**
    * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `right`.
    */
-  tabsRootRight: {
-    [theme.breakpoints.down('xs')]: {
+  [`& .${defaultClasses.tabsRootRight}`]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(2),
     },
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(2),
     },
   },
+
   /**
    * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `top`.
    */
-  tabsRootTop: {
+  [`& .${defaultClasses.tabsRootTop}`]: {
     marginBottom: theme.spacing(2),
   },
+
   /**
    * Styles applied to the root element of the Tabs element when `thumbnailPosition` is `bottom`.
    */
-  tabsRootBottom: {
+  [`& .${defaultClasses.tabsRootBottom}`]: {
     marginTop: theme.spacing(2),
   },
+
   /**
-   * Styles passed through to each [`Tab`](https://material-ui.com/api/tabs/#css) element's
+   * Styles passed through to each [`Tab`](https://mui.com/api/tabs/#css) element's
    * `root` CSS rule.
    */
-  tabRoot: {
+  [`& .${defaultClasses.tabRoot}`]: {
     minWidth: 'auto',
     padding: 0,
     outline: 'none',
@@ -94,74 +120,77 @@ export const styles = theme => ({
       opacity: 0.9,
     },
   },
+
   /**
-   * Styles passed through to each [`Tab`](https://material-ui.com/api/tabs/#css) element's
+   * Styles passed through to each [`Tab`](https://mui.com/api/tabs/#css) element's
    * `selected` CSS rule.
    */
-  selectedTab: {
+  [`& .${defaultClasses.selectedTab}`]: {
     opacity: 1,
   },
+
   /**
-   * Styles passed through to each [`Tab`](https://material-ui.com/api/tabs/#css) element's
+   * Styles passed through to each [`Tab`](https://mui.com/api/tabs/#css) element's
    * `wrapper` CSS rule.
    */
-  tabWrapper: {
+  [`& .${defaultClasses.tabWrapper}`]: {
     margin: '0 2px',
     border: '1px solid transparent',
     '$selectedTab &': {
-      border: `1px solid rgba(0,0,0,0.3)`,
+      border: '1px solid rgba(0,0,0,0.3)',
     },
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFCarouselThumbnails' })
+export { defaultClasses as classes }
 
 /**
  * A set of thumbnails to show below a [`Carousel`](/apiReference/carousel/Carousel). Thumbnails can
  * be clicked to switch to the given slide. Internally, `CarouselThumbnails` uses MaterialUI's
- * [`Tabs`](https://material-ui.com/api/tabs) component to indicate which slide is selected
+ * [`Tabs`](https://mui.com/api/tabs) component to indicate which slide is selected
  */
-function CarouselThumbnails({
+const CarouselThumbnails = function({
   thumbnails,
   selected,
   setSelected,
-  classes,
+  classes: c = {},
   className,
   thumbnailPosition,
   ImageComponent,
 }) {
-  const styles = useStyles({ classes })
+  const classes = { ...defaultClasses, ...c }
   const theme = useTheme()
-  const isSmall = useMediaQuery(theme.breakpoints.down('xs'))
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'))
   const isVertical = !isSmall && ['left', 'right'].includes(thumbnailPosition)
   const count = thumbnails.length
 
   return (
-    <div className={clsx(className, styles.thumbs)}>
+    <Root className={clsx(className, classes.thumbs)}>
       <Tabs
+        indicatorColor="primary"
+        textColor="inherit"
         value={selected !== false ? mod(selected, count) : false}
         variant="scrollable"
         onChange={(_, index) => setSelected(index)}
         orientation={isVertical ? 'vertical' : 'horizontal'}
         classes={{
-          root: clsx(styles.tabsRoot, {
-            [styles.tabsVertical]: isVertical,
-            [styles.tabsRootLeft]: thumbnailPosition === 'left',
-            [styles.tabsRootRight]: thumbnailPosition === 'right',
-            [styles.tabsRootTop]: thumbnailPosition === 'top',
-            [styles.tabsRootBottom]: thumbnailPosition === 'bottom',
+          root: clsx(classes.tabsRoot, {
+            [classes.tabsVertical]: isVertical,
+            [classes.tabsRootLeft]: thumbnailPosition === 'left',
+            [classes.tabsRootRight]: thumbnailPosition === 'right',
+            [classes.tabsRootTop]: thumbnailPosition === 'top',
+            [classes.tabsRootBottom]: thumbnailPosition === 'bottom',
           }),
-          indicator: styles.tabsIndicator,
+          indicator: classes.tabsIndicator,
         }}
       >
         {thumbnails.map(({ src, alt }, i) => {
-          const icon = <ImageComponent contain className={styles.thumb} src={src} alt={alt} />
+          const icon = <div className={classes.tabWrapper}><ImageComponent contain className={classes.thumb} src={src} alt={alt} /></div>
           return (
             <Tab
               classes={{
-                root: styles.tabRoot,
-                wrapper: styles.tabWrapper,
-                selected: styles.selectedTab,
+                root: classes.tabRoot,
+                selected: classes.selectedTab,
               }}
               key={i}
               icon={icon}
@@ -169,7 +198,7 @@ function CarouselThumbnails({
           )
         })}
       </Tabs>
-    </div>
+    </Root>
   )
 }
 

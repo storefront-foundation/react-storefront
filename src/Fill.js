@@ -1,20 +1,28 @@
 import React, { Children } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
-const useStyles = makeStyles(theme => ({
+const PREFIX = 'Fill'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  child: `${PREFIX}-child`,
+}
+
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${classes.root}`]: {
     position: 'relative',
     width: '100%',
   },
+
   /**
    * Styles applied to the wrapper element for the children.
    */
-  child: {
+  [`& .${classes.child}`]: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -46,13 +54,11 @@ export default function Fill({ height, children, className, ...props }) {
     return children
   }
 
-  const classes = useStyles()
-
   return (
-    <div className={clsx(classes.root, className)} {...props}>
+    <Root className={clsx(classes.root, className)} {...props}>
       <div style={{ paddingTop: height }} />
       <div className={classes.child}>{children}</div>
-    </div>
+    </Root>
   )
 }
 
@@ -63,4 +69,5 @@ Fill.propTypes = {
    * the provided child.
    */
   height: PropTypes.string,
+  className: PropTypes.string,
 }

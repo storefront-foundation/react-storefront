@@ -1,35 +1,23 @@
-import React, { memo, forwardRef, useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button, MenuItem } from '@material-ui/core'
+import React, { memo, useContext } from 'react'
+import { styled } from '@mui/material/styles'
+import { Button, MenuItem } from '@mui/material'
 import PropTypes from 'prop-types'
 import SearchResultsContext from './SearchResultsContext'
 
-export const styles = theme => ({
-  /**
-   * Styles applied to the root container if [`variant`](#prop-variant) is `'buttons'`.
-   */
-  container: {
-    padding: '15px 0 0 15px',
-  },
-  /**
-   * Styles applied to each option if [`variant`](#prop-variant) is `'buttons'`.
-   */
-  option: {
-    boxShadow: 'none',
-    width: 'calc(50% - 15px)',
-    margin: '0 15px 15px 0',
-  },
-})
+const PREFIX = 'RSFSort'
 
-const useStyles = makeStyles(styles, { name: 'RSFSort' })
+const defaultClasses = {
+  container: `${PREFIX}-container`,
+  option: `${PREFIX}-option`,
+}
 
 /**
  * UI for sorting a list of products.  This component can be used on its own, or you can use
  * [`SortButton`](/apiReference/plp/SortButton) to automatically display this component in a drawer
  * that slides up from the bottom of the viewport.
  */
-function Sort({ variant, classes, onSelect }) {
-  classes = useStyles({ classes })
+var Sort = function({ variant, classes: c = {}, onSelect }) {
+  const classes = { ...defaultClasses, ...c }
 
   const {
     pageData: { sort, sortOptions },
@@ -50,7 +38,7 @@ function Sort({ variant, classes, onSelect }) {
         sortOptions.map((option, i) => (
           <Button
             className={classes.option}
-            color={sort === option.code ? 'primary' : 'default'}
+            color={sort === option.code ? 'primary' : 'secondary'}
             variant="contained"
             onClick={e => handleClick(option, e)}
             key={i}
@@ -74,11 +62,11 @@ function Sort({ variant, classes, onSelect }) {
 
   if (variant === 'buttons') {
     return renderButtons()
-  } else if (variant === 'menu-items') {
-    return renderMenu()
-  } else {
-    return null
   }
+  if (variant === 'menu-items') {
+    return renderMenu()
+  }
+  return null
 }
 
 Sort.propTypes = {
@@ -104,4 +92,22 @@ Sort.defaultProps = {
   variant: 'buttons',
 }
 
-export default memo(forwardRef((props, ref) => <Sort {...props} />))
+const StyledSort = styled(Sort)(() => ({
+  /**
+   * Styles applied to the root container if [`variant`](#prop-variant) is `'buttons'`.
+   */
+  [`& .${defaultClasses.container}`]: {
+    padding: '15px 0 0 15px',
+  },
+
+  /**
+   * Styles applied to each option if [`variant`](#prop-variant) is `'buttons'`.
+   */
+  [`& .${defaultClasses.option}`]: {
+    boxShadow: 'none',
+    width: 'calc(50% - 15px)',
+    margin: '0 15px 15px 0',
+  },
+}))
+
+export default memo(StyledSort)

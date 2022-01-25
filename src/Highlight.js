@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAmp } from 'next/amp'
-import { Typography } from '@material-ui/core'
+import PropTypes from 'prop-types'
+import { Typography } from '@mui/material'
 
 const escapeHtml = unsafe =>
   unsafe
@@ -28,4 +29,10 @@ export default function Highlight({ query, text, classes = {}, ...props }) {
       dangerouslySetInnerHTML={{ __html: addHighlight(query, text, classes.highlight) }}
     />
   )
+}
+
+Highlight.propTypes = {
+  query: PropTypes.string,
+  text: PropTypes.string,
+  classes: PropTypes.object,
 }

@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
  */
 export default function useAppStore(props) {
   const result = useState(props.appData)
-  const [_, setState] = result
+  const [, setState] = result
 
   useEffect(() => {
     if (props.appData) {

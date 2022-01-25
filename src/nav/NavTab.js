@@ -1,58 +1,77 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react'
-import Link from '../link/Link'
-import { makeStyles } from '@material-ui/core/styles'
-import { Hidden, Fade, Tab, Popover, Paper } from '@material-ui/core'
+import React, { useCallback } from 'react'
+import { styled } from '@mui/material/styles'
+import { Hidden, Fade, Tab, Paper } from '@mui/material'
 import PropTypes from 'prop-types'
-import Router from 'next/router'
+import Link from '../link/Link'
 
-const styles = theme => ({
+import { bindHover, bindPopover } from 'material-ui-popup-state'
+import { usePopupState } from 'material-ui-popup-state/hooks'
+
+import HoverPopover from 'material-ui-popup-state/HoverPopover'
+
+const PREFIX = 'RSFNavTab'
+
+const defaultClasses = {
+  popover: `${PREFIX}-popover`,
+  tab: `${PREFIX}-tab`,
+  link: `${PREFIX}-link`,
+  ripple: `${PREFIX}-ripple`,
+  paper: `${PREFIX}-paper`,
+  innerPaper: `${PREFIX}-innerPaper`,
+}
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the Popover element for desktop users.
    */
-  popover: {
+  [`& .${defaultClasses.popover}`]: {
     pointerEvents: 'none',
     maxHeight: '80%',
   },
+
   /**
    * Styles applied to the `Tab` element.
    */
-  tab: {
+  [`& .${defaultClasses.tab}`]: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },
+
   /**
    * Styles applied to the root [`Link`](/apiReference/link/Link) element.
    */
-  link: {
+  [`& .${defaultClasses.link}`]: {
     textDecoration: 'none',
     color: 'inherit',
     fontWeight: 300,
   },
+
   /**
    * Styles applied to the root element of the `Tab`'s `TouchRippleProps` classes.
    */
-  ripple: {
+  [`& .${defaultClasses.ripple}`]: {
     zIndex: 2,
   },
+
   /**
    * Styles applied to the Popover element's `Paper` element for desktop users.
    */
-  paper: {
+  [`& .${defaultClasses.paper}`]: {
     pointerEvents: 'all',
     paddingTop: 2, // we add 2 pixels of transparent padding and move the menu up two pixels to cover the tab indicator
     marginTop: -2, // so that the user doesn't temporarily mouse over the indicator when moving between the tab and the menu, causing the menu to flicker.
     background: 'transparent',
     boxShadow: '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14)',
   },
+
   /**
    * Styles applied to the Popover element's `Paper` element for desktop users.
    */
-  innerPaper: {
+  [`& .${defaultClasses.innerPaper}`]: {
     borderTop: `1px solid ${theme.palette.divider}`,
   },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFNavTab' })
+}))
 
 /**
  * A single navigational tab, which links to another page in the app based on the `as` and `href` props.
@@ -74,86 +93,41 @@ const useStyles = makeStyles(styles, { name: 'RSFNavTab' })
  *
  * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the `NavTab` is focused.
  */
-function NavTab({ classes, href, as, prefetch, children, ...props }) {
-  classes = useStyles({ classes })
+const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...props }) {
+  const classes = { ...defaultClasses, ...c }
 
-  const [overTab, setOverTab] = useState(false)
-  const [overMenu, setOverMenu] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [focused, setFocused] = useState(false)
+  const popupState = usePopupState({
+    variant: 'popover',
+    popupId: 'navTabPopup'
+  })
 
-  const showMenu = useCallback(event => {
-    setOverTab(true)
-    setAnchorEl(event.currentTarget)
-  }, [])
-
-  // We use setTimeout here to delay the tab and menu exit events give time for the user to enter
-  // the tab or menu so that the menu doesn't flash when the user is transitioning between tab and menu.
-  const hideMenu = useCallback(() => setTimeout(() => setOverTab(false)), [])
-  const leaveMenu = useCallback(() => setTimeout(() => setOverMenu(false)), [])
-  const enterMenu = useCallback(() => setOverMenu(true), [])
-  const menuItemBlurPending = useRef(false)
-
-  // accessibility: open the menu when the user presses enter with the tab focused
   const handleEnterKeyDown = useCallback(e => {
-    if (e.key === 'Enter') {
+    if(e.key === 'Enter') {
       e.preventDefault()
-      setAnchorEl(e.currentTarget)
-      setFocused(true)
+      popupState.open(e)
     }
   }, [])
 
-  // Keep track of when an item in the menu is focused.
-  const handleMenuItemFocus = useCallback(() => {
-    // When tabbing through menu items, the current one will blur before the next one focuses.
-    // So we need to let the event loop finish one cycle to see if another item in the menu receives focus before
-    // determining that the menu has lost focus and should be closed.
-    menuItemBlurPending.current = false
+  const hideMenu = useCallback(e => {
+    e.preventDefault()
+    popupState.close(e)
   }, [])
-
-  // When a menu item loses focus, we close the menu if another menu item doesn't immediately gain focus
-  const handleMenuItemBlur = useCallback(() => {
-    menuItemBlurPending.current = true
-
-    setTimeout(() => {
-      if (menuItemBlurPending.current) {
-        setFocused(false)
-      }
-    })
-  }, [])
-
-  const open = overTab || overMenu || focused
-
-  // close the menu when the user navigates to a new page
-  useEffect(() => {
-    const onHistoryChange = () => handleMenuItemBlur()
-    const unsubscribe = () => Router.events.off('routeChangeStart', onHistoryChange)
-
-    if (open) {
-      Router.events.on('routeChangeStart', onHistoryChange)
-    } else {
-      unsubscribe()
-    }
-
-    return unsubscribe
-  }, [open])
 
   return (
-    <>
+    <Root>
       <Link
         className={classes.link}
         href={href}
         as={as}
-        onClick={hideMenu} // Does not work in dev, because next consumes focus in production everything is good
-        onMouseEnter={showMenu}
-        onMouseLeave={hideMenu}
+        onClick={hideMenu}
         prefetch={prefetch}
+        {...bindHover(popupState)}
       >
         <Tab
           onKeyDown={handleEnterKeyDown}
           classes={{ root: classes.tab }}
           aria-haspopup={children != null}
-          aria-expanded={open}
+          aria-expanded={popupState.isOpen}
           {...props}
           TouchRippleProps={{
             classes: {
@@ -163,11 +137,10 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
         />
       </Link>
       {!children ? null : (
-        <Hidden xsDown>
-          <Popover
-            open={open}
+        <Hidden smDown>
+          <HoverPopover
+            {...bindPopover(popupState)}
             className={classes.popover}
-            anchorEl={anchorEl}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
@@ -178,25 +151,21 @@ function NavTab({ classes, href, as, prefetch, children, ...props }) {
               horizontal: 'center',
             }}
             PaperProps={{
-              onMouseEnter: enterMenu,
-              onMouseLeave: leaveMenu,
-              onClick: leaveMenu,
               square: true,
               className: classes.paper,
             }}
+            classes={classes}
           >
             <Paper
               className={classes.innerPaper}
-              onBlurCapture={handleMenuItemBlur}
-              onFocusCapture={handleMenuItemFocus}
               square
             >
               {children}
             </Paper>
-          </Popover>
+          </HoverPopover>
         </Hidden>
       )}
-    </>
+    </Root>
   )
 }
 
@@ -213,6 +182,7 @@ NavTab.propTypes = {
    * Override or extend the styles applied to the component. See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+  prefetch: PropTypes.oneOf(['always', 'visible', false]),
 }
 
 export default React.memo(NavTab)

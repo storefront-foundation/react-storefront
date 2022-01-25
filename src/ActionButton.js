@@ -1,45 +1,57 @@
 import React, { forwardRef } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button, Typography } from '@material-ui/core'
+import { styled } from '@mui/material/styles'
+import { Button, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 
-export const styles = theme => ({
+const PREFIX = 'RSFActionButton'
+
+const defaultClasses = {
+  label: `${PREFIX}-label`,
+  caption: `${PREFIX}-caption`,
+  button: `${PREFIX}-button`,
+  value: `${PREFIX}-value`,
+}
+
+const StyledButton = styled(Button)(({ theme }) => ({
   /**
-   * Styles passed through to the [`Button`](https://material-ui.com/api/button/#css) element's
+   * Styles passed through to the [`Button`](https://mui.com/api/button/#css) element's
    * `label` CSS rule.
    */
-  label: {
+  [`& .${defaultClasses.label}`]: {
     justifyContent: 'space-between',
     alignItems: 'baseline',
     textTransform: 'none',
   },
+
   /**
    * Styles applied to the label container.
    */
-  caption: {
+  [`& .${defaultClasses.caption}`]: {
     textTransform: 'none',
     fontWeight: 'bold',
   },
+
   /**
-   * Styles passed through to the [`Button`](https://material-ui.com/api/button/#css) element's
+   * Styles passed through to the [`Button`](https://mui.com/api/button/#css) element's
    * `contained` CSS rule.
    */
-  button: {
+  [`& .${defaultClasses.button}`]: {
     boxShadow: 'none',
     backgroundColor: theme.palette.grey[200],
   },
+
   /**
    * Styles applied to the values container.
    */
-  value: {
+  [`& .${defaultClasses.value}`]: {
     color: theme.palette.text.primary,
     whiteSpace: 'nowrap',
     textOverflow: 'ellipses',
     marginLeft: '10px',
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFActionButton' })
+export {}
 
 /**
  * This button class displays a label and value.
@@ -50,28 +62,28 @@ const useStyles = makeStyles(styles, { name: 'RSFActionButton' })
  *  <ActionButton label="Sort" value="Lowest Price" onClick={openSortMenu} />
  * ```
  */
-const ActionButton = forwardRef(({ label, value, children, classes = {}, ...props }, ref) => {
-  let { caption, value: valueClasses, button, label: labelClasses, ...otherClasses } = classes
-  classes = useStyles({ classes: { caption, value: valueClasses, button, label: labelClasses } })
-
+const ActionButton = forwardRef(({ label, value, classes: c = {}, ...props }, ref) => {
+  const classes = { ...defaultClasses, ...c }
+  const { caption, value: valueClasses, button, label: labelClasses, ...otherClasses } = classes
   return (
-    <Button
+    <StyledButton
       ref={ref}
       variant="contained"
+      color="primary"
       classes={{
-        contained: classes.button,
-        label: classes.label,
+        contained: button,
+        label: labelClasses,
         ...otherClasses,
       }}
       {...props}
     >
-      <Typography variant="button" className={classes.caption}>
+      <Typography variant="button" className={caption}>
         {label}
       </Typography>
-      <Typography variant="caption" className={classes.value}>
+      <Typography variant="caption" className={valueClasses}>
         {value}
       </Typography>
-    </Button>
+    </StyledButton>
   )
 })
 

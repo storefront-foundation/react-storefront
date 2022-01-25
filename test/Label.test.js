@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Label from 'react-storefront/Label'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 
 describe('Label', () => {
   let wrapper

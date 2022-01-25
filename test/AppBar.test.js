@@ -2,9 +2,9 @@ import React from 'react'
 import { mount } from 'enzyme'
 import AppBar from 'react-storefront/AppBar'
 import PWAContext from 'react-storefront/PWAContext'
-import { MuiThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider as MuiThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 import createTheme from 'react-storefront/theme/createTheme'
-import { Slide } from '@material-ui/core'
+import { Slide } from '@mui/material'
 
 // Create a theme instance.
 const theme = createTheme()
@@ -17,9 +17,11 @@ describe('AppBar', () => {
   const Test = ({ offline = false, offlineMessage, ...others }) => {
     return (
       <PWAContext.Provider value={{ offline }}>
-        <MuiThemeProvider theme={theme}>
-          <AppBar offlineWarning={offlineMessage} {...others} />
-        </MuiThemeProvider>
+        <StyledEngineProvider injectFirst>
+          <MuiThemeProvider theme={theme}>
+            <AppBar offlineWarning={offlineMessage} {...others} />
+          </MuiThemeProvider>
+        </StyledEngineProvider>
       </PWAContext.Provider>
     )
   }

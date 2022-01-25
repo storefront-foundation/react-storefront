@@ -1,8 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import SearchButton from 'react-storefront/search/SearchButton'
-import { Search } from '@material-ui/icons'
-import { IconButton } from '@material-ui/core'
+import { Search } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
 
 describe('SearchButton', () => {
   let wrapper

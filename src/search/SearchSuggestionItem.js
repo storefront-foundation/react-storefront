@@ -1,13 +1,22 @@
 import React, { useContext } from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import Link from '../link/Link'
+import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
+import Link from '../link/Link'
 import Image from '../Image'
 import SearchContext from './SearchContext'
 import Highlight from '../Highlight'
 
-export const styles = theme => ({
-  root: {
+const PREFIX = 'RSFSearchSuggestionItem'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  thumbnail: `${PREFIX}-thumbnail`,
+  text: `${PREFIX}-text`,
+  highlight: `${PREFIX}-highlight`,
+}
+
+const Root = styled('li')(({ theme }) => ({
+  [`&.${defaultClasses.root}`]: {
     margin: theme.spacing(2, 0),
     listStyle: 'none',
     padding: 0,
@@ -17,7 +26,8 @@ export const styles = theme => ({
       alignItems: 'flex-start',
     },
   },
-  thumbnail: {
+
+  [`& .${defaultClasses.thumbnail}`]: {
     marginBottom: '10px',
     display: 'none',
     '[data-ui=thumbnails] &': {
@@ -29,34 +39,33 @@ export const styles = theme => ({
       },
     },
   },
-  text: {},
-  highlight: {
+
+  [`& .${defaultClasses.text}`]: {},
+
+  [`& .${defaultClasses.highlight}`]: {
     backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: '2px',
     color: theme.palette.secondary.main,
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFSearchSuggestionItem' })
+export {}
 
 export default function SearchSuggestionItem({
   ImageComponent,
-  classes,
+  classes: c = {},
   item,
   ui,
   thumbnailProps,
   children,
 }) {
-  classes = useStyles({ classes })
-
+  const classes = { ...defaultClasses, ...c }
   const { query } = useContext(SearchContext)
 
   return (
-    <li className={classes.root}>
+    <Root className={classes.root}>
       <Link as={item.as} href={item.href} pageData={item.pageData}>
-        {children ? (
-          children
-        ) : (
+        {children || (
           <a href={item.as}>
             <div data-ui={ui}>
               <ImageComponent
@@ -74,7 +83,7 @@ export default function SearchSuggestionItem({
           </a>
         )}
       </Link>
-    </li>
+    </Root>
   )
 }
 
@@ -106,6 +115,7 @@ SearchSuggestionItem.propTypes = {
    * The component type to use to display images.
    */
   ImageComponent: PropTypes.elementType,
+  ui: PropTypes.any,
 }
 
 SearchSuggestionItem.defaultProps = {

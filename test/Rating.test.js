@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Rating from 'react-storefront/Rating'
-import { Star, StarBorder, StarHalf, Pets as Test } from '@material-ui/icons'
+import { Star, StarBorder, StarHalf, Pets as Test } from '@mui/icons-material'
 
 describe('Rating', () => {
   let wrapper

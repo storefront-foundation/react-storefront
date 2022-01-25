@@ -1,7 +1,7 @@
 import React from 'react'
 import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 import ExpandableSection from '../../src/ExpandableSection'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 
 export default { title: 'ExpandableSection', decorators: [withKnobs] }
 

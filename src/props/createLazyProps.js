@@ -54,33 +54,31 @@ export default function createLazyProps(fetchCallback, { timeout = 100 } = {}) {
     if (typeof window === 'undefined') {
       // server
       return fetchCallback(options)
-    } else {
-      // client
-      const { rsf } = window.history.state
+    }
+    // client
+    const { rsf } = window.history.state
 
-      if (rsf && rsf[options.asPath]) {
-        // going back or forward
-        /* this is written useLazyState's recordState function when the user navigates (not back) */
-        return {
-          pageData: rsf[options.asPath],
-        }
-      } else {
-        return new Promise((resolve, reject) => {
-          const fetchPromise = fetchCallback(options)
-
-          setTimeout(() => {
-            resolve({ lazy: fetchPromise })
-          }, timeout)
-
-          fetchPromise
-            .then(result => {
-              resolve(result)
-            })
-            .catch(e => {
-              reject(e)
-            })
-        })
+    if (rsf && rsf[options.asPath]) {
+      // going back or forward
+      /* this is written useLazyState's recordState function when the user navigates (not back) */
+      return {
+        pageData: rsf[options.asPath],
       }
     }
+    return new Promise((resolve, reject) => {
+      const fetchPromise = fetchCallback(options)
+
+      setTimeout(() => {
+        resolve({ lazy: fetchPromise })
+      }, timeout)
+
+      fetchPromise
+        .then(result => {
+          resolve(result)
+        })
+        .catch(e => {
+          reject(e)
+        })
+    })
   }
 }

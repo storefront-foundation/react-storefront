@@ -1,26 +1,22 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles'
 import React from 'react'
-import Image from '../Image'
 import ReactImageMagnify from 'react-image-magnify'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import Image from '../Image'
 
-const useStyles = makeStyles(theme => ({
-  rimRoot: {
-    height: '100% !important',
-    width: '100% !important',
-  },
-  rimSmallImage: {
-    height: '100% !important',
-    width: '100% !important',
-  },
-}))
+const PREFIX = 'Media'
+
+const classes = {
+  rimRoot: `${PREFIX}-rimRoot`,
+  rimSmallImage: `${PREFIX}-rimSmallImage`,
+}
 
 /**
  * An element that determines the proper tag to use for a media node within a
  * [`Carousel`](/apiReference/carousel/Carousel).
  */
-function Media({
+const Media = function({
   magnifyProps,
   imageProps,
   videoProps,
@@ -32,8 +28,6 @@ function Media({
   ImageComponent,
   ImageMagnifyComponent,
 }) {
-  const classes = useStyles()
-
   const adjustMagnifyProps = () => {
     const appliedMagnifyProps = { ...(magnifyProps || {}) }
     appliedMagnifyProps.style = {
@@ -66,25 +60,35 @@ function Media({
           ))}
         </video>
       )
-    } else {
-      return <video src={src} alt={alt} {...videoProps} />
     }
-  } else if (magnify) {
+    return <video src={src} alt={alt} {...videoProps} />
+  }
+  if (magnify) {
+    const StyledImageMagnifyComponent = styled(ImageMagnifyComponent)(() => ({
+      [`& .${classes.rimRoot}`]: {
+        height: '100% !important',
+        width: '100% !important',
+      },
+
+      [`& .${classes.rimSmallImage}`]: {
+        height: '100% !important',
+        width: '100% !important',
+      },
+    }))
     return (
-      <ImageMagnifyComponent
+      <StyledImageMagnifyComponent
         enlargedImagePosition="over"
         {...adjustMagnifyProps()}
         smallImage={{
-          src: src,
-          alt: alt,
+          src,
+          alt,
           isFluidWidth: true,
         }}
         largeImage={magnify}
       />
     )
-  } else {
-    return <ImageComponent key={src} src={src} alt={alt} fill {...imageProps} />
   }
+  return <ImageComponent key={src} src={src} alt={alt} fill {...imageProps} />
 }
 
 Media.propTypes = {

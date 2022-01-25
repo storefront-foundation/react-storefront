@@ -3,8 +3,8 @@ import { mount } from 'enzyme'
 import CartButton from 'react-storefront/CartButton'
 import Link from 'react-storefront/link/Link'
 import ToolbarButton from 'react-storefront/ToolbarButton'
-import { AddShoppingCart as CustomIcon } from '@material-ui/icons'
-import { Badge } from '@material-ui/core'
+import { AddShoppingCart as CustomIcon } from '@mui/icons-material'
+import { Badge } from '@mui/material'
 
 describe('CartButton', () => {
   let wrapper

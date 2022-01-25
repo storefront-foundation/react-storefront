@@ -1,30 +1,37 @@
 import React, { useState, useCallback, memo, useContext } from 'react'
+import { styled } from '@mui/material/styles'
+import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 import ActionButton from '../ActionButton'
 import SearchResultsContext from './SearchResultsContext'
 import Filter from './Filter'
-import PropTypes from 'prop-types'
 import Drawer from '../drawer/Drawer'
-import { makeStyles } from '@material-ui/core/styles'
-import { useRouter } from 'next/router'
 
-export const styles = theme => ({
+const PREFIX = 'RSFFilterButton'
+
+const defaultClasses = {
+  drawer: `${PREFIX}-drawer`,
+}
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')(() => ({
   /**
    * Styles applied to the drawer element.
    */
-  drawer: {
+  [`& .${defaultClasses.drawer}`]: {
     height: '75vh',
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFFilterButton' })
+export {}
 
 /**
  * A button that when clicked, opens a drawer containing the `Filter` view. Current filters
  * are displayed in the button text.
  */
-function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) {
-  classes = useStyles({ classes })
-
+const FilterButton = function({ classes: c = {}, title, drawerProps, onClick, href, ...props }) {
+  const classes = { ...defaultClasses, ...c }
+  const { drawer, ...buttonClasses } = classes
   const {
     pageData: { filters, facets },
     actions,
@@ -33,7 +40,6 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
   const openFilter = useRouter().query.openFilter === '1'
   const [state, setState] = useState({ open: openFilter, mountDrawer: openFilter })
   const { open, mountDrawer } = state
-  const { clear, clearDisabled, drawer, ...buttonClasses } = useStyles(classes)
 
   const toggleOpen = open => {
     setState({ ...state, open, mountDrawer: mountDrawer || true })
@@ -60,8 +66,8 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
 
     const selected = filters[0]
 
-    for (let group of facets) {
-      for (let option of group.options) {
+    for (const group of facets) {
+      for (const option of group.options) {
         if (selected === option.code) {
           return option.name
         }
@@ -72,7 +78,7 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
   }
 
   return (
-    <>
+    <Root>
       <ActionButton
         label={title}
         href={href}
@@ -83,7 +89,7 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
       />
       {!href && (
         <Drawer
-          classes={{ paper: classes.drawer }}
+          classes={{ paper: drawer }}
           anchor="bottom"
           open={open}
           onClose={toggleOpen.bind(null, false)}
@@ -94,7 +100,7 @@ function FilterButton({ classes, title, drawerProps, onClick, href, ...props }) 
           {mountDrawer && <Filter onViewResultsClick={handleViewResultsClick} {...drawerProps} />}
         </Drawer>
       )}
-    </>
+    </Root>
   )
 }
 

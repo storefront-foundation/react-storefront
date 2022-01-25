@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const ClearRequireCachePlugin = require('webpack-clear-require-cache-plugin')
 const withServiceWorker = require('./withServiceWorker')
 
@@ -89,13 +89,6 @@ module.exports = ({
         return nextConfig.webpack(config, options)
       }
 
-      return config
-    },
-    webpackDevMiddleware(config) {
-      config.watchOptions = {
-        // required to recompile client build when there are changes in node_modules
-        ignored: [],
-      }
       return config
     },
   })

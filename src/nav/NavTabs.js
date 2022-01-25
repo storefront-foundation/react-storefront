@@ -1,22 +1,32 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles'
 import React, { useMemo } from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import { Tabs } from '@material-ui/core'
-import MuiTabScrollButton from '@material-ui/core/TabScrollButton'
+import { Tabs } from '@mui/material'
+import MuiTabScrollButton from '@mui/material/TabScrollButton'
 import { useRouter } from 'next/router'
 
-export const styles = theme => ({
+const PREFIX = 'RSFNavTabs'
+
+const defaultClasses = {
+  indicatorNoSelection: `${PREFIX}-indicatorNoSelection`,
+  scrollButtons: `${PREFIX}-scrollButtons`,
+  root: `${PREFIX}-root`,
+  ripple: `${PREFIX}-ripple`,
+}
+
+const StyledTabs = styled(Tabs)(({ theme }) => ({
   /**
    * Styles applied to the root element when no tab is selected.
    */
-  indicatorNoSelection: {
+  [`& .${defaultClasses.indicatorNoSelection}`]: {
     display: 'none',
   },
+
   /**
-   * Styles passed through to the `scrollButtons` rule in [`Tabs`](https://material-ui.com/api/tabs/#css)'.
+   * Styles passed through to the `scrollButtons` rule in [`Tabs`](https://mui.com/api/tabs/#css)'.
    */
-  scrollButtons: {
+  [`& .${defaultClasses.scrollButtons}`]: {
     position: 'absolute',
     height: '100%',
     right: 0,
@@ -29,10 +39,11 @@ export const styles = theme => ({
       background: theme.palette.background.paper,
     },
   },
+
   /**
-   * Styles applied to the root [`Tabs`](https://material-ui.com/api/tabs/) component.
+   * Styles applied to the root [`Tabs`](https://mui.com/api/tabs/) component.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     maxWidth: theme.breakpoints.values.lg,
     flex: 1,
     position: 'relative',
@@ -55,50 +66,54 @@ export const styles = theme => ({
         'linear-gradient(to left, rgba(255, 255, 255, 1.0) 0%, rgba(255, 255, 255, 0.0) 100%)',
     },
   },
-  /**
-   * Styles applied to the root element of the[`Tabs`](https://material-ui.com/api/tabs/)'
-   * `ScrollButtonComponent` component.
-   */
-  ripple: {
-    zIndex: 2,
-  },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFNavTabs' })
+export {}
 
 /**
  * Scrollable navigation tabs for the top of the app. All extra props are spread to the
  * underlying Material UI Tabs element.  When a tab is clicked, the "top_nav_clicked" analytics
  * event is fired.
  */
-export default function NavTabs({ classes = {}, children, ...others }) {
-  const { paper, indicator, indicatorNoSelection, ripple, ...classNames } = classes
-  classes = useStyles({ classes: { paper, indicator, indicatorNoSelection, ripple } })
+export default function NavTabs({ classes: c = {}, children, ...others }) {
+  const classes = { ...defaultClasses, ...c }
+  const { indicator, indicatorNoSelection, ripple, ...classNames } = classes
 
   const { asPath } = useRouter()
   const value = children && children.findIndex(tab => tab.props.as === asPath.split('?')[0])
 
   const TabScrollButton = useMemo(() => {
-    return props => (
-      <MuiTabScrollButton {...props} TouchRippleProps={{ classes: { root: classes.ripple } }} />
-    )
-  }, [classes])
+    const Comp = function(props) {
+      return <MuiTabScrollButton {...props} TouchRippleProps={{ classes: { root: ripple } }} />
+    }
+    return styled(Comp)(() => ({
+      [`&.${ripple}`]: {
+        zIndex: 2,
+      },
+    }))
+  }, [ripple])
 
   return (
-    <Tabs
+    <StyledTabs
+      indicatorColor="primary"
+      textColor="inherit"
       ScrollButtonComponent={TabScrollButton}
       variant="scrollable"
       classes={{
         ...classNames,
-        indicator: clsx(classes.indicator, {
-          [classes.indicatorNoSelection]: value === -1, // To cancel weird animation when going from plp to pdp
-        }),
+        indicator: clsx(
+          indicator,
+          {
+            [indicatorNoSelection]: value === -1, // To cancel weird animation when going from plp to pdp
+          },
+          classes.root,
+        ),
       }}
       value={value === -1 ? false : value}
       {...others}
     >
       {children}
-    </Tabs>
+    </StyledTabs>
   )
 }
 

@@ -1,54 +1,61 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles'
 import React, { useMemo, useContext } from 'react'
 import SearchResultsContext from './SearchResultsContext'
-import { makeStyles } from '@material-ui/core/styles'
 import SwatchProductOption from '../option/SwatchProductOption'
 import TextProductOption from '../option/TextProductOption'
 import { Hbox } from '../Box'
 
-const styles = theme => ({
+const PREFIX = 'RSFButtonFilterGroup'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  matches: `${PREFIX}-matches`,
+  button: `${PREFIX}-button`,
+}
+
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     display: 'flex',
     flexWrap: 'wrap',
   },
+
   /**
    * Styles applied to the matching text.
    */
-  matches: {
+  [`& .${defaultClasses.matches}`]: {
     display: 'inline',
     ...theme.typography.caption,
     marginLeft: 2,
     color: theme.palette.grey[700],
   },
+
   /**
    * Styles applied to each button element.
    */
-  button: {
+  [`& .${defaultClasses.button}`]: {
     fontWeight: 'normal',
     margin: theme.spacing(0, 0.5, 0.5, 0),
   },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFButtonFilterGroup' })
+}))
 
 /**
  * A UI for grouping filters using buttons.
  */
 export default function ButtonFilterGroup(props) {
-  const { group, submitOnChange } = props
+  const { group, submitOnChange, classes: c = {} } = props
   const {
     pageData: { filters },
     actions: { toggleFilter },
   } = useContext(SearchResultsContext)
-
-  const classes = useStyles(props.classes)
+  const classes = { ...defaultClasses, ...c }
 
   return useMemo(
     () => (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         {group.options.map((facet, i) => {
           const selected = filters.indexOf(facet.code) !== -1
           const { image, matches, name } = facet
@@ -71,7 +78,7 @@ export default function ButtonFilterGroup(props) {
             />
           )
         })}
-      </div>
+      </Root>
     ),
     [filters, ...Object.values(props)],
   )

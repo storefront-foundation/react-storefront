@@ -1,24 +1,28 @@
 import PropTypes from 'prop-types'
+import { styled } from '@mui/material/styles'
 import React, { useMemo, useContext } from 'react'
+import ListItem from '@mui/material/ListItem'
 import SearchResultsContext from './SearchResultsContext'
-import { makeStyles } from '@material-ui/core/styles'
 import ExpandableSection from '../ExpandableSection'
 import CheckboxFilterGroup from './CheckboxFilterGroup'
 import ButtonFilterGroup from './ButtonFilterGroup'
-import ListItem from '@material-ui/core/ListItem'
 
-const styles = theme => ({
+const PREFIX = 'RSFFacetGroup'
+
+const defaultClasses = {
+  groupTitle: `${PREFIX}-groupTitle`,
+}
+
+const StyledExpandableSection = styled(ExpandableSection)(({ theme }) => ({
   /**
    * Styles applied to the group's title element.
    */
-  groupTitle: {
+  [`& .${defaultClasses.groupTitle}`]: {
     [theme.breakpoints.up('sm')]: {
       fontWeight: 'bold',
     },
   },
-})
-
-const useStyles = makeStyles(styles, { name: 'RSFFacetGroup' })
+}))
 
 /**
  * A grouping of facets used for filtering products.
@@ -32,9 +36,11 @@ export default function FacetGroup(props) {
     controlsProps,
     listItemProps,
     onClose,
-    isSimpleList
+    isSimpleList,
+    classes: c = {},
   } = props
-  const classes = useStyles(props.classes)
+
+  const classes = { ...defaultClasses, ...c }
   const {
     pageData: { filters },
   } = useContext(SearchResultsContext)
@@ -44,7 +50,7 @@ export default function FacetGroup(props) {
 
     const selection = []
 
-    for (let option of group.options) {
+    for (const option of group.options) {
       if (filters.indexOf(option.code) !== -1) {
         selection.push(option)
       }
@@ -81,18 +87,14 @@ export default function FacetGroup(props) {
     }
 
     return (
-      <ExpandableSection
+      <StyledExpandableSection
         title={group.name}
         caption={caption}
         defaultExpanded={defaultExpanded}
         classes={{ title: classes.groupTitle }}
       >
-        <Controls
-          group={group}
-          submitOnChange={submitOnChange}
-          {...controlsProps}
-        />
-      </ExpandableSection>
+        <Controls group={group} submitOnChange={submitOnChange} {...controlsProps} />
+      </StyledExpandableSection>
     )
   }, [...Object.values(props), filters])
 }

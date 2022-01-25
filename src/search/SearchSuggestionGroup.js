@@ -1,14 +1,22 @@
 import React from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import Typography from '@material-ui/core/Typography'
+import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 import SearchSuggestionItem from './SearchSuggestionItem'
 
-export const styles = theme => ({
+const PREFIX = 'RSFSearchSuggestionGroup'
+
+const defaultClasses = {
+  root: `${PREFIX}-root`,
+  caption: `${PREFIX}-caption`,
+  list: `${PREFIX}-list`,
+}
+
+const Root = styled('div')(({ theme }) => ({
   /**
    * Styles applied to the root element.
    */
-  root: {
+  [`&.${defaultClasses.root}`]: {
     listStyle: 'none',
     margin: theme.spacing(2),
     '& a strong': {
@@ -16,20 +24,22 @@ export const styles = theme => ({
       color: 'inherit',
     },
   },
+
   /**
    * Styles applied to the group's caption element.
    */
-  caption: {
+  [`& .${defaultClasses.caption}`]: {
     textTransform: 'uppercase',
     fontWeight: 'bold',
     paddingBottom: 5,
     borderBottom: `1px solid ${theme.palette.divider}`,
     margin: theme.spacing(0, 0, 1, 0),
   },
+
   /**
    * Styles applied to the group's list element.
    */
-  list: {
+  [`& .${defaultClasses.list}`]: {
     '&[data-ui=list]': {
       padding: 0,
       margin: theme.spacing(0, 0, 4, 0),
@@ -45,22 +55,20 @@ export const styles = theme => ({
       },
     },
   },
-})
+}))
 
-const useStyles = makeStyles(styles, { name: 'RSFSearchSuggestionGroup' })
+export {}
 
-export default function SearchSuggestionGroup({ classes, ui, caption, links, children }) {
-  classes = useStyles({ classes })
+export default function SearchSuggestionGroup({ classes: c = {}, ui, caption, links, children }) {
+  const classes = { ...defaultClasses, ...c }
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <Typography className={classes.caption}>{caption}</Typography>
       <ul className={classes.list} data-ui={ui}>
-        {children
-          ? children
-          : links.map((item, i) => <SearchSuggestionItem item={item} ui={ui} key={i} />)}
+        {children || links.map((item, i) => <SearchSuggestionItem item={item} ui={ui} key={i} />)}
       </ul>
-    </div>
+    </Root>
   )
 }
 
@@ -90,6 +98,7 @@ SearchSuggestionGroup.propTypes = {
    * A title for the list.
    */
   caption: PropTypes.string.isRequired,
+  ui: PropTypes.any,
 }
 
 SearchSuggestionGroup.defaultProps = {}

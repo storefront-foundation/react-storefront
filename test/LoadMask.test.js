@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import LoadMask from 'react-storefront/LoadMask'
-import { CircularProgress } from '@material-ui/core'
+import { CircularProgress } from '@mui/material'
 
 describe('LoadMask', () => {
   let wrapper
