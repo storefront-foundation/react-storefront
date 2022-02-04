@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { createMuiTheme } from '@mui/material/styles'
+import { createTheme } from '@mui/material/styles'
 import { ImageListItem } from '@mui/material'
 import ResponsiveTiles from 'react-storefront/ResponsiveTiles'
 import AutoScrollToNewChildren from 'react-storefront/AutoScrollToNewChildren'
@@ -49,7 +49,7 @@ describe('ResponsiveTiles', () => {
   })
 
   it('should be able to pass custom spacing', () => {
-    const theme = createMuiTheme()
+    const theme = createTheme()
     const spacing = 2
     const root = document.createElement('div')
     document.body.appendChild(root)
@@ -71,7 +71,7 @@ describe('ResponsiveTiles', () => {
   })
 
   it.skip('should be able to pass custom column breakpoints', () => {
-    const theme = createMuiTheme()
+    const theme = createTheme()
     const root = document.createElement('div')
     document.body.appendChild(root)
 

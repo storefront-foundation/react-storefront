@@ -20,9 +20,10 @@ describe('Drawer', () => {
 
   it.skip('should set padding to 0 on drawer close', () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(null)
+    const onClose = jest.fn()
 
     wrapper = mount(
-      <Drawer title="test" open>
+      <Drawer title="test" onClose={onClose} open>
         <div></div>
       </Drawer>,
     )
