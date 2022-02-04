@@ -97,7 +97,7 @@ describe('Accordion', () => {
       ).toBe(1)
     })
 
-    it.skip('should close the section if clicked again on the same section', () => {
+    it('should close the section if clicked again on the same section', () => {
       wrapper
         .find('.MuiButtonBase-root')
         .at(getFiberIndex(0))

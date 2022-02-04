@@ -4,6 +4,7 @@ import SearchField from 'react-storefront/search/SearchField'
 import SearchSubmitButton from 'react-storefront/search/SearchSubmitButton'
 import { Fab, Button } from '@mui/material'
 import { IconButton } from '@mui/material'
+import { getFiberIndex } from '../methods'
 
 describe('SearchField', () => {
   let wrapper, getQuery
@@ -47,7 +48,7 @@ describe('SearchField', () => {
 
     expect(wrapper.find('input').prop('value')).toBe('test')
 
-    wrapper.find(IconButton).simulate('click')
+    wrapper.find(IconButton).at(getFiberIndex(0)).simulate('click')
 
     expect(wrapper.find('input').prop('value')).toBe('')
   })

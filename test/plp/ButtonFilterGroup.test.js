@@ -4,6 +4,7 @@ import SearchResultsContext from 'react-storefront/plp/SearchResultsContext'
 import ButtonFilterGroup from 'react-storefront/plp/ButtonFilterGroup'
 import SwatchProductOption from 'react-storefront/option/SwatchProductOption'
 import TextProductOption from 'react-storefront/option/TextProductOption'
+import { getFiberIndex } from '../methods'
 
 describe('ButtonFilterGroup', () => {
   let wrapper
@@ -97,7 +98,7 @@ describe('ButtonFilterGroup', () => {
     ).toBe(group2.options[0].image)
   })
 
-  it.skip('should call toggleFilter function from context on button click', () => {
+  it('should call toggleFilter function from context on button click', () => {
     const toggleFilterSpy = jest.fn()
 
     wrapper = mount(
@@ -116,8 +117,8 @@ describe('ButtonFilterGroup', () => {
     )
 
     wrapper
-      .find(TextProductOption)
-      .first()
+      .find('.MuiButton-root')
+      .at(getFiberIndex(0))
       .simulate('click')
 
     expect(toggleFilterSpy).toBeCalled()

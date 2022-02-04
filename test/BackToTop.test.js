@@ -34,7 +34,7 @@ describe('BackToTop', () => {
     expect(wrapper.find(CustomIcon).exists()).toBe(true)
   })
 
-  it.skip('should show back to top button when scrolled more than showUnderY prop value', () => {
+  it('should show back to top button when scrolled more than showUnderY prop value', () => {
     window.pageYOffset = 201
     wrapper = mount(<BackToTop showUnderY={200} />)
 
@@ -44,12 +44,12 @@ describe('BackToTop', () => {
 
     expect(wrapper.find(Fab).prop('style').visibility).toBe('hidden')
 
-    wrapper.find(Fab).simulate('click')
+    wrapper.find('.MuiFab-root').last().simulate('click')
 
     expect(wrapper.find(Fab).prop('style').visibility).toBe(undefined)
   })
 
-  it.skip('should scroll to top instantly if scroll position is more than instantBehaviorUnderY prop value', () => {
+  it('should scroll to top instantly if scroll position is more than instantBehaviorUnderY prop value', () => {
     window.scrollY = 300
     wrapper = mount(<BackToTop instantBehaviorUnderY={250} />)
 
@@ -57,11 +57,11 @@ describe('BackToTop', () => {
       map.scroll()
     })
 
-    wrapper.find(Fab).simulate('click')
+    wrapper.find('.MuiFab-root').last().simulate('click')
     expect(window.scrollTo).toHaveBeenCalledWith({ behavior: 'auto', left: 0, top: 0 })
   })
 
-  it.skip('should scroll to top smoothly if scroll position is less than instantBehaviorUnderY prop value', () => {
+  it('should scroll to top smoothly if scroll position is less than instantBehaviorUnderY prop value', () => {
     window.pageYOffset = 201
     wrapper = mount(<BackToTop instantBehaviorUnderY={250} />)
 
@@ -69,7 +69,7 @@ describe('BackToTop', () => {
       map.scroll()
     })
 
-    wrapper.find(Fab).simulate('click')
+    wrapper.find('.MuiFab-root').last().simulate('click')
     expect(window.scrollTo).toHaveBeenCalledWith({ behavior: 'smooth', left: 0, top: 0 })
   })
 })
