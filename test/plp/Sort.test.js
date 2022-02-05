@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import Sort from 'react-storefront/plp/Sort'
 import { Button, MenuItem } from '@mui/material'
 import SearchResultsContext from 'react-storefront/plp/SearchResultsContext'
+import { getFiberIndex } from '../methods'
 
 describe('Sort', () => {
   const mockSetSort = jest.fn()
@@ -74,43 +75,43 @@ describe('Sort', () => {
     warningSpy.mockRestore()
   })
 
-  it.skip('should call provided onSelect fn on click - Buttons', () => {
+  it('should call provided onSelect fn on click - Buttons', () => {
     onSelectHandler = jest.fn()
 
     wrapper = mount(<Test />)
 
     wrapper
-      .find(Button)
-      .first()
+      .find('.MuiButton-root')
+      .at(getFiberIndex(0))
       .simulate('click')
 
     expect(onSelectHandler.mock.calls[0][0]).toBe(sortOptions[0])
     expect(mockSetSort).toHaveBeenCalledTimes(1)
   })
 
-  it.skip('should call provided onSelect fn on click - Menu', () => {
+  it('should call provided onSelect fn on click - Menu', () => {
     onSelectHandler = jest.fn()
     variant = 'menu-items'
 
     wrapper = mount(<Test />)
 
     wrapper
-      .find(MenuItem)
-      .first()
+      .find('.MuiMenuItem-root')
+      .at(getFiberIndex(0))
       .simulate('click')
 
     expect(onSelectHandler.mock.calls[0][0]).toBe(sortOptions[0])
     expect(mockSetSort).toHaveBeenCalledTimes(1)
   })
 
-  it.skip('should prevent setting sort when e.preventDefault is triggered', () => {
-    onSelectHandler = (option, e) => e.preventDefault()
+  it('should prevent setting sort when e.preventDefault is triggered', () => {
+    onSelectHandler = (_, e) => e.preventDefault()
 
     wrapper = mount(<Test />)
 
     wrapper
-      .find(Button)
-      .first()
+      .find('.MuiButton-root')
+      .at(getFiberIndex(0))
       .simulate('click')
 
     expect(mockSetSort).toHaveBeenCalledTimes(0)
