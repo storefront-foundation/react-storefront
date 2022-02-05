@@ -41,14 +41,14 @@ describe('SearchField', () => {
     expect(wrapper.find(SearchField).prop('spreadprops')).toBe('spread')
   })
 
-  it.skip('should reset input value on clear click', async () => {
-    wrapper = mount(<TestComponent />)
+  it('should reset input value on clear click', async () => {
+    wrapper = mount(<TestComponent showClearButton />)
 
     wrapper.find('input').simulate('change', { target: { value: 'test' } })
 
     expect(wrapper.find('input').prop('value')).toBe('test')
 
-    wrapper.find(IconButton).at(getFiberIndex(0)).simulate('click')
+    wrapper.find('.MuiIconButton-root').last().simulate('click')
 
     expect(wrapper.find('input').prop('value')).toBe('')
   })

@@ -79,44 +79,40 @@ describe('ExpandableSection', () => {
     expect(wrapper.find(Accordion).prop('classes').root).toContain('margins')
   })
 
-  it.skip('should set fixed expanded state when expanded prop provided', () => {
+  it('should set fixed expanded state when expanded prop provided', () => {
     wrapper = mount(<ExpandableSection expanded CollapseIcon={TestIcon} />)
 
     expect(wrapper.find(TestIcon).exists()).toBe(true)
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(true)
-    wrapper.find(AccordionSummary).simulate('click')
+    wrapper.find('.MuiAccordionSummary-root').last().simulate('click')
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(true)
   })
 
-  it.skip('should manage expanded state internally', () => {
+  it('should manage expanded state internally', () => {
     wrapper = mount(<ExpandableSection />)
 
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(false)
-    wrapper.find(AccordionSummary).simulate('click')
+    wrapper.find('.MuiAccordionSummary-root').last().simulate('click')
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(true)
   })
 
-  it.skip('should trigger provided onChange function', () => {
+  it('should trigger provided onChange function', () => {
     const Test = () => {
       const [expanded, setExpanded] = useState(true)
 
@@ -137,23 +133,21 @@ describe('ExpandableSection', () => {
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(true)
 
-    wrapper.find(AccordionSummary).simulate('click')
+    wrapper.find('.MuiAccordionSummary-root').last().simulate('click')
 
     expect(wrapper.find(ExpandMoreIcon).exists()).toBe(true)
     expect(wrapper.find(TestIcon).exists()).toBe(false)
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(false)
   })
 
-  it.skip('should not change expanded state when onChange prevents default', () => {
+  it('should not change expanded state when onChange prevents default', () => {
     const Test = () => {
       const handleChange = (e, expanded) => {
         e.preventDefault()
@@ -167,26 +161,24 @@ describe('ExpandableSection', () => {
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(false)
 
     wrapper
-      .find(Accordion)
-      .childAt(0)
+      .find('.RSFExpandableSection-root')
+      .last()
       .simulate('click')
 
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(false)
   })
 
-  it.skip('should change expanded state when onChange does not prevent default', () => {
+  it('should change expanded state when onChange does not prevent default', () => {
     const Test = () => {
-      const handleChange = (e, expanded) => {}
+      const handleChange = () => {}
 
       return <ExpandableSection onChange={handleChange} />
     }
@@ -196,16 +188,14 @@ describe('ExpandableSection', () => {
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(false)
 
-    wrapper.find(AccordionSummary).simulate('click')
+    wrapper.find('.RSFExpandableSection-summary').last().simulate('click')
 
     expect(
       wrapper
         .find(Accordion)
-        .childAt(0)
         .prop('expanded'),
     ).toBe(true)
   })
