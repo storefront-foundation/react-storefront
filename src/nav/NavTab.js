@@ -93,7 +93,7 @@ const Root = styled('div')(({ theme }) => ({
  *
  * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the `NavTab` is focused.
  */
-const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...props }) {
+const NavTab = function ({ href, as, prefetch, children, classes: c = {}, ...props }) {
   const classes = { ...defaultClasses, ...c }
 
   const popupState = usePopupState({
@@ -102,7 +102,7 @@ const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...prop
   })
 
   const handleEnterKeyDown = useCallback(e => {
-    if(e.key === 'Enter') {
+    if (e.key === 'Enter') {
       e.preventDefault()
       popupState.open(e)
     }
@@ -137,33 +137,31 @@ const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...prop
         />
       </Link>
       {!children ? null : (
-        <Hidden smDown>
-          <HoverPopover
-            {...bindPopover(popupState)}
-            className={classes.popover}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            TransitionComponent={Fade}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-            PaperProps={{
-              square: true,
-              className: classes.paper,
-            }}
-            classes={classes}
+        <HoverPopover
+          {...bindPopover(popupState)}
+          className={classes.popover}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          TransitionComponent={Fade}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          PaperProps={{
+            square: true,
+            className: classes.paper,
+          }}
+          classes={classes}
+        >
+          <Paper
+            className={classes.innerPaper}
+            square
           >
-            <Paper
-              className={classes.innerPaper}
-              square
-            >
-              {children}
-            </Paper>
-          </HoverPopover>
-        </Hidden>
+            {children}
+          </Paper>
+        </HoverPopover>
       )}
     </Root>
   )

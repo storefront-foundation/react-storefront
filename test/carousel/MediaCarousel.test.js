@@ -9,7 +9,7 @@ import Media from 'react-storefront/carousel/Media'
 import Image from 'react-storefront/Image'
 import { act } from 'react-dom/test-utils'
 import CarouselThumbnails from 'react-storefront/carousel/CarouselThumbnails'
-// import * as useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
+import * as useMediaQuery from '@mui/material/useMediaQuery'
 
 jest.useFakeTimers()
 
@@ -17,7 +17,7 @@ describe('MediaCarousel', () => {
   let wrapper
   let media
 
-  // const mockMediaQuery = jest.spyOn(useMediaQuery, 'default')
+  const mockMediaQuery = jest.fn().mockImplementation(()=> useMediaQuery())
 
   beforeEach(() => {
     window.innerWidth = 1024
@@ -126,7 +126,7 @@ describe('MediaCarousel', () => {
   })
 
   it('should pass magnify props to Media when lightbox is closed and window size is not small', () => {
-    // mockMediaQuery.mockReturnValue(false)
+    mockMediaQuery.mockReturnValue(false)
 
     wrapper = mount(<MediaCarousel media={media} />)
 
@@ -139,7 +139,7 @@ describe('MediaCarousel', () => {
   })
 
   it('should pass image props to Media when lightbox is opened and window size is not small', () => {
-    // mockMediaQuery.mockReturnValue(false)
+    mockMediaQuery.mockReturnValue(false)
 
     wrapper = mount(<MediaCarousel media={media} />)
 
@@ -165,7 +165,7 @@ describe('MediaCarousel', () => {
   })
 
   it.skip('should pass height 100% to Carousel if window size is small and lightbox is opened', () => {
-    // mockMediaQuery.mockReturnValue(true)
+    mockMediaQuery.mockReturnValue(true)
 
     wrapper = mount(<MediaCarousel media={media} />)
     wrapper.patchedFind(Carousel).simulate('click')

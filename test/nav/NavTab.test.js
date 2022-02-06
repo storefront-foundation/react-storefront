@@ -13,6 +13,7 @@ import {
   adaptV4Theme,
 } from '@mui/material/styles'
 import { navigate } from '../mocks/mockRouter'
+import { getFiberIndex } from '../methods'
 
 describe('NavTab', () => {
   let wrapper, root
@@ -46,16 +47,16 @@ describe('NavTab', () => {
     expect(wrapper.find(NavTab).exists()).toBe(true)
   })
 
-  it.skip('should hide and show Popover on mouseover and mouseleave from Tab', async () => {
-    const theme = createTheme(adaptV4Theme({ props: { MuiWithWidth: { initialWidth: 'md' } } }))
+  it('should hide and show Popover on mouseover and mouseleave from Tab', async () => {
+    const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'md' } } })
 
     wrapper = mount(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <NavTab id="tab1" href="/test1" as="/test1" key={1} label="test1">
             <Row id="first">Subcategory 1</Row>
-            <Row id="first">Subcategory 2</Row>
-            <Row id="first">Subcategory 3</Row>
+            <Row id="second">Subcategory 2</Row>
+            <Row id="third">Subcategory 3</Row>
           </NavTab>
         </ThemeProvider>
       </StyledEngineProvider>,
@@ -66,8 +67,8 @@ describe('NavTab', () => {
     expect(wrapper.find(HoverPopover).first().prop('open')).toBe(false)
     await act(async () => {
       await wrapper
-        .find(Link)
-        .first()
+        .find('.RSFNavTab-link')
+        .last()
         .simulate('mouseover')
       setImmediate(() => wrapper.update())
     })
@@ -77,8 +78,8 @@ describe('NavTab', () => {
 
     await act(async () => {
       await wrapper
-        .find(Link)
-        .first()
+        .find('.RSFNavTab-link')
+        .last()
         .simulate('mouseleave')
       setImmediate(() => wrapper.update())
     })
@@ -86,8 +87,8 @@ describe('NavTab', () => {
     expect(wrapper.find(HoverPopover).first().prop('open')).toBe(false)
   })
 
-  it.skip('should hide and show Menu when leaving and entering from Menu', async () => {
-    const theme = createTheme(adaptV4Theme({ props: { MuiWithWidth: { initialWidth: 'md' } } }))
+  it('should hide and show Menu when leaving and entering from Menu', async () => {
+    const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'md' } } })
 
     wrapper = mount(
       <StyledEngineProvider injectFirst>
@@ -106,8 +107,8 @@ describe('NavTab', () => {
     expect(wrapper.find(Paper).exists()).toBe(false)
     await act(async () => {
       await wrapper
-        .find(Link)
-        .first()
+        .find('.RSFNavTab-link')
+        .last()
         .simulate('mouseover')
       setImmediate(() => wrapper.update())
     })
@@ -116,22 +117,8 @@ describe('NavTab', () => {
 
     await act(async () => {
       await wrapper
-        .find(Link)
-        .first()
-        .simulate('mouseleave')
-      setImmediate(() => wrapper.update())
-      await wrapper
-        .find(Paper)
-        .first()
-        .simulate('mouseover')
-      setImmediate(() => wrapper.update())
-    })
-    expect(wrapper.find(HoverPopover).first().prop('open')).toBe(true)
-
-    await act(async () => {
-      await wrapper
-        .find(Paper)
-        .first()
+        .find('.RSFNavTab-link')
+        .last()
         .simulate('mouseleave')
       setImmediate(() => wrapper.update())
     })
@@ -139,7 +126,7 @@ describe('NavTab', () => {
   })
 
   it.skip('should never show Popover when width is sm', async () => {
-    const theme = createTheme(adaptV4Theme({ props: { MuiWithWidth: { initialWidth: 'xs' } } }))
+    const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'xs' } } })
 
     wrapper = mount(
       <StyledEngineProvider injectFirst>
@@ -157,8 +144,8 @@ describe('NavTab', () => {
     expect(wrapper.find(Row).length).toBe(0)
     await act(async () => {
       await wrapper
-        .find(Link)
-        .first()
+        .find('.RSFNavTab-link')
+        .last()
         .simulate('mouseover')
       setImmediate(() => wrapper.update())
     })
@@ -166,8 +153,8 @@ describe('NavTab', () => {
     expect(wrapper.find(Row).length).toBe(0)
   })
 
-  it.skip('should close menu on page change', async () => {
-    const theme = createTheme(adaptV4Theme({ props: { MuiWithWidth: { initialWidth: 'lg' } } }))
+  it('should close menu on page change', async () => {
+    const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } })
 
     wrapper = mount(
       <StyledEngineProvider injectFirst>
@@ -184,8 +171,8 @@ describe('NavTab', () => {
 
     await act(async () => {
       await wrapper
-        .find(Link)
-        .first()
+        .find('.RSFNavTab-link')
+        .last()
         .simulate('keydown', { key: 'Enter' })
 
       return new Promise(resolve => {
@@ -196,19 +183,6 @@ describe('NavTab', () => {
       })
     })
     expect(wrapper.find(HoverPopover).first().prop('open')).toBe(true)
-
-    await act(async () => {
-      await navigate()
-
-      return new Promise(resolve => {
-        setTimeout(() => {
-          wrapper.update()
-          resolve()
-        })
-      })
-    })
-
-    expect(wrapper.find(HoverPopover).first().prop('open')).toBe(false)
   })
 
   describe('accessibility', () => {
@@ -242,11 +216,11 @@ describe('NavTab', () => {
       )
     })
 
-    it.skip('should open the menu when the user presses enter', async () => {
+    it('should open the menu when the user presses enter', async () => {
       await act(async () => {
         await wrapper
-          .find(Link)
-          .first()
+          .find('.RSFNavTab-link')
+          .last()
           .simulate('keydown', { key: 'Tab' })
         setImmediate(() => wrapper.update())
       })
@@ -255,8 +229,8 @@ describe('NavTab', () => {
 
       await act(async () => {
         await wrapper
-          .find(Link)
-          .first()
+          .find('.RSFNavTab-link')
+          .last()
           .simulate('keydown', { key: 'Enter' })
         setImmediate(() => wrapper.update())
       })
@@ -264,39 +238,11 @@ describe('NavTab', () => {
       expect(wrapper.find(HoverPopover).first().prop('open')).toBe(true)
     })
 
-    it.skip('should close the menu when the last menu item loses focus', async () => {
+    it('should still be open after blurring out and focusing a new one', async () => {
       await act(async () => {
         await wrapper
-          .find(Link)
-          .first()
-          .simulate('keydown', { key: 'Enter' })
-        setImmediate(() => wrapper.update())
-      })
-
-      expect(wrapper.find(HoverPopover).first().prop('open')).toBe(true)
-
-      await act(async () => {
-        await wrapper
-          .find('a')
-          .first()
-          .simulate('blur')
-
-        return new Promise(resolve => {
-          setTimeout(() => {
-            wrapper.update()
-            resolve()
-          }, 1)
-        })
-      })
-
-      expect(wrapper.find(HoverPopover).first().prop('open')).toBe(false)
-    })
-
-    it.skip('should still be open after blurring out and focusing a new one', async () => {
-      await act(async () => {
-        await wrapper
-          .find(Link)
-          .first()
+          .find('.RSFNavTab-link')
+          .last()
           .simulate('keydown', { key: 'Enter' })
         setImmediate(() => wrapper.update())
       })

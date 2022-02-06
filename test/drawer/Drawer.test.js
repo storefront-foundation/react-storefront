@@ -18,8 +18,7 @@ describe('Drawer', () => {
     wrapper.unmount()
   })
 
-  it.skip('should set padding to 0 on drawer close', () => {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(null)
+  it('should set padding to 0 on drawer close', () => {
     const onClose = jest.fn()
 
     wrapper = mount(
@@ -28,9 +27,8 @@ describe('Drawer', () => {
       </Drawer>,
     )
 
-    wrapper.find(DrawerCloseButton).simulate('click')
+    wrapper.find('.RSFDrawer-closeButton').last().simulate('click')
 
-    expect(consoleSpy).toBeCalled()
     expect(document.body.style.paddingBottom).toBe('0px')
   })
 
@@ -97,7 +95,7 @@ describe('Drawer', () => {
     jest.clearAllMocks()
   })
 
-  it.skip('should call onClose function when drawer is closed', () => {
+  it('should call onClose function when drawer is closed', () => {
     const onCloseMock = jest.fn()
     wrapper = mount(
       <Drawer title="test" variant="persistent" open onClose={onCloseMock}>
@@ -107,7 +105,7 @@ describe('Drawer', () => {
 
     expect(document.body.style.paddingBottom).toBe('')
 
-    wrapper.find(DrawerCloseButton).simulate('click')
+    wrapper.find('.RSFDrawer-closeButton').last().simulate('click')
 
     expect(document.body.style.paddingBottom).toBe('0px')
 

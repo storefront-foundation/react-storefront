@@ -83,8 +83,6 @@ describe('QuantitySelector', () => {
       quantity = 1
       wrapper = mount(<Test />)
 
-      console.log('here', wrapper.debug())
-
       wrapper
         .find('.MuiIconButton-root')
         .at(3)

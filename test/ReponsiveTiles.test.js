@@ -5,6 +5,7 @@ import { ImageListItem } from '@mui/material'
 import ResponsiveTiles from 'react-storefront/ResponsiveTiles'
 import AutoScrollToNewChildren from 'react-storefront/AutoScrollToNewChildren'
 import { makeStyles } from '@mui/styles'
+import { mountWithIntl, shallowWithIntl, loadTranslation } from 'enzyme-react-intl';
 
 describe('ResponsiveTiles', () => {
   let wrapper
@@ -75,7 +76,9 @@ describe('ResponsiveTiles', () => {
     const root = document.createElement('div')
     document.body.appendChild(root)
 
-    const makeStylesSpy = jest.spyOn(makeStyles, 'default')
+    // const makeStylesSpy = jest.spyOn(makeStyles, 'default')
+
+    const makeStylesSpy = jest.fn().mockImplementation(()=> makeStyles())
 
     wrapper = mount(
       <ResponsiveTiles
