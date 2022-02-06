@@ -3,17 +3,16 @@ import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
 import NavTab from 'react-storefront/nav/NavTab'
 import Row from 'react-storefront/Row'
-import Link from 'react-storefront/link/Link'
-import { Hidden, Paper, Popover } from '@mui/material'
+import { Paper } from '@mui/material'
 import HoverPopover from 'material-ui-popup-state/HoverPopover'
 import {
   createTheme,
   ThemeProvider,
   StyledEngineProvider,
-  adaptV4Theme,
 } from '@mui/material/styles'
-import { navigate } from '../mocks/mockRouter'
-import { getFiberIndex } from '../methods'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
+jest.mock('@mui/material/useMediaQuery');
 
 describe('NavTab', () => {
   let wrapper, root
@@ -49,6 +48,7 @@ describe('NavTab', () => {
 
   it('should hide and show Popover on mouseover and mouseleave from Tab', async () => {
     const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'md' } } })
+    useMediaQuery.mockReturnValue(false)
 
     wrapper = mount(
       <StyledEngineProvider injectFirst>
@@ -89,6 +89,7 @@ describe('NavTab', () => {
 
   it('should hide and show Menu when leaving and entering from Menu', async () => {
     const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'md' } } })
+    useMediaQuery.mockReturnValue(false)
 
     wrapper = mount(
       <StyledEngineProvider injectFirst>
@@ -125,8 +126,9 @@ describe('NavTab', () => {
     expect(wrapper.find(HoverPopover).first().prop('open')).toBe(false)
   })
 
-  it.skip('should never show Popover when width is sm', async () => {
+  it('should never show Popover when width is sm', async () => {
     const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'xs' } } })
+    useMediaQuery.mockReturnValue(true)
 
     wrapper = mount(
       <StyledEngineProvider injectFirst>
@@ -155,6 +157,7 @@ describe('NavTab', () => {
 
   it('should close menu on page change', async () => {
     const theme = createTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } })
+    useMediaQuery.mockReturnValue(false)
 
     wrapper = mount(
       <StyledEngineProvider injectFirst>
@@ -187,15 +190,13 @@ describe('NavTab', () => {
 
   describe('accessibility', () => {
     beforeEach(() => {
-      const theme = createTheme(
-        adaptV4Theme({
-          props: {
-            MuiWithWidth: {
-              initialWidth: 'lg',
-            },
+      const theme = createTheme({
+        props: {
+          MuiWithWidth: {
+            initialWidth: 'lg',
           },
-        }),
-      )
+        },
+      })
 
       wrapper = mount(
         <StyledEngineProvider injectFirst>
@@ -217,6 +218,8 @@ describe('NavTab', () => {
     })
 
     it('should open the menu when the user presses enter', async () => {
+      useMediaQuery.mockReturnValue(false)
+
       await act(async () => {
         await wrapper
           .find('.RSFNavTab-link')
@@ -239,6 +242,8 @@ describe('NavTab', () => {
     })
 
     it('should still be open after blurring out and focusing a new one', async () => {
+      useMediaQuery.mockReturnValue(false)
+
       await act(async () => {
         await wrapper
           .find('.RSFNavTab-link')

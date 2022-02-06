@@ -71,7 +71,7 @@ describe('ResponsiveTiles', () => {
     )
   })
 
-  it.skip('should be able to pass custom column breakpoints', () => {
+  it('should be able to pass custom column breakpoints', () => {
     const theme = createTheme()
     const root = document.createElement('div')
     document.body.appendChild(root)

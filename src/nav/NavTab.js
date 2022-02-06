@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react'
-import { styled } from '@mui/material/styles'
-import { Hidden, Fade, Tab, Paper } from '@mui/material'
+import { styled, useTheme } from '@mui/material/styles'
+import { Fade, Tab, Paper } from '@mui/material'
 import PropTypes from 'prop-types'
 import Link from '../link/Link'
-
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { bindHover, bindPopover } from 'material-ui-popup-state'
 import { usePopupState } from 'material-ui-popup-state/hooks'
-
 import HoverPopover from 'material-ui-popup-state/HoverPopover'
 
 const PREFIX = 'RSFNavTab'
@@ -93,8 +92,10 @@ const Root = styled('div')(({ theme }) => ({
  *
  * This component supports keyboard navigation.  The user can open the menu by pressing the enter key when the `NavTab` is focused.
  */
-const NavTab = function ({ href, as, prefetch, children, classes: c = {}, ...props }) {
+const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...props }) {
   const classes = { ...defaultClasses, ...c }
+  const theme = useTheme()
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'))
 
   const popupState = usePopupState({
     variant: 'popover',
@@ -102,7 +103,7 @@ const NavTab = function ({ href, as, prefetch, children, classes: c = {}, ...pro
   })
 
   const handleEnterKeyDown = useCallback(e => {
-    if (e.key === 'Enter') {
+    if(e.key === 'Enter') {
       e.preventDefault()
       popupState.open(e)
     }
@@ -136,33 +137,33 @@ const NavTab = function ({ href, as, prefetch, children, classes: c = {}, ...pro
           }}
         />
       </Link>
-      {!children ? null : (
+      {(children && !isSmall) ? (
         <HoverPopover
-          {...bindPopover(popupState)}
-          className={classes.popover}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          TransitionComponent={Fade}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          PaperProps={{
-            square: true,
-            className: classes.paper,
-          }}
-          classes={classes}
-        >
-          <Paper
-            className={classes.innerPaper}
-            square
+            {...bindPopover(popupState)}
+            className={classes.popover}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            TransitionComponent={Fade}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            PaperProps={{
+              square: true,
+              className: classes.paper,
+            }}
+            classes={classes}
           >
-            {children}
-          </Paper>
-        </HoverPopover>
-      )}
+            <Paper
+              className={classes.innerPaper}
+              square
+            >
+              {children}
+            </Paper>
+          </HoverPopover>
+      ) : null}
     </Root>
   )
 }

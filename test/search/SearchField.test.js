@@ -3,8 +3,6 @@ import { mount } from 'enzyme'
 import SearchField from 'react-storefront/search/SearchField'
 import SearchSubmitButton from 'react-storefront/search/SearchSubmitButton'
 import { Fab, Button } from '@mui/material'
-import { IconButton } from '@mui/material'
-import { getFiberIndex } from '../methods'
 
 describe('SearchField', () => {
   let wrapper, getQuery

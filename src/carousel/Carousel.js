@@ -140,6 +140,7 @@ const Carousel = React.forwardRef((props, ref) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
+      height={height}
     >
       {aboveAdornments}
       <Fill height={height}>
