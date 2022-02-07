@@ -32,7 +32,7 @@ describe('CarouselArrows', () => {
     expect(wrapper.find(ChevronRight)).toExist()
   })
 
-  it.only('should append one index when clicking on right arrow', () => {
+  it('should append one index when clicking on right arrow', () => {
     const setSelectedMock = jest.fn()
 
     wrapper = mount(<CarouselArrows count={2} selected={0} setSelected={setSelectedMock} />)

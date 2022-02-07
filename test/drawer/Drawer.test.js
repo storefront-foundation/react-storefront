@@ -33,8 +33,10 @@ describe('Drawer', () => {
   })
 
   it('should have title if title prop is passed', () => {
+    const onClose = jest.fn()
+
     wrapper = mount(
-      <Drawer title="test" open>
+      <Drawer title="test" onClose={onClose} open>
         <div></div>
       </Drawer>,
     )
@@ -43,8 +45,10 @@ describe('Drawer', () => {
   })
 
   it('should not render anything when it is closed', () => {
+    const onClose = jest.fn()
+
     wrapper = mount(
-      <Drawer title="test">
+      <Drawer onClose={onClose} title="test">
         <div></div>
       </Drawer>,
     )
@@ -53,8 +57,10 @@ describe('Drawer', () => {
   })
 
   it('should not show Drawer close button when showCloseButton is false', () => {
+    const onClose = jest.fn()
+
     wrapper = mount(
-      <Drawer title="test" showCloseButton={false} open>
+      <Drawer title="test" onClose={onClose} showCloseButton={false} open>
         <div></div>
       </Drawer>,
     )
@@ -63,8 +69,10 @@ describe('Drawer', () => {
   })
 
   it('should show Drawer close button by default', () => {
+    const onClose = jest.fn()
+
     wrapper = mount(
-      <Drawer title="test" open>
+      <Drawer title="test" onClose={onClose} open>
         <div></div>
       </Drawer>,
     )
@@ -73,12 +81,13 @@ describe('Drawer', () => {
   })
 
   it('should auto adjust body padding when autoAdjustBodyPadding prop is passed', () => {
+    const onClose = jest.fn()
     jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb())
     const clientHeightMock = jest.spyOn(HTMLElement.prototype, 'clientHeight', 'get')
 
     clientHeightMock.mockReturnValue(10)
     wrapper = mount(
-      <Drawer title="test" variant="persistent" autoAdjustBodyPadding open>
+      <Drawer title="test" onClose={onClose} variant="persistent" autoAdjustBodyPadding open>
         <div></div>
       </Drawer>,
     )

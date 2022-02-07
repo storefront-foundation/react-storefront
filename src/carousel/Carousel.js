@@ -155,7 +155,7 @@ const Carousel = React.forwardRef((props, ref) => {
             interval={interval}
             containerStyle={{ alignItems: 'center' }}
           />
-          {arrows !== false && (
+          {arrows !== false ? (
             <CarouselArrows
               className={arrows === 'desktop' ? classes.hideTouchArrows : null}
               selected={selected}
@@ -163,7 +163,7 @@ const Carousel = React.forwardRef((props, ref) => {
               count={count}
               infinite={infinite}
             />
-          )}
+          ) : <div />}
           {indicators && <CarouselDots count={count} selected={selected} />}
         </div>
       </Fill>
