@@ -98,7 +98,7 @@ const Carousel = React.forwardRef((props, ref) => {
   const classes = { ...defaultClasses, ...c }
 
   const { selected, setSelected } = useSelected(props)
-  const count = children && children.length
+  const count = !!children ? children.length : 0
 
   let Tag = infinite ? VirtualizeSwipeableViews : SwipeableViews
   Tag = autoplay ? AutoPlaySwipeableViews : Tag

@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { mount } from 'enzyme'
 import QuantitySelector from 'react-storefront/QuantitySelector'
-import { IconButton } from '@mui/material'
-import { at } from 'lodash'
 
 describe('QuantitySelector', () => {
   let wrapper,
@@ -150,7 +148,6 @@ describe('QuantitySelector', () => {
       wrapper
         .find('.MuiIconButton-root')
         .at(3)
-        // .first()
         .simulate('click')
 
       expect(getValue).toBe(minValue)

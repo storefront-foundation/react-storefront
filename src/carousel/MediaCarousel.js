@@ -302,7 +302,7 @@ const MediaCarousel = function(props) {
         selected={selected}
         setSelected={setSelected}
         height="100%"
-        // {...others}
+        {...others}
       >
         {get(media, 'full', []).map((item, i) => {
           const magnifySrc = get(item, 'magnify.src', item.src)
