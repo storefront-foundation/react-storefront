@@ -3,7 +3,6 @@ import { mount } from 'enzyme'
 import SearchField from 'react-storefront/search/SearchField'
 import SearchSubmitButton from 'react-storefront/search/SearchSubmitButton'
 import { Fab, Button } from '@mui/material'
-import { IconButton } from '@mui/material'
 
 describe('SearchField', () => {
   let wrapper, getQuery
@@ -40,14 +39,14 @@ describe('SearchField', () => {
     expect(wrapper.find(SearchField).prop('spreadprops')).toBe('spread')
   })
 
-  it.skip('should reset input value on clear click', async () => {
-    wrapper = mount(<TestComponent />)
+  it('should reset input value on clear click', async () => {
+    wrapper = mount(<TestComponent showClearButton />)
 
     wrapper.find('input').simulate('change', { target: { value: 'test' } })
 
     expect(wrapper.find('input').prop('value')).toBe('test')
 
-    wrapper.find(IconButton).simulate('click')
+    wrapper.find('.MuiIconButton-root').last().simulate('click')
 
     expect(wrapper.find('input').prop('value')).toBe('')
   })

@@ -98,7 +98,7 @@ const Carousel = React.forwardRef((props, ref) => {
   const classes = { ...defaultClasses, ...c }
 
   const { selected, setSelected } = useSelected(props)
-  const count = children && children.length
+  const count = !!children ? children.length : 0
 
   let Tag = infinite ? VirtualizeSwipeableViews : SwipeableViews
   Tag = autoplay ? AutoPlaySwipeableViews : Tag
@@ -140,6 +140,7 @@ const Carousel = React.forwardRef((props, ref) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
+      height={height}
     >
       {aboveAdornments}
       <Fill height={height}>
@@ -154,7 +155,7 @@ const Carousel = React.forwardRef((props, ref) => {
             interval={interval}
             containerStyle={{ alignItems: 'center' }}
           />
-          {arrows !== false && (
+          {arrows !== false ? (
             <CarouselArrows
               className={arrows === 'desktop' ? classes.hideTouchArrows : null}
               selected={selected}
@@ -162,7 +163,7 @@ const Carousel = React.forwardRef((props, ref) => {
               count={count}
               infinite={infinite}
             />
-          )}
+          ) : <div />}
           {indicators && <CarouselDots count={count} selected={selected} />}
         </div>
       </Fill>

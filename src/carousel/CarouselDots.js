@@ -81,7 +81,7 @@ CarouselDots.propTypes = {
   /**
    * The total number of dots to show.
    */
-  count: PropTypes.number.isRequired,
+  count: PropTypes.number,
 
   /**
    * The index of the selected dot.

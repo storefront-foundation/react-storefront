@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react'
-import { styled } from '@mui/material/styles'
-import { Hidden, Fade, Tab, Paper } from '@mui/material'
+import { styled, useTheme } from '@mui/material/styles'
+import { Fade, Tab, Paper } from '@mui/material'
 import PropTypes from 'prop-types'
 import Link from '../link/Link'
-
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { bindHover, bindPopover } from 'material-ui-popup-state'
 import { usePopupState } from 'material-ui-popup-state/hooks'
-
 import HoverPopover from 'material-ui-popup-state/HoverPopover'
 
 const PREFIX = 'RSFNavTab'
@@ -95,6 +94,8 @@ const Root = styled('div')(({ theme }) => ({
  */
 const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...props }) {
   const classes = { ...defaultClasses, ...c }
+  const theme = useTheme()
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'))
 
   const popupState = usePopupState({
     variant: 'popover',
@@ -136,9 +137,8 @@ const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...prop
           }}
         />
       </Link>
-      {!children ? null : (
-        <Hidden smDown>
-          <HoverPopover
+      {(children && !isSmall) ? (
+        <HoverPopover
             {...bindPopover(popupState)}
             className={classes.popover}
             anchorOrigin={{
@@ -163,8 +163,7 @@ const NavTab = function({ href, as, prefetch, children, classes: c = {}, ...prop
               {children}
             </Paper>
           </HoverPopover>
-        </Hidden>
-      )}
+      ) : null}
     </Root>
   )
 }

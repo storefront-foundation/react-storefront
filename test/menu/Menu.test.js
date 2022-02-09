@@ -7,6 +7,7 @@ import MenuFooter from 'react-storefront/menu/MenuFooter'
 import MenuHeader from 'react-storefront/menu/MenuHeader'
 import { ListItem } from '@mui/material'
 import { ChevronLeft } from '@mui/icons-material'
+import { getFiberIndex } from '../methods'
 
 describe('Menu', () => {
   let wrapper
@@ -73,7 +74,7 @@ describe('Menu', () => {
     expect(wrapper.find(MenuHeader).text()).toBe('root header')
   })
 
-  it.skip('should navigate to submenu', () => {
+  it('should navigate to submenu', () => {
     wrapper = mount(
       <Menu
         root={{
@@ -88,8 +89,8 @@ describe('Menu', () => {
         .prop('card'),
     ).toBe(0)
     wrapper
-      .find(ListItem)
-      .first()
+      .find('.MuiListItem-root')
+      .last()
       .simulate('click')
     expect(
       wrapper
@@ -100,8 +101,8 @@ describe('Menu', () => {
     // Not sure this is actually possible for a user to do, since
     // they are clicking a hidden menu item
     wrapper
-      .find(ListItem)
-      .first()
+      .find('.MuiListItem-root')
+      .last()
       .simulate('click')
   })
 
@@ -147,7 +148,7 @@ describe('Menu', () => {
     expect(wrapper.find(ListItem).length).toBe(4)
   })
 
-  it.skip('should use menu back to come back from submenu', () => {
+  it('should use menu back to come back from submenu', () => {
     wrapper = mount(
       <Menu
         persistent
@@ -163,8 +164,8 @@ describe('Menu', () => {
         .prop('card'),
     ).toBe(0)
     wrapper
-      .find(ListItem)
-      .first()
+      .find('.MuiListItem-root')
+      .last()
       .simulate('click')
     expect(
       wrapper
@@ -173,8 +174,8 @@ describe('Menu', () => {
         .prop('card'),
     ).toBe(1)
     wrapper
-      .find(MenuBack)
-      .first()
+      .find('.MuiButtonBase-root')
+      .last()
       .simulate('click')
     expect(
       wrapper
@@ -214,7 +215,7 @@ describe('Menu', () => {
     expect(wrapper.find(ListItem).text()).toBe('bar')
   })
 
-  it.skip('should render back icon with in secondary menu', () => {
+  it('should render back icon with in secondary menu', () => {
     wrapper = mount(
       <Menu
         open
@@ -245,13 +246,13 @@ describe('Menu', () => {
       />,
     )
     wrapper
-      .find(ListItem)
-      .at(0)
+      .find('.MuiListItem-root')
+      .last()
       .simulate('click')
     expect(wrapper.find(ChevronLeft).length).toBe(1)
   })
 
-  it.skip('should render custom text for back button in secondary menu', () => {
+  it('should render custom text for back button in secondary menu', () => {
     wrapper = mount(
       <Menu
         open
@@ -283,8 +284,8 @@ describe('Menu', () => {
       />,
     )
     wrapper
-      .find(ListItem)
-      .at(0)
+      .find('.MuiListItem-root')
+      .last()
       .simulate('click')
     expect(wrapper.find(MenuBack).text()).toBe('Back')
   })

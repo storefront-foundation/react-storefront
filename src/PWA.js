@@ -17,7 +17,7 @@ const classes = {
 
 const StyledPWAContextProvider = styled(PWAContext.Provider)(({ theme }) => ({
   [`& .${classes.body}`]: {
-    '-webkit-tap-highlight-color': 'transparent',
+    'WebkitTapHighlightColor?': 'transparent',
   },
 
   [`& .${classes.a}`]: {

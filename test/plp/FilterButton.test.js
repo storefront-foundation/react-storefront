@@ -6,6 +6,7 @@ import Filter from 'react-storefront/plp/Filter'
 import ActionButton from 'react-storefront/ActionButton'
 import Drawer from 'react-storefront/drawer/Drawer'
 import { act } from 'react-dom/test-utils'
+import { getFiberIndex } from '../methods'
 
 describe('FilterButton', () => {
   let wrapper
@@ -30,7 +31,7 @@ describe('FilterButton', () => {
 
   beforeEach(() => {})
 
-  it.skip('should open drawer on filter click', () => {
+  it('should open drawer on filter click', () => {
     wrapper = mount(
       <SearchResultsContext.Provider
         value={{
@@ -48,11 +49,11 @@ describe('FilterButton', () => {
     )
 
     expect(wrapper.find(Filter)).not.toExist()
-    wrapper.find(ActionButton).simulate('click')
+    wrapper.find('.MuiButton-root').at(getFiberIndex(0)).simulate('click')
     expect(wrapper.find(Filter)).toExist()
   })
 
-  it.skip('should trigger provided onClick fn on filter click', () => {
+  it('should trigger provided onClick fn on filter click', () => {
     const onClickSpy = jest.fn().mockImplementation(e => e.preventDefault())
 
     wrapper = mount(
@@ -71,11 +72,11 @@ describe('FilterButton', () => {
       </SearchResultsContext.Provider>,
     )
 
-    wrapper.find(ActionButton).simulate('click')
+    wrapper.find('.MuiButton-root').at(getFiberIndex(0)).simulate('click')
     expect(onClickSpy).toHaveBeenCalled()
   })
 
-  it.skip('should close drawer when clicked on view results', async () => {
+  it('should close drawer when clicked on view results', async () => {
     const applyFiltersSpy = jest.fn()
 
     wrapper = mount(
@@ -96,7 +97,7 @@ describe('FilterButton', () => {
     )
 
     await act(async () => {
-      await wrapper.find(ActionButton).simulate('click')
+      await wrapper.find('.MuiButton-root').at(getFiberIndex(0)).simulate('click')
       await wrapper.update()
       await wrapper.find(Filter).invoke('onViewResultsClick')()
       await wrapper.update()

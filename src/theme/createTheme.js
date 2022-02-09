@@ -1,4 +1,5 @@
-import { createTheme as createMuiTheme, adaptV4Theme } from '@mui/material/styles'
+import { createTheme, adaptV4Theme } from '@mui/material/styles'
+// import { createTheme } from '@mui/material/styles';
 import merge from 'lodash/merge'
 
 /**
@@ -8,11 +9,11 @@ import merge from 'lodash/merge'
  * @return {Object} A material UI theme
  */
 
-export default function createTheme(values = {}) {
-  const theme = createMuiTheme(
+export default function createThemeFunc(values = {}) {
+  const theme = createTheme(
     merge(
       {},
-      adaptV4Theme({
+      {
         zIndex: {
           modal: 999,
           amp: {
@@ -23,7 +24,7 @@ export default function createTheme(values = {}) {
         loadMaskOffsetTop: 64 + 56 + 4,
         drawerWidth: 330,
         components: {},
-      }),
+      },
       values,
     ),
   )

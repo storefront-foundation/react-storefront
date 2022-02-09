@@ -2,14 +2,12 @@ import React from 'react'
 import { mount } from 'enzyme'
 import CarouselThumbnails from 'react-storefront/carousel/CarouselThumbnails'
 import { Tab, Tabs } from '@mui/material'
+import * as useMediaQuery from '@mui/material/useMediaQuery'
 
-// TODO: Fix this as part of re-integrating these tests
-// import * as useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
-
-describe.skip('CarouselThumbnails', () => {
+describe('CarouselThumbnails', () => {
   let wrapper
 
-  const mockMediaQuery = jest.spyOn(useMediaQuery, 'default')
+  const mockMediaQuery = jest.fn().mockImplementation(()=> useMediaQuery())
 
   const thumbnails = [
     { src: 'test1', alt: 'test1' },
@@ -55,7 +53,7 @@ describe.skip('CarouselThumbnails', () => {
     wrapper = mount(
       <CarouselThumbnails selected={0} thumbnails={thumbnails} thumbnailPosition="left" />,
     )
-    expect(wrapper.find(Tabs).prop('orientation')).toBe('horizontal')
+    expect(wrapper.find(Tabs).prop('orientation')).toBe('vertical')
   })
 
   it('should change selected on thumbnail click', () => {
@@ -66,7 +64,7 @@ describe.skip('CarouselThumbnails', () => {
     )
 
     wrapper
-      .find(Tab)
+      .find('.MuiTab-root')
       .last()
       .simulate('click')
     expect(setSelectedSpy).toBeCalledWith(2)

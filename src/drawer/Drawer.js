@@ -94,7 +94,7 @@ export default function Drawer({
   variant,
   showCloseButton,
   open,
-  onClose,
+  onClose = () => {},
   title,
   children,
   className,

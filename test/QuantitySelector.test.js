@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { mount } from 'enzyme'
 import QuantitySelector from 'react-storefront/QuantitySelector'
-import { IconButton } from '@mui/material'
 
 describe('QuantitySelector', () => {
   let wrapper,
@@ -78,24 +77,24 @@ describe('QuantitySelector', () => {
       ).toBe(true)
     })
 
-    it.skip('should not allow subtracting more than default min value', () => {
+    it('should not allow subtracting more than default min value', () => {
       quantity = 1
       wrapper = mount(<Test />)
 
       wrapper
-        .find(IconButton)
-        .first()
+        .find('.MuiIconButton-root')
+        .at(3)
         .simulate('click')
 
       expect(getValue).toBe(1)
     })
 
-    it.skip('should not allow adding more than default max value', () => {
+    it('should not allow adding more than default max value', () => {
       quantity = 100
       wrapper = mount(<Test />)
 
       wrapper
-        .find(IconButton)
+        .find('.MuiIconButton-root')
         .last()
         .simulate('click')
 
@@ -115,40 +114,40 @@ describe('QuantitySelector', () => {
       clearValues()
     })
 
-    it.skip('should trigger onChange fn on click', () => {
+    it('should trigger onChange fn on click', () => {
       handleChange = (value, setValue) => setValue(value)
       quantity = 1
       wrapper = mount(<Test />)
 
       wrapper
-        .find(IconButton)
+        .find('.MuiIconButton-root')
         .last()
         .simulate('click')
 
       expect(getValue).toBe(2)
     })
 
-    it.skip('should not allow adding more than custom max value', () => {
+    it('should not allow adding more than custom max value', () => {
       maxValue = 200
       quantity = 200
       wrapper = mount(<Test />)
 
       wrapper
-        .find(IconButton)
+        .find('.MuiIconButton-root')
         .last()
         .simulate('click')
 
       expect(getValue).toBe(maxValue)
     })
 
-    it.skip('should not allow subtracting more than custom min value', () => {
+    it('should not allow subtracting more than custom min value', () => {
       minValue = 100
       quantity = 100
       wrapper = mount(<Test />)
 
       wrapper
-        .find(IconButton)
-        .first()
+        .find('.MuiIconButton-root')
+        .at(3)
         .simulate('click')
 
       expect(getValue).toBe(minValue)
