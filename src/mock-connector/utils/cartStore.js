@@ -3,8 +3,8 @@ import createProduct from './createProduct'
 const CART_COOKIE = 'rsf_mock_cart'
 
 const initialStore = [
-  { id: 1, quantity: 1 },
-  { id: 2, quantity: 1 },
+  { id: '1', quantity: 1 },
+  { id: '2', quantity: 1 },
 ]
 
 function getStore(req, res) {
@@ -43,7 +43,12 @@ export function removeItem(id, req, res) {
 }
 
 export function addItem(id, quantity, req, res) {
-  const newStore = [{ id, quantity }, ...getStore(req, res)]
+  const currentStore = getStore(req, res);
+  const isItemExist = currentStore.find((item) => item.id === id);
+  if (isItemExist !== undefined) {
+    return updateItem(id, isItemExist.quantity + 1, req, res);
+  }
+  const newStore = [{ id, quantity }, ...currentStore]
   res.setHeader('Set-Cookie', `${CART_COOKIE}=${JSON.stringify(newStore)}; Path=/`)
   return newStore.map(toProduct)
 }
