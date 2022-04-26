@@ -111,7 +111,7 @@ export default function QuantitySelector({
         classes={{ root: button }}
         className={classes.subtract}
         onClick={() => handleChange(value - 1)}
-        aria-label={`add one ${ariaLabel}`}
+        aria-label={`subtract one ${ariaLabel}`}
         {...subtractButtonProps}
       >
         {subtractIcon || <Remove classes={{ root: icon }} />}
@@ -131,7 +131,7 @@ export default function QuantitySelector({
         color="primary"
         className={classes.add}
         onClick={() => handleChange(value + 1)}
-        aria-label={`subtract one ${ariaLabel}`}
+        aria-label={`add one ${ariaLabel}`}
         {...addButtonProps}
       >
         {addIcon || <Add classes={{ root: icon }} />}
