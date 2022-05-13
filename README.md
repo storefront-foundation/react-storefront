@@ -112,10 +112,6 @@ yalc remove react-storefront # or yalc remove --all
 npm i
 ```
 
-## Join the community on Slack
-
-If you have any questions or ideas feel free to join our Slack: [invitation link](https://join.slack.com/t/react-storefront-comm/shared_invite/zt-hyq2dzxf-zUjcsxReDkJ6r1FR1xCnWw)
-
 ## Documentation
 
 The documentation is always THE HARDEST PART of each open-source project! But we're trying hard :-)
