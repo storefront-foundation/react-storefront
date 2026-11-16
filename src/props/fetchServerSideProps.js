@@ -1,8 +1,9 @@
 import fetch from '../fetch'
 import getAPIURL from '../api/getAPIURL'
+import getAPIHost from '../api/getAPIHost'
 
 export default function fetchServerSideProps({ req, resolvedUrl }) {
-  const host = process.env.API_HOST || req.headers.host
+  const host = getAPIHost(req)
 
   const protocol =
     host.startsWith('localhost') || host.startsWith('127.0.0.1') ? 'http://' : 'https://'

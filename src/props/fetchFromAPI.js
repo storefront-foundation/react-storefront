@@ -1,5 +1,6 @@
 import fetch from '../fetch'
 import getAPIURL from '../api/getAPIURL'
+import getAPIHost from '../api/getAPIHost'
 
 /**
  * A convenience function to be used in `getInitialProps` to fetch data for the page from an
@@ -25,7 +26,7 @@ import getAPIURL from '../api/getAPIURL'
  * @return {Promise} A promise that resolves to the data that the page should display
  */
 export default function fetchFromAPI({ req, asPath, pathname }) {
-  const host = req ? process.env.API_HOST || req.headers.host : ''
+  const host = req ? getAPIHost(req) : ''
 
   let protocol = ''
 
